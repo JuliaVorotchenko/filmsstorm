@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import filmsstorm
-
+// swiftlint:disable all
 class filmsstormTests: XCTestCase {
 
     override func setUp() {

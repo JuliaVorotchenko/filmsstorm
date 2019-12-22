@@ -7,7 +7,7 @@
 //
 
 import XCTest
-
+// swiftlint:disable all
 class filmsstormUITests: XCTestCase {
 
     override func setUp() {
