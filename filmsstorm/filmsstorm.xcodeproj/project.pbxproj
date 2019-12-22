@@ -189,8 +189,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E51665123AFD6CA00EDF51E /* Build configuration list for PBXNativeTarget "filmsstorm" */;
 			buildPhases = (
-				CCFE275936A6632AB8B00FF6 /* [CP] Check Pods Manifest.lock */,
 				2E51665A23AFDAEF00EDF51E /* ShellScript */,
+				CCFE275936A6632AB8B00FF6 /* [CP] Check Pods Manifest.lock */,
 				2E51662023AFD6C500EDF51E /* Sources */,
 				2E51662123AFD6C500EDF51E /* Frameworks */,
 				2E51662223AFD6C500EDF51E /* Resources */,
