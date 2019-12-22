@@ -6,6 +6,10 @@ target 'filmsstorm' do
   use_frameworks!
 
   pod 'SwiftLint'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Database'
 
   target 'filmsstormTests' do
     inherit! :search_paths

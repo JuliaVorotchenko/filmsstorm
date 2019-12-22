@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05E0C8E62E7F870A5A3F334D /* Pods_filmsstorm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3059B4F4AC351E621267A3AC /* Pods_filmsstorm.framework */; };
+		2E16981923AFE05A0002E28E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E16981823AFE05A0002E28E /* GoogleService-Info.plist */; };
 		2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51662723AFD6C500EDF51E /* AppDelegate.swift */; };
 		2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51662923AFD6C500EDF51E /* SceneDelegate.swift */; };
 		2E51662D23AFD6C500EDF51E /* filmsstorm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E51662B23AFD6C500EDF51E /* filmsstorm.xcdatamodeld */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		17795471C3F63797511534BD /* Pods-filmsstorm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm.debug.xcconfig"; path = "Target Support Files/Pods-filmsstorm/Pods-filmsstorm.debug.xcconfig"; sourceTree = "<group>"; };
+		2E16981823AFE05A0002E28E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2E51662423AFD6C500EDF51E /* filmsstorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = filmsstorm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E51662723AFD6C500EDF51E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E51662923AFD6C500EDF51E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,12 +120,13 @@
 		2E51662623AFD6C500EDF51E /* filmsstorm */ = {
 			isa = PBXGroup;
 			children = (
+				2E51663823AFD6CA00EDF51E /* Info.plist */,
+				2E16981823AFE05A0002E28E /* GoogleService-Info.plist */,
 				2E51662723AFD6C500EDF51E /* AppDelegate.swift */,
 				2E51662923AFD6C500EDF51E /* SceneDelegate.swift */,
 				2E51662E23AFD6C500EDF51E /* ContentView.swift */,
 				2E51663023AFD6CA00EDF51E /* Assets.xcassets */,
 				2E51663523AFD6CA00EDF51E /* LaunchScreen.storyboard */,
-				2E51663823AFD6CA00EDF51E /* Info.plist */,
 				2E51662B23AFD6C500EDF51E /* filmsstorm.xcdatamodeld */,
 				2E51663223AFD6CA00EDF51E /* Preview Content */,
 			);
@@ -191,6 +194,7 @@
 				2E51662023AFD6C500EDF51E /* Sources */,
 				2E51662123AFD6C500EDF51E /* Frameworks */,
 				2E51662223AFD6C500EDF51E /* Resources */,
+				9CB3EA0B7CD708E0D6765031 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -228,6 +232,7 @@
 				2E51664423AFD6CA00EDF51E /* Sources */,
 				2E51664523AFD6CA00EDF51E /* Frameworks */,
 				2E51664623AFD6CA00EDF51E /* Resources */,
+				4122086B591480D89F98D403 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -288,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E51663723AFD6CA00EDF51E /* LaunchScreen.storyboard in Resources */,
+				2E16981923AFE05A0002E28E /* GoogleService-Info.plist in Resources */,
 				2E51663423AFD6CA00EDF51E /* Preview Assets.xcassets in Resources */,
 				2E51663123AFD6CA00EDF51E /* Assets.xcassets in Resources */,
 			);
@@ -327,6 +333,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
+		4122086B591480D89F98D403 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9C26D2CF2137D39F0394DF0A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -347,6 +370,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CB3EA0B7CD708E0D6765031 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-filmsstorm/Pods-filmsstorm-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-filmsstorm/Pods-filmsstorm-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-filmsstorm/Pods-filmsstorm-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CCFE275936A6632AB8B00FF6 /* [CP] Check Pods Manifest.lock */ = {
