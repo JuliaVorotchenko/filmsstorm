@@ -19,6 +19,12 @@
 		2E51664223AFD6CA00EDF51E /* filmsstormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51664123AFD6CA00EDF51E /* filmsstormTests.swift */; };
 		2E51664D23AFD6CA00EDF51E /* filmsstormUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51664C23AFD6CA00EDF51E /* filmsstormUITests.swift */; };
 		469C6416D289E0B85DA0A0E3 /* Pods_filmsstorm_filmsstormUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33002DD3D9293DAE1A68201E /* Pods_filmsstorm_filmsstormUITests.framework */; };
+		CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791523B900D80099F946 /* AuthorizationViewController.swift */; };
+		CDB8791823B900D80099F946 /* AuthorizationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB8791623B900D80099F946 /* AuthorizationViewController.xib */; };
+		CDB8791B23B900EC0099F946 /* SessionIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791923B900EC0099F946 /* SessionIDViewController.swift */; };
+		CDB8791C23B900EC0099F946 /* SessionIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB8791A23B900EC0099F946 /* SessionIDViewController.xib */; };
+		CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791D23B901F20099F946 /* AuthorizationView.swift */; };
+		CDB8792023B9020C0099F946 /* SessionIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791F23B9020C0099F946 /* SessionIDView.swift */; };
 		EF69E43B310A0AD220DE1C48 /* Pods_filmsstormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3AA44BFE965E894CADF19A /* Pods_filmsstormTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +69,12 @@
 		61EAC7A62E40AF84DB9BB78E /* Pods-filmsstorm-filmsstormUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm-filmsstormUITests.debug.xcconfig"; path = "Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		968C53E6688A83988E9A0DE1 /* Pods-filmsstormTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.debug.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A5B7186A6F196DB03D981431 /* Pods-filmsstorm-filmsstormUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm-filmsstormUITests.release.xcconfig"; path = "Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CDB8791523B900D80099F946 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
+		CDB8791623B900D80099F946 /* AuthorizationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorizationViewController.xib; sourceTree = "<group>"; };
+		CDB8791923B900EC0099F946 /* SessionIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionIDViewController.swift; sourceTree = "<group>"; };
+		CDB8791A23B900EC0099F946 /* SessionIDViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionIDViewController.xib; sourceTree = "<group>"; };
+		CDB8791D23B901F20099F946 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
+		CDB8791F23B9020C0099F946 /* SessionIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionIDView.swift; sourceTree = "<group>"; };
 		EA79238A8EC29AB9C6DB940C /* Pods-filmsstormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.release.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.release.xcconfig"; sourceTree = "<group>"; };
 		F49330B6ECFAEA477A36F2CE /* Pods-filmsstorm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm.release.xcconfig"; path = "Target Support Files/Pods-filmsstorm/Pods-filmsstorm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,15 +132,16 @@
 		2E51662623AFD6C500EDF51E /* filmsstorm */ = {
 			isa = PBXGroup;
 			children = (
-				2E51663823AFD6CA00EDF51E /* Info.plist */,
-				2E16981823AFE05A0002E28E /* GoogleService-Info.plist */,
 				2E51662723AFD6C500EDF51E /* AppDelegate.swift */,
-				2E51662923AFD6C500EDF51E /* SceneDelegate.swift */,
-				2E51662E23AFD6C500EDF51E /* ContentView.swift */,
 				2E51663023AFD6CA00EDF51E /* Assets.xcassets */,
-				2E51663523AFD6CA00EDF51E /* LaunchScreen.storyboard */,
+				2E51662E23AFD6C500EDF51E /* ContentView.swift */,
 				2E51662B23AFD6C500EDF51E /* filmsstorm.xcdatamodeld */,
+				2E16981823AFE05A0002E28E /* GoogleService-Info.plist */,
+				2E51663823AFD6CA00EDF51E /* Info.plist */,
+				2E51663523AFD6CA00EDF51E /* LaunchScreen.storyboard */,
 				2E51663223AFD6CA00EDF51E /* Preview Content */,
+				2E51662923AFD6C500EDF51E /* SceneDelegate.swift */,
+				CDB8791423B9005D0099F946 /* Source */,
 			);
 			path = filmsstorm;
 			sourceTree = "<group>";
@@ -167,6 +180,91 @@
 				3E3AA44BFE965E894CADF19A /* Pods_filmsstormTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CDB8790B23B8FF290099F946 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				CDB8791223B9001B0099F946 /* AuthorizationViewController */,
+				CDB8791323B9002C0099F946 /* SessionIDViewController */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		CDB8790C23B8FF510099F946 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		CDB8790D23B8FF5D0099F946 /* AppConstants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AppConstants;
+			sourceTree = "<group>";
+		};
+		CDB8790E23B8FF880099F946 /* UserDefaultsContainer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserDefaultsContainer;
+			sourceTree = "<group>";
+		};
+		CDB8790F23B8FFA10099F946 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CDB8791023B8FFB00099F946 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		CDB8791123B8FFBF0099F946 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		CDB8791223B9001B0099F946 /* AuthorizationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CDB8791523B900D80099F946 /* AuthorizationViewController.swift */,
+				CDB8791623B900D80099F946 /* AuthorizationViewController.xib */,
+				CDB8791D23B901F20099F946 /* AuthorizationView.swift */,
+			);
+			path = AuthorizationViewController;
+			sourceTree = "<group>";
+		};
+		CDB8791323B9002C0099F946 /* SessionIDViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CDB8791923B900EC0099F946 /* SessionIDViewController.swift */,
+				CDB8791A23B900EC0099F946 /* SessionIDViewController.xib */,
+				CDB8791F23B9020C0099F946 /* SessionIDView.swift */,
+			);
+			path = SessionIDViewController;
+			sourceTree = "<group>";
+		};
+		CDB8791423B9005D0099F946 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				CDB8790D23B8FF5D0099F946 /* AppConstants */,
+				CDB8791123B8FFBF0099F946 /* Coordinator */,
+				CDB8790F23B8FFA10099F946 /* Models */,
+				CDB8790C23B8FF510099F946 /* Networking */,
+				CDB8791023B8FFB00099F946 /* Protocols */,
+				CDB8790B23B8FF290099F946 /* UI */,
+				CDB8790E23B8FF880099F946 /* UserDefaultsContainer */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 		CF9F48FE6F309788D89B0A33 /* Pods */ = {
@@ -292,7 +390,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB8791C23B900EC0099F946 /* SessionIDViewController.xib in Resources */,
 				2E51663723AFD6CA00EDF51E /* LaunchScreen.storyboard in Resources */,
+				CDB8791823B900D80099F946 /* AuthorizationViewController.xib in Resources */,
 				2E16981923AFE05A0002E28E /* GoogleService-Info.plist in Resources */,
 				2E51663423AFD6CA00EDF51E /* Preview Assets.xcassets in Resources */,
 				2E51663123AFD6CA00EDF51E /* Assets.xcassets in Resources */,
@@ -442,7 +542,11 @@
 			files = (
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */,
+				CDB8792023B9020C0099F946 /* SessionIDView.swift in Sources */,
 				2E51662F23AFD6C500EDF51E /* ContentView.swift in Sources */,
+				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
+				CDB8791B23B900EC0099F946 /* SessionIDViewController.swift in Sources */,
+				CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */,
 				2E51662D23AFD6C500EDF51E /* filmsstorm.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
