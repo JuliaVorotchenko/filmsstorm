@@ -19,9 +19,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="e3a-RS-pg6">
-                    <rect key="frame" x="107" y="351" width="200" height="194"/>
+                    <rect key="frame" x="107" y="345.5" width="200" height="205"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hKa-Ji-cOX" userLabel="usernameTextField">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hKa-Ji-cOX" userLabel="usernameTextField">
                             <rect key="frame" x="0.0" y="0.0" width="200" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="200" id="TJe-Lt-IUW"/>
@@ -29,14 +29,15 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NPz-be-yMP" userLabel="passwordTextField">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NPz-be-yMP" userLabel="passwordTextField">
                             <rect key="frame" x="0.0" y="82" width="200" height="34"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dt7-2g-ew6">
-                            <rect key="frame" x="0.0" y="164" width="200" height="30"/>
-                            <state key="normal" title="Button"/>
+                            <rect key="frame" x="0.0" y="164" width="200" height="41"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <state key="normal" title="Login"/>
                             <connections>
                                 <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="EWk-Zb-3qz"/>
                             </connections>

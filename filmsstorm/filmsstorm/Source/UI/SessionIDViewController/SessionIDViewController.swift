@@ -16,11 +16,11 @@ enum SessionIDEvent {
 class SessionIDViewController: UIViewController {
     
     private let networking: Networking
-    private let eventHandler: ((SessionIDEvent) -> ())?
+    private let eventHandler: ((SessionIDEvent) -> Void)?
     
     @IBOutlet var rootView: SessionIDView!
     
-    init(networking: Networking, event: ((SessionIDEvent) -> ())?) {
+    init(networking: Networking, event: ((SessionIDEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
         super.init(nibName: String(describing: type(of: self)), bundle: nil)

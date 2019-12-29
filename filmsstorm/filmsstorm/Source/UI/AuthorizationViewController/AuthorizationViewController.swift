@@ -12,16 +12,14 @@ enum AuthEvent {
     case login
     case error(String)
 }
-
-
 class AuthorizationViewController: UIViewController {
     
     private let networking: Networking
-    private let eventHandler: ((AuthEvent) -> ())?
+    private let eventHandler: ((AuthEvent) -> Void)?
     
     @IBOutlet var rootView: AuthorizationView?
     
-    init(networking: Networking, event: ((AuthEvent) -> ())?) {
+    init(networking: Networking, event: ((AuthEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
@@ -36,6 +34,18 @@ class AuthorizationViewController: UIViewController {
     }
    
     @IBAction func buttonTapped(_ sender: Any) {
-        self.eventHandler?(.login)
+        //self.eventHandler?(.login)
+        login()
     }
+    
+    func login() {
+        let session = URLSession.shared
+        let url = URL(string: "https://api.themoviedb.org/3/authentication/token/new?api_key=f4559f172e8c6602b3e2dd52152aca52")!
+        let task = session.dataTask(with: url) { (data, response, error) in
+            print(data?.debugDescription)
+            print(response.debugDescription)
+            print(error.debugDescription)
+        }
+        task.resume()
+}
 }
