@@ -26,6 +26,9 @@
 		CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791D23B901F20099F946 /* AuthorizationView.swift */; };
 		CDB8792023B9020C0099F946 /* SessionIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791F23B9020C0099F946 /* SessionIDView.swift */; };
 		CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792123B909040099F946 /* AppConfigurator.swift */; };
+		CDB8792423B93C240099F946 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792323B93C240099F946 /* AppCoordinator.swift */; };
+		CDB8792623B93C300099F946 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792523B93C300099F946 /* Coordinator.swift */; };
+		CDB8792823B93DCB0099F946 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792723B93DCB0099F946 /* Networking.swift */; };
 		EF69E43B310A0AD220DE1C48 /* Pods_filmsstormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3AA44BFE965E894CADF19A /* Pods_filmsstormTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +80,9 @@
 		CDB8791D23B901F20099F946 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		CDB8791F23B9020C0099F946 /* SessionIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionIDView.swift; sourceTree = "<group>"; };
 		CDB8792123B909040099F946 /* AppConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurator.swift; sourceTree = "<group>"; };
+		CDB8792323B93C240099F946 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		CDB8792523B93C300099F946 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		CDB8792723B93DCB0099F946 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		EA79238A8EC29AB9C6DB940C /* Pods-filmsstormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.release.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.release.xcconfig"; sourceTree = "<group>"; };
 		F49330B6ECFAEA477A36F2CE /* Pods-filmsstorm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm.release.xcconfig"; path = "Target Support Files/Pods-filmsstorm/Pods-filmsstorm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,6 +202,7 @@
 		CDB8790C23B8FF510099F946 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CDB8792723B93DCB0099F946 /* Networking.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -224,6 +231,7 @@
 		CDB8791023B8FFB00099F946 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				CDB8792523B93C300099F946 /* Coordinator.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -232,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				CDB8792123B909040099F946 /* AppConfigurator.swift */,
+				CDB8792323B93C240099F946 /* AppCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -545,9 +554,12 @@
 			files = (
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */,
+				CDB8792423B93C240099F946 /* AppCoordinator.swift in Sources */,
+				CDB8792823B93DCB0099F946 /* Networking.swift in Sources */,
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
 				CDB8792023B9020C0099F946 /* SessionIDView.swift in Sources */,
 				2E51662F23AFD6C500EDF51E /* ContentView.swift in Sources */,
+				CDB8792623B93C300099F946 /* Coordinator.swift in Sources */,
 				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
 				CDB8791B23B900EC0099F946 /* SessionIDViewController.swift in Sources */,
 				CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */,

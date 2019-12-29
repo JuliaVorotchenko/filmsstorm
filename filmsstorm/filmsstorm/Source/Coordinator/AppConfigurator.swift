@@ -10,7 +10,7 @@ import UIKit
 
 final class AppConfigurator {
     
-   // private var coordinator: Coordinator?
+    private var coordinator: Coordinator?
     
     init(window: UIWindow) {
         self.configure(window: window)
@@ -18,12 +18,10 @@ final class AppConfigurator {
     
     private func configure(window: UIWindow) {
         let navigationController = UINavigationController()
-        let rootVC = AuthorizationViewController()
         window.rootViewController = navigationController
         navigationController.navigationBar.isHidden = true
-        //self.coordinator = AppCoordinator(navigationController: navigationController)
-        //self.coordinator?.start()
-        navigationController.pushViewController(rootVC, animated: true)
+        self.coordinator = AppCoordinator(navigationController: navigationController)
+        self.coordinator?.start()
         window.makeKeyAndVisible()
     }
 }
