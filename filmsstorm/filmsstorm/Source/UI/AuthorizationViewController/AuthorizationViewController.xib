@@ -37,6 +37,9 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dt7-2g-ew6">
                             <rect key="frame" x="0.0" y="164" width="200" height="30"/>
                             <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="EWk-Zb-3qz"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>

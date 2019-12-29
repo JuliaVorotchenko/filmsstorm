@@ -9,7 +9,9 @@
 import UIKit
 
 class SessionIDViewController: UIViewController {
-
+    
+    @IBOutlet var rootView: SessionIDView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

@@ -13,8 +13,10 @@ class AuthorizationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
     }
    
+    @IBAction func buttonTapped(_ sender: Any) {
+        let vc = SessionIDViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
