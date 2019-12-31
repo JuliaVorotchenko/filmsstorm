@@ -44,6 +44,30 @@
                         </button>
                     </subviews>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qca-xi-uJ0">
+                    <rect key="frame" x="107" y="587" width="123" height="52"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="getToken"/>
+                    <connections>
+                        <action selector="getTokenTapped:" destination="-1" eventType="touchUpInside" id="xST-5B-93U"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhc-EN-OPI">
+                    <rect key="frame" x="109" y="657" width="93" height="53"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="validateToken"/>
+                    <connections>
+                        <action selector="validateTokenTapped:" destination="-1" eventType="touchUpInside" id="YXq-QS-8KF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Feb-ew-tet">
+                    <rect key="frame" x="89" y="718" width="89" height="66"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="getSession"/>
+                    <connections>
+                        <action selector="getSessionTapped:" destination="-1" eventType="touchUpInside" id="SgC-or-ajM"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.97644091020000001" green="0.94598290350000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <accessibility key="accessibilityConfiguration">
