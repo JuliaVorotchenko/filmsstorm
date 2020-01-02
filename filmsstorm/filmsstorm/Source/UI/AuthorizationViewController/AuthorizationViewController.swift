@@ -158,6 +158,7 @@ class AuthorizationViewController: UIViewController {
                 print(response.sessionID)
                 self.sessionID = response
                 print("sess ID:", self.sessionID?.sessionID)
+                UserDefaultsContainer.registerDefaults()
             } catch {
                 print("JSON error: \(error.localizedDescription)")
             }
@@ -192,6 +193,7 @@ class AuthorizationViewController: UIViewController {
                 print("wrong mime type")
                 return
             }
+            UserDefaultsContainer.unregister()
             
         }
         task.resume()

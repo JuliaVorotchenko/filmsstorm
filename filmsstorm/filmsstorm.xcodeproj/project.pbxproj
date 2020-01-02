@@ -22,6 +22,7 @@
 		CD4F215323BA158D00EB1850 /* ReqquestToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215223BA158D00EB1850 /* ReqquestToken.swift */; };
 		CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215423BA3A3300EB1850 /* SessionID.swift */; };
 		CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */; };
+		CD5E2A1C23BE591600439953 /* UseDefaultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E2A1B23BE591600439953 /* UseDefaultsContainer.swift */; };
 		CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791523B900D80099F946 /* AuthorizationViewController.swift */; };
 		CDB8791823B900D80099F946 /* AuthorizationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB8791623B900D80099F946 /* AuthorizationViewController.xib */; };
 		CDB8791B23B900EC0099F946 /* SessionIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791923B900EC0099F946 /* SessionIDViewController.swift */; };
@@ -79,6 +80,7 @@
 		CD4F215223BA158D00EB1850 /* ReqquestToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqquestToken.swift; sourceTree = "<group>"; };
 		CD4F215423BA3A3300EB1850 /* SessionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
 		CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRequestBody.swift; sourceTree = "<group>"; };
+		CD5E2A1B23BE591600439953 /* UseDefaultsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseDefaultsContainer.swift; sourceTree = "<group>"; };
 		CDB8791523B900D80099F946 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		CDB8791623B900D80099F946 /* AuthorizationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorizationViewController.xib; sourceTree = "<group>"; };
 		CDB8791923B900EC0099F946 /* SessionIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionIDViewController.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 		CDB8791423B9005D0099F946 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CDDC776D23BE58AB000BD3C7 /* UseDefaultsContainer */,
 				CDB8790D23B8FF5D0099F946 /* AppConstants */,
 				CDB8791123B8FFBF0099F946 /* Coordinator */,
 				CDB8790F23B8FFA10099F946 /* Models */,
@@ -286,6 +289,14 @@
 				CDB8790E23B8FF880099F946 /* UserDefaultsContainer */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		CDDC776D23BE58AB000BD3C7 /* UseDefaultsContainer */ = {
+			isa = PBXGroup;
+			children = (
+				CD5E2A1B23BE591600439953 /* UseDefaultsContainer.swift */,
+			);
+			path = UseDefaultsContainer;
 			sourceTree = "<group>";
 		};
 		CF9F48FE6F309788D89B0A33 /* Pods */ = {
@@ -574,6 +585,7 @@
 				CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */,
 				CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */,
 				2E51662D23AFD6C500EDF51E /* filmsstorm.xcdatamodeld in Sources */,
+				CD5E2A1C23BE591600439953 /* UseDefaultsContainer.swift in Sources */,
 				CD4F215323BA158D00EB1850 /* ReqquestToken.swift in Sources */,
 				CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */,
 			);
