@@ -17,6 +17,8 @@ class AuthorizationViewController: UIViewController {
     private let networking: Networking
     private let eventHandler: ((AuthEvent) -> Void)?
     
+    
+    let apiKey = "f4559f172e8c6602b3e2dd52152aca52"
     var token: RequestToken?
     var validToken: RequestToken?
     var sessionID: SessionID?
@@ -37,7 +39,6 @@ class AuthorizationViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    
     @IBAction func getTokenTapped(_ sender: Any) {
         self.getToken()
     }
@@ -47,21 +48,19 @@ class AuthorizationViewController: UIViewController {
     @IBAction func getSessionTapped(_ sender: Any) {
          self.createSessionId()
     }
-    
-    
+    @IBAction func deleteSession(_ sender: Any) {
+        self.deleteSession()
+    }
     
     
     
     @IBAction func buttonTapped(_ sender: Any) {
         //self.eventHandler?(.login)
-       
-          
-    
     }
     
     func getToken() {
         let session = URLSession.shared
-        let url = URL(string: "https://api.themoviedb.org/3/authentication/token/new?api_key=f4559f172e8c6602b3e2dd52152aca52")!
+        let url = URL(string: "https://api.themoviedb.org/3/authentication/token/new?api_key=" + apiKey)!
         let task = session.dataTask(with: url) { (data, response, error) in
             if error != nil || data == nil {
                 print("Client Errror")
@@ -90,7 +89,7 @@ class AuthorizationViewController: UIViewController {
     
     func validateToken() {
         var session = URLSession.shared
-        let url = URL(string: "https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=f4559f172e8c6602b3e2dd52152aca52")!
+        let url = URL(string: "https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=" + apiKey)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -128,17 +127,12 @@ class AuthorizationViewController: UIViewController {
     
     func createSessionId() {
         var session = URLSession.shared
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 30
-        configuration.timeoutIntervalForResource = 30
-        session = URLSession(configuration: configuration)
-        
-        let url = URL(string: "https://api.themoviedb.org/3/authentication/session/new?api_key=f4559f172e8c6602b3e2dd52152aca52")
+        let url = URL(string: "https://api.themoviedb.org/3/authentication/session/new?api_key=" + apiKey)
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let parameters = ["request_token" : self.validToken?.requestToken]
+        let parameters = ["request_token": self.validToken?.requestToken]
         
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
@@ -167,6 +161,39 @@ class AuthorizationViewController: UIViewController {
             } catch {
                 print("JSON error: \(error.localizedDescription)")
             }
-        }.resume()
+        }
+        task.resume()
+    }
+    
+    func deleteSession() {
+        var session = URLSession.shared
+        let url = URL(string: "https://api.themoviedb.org/3/authentication/session?api_key=" + apiKey)
+        var request = URLRequest(url: url!)
+        request.httpMethod = "DELETE"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let parameters = ["session_id": self.sessionID?.sessionID]
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if error != nil || data == nil {
+                print("client Error")
+            }
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                print("Server error")
+                return
+            }
+            print(response.statusCode)
+            guard let mime = response.mimeType, mime == "application/json" else {
+                print("wrong mime type")
+                return
+            }
+            
+        }
+        task.resume()
     }
 }
