@@ -164,7 +164,7 @@ class AuthorizationViewController: UIViewController {
                     print(response.sessionID)
                     self.sessionID = response
                     print("sess ID:", self.sessionID?.sessionID)
-                    UserDefaultsContainer.registerDefaults()
+                    UserDefaultsContainer.session = self.sessionID?.sessionID ?? ""
                     self.eventHandler?(.login)
                 } catch {
                     print("JSON error: \(error.localizedDescription)")

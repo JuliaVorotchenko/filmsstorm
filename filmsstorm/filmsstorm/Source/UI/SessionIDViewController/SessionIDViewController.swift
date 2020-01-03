@@ -35,10 +35,11 @@ class SessionIDViewController: UIViewController {
     // MARK: VDL
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.rootView.fillLabel()
     }
     
     @IBAction func backButtonTaapped(_ sender: Any) {
-        self.eventHandler?(.back)
+        self.deleteSession()
     }
     // MARK: Networking
     func deleteSession() {
@@ -69,10 +70,13 @@ class SessionIDViewController: UIViewController {
                        print("wrong mime type")
                        return
                    }
+                print(response.statusCode)
                    UserDefaultsContainer.unregister()
                  self.eventHandler?(.back)
                }
            }
            task.resume()
        }
+   
+    
 }
