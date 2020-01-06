@@ -9,7 +9,9 @@
 import UIKit
 
 class AppCoordinator: Coordinator {
-    var navigationController: UINavigationController
+    var childCoordinators = [Coordinator]()
+    
+    let navigationController: UINavigationController
     private let networking = Networking()
     
     init(navigationController: UINavigationController) {

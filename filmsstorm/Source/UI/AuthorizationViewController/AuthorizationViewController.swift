@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum AuthEvent {
+enum AuthEvent: EventProtocol {
     case login
     case error(String)
 }
@@ -17,10 +17,13 @@ enum AuthEvent {
  2. Validate request token with password and username
  3. Get sessionID
  */
-class AuthorizationViewController: UIViewController {
+class AuthorizationViewController: UIViewController, Controller {
+    
+    typealias Event = AuthEvent
+    typealias RootViewType = AuthorizationView
     
     private let networking: Networking
-    private let eventHandler: ((AuthEvent) -> Void)?
+    let eventHandler: ((Event) -> Void)?
     
     // MARK: - temporary variables
     let apiKey = "f4559f172e8c6602b3e2dd52152aca52"
@@ -28,7 +31,7 @@ class AuthorizationViewController: UIViewController {
     var validToken: RequestToken?
     var sessionID: SessionID?
     // MARK: - root view
-    @IBOutlet var rootView: AuthorizationView?
+    
     // MARK: class init
     init(networking: Networking, event: ((AuthEvent) -> Void)?) {
         self.networking = networking
@@ -51,12 +54,12 @@ class AuthorizationViewController: UIViewController {
         self.validateToken()
     }
     @IBAction func getSessionTapped(_ sender: Any) {
-         self.createSessionId()
+        self.createSessionId()
     }
     
     
     @IBAction func buttonTapped(_ sender: Any) {
-      getToken()
+        getToken()
     }
     //MARK: - Networking
     func getToken() {
@@ -180,5 +183,5 @@ class AuthorizationViewController: UIViewController {
         task.resume()
     }
     
-   
+    
 }
