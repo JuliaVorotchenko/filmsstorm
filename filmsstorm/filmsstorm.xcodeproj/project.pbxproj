@@ -19,6 +19,9 @@
 		2E51664223AFD6CA00EDF51E /* filmsstormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51664123AFD6CA00EDF51E /* filmsstormTests.swift */; };
 		2E51664D23AFD6CA00EDF51E /* filmsstormUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51664C23AFD6CA00EDF51E /* filmsstormUITests.swift */; };
 		469C6416D289E0B85DA0A0E3 /* Pods_filmsstorm_filmsstormUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33002DD3D9293DAE1A68201E /* Pods_filmsstorm_filmsstormUITests.framework */; };
+		CD86D83023C3CDCB00DB9098 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD86D82F23C3CDCB00DB9098 /* Coordinator.swift */; };
+		CD86D83223C3D78700DB9098 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD86D83123C3D78700DB9098 /* Controller.swift */; };
+		CD86D83523C3DC3B00DB9098 /* RootViewGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD86D83423C3DC3B00DB9098 /* RootViewGettable.swift */; };
 		EF69E43B310A0AD220DE1C48 /* Pods_filmsstormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3AA44BFE965E894CADF19A /* Pods_filmsstormTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +66,9 @@
 		61EAC7A62E40AF84DB9BB78E /* Pods-filmsstorm-filmsstormUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm-filmsstormUITests.debug.xcconfig"; path = "Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		968C53E6688A83988E9A0DE1 /* Pods-filmsstormTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.debug.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A5B7186A6F196DB03D981431 /* Pods-filmsstorm-filmsstormUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm-filmsstormUITests.release.xcconfig"; path = "Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CD86D82F23C3CDCB00DB9098 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		CD86D83123C3D78700DB9098 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		CD86D83423C3DC3B00DB9098 /* RootViewGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewGettable.swift; sourceTree = "<group>"; };
 		EA79238A8EC29AB9C6DB940C /* Pods-filmsstormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.release.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.release.xcconfig"; sourceTree = "<group>"; };
 		F49330B6ECFAEA477A36F2CE /* Pods-filmsstorm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm.release.xcconfig"; path = "Target Support Files/Pods-filmsstorm/Pods-filmsstorm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +104,7 @@
 		2E51661B23AFD6C500EDF51E = {
 			isa = PBXGroup;
 			children = (
+				CD86D82C23C3CD7000DB9098 /* Source */,
 				2E51662623AFD6C500EDF51E /* filmsstorm */,
 				2E51664023AFD6CA00EDF51E /* filmsstormTests */,
 				2E51664B23AFD6CA00EDF51E /* filmsstormUITests */,
@@ -167,6 +174,40 @@
 				3E3AA44BFE965E894CADF19A /* Pods_filmsstormTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CD86D82C23C3CD7000DB9098 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				CD86D82D23C3CD9200DB9098 /* Patterns */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		CD86D82D23C3CD9200DB9098 /* Patterns */ = {
+			isa = PBXGroup;
+			children = (
+				CD86D83323C3DC2400DB9098 /* RootViewGettable */,
+				CD86D82E23C3CDA400DB9098 /* MVCC */,
+			);
+			path = Patterns;
+			sourceTree = "<group>";
+		};
+		CD86D82E23C3CDA400DB9098 /* MVCC */ = {
+			isa = PBXGroup;
+			children = (
+				CD86D82F23C3CDCB00DB9098 /* Coordinator.swift */,
+				CD86D83123C3D78700DB9098 /* Controller.swift */,
+			);
+			path = MVCC;
+			sourceTree = "<group>";
+		};
+		CD86D83323C3DC2400DB9098 /* RootViewGettable */ = {
+			isa = PBXGroup;
+			children = (
+				CD86D83423C3DC3B00DB9098 /* RootViewGettable.swift */,
+			);
+			path = RootViewGettable;
 			sourceTree = "<group>";
 		};
 		CF9F48FE6F309788D89B0A33 /* Pods */ = {
@@ -442,6 +483,9 @@
 			files = (
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */,
+				CD86D83523C3DC3B00DB9098 /* RootViewGettable.swift in Sources */,
+				CD86D83023C3CDCB00DB9098 /* Coordinator.swift in Sources */,
+				CD86D83223C3D78700DB9098 /* Controller.swift in Sources */,
 				2E51662F23AFD6C500EDF51E /* ContentView.swift in Sources */,
 				2E51662D23AFD6C500EDF51E /* filmsstorm.xcdatamodeld in Sources */,
 			);
