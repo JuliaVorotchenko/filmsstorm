@@ -12,7 +12,11 @@ enum AuthEvent {
     case login
     case error(String)
 }
-
+/*
+ 1. Get request token with APIkey
+ 2. Validate request token with password and username
+ 3. Get sessionID
+ */
 class AuthorizationViewController: UIViewController {
     
     private let networking: Networking
@@ -52,7 +56,7 @@ class AuthorizationViewController: UIViewController {
     
     
     @IBAction func buttonTapped(_ sender: Any) {
-      
+      getToken()
     }
     //MARK: - Networking
     func getToken() {
@@ -78,6 +82,7 @@ class AuthorizationViewController: UIViewController {
                     let response = try decoder.decode(RequestToken.self, from: data!)
                     self.token = response
                     print("Token:", self.token?.requestToken)
+                    self.validateToken()
                 } catch {
                     print("JSON error: \(error.localizedDescription)")
                 }
@@ -121,6 +126,7 @@ class AuthorizationViewController: UIViewController {
                     let response = try decoder.decode(RequestToken.self, from: data!)
                     self.validToken = response
                     print("Valid Token:", self.token?.requestToken)
+                    self.createSessionId()
                 } catch {
                     print("JSON error: \(error.localizedDescription)")
                 }

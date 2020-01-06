@@ -23,6 +23,10 @@ class SessionIDViewController: UIViewController {
     // MARK: - root view
     @IBOutlet var rootView: SessionIDView!
     // MARK: class init
+    
+    deinit {
+        print("sessioIdContr")
+    }
     init(networking: Networking, event: ((SessionIDEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event

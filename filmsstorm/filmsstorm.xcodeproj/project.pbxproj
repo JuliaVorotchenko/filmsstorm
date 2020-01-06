@@ -19,8 +19,8 @@
 		2E51664223AFD6CA00EDF51E /* filmsstormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51664123AFD6CA00EDF51E /* filmsstormTests.swift */; };
 		2E51664D23AFD6CA00EDF51E /* filmsstormUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51664C23AFD6CA00EDF51E /* filmsstormUITests.swift */; };
 		469C6416D289E0B85DA0A0E3 /* Pods_filmsstorm_filmsstormUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33002DD3D9293DAE1A68201E /* Pods_filmsstorm_filmsstormUITests.framework */; };
-		CD2F3C7723BE5E060047B42F /* Endpoints??.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F3C7623BE5E060047B42F /* Endpoints??.swift */; };
-		CD2F3C7923BE61D30047B42F /* Auth??.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F3C7823BE61D30047B42F /* Auth??.swift */; };
+		CD2F3C7723BE5E060047B42F /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F3C7623BE5E060047B42F /* Route.swift */; };
+		CD2F3C7923BE61D30047B42F /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F3C7823BE61D30047B42F /* Auth.swift */; };
 		CD4F215323BA158D00EB1850 /* ReqquestToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215223BA158D00EB1850 /* ReqquestToken.swift */; };
 		CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215423BA3A3300EB1850 /* SessionID.swift */; };
 		CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */; };
@@ -79,8 +79,8 @@
 		61EAC7A62E40AF84DB9BB78E /* Pods-filmsstorm-filmsstormUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm-filmsstormUITests.debug.xcconfig"; path = "Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		968C53E6688A83988E9A0DE1 /* Pods-filmsstormTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.debug.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A5B7186A6F196DB03D981431 /* Pods-filmsstorm-filmsstormUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm-filmsstormUITests.release.xcconfig"; path = "Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests.release.xcconfig"; sourceTree = "<group>"; };
-		CD2F3C7623BE5E060047B42F /* Endpoints??.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Endpoints??.swift"; sourceTree = "<group>"; };
-		CD2F3C7823BE61D30047B42F /* Auth??.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Auth??.swift"; sourceTree = "<group>"; };
+		CD2F3C7623BE5E060047B42F /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		CD2F3C7823BE61D30047B42F /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		CD4F215223BA158D00EB1850 /* ReqquestToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqquestToken.swift; sourceTree = "<group>"; };
 		CD4F215423BA3A3300EB1850 /* SessionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
 		CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRequestBody.swift; sourceTree = "<group>"; };
@@ -214,6 +214,7 @@
 		CDB8790C23B8FF510099F946 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CD2F3C7623BE5E060047B42F /* Route.swift */,
 				CDB8792723B93DCB0099F946 /* Networking.swift */,
 			);
 			path = Networking;
@@ -222,7 +223,6 @@
 		CDB8790D23B8FF5D0099F946 /* AppConstants */ = {
 			isa = PBXGroup;
 			children = (
-				CD2F3C7623BE5E060047B42F /* Endpoints??.swift */,
 			);
 			path = AppConstants;
 			sourceTree = "<group>";
@@ -240,7 +240,7 @@
 				CD4F215223BA158D00EB1850 /* ReqquestToken.swift */,
 				CD4F215423BA3A3300EB1850 /* SessionID.swift */,
 				CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */,
-				CD2F3C7823BE61D30047B42F /* Auth??.swift */,
+				CD2F3C7823BE61D30047B42F /* Auth.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -580,7 +580,7 @@
 			files = (
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */,
-				CD2F3C7723BE5E060047B42F /* Endpoints??.swift in Sources */,
+				CD2F3C7723BE5E060047B42F /* Route.swift in Sources */,
 				CDB8792423B93C240099F946 /* AppCoordinator.swift in Sources */,
 				CDB8792823B93DCB0099F946 /* Networking.swift in Sources */,
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
@@ -595,7 +595,7 @@
 				CD5E2A1C23BE591600439953 /* UseDefaultsContainer.swift in Sources */,
 				CD4F215323BA158D00EB1850 /* ReqquestToken.swift in Sources */,
 				CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */,
-				CD2F3C7923BE61D30047B42F /* Auth??.swift in Sources */,
+				CD2F3C7923BE61D30047B42F /* Auth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
