@@ -19,9 +19,24 @@
 		2E51664223AFD6CA00EDF51E /* filmsstormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51664123AFD6CA00EDF51E /* filmsstormTests.swift */; };
 		2E51664D23AFD6CA00EDF51E /* filmsstormUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51664C23AFD6CA00EDF51E /* filmsstormUITests.swift */; };
 		469C6416D289E0B85DA0A0E3 /* Pods_filmsstorm_filmsstormUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33002DD3D9293DAE1A68201E /* Pods_filmsstorm_filmsstormUITests.framework */; };
-		CD86D83023C3CDCB00DB9098 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD86D82F23C3CDCB00DB9098 /* Coordinator.swift */; };
-		CD86D83223C3D78700DB9098 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD86D83123C3D78700DB9098 /* Controller.swift */; };
-		CD86D83523C3DC3B00DB9098 /* RootViewGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD86D83423C3DC3B00DB9098 /* RootViewGettable.swift */; };
+		CD0CDA7823C3E797002EC487 /* RootViewGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDA7423C3E797002EC487 /* RootViewGettable.swift */; };
+		CD0CDA7923C3E797002EC487 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDA7623C3E797002EC487 /* Controller.swift */; };
+		CD0CDA7A23C3E797002EC487 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDA7723C3E797002EC487 /* Coordinator.swift */; };
+		CD2F3C7723BE5E060047B42F /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F3C7623BE5E060047B42F /* Route.swift */; };
+		CD2F3C7923BE61D30047B42F /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F3C7823BE61D30047B42F /* Auth.swift */; };
+		CD4F215323BA158D00EB1850 /* ReqquestToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215223BA158D00EB1850 /* ReqquestToken.swift */; };
+		CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215423BA3A3300EB1850 /* SessionID.swift */; };
+		CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */; };
+		CD5E2A1C23BE591600439953 /* UseDefaultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E2A1B23BE591600439953 /* UseDefaultsContainer.swift */; };
+		CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791523B900D80099F946 /* AuthorizationViewController.swift */; };
+		CDB8791823B900D80099F946 /* AuthorizationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB8791623B900D80099F946 /* AuthorizationViewController.xib */; };
+		CDB8791B23B900EC0099F946 /* SessionIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791923B900EC0099F946 /* SessionIDViewController.swift */; };
+		CDB8791C23B900EC0099F946 /* SessionIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB8791A23B900EC0099F946 /* SessionIDViewController.xib */; };
+		CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791D23B901F20099F946 /* AuthorizationView.swift */; };
+		CDB8792023B9020C0099F946 /* SessionIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791F23B9020C0099F946 /* SessionIDView.swift */; };
+		CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792123B909040099F946 /* AppConfigurator.swift */; };
+		CDB8792423B93C240099F946 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792323B93C240099F946 /* AppCoordinator.swift */; };
+		CDB8792823B93DCB0099F946 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792723B93DCB0099F946 /* Networking.swift */; };
 		EF69E43B310A0AD220DE1C48 /* Pods_filmsstormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3AA44BFE965E894CADF19A /* Pods_filmsstormTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,9 +81,24 @@
 		61EAC7A62E40AF84DB9BB78E /* Pods-filmsstorm-filmsstormUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm-filmsstormUITests.debug.xcconfig"; path = "Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		968C53E6688A83988E9A0DE1 /* Pods-filmsstormTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.debug.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A5B7186A6F196DB03D981431 /* Pods-filmsstorm-filmsstormUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm-filmsstormUITests.release.xcconfig"; path = "Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests.release.xcconfig"; sourceTree = "<group>"; };
-		CD86D82F23C3CDCB00DB9098 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		CD86D83123C3D78700DB9098 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		CD86D83423C3DC3B00DB9098 /* RootViewGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewGettable.swift; sourceTree = "<group>"; };
+		CD0CDA7423C3E797002EC487 /* RootViewGettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewGettable.swift; sourceTree = "<group>"; };
+		CD0CDA7623C3E797002EC487 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		CD0CDA7723C3E797002EC487 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		CD2F3C7623BE5E060047B42F /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		CD2F3C7823BE61D30047B42F /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		CD4F215223BA158D00EB1850 /* ReqquestToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqquestToken.swift; sourceTree = "<group>"; };
+		CD4F215423BA3A3300EB1850 /* SessionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
+		CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRequestBody.swift; sourceTree = "<group>"; };
+		CD5E2A1B23BE591600439953 /* UseDefaultsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseDefaultsContainer.swift; sourceTree = "<group>"; };
+		CDB8791523B900D80099F946 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
+		CDB8791623B900D80099F946 /* AuthorizationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorizationViewController.xib; sourceTree = "<group>"; };
+		CDB8791923B900EC0099F946 /* SessionIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionIDViewController.swift; sourceTree = "<group>"; };
+		CDB8791A23B900EC0099F946 /* SessionIDViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionIDViewController.xib; sourceTree = "<group>"; };
+		CDB8791D23B901F20099F946 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
+		CDB8791F23B9020C0099F946 /* SessionIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionIDView.swift; sourceTree = "<group>"; };
+		CDB8792123B909040099F946 /* AppConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurator.swift; sourceTree = "<group>"; };
+		CDB8792323B93C240099F946 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		CDB8792723B93DCB0099F946 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		EA79238A8EC29AB9C6DB940C /* Pods-filmsstormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.release.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.release.xcconfig"; sourceTree = "<group>"; };
 		F49330B6ECFAEA477A36F2CE /* Pods-filmsstorm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm.release.xcconfig"; path = "Target Support Files/Pods-filmsstorm/Pods-filmsstorm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,7 +134,7 @@
 		2E51661B23AFD6C500EDF51E = {
 			isa = PBXGroup;
 			children = (
-				CD86D82C23C3CD7000DB9098 /* Source */,
+				CDB8791423B9005D0099F946 /* Source */,
 				2E51662623AFD6C500EDF51E /* filmsstorm */,
 				2E51664023AFD6CA00EDF51E /* filmsstormTests */,
 				2E51664B23AFD6CA00EDF51E /* filmsstormUITests */,
@@ -127,14 +157,14 @@
 		2E51662623AFD6C500EDF51E /* filmsstorm */ = {
 			isa = PBXGroup;
 			children = (
-				2E51663823AFD6CA00EDF51E /* Info.plist */,
-				2E16981823AFE05A0002E28E /* GoogleService-Info.plist */,
 				2E51662723AFD6C500EDF51E /* AppDelegate.swift */,
 				2E51662923AFD6C500EDF51E /* SceneDelegate.swift */,
-				2E51662E23AFD6C500EDF51E /* ContentView.swift */,
 				2E51663023AFD6CA00EDF51E /* Assets.xcassets */,
-				2E51663523AFD6CA00EDF51E /* LaunchScreen.storyboard */,
+				2E51662E23AFD6C500EDF51E /* ContentView.swift */,
 				2E51662B23AFD6C500EDF51E /* filmsstorm.xcdatamodeld */,
+				2E16981823AFE05A0002E28E /* GoogleService-Info.plist */,
+				2E51663823AFD6CA00EDF51E /* Info.plist */,
+				2E51663523AFD6CA00EDF51E /* LaunchScreen.storyboard */,
 				2E51663223AFD6CA00EDF51E /* Preview Content */,
 			);
 			path = filmsstorm;
@@ -176,38 +206,125 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CD86D82C23C3CD7000DB9098 /* Source */ = {
+		CD0CDA7223C3E797002EC487 /* Patterns */ = {
 			isa = PBXGroup;
 			children = (
-				CD86D82D23C3CD9200DB9098 /* Patterns */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		CD86D82D23C3CD9200DB9098 /* Patterns */ = {
-			isa = PBXGroup;
-			children = (
-				CD86D83323C3DC2400DB9098 /* RootViewGettable */,
-				CD86D82E23C3CDA400DB9098 /* MVCC */,
+				CD0CDA7323C3E797002EC487 /* RootViewGettable */,
+				CD0CDA7523C3E797002EC487 /* MVCC */,
 			);
 			path = Patterns;
 			sourceTree = "<group>";
 		};
-		CD86D82E23C3CDA400DB9098 /* MVCC */ = {
+		CD0CDA7323C3E797002EC487 /* RootViewGettable */ = {
 			isa = PBXGroup;
 			children = (
-				CD86D82F23C3CDCB00DB9098 /* Coordinator.swift */,
-				CD86D83123C3D78700DB9098 /* Controller.swift */,
+				CD0CDA7423C3E797002EC487 /* RootViewGettable.swift */,
+			);
+			path = RootViewGettable;
+			sourceTree = "<group>";
+		};
+		CD0CDA7523C3E797002EC487 /* MVCC */ = {
+			isa = PBXGroup;
+			children = (
+				CD0CDA7623C3E797002EC487 /* Controller.swift */,
+				CD0CDA7723C3E797002EC487 /* Coordinator.swift */,
 			);
 			path = MVCC;
 			sourceTree = "<group>";
 		};
-		CD86D83323C3DC2400DB9098 /* RootViewGettable */ = {
+		CDB8790B23B8FF290099F946 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				CD86D83423C3DC3B00DB9098 /* RootViewGettable.swift */,
+				CDB8791223B9001B0099F946 /* AuthorizationViewController */,
+				CDB8791323B9002C0099F946 /* SessionIDViewController */,
 			);
-			path = RootViewGettable;
+			path = UI;
+			sourceTree = "<group>";
+		};
+		CDB8790C23B8FF510099F946 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				CD2F3C7623BE5E060047B42F /* Route.swift */,
+				CDB8792723B93DCB0099F946 /* Networking.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		CDB8790D23B8FF5D0099F946 /* AppConstants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AppConstants;
+			sourceTree = "<group>";
+		};
+		CDB8790E23B8FF880099F946 /* UserDefaultsContainer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserDefaultsContainer;
+			sourceTree = "<group>";
+		};
+		CDB8790F23B8FFA10099F946 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CD4F215223BA158D00EB1850 /* ReqquestToken.swift */,
+				CD4F215423BA3A3300EB1850 /* SessionID.swift */,
+				CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */,
+				CD2F3C7823BE61D30047B42F /* Auth.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CDB8791123B8FFBF0099F946 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				CDB8792123B909040099F946 /* AppConfigurator.swift */,
+				CDB8792323B93C240099F946 /* AppCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		CDB8791223B9001B0099F946 /* AuthorizationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CDB8791523B900D80099F946 /* AuthorizationViewController.swift */,
+				CDB8791623B900D80099F946 /* AuthorizationViewController.xib */,
+				CDB8791D23B901F20099F946 /* AuthorizationView.swift */,
+			);
+			path = AuthorizationViewController;
+			sourceTree = "<group>";
+		};
+		CDB8791323B9002C0099F946 /* SessionIDViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CDB8791923B900EC0099F946 /* SessionIDViewController.swift */,
+				CDB8791A23B900EC0099F946 /* SessionIDViewController.xib */,
+				CDB8791F23B9020C0099F946 /* SessionIDView.swift */,
+			);
+			path = SessionIDViewController;
+			sourceTree = "<group>";
+		};
+		CDB8791423B9005D0099F946 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				CD0CDA7223C3E797002EC487 /* Patterns */,
+				CDDC776D23BE58AB000BD3C7 /* UseDefaultsContainer */,
+				CDB8790D23B8FF5D0099F946 /* AppConstants */,
+				CDB8791123B8FFBF0099F946 /* Coordinator */,
+				CDB8790F23B8FFA10099F946 /* Models */,
+				CDB8790C23B8FF510099F946 /* Networking */,
+				CDB8790B23B8FF290099F946 /* UI */,
+				CDB8790E23B8FF880099F946 /* UserDefaultsContainer */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		CDDC776D23BE58AB000BD3C7 /* UseDefaultsContainer */ = {
+			isa = PBXGroup;
+			children = (
+				CD5E2A1B23BE591600439953 /* UseDefaultsContainer.swift */,
+			);
+			path = UseDefaultsContainer;
 			sourceTree = "<group>";
 		};
 		CF9F48FE6F309788D89B0A33 /* Pods */ = {
@@ -333,7 +450,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB8791C23B900EC0099F946 /* SessionIDViewController.xib in Resources */,
 				2E51663723AFD6CA00EDF51E /* LaunchScreen.storyboard in Resources */,
+				CDB8791823B900D80099F946 /* AuthorizationViewController.xib in Resources */,
 				2E16981923AFE05A0002E28E /* GoogleService-Info.plist in Resources */,
 				2E51663423AFD6CA00EDF51E /* Preview Assets.xcassets in Resources */,
 				2E51663123AFD6CA00EDF51E /* Assets.xcassets in Resources */,
@@ -483,11 +602,24 @@
 			files = (
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */,
-				CD86D83523C3DC3B00DB9098 /* RootViewGettable.swift in Sources */,
-				CD86D83023C3CDCB00DB9098 /* Coordinator.swift in Sources */,
-				CD86D83223C3D78700DB9098 /* Controller.swift in Sources */,
+				CD2F3C7723BE5E060047B42F /* Route.swift in Sources */,
+				CDB8792423B93C240099F946 /* AppCoordinator.swift in Sources */,
+				CDB8792823B93DCB0099F946 /* Networking.swift in Sources */,
+				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
+				CDB8792023B9020C0099F946 /* SessionIDView.swift in Sources */,
 				2E51662F23AFD6C500EDF51E /* ContentView.swift in Sources */,
+				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
+				CDB8791B23B900EC0099F946 /* SessionIDViewController.swift in Sources */,
+				CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */,
+				CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */,
+				CD0CDA7A23C3E797002EC487 /* Coordinator.swift in Sources */,
 				2E51662D23AFD6C500EDF51E /* filmsstorm.xcdatamodeld in Sources */,
+				CD5E2A1C23BE591600439953 /* UseDefaultsContainer.swift in Sources */,
+				CD0CDA7923C3E797002EC487 /* Controller.swift in Sources */,
+				CD0CDA7823C3E797002EC487 /* RootViewGettable.swift in Sources */,
+				CD4F215323BA158D00EB1850 /* ReqquestToken.swift in Sources */,
+				CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */,
+				CD2F3C7923BE61D30047B42F /* Auth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

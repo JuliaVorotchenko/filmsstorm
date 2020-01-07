@@ -10,22 +10,22 @@ import UIKit
 import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
+     private var appConfigurator: AppConfigurator?
 
     var window: UIWindow?
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
-        // swiftlint:disable all
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let contentView = ContentView().environment(\.managedObjectContext, context)
+//        // swiftlint:disable all
+//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//        let contentView = ContentView().environment(\.managedObjectContext, context)
 
         // Use a UIHostingController as window root view controller.
-        if let windowScene = scene as? UIWindowScene {
-            let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
-            self.window = window
-            window.makeKeyAndVisible()
-        }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: windowScene)
+        self.window = window
+        self.appConfigurator = AppConfigurator(window: window)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}

@@ -23,14 +23,12 @@ import UIKit
  - Know how to present itself;
  - Modify any data before presentation.
  */
-protocol Controller: RootViewGettable, ControllerEventSourse {
-    init(events: Event)
-}
+protocol Controller: RootViewGettable, ControllerEventSourse {}
 
 /// You must use this protocol to handle Controller's events in Coordinator (or use delegation as simple alternative).
 protocol ControllerEventSourse {
     associatedtype Event: EventProtocol
-    var events: ((Event) -> Void)? { get }
+    var eventHandler: ((Event) -> Void)? { get }
 }
 
 /// We need this protocol to subsc
