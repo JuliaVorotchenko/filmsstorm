@@ -8,43 +8,62 @@
 
 import Foundation
 
-enum Route {
+protocol RoutesProtocol {
+    var url: URL { get }
+}
+
+enum Route: RoutesProtocol  {
     static let base = "https://api.themoviedb.org/3"
     static let apiKeyParam = "?api_key=f4559f172e8c6602b3e2dd52152aca52"
+    static let account = Route.base + "/account"
+    static let authentication = Route.base + "/authentication"
     
-    case getWatchlist
-    case getFavorites
+    case getWatchlist(ConfigureNetworking)
+    case getFavorites(ConfigureNetworking)
     case getRequestToken
     case login
     case createSessionId
     case logout
-    case webAuth
     case search(String)
-    case markWatchlist
-    case markFavorite
+    case markWatchlist(ConfigureNetworking)
+    case markFavorite(ConfigureNetworking)
     case posterImage(String)
     
-    var stringValue: String {
+    private var stringValue: String {
         switch self {
-        case .getWatchlist: return Route.base + "/account/\(Auth.accountId)/watchlist/movies" + Route.apiKeyParam + "&session_id=\(Auth.sessionId)"
-        case .getFavorites:
-            return Route.base + "/account/\(Auth.accountId)/favorite/movies" + Route.apiKeyParam + "&session_id=\(Auth.sessionId)"
+        case .getWatchlist(let model):
+            return Route.account
+                + "/\(model.accountId)/watchlist/movies"
+                + Route.apiKeyParam
+                + "&session_id=\(model.sessionId)"
+        case .getFavorites(let model):
+            return Route.account
+                + "/\(model.accountId)/favorite/movies"
+                + Route.apiKeyParam
+                + "&session_id=\(model.sessionId)"
         case .getRequestToken:
-            return Route.base + "/authentication/token/new" + Route.apiKeyParam
+            return Route.authentication + "/token/new" + Route.apiKeyParam
         case .login:
-            return Route.base + "/authentication/token/validate_with_login" + Route.apiKeyParam
+            return Route.authentication + "/token/validate_with_login" + Route.apiKeyParam
         case .createSessionId:
-            return Route.base + "/authentication/session/new" + Route.apiKeyParam
+            return Route.authentication + "/session/new" + Route.apiKeyParam
         case .logout:
-            return Route.base + "/authentication/session" + Route.apiKeyParam
-        case .webAuth:
-            return "https://www.themoviedb.org/authenticate/\(Auth.requestToken)?redirect_to=themoviemanager:authenticate"
+            return Route.authentication + "/session" + Route.apiKeyParam
         case .search(let query):
-            return Route.base + "/search/movie" + Route.apiKeyParam + "&query=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""))"
-        case .markWatchlist:
-            return Route.base + "/account/\(Auth.accountId)/watchlist" + Route.apiKeyParam + "&session_id=\(Auth.sessionId)"
-        case .markFavorite:
-            return Route.base + "/account/\(Auth.accountId)/favorite" + Route.apiKeyParam + "&session_id=\(Auth.sessionId)"
+            return Route.base
+                + "/search/movie"
+                + Route.apiKeyParam
+                + "&query=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""))"
+        case .markWatchlist(let model):
+            return Route.account
+                + "/\(model.accountId)/watchlist"
+                + Route.apiKeyParam
+                + "&session_id=\(model.sessionId)"
+        case .markFavorite(let model):
+            return Route.account
+                + "/\(model.accountId)/favorite"
+                + Route.apiKeyParam
+                + "&session_id=\(model.sessionId)"
         case .posterImage(let posterPath):
             return "https://image.tmdb.org/t/p/w500/" + posterPath
         }
