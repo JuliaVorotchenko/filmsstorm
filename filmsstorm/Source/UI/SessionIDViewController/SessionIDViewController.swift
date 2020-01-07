@@ -8,20 +8,24 @@
 
 import UIKit
 
-enum SessionIDEvent {
+enum SessionIDEvent: EventProtocol {
     case back
     case showSessionId
 }
 
-class SessionIDViewController: UIViewController {
+class SessionIDViewController: UIViewController, Controller {
+   
+    typealias Event = SessionIDEvent
+    typealias RootViewType = SessionIDView
+    
     // MARK: - temporary values
     let apiKey = "f4559f172e8c6602b3e2dd52152aca52"
     
     // MARK: - private properties
     private let networking: Networking
-    private let eventHandler: ((SessionIDEvent) -> Void)?
+    let eventHandler: ((SessionIDEvent) -> Void)?
     // MARK: - root view
-    @IBOutlet var rootView: SessionIDView!
+    @IBOutlet var rootView: RootViewType!
     // MARK: class init
     
     deinit {

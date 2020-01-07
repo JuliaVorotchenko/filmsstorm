@@ -46,18 +46,7 @@ class AuthorizationViewController: UIViewController, Controller {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    // MARK: Buttons
-    @IBAction func getTokenTapped(_ sender: Any) {
-        self.getToken()
-    }
-    @IBAction func validateTokenTapped(_ sender: Any) {
-        self.validateToken()
-    }
-    @IBAction func getSessionTapped(_ sender: Any) {
-        self.createSessionId()
-    }
-    
-    
+   
     @IBAction func buttonTapped(_ sender: Any) {
         getToken()
     }
