@@ -25,7 +25,7 @@ class SessionIDViewController: UIViewController, Controller {
     private let networking: Networking
     let eventHandler: ((SessionIDEvent) -> Void)?
     // MARK: - root view
-    @IBOutlet var rootView: RootViewType!
+    
     // MARK: class init
     
     deinit {
@@ -43,7 +43,7 @@ class SessionIDViewController: UIViewController, Controller {
     // MARK: VDL
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.rootView.fillLabel()
+        self.rootView?.fillLabel()
     }
     
     @IBAction func backButtonTaapped(_ sender: Any) {
