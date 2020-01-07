@@ -19,8 +19,12 @@ enum AuthEvent: EventProtocol {
  */
 class AuthorizationViewController: UIViewController, Controller {
     
+    // MARK: - Subtypes
+    
     typealias Event = AuthEvent
     typealias RootViewType = AuthorizationView
+    
+    // MARK: - Properties
     
     private let networking: Networking
     let eventHandler: ((Event) -> Void)?
@@ -30,9 +34,9 @@ class AuthorizationViewController: UIViewController, Controller {
     var token: RequestToken?
     var validToken: RequestToken?
     var sessionID: SessionID?
-    // MARK: - root view
     
-    // MARK: class init
+    // MARK: - Init and deinit
+    
     init(networking: Networking, event: ((AuthEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
@@ -42,15 +46,21 @@ class AuthorizationViewController: UIViewController, Controller {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // MARK: VDL
+    
+    // MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-   
+    
+    // MARK: - IBAction
+    
     @IBAction func buttonTapped(_ sender: Any) {
         getToken()
     }
+    
     //MARK: - Networking
+    
     func getToken() {
         let session = URLSession.shared
         let url = URL(string: "https://api.themoviedb.org/3/authentication/token/new?api_key=" + apiKey)!
@@ -171,6 +181,4 @@ class AuthorizationViewController: UIViewController, Controller {
         }
         task.resume()
     }
-    
-    
 }

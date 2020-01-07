@@ -9,17 +9,27 @@
 import UIKit
 
 class AppCoordinator: Coordinator {
-    var childCoordinators = [Coordinator]()
     
+    // MARK: - Properties
+    
+    var childCoordinators = [Coordinator]()
     let navigationController: UINavigationController
     private let networking = Networking()
+    
+    // MARK: - Init and deinit
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
+
+    // MARK: - Coordinator
+    
     func start() {
         self.createAuthController()
     }
+    
+    // MARK: - Private methods
+    
     private func createAuthController() {
         let controller = AuthorizationViewController(networking: self.networking, event: self.authEvent)
         self.navigationController.viewControllers = [controller]

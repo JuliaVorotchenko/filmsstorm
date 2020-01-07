@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,6 @@
 		2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51662723AFD6C500EDF51E /* AppDelegate.swift */; };
 		2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51662923AFD6C500EDF51E /* SceneDelegate.swift */; };
 		2E51662D23AFD6C500EDF51E /* filmsstorm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E51662B23AFD6C500EDF51E /* filmsstorm.xcdatamodeld */; };
-		2E51662F23AFD6C500EDF51E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51662E23AFD6C500EDF51E /* ContentView.swift */; };
 		2E51663123AFD6CA00EDF51E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E51663023AFD6CA00EDF51E /* Assets.xcassets */; };
 		2E51663423AFD6CA00EDF51E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E51663323AFD6CA00EDF51E /* Preview Assets.xcassets */; };
 		2E51663723AFD6CA00EDF51E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E51663523AFD6CA00EDF51E /* LaunchScreen.storyboard */; };
@@ -64,7 +63,6 @@
 		2E51662723AFD6C500EDF51E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E51662923AFD6C500EDF51E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2E51662C23AFD6C500EDF51E /* filmsstorm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = filmsstorm.xcdatamodel; sourceTree = "<group>"; };
-		2E51662E23AFD6C500EDF51E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2E51663023AFD6CA00EDF51E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E51663323AFD6CA00EDF51E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2E51663623AFD6CA00EDF51E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 				2E51662723AFD6C500EDF51E /* AppDelegate.swift */,
 				2E51662923AFD6C500EDF51E /* SceneDelegate.swift */,
 				2E51663023AFD6CA00EDF51E /* Assets.xcassets */,
-				2E51662E23AFD6C500EDF51E /* ContentView.swift */,
 				2E51662B23AFD6C500EDF51E /* filmsstorm.xcdatamodeld */,
 				2E16981823AFE05A0002E28E /* GoogleService-Info.plist */,
 				2E51663823AFD6CA00EDF51E /* Info.plist */,
@@ -257,13 +254,6 @@
 			path = AppConstants;
 			sourceTree = "<group>";
 		};
-		CDB8790E23B8FF880099F946 /* UserDefaultsContainer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UserDefaultsContainer;
-			sourceTree = "<group>";
-		};
 		CDB8790F23B8FFA10099F946 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,7 +304,6 @@
 				CDB8790F23B8FFA10099F946 /* Models */,
 				CDB8790C23B8FF510099F946 /* Networking */,
 				CDB8790B23B8FF290099F946 /* UI */,
-				CDB8790E23B8FF880099F946 /* UserDefaultsContainer */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -571,7 +560,6 @@
 				CDB8792823B93DCB0099F946 /* Networking.swift in Sources */,
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
 				CDB8792023B9020C0099F946 /* SessionIDView.swift in Sources */,
-				2E51662F23AFD6C500EDF51E /* ContentView.swift in Sources */,
 				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
 				CDB8791B23B900EC0099F946 /* SessionIDViewController.swift in Sources */,
 				CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */,
