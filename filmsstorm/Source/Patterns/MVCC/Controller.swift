@@ -31,5 +31,5 @@ protocol ControllerEventSourse {
     var eventHandler: ((Event) -> Void)? { get }
 }
 
-/// We need this protocol to subsc
+/// We need this protocol to subscribe events 
 protocol EventProtocol {}

@@ -17,9 +17,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
-//        // swiftlint:disable all
-//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//        let contentView = ContentView().environment(\.managedObjectContext, context)
 
         // Use a UIHostingController as window root view controller.
         guard let windowScene = (scene as? UIWindowScene) else { return }

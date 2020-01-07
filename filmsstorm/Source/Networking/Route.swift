@@ -8,10 +8,6 @@
 
 import Foundation
 
-func getEndpoint() -> URL {
-    return Route.login.url
-}
-
 enum Route {
     static let base = "https://api.themoviedb.org/3"
     static let apiKeyParam = "?api_key=f4559f172e8c6602b3e2dd52152aca52"
