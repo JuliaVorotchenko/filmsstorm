@@ -25,6 +25,7 @@
 		CD0CDAA323C67665002EC487 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDAA223C67665002EC487 /* NetworkError.swift */; };
 		CD0CDAA523C67699002EC487 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDAA423C67699002EC487 /* ParameterEncoding.swift */; };
 		CD0CDAA723C676C7002EC487 /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDAA623C676C7002EC487 /* URLParameterEncoder.swift */; };
+		CD0CDAA923C67768002EC487 /* MovieEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDAA823C67768002EC487 /* MovieEndPoint.swift */; };
 		CD2F3C7923BE61D30047B42F /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F3C7823BE61D30047B42F /* Auth.swift */; };
 		CD4F215323BA158D00EB1850 /* ReqquestToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215223BA158D00EB1850 /* ReqquestToken.swift */; };
 		CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215423BA3A3300EB1850 /* SessionID.swift */; };
@@ -88,6 +89,7 @@
 		CD0CDAA223C67665002EC487 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CD0CDAA423C67699002EC487 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		CD0CDAA623C676C7002EC487 /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
+		CD0CDAA823C67768002EC487 /* MovieEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndPoint.swift; sourceTree = "<group>"; };
 		CD2F3C7823BE61D30047B42F /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		CD4F215223BA158D00EB1850 /* ReqquestToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqquestToken.swift; sourceTree = "<group>"; };
 		CD4F215423BA3A3300EB1850 /* SessionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 		CD0CDA9D23C67549002EC487 /* EndPoint */ = {
 			isa = PBXGroup;
 			children = (
+				CD0CDAA823C67768002EC487 /* MovieEndPoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				CD0CDA7A23C3E797002EC487 /* Coordinator.swift in Sources */,
 				CD0CDAA723C676C7002EC487 /* URLParameterEncoder.swift in Sources */,
 				2E51662D23AFD6C500EDF51E /* filmsstorm.xcdatamodeld in Sources */,
+				CD0CDAA923C67768002EC487 /* MovieEndPoint.swift in Sources */,
 				CD5E2A1C23BE591600439953 /* UseDefaultsContainer.swift in Sources */,
 				CD0CDA7923C3E797002EC487 /* Controller.swift in Sources */,
 				CD0CDA7823C3E797002EC487 /* RootViewGettable.swift in Sources */,
