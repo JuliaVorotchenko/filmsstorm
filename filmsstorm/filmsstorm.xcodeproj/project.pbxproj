@@ -26,6 +26,7 @@
 		CD0CDAA523C67699002EC487 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDAA423C67699002EC487 /* ParameterEncoding.swift */; };
 		CD0CDAA723C676C7002EC487 /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDAA623C676C7002EC487 /* URLParameterEncoder.swift */; };
 		CD0CDAA923C67768002EC487 /* MovieEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDAA823C67768002EC487 /* MovieEndPoint.swift */; };
+		CD0CDAAB23C677C8002EC487 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDAAA23C677C8002EC487 /* NetworkManager.swift */; };
 		CD2F3C7923BE61D30047B42F /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F3C7823BE61D30047B42F /* Auth.swift */; };
 		CD4F215323BA158D00EB1850 /* ReqquestToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215223BA158D00EB1850 /* ReqquestToken.swift */; };
 		CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215423BA3A3300EB1850 /* SessionID.swift */; };
@@ -90,6 +91,7 @@
 		CD0CDAA423C67699002EC487 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		CD0CDAA623C676C7002EC487 /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
 		CD0CDAA823C67768002EC487 /* MovieEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndPoint.swift; sourceTree = "<group>"; };
+		CD0CDAAA23C677C8002EC487 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CD2F3C7823BE61D30047B42F /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		CD4F215223BA158D00EB1850 /* ReqquestToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqquestToken.swift; sourceTree = "<group>"; };
 		CD4F215423BA3A3300EB1850 /* SessionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 		CD0CDA9E23C67558002EC487 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				CD0CDAAA23C677C8002EC487 /* NetworkManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD0CDAAB23C677C8002EC487 /* NetworkManager.swift in Sources */,
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */,
 				CD0CDAA523C67699002EC487 /* ParameterEncoding.swift in Sources */,
