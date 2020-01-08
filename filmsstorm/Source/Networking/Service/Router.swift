@@ -51,7 +51,9 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                                                let additionalHeaders):
                 self.addAdditionalHeaders(additionalHeaders,
                                           request: &request)
-                try self.configureParameters(bodyParameters: bodyParameters, urlParameters: urlParameters, request: &request)
+                try self.configureParameters(bodyParameters: bodyParameters,
+                                             urlParameters: urlParameters,
+                                             request: &request)
             }
             return request
         } catch {
@@ -81,6 +83,4 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
             request.setValue(value, forHTTPHeaderField: key)
         }
     }
-    
-    
 }

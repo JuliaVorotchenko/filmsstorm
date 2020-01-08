@@ -24,12 +24,10 @@ public enum MovieApi {
 extension MovieApi: EndPointType {
     var httpMethod: HTTPMethod {
         switch self {
-         case .createRequestToken,
-              .getAccountDetails:
+         case .createRequestToken, .getAccountDetails:
              return .get
         
-         case .validateRequestToken,
-              .createSession:
+         case .validateRequestToken, .createSession:
              return .post
          
          case .logout:
@@ -64,8 +62,6 @@ extension MovieApi: EndPointType {
                                                  additionHeaders: ["Content-Type": "application/json"])
         }
     }
-    
-   
     
     var base: String {
         return "https://api.themoviedb.org/3"
@@ -133,6 +129,4 @@ extension MovieApi: EndPointType {
 //            }
 //        }
     }
-    
-    
 }

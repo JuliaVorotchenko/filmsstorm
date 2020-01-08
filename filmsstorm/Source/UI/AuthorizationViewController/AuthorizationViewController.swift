@@ -66,8 +66,8 @@ class AuthorizationViewController: UIViewController, Controller {
         }
     }
     
-    //MARK: - Networking
-    
+    // MARK: - Networking
+    /*
     func getToken() {
         let session = URLSession.shared
         let url = URL(string: "https://api.themoviedb.org/3/authentication/token/new?api_key=" + apiKey)!
@@ -188,4 +188,5 @@ class AuthorizationViewController: UIViewController, Controller {
         }
         task.resume()
     }
+ */
 }

@@ -55,10 +55,11 @@ class SessionIDViewController: UIViewController, Controller {
     // MARK: - IBActions
     
     @IBAction func backButtonTaapped(_ sender: Any) {
-        self.deleteSession()
+        
     }
     
     // MARK: Networking
+    /*
     func deleteSession() {
         var session = URLSession.shared
         let url = URL(string: "https://api.themoviedb.org/3/authentication/session?api_key=" + apiKey)
@@ -94,4 +95,5 @@ class SessionIDViewController: UIViewController, Controller {
         }
         task.resume()
     }
+ */
 }

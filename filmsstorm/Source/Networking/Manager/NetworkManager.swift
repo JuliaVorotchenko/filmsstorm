@@ -12,7 +12,6 @@ struct NetworkManager {
     static let apiKey = "f4559f172e8c6602b3e2dd52152aca52"
     private let router = Router<MovieApi>()
     
-    
     enum NetworkResponse: String {
         case sucsess
         case authenticationError = "You need to be autenticated first."
@@ -43,7 +42,7 @@ struct NetworkManager {
         }
     }
     
-    func getToken(completion: @escaping (_ requestToken: String?, _ error: String?) -> ()) {
+    func getToken(completion: @escaping (_ requestToken: String?, _ error: String?) -> Void) {
         router.request(.createRequestToken) { (data, response, error) in
             if error != nil {
                 completion(nil, "Please check your network connection.")

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class UserDefaultsContainer {
     private enum UserDefaultsKey: String {
         case session
@@ -17,7 +16,6 @@ class UserDefaultsContainer {
         return UserDefaults.standard
     }
     
-   
     static var session: String {
         get {
             return self.defaults.string(forKey: UserDefaultsKey.session.rawValue) ?? ""
