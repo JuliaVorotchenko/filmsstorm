@@ -26,7 +26,7 @@ class AuthorizationViewController: UIViewController, Controller {
     
     // MARK: - Properties
     
-    private let networking: Networking
+    private let networking: NetworkManager
     let eventHandler: ((Event) -> Void)?
     
     // MARK: - temporary variables
@@ -37,7 +37,7 @@ class AuthorizationViewController: UIViewController, Controller {
     
     // MARK: - Init and deinit
     
-    init(networking: Networking, event: ((AuthEvent) -> Void)?) {
+    init(networking: NetworkManager, event: ((AuthEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
@@ -56,7 +56,14 @@ class AuthorizationViewController: UIViewController, Controller {
     // MARK: - IBAction
     
     @IBAction func buttonTapped(_ sender: Any) {
-        getToken()
+        self.networking.getToken { (requestToken, error) in
+            if let error = error {
+                print(error)
+            }
+            if let requestToken = requestToken {
+                print(requestToken)
+            }
+        }
     }
     
     //MARK: - Networking

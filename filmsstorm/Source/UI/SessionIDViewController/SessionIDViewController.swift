@@ -26,7 +26,7 @@ class SessionIDViewController: UIViewController, Controller {
     
     // MARK: - Private properties
     
-    private let networking: Networking
+    private let networking: NetworkManager
     let eventHandler: ((SessionIDEvent) -> Void)?
     
     // MARK: - Init and deinit
@@ -35,7 +35,7 @@ class SessionIDViewController: UIViewController, Controller {
         print("sessioIdContr")
     }
     
-    init(networking: Networking, event: ((SessionIDEvent) -> Void)?) {
+    init(networking: NetworkManager, event: ((SessionIDEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
