@@ -43,21 +43,21 @@ extension MovieApi: EndPointType {
         case .validateRequestToken:
             return .requestParamettersAndHeaders(bodyParameters: ["username": "filmsstorm",
                                                                   "password": "qwerty1015",
-                                                                  "request_token": ""],
+                                                                  "request_token": UserDefaultsContainer.token],
                                                  urlParameters: ["api_key": "f4559f172e8c6602b3e2dd52152aca52"],
                                                  additionHeaders: ["Content-Type": "application/json"])
             
         case .createSession:
-            return .requestParamettersAndHeaders(bodyParameters: ["request_token": ""],
+            return .requestParamettersAndHeaders(bodyParameters: ["request_token": UserDefaultsContainer.token],
                                                  urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"],
                                                  additionHeaders: ["Content-Type": "application/json"])
             
         case .getAccountDetails:
             return .requestParameters(bodyParameters: nil,
                                       urlParameters: ["api_key": "f4559f172e8c6602b3e2dd52152aca52",
-                                                      "session_id": ""])
+                                                      "session_id": UserDefaultsContainer.session])
         case .logout:
-            return .requestParamettersAndHeaders(bodyParameters: ["session_id": ""],
+            return .requestParamettersAndHeaders(bodyParameters: ["session_id": UserDefaultsContainer.session],
                                                  urlParameters: ["api_key": "f4559f172e8c6602b3e2dd52152aca52"],
                                                  additionHeaders: ["Content-Type": "application/json"])
         }

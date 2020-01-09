@@ -58,26 +58,32 @@ class AuthorizationViewController: UIViewController, Controller {
     @IBAction func buttonTapped(_ sender: Any) {
         
         self.networking.getToken { (requestToken, error) in
+            print("requTok", requestToken)
             if let error = error {
                 print(error)
             }
             if let requestToken = requestToken {
+                UserDefaultsContainer.token = requestToken
                 self.networking.validateToken { (validToken, error) in
                     if let error = error {
                         print(error)
-                        if let validToken = validToken {
-                            self.networking.createSession { (sessionID, error) in
-                                if let error = error {
-                                    print(error)
-                                    if let sessionID = sessionID {
-                                        UserDefaultsContainer.session = sessionID
-                                        self.eventHandler?(.login)
-                                    }
+                    }
+                    if let validToken = validToken {
+                        self.networking.createSession { (sessionID, error) in
+                            if let error = error {
+                                print(error)
+                            }
+                            if let sessionID = sessionID {
+                                UserDefaultsContainer.session = sessionID
+                                DispatchQueue.main.async {
+                                    self.eventHandler?(.login)
                                 }
+                                
                             }
                         }
                     }
                 }
+                
             }
         }
     }

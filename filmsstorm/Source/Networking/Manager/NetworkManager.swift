@@ -96,8 +96,8 @@ struct NetworkManager {
                         return
                     }
                     do {
-                        let apiresponse = try JSONDecoder().decode(RequestToken.self, from: responseData)
-                        completion(apiresponse.requestToken, nil)
+                        let apiResponse = try JSONDecoder().decode(RequestToken.self, from: responseData)
+                        completion(apiResponse.requestToken, nil)
                     } catch {
                         completion(nil, NetworkResponse.unableToDecode.rawValue)
                     }
@@ -110,7 +110,9 @@ struct NetworkManager {
     
     func createSession(completion: @escaping(_ sessionId: String?, _ error: String?) -> Void) {
         router.request(.createSession) { (data, response, error) in
+            print("sess get")
             if error != nil {
+                print(error.debugDescription)
                 completion(nil, "Please check your network connection.")
             }
             if let response = response as? HTTPURLResponse {
@@ -122,11 +124,13 @@ struct NetworkManager {
                         return
                     }
                     do {
-                        let apiresponse = try JSONDecoder().decode(SessionID.self, from: responseData)
-                        completion(apiresponse.sessionID, nil)
+                        let apiResponse = try JSONDecoder().decode(SessionID.self, from: responseData)
+                        completion(apiResponse.sessionID, nil)
+                        print("NM sessID", apiResponse.sessionID)
                     } catch {
                         completion(nil, NetworkResponse.unableToDecode.rawValue)
                     }
+                    
                 case .failure(let networkFailureError):
                     completion(nil, networkFailureError)
                 }
