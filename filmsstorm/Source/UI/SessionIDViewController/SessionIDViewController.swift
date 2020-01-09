@@ -50,50 +50,36 @@ class SessionIDViewController: UIViewController, Controller {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rootView?.fillLabel()
+        self.networking.getUserDetails { (userModel, error) in
+            if let error = error {
+                print(error)
+            }
+            if let userModel = userModel {
+                DispatchQueue.main.async {
+                     self.rootView?.userIDLabel.text = String(userModel.id ?? 11)
+                }
+               
+            }
+        }
     }
     
     // MARK: - IBActions
     
     @IBAction func backButtonTaapped(_ sender: Any) {
         
+        self.networking.logout { (result, error) in
+            if let error = error {
+                print(error)
+            }
+            if let result = result {
+                print(result)
+                DispatchQueue.main.async {
+                    self.eventHandler?(.back)
+                }
+            }
+        }
     }
     
     // MARK: Networking
-    /*
-    func deleteSession() {
-        var session = URLSession.shared
-        let url = URL(string: "https://api.themoviedb.org/3/authentication/session?api_key=" + apiKey)
-        var request = URLRequest(url: url!)
-        request.httpMethod = "DELETE"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let parameters = ["session_id": UserDefaultsContainer.session]
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
-        let task = session.dataTask(with: request) { (data, response, error) in
-            DispatchQueue.main.async {
-                if error != nil || data == nil {
-                    print("client Error")
-                }
-                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                    print("Server error")
-                    return
-                }
-                print(response.statusCode)
-                guard let mime = response.mimeType, mime == "application/json" else {
-                    print("wrong mime type")
-                    return
-                }
-                print(response.statusCode)
-                UserDefaultsContainer.unregister()
-                self.eventHandler?(.back)
-            }
-        }
-        task.resume()
-    }
- */
+  
 }

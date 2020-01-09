@@ -87,6 +87,4 @@ class AuthorizationViewController: UIViewController, Controller {
             }
         }
     }
-    
-   
 }

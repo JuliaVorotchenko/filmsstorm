@@ -26,14 +26,14 @@ struct NetworkManager {
         case unableToDecode = "We could not decode the response."
     }
     
-    //MARK: - Results
+    // MARK: - Results
     
     enum Result<Sttring> {
         case sucsess
         case failure(String)
     }
     
-    //MARK: - Response handler
+    // MARK: - Response handler
     
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String> {
         switch response.statusCode {
@@ -130,12 +130,12 @@ struct NetworkManager {
                     } catch {
                         completion(nil, NetworkResponse.unableToDecode.rawValue)
                     }
-                    
                 case .failure(let networkFailureError):
                     completion(nil, networkFailureError)
                 }
             }
         }
+    }
         
         func getUserDetails(completion: @escaping(_ usermodel: UserModel?, _ error: String?) -> Void) {
             router.request(.getAccountDetails) { (data, response, error) in
@@ -162,6 +162,22 @@ struct NetworkManager {
                 }
             }
         }
+        
+        func logout(completion: @escaping(_ result: String?, _ error: String?) -> Void) {
+            router.request(.logout) { (_, response, error) in
+                if error != nil {
+                    completion(nil, "Please check your network connection.")
+                }
+                if let response = response as? HTTPURLResponse {
+                    let result = self.handleNetworkResponse(response)
+                    switch result {
+                    case .sucsess:
+                        print(response.statusCode)
+                    case .failure(let networkFailureError):
+                        completion(nil, networkFailureError)
+                    }
+                }
+            }
+        }
     }
-    
-}
+
