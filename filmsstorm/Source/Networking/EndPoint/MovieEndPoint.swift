@@ -9,30 +9,30 @@
 import Foundation
 
 public enum MovieApi {
-   
+    
     // MARK: - Authentication cases
-       case createRequestToken
-       case validateRequestToken
-       case createSession
-       case logout
-       
-       // MARK: - Account
-       case getAccountDetails
-       
+    case createRequestToken
+    case validateRequestToken
+    case createSession
+    case logout
+    
+    // MARK: - Account
+    case getAccountDetails
+    
 }
 
 extension MovieApi: EndPointType {
     var httpMethod: HTTPMethod {
         switch self {
-         case .createRequestToken, .getAccountDetails:
-             return .get
-        
-         case .validateRequestToken, .createSession:
-             return .post
-         
-         case .logout:
-             return .delete
-         }
+        case .createRequestToken,
+             .getAccountDetails:
+            return .get
+        case .validateRequestToken,
+             .createSession:
+            return .post
+        case .logout:
+            return .delete
+        }
     }
     
     var task: HTTPTask {
@@ -46,11 +46,11 @@ extension MovieApi: EndPointType {
                                                                   "request_token": ""],
                                                  urlParameters: ["api_key": "f4559f172e8c6602b3e2dd52152aca52"],
                                                  additionHeaders: ["Content-Type": "application/json"])
-                                                 
+            
         case .createSession:
             return .requestParamettersAndHeaders(bodyParameters: ["request_token": ""],
-                                      urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"],
-                                      additionHeaders: ["Content-Type": "application/json"])
+                                                 urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"],
+                                                 additionHeaders: ["Content-Type": "application/json"])
             
         case .getAccountDetails:
             return .requestParameters(bodyParameters: nil,
@@ -84,49 +84,7 @@ extension MovieApi: EndPointType {
             return "/authentication/session/new"
         case .logout:
             return "/authentication/session"
-    }
-    
-//    var httpMethod: HTTPMethod {
-//        switch self {
-//        case .createRequestToken,
-//             .getAccountDetails:
-//            return .get
-//
-//        case .validateRequestToken,
-//             .createSession:
-//            return .post
-//
-//        case .logout:
-//            return .delete
-//        }
-//    }
-    
-//        var task: HTTPTask {
-//            switch self {
-//            case .createRequestToken:
-//                return .requestParameters(bodyParameters: nil, urlParameters: ["api_key": "f4559f172e8c6602b3e2dd52152aca52"])
-//
-//            case .validateRequestToken:
-//                return .requestParamettersAndHeaders(bodyParameters: ["username": "filmsstorm",
-//                                                                      "password": "qwerty1015",
-//                                                                      "request_token": ""],
-//                                                     urlParameters: ["api_key": "f4559f172e8c6602b3e2dd52152aca52"],
-//                                                     additionHeaders: ["Content-Type": "application/json"])
-//
-//            case .createSession:
-//                return .requestParamettersAndHeaders(bodyParameters: ["request_token": ""],
-//                                          urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"],
-//                                          additionHeaders: ["Content-Type": "application/json"])
-//
-//            case .getAccountDetails:
-//                return .requestParameters(bodyParameters: nil,
-//                                          urlParameters: ["api_key": "f4559f172e8c6602b3e2dd52152aca52",
-//                                                          "session_id": ""])
-//            case .logout:
-//                return .requestParamettersAndHeaders(bodyParameters: ["session_id": ""],
-//                                                     urlParameters: ["api_key": "f4559f172e8c6602b3e2dd52152aca52"],
-//                                                     additionHeaders: ["Content-Type": "application/json"])
-//            }
-//        }
+        }
+        
     }
 }
