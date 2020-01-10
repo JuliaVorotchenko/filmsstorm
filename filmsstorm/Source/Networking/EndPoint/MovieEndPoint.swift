@@ -12,11 +12,11 @@ public enum MovieApi {
     
     // MARK: - Authentication cases
     case createRequestToken
-    case validateRequestToken
-    case createSession
-    case logout
+    case validateRequestToken(username: String, password: String, requsetToken: String)
+    case createSession(validToken: String)
+    case logout(sessionID: String)
     
-    // MARK: - Account
+    // MARK: - Account cases
     case getAccountDetails
     
 }
@@ -38,28 +38,28 @@ extension MovieApi: EndPointType {
     var task: HTTPTask {
         switch self {
         case .createRequestToken:
-            return .requestParameters(bodyParameters: nil, urlParameters: ["api_key": "f4559f172e8c6602b3e2dd52152aca52"])
+            return .requestParameters(bodyParameters: nil, urlParameters: [Headers.apiKey: Headers.apiKeyValue])
             
-        case .validateRequestToken:
-            return .requestParamettersAndHeaders(bodyParameters: ["username": "filmsstorm",
-                                                                  "password": "qwerty1015",
-                                                                  "request_token": UserDefaultsContainer.token],
-                                                 urlParameters: ["api_key": "f4559f172e8c6602b3e2dd52152aca52"],
-                                                 additionHeaders: ["Content-Type": "application/json"])
+        case .validateRequestToken(let username, let password, let requestToken):
+            return .requestParamettersAndHeaders(bodyParameters: ["username": username,
+                                                                  "password": password,
+                                                                  "request_token": requestToken],
+                                                 urlParameters: [Headers.apiKey: Headers.apiKeyValue],
+                                                 additionHeaders: [Headers.contentType: Headers.contentTypeValue])
             
-        case .createSession:
-            return .requestParamettersAndHeaders(bodyParameters: ["request_token": UserDefaultsContainer.token],
-                                                 urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"],
-                                                 additionHeaders: ["Content-Type": "application/json"])
+        case .createSession(let validToken):
+            return .requestParamettersAndHeaders(bodyParameters: ["request_token": validToken],
+                                                 urlParameters: [Headers.apiKey: Headers.apiKeyValue],
+                                                 additionHeaders: [Headers.contentType: Headers.contentTypeValue])
             
         case .getAccountDetails:
             return .requestParameters(bodyParameters: nil,
-                                      urlParameters: ["api_key": "f4559f172e8c6602b3e2dd52152aca52",
+                                      urlParameters: [Headers.apiKey: Headers.apiKeyValue,
                                                       "session_id": UserDefaultsContainer.session])
         case .logout:
             return .requestParamettersAndHeaders(bodyParameters: ["session_id": UserDefaultsContainer.session],
-                                                 urlParameters: ["api_key": "f4559f172e8c6602b3e2dd52152aca52"],
-                                                 additionHeaders: ["Content-Type": "application/json"])
+                                                 urlParameters: [Headers.apiKey: Headers.apiKeyValue],
+                                                 additionHeaders: [Headers.contentType: Headers.contentTypeValue])
         }
     }
     

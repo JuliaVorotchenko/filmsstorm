@@ -23,8 +23,8 @@ struct URLParameterEncoder: ParameterEncoder {
             }
             urlRequest.url = urlComponents.url
         }
-        if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
-            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        if urlRequest.value(forHTTPHeaderField: Headers.contentType) == nil {
+            urlRequest.setValue(Headers.contentTypeValue, forHTTPHeaderField: Headers.contentType)
         }
     }
 }

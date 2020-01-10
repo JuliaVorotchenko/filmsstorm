@@ -56,9 +56,9 @@ class SessionIDViewController: UIViewController, Controller {
             }
             if let userModel = userModel {
                 DispatchQueue.main.async {
-                     self.rootView?.userIDLabel.text = String(userModel.id ?? 11)
+                    self.rootView?.userIDLabel.text = String(userModel.id ?? 11)
                 }
-               
+                
             }
         }
     }
@@ -66,20 +66,14 @@ class SessionIDViewController: UIViewController, Controller {
     // MARK: - IBActions
     
     @IBAction func backButtonTaapped(_ sender: Any) {
-        
-        self.networking.logout { (result, error) in
-            if let error = error {
-                print(error)
-            }
-            if let result = result {
-                print(result)
-                DispatchQueue.main.async {
-                    self.eventHandler?(.back)
-                }
-            }
-        }
+        print("button tapped")
+//        self.networking.logout { (logoutModel, error) in
+//            if let error = error {
+//                print(error)
+//            }
+//            if logoutModel != nil {
+//                self.eventHandler?(.back)
+//            }
+//        }
     }
-    
-    // MARK: Networking
-  
 }

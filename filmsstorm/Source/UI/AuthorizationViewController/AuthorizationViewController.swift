@@ -56,35 +56,73 @@ class AuthorizationViewController: UIViewController, Controller {
     // MARK: - IBAction
     
     @IBAction func buttonTapped(_ sender: Any) {
+        self.getToken()
         
-        self.networking.getToken { (requestToken, error) in
-            print("requTok", requestToken)
-            if let error = error {
-                print(error)
-            }
-            if let requestToken = requestToken {
-                UserDefaultsContainer.token = requestToken
-                self.networking.validateToken { (validToken, error) in
-                    if let error = error {
-                        print(error)
-                    }
-                    if let validToken = validToken {
-                        self.networking.createSession { (sessionID, error) in
-                            if let error = error {
-                                print(error)
-                            }
-                            if let sessionID = sessionID {
-                                UserDefaultsContainer.session = sessionID
-                                DispatchQueue.main.async {
-                                    self.eventHandler?(.login)
-                                }
-                                
-                            }
-                        }
-                    }
+    }
+    
+    private func getToken() {
+        self.networking.getToken { [weak self] result in
+            switch result {
+            case .success(let token):
+                print(token)
+                UserDefaultsContainer.token = token
+                DispatchQueue.main.async {
+                    self?.validateToken(requestToken: token)
                 }
                 
+            case .failure(let error):
+                print(error.localizedDescription)
             }
+            
         }
     }
+    
+    private func validateToken(requestToken: String) {
+        guard let username = self.rootView?.usernameTextField.text,
+            let password = self.rootView?.passwordTextField.text else { return }
+        self.networking.validateToken(username: username, password: password, requsetToken: requestToken) { [weak self] (validToken, error) in
+            DispatchQueue.main.async {
+                print(validToken)
+                print(error)
+            }
+            
+        }
+    }
+    
+    //    func junk() {
+    //        self.networking.getToken { (requestToken, error) in
+    //                   print("requTok", requestToken)
+    //                   if let error = error {
+    //                       print(error)
+    //                   }
+    //                   if let requestToken = requestToken {
+    //                       UserDefaultsContainer.token = requestToken
+    //                       DispatchQueue.main.async {
+    //                           self.networking.validateToken(username: self.rootView?.usernameTextField.text ?? "",
+    //                                                         password: self.rootView?.usernameTextField.text ?? "",
+    //                                                         requsetToken: UserDefaultsContainer.token)
+    //                           { (validToken, error) in
+    //                               if let error = error {
+    //                                   print(error)
+    //                               }
+    //                               if let validToken = validToken {
+    //                                   self.networking.createSession(validToken: validToken) { (sessionID, error) in
+    //                                       if let error = error {
+    //                                           print(error)
+    //                                       }
+    //                                       if let sessionID = sessionID {
+    //                                           UserDefaultsContainer.session = sessionID
+    //                                           DispatchQueue.main.async {
+    //                                               self.eventHandler?(.login)
+    //                                           }
+    //
+    //                                       }
+    //                                   }
+    //                               }
+    //                           }
+    //                       }
+    //
+    //                   }
+    //               }
+    //    }
 }

@@ -6,18 +6,18 @@
 //  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
 
-import Foundation
+
+struct Hash: Codable {
+       let hash: String?
+   }
+   
+   struct Avatar: Codable {
+       let gravatar: Hash?
+   }
 
 struct UserModel: Codable {
    
-    struct Hash: Codable {
-        let hash: String?
-    }
-    
-    struct Avatar: Codable {
-        let gravatar: Hash?
-    }
-    
+    let avatar: Avatar?
     let id: Int?
     let language: String?
     let country: String?
@@ -26,6 +26,7 @@ struct UserModel: Codable {
     let username: String?
     
     enum CodingKeys: String, CodingKey {
+        case avatar
         case id
         case language = "iso_639_1"
         case country = "iso_3166_1"

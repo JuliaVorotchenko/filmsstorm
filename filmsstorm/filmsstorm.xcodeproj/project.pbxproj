@@ -38,6 +38,8 @@
 		CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215423BA3A3300EB1850 /* SessionID.swift */; };
 		CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */; };
 		CD5E2A1C23BE591600439953 /* UseDefaultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E2A1B23BE591600439953 /* UseDefaultsContainer.swift */; };
+		CD85326123C8E324005CD47B /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85326023C8E324005CD47B /* LogoutModel.swift */; };
+		CD85326323C90127005CD47B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85326223C90127005CD47B /* Constants.swift */; };
 		CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791523B900D80099F946 /* AuthorizationViewController.swift */; };
 		CDB8791823B900D80099F946 /* AuthorizationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB8791623B900D80099F946 /* AuthorizationViewController.xib */; };
 		CDB8791B23B900EC0099F946 /* SessionIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791923B900EC0099F946 /* SessionIDViewController.swift */; };
@@ -109,6 +111,8 @@
 		CD4F215423BA3A3300EB1850 /* SessionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
 		CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRequestBody.swift; sourceTree = "<group>"; };
 		CD5E2A1B23BE591600439953 /* UseDefaultsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseDefaultsContainer.swift; sourceTree = "<group>"; };
+		CD85326023C8E324005CD47B /* LogoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
+		CD85326223C90127005CD47B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CDB8791523B900D80099F946 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		CDB8791623B900D80099F946 /* AuthorizationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorizationViewController.xib; sourceTree = "<group>"; };
 		CDB8791923B900EC0099F946 /* SessionIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionIDViewController.swift; sourceTree = "<group>"; };
@@ -304,6 +308,7 @@
 				CD0CDA9D23C67549002EC487 /* EndPoint */,
 				CD0CDA9E23C67558002EC487 /* Manager */,
 				CD0CDA9F23C67575002EC487 /* Service */,
+				CD85326223C90127005CD47B /* Constants.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */,
 				CD2F3C7823BE61D30047B42F /* Auth.swift */,
 				CD29430523C71087001D651A /* UserModel.swift */,
+				CD85326023C8E324005CD47B /* LogoutModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -660,6 +666,7 @@
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
 				CDB8792023B9020C0099F946 /* SessionIDView.swift in Sources */,
 				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
+				CD85326323C90127005CD47B /* Constants.swift in Sources */,
 				CD0CDAAF23C67841002EC487 /* HTTPMethod.swift in Sources */,
 				CD0CDAAD23C67823002EC487 /* EndPointType.swift in Sources */,
 				CDB8791B23B900EC0099F946 /* SessionIDViewController.swift in Sources */,
@@ -678,6 +685,7 @@
 				CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */,
 				CD0CDAB523C678A4002EC487 /* Router.swift in Sources */,
 				CD2F3C7923BE61D30047B42F /* Auth.swift in Sources */,
+				CD85326123C8E324005CD47B /* LogoutModel.swift in Sources */,
 				CD0CDAA323C67665002EC487 /* NetworkError.swift in Sources */,
 				CD0CDAB323C67879002EC487 /* NetworkRouter.swift in Sources */,
 			);
