@@ -46,7 +46,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                                              urlParameters: urlParameters,
                                              request: &request)
                 
-            case .requestParamettersAndHeaders(let bodyParameters,
+            case .requestParametersAndHeaders(let bodyParameters,
                                                let urlParameters,
                                                let additionalHeaders):
                 self.addAdditionalHeaders(additionalHeaders,

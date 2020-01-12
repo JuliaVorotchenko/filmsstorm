@@ -39,9 +39,9 @@ struct NetworkManager {
         switch response.statusCode {
         case 200...299:
             return .sucsess
-        case 401...500:
+        case 400...499:
             return .failure(NetworkResponse.authenticationError.rawValue)
-        case 501...599:
+        case 500...599:
             return .failure(NetworkResponse.badRequest.rawValue)
         case 600:
             return .failure(NetworkResponse.outdated.rawValue)
