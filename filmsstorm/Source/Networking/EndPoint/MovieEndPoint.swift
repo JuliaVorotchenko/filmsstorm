@@ -17,12 +17,12 @@ public enum MovieApi {
     case logout(sessionID: String)
     
     // MARK: - Account cases
-    case getAccountDetails
-    case getFavouriteMovies(accountId: Int, sessionID: String)
-    case getFavouriteTVShows(accountId: Int)
-    case markAsFavourite(accountId: Int, sessionID: String)
-    case getRatedMovies(accountId: Int)
-    case getRatedTVShows(accountId: Int)
+    case getAccountDetails(sessionID: String)
+    case getFavouriteMovies(sessionID: String, accountID: Int)
+    case getFavouriteTVShows(sessionID: String, accountID: Int)
+    case markAsFavourite(sessionID: String, mediaType: String, mediaID: String, favourite: Bool, accountID: Int)
+    case getRatedMovies(sessionID: String, accountID: Int)
+    case getRatedTVShows(accountID: String, sessionID: String)
     
     // MARK: - Discover
     case movieDiscover
@@ -34,19 +34,19 @@ public enum MovieApi {
     case getMovieVideos(movieID: Int)
     case getMovieSimilars(movieID: Int)
     case getMovieReviews(movieID: Int)
-    case rateMovie(movieID: Int, sessionID: String)
-    case deleteMovieRating(movieID: Int, sessionID: String)
+    case rateMovie(movieID: Int, rateValue: Int)
+    case deleteMovieRating(movieID: Int)
     case getMovieLatest
     case getMovieNowPlaying
     case getMoviePopular
     case getMovieTopRated
     
     // MARK: - People
-    case getPeopleDetails(personId: Int)
+    case getPeopleDetails(personID: Int)
     case getPeopleMostPopular
     
     // MARK: - Reviews
-    case getReviewDetails(reviewId: Int)
+    case getReviewDetails(reviewID: String)
     
     // MARK: - Search
     case search(query: String)
@@ -56,8 +56,8 @@ public enum MovieApi {
     case getTVShowImages(tvID: Int)
     case getTVShowSimilar(tvID: Int)
     case getTVShowVideos(tvID: Int)
-    case rateTVShow(tvID: Int, sessionID: String)
-    case deleteTVShowRating(tvID: Int, sessionID: String)
+    case rateTVShow(tvID: Int, ratingValue: Int)
+    case deleteTVShowRating(tvID: Int)
     case getTVShowLatest
     case getTVShowAiring
     case getTVShowPopular
@@ -65,7 +65,7 @@ public enum MovieApi {
     
     // MARK: - TV Season
     case getTVSeasonDetails(tvID: Int, seasonNumber: Int)
-    case getTVSeasonImages(tvID: Int, seasonNumber: Int, episodeNumber: Int)
+    case getTVSeasonImages(tvID: Int, seasonNumber: Int)
     
 }
 
@@ -121,7 +121,37 @@ extension MovieApi: EndPointType {
     
     var task: HTTPTask {
         switch self {
-        case .createRequestToken:
+        case .createRequestToken,
+             .movieDiscover,
+             .tvDiscover,
+             .getMovieLatest,
+             .getMovieNowPlaying,
+             .getMoviePopular,
+             .getMovieTopRated,
+             .getPeopleMostPopular,
+             .getTVShowDetails,
+             .getTVShowImages,
+             .getTVShowSimilar,
+             .getTVShowVideos,
+             .getTVShowLatest,
+             .getTVShowAiring,
+             .getTVShowPopular,
+             .getTVShowTopRated,
+             .getTVSeasonDetails,
+             .getTVSeasonImages,
+             .getRatedMovies,
+             .getRatedTVShows,
+             .getReviewDetails,
+             .getPeopleDetails,
+             .getMovieDetails,
+             .getMovieImages,
+             .getMovieVideos,
+             .getMovieSimilars,
+             .getMovieReviews,
+             .getAccountDetails,
+             .getFavouriteMovies,
+             .getFavouriteTVShows,
+             .search:
             return .requestParameters(bodyParameters: nil, urlParameters: [Headers.apiKey: Headers.apiKeyValue])
             
         case .validateRequestToken(let username, let password, let requestToken):
@@ -136,82 +166,31 @@ extension MovieApi: EndPointType {
                                                 urlParameters: [Headers.apiKey: Headers.apiKeyValue],
                                                 additionHeaders: [Headers.contentType: Headers.contentTypeValue])
             
-        case .getAccountDetails:
-            return .requestParameters(bodyParameters: nil,
-                                      urlParameters: [Headers.apiKey: Headers.apiKeyValue,
-                                                      "session_id": UserDefaultsContainer.session])
         case .logout:
             return .requestParametersAndHeaders(bodyParameters: ["session_id": UserDefaultsContainer.session],
                                                 urlParameters: [Headers.apiKey: Headers.apiKeyValue],
                                                 additionHeaders: [Headers.contentType: Headers.contentTypeValue])
-        case .getFavouriteMovies(let accountId):
-            <#code#>
-        case .getFavouriteTVShows(let accountId):
-            <#code#>
-        case .markAsFavourite(let accountId, let sessionID):
-            <#code#>
-        case .getRatedMovies(let accountId):
-            <#code#>
-        case .getRatedTVShows(let accountId):
-            <#code#>
-        case .movieDiscover:
-            <#code#>
-        case .tvDiscover:
-            <#code#>
-        case .getMovieDetails(let movieID):
-            <#code#>
-        case .getMovieImages(let movieID):
-            <#code#>
-        case .getMovieVideos(let movieID):
-            <#code#>
-        case .getMovieSimilars(let movieID):
-            <#code#>
-        case .getMovieReviews(let movieID):
-            <#code#>
-        case .rateMovie(let movieID, let sessionID):
-            <#code#>
-        case .deleteMovieRating(let movieID, let sessionID):
-            <#code#>
-        case .getMovieLatest:
-            <#code#>
-        case .getMovieNowPlaying:
-            <#code#>
-        case .getMoviePopular:
-            <#code#>
-        case .getMovieTopRated:
-            <#code#>
-        case .getPeopleDetails(let personId):
-            <#code#>
-        case .getPeopleMostPopular:
-            <#code#>
-        case .getReviewDetails(let reviewId):
-            <#code#>
-        case .search(let query):
-            <#code#>
-        case .getTVShowDetails(let tvID):
-            <#code#>
-        case .getTVShowImages(let tvID):
-            <#code#>
-        case .getTVShowSimilar(let tvID):
-            <#code#>
-        case .getTVShowVideos(let tvID):
-            <#code#>
-        case .rateTVShow(let tvID, let sessionID):
-            <#code#>
-        case .deleteTVShowRating(let tvID, let sessionID):
-            <#code#>
-        case .getTVShowLatest:
-            <#code#>
-        case .getTVShowAiring:
-            <#code#>
-        case .getTVShowPopular:
-            <#code#>
-        case .getTVShowTopRated:
-            <#code#>
-        case .getTVSeasonDetails(let tvID, let seasonNumber):
-            <#code#>
-        case .getTVSeasonImages(let tvID, let seasonNumber, let episodeNumber):
-            <#code#>
+            
+        case .markAsFavourite(_, let mediaType, let mediaID, let favourite, _):
+            return .requestParametersAndHeaders(bodyParameters: ["media_type": mediaType,
+                                                                 "media_id": mediaID,
+                                                                 "favorite": favourite], urlParameters: [Headers.apiKey: Headers.apiKeyValue], additionHeaders: [Headers.contentType: Headers.contentTypeValue])
+            
+        case .rateMovie(_, let rateValue):
+            return .requestParametersAndHeaders(bodyParameters: ["value": rateValue],
+                                                urlParameters: [Headers.apiKey: Headers.apiKeyValue],
+                                                additionHeaders: [Headers.contentType: Headers.contentTypeValue])
+        case .deleteMovieRating,
+             .deleteTVShowRating:
+            return .requestParametersAndHeaders(bodyParameters: nil,
+                                                urlParameters: [Headers.apiKey: Headers.apiKeyValue],
+                                                additionHeaders: [Headers.contentType: Headers.contentTypeValue])
+            
+        case .rateTVShow(_, let ratingValue):
+            return .requestParametersAndHeaders(bodyParameters: ["value": ratingValue],
+                                                urlParameters: [Headers.apiKey:
+                                                    Headers.apiKeyValue],
+                                                additionHeaders: [Headers.contentType: Headers.contentTypeValue])
         }
     }
     
@@ -236,6 +215,74 @@ extension MovieApi: EndPointType {
             return "/authentication/session/new"
         case .logout:
             return "/authentication/session"
+        case .getReviewDetails(let reviewID):
+            return "/review/\(reviewID)"
+        case .getFavouriteMovies(_, let accountID):
+            return "/account/\(accountID)/favorite/movies"
+        case .getFavouriteTVShows(_, let accountID):
+            return "/account/\(accountID)/favorite/tv"
+        case .markAsFavourite(_, _, _, _, let accountID):
+            return "/account/\(accountID)/favorite"
+        case .getRatedMovies(_, let accountID):
+            return "/account/\(accountID)/rated/movies"
+        case .getRatedTVShows(let accountID, _):
+            return "/account/\(accountID)/rated/movies"
+        case .movieDiscover:
+            return "/discover/movie"
+        case .tvDiscover:
+            return "/discover/tv"
+        case .getMovieDetails(let movieID):
+            return "/movie/\(movieID)"
+        case .getMovieImages(let movieID):
+            return "/movie/\(movieID)/images"
+        case .getMovieVideos(let movieID):
+            return "/movie/\(movieID)/videos"
+        case .getMovieSimilars(let movieID):
+            return "/movie/\(movieID)/similar"
+        case .getMovieReviews(let movieID):
+            return "/movie/\(movieID)/reviews"
+        case .rateMovie(let movieID, _):
+            return "/movie/\(movieID)/rating"
+        case .deleteMovieRating(let movieID):
+            return "/movie/\(movieID)/rating"
+        case .getMovieLatest:
+            return "/movie/latest"
+        case .getMovieNowPlaying:
+            return "/movie/now_playing"
+        case .getMoviePopular:
+            return "/movie/popular"
+        case .getMovieTopRated:
+            return "/movie/top_rated"
+        case .getPeopleDetails(let personID):
+            return "/person/\(personID)"
+        case .getPeopleMostPopular:
+            return "/person/popular"
+        case .search:
+            return "/search/multi"
+        case .getTVShowDetails(let tvID):
+            return "/tv/\(tvID)"
+        case .getTVShowImages(let tvID):
+            return "/tv/\(tvID)/images"
+        case .getTVShowSimilar(let tvID):
+            return "/tv/\(tvID)/similar"
+        case .getTVShowVideos(let tvID):
+            return "/tv/\(tvID)/videos"
+        case .rateTVShow(let tvID, _):
+            return "/tv/\(tvID)/rating"
+        case .deleteTVShowRating(let tvID):
+            return "/tv/\(tvID)/rating"
+        case .getTVShowLatest:
+            return "/tv/latest"
+        case .getTVShowAiring:
+            return "/tv/airing_today"
+        case .getTVShowPopular:
+            return "/tv/popular"
+        case .getTVShowTopRated:
+            return "/tv/top_rated"
+        case .getTVSeasonDetails(let tvID, let seasonNumber):
+            return "/tv/\(tvID)/season/\(seasonNumber)"
+        case .getTVSeasonImages(let tvID, let seasonNumber):
+            return "/tv/\(tvID)/season/\(seasonNumber)/images"
         }
         
     }
