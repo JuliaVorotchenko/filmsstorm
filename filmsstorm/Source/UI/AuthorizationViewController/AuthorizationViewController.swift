@@ -30,10 +30,10 @@ class AuthorizationViewController: UIViewController, Controller {
     let eventHandler: ((Event) -> Void)?
     
     // MARK: - temporary variables
-    let apiKey = "f4559f172e8c6602b3e2dd52152aca52"
-    var token: RequestToken?
-    var validToken: RequestToken?
-    var sessionID: SessionID?
+//    let apiKey = "f4559f172e8c6602b3e2dd52152aca52"
+//    var token: RequestToken?
+//    var validToken: RequestToken?
+//    var sessionID: SessionID?
     
     // MARK: - Init and deinit
     
@@ -56,19 +56,22 @@ class AuthorizationViewController: UIViewController, Controller {
     // MARK: - IBAction
     
     @IBAction func buttonTapped(_ sender: Any) {
+        print("hello")
+        print(self.rootView?.usernameTextField.text!)
         self.getToken()
         
     }
     
     private func getToken() {
+        print("get token")
         self.networking.getToken { [weak self] result in
             switch result {
             case .success(let token):
                 print(token)
                 UserDefaultsContainer.token = token
-                DispatchQueue.main.async {
-                    self?.validateToken(requestToken: token)
-                }
+//                DispatchQueue.main.async {
+//                    self?.validateToken(requestToken: token)
+//                }
                 
             case .failure(let error):
                 print(error.localizedDescription)
@@ -80,14 +83,40 @@ class AuthorizationViewController: UIViewController, Controller {
     private func validateToken(requestToken: String) {
         guard let username = self.rootView?.usernameTextField.text,
             let password = self.rootView?.passwordTextField.text else { return }
-        self.networking.validateToken(username: username, password: password, requsetToken: requestToken) { [weak self] (validToken, error) in
-            DispatchQueue.main.async {
-                print(validToken)
-                print(error)
+        
+        self.networking.validateToken(username: username,
+                                      password: password,
+                                      requestToken: UserDefaultsContainer.token) { [weak self] result in
+                                        switch result {
+                                        case .success(let validToken):
+                                            UserDefaultsContainer.token = validToken
+                                            DispatchQueue.main.async {
+                                                print(validToken)
+                                                self?.createSession(validToken: validToken)
+                                            }
+                                            
+                                        case .failure(let error):
+                                            print(error.localizedDescription)
+                                        }
+            
+        }
+    }
+    
+    private func createSession(validToken: String) {
+        self.networking.createSession(validToken: validToken) { [weak self] result in
+            switch result {
+            case .success(let sessionID):
+                UserDefaultsContainer.session = sessionID
+                print(sessionID)
+                self?.eventHandler?(.login)
+            case .failure(let error):
+                print(error.localizedDescription)
             }
             
         }
     }
+    
+    
     
     //    func junk() {
     //        self.networking.getToken { (requestToken, error) in

@@ -50,17 +50,17 @@ class SessionIDViewController: UIViewController, Controller {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rootView?.fillLabel()
-        self.networking.getUserDetails { (userModel, error) in
-            if let error = error {
-                print(error)
-            }
-            if let userModel = userModel {
-                DispatchQueue.main.async {
-                    self.rootView?.userIDLabel.text = String(userModel.id ?? 11)
-                }
-                
-            }
-        }
+//        self.networking.getUserDetails { (userModel, error) in
+//            if let error = error {
+//                print(error)
+//            }
+//            if let userModel = userModel {
+//                DispatchQueue.main.async {
+//                    self.rootView?.userIDLabel.text = String(userModel.id ?? 11)
+//                }
+//                
+//            }
+//        }
     }
     
     // MARK: - IBActions

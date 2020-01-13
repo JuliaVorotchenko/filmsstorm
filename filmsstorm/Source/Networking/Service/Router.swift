@@ -35,6 +35,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                                  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                                  timeoutInterval: 10.0)
         request.httpMethod = route.httpMethod.rawValue
+        
         do {
             switch route.task {
             case .request:
@@ -55,6 +56,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                                              urlParameters: urlParameters,
                                              request: &request)
             }
+            print("request", request.debugDescription)
             return request
         } catch {
             throw error
