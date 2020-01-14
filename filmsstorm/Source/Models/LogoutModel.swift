@@ -9,5 +9,5 @@
 import Foundation
 
 struct LogoutModel: Codable {
-    let succsess: Int
+    let success: Bool
 }

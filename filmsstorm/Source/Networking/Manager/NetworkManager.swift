@@ -54,7 +54,7 @@ struct NetworkManager {
     
     func getToken(completion: @escaping (Result<String, Error>) -> Void) {
         print("get token NM")
-        router.request(.createRequestToken) { (data, response, error) in
+        router.request(.auth(.createRequestToken)) { (data, response, error) in
             print("errorNM", error.debugDescription)
             if let error = error {
                 completion(.failure(error))
@@ -88,9 +88,9 @@ struct NetworkManager {
                        password: String,
                        requestToken: String,
                        completion: @escaping (Result<String, Error>) -> Void) {
-        router.request(.validateRequestToken(username: username,
+        router.request(.auth(.validateRequestToken(username: username,
                                              password: password,
-                                             requestToken: requestToken)) { (data, response, error) in
+                                             requestToken: requestToken))) { (data, response, error) in
                                                 if let error = error {
                                                     completion(.failure(error))
                                                 }
@@ -118,7 +118,7 @@ struct NetworkManager {
     
     
     func createSession(validToken: String, completion: @escaping (Result<String, Error>) -> Void) {
-        router.request(.createSession(validToken: validToken)) { (data, response, error) in
+        router.request(.auth(.createSession(validToken: validToken))) { (data, response, error) in
             if let error = error {
                 completion(.failure(error))
             }
@@ -174,7 +174,7 @@ struct NetworkManager {
     }
     
     func logout(sessionID: String, completion: @escaping (Result<String, Error>) -> Void) {
-        router.request(.logout(sessionID: sessionID)) { (data, response, error) in
+        router.request(.auth(.logout(sessionID: sessionID))) { (data, response, error) in
             print("errorNM", error.debugDescription)
             if let error = error {
                 print(error)
@@ -191,9 +191,9 @@ struct NetworkManager {
                     }
                     do {
                         let apiResponse = try JSONDecoder().decode(LogoutModel.self, from: responseData)
-                        completion(.success(String(apiResponse.succsess)))
+                        completion(.success(String(apiResponse.success)))
                     } catch {
-                        
+                        completion(.failure(error))
                     }
                 case .failure(_):
                     completion(.failure(error!))

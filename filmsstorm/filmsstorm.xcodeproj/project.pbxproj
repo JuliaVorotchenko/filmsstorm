@@ -34,6 +34,7 @@
 		CD0CDAB523C678A4002EC487 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDAB423C678A4002EC487 /* Router.swift */; };
 		CD29430623C71087001D651A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD29430523C71087001D651A /* UserModel.swift */; };
 		CD2F3C7923BE61D30047B42F /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F3C7823BE61D30047B42F /* Auth.swift */; };
+		CD4324FB23CE5F7800BD3C51 /* AuthEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4324FA23CE5F7800BD3C51 /* AuthEndPoint.swift */; };
 		CD4F215323BA158D00EB1850 /* RequestToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215223BA158D00EB1850 /* RequestToken.swift */; };
 		CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215423BA3A3300EB1850 /* SessionID.swift */; };
 		CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */; };
@@ -108,6 +109,7 @@
 		CD0CDAB423C678A4002EC487 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		CD29430523C71087001D651A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		CD2F3C7823BE61D30047B42F /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		CD4324FA23CE5F7800BD3C51 /* AuthEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndPoint.swift; sourceTree = "<group>"; };
 		CD4F215223BA158D00EB1850 /* RequestToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToken.swift; sourceTree = "<group>"; };
 		CD4F215423BA3A3300EB1850 /* SessionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
 		CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRequestBody.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				CD0CDAA823C67768002EC487 /* MovieEndPoint.swift */,
+				CD4324FA23CE5F7800BD3C51 /* AuthEndPoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				CD0CDAB123C67860002EC487 /* HTTPTask.swift in Sources */,
 				CD0CDA7923C3E797002EC487 /* Controller.swift in Sources */,
 				CD0CDA7823C3E797002EC487 /* RootViewGettable.swift in Sources */,
+				CD4324FB23CE5F7800BD3C51 /* AuthEndPoint.swift in Sources */,
 				CD0CDAA123C67627002EC487 /* JSONParameterEncoder.swift in Sources */,
 				CD4F215323BA158D00EB1850 /* RequestToken.swift in Sources */,
 				CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */,

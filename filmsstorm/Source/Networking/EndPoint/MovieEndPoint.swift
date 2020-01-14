@@ -8,13 +8,11 @@
 
 import Foundation
 
-public enum MovieApi {
+enum MovieApi {
     
     // MARK: - Authentication cases
-    case createRequestToken
-    case validateRequestToken(username: String, password: String, requestToken: String)
-    case createSession(validToken: String)
-    case logout(sessionID: String)
+    case auth(AuthEndPoint)
+   
     
     // MARK: - Account cases
     case getAccountDetails(sessionID: String)
@@ -72,7 +70,9 @@ public enum MovieApi {
 extension MovieApi: EndPointType {
     var httpMethod: HTTPMethod {
         switch self {
-        case .createRequestToken,
+        case .auth(let model):
+            return model.httpMethod
+        case
              .getAccountDetails,
              .getFavouriteMovies,
              .getFavouriteTVShows,
@@ -104,15 +104,14 @@ extension MovieApi: EndPointType {
              .getTVSeasonImages:
             return .get
             
-        case .validateRequestToken,
-             .createSession,
+        case
              .markAsFavourite,
              .rateMovie,
              .search,
              .rateTVShow:
             return .post
             
-        case .logout,
+        case
              .deleteMovieRating,
              .deleteTVShowRating:
             return .delete
@@ -121,7 +120,9 @@ extension MovieApi: EndPointType {
     
     var task: HTTPTask {
         switch self {
-        case .createRequestToken,
+        case .auth(let model):
+            return model.task
+        case
              .movieDiscover,
              .tvDiscover,
              .getMovieLatest,
@@ -154,22 +155,9 @@ extension MovieApi: EndPointType {
              .search:
             return .requestParameters(bodyParameters: nil, urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"])
             
-        case .validateRequestToken(let username, let password, let requestToken):
-            return .requestParametersAndHeaders(bodyParameters: ["username": username,
-                                                                 "password": password,
-                                                                 "request_token": requestToken],
-                                                urlParameters: [Headers.apiKey: Headers.apiKeyValue],
-                                                additionHeaders: [Headers.contentType: Headers.contentTypeValue])
+        
             
-        case .createSession(let validToken):
-            return .requestParametersAndHeaders(bodyParameters: ["request_token": validToken],
-                                                urlParameters: [Headers.apiKey: Headers.apiKeyValue],
-                                                additionHeaders: [Headers.contentType: Headers.contentTypeValue])
-            
-        case .logout(let sessionID):
-            return .requestParametersAndHeaders(bodyParameters: ["session_id": sessionID],
-                                                urlParameters: [Headers.apiKey: Headers.apiKeyValue],
-                                                additionHeaders: [Headers.contentType: Headers.contentTypeValue])
+       
             
         case .markAsFavourite(_, let mediaType, let mediaID, let favourite, _):
             return .requestParametersAndHeaders(bodyParameters: ["media_type": mediaType,
@@ -205,16 +193,10 @@ extension MovieApi: EndPointType {
     
     var path: String {
         switch self {
-        case .createRequestToken:
-            return "/authentication/token/new"
+        case .auth(let model):
+            return model.path
         case .getAccountDetails:
-            return "/account"
-        case .validateRequestToken:
-            return  "/authentication/token/validate_with_login"
-        case .createSession:
-            return "/authentication/session/new"
-        case .logout:
-            return "/authentication/session"
+        return "/account"
         case .getReviewDetails(let reviewID):
             return "/review/\(reviewID)"
         case .getFavouriteMovies(_, let accountID):
@@ -287,3 +269,5 @@ extension MovieApi: EndPointType {
         
     }
 }
+
+
