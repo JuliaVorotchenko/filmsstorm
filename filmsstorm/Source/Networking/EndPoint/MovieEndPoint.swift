@@ -24,11 +24,11 @@ public enum MovieApi {
     case getRatedMovies(sessionID: String, accountID: Int)
     case getRatedTVShows(accountID: String, sessionID: String)
     
-    // MARK: - Discover
+    // MARK: - Discover cases
     case movieDiscover
     case tvDiscover
     
-    // MARK: - Movies
+    // MARK: - Movies cases
     case getMovieDetails(movieID: Int)
     case getMovieImages(movieID: Int)
     case getMovieVideos(movieID: Int)
@@ -41,17 +41,17 @@ public enum MovieApi {
     case getMoviePopular
     case getMovieTopRated
     
-    // MARK: - People
+    // MARK: - People cases
     case getPeopleDetails(personID: Int)
     case getPeopleMostPopular
     
-    // MARK: - Reviews
+    // MARK: - Reviews case
     case getReviewDetails(reviewID: String)
     
-    // MARK: - Search
+    // MARK: - Search case
     case search(query: String)
     
-    // MARK: - TV
+    // MARK: - TV cases
     case getTVShowDetails(tvID: Int)
     case getTVShowImages(tvID: Int)
     case getTVShowSimilar(tvID: Int)
@@ -63,7 +63,7 @@ public enum MovieApi {
     case getTVShowPopular
     case getTVShowTopRated
     
-    // MARK: - TV Season
+    // MARK: - TV Season cases
     case getTVSeasonDetails(tvID: Int, seasonNumber: Int)
     case getTVSeasonImages(tvID: Int, seasonNumber: Int)
     
@@ -166,8 +166,8 @@ extension MovieApi: EndPointType {
                                                 urlParameters: [Headers.apiKey: Headers.apiKeyValue],
                                                 additionHeaders: [Headers.contentType: Headers.contentTypeValue])
             
-        case .logout:
-            return .requestParametersAndHeaders(bodyParameters: ["session_id": UserDefaultsContainer.session],
+        case .logout(let sessionID):
+            return .requestParametersAndHeaders(bodyParameters: ["session_id": sessionID],
                                                 urlParameters: [Headers.apiKey: Headers.apiKeyValue],
                                                 additionHeaders: [Headers.contentType: Headers.contentTypeValue])
             

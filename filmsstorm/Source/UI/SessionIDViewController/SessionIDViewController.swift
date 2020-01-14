@@ -49,31 +49,48 @@ class SessionIDViewController: UIViewController, Controller {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getUserDetails()
         self.rootView?.fillLabel()
-//        self.networking.getUserDetails { (userModel, error) in
-//            if let error = error {
-//                print(error)
-//            }
-//            if let userModel = userModel {
-//                DispatchQueue.main.async {
-//                    self.rootView?.userIDLabel.text = String(userModel.id ?? 11)
-//                }
-//                
-//            }
-//        }
+
     }
     
     // MARK: - IBActions
     
     @IBAction func backButtonTaapped(_ sender: Any) {
         print("button tapped")
-//        self.networking.logout { (logoutModel, error) in
-//            if let error = error {
-//                print(error)
-//            }
-//            if logoutModel != nil {
-//                self.eventHandler?(.back)
-//            }
-//        }
+        self.logout()
     }
+    
+    // MARK: - Private Methods
+    
+    func logout() {
+        let sessionID = UserDefaultsContainer.session
+        print(sessionID)
+        self.networking.logout(sessionID: sessionID) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let response):
+                DispatchQueue.main.async {
+                    print(response)
+                    self.eventHandler?(.back)
+                }
+            }
+        }
+    }
+    
+    func getUserDetails() {
+        let sessionID = UserDefaultsContainer.session
+        self.networking.getAccountDetails(sessionID: sessionID) { (result) in
+            switch result {
+            case .success(let username):
+                DispatchQueue.main.async {
+                    self.rootView?.userIDLabel.text = username
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
 }

@@ -16,7 +16,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         
         do {
             let request = try self.buildRequest(from: route)
-            task = session.dataTask(with: request,
+            self.task = session.dataTask(with: request,
                                     completionHandler: { (data, response, error) in
                 completion(data, response, error)
             })
@@ -56,7 +56,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                                              urlParameters: urlParameters,
                                              request: &request)
             }
-            print("request", request.debugDescription)
+            print("request", request.debugDescription, request.allHTTPHeaderFields, "body", request.httpBody)
             return request
         } catch {
             throw error
