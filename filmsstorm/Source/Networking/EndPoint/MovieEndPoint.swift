@@ -12,8 +12,7 @@ enum MovieApi {
     
     // MARK: - Authentication cases
     case auth(AuthEndPoint)
-   
-    
+
     // MARK: - Account cases
     case getAccountDetails(sessionID: String)
     case getFavouriteMovies(sessionID: String, accountID: Int)
@@ -149,14 +148,15 @@ extension MovieApi: EndPointType {
              .getMovieVideos,
              .getMovieSimilars,
              .getMovieReviews,
-             .getAccountDetails,
              .getFavouriteMovies,
              .getFavouriteTVShows,
              .search:
             return .requestParameters(bodyParameters: nil, urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"])
             
         
-            
+        case .getAccountDetails(let sessionID):
+            return .requestParameters(bodyParameters: nil,
+                                      urlParameters:  ["session_id": sessionID, Headers.apiKey: Headers.apiKeyValue])
        
             
         case .markAsFavourite(_, let mediaType, let mediaID, let favourite, _):

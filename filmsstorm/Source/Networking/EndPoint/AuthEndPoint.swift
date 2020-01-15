@@ -12,24 +12,24 @@ extension MovieApi {
     
     enum AuthEndPoint: EndPointType {
         var base: String {
-               return "https://api.themoviedb.org/3"
-           }
-           
-           var baseURL: URL {
-               guard let url = URL(string: base) else { fatalError("baseURL could not be configured.")}
-               return url
-           }
+            return "https://api.themoviedb.org/3"
+        }
+        
+        var baseURL: URL {
+            guard let url = URL(string: base) else { fatalError("baseURL could not be configured.")}
+            return url
+        }
         
         var path: String {
             switch self {
-                case .createRequestToken:
-                    return "/authentication/token/new"
-                case .validateRequestToken:
-                    return  "/authentication/token/validate_with_login"
-                case .createSession:
-                    return "/authentication/session/new"
-                case .logout:
-                    return "/authentication/session"
+            case .createRequestToken:
+                return "/authentication/token/new"
+            case .validateRequestToken:
+                return "/authentication/token/validate_with_login"
+            case .createSession:
+                return "/authentication/session/new"
+            case .logout:
+                return "/authentication/session"
             }
         }
         
@@ -65,8 +65,6 @@ extension MovieApi {
                 return .requestParametersAndHeaders(bodyParameters: ["session_id": sessionID],
                                                     urlParameters: [Headers.apiKey: Headers.apiKeyValue],
                                                     additionHeaders: [Headers.contentType: Headers.contentTypeValue])
-                
-                
             }
         }
         

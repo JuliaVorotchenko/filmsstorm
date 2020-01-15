@@ -49,9 +49,6 @@ class SessionIDViewController: UIViewController, Controller {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getUserDetails()
-        self.rootView?.fillLabel()
-
     }
     
     // MARK: - IBActions
@@ -59,6 +56,9 @@ class SessionIDViewController: UIViewController, Controller {
     @IBAction func backButtonTaapped(_ sender: Any) {
         print("button tapped")
         self.logout()
+    }
+    @IBAction func getUserButton(_ sender: Any) {
+        getUserDetails()
     }
     
     // MARK: - Private Methods
@@ -83,9 +83,9 @@ class SessionIDViewController: UIViewController, Controller {
         let sessionID = UserDefaultsContainer.session
         self.networking.getAccountDetails(sessionID: sessionID) { (result) in
             switch result {
-            case .success(let username):
+            case .success:
                 DispatchQueue.main.async {
-                    self.rootView?.userIDLabel.text = username
+                      self.rootView?.fillLabel()
                 }
             case .failure(let error):
                 print(error.localizedDescription)

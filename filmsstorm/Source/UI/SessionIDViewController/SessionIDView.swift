@@ -14,6 +14,8 @@ class SessionIDView: UIView {
     
     func fillLabel() {
         let sessionID = UserDefaultsContainer.session
-        sessionIdLabel.text = sessionID
+        self.sessionIdLabel.text = sessionID
+        let username = UserDefaultsContainer.username
+        self.userIDLabel.text = username
     }
 }

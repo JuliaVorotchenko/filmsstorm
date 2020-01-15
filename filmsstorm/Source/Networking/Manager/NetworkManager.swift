@@ -64,7 +64,7 @@ struct NetworkManager {
                 switch result {
                 case .success:
                     guard let responseData = data else {
-                        completion(.failure(error!))
+                        error.map { completion(.failure($0)) }
                         return
                     }
                     do {
@@ -75,8 +75,7 @@ struct NetworkManager {
                         completion(.failure(error))
                     }
                     
-                case .failure(_):
-                    print(error?.localizedDescription)
+                case .failure:
                     completion(.failure(error!))
                     
                 }
@@ -89,33 +88,32 @@ struct NetworkManager {
                        requestToken: String,
                        completion: @escaping (Result<String, Error>) -> Void) {
         router.request(.auth(.validateRequestToken(username: username,
-                                             password: password,
-                                             requestToken: requestToken))) { (data, response, error) in
-                                                if let error = error {
-                                                    completion(.failure(error))
-                                                }
-                                                if let response = response as? HTTPURLResponse {
-                                                    let result = self.handleNetworkResponse(response)
-                                                    switch result {
-                                                    case .success:
-                                                        guard let responseData = data else {
-                                                            completion(.failure(error!))
-                                                            return
-                                                        }
-                                                        do {
-                                                            let apiResponse = try JSONDecoder().decode(RequestToken.self,
-                                                                                                       from: responseData)
-                                                            completion(.success(apiResponse.requestToken))
-                                                        } catch {
-                                                            completion(.failure(error))
-                                                        }
-                                                    case .failure(_):
-                                                        completion(.failure(error!))
+                                                   password: password,
+                                                   requestToken: requestToken))) { (data, response, error) in
+                                                    if let error = error {
+                                                        completion(.failure(error))
                                                     }
-                                                }
+                                                    if let response = response as? HTTPURLResponse {
+                                                        let result = self.handleNetworkResponse(response)
+                                                        switch result {
+                                                        case .success:
+                                                            guard let responseData = data else {
+                                                                error.map { completion(.failure($0)) }
+                                                                return
+                                                            }
+                                                            do {
+                                                                let apiResponse = try JSONDecoder().decode(RequestToken.self,
+                                                                                                           from: responseData)
+                                                                completion(.success(apiResponse.requestToken))
+                                                            } catch {
+                                                                completion(.failure(error))
+                                                            }
+                                                        case .failure:
+                                                            completion(.failure(error!))
+                                                        }
+                                                    }
         }
     }
-    
     
     func createSession(validToken: String, completion: @escaping (Result<String, Error>) -> Void) {
         router.request(.auth(.createSession(validToken: validToken))) { (data, response, error) in
@@ -127,7 +125,7 @@ struct NetworkManager {
                 switch result {
                 case .success:
                     guard let responseData = data else {
-                        completion(.failure(error!))
+                        error.map { completion(.failure($0)) }
                         return
                     }
                     do {
@@ -136,13 +134,12 @@ struct NetworkManager {
                     } catch {
                         completion(.failure(error))
                     }
-                case .failure(_):
+                case .failure:
                     completion(.failure(error!))
                 }
             }
         }
     }
-    
     
     func getAccountDetails(sessionID: String, completion: @escaping (Result<String, Error>) -> Void) {
         router.request(.getAccountDetails(sessionID: sessionID)) { (data, response, error) in
@@ -159,15 +156,15 @@ struct NetworkManager {
                     }
                     do {
                         let apiResponse = try JSONDecoder().decode(UserModel.self, from: responseData)
-                        print(apiResponse.username)
+                        UserDefaultsContainer.username = apiResponse.username ?? ""
                         completion(.success(apiResponse.username!))
                     } catch {
                         completion(.failure(error))
                     }
-                case .failure(_):
+                case .failure:
                     if let error = error {
-                                   completion(.failure(error))
-                               }
+                        completion(.failure(error))
+                    }
                 }
             }
         }
@@ -186,7 +183,7 @@ struct NetworkManager {
                 switch result {
                 case .success:
                     guard let responseData = data else {
-                        completion(.failure(error!))
+                        error.map { completion(.failure($0)) }
                         return
                     }
                     do {
@@ -195,59 +192,10 @@ struct NetworkManager {
                     } catch {
                         completion(.failure(error))
                     }
-                case .failure(_):
+                case .failure:
                     completion(.failure(error!))
                 }
             }
         }
     }
-//    func getUserDetails(completion: @escaping(_ usermodel: UserModel?, _ error: String?) -> Void) {
-//        router.request(.getAccountDetails) { (data, response, error) in
-//            if error != nil {
-//                completion(nil, "Please check your network connection.")
-//            }
-//            if let response = response as? HTTPURLResponse {
-//                let result = self.handleNetworkResponse(response)
-//                switch result {
-//                case .sucsess:
-//                    guard let responseData = data else {
-//                        completion(nil, NetworkResponse.noData.rawValue)
-//                        return
-//                    }
-//                    do {
-//                        let apiresponse = try JSONDecoder().decode(UserModel.self, from: responseData)
-//                        completion(apiresponse, nil)
-//                    } catch {
-//                        completion(nil, NetworkResponse.unableToDecode.rawValue)
-//                    }
-//                case .failure(let networkFailureError):
-//                    completion(nil, networkFailureError)
-//                }
-//            }
-//        }
-//    }
-    
-//    func logout(sessionId: String, completion: @escaping(_ logoutModel: LogoutModel?, _ error: String?) -> Void) {
-//        router.request(.logout(sessionID: sessionId)) { (data, response, error) in
-//            if error != nil {
-//                completion(nil, "Please check your network connection.")
-//            }
-//            if let response = response as? HTTPURLResponse {
-//                print(response.statusCode)
-//                let result = self.handleNetworkResponse(response)
-//                switch result {
-//                case .sucsess:
-//                    guard let responseData = data else {
-//                        completion(nil, NetworkResponse.noData.rawValue)
-//                        return
-//                    }
-//                    print(responseData)
-//                case .failure(let networkFailureError):
-//                    completion(nil, networkFailureError)
-//                    print(networkFailureError)
-//                }
-//            }
-//        }
-//    }
 }
-
