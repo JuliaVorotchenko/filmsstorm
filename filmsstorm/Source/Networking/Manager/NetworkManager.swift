@@ -12,7 +12,7 @@ struct NetworkManager {
     // MARK: - Static properties
     
     //static let apiKey = "f4559f172e8c6602b3e2dd52152aca52"
-    private let router = Router<MovieApi>()
+    private let router = Router<APIEndPoint>()
     
     // MARK: - Network responses list
     
@@ -53,9 +53,7 @@ struct NetworkManager {
     // MARK: - Networking methods
     
     func getToken(completion: @escaping (Result<String, Error>) -> Void) {
-        print("get token NM")
         router.request(.auth(.createRequestToken)) { (data, response, error) in
-            print("errorNM", error.debugDescription)
             if let error = error {
                 completion(.failure(error))
             }
@@ -70,7 +68,6 @@ struct NetworkManager {
                     do {
                         let apiResponse = try JSONDecoder().decode(RequestToken.self, from: responseData)
                         completion(.success(apiResponse.requestToken))
-                        print("NM", apiResponse.requestToken)
                     } catch {
                         completion(.failure(error))
                     }
@@ -142,7 +139,7 @@ struct NetworkManager {
     }
     
     func getAccountDetails(sessionID: String, completion: @escaping (Result<String, Error>) -> Void) {
-        router.request(.getAccountDetails(sessionID: sessionID)) { (data, response, error) in
+        router.request(.account(.getAccountDetails(sessionID: sessionID))) { (data, response, error) in
             if let error = error {
                 completion(.failure(error))
             }
@@ -172,13 +169,11 @@ struct NetworkManager {
     
     func logout(sessionID: String, completion: @escaping (Result<String, Error>) -> Void) {
         router.request(.auth(.logout(sessionID: sessionID))) { (data, response, error) in
-            print("errorNM", error.debugDescription)
             if let error = error {
                 print(error)
                 completion(.failure(error))
             }
             if let response = response as? HTTPURLResponse {
-                print("logout NM", response.statusCode)
                 let result = self.handleNetworkResponse(response)
                 switch result {
                 case .success:
@@ -198,4 +193,7 @@ struct NetworkManager {
             }
         }
     }
+    
+    
+
 }

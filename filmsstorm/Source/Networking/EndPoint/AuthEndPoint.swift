@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension MovieApi {
+extension APIEndPoint {
     
     enum AuthEndPoint: EndPointType {
         var base: String {
