@@ -9,6 +9,9 @@
 import Foundation
 extension APIEndPoint {
     enum DiscoverEndPoint: EndPointType {
+        case movieDiscover
+        case tvDiscover
+        
         var base: String {
             return "https://api.themoviedb.org/3"
         }
@@ -39,12 +42,9 @@ extension APIEndPoint {
             switch self {
             case .movieDiscover,
                  .tvDiscover:
-                return .requestParameters(bodyParameters: nil, urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"])
+                return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue])
             }
         }
-        
-        case movieDiscover
-        case tvDiscover
     }
 }
 

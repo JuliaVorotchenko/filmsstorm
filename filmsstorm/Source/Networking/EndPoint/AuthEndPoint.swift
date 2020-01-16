@@ -11,6 +11,11 @@ import Foundation
 extension APIEndPoint {
     
     enum AuthEndPoint: EndPointType {
+        case createRequestToken
+        case validateRequestToken(AuthRequestModel)
+        case createSession(SessionRequestBody)
+        case logout(sessionID: String)
+        
         var base: String {
             return "https://api.themoviedb.org/3"
         }
@@ -48,13 +53,13 @@ extension APIEndPoint {
         var task: HTTPTask {
             switch self {
             case .createRequestToken:
-                return .requestParameters(bodyParameters: nil, urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"])
+                return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue])
                 
             case .validateRequestToken(let model):
                 return .requestParamAndHeaders(model: model,
                                                urlParameters: [Headers.apiKey: Headers.apiKeyValue],
                                                additionHeaders: [Headers.contentType: Headers.contentTypeValue])
-            
+                
             case .createSession(let model):
                 return .requestParamAndHeaders(model: model,
                                                urlParameters: [Headers.apiKey: Headers.apiKeyValue],
@@ -66,10 +71,5 @@ extension APIEndPoint {
                                                     additionHeaders: [Headers.contentType: Headers.contentTypeValue])
             }
         }
-        
-        case createRequestToken
-        case validateRequestToken(AuthRequestModel)
-        case createSession(SessionRequestBody)
-        case logout(sessionID: String)
     }
 }

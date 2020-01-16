@@ -10,6 +10,8 @@ import Foundation
 
 extension APIEndPoint {
     enum PeopleEndPoint: EndPointType {
+        case getPeopleDetails(personID: Int)
+        case getPeopleMostPopular
         var base: String {
             return "https://api.themoviedb.org/3"
         }
@@ -43,11 +45,8 @@ extension APIEndPoint {
             case
             .getPeopleMostPopular,
             .getPeopleDetails:
-                return .requestParameters(bodyParameters: nil, urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"])
+                return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue])
             }
         }
-        
-        case getPeopleDetails(personID: Int)
-        case getPeopleMostPopular
     }
 }

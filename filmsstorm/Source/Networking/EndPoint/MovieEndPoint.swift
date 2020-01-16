@@ -10,6 +10,17 @@ import Foundation
 
 extension APIEndPoint {
     enum MovieEndPoint: EndPointType {
+        case getMovieDetails(movieID: Int)
+        case getMovieImages(movieID: Int)
+        case getMovieVideos(movieID: Int)
+        case getMovieSimilars(movieID: Int)
+        case getMovieReviews(movieID: Int)
+        case rateMovie(movieID: Int, rateValue: Int)
+        case deleteMovieRating(movieID: Int)
+        case getMovieLatest
+        case getMovieNowPlaying
+        case getMoviePopular
+        case getMovieTopRated
         
         var path: String {
             switch self {
@@ -55,7 +66,7 @@ extension APIEndPoint {
             case
             .rateMovie:
                 return .post
-                                
+                
             case
             .deleteMovieRating:
                 return .delete
@@ -75,7 +86,7 @@ extension APIEndPoint {
             .getMovieVideos,
             .getMovieSimilars,
             .getMovieReviews:
-                return .requestParameters(bodyParameters: nil, urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"])
+                return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue])
                 
             case .rateMovie(_, let rateValue):
                 return .requestParametersAndHeaders(bodyParameters: ["value": rateValue],
@@ -97,17 +108,5 @@ extension APIEndPoint {
             guard let url = URL(string: base) else { fatalError("baseURL could not be configured.")}
             return url
         }
-        
-        case getMovieDetails(movieID: Int)
-        case getMovieImages(movieID: Int)
-        case getMovieVideos(movieID: Int)
-        case getMovieSimilars(movieID: Int)
-        case getMovieReviews(movieID: Int)
-        case rateMovie(movieID: Int, rateValue: Int)
-        case deleteMovieRating(movieID: Int)
-        case getMovieLatest
-        case getMovieNowPlaying
-        case getMoviePopular
-        case getMovieTopRated
     }
 }

@@ -11,6 +11,13 @@ import Foundation
 extension APIEndPoint {
     
     enum AccountEndPoint: EndPointType {
+        case getAccountDetails(sessionID: String)
+        case getFavouriteMovies(sessionID: String, accountID: Int)
+        case getFavouriteTVShows(sessionID: String, accountID: Int)
+        case markAsFavourite(sessionID: String, mediaType: String, mediaID: String, favourite: Bool, accountID: Int)
+        case getRatedMovies(sessionID: String, accountID: Int)
+        case getRatedTVShows(accountID: String, sessionID: String)
+        
         var base: String {
             return "https://api.themoviedb.org/3"
         }
@@ -57,7 +64,7 @@ extension APIEndPoint {
                   .getRatedTVShows,
                   .getFavouriteMovies,
                   .getFavouriteTVShows:
-                return .requestParameters(bodyParameters: nil, urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"])
+                return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue])
             case .getAccountDetails(let sessionID):
                 return .requestParameters(bodyParameters: nil, urlParameters: ["session_id": sessionID,
                                                                                Headers.apiKey: Headers.apiKeyValue])
@@ -67,11 +74,5 @@ extension APIEndPoint {
                                                                      "favorite": favourite], urlParameters: [Headers.apiKey: Headers.apiKeyValue], additionHeaders: [Headers.contentType: Headers.contentTypeValue])
             }
         }
-        case getAccountDetails(sessionID: String)
-        case getFavouriteMovies(sessionID: String, accountID: Int)
-        case getFavouriteTVShows(sessionID: String, accountID: Int)
-        case markAsFavourite(sessionID: String, mediaType: String, mediaID: String, favourite: Bool, accountID: Int)
-        case getRatedMovies(sessionID: String, accountID: Int)
-        case getRatedTVShows(accountID: String, sessionID: String)
     }
 }

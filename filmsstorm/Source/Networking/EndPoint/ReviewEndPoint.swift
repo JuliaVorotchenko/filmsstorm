@@ -10,6 +10,7 @@ import Foundation
 
 extension APIEndPoint {
     enum ReviewEndPoint: EndPointType {
+        case getReviewDetails(reviewID: String)
         var base: String {
             return "https://api.themoviedb.org/3"
         }
@@ -39,9 +40,8 @@ extension APIEndPoint {
             switch self {
             case
             .getReviewDetails:
-                return .requestParameters(bodyParameters: nil, urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"])
+                return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue])
             }
         }
-        case getReviewDetails(reviewID: String)
     }
 }
