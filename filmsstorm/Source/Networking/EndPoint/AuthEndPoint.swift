@@ -50,12 +50,15 @@ extension APIEndPoint {
             case .createRequestToken:
                 return .requestParameters(bodyParameters: nil, urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"])
                 
-            case .validateRequestToken()
+            case .validateRequestToken(let model):
+                return .requestParamAndHeaders(model: model,
+                                               urlParameters: [Headers.apiKey: Headers.apiKeyValue],
+                                               additionHeaders: [Headers.contentType: Headers.contentTypeValue])
             
-            case .createSession(let validToken):
-                return .requestParametersAndHeaders(bodyParameters: ["request_token": validToken],
-                                                    urlParameters: [Headers.apiKey: Headers.apiKeyValue],
-                                                    additionHeaders: [Headers.contentType: Headers.contentTypeValue])
+            case .createSession(let model):
+                return .requestParamAndHeaders(model: model,
+                                               urlParameters: [Headers.apiKey: Headers.apiKeyValue],
+                                               additionHeaders: [Headers.contentType: Headers.contentTypeValue])
                 
             case .logout(let sessionID):
                 return .requestParametersAndHeaders(bodyParameters: ["session_id": sessionID],
@@ -65,8 +68,8 @@ extension APIEndPoint {
         }
         
         case createRequestToken
-        case validateRequestToken(username: String, password: String, requestToken: String)
-        case createSession(validToken: String)
+        case validateRequestToken(AuthRequestModel)
+        case createSession(SessionRequestBody)
         case logout(sessionID: String)
     }
 }

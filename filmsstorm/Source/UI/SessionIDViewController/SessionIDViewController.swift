@@ -62,35 +62,32 @@ class SessionIDViewController: UIViewController, Controller {
     }
     
     // MARK: - Private Methods
+    func getUserDetails() {
+        let sessionID = UserDefaultsContainer.session
+        self.networking.getUserDetails(sessionID: sessionID) { (result) in
+            switch result {
+            case .success(let usermodel):
+                UserDefaultsContainer.username = usermodel.username ?? ""
+                print("US", UserDefaultsContainer.username)
+                DispatchQueue.main.async {
+                    self.rootView?.fillLabel()
+                }
+            case .failure(let error):
+                print(error.stringDescription)
+            }
+        }
+    }
     
     func logout() {
         let sessionID = UserDefaultsContainer.session
-        print(sessionID)
         self.networking.logout(sessionID: sessionID) { (result) in
             switch result {
             case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let response):
-                DispatchQueue.main.async {
-                    print(response)
-                    self.eventHandler?(.back)
-                }
+                print(error.stringDescription)
+                self.eventHandler?(.back)
+            case .success(let logoutModel):
+                print(logoutModel.success)
             }
         }
     }
-    
-    func getUserDetails() {
-        let sessionID = UserDefaultsContainer.session
-        self.networking.getAccountDetails(sessionID: sessionID) { (result) in
-            switch result {
-            case .success:
-                DispatchQueue.main.async {
-                      self.rootView?.fillLabel()
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-
 }

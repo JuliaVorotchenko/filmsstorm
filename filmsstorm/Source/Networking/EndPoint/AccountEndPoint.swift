@@ -14,7 +14,7 @@ extension APIEndPoint {
         var base: String {
             return "https://api.themoviedb.org/3"
         }
-
+        
         var baseURL: URL {
             guard let url = URL(string: base) else { fatalError("baseURL could not be configured.")}
             return url
@@ -59,8 +59,8 @@ extension APIEndPoint {
                   .getFavouriteTVShows:
                 return .requestParameters(bodyParameters: nil, urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"])
             case .getAccountDetails(let sessionID):
-                return .requestParameters(bodyParameters: nil,
-                                          urlParameters:  ["session_id": sessionID, Headers.apiKey: Headers.apiKeyValue])
+                return .requestParameters(bodyParameters: nil, urlParameters: ["session_id": sessionID,
+                                                                               Headers.apiKey: Headers.apiKeyValue])
             case .markAsFavourite(_, let mediaType, let mediaID, let favourite, _):
                 return .requestParametersAndHeaders(bodyParameters: ["media_type": mediaType,
                                                                      "media_id": mediaID,

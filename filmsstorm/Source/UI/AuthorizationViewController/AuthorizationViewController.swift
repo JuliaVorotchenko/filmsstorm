@@ -54,54 +54,44 @@ class AuthorizationViewController: UIViewController, Controller {
     }
     
     private func getToken() {
-        print("get token")
-        self.networking.getToken { [weak self] result in
+        self.networking.getToken { (result) in
             switch result {
             case .success(let token):
-                print(token)
-                UserDefaultsContainer.token = token
-                DispatchQueue.main.async {
-                    self?.validateToken(requestToken: token)
-                }
+                print("valid token", token.requestToken)
+                self.validateToken(token: token.requestToken)
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error.stringDescription)
             }
         }
     }
     
-    private func validateToken(requestToken: String) {
+    private func validateToken(token: String) {
         guard let username = self.rootView?.usernameTextField.text,
             let password = self.rootView?.passwordTextField.text else { return }
-        self.networking.validateToken(username: username,
-                                      password: password,
-                                      requestToken: UserDefaultsContainer.token) { [weak self] result in
-                                        switch result {
-                                        case .success(let validToken):
-                                            UserDefaultsContainer.token = validToken
-                                            DispatchQueue.main.async {
-                                                print(validToken)
-                                                self?.createSession(validToken: validToken)
-                                            }
-                                            
-                                        case .failure(let error):
-                                            print(error.localizedDescription)
-                                        }
-                                        
+        let model = AuthRequestModel(username: username, password: password, requestToken: token)
+        self.networking.validateToken(with: model) { (result) in
+            switch result {
+            case .success(let token):
+                print("req_tok:", token.requestToken)
+                self.createSession(validToken: token.requestToken)
+            case  .failure(let error):
+                print(error.stringDescription)
+            }
         }
     }
     
     private func createSession(validToken: String) {
-        self.networking.createSession(validToken: validToken) { [weak self] result in
+        let model = SessionRequestBody(requestToken: validToken)
+        self.networking.createSession(with: model) { (result) in
             switch result {
             case .success(let sessionID):
-                UserDefaultsContainer.session = sessionID
-                print(sessionID)
-                DispatchQueue.main.async {
-                    self?.eventHandler?(.login)
-                }
+                UserDefaultsContainer.session = sessionID.sessionID
+                print(sessionID.sessionID)
+                self.eventHandler?(.login)
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error.stringDescription)
             }
+            
         }
     }
 }
