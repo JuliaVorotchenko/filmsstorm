@@ -40,7 +40,7 @@ enum NetworkError: Error, Descriptable {
 
 enum NetworkResponse: String, Error {
     case succsess
-    case autenticationError = "You need to be autencicated first."
+    case authenticationError = "You need to be autencicated first."
     case badRequest = "Bad request."
     case outdated = "The URL you request is outdated."
     case failed = "Network request failed."
