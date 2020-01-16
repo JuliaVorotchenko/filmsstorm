@@ -12,6 +12,11 @@ typealias HTTPHeaders = [String: String]
 
 enum HTTPTask {
     case request
+    case requestParameters(model: Codable?,
+        urlParameters: Parameters?)
+    case requestParametersAndHeaders(model: Codable?,
+        urlParameters: Parameters?,
+        additionHeaders: HTTPHeaders?)
     case requestParameters(bodyParameters: Parameters?,
         urlParameters: Parameters?)
     case requestParametersAndHeaders(bodyParameters: Parameters?,
