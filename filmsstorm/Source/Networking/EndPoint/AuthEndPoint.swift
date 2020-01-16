@@ -50,12 +50,8 @@ extension APIEndPoint {
             case .createRequestToken:
                 return .requestParameters(bodyParameters: nil, urlParameters:  ["api_key": "f4559f172e8c6602b3e2dd52152aca52"])
                 
-            case .validateRequestToken(let username, let password, let requestToken):
-                return .requestParametersAndHeaders(bodyParameters: ["username": username,
-                                                                     "password": password,
-                                                                     "request_token": requestToken],
-                                                    urlParameters: [Headers.apiKey: Headers.apiKeyValue],
-                                                    additionHeaders: [Headers.contentType: Headers.contentTypeValue])
+            case .validateRequestToken()
+            
             case .createSession(let validToken):
                 return .requestParametersAndHeaders(bodyParameters: ["request_token": validToken],
                                                     urlParameters: [Headers.apiKey: Headers.apiKeyValue],

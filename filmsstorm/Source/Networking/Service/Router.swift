@@ -45,11 +45,9 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         self.task?.resume()
     }
     
-    
     private func handleNetworkResponse<T: Codable>(_ data: Data?,
                                                    response: HTTPURLResponse,
                                                    completion: @escaping (Result<T, NetworkError>) -> Void) {
-        
         switch response.statusCode {
         case 200...300:
             completion(self.decode(data))
@@ -103,19 +101,16 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         }
     }
     
-    
     private func configureParametres(with model: Codable? ,
                                      urlParameters: Parameters? = nil ,
                                      request: inout URLRequest) throws {
-        
         let body = model.flatMap { try? $0.encoded() }
         request.httpBody = body
         if let urlParameters = urlParameters {
             try URLParameterEncoder.encode(urlRequest: &request, with: urlParameters)
         }
     }
-    
-    
+
     private func configureParameters(bodyParameters: Parameters? = nil,
                                      urlParameters: Parameters? = nil,
                                      request: inout URLRequest) throws {
