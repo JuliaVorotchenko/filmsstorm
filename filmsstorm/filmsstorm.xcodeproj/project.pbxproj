@@ -40,6 +40,8 @@
 		CD2A99EC23CF3E3200FDD0CB /* PeopleEndPointt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A99EB23CF3E3200FDD0CB /* PeopleEndPointt.swift */; };
 		CD2A99EE23CF400300FDD0CB /* ReviewEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2A99ED23CF400300FDD0CB /* ReviewEndPoint.swift */; };
 		CD2F3C7923BE61D30047B42F /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F3C7823BE61D30047B42F /* Auth.swift */; };
+		CD3B9A2023D1FAF700DA2F2C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3B9A1F23D1FAF700DA2F2C /* NetworkService.swift */; };
+		CD3B9A2323D1FC0600DA2F2C /* OptionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3B9A2223D1FC0600DA2F2C /* OptionalExtension.swift */; };
 		CD4324FB23CE5F7800BD3C51 /* AuthEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4324FA23CE5F7800BD3C51 /* AuthEndPoint.swift */; };
 		CD4F215323BA158D00EB1850 /* RequestToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215223BA158D00EB1850 /* RequestToken.swift */; };
 		CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215423BA3A3300EB1850 /* SessionID.swift */; };
@@ -124,6 +126,8 @@
 		CD2A99EB23CF3E3200FDD0CB /* PeopleEndPointt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleEndPointt.swift; sourceTree = "<group>"; };
 		CD2A99ED23CF400300FDD0CB /* ReviewEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewEndPoint.swift; sourceTree = "<group>"; };
 		CD2F3C7823BE61D30047B42F /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		CD3B9A1F23D1FAF700DA2F2C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		CD3B9A2223D1FC0600DA2F2C /* OptionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalExtension.swift; sourceTree = "<group>"; };
 		CD4324FA23CE5F7800BD3C51 /* AuthEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndPoint.swift; sourceTree = "<group>"; };
 		CD4F215223BA158D00EB1850 /* RequestToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToken.swift; sourceTree = "<group>"; };
 		CD4F215423BA3A3300EB1850 /* SessionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
@@ -319,8 +323,17 @@
 				CD0CDAB023C67860002EC487 /* HTTPTask.swift */,
 				CD0CDAB223C67879002EC487 /* NetworkRouter.swift */,
 				CD0CDAB423C678A4002EC487 /* Router.swift */,
+				CD3B9A1F23D1FAF700DA2F2C /* NetworkService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		CD3B9A2123D1FBDB00DA2F2C /* ProjectExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				CD3B9A2223D1FC0600DA2F2C /* OptionalExtension.swift */,
+			);
+			path = ProjectExtensions;
 			sourceTree = "<group>";
 		};
 		CDB8790B23B8FF290099F946 /* UI */ = {
@@ -391,6 +404,7 @@
 		CDB8791423B9005D0099F946 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CD3B9A2123D1FBDB00DA2F2C /* ProjectExtensions */,
 				CD0CDA7223C3E797002EC487 /* Patterns */,
 				CDDC776D23BE58AB000BD3C7 /* UseDefaultsContainer */,
 				CDB8791123B8FFBF0099F946 /* Coordinator */,
@@ -686,6 +700,7 @@
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */,
 				CD0CDAA523C67699002EC487 /* ParameterEncoding.swift in Sources */,
+				CD3B9A2023D1FAF700DA2F2C /* NetworkService.swift in Sources */,
 				CD2A99E823CF387000FDD0CB /* DiscoverEndPoint.swift in Sources */,
 				CDB8792423B93C240099F946 /* AppCoordinator.swift in Sources */,
 				CD85326523CBAE96005CD47B /* FavouriteMovieMarkBody.swift in Sources */,
@@ -710,6 +725,7 @@
 				CD5E2A1C23BE591600439953 /* UseDefaultsContainer.swift in Sources */,
 				CD0CDAB123C67860002EC487 /* HTTPTask.swift in Sources */,
 				CD0CDA7923C3E797002EC487 /* Controller.swift in Sources */,
+				CD3B9A2323D1FC0600DA2F2C /* OptionalExtension.swift in Sources */,
 				CD0CDA7823C3E797002EC487 /* RootViewGettable.swift in Sources */,
 				CD161ADF23D0C843008F03B7 /* AuthRequestModel.swift in Sources */,
 				CD4324FB23CE5F7800BD3C51 /* AuthEndPoint.swift in Sources */,

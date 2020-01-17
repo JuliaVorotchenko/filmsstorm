@@ -30,7 +30,6 @@ extension APIEndPoint {
         var httpMethod: HTTPMethod {
             switch self {
             case
-            
             .getReviewDetails:
                 return .get
             }

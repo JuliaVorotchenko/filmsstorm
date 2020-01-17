@@ -8,12 +8,6 @@
 
 import Foundation
 
-protocol NetworkServiceProtocol {
-    @discardableResult func perform(request: URLRequest,
-                                    completion: @escaping (Result<(Data?, HTTPURLResponse), NetworkError>) -> Void)
-        -> URLSessionDataTask
-}
-
 class Router<EndPoint: EndPointType>: NetworkRouter {
     private var task: URLSessionTask?
     private let queue: DispatchQueue
@@ -67,8 +61,6 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                                  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                                  timeoutInterval: 10.0)
         request.httpMethod = route.httpMethod.rawValue
-        
-        do {
             switch route.task {
             case .request:
                 request.setValue("application/json", forHTTPHeaderField: "Conttent-type")
@@ -94,11 +86,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                 self.addAdditionalHeaders(additionalHeaders, request: &request)
                 try self.configureParametres(with: model, urlParameters: urlParameters, request: &request)
             }
-            print("request", request.debugDescription, request.allHTTPHeaderFields, "body", request.httpBody)
             return request
-        } catch {
-            throw error
-        }
     }
     
     private func configureParametres(with model: Codable? ,
@@ -114,16 +102,12 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
     private func configureParameters(bodyParameters: Parameters? = nil,
                                      urlParameters: Parameters? = nil,
                                      request: inout URLRequest) throws {
-        do {
             if let bodyParameters = bodyParameters {
                 try JSONParameterEncoder.encode(urlRequest: &request, with: bodyParameters)
             }
             if let urlParameters = urlParameters {
                 try URLParameterEncoder.encode(urlRequest: &request, with: urlParameters)
             }
-        } catch {
-            throw error
-        }
     }
     
     private func addAdditionalHeaders(_ additionalHeaders: HTTPHeaders?,
@@ -149,36 +133,5 @@ extension Encodable {
     public func encoded(encoder: JSONEncoder = .init()) throws -> Data {
         encoder.outputFormatting = .prettyPrinted
         return try encoder.encode(self)
-    }
-}
-
-class NetworkService: NetworkServiceProtocol {
-    private let session: URLSession
-    
-    init() {
-        let configuration = URLSessionConfiguration.default
-        self.session = URLSession(configuration: configuration)
-    }
-    
-    @discardableResult func perform(request: URLRequest,
-                                    completion: @escaping (Result<(Data?, HTTPURLResponse), NetworkError>) -> Void)
-        -> URLSessionDataTask {
-            let dataTask = self.session.dataTask(with: request) { data, response, error in
-                guard let response = response as? HTTPURLResponse else {
-                    completion(.failure(.other(URLError: error)))
-                    return
-                }
-                
-                completion(.success((data, response)))
-            }
-            dataTask.resume()
-            
-            return dataTask
-    }
-}
-
-extension Optional {
-    public func `do`(_ action: (Wrapped) -> Void) {
-        self.map(action)
     }
 }

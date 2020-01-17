@@ -12,6 +12,7 @@ extension APIEndPoint {
     enum PeopleEndPoint: EndPointType {
         case getPeopleDetails(personID: Int)
         case getPeopleMostPopular
+        
         var base: String {
             return "https://api.themoviedb.org/3"
         }

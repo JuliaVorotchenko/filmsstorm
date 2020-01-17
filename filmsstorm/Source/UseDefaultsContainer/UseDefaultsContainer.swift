@@ -49,25 +49,13 @@ class UserDefaultsContainer {
         }
     }
     
-    static var password: String {
-        get {
-            return self.defaults.string(forKey: UserDefaultsKey.password.rawValue) ?? ""
-        }
-        set {
-            self.defaults.set(newValue, forKey: UserDefaultsKey.password.rawValue)
-            self.defaults.synchronize()
-        }
-    }
-    
     static func registerDefaults() {
         let sessionDictionary: [String: Any] = [UserDefaultsKey.session.rawValue: String()]
         let tokenDictionary: [String: Any] = [UserDefaultsKey.token.rawValue: String()]
         let usenameDictionary: [String: Any] = [UserDefaultsKey.username.rawValue: String()]
-        let passwordDictionary: [String: Any] = [UserDefaultsKey.password.rawValue: String()]
         self.defaults.register(defaults: sessionDictionary)
         self.defaults.register(defaults: tokenDictionary)
         self.defaults.register(defaults: usenameDictionary)
-        self.defaults.register(defaults: passwordDictionary)
     }
     
     static func unregister() {
