@@ -26,7 +26,7 @@ class SessionIDViewController: UIViewController, Controller {
     
     // MARK: - Private properties
     
-    private let networking: Networking
+    private let networking: NetworkManager
     let eventHandler: ((SessionIDEvent) -> Void)?
     
     // MARK: - Init and deinit
@@ -35,7 +35,7 @@ class SessionIDViewController: UIViewController, Controller {
         print("sessioIdContr")
     }
     
-    init(networking: Networking, event: ((SessionIDEvent) -> Void)?) {
+    init(networking: NetworkManager, event: ((SessionIDEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
@@ -49,49 +49,45 @@ class SessionIDViewController: UIViewController, Controller {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.rootView?.fillLabel()
     }
     
     // MARK: - IBActions
     
     @IBAction func backButtonTaapped(_ sender: Any) {
-        self.deleteSession()
+        print("button tapped")
+        self.logout()
+    }
+    @IBAction func getUserButton(_ sender: Any) {
+        getUserDetails()
     }
     
-    // MARK: Networking
-    func deleteSession() {
-        var session = URLSession.shared
-        let url = URL(string: "https://api.themoviedb.org/3/authentication/session?api_key=" + apiKey)
-        var request = URLRequest(url: url!)
-        request.httpMethod = "DELETE"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let parameters = ["session_id": UserDefaultsContainer.session]
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
-        let task = session.dataTask(with: request) { (data, response, error) in
-            DispatchQueue.main.async {
-                if error != nil || data == nil {
-                    print("client Error")
+    // MARK: - Private Methods
+    func getUserDetails() {
+        let sessionID = UserDefaultsContainer.session
+        self.networking.getUserDetails(sessionID: sessionID) { (result) in
+            switch result {
+            case .success(let usermodel):
+                UserDefaultsContainer.username = usermodel.username ?? ""
+                print("US", UserDefaultsContainer.username)
+                DispatchQueue.main.async {
+                    self.rootView?.fillLabel()
                 }
-                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                    print("Server error")
-                    return
-                }
-                print(response.statusCode)
-                guard let mime = response.mimeType, mime == "application/json" else {
-                    print("wrong mime type")
-                    return
-                }
-                print(response.statusCode)
-                UserDefaultsContainer.unregister()
-                self.eventHandler?(.back)
+            case .failure(let error):
+                print(error.stringDescription)
             }
         }
-        task.resume()
+    }
+    
+    func logout() {
+        let sessionID = UserDefaultsContainer.session
+        self.networking.logout(sessionID: sessionID) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.stringDescription)
+                self.eventHandler?(.back)
+            case .success(let logoutModel):
+                print(logoutModel.success)
+            }
+        }
     }
 }

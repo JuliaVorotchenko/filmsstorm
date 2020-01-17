@@ -6,10 +6,8 @@
 //  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
 
-import Foundation
-
-struct Auth {
-       static var accountId = 0
-       static var requestToken = ""
-       static var sessionId = ""
-   }
+struct ConfigureNetworking {
+    let accountId: Int
+    let requestToken: String
+    let sessionId: String
+}
