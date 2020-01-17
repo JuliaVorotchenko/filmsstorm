@@ -54,15 +54,14 @@ class AuthorizationViewController: UIViewController, Controller {
     }
     
     private func getToken() {
-        self.showSpinner()
+        self.spinnerStart()
         self.networking.getToken { (result) in
             switch result {
             case .success(let token):
-                print("valid token", token.requestToken)
                 self.validateToken(token: token.requestToken)
             case .failure(let error):
                 print(error.stringDescription)
-                self.hideSpinner()
+                self.spinnerStop()
             }
         }
     }
@@ -74,10 +73,9 @@ class AuthorizationViewController: UIViewController, Controller {
         self.networking.validateToken(with: model) { (result) in
             switch result {
             case .success(let token):
-                print("req_tok:", token.requestToken)
                 self.createSession(validToken: token.requestToken)
             case .failure(let error):
-                self.hideSpinner()
+                self.spinnerStop()
                 print(error.stringDescription)
             }
         }
@@ -88,12 +86,11 @@ class AuthorizationViewController: UIViewController, Controller {
         self.networking.createSession(with: model) { (result) in
             switch result {
             case .success(let sessionID):
-                self.hideSpinner()
-                UserDefaultsContainer.session = sessionID.sessionID
-                print(sessionID.sessionID)
+                self.spinnerStart()
+                  UserDefaultsContainer.session = sessionID.sessionID
                 self.eventHandler?(.login)
             case .failure(let error):
-                self.hideSpinner()
+                 self.spinnerStop()
                 print(error.stringDescription)
             }
             

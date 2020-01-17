@@ -32,7 +32,6 @@ class SessionIDViewController: UIViewController, Controller {
     // MARK: - Init and deinit
     
     deinit {
-        print("sessioIdContr")
     }
     
     init(networking: NetworkManager, event: ((SessionIDEvent) -> Void)?) {
@@ -54,7 +53,6 @@ class SessionIDViewController: UIViewController, Controller {
     // MARK: - IBActions
     
     @IBAction func backButtonTaapped(_ sender: Any) {
-        print("button tapped")
         self.logout()
     }
     @IBAction func getUserButton(_ sender: Any) {
@@ -68,7 +66,6 @@ class SessionIDViewController: UIViewController, Controller {
             switch result {
             case .success(let usermodel):
                 UserDefaultsContainer.username = usermodel.username ?? ""
-                print("US", UserDefaultsContainer.username)
                 DispatchQueue.main.async {
                     self.rootView?.fillLabel()
                 }
@@ -79,17 +76,16 @@ class SessionIDViewController: UIViewController, Controller {
     }
     
     func logout() {
-        self.showSpinner()
+        self.spinnerStart()
         let sessionID = UserDefaultsContainer.session
         self.networking.logout(sessionID: sessionID) { (result) in
             switch result {
             case .failure(let error):
                 print(error.stringDescription)
-                self.hideSpinner()
-            case .success(let logoutModel):
-                print(logoutModel.success)
+                self.spinnerStop()
+            case .success:
                 self.eventHandler?(.back)
-                self.hideSpinner()
+                self.spinnerStop()
             }
         }
     }
