@@ -79,14 +79,17 @@ class SessionIDViewController: UIViewController, Controller {
     }
     
     func logout() {
+        self.showSpinner()
         let sessionID = UserDefaultsContainer.session
         self.networking.logout(sessionID: sessionID) { (result) in
             switch result {
             case .failure(let error):
                 print(error.stringDescription)
-                self.eventHandler?(.back)
+                self.hideSpinner()
             case .success(let logoutModel):
                 print(logoutModel.success)
+                self.eventHandler?(.back)
+                self.hideSpinner()
             }
         }
     }
