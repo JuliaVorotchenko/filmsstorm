@@ -32,6 +32,6 @@ extension UIViewController {
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
             }
-        }
+        } 
     }
 }

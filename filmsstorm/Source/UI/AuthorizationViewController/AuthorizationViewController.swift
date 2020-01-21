@@ -17,7 +17,7 @@ enum AuthEvent: EventProtocol {
  2. Validate request token with password and username
  3. Get sessionID
  */
-class AuthorizationViewController: UIViewController, Controller {
+class AuthorizationViewController: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
     
@@ -28,6 +28,7 @@ class AuthorizationViewController: UIViewController, Controller {
     
     private let networking: NetworkManager
     let eventHandler: ((Event) -> Void)?
+    var loadingView: ActivityView?
     
     // MARK: - Init and deinit
     
@@ -49,19 +50,26 @@ class AuthorizationViewController: UIViewController, Controller {
     
     // MARK: - IBAction
     
+    @IBAction func initButtom(_ sender: Any) {
+        print(self.loadingView.debugDescription)
+        self.loadingView?.startLoader()
+    }
     @IBAction func buttonTapped(_ sender: Any) {
         self.getToken()
     }
     
     private func getToken() {
-        self.spinnerStart()
+        
+        //self.spinnerStart()
+        self.loadingView?.startLoader()
         self.networking.getToken { (result) in
             switch result {
             case .success(let token):
                 self.validateToken(token: token.requestToken)
             case .failure(let error):
                 print(error.stringDescription)
-                self.spinnerStop()
+                //self.spinnerStop()
+                self.loadingView?.stopLoader()
             }
         }
     }
@@ -75,7 +83,8 @@ class AuthorizationViewController: UIViewController, Controller {
             case .success(let token):
                 self.createSession(validToken: token.requestToken)
             case .failure(let error):
-                self.spinnerStop()
+                //self.spinnerStop()
+                 self.loadingView?.stopLoader()
                 print(error.stringDescription)
             }
         }
@@ -86,11 +95,13 @@ class AuthorizationViewController: UIViewController, Controller {
         self.networking.createSession(with: model) { (result) in
             switch result {
             case .success(let sessionID):
-                self.spinnerStart()
+                       self.loadingView?.startLoader()
+
                   UserDefaultsContainer.session = sessionID.sessionID
                 self.eventHandler?(.login)
             case .failure(let error):
-                 self.spinnerStop()
+                 //self.spinnerStop()
+                 self.loadingView?.stopLoader()
                 print(error.stringDescription)
             }
             

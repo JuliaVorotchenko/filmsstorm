@@ -43,6 +43,14 @@
                         </button>
                     </subviews>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgl-Ul-cGL">
+                    <rect key="frame" x="141" y="645" width="166" height="77"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="View Init"/>
+                    <connections>
+                        <action selector="initButtom:" destination="-1" eventType="touchUpInside" id="HZ1-Tf-0Jl"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.97644091020000001" green="0.94598290350000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <accessibility key="accessibilityConfiguration">
