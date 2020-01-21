@@ -17,7 +17,7 @@ enum AuthEvent: EventProtocol {
  2. Validate request token with password and username
  3. Get sessionID
  */
-class AuthorizationViewController: UIViewController, Controller {
+class AuthorizationViewController: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
     
@@ -28,6 +28,7 @@ class AuthorizationViewController: UIViewController, Controller {
     
     private let networking: NetworkManager
     let eventHandler: ((Event) -> Void)?
+    let loadingView: ActivityView = .init()
     
     // MARK: - Init and deinit
     
@@ -49,18 +50,24 @@ class AuthorizationViewController: UIViewController, Controller {
     
     // MARK: - IBAction
     
+    @IBAction func initButtom(_ sender: Any) {
+        print(self.loadingView.debugDescription)
+        self.loadingView.startLoader()
+    }
     @IBAction func buttonTapped(_ sender: Any) {
         self.getToken()
     }
     
     private func getToken() {
+        
+        self.showActivity()
         self.networking.getToken { (result) in
             switch result {
             case .success(let token):
-                print("valid token", token.requestToken)
                 self.validateToken(token: token.requestToken)
             case .failure(let error):
                 print(error.stringDescription)
+                self.hideActivity()
             }
         }
     }
@@ -72,9 +79,9 @@ class AuthorizationViewController: UIViewController, Controller {
         self.networking.validateToken(with: model) { (result) in
             switch result {
             case .success(let token):
-                print("req_tok:", token.requestToken)
                 self.createSession(validToken: token.requestToken)
-            case  .failure(let error):
+            case .failure(let error):
+                self.hideActivity()
                 print(error.stringDescription)
             }
         }
@@ -85,10 +92,11 @@ class AuthorizationViewController: UIViewController, Controller {
         self.networking.createSession(with: model) { (result) in
             switch result {
             case .success(let sessionID):
+               
                 UserDefaultsContainer.session = sessionID.sessionID
-                print(sessionID.sessionID)
                 self.eventHandler?(.login)
             case .failure(let error):
+                self.hideActivity()
                 print(error.stringDescription)
             }
             
