@@ -16,7 +16,6 @@ class AppCoordinator: Coordinator {
     let navigationController: UINavigationController
     private let networking = NetworkManager()
    
-    
     // MARK: - Init and deinit
     
     init(navigationController: UINavigationController) {

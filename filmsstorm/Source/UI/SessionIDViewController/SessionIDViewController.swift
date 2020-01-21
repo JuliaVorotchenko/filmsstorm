@@ -13,8 +13,8 @@ enum SessionIDEvent: EventProtocol {
     case showSessionId
 }
 
-class SessionIDViewController: UIViewController, Controller {
-    
+class SessionIDViewController: UIViewController, Controller, ActivityViewPresenter {
+
     // MARK: - Subtypes
     
     typealias Event = SessionIDEvent
@@ -28,6 +28,7 @@ class SessionIDViewController: UIViewController, Controller {
     
     private let networking: NetworkManager
     let eventHandler: ((SessionIDEvent) -> Void)?
+    let loadingView = ActivityView()
     
     // MARK: - Init and deinit
     
@@ -76,16 +77,16 @@ class SessionIDViewController: UIViewController, Controller {
     }
     
     func logout() {
-        self.spinnerStart()
+        self.showActivity()
         let sessionID = UserDefaultsContainer.session
         self.networking.logout(sessionID: sessionID) { (result) in
             switch result {
             case .failure(let error):
                 print(error.stringDescription)
-                self.spinnerStop()
+                self.hideActivity()
             case .success:
                 self.eventHandler?(.back)
-                self.spinnerStop()
+                self.hideActivity()
             }
         }
     }

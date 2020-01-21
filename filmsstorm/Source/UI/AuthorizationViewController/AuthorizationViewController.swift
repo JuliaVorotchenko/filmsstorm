@@ -28,7 +28,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     
     private let networking: NetworkManager
     let eventHandler: ((Event) -> Void)?
-    var loadingView: ActivityView?
+    let loadingView: ActivityView = .init()
     
     // MARK: - Init and deinit
     
@@ -52,7 +52,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     
     @IBAction func initButtom(_ sender: Any) {
         print(self.loadingView.debugDescription)
-        self.loadingView?.startLoader()
+        self.loadingView.startLoader()
     }
     @IBAction func buttonTapped(_ sender: Any) {
         self.getToken()
@@ -60,16 +60,14 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     
     private func getToken() {
         
-        //self.spinnerStart()
-        self.loadingView?.startLoader()
+        self.showActivity()
         self.networking.getToken { (result) in
             switch result {
             case .success(let token):
                 self.validateToken(token: token.requestToken)
             case .failure(let error):
                 print(error.stringDescription)
-                //self.spinnerStop()
-                self.loadingView?.stopLoader()
+                self.hideActivity()
             }
         }
     }
@@ -83,8 +81,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
             case .success(let token):
                 self.createSession(validToken: token.requestToken)
             case .failure(let error):
-                //self.spinnerStop()
-                 self.loadingView?.stopLoader()
+                self.hideActivity()
                 print(error.stringDescription)
             }
         }
@@ -95,13 +92,11 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
         self.networking.createSession(with: model) { (result) in
             switch result {
             case .success(let sessionID):
-                       self.loadingView?.startLoader()
-
-                  UserDefaultsContainer.session = sessionID.sessionID
+               
+                UserDefaultsContainer.session = sessionID.sessionID
                 self.eventHandler?(.login)
             case .failure(let error):
-                 //self.spinnerStop()
-                 self.loadingView?.stopLoader()
+                self.hideActivity()
                 print(error.stringDescription)
             }
             

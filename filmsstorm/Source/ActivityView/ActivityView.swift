@@ -9,53 +9,71 @@
 import UIKit
 
 protocol ActivityViewPresenter {
-    var loadingView: ActivityView? { get }
+    var loadingView: ActivityView { get }
+}
+
+extension ActivityViewPresenter where Self: UIViewController {
+    func hideActivity() {
+        self.loadingView.stopLoader()
+    }
+    
+    func showActivity() {
+        self.loadingView.startLoader(from: self.view)
+    }
 }
 
 class ActivityView: UIView {
-
+    
     private var activityIndicator = UIActivityIndicatorView()
     
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupLoader()
+        self.setupLoader()
     }
-
-   
-    public override init(frame: CGRect) {
-        super.init(frame: UIScreen.main.bounds)
-       setupLoader()
-    }
-
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setupLoader()
+    }
+    
+    deinit {
+        print(type(of: self))
+    }
     
     private func setupLoader() {
-       // translatesAutoresizingMaskIntoConstraints = false
-        self.superview?.addSubview(self.activityIndicator)
-        self.stopLoader()
+        self.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(self.activityIndicator)
         self.activityIndicator.hidesWhenStopped = true
         self.activityIndicator.style = .large
     }
-
-    func startLoader() {
+    
+    func startLoader(from insideView: UIView? = nil) {
         print("start loader")
-        setupLoader()
-        DispatchQueue.main.async {
-            if let holdingView = self.superview {
-                print(holdingView.debugDescription)
-                self.activityIndicator.center = holdingView.center
-                self.activityIndicator.startAnimating()
-            }
+        insideView.map {
+            
+            $0.addSubview(self)
+            let views = ["view": self]
+            let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|",
+                                                                       options: .init(rawValue: UInt(0)),
+                                                                       metrics: nil,
+                                                                       views: views)
+            $0.addConstraints(horizontalConstraints)
+            
+            let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|",
+                                                                     options: .init(rawValue: UInt(0)),
+                                                                     metrics: nil,
+                                                                     views: views)
+            $0.addConstraints(verticalConstraints)
+            
+            self.activityIndicator.center = $0.center
+            self.activityIndicator.startAnimating()
         }
     }
-        
+    
     func stopLoader() {
         print("stop loader")
-        DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.removeFromSuperview()
-        }
+        self.removeFromSuperview()
+        self.activityIndicator.stopAnimating()
     }
 }
-
-
