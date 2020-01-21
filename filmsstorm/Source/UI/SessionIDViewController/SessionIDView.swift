@@ -10,10 +10,12 @@ import UIKit
 
 class SessionIDView: UIView {
     @IBOutlet weak var sessionIdLabel: UILabel!
-    @IBOutlet weak var tokenLabel: UILabel!
+    @IBOutlet weak var userIDLabel: UILabel!
     
     func fillLabel() {
         let sessionID = UserDefaultsContainer.session
-        sessionIdLabel.text = sessionID
+        self.sessionIdLabel.text = sessionID
+        let username = UserDefaultsContainer.username
+        self.userIDLabel.text = username
     }
 }

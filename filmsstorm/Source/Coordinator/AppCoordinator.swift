@@ -14,8 +14,8 @@ class AppCoordinator: Coordinator {
     
     var childCoordinators = [Coordinator]()
     let navigationController: UINavigationController
-    private let networking = Networking()
-    
+    private let networking = NetworkManager()
+   
     // MARK: - Init and deinit
     
     init(navigationController: UINavigationController) {

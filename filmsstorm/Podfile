@@ -6,7 +6,6 @@ target 'filmsstorm' do
   use_frameworks!
 
   pod 'SwiftLint'
- 
 
   target 'filmsstormTests' do
     inherit! :search_paths
