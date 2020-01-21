@@ -23,7 +23,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="GYj-TM-BC7">
                             <rect key="frame" x="8" y="151" width="338" height="196"/>
                             <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username (case sensitive)" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hKa-Ji-cOX" userLabel="usernameTextField">
+                                <textField opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username (case sensitive)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hKa-Ji-cOX" userLabel="usernameTextField">
                                     <rect key="frame" x="0.0" y="0.0" width="338" height="40"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <viewLayoutGuide key="safeArea" id="Prx-Nm-MpD"/>
@@ -31,7 +31,7 @@
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                     <textInputTraits key="textInputTraits" spellCheckingType="no"/>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NPz-be-yMP" userLabel="passwordTextField">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NPz-be-yMP" userLabel="passwordTextField">
                                     <rect key="frame" x="0.0" y="52" width="338" height="40"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="textColor" red="0.1764705882" green="0.12941176469999999" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
