@@ -10,7 +10,7 @@ import UIKit
 
 enum AuthEvent: EventProtocol {
     case login
-    case error(String)
+    case error(AppError)
 }
 /*
  1. Get request token with APIkey
@@ -49,15 +49,13 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     }
     
     // MARK: - IBAction
-    
-    @IBAction func initButtom(_ sender: Any) {
-        print(self.loadingView.debugDescription)
-        self.loadingView.startLoader()
-    }
+   
     @IBAction func buttonTapped(_ sender: Any) {
         self.getToken()
     }
     
+    // MARK: - Private methods
+
     private func getToken() {
         
         self.showActivity()
@@ -68,6 +66,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
             case .failure(let error):
                 print(error.stringDescription)
                 self.hideActivity()
+                self.eventHandler?(.error(.networkingError(error)))
             }
         }
     }
@@ -83,6 +82,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
             case .failure(let error):
                 self.hideActivity()
                 print(error.stringDescription)
+                self.eventHandler?(.error(.networkingError(error)))
             }
         }
     }
@@ -92,12 +92,12 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
         self.networking.createSession(with: model) { (result) in
             switch result {
             case .success(let sessionID):
-               
                 UserDefaultsContainer.session = sessionID.sessionID
                 self.eventHandler?(.login)
             case .failure(let error):
                 self.hideActivity()
                 print(error.stringDescription)
+                self.eventHandler?(.error(.networkingError(error)))
             }
             
         }

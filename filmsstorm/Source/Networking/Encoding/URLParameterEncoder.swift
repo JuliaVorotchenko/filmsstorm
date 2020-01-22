@@ -9,6 +9,9 @@
 import Foundation
 
 struct URLParameterEncoder: ParameterEncoder {
+    
+    // MARK: - Static methods
+    
     static func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws {
         guard let url = urlRequest.url else { throw NetworkError.missingURL }
         

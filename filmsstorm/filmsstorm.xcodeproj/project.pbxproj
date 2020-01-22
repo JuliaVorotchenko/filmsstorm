@@ -51,6 +51,8 @@
 		CD7C524723D10C530081C915 /* SearchEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C524623D10C530081C915 /* SearchEndpoint.swift */; };
 		CD7C524923D10F950081C915 /* TVEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C524823D10F950081C915 /* TVEndPoint.swift */; };
 		CD7C524B23D10FF80081C915 /* TVSeasonEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C524A23D10FF80081C915 /* TVSeasonEndPoint.swift */; };
+		CD7E748323D8A0E20097F198 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E748223D8A0E20097F198 /* UIViewControllerExtension.swift */; };
+		CD7E748623D8F3450097F198 /* AppErrorPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E748523D8F3450097F198 /* AppErrorPresentable.swift */; };
 		CD85326123C8E324005CD47B /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85326023C8E324005CD47B /* LogoutModel.swift */; };
 		CD85326323C90127005CD47B /* Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85326223C90127005CD47B /* Headers.swift */; };
 		CD85326523CBAE96005CD47B /* FavouriteMovieMarkBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85326423CBAE96005CD47B /* FavouriteMovieMarkBody.swift */; };
@@ -138,6 +140,8 @@
 		CD7C524623D10C530081C915 /* SearchEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEndpoint.swift; sourceTree = "<group>"; };
 		CD7C524823D10F950081C915 /* TVEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVEndPoint.swift; sourceTree = "<group>"; };
 		CD7C524A23D10FF80081C915 /* TVSeasonEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSeasonEndPoint.swift; sourceTree = "<group>"; };
+		CD7E748223D8A0E20097F198 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		CD7E748523D8F3450097F198 /* AppErrorPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrorPresentable.swift; sourceTree = "<group>"; };
 		CD85326023C8E324005CD47B /* LogoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
 		CD85326223C90127005CD47B /* Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Headers.swift; sourceTree = "<group>"; };
 		CD85326423CBAE96005CD47B /* FavouriteMovieMarkBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteMovieMarkBody.swift; sourceTree = "<group>"; };
@@ -258,6 +262,7 @@
 		CD0CDA7223C3E797002EC487 /* Patterns */ = {
 			isa = PBXGroup;
 			children = (
+				CD7E748423D8F3230097F198 /* AppErrorPresentable */,
 				CD0CDA7323C3E797002EC487 /* RootViewGettable */,
 				CD0CDA7523C3E797002EC487 /* MVCC */,
 			);
@@ -334,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				CD3B9A2223D1FC0600DA2F2C /* OptionalExtension.swift */,
+				CD7E748223D8A0E20097F198 /* UIViewControllerExtension.swift */,
 			);
 			path = ProjectExtensions;
 			sourceTree = "<group>";
@@ -344,6 +350,14 @@
 				CD53CDB723D631C000E16E2E /* ActivityView.swift */,
 			);
 			path = ActivityView;
+			sourceTree = "<group>";
+		};
+		CD7E748423D8F3230097F198 /* AppErrorPresentable */ = {
+			isa = PBXGroup;
+			children = (
+				CD7E748523D8F3450097F198 /* AppErrorPresentable.swift */,
+			);
+			path = AppErrorPresentable;
 			sourceTree = "<group>";
 		};
 		CDB8790B23B8FF290099F946 /* UI */ = {
@@ -729,6 +743,7 @@
 				CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */,
 				CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */,
 				CD0CDA7A23C3E797002EC487 /* Coordinator.swift in Sources */,
+				CD7E748623D8F3450097F198 /* AppErrorPresentable.swift in Sources */,
 				CD0CDAA723C676C7002EC487 /* URLParameterEncoder.swift in Sources */,
 				2E51662D23AFD6C500EDF51E /* filmsstorm.xcdatamodeld in Sources */,
 				CD7C524723D10C530081C915 /* SearchEndpoint.swift in Sources */,
@@ -743,6 +758,7 @@
 				CD0CDAA123C67627002EC487 /* JSONParameterEncoder.swift in Sources */,
 				CD4F215323BA158D00EB1850 /* RequestToken.swift in Sources */,
 				CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */,
+				CD7E748323D8A0E20097F198 /* UIViewControllerExtension.swift in Sources */,
 				CD0CDAB523C678A4002EC487 /* Router.swift in Sources */,
 				CD2F3C7923BE61D30047B42F /* Auth.swift in Sources */,
 				CD85326123C8E324005CD47B /* LogoutModel.swift in Sources */,

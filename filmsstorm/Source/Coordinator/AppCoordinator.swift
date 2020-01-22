@@ -15,13 +15,13 @@ class AppCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     let navigationController: UINavigationController
     private let networking = NetworkManager()
-   
+    
     // MARK: - Init and deinit
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-
+    
     // MARK: - Coordinator
     
     func start() {
@@ -39,8 +39,7 @@ class AppCoordinator: Coordinator {
         case .login:
             self.createSessionIDViewController()
         case .error(let errorMessage):
-            //self.showAlertError(with: errorMessage)
-            print(errorMessage.debugDescription)
+            self.showAppErrorAlert(with: errorMessage)
         }
     }
     
@@ -55,7 +54,8 @@ class AppCoordinator: Coordinator {
             self.createAuthController()
         case .showSessionId:
             print("Session ID")
-            
+        case .error(let errorMessage):
+            self.showAppErrorAlert(with: errorMessage)
         }
     }
 }

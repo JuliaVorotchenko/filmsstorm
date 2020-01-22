@@ -11,6 +11,7 @@ import UIKit
 enum SessionIDEvent: EventProtocol {
     case back
     case showSessionId
+    case error(AppError)
 }
 
 class SessionIDViewController: UIViewController, Controller, ActivityViewPresenter {
@@ -61,32 +62,36 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
     }
     
     // MARK: - Private Methods
-    func getUserDetails() {
+    
+    private func getUserDetails() {
         let sessionID = UserDefaultsContainer.session
-        self.networking.getUserDetails(sessionID: sessionID) { (result) in
+        self.networking.getUserDetails(sessionID: sessionID) { [weak self] result in
             switch result {
             case .success(let usermodel):
                 UserDefaultsContainer.username = usermodel.username ?? ""
                 DispatchQueue.main.async {
-                    self.rootView?.fillLabel()
+                    self?.rootView?.fillLabel()
                 }
             case .failure(let error):
+                self?.eventHandler?(.error(.networkingError(error)))
                 print(error.stringDescription)
             }
         }
     }
     
-    func logout() {
+    private func logout() {
         self.showActivity()
         let sessionID = UserDefaultsContainer.session
-        self.networking.logout(sessionID: sessionID) { (result) in
+        self.networking.logout(sessionID: sessionID) { [weak self] result in
             switch result {
+            case .success:
+                self?.eventHandler?(.back)
+                self?.hideActivity()
             case .failure(let error):
                 print(error.stringDescription)
-                self.hideActivity()
-            case .success:
-                self.eventHandler?(.back)
-                self.hideActivity()
+                self?.hideActivity()
+                self?.eventHandler?(.error(.networkingError(error)))
+                
             }
         }
     }

@@ -8,17 +8,23 @@
 import Foundation
 
 class UserDefaultsContainer {
+    
+    // MARK: - UserDefaults keys
+
     private enum UserDefaultsKey: String {
         case session
         case token
         case username
-        case password
     }
     
+    // MARK: - Private static properties
+
     private static var defaults: UserDefaults {
         return UserDefaults.standard
     }
     
+    // MARK: - Static properties
+
     static var token: String {
         get {
                    return self.defaults.string(forKey: UserDefaultsKey.token.rawValue) ?? ""
@@ -49,6 +55,8 @@ class UserDefaultsContainer {
         }
     }
     
+    // MARK: - Static methods
+
     static func registerDefaults() {
         let sessionDictionary: [String: Any] = [UserDefaultsKey.session.rawValue: String()]
         let tokenDictionary: [String: Any] = [UserDefaultsKey.token.rawValue: String()]
