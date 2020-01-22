@@ -17,7 +17,7 @@ enum AuthEvent: EventProtocol {
  2. Validate request token with password and username
  3. Get sessionID
  */
-class AuthorizationViewController: UIViewController, Controller, ActivityViewPresenter, AlertPresetable {
+class AuthorizationViewController: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
     

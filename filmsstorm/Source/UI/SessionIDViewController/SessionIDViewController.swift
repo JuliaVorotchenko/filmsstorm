@@ -14,7 +14,7 @@ enum SessionIDEvent: EventProtocol {
     case error(AppError)
 }
 
-class SessionIDViewController: UIViewController, Controller, ActivityViewPresenter, AlertPresetable {
+class SessionIDViewController: UIViewController, Controller, ActivityViewPresenter {
 
     // MARK: - Subtypes
     

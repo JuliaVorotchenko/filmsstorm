@@ -39,7 +39,7 @@ class AppCoordinator: Coordinator {
         case .login:
             self.createSessionIDViewController()
         case .error(let errorMessage):
-            self.showError(with: errorMessage)
+            self.showAppErrorAlert(with: errorMessage)
         }
     }
     
@@ -55,7 +55,7 @@ class AppCoordinator: Coordinator {
         case .showSessionId:
             print("Session ID")
         case .error(let errorMessage):
-            self.showError(with: errorMessage)
+            self.showAppErrorAlert(with: errorMessage)
         }
     }
 }

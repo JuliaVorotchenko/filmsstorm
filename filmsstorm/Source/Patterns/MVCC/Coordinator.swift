@@ -22,11 +22,12 @@ import UIKit
  - Navigate controllers (show and hide instack, modally and in any other way);
  - Subscribes on controller`s events and react on events;
  - Show or hide sub-coordinators if needed.
+ - Impl AppErrorPresentable to display app errors.
  
  Coordinator CAN NOT:
  - Save any controller as property;
  */
-protocol Coordinator: AnyObject {
+protocol Coordinator: AnyObject, AppErrorPresentable {
     var childCoordinators: [Coordinator] { get set }
     var navigationController: UINavigationController { get }
     func start()
@@ -40,8 +41,5 @@ extension Coordinator {
     func removeCoordinator(_ childCoordinator: Coordinator) {
         self.childCoordinators = self.childCoordinators.filter { $0 !== childCoordinator }
     }
-    
-    func showError(with error: AppError) {
-        self.navigationController.showAppErrorAlert(error)
-    }
+
 }
