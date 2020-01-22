@@ -486,12 +486,12 @@
 		CDB8791423B9005D0099F946 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				CD0CDA7223C3E797002EC487 /* Patterns */,
+				CDB8790B23B8FF290099F946 /* UI */,
+				CDB8790F23B8FFA10099F946 /* Models */,
+				CD7E748723D8F53E0097F198 /* Services */,
 				CD7E748C23D8F67E0097F198 /* AppKit */,
 				CD7E748823D8F5890097F198 /* Lib */,
-				CD7E748723D8F53E0097F198 /* Services */,
-				CD0CDA7223C3E797002EC487 /* Patterns */,
-				CDB8790F23B8FFA10099F946 /* Models */,
-				CDB8790B23B8FF290099F946 /* UI */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
