@@ -71,6 +71,7 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
                     self.rootView?.fillLabel()
                 }
             case .failure(let error):
+                self.showServerErrorAlert(error)
                 print(error.stringDescription)
             }
         }
@@ -84,6 +85,7 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
             case .failure(let error):
                 print(error.stringDescription)
                 self.hideActivity()
+                self.showServerErrorAlert(error)
             case .success:
                 self.eventHandler?(.back)
                 self.hideActivity()

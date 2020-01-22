@@ -68,6 +68,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
             case .failure(let error):
                 print(error.stringDescription)
                 self.hideActivity()
+                
             }
         }
     }
@@ -82,6 +83,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
                 self.createSession(validToken: token.requestToken)
             case .failure(let error):
                 self.hideActivity()
+                self.showServerErrorAlert(error)
                 print(error.stringDescription)
             }
         }
@@ -92,11 +94,11 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
         self.networking.createSession(with: model) { (result) in
             switch result {
             case .success(let sessionID):
-               
                 UserDefaultsContainer.session = sessionID.sessionID
                 self.eventHandler?(.login)
             case .failure(let error):
                 self.hideActivity()
+                self.showServerErrorAlert(error)
                 print(error.stringDescription)
             }
             
