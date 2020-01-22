@@ -47,3 +47,17 @@ enum NetworkResponse: String, Error {
     case noData = "Response returned with no data to decode."
     case unableToDecode = "We couldn`t to decode response."
 }
+
+enum AppError: Error, Descriptable {
+    case networkingError(NetworkError)
+    case unowned(Error?)
+    
+    var stringDescription: String {
+        switch self {
+        case .networkingError(let error):
+            return error.stringDescription
+        case .unowned(let error):
+            return error.debugDescription
+        }
+    }
+}

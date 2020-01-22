@@ -41,4 +41,7 @@ extension Coordinator {
         self.childCoordinators = self.childCoordinators.filter { $0 !== childCoordinator }
     }
     
+    func showError(with error: AppError) {
+        self.navigationController.showAppErrorAlert(error)
+    }
 }

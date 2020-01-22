@@ -10,14 +10,14 @@ import UIKit
 
 enum AuthEvent: EventProtocol {
     case login
-    case error(String)
+    case error(AppError)
 }
 /*
  1. Get request token with APIkey
  2. Validate request token with password and username
  3. Get sessionID
  */
-class AuthorizationViewController: UIViewController, Controller, ActivityViewPresenter {
+class AuthorizationViewController: UIViewController, Controller, ActivityViewPresenter, AlertPresetable {
     
     // MARK: - Subtypes
     
@@ -66,7 +66,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
             case .failure(let error):
                 print(error.stringDescription)
                 self.hideActivity()
-                
+                self.eventHandler?(.error(.networkingError(error)))
             }
         }
     }
@@ -81,8 +81,8 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
                 self.createSession(validToken: token.requestToken)
             case .failure(let error):
                 self.hideActivity()
-                self.showServerErrorAlert(error)
                 print(error.stringDescription)
+                self.eventHandler?(.error(.networkingError(error)))
             }
         }
     }
@@ -96,8 +96,8 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
                 self.eventHandler?(.login)
             case .failure(let error):
                 self.hideActivity()
-                self.showServerErrorAlert(error)
                 print(error.stringDescription)
+                self.eventHandler?(.error(.networkingError(error)))
             }
             
         }
