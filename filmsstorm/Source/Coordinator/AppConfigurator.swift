@@ -9,12 +9,17 @@
 import UIKit
 
 final class AppConfigurator {
-    
+    // MARK: - Private properties
+
     private var coordinator: Coordinator?
     
+    // MARK: - Init
+
     init(window: UIWindow) {
         self.configure(window: window)
     }
+    
+    // MARK: - Private methods
     
     private func configure(window: UIWindow) {
         let navigationController = UINavigationController()

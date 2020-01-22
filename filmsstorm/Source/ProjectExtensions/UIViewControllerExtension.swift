@@ -8,14 +8,21 @@
 
 import UIKit
 
+// MARK: - UIVewController Extension for alerts realisation
+
 extension UIViewController {
+    // MARK: - Alert tittles
+    
     struct  TextConstants {
         static let close = "Close"
         static let cancel = "Cancel"
         static let serverError = "Server Error"
     }
+    // MARK: - Private typealias
     
     private typealias Text = TextConstants
+    
+    // MARK: - Methods
     
     func showAlert(title: String?,
                    message: String? = nil,

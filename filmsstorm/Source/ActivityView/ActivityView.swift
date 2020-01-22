@@ -8,9 +8,13 @@
 
 import UIKit
 
+// MARK: - ActivityView protocol
+
 protocol ActivityViewPresenter {
     var loadingView: ActivityView { get }
 }
+
+// MARK: - ActivityView protocol extension for ViewController
 
 extension ActivityViewPresenter where Self: UIViewController {
     func hideActivity() {
@@ -22,10 +26,15 @@ extension ActivityViewPresenter where Self: UIViewController {
     }
 }
 
+// MARK: - ActivityView realization
+
 class ActivityView: UIView {
+    // MARK: - Properties
     
     private var activityIndicator = UIActivityIndicatorView()
     
+    // MARK: - Init and deinit
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setupLoader()
@@ -40,6 +49,8 @@ class ActivityView: UIView {
         print(type(of: self))
     }
     
+    // MARK: - Private methods
+
     private func setupLoader() {
         self.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -48,8 +59,9 @@ class ActivityView: UIView {
         self.activityIndicator.style = .large
     }
     
+    // MARK: - Public methods
+    
     func startLoader(from insideView: UIView? = nil) {
-        print("start loader")
         insideView.map {
             
             $0.addSubview(self)
@@ -72,7 +84,6 @@ class ActivityView: UIView {
     }
     
     func stopLoader() {
-        print("stop loader")
         self.removeFromSuperview()
         self.activityIndicator.stopAnimating()
     }

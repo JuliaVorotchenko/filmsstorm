@@ -61,7 +61,9 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
     }
     
     // MARK: - Private Methods
-    func getUserDetails() {
+    
+    
+    private func getUserDetails() {
         let sessionID = UserDefaultsContainer.session
         self.networking.getUserDetails(sessionID: sessionID) { (result) in
             switch result {
@@ -77,7 +79,7 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
         }
     }
     
-    func logout() {
+    private func logout() {
         self.showActivity()
         let sessionID = UserDefaultsContainer.session
         self.networking.logout(sessionID: sessionID) { (result) in

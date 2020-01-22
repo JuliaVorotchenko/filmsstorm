@@ -49,15 +49,13 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     }
     
     // MARK: - IBAction
-    
-    @IBAction func initButtom(_ sender: Any) {
-        print(self.loadingView.debugDescription)
-        self.loadingView.startLoader()
-    }
+   
     @IBAction func buttonTapped(_ sender: Any) {
         self.getToken()
     }
     
+    // MARK: - Private methods
+
     private func getToken() {
         
         self.showActivity()
