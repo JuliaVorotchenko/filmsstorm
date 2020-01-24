@@ -23,8 +23,9 @@ class MainCollectionViewCell: UICollectionViewCell {
         
     }
     
-    public func fill(with model: MoviewModel) {
-        self.movieName.text = model.name
+    public func fill(with model: PopularMoviesModel) {
+        let movieResult = model.results[0]
+        self.movieName.text = movieResult.title ?? "some title"
     }
     
 }

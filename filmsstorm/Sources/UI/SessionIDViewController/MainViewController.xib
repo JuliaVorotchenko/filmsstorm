@@ -21,7 +21,11 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <items>
                         <navigationItem title="Main" id="fOH-Sl-kmi">
-                            <barButtonItem key="leftBarButtonItem" title="Logout" id="le9-1n-FJE" userLabel="Logout"/>
+                            <barButtonItem key="leftBarButtonItem" title="Logout" id="le9-1n-FJE" userLabel="Logout">
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="-1" id="YRL-l6-qfP"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="lK6-Bt-Hqn"/>
                         </navigationItem>
                     </items>

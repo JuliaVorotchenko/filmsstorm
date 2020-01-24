@@ -21,15 +21,12 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     typealias Event = SessionIDEvent
     typealias RootViewType = MainView
     
-    // MARK: - temporary values
-    
-    let apiKey = "f4559f172e8c6602b3e2dd52152aca52"
-    
     // MARK: - Private properties
     
     private let networking: NetworkManager
     let eventHandler: ((SessionIDEvent) -> Void)?
     let loadingView = ActivityView()
+    var movies: PopularMoviesModel?
     
     // MARK: - Init and deinit
     
@@ -51,11 +48,35 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rootView?.collectionView.register(UINib(nibName: "MainCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MainCollectionViewCell")
+        self.getPopularMovies()
+        
     }
     
     // MARK: - IBActions
     
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+           self.logout()
+       }
+    
     // MARK: - Private Methods
+    private func setCollectionViewDelegate() {
+        self.rootView?.collectionView.dataSource = self
+        self.rootView?.collectionView.delegate = self
+    }
+    
+    private func getPopularMovies() {
+        self.networking.getPopularMovies { [weak self] result in
+            switch result {
+            case .success(let model):
+                print("getpopularMainVC", model.results[0])
+                self?.movies = model
+                self?.rootView?.collectionView.reloadData()
+            case .failure(let error):
+                self?.eventHandler?(.error(.networkingError(error)))
+                print(error.stringDescription)
+            }
+        }
+    }
     
     private func getUserDetails() {
         let sessionID = UserDefaultsContainer.session
@@ -103,6 +124,5 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                                                                 return UICollectionViewCell() }
         return cell
     }
-    
-    
+
 }
