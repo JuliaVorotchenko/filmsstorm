@@ -14,12 +14,12 @@ enum SessionIDEvent: EventProtocol {
     case error(AppError)
 }
 
-class SessionIDViewController: UIViewController, Controller, ActivityViewPresenter {
+class MainViewController: UIViewController, Controller, ActivityViewPresenter {
 
     // MARK: - Subtypes
     
     typealias Event = SessionIDEvent
-    typealias RootViewType = SessionIDView
+    typealias RootViewType = MainView
     
     // MARK: - temporary values
     
@@ -50,16 +50,10 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.rootView?.collectionView.register(UINib(nibName: "MainCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MainCollectionViewCell")
     }
     
     // MARK: - IBActions
-    
-    @IBAction func backButtonTaapped(_ sender: Any) {
-        self.logout()
-    }
-    @IBAction func getUserButton(_ sender: Any) {
-        getUserDetails()
-    }
     
     // MARK: - Private Methods
     
@@ -70,7 +64,7 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
             case .success(let usermodel):
                 UserDefaultsContainer.username = usermodel.username ?? ""
                 DispatchQueue.main.async {
-                    self?.rootView?.fillLabel()
+//                    self?.rootView?.fillLabel()
                 }
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
@@ -95,4 +89,20 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
             }
         }
     }
+}
+
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell",
+                                                             for: indexPath) as? MainCollectionViewCell else {
+                                                                return UICollectionViewCell() }
+        return cell
+    }
+    
+    
 }

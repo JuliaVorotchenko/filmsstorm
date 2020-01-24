@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MainCollectionViewCell" id="gTV-IL-0wX" customClass="MainCollectionViewCell" customModule="filmsstorm" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="170" height="255"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="170" height="255"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MzV-fy-ZeR">
+                        <rect key="frame" x="0.0" y="234.5" width="170" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RhY-Gb-pJg">
+                        <rect key="frame" x="0.0" y="1.5" width="170" height="224"/>
+                        <color key="tintColor" red="0.90231592949999995" green="1" blue="0.49127406029999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="MzV-fy-ZeR" secondAttribute="trailing" id="B1n-9P-aEi"/>
+                <constraint firstAttribute="trailing" secondItem="RhY-Gb-pJg" secondAttribute="trailing" id="RD2-7I-OrZ"/>
+                <constraint firstItem="RhY-Gb-pJg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="gae-MM-SAH"/>
+                <constraint firstItem="MzV-fy-ZeR" firstAttribute="top" secondItem="RhY-Gb-pJg" secondAttribute="bottom" constant="8" id="hAO-7N-qZf"/>
+                <constraint firstItem="RhY-Gb-pJg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hub-RS-rw1"/>
+                <constraint firstAttribute="bottom" secondItem="MzV-fy-ZeR" secondAttribute="bottom" id="qu2-Fd-2se"/>
+                <constraint firstItem="MzV-fy-ZeR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="udc-hi-fNr"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="170" height="255"/>
+            <connections>
+                <outlet property="movieImage" destination="RhY-Gb-pJg" id="sAl-GO-pk2"/>
+                <outlet property="movieName" destination="MzV-fy-ZeR" id="124-Jm-gUK"/>
+            </connections>
+            <point key="canvasLocation" x="-333.33333333333337" y="-2.34375"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="heart.fill" catalog="system" width="64" height="54"/>
+    </resources>
+</document>

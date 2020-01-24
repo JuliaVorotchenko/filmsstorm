@@ -37,14 +37,14 @@ class AppCoordinator: Coordinator {
     private func authEvent(_ event: AuthEvent) {
         switch event {
         case .login:
-            self.createSessionIDViewController()
+            self.createMianViewController()
         case .error(let errorMessage):
             self.showAppErrorAlert(with: errorMessage)
         }
     }
     
-    private func createSessionIDViewController() {
-        let controller = SessionIDViewController(networking: self.networking, event: self.sessionEvent)
+    private func createMianViewController() {
+        let controller = MainViewController(networking: self.networking, event: self.sessionEvent)
         self.navigationController.viewControllers = [controller]
     }
     

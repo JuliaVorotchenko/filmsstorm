@@ -53,15 +53,18 @@
 		CD7C524B23D10FF80081C915 /* TVSeasonEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C524A23D10FF80081C915 /* TVSeasonEndPoint.swift */; };
 		CD7E748323D8A0E20097F198 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E748223D8A0E20097F198 /* UIViewController+Extensions.swift */; };
 		CD7E748623D8F3450097F198 /* AppErrorPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E748523D8F3450097F198 /* AppErrorPresentable.swift */; };
+		CD83A08923DAF1D00070EE1C /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD83A08723DAF1D00070EE1C /* MainCollectionViewCell.swift */; };
+		CD83A08A23DAF1D00070EE1C /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD83A08823DAF1D00070EE1C /* MainCollectionViewCell.xib */; };
+		CD83A08C23DAF6410070EE1C /* MoviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD83A08B23DAF6410070EE1C /* MoviewModel.swift */; };
 		CD85326123C8E324005CD47B /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85326023C8E324005CD47B /* LogoutModel.swift */; };
 		CD85326323C90127005CD47B /* Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85326223C90127005CD47B /* Headers.swift */; };
 		CD85326523CBAE96005CD47B /* FavouriteMovieMarkBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85326423CBAE96005CD47B /* FavouriteMovieMarkBody.swift */; };
 		CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791523B900D80099F946 /* AuthorizationViewController.swift */; };
 		CDB8791823B900D80099F946 /* AuthorizationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB8791623B900D80099F946 /* AuthorizationViewController.xib */; };
-		CDB8791B23B900EC0099F946 /* SessionIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791923B900EC0099F946 /* SessionIDViewController.swift */; };
-		CDB8791C23B900EC0099F946 /* SessionIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB8791A23B900EC0099F946 /* SessionIDViewController.xib */; };
+		CDB8791B23B900EC0099F946 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791923B900EC0099F946 /* MainViewController.swift */; };
+		CDB8791C23B900EC0099F946 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB8791A23B900EC0099F946 /* MainViewController.xib */; };
 		CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791D23B901F20099F946 /* AuthorizationView.swift */; };
-		CDB8792023B9020C0099F946 /* SessionIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791F23B9020C0099F946 /* SessionIDView.swift */; };
+		CDB8792023B9020C0099F946 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791F23B9020C0099F946 /* MainView.swift */; };
 		CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792123B909040099F946 /* AppConfigurator.swift */; };
 		CDB8792423B93C240099F946 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792323B93C240099F946 /* AppCoordinator.swift */; };
 		EF69E43B310A0AD220DE1C48 /* Pods_filmsstormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3AA44BFE965E894CADF19A /* Pods_filmsstormTests.framework */; };
@@ -142,15 +145,18 @@
 		CD7C524A23D10FF80081C915 /* TVSeasonEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVSeasonEndPoint.swift; sourceTree = "<group>"; };
 		CD7E748223D8A0E20097F198 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		CD7E748523D8F3450097F198 /* AppErrorPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrorPresentable.swift; sourceTree = "<group>"; };
+		CD83A08723DAF1D00070EE1C /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		CD83A08823DAF1D00070EE1C /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
+		CD83A08B23DAF6410070EE1C /* MoviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviewModel.swift; sourceTree = "<group>"; };
 		CD85326023C8E324005CD47B /* LogoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
 		CD85326223C90127005CD47B /* Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Headers.swift; sourceTree = "<group>"; };
 		CD85326423CBAE96005CD47B /* FavouriteMovieMarkBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteMovieMarkBody.swift; sourceTree = "<group>"; };
 		CDB8791523B900D80099F946 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		CDB8791623B900D80099F946 /* AuthorizationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorizationViewController.xib; sourceTree = "<group>"; };
-		CDB8791923B900EC0099F946 /* SessionIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionIDViewController.swift; sourceTree = "<group>"; };
-		CDB8791A23B900EC0099F946 /* SessionIDViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionIDViewController.xib; sourceTree = "<group>"; };
+		CDB8791923B900EC0099F946 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CDB8791A23B900EC0099F946 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		CDB8791D23B901F20099F946 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
-		CDB8791F23B9020C0099F946 /* SessionIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionIDView.swift; sourceTree = "<group>"; };
+		CDB8791F23B9020C0099F946 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CDB8792123B909040099F946 /* AppConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurator.swift; sourceTree = "<group>"; };
 		CDB8792323B93C240099F946 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		EA79238A8EC29AB9C6DB940C /* Pods-filmsstormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.release.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -419,8 +425,18 @@
 				CD85326023C8E324005CD47B /* LogoutModel.swift */,
 				CD85326423CBAE96005CD47B /* FavouriteMovieMarkBody.swift */,
 				CD161ADE23D0C843008F03B7 /* AuthRequestModel.swift */,
+				CD83A08B23DAF6410070EE1C /* MoviewModel.swift */,
 			);
 			path = NetworkingModels;
+			sourceTree = "<group>";
+		};
+		CD83A08623DAF1BB0070EE1C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CD83A08723DAF1D00070EE1C /* MainCollectionViewCell.swift */,
+				CD83A08823DAF1D00070EE1C /* MainCollectionViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		CDB8790B23B8FF290099F946 /* UI */ = {
@@ -476,9 +492,10 @@
 		CDB8791323B9002C0099F946 /* SessionIDViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CDB8791923B900EC0099F946 /* SessionIDViewController.swift */,
-				CDB8791A23B900EC0099F946 /* SessionIDViewController.xib */,
-				CDB8791F23B9020C0099F946 /* SessionIDView.swift */,
+				CD83A08623DAF1BB0070EE1C /* Cell */,
+				CDB8791923B900EC0099F946 /* MainViewController.swift */,
+				CDB8791F23B9020C0099F946 /* MainView.swift */,
+				CDB8791A23B900EC0099F946 /* MainViewController.xib */,
 			);
 			path = SessionIDViewController;
 			sourceTree = "<group>";
@@ -627,7 +644,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDB8791C23B900EC0099F946 /* SessionIDViewController.xib in Resources */,
+				CDB8791C23B900EC0099F946 /* MainViewController.xib in Resources */,
+				CD83A08A23DAF1D00070EE1C /* MainCollectionViewCell.xib in Resources */,
 				2E51663723AFD6CA00EDF51E /* LaunchScreen.storyboard in Resources */,
 				CDB8791823B900D80099F946 /* AuthorizationViewController.xib in Resources */,
 				2E16981923AFE05A0002E28E /* GoogleService-Info.plist in Resources */,
@@ -787,14 +805,15 @@
 				CD85326523CBAE96005CD47B /* FavouriteMovieMarkBody.swift in Sources */,
 				CD29430623C71087001D651A /* UserModel.swift in Sources */,
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
+				CD83A08C23DAF6410070EE1C /* MoviewModel.swift in Sources */,
 				CD2A99E623CF352D00FDD0CB /* AccountEndPoint.swift in Sources */,
-				CDB8792023B9020C0099F946 /* SessionIDView.swift in Sources */,
+				CDB8792023B9020C0099F946 /* MainView.swift in Sources */,
 				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
 				CD85326323C90127005CD47B /* Headers.swift in Sources */,
 				CD7C524B23D10FF80081C915 /* TVSeasonEndPoint.swift in Sources */,
 				CD0CDAAF23C67841002EC487 /* HTTPMethod.swift in Sources */,
 				CD0CDAAD23C67823002EC487 /* EndPointType.swift in Sources */,
-				CDB8791B23B900EC0099F946 /* SessionIDViewController.swift in Sources */,
+				CDB8791B23B900EC0099F946 /* MainViewController.swift in Sources */,
 				CD2A99EC23CF3E3200FDD0CB /* PeopleEndPointt.swift in Sources */,
 				CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */,
 				CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */,
@@ -803,6 +822,7 @@
 				CD0CDAA723C676C7002EC487 /* URLParameterEncoder.swift in Sources */,
 				2E51662D23AFD6C500EDF51E /* filmsstorm.xcdatamodeld in Sources */,
 				CD7C524723D10C530081C915 /* SearchEndpoint.swift in Sources */,
+				CD83A08923DAF1D00070EE1C /* MainCollectionViewCell.swift in Sources */,
 				CD0CDAA923C67768002EC487 /* APIEndPoint.swift in Sources */,
 				CD5E2A1C23BE591600439953 /* UseDefaultsContainer.swift in Sources */,
 				CD0CDAB123C67860002EC487 /* HTTPTask.swift in Sources */,
