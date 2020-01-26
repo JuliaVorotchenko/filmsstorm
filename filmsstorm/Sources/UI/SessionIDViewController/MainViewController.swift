@@ -46,7 +46,27 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     // MARK: - Life cycle
     
     override func viewDidLoad() {
+    
         super.viewDidLoad()
+        let screenSize = UIScreen.main.bounds
+        
+        let screenWidth = self.view.bounds.width - 20 / 3
+
+
+
+        let cellSize = CGSize(width: 140, height: 224)
+        
+        let layout = UICollectionViewFlowLayout()
+        
+        layout.scrollDirection = .vertical
+    
+
+      layout.itemSize = cellSize
+        
+        layout.sectionInset = .init(top: 5, left: 7, bottom: 5, right: 7)
+        layout.minimumLineSpacing = 1
+        layout.minimumInteritemSpacing = 1.0
+        self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
         self.rootView?.collectionView.register(MainCollectionViewCell.self)
         self.getPopularMovies()
         
@@ -126,3 +146,5 @@ extension MainViewController: UICollectionViewDataSource {
     }
 
 }
+
+
