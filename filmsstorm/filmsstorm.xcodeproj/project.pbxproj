@@ -43,6 +43,9 @@
 		CD3B9A2023D1FAF700DA2F2C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3B9A1F23D1FAF700DA2F2C /* NetworkService.swift */; };
 		CD3B9A2323D1FC0600DA2F2C /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3B9A2223D1FC0600DA2F2C /* Optional+Extension.swift */; };
 		CD4324FB23CE5F7800BD3C51 /* AuthEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4324FA23CE5F7800BD3C51 /* AuthEndPoint.swift */; };
+		CD4C166823DDFF2100D0F641 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C166723DDFF2100D0F641 /* UICollectionView+Extensions.swift */; };
+		CD4C166B23DE0D9400D0F641 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C166A23DE0D9400D0F641 /* Functions.swift */; };
+		CD4C166E23DE118A00D0F641 /* ImageLoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C166D23DE118A00D0F641 /* ImageLoadingService.swift */; };
 		CD4F215323BA158D00EB1850 /* RequestToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215223BA158D00EB1850 /* RequestToken.swift */; };
 		CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215423BA3A3300EB1850 /* SessionID.swift */; };
 		CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */; };
@@ -135,6 +138,9 @@
 		CD3B9A1F23D1FAF700DA2F2C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CD3B9A2223D1FC0600DA2F2C /* Optional+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
 		CD4324FA23CE5F7800BD3C51 /* AuthEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndPoint.swift; sourceTree = "<group>"; };
+		CD4C166723DDFF2100D0F641 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		CD4C166A23DE0D9400D0F641 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		CD4C166D23DE118A00D0F641 /* ImageLoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingService.swift; sourceTree = "<group>"; };
 		CD4F215223BA158D00EB1850 /* RequestToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToken.swift; sourceTree = "<group>"; };
 		CD4F215423BA3A3300EB1850 /* SessionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
 		CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRequestBody.swift; sourceTree = "<group>"; };
@@ -341,6 +347,22 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		CD4C166923DE0D8000D0F641 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				CD4C166A23DE0D9400D0F641 /* Functions.swift */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
+		CD4C166C23DE0F2500D0F641 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				CD4C166D23DE118A00D0F641 /* ImageLoadingService.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		CD53CDB623D6319900E16E2E /* ActivityView */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +390,7 @@
 		CD7E748823D8F5890097F198 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				CD4C166923DE0D8000D0F641 /* Functions */,
 				CD7E748923D8F5A60097F198 /* Extensions */,
 			);
 			path = Lib;
@@ -386,6 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				CD7E748223D8A0E20097F198 /* UIViewController+Extensions.swift */,
+				CD4C166723DDFF2100D0F641 /* UICollectionView+Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -468,6 +492,7 @@
 		CDB8790C23B8FF510099F946 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CD4C166C23DE0F2500D0F641 /* Image */,
 				CD0CDA9C23C6753D002EC487 /* Encoding */,
 				CD0CDA9D23C67549002EC487 /* EndPoint */,
 				CD0CDA9E23C67558002EC487 /* Manager */,
@@ -822,7 +847,9 @@
 				CD29430623C71087001D651A /* UserModel.swift in Sources */,
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
 				CD2A99E623CF352D00FDD0CB /* AccountEndPoint.swift in Sources */,
+				CD4C166B23DE0D9400D0F641 /* Functions.swift in Sources */,
 				CDB8792023B9020C0099F946 /* MainView.swift in Sources */,
+				CD4C166823DDFF2100D0F641 /* UICollectionView+Extensions.swift in Sources */,
 				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
 				CD85326323C90127005CD47B /* Headers.swift in Sources */,
 				CD7C524B23D10FF80081C915 /* TVSeasonEndPoint.swift in Sources */,
@@ -843,6 +870,7 @@
 				CD0CDAB123C67860002EC487 /* HTTPTask.swift in Sources */,
 				CD0CDA7923C3E797002EC487 /* Controller.swift in Sources */,
 				CD83A08E23DB6EE30070EE1C /* PopularMoviesModel.swift in Sources */,
+				CD4C166E23DE118A00D0F641 /* ImageLoadingService.swift in Sources */,
 				CD3B9A2323D1FC0600DA2F2C /* Optional+Extension.swift in Sources */,
 				CD0CDA7823C3E797002EC487 /* RootViewGettable.swift in Sources */,
 				CD161ADF23D0C843008F03B7 /* AuthRequestModel.swift in Sources */,

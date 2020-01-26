@@ -9,6 +9,8 @@
 import UIKit
 
 class MainCollectionViewCell: UICollectionViewCell {
+    
+    private let imageLoadingService: ImageLoadingService = ImageLoadingServiceImpl()
 
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var movieName: UILabel!
@@ -23,9 +25,16 @@ class MainCollectionViewCell: UICollectionViewCell {
         
     }
     
-    public func fill(with model: PopularMoviesModel) {
-        let movieResult = model.results[0]
-        self.movieName.text = movieResult.title ?? "some title"
+    public func fill(with model: MovieListResult?) {
+        self.imageLoadingService.loadImage(from: model?.posterPath) { [weak self] result in
+            switch result {
+            case .success(let image):
+                self?.movieImage.image = image
+            case .failure(let error):
+                print(error)
+            }
+        }
+        self.movieName.text = model?.title
     }
     
 }

@@ -55,4 +55,3 @@ struct MovieListResult: Codable {
         case voteAverage = "vote_average"
     }
 }
-

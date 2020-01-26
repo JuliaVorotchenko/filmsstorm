@@ -39,4 +39,3 @@ class NetworkManager {
         self.router.request(.movie(.getMoviePopular), completion: completion)
         }
     }
-

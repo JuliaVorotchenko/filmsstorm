@@ -36,7 +36,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     init(networking: NetworkManager, event: ((SessionIDEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
-        super.init(nibName: String(describing: type(of: self)), bundle: nil)
+        super.init(nibName: F.toString(type(of: self)), bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -47,7 +47,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.rootView?.collectionView.register(UINib(nibName: "MainCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MainCollectionViewCell")
+        self.rootView?.collectionView.register(MainCollectionViewCell.self)
         self.getPopularMovies()
         
     }
@@ -61,7 +61,6 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     // MARK: - Private Methods
     private func setCollectionViewDelegate() {
         self.rootView?.collectionView.dataSource = self
-        self.rootView?.collectionView.delegate = self
     }
     
     private func getPopularMovies() {
@@ -70,6 +69,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
             case .success(let model):
                 print("getpopularMainVC", model.results[0])
                 self?.movies = model
+                
                 self?.rootView?.collectionView.reloadData()
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
@@ -85,7 +85,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
             case .success(let usermodel):
                 UserDefaultsContainer.username = usermodel.username ?? ""
                 DispatchQueue.main.async {
-//                    self?.rootView?.fillLabel()
+
                 }
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
@@ -112,16 +112,16 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     }
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return self.movies?.results.count ?? 0
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell",
-                                                             for: indexPath) as? MainCollectionViewCell else {
-                                                                return UICollectionViewCell() }
+        let cell: MainCollectionViewCell = collectionView.dequeueReusableCell(MainCollectionViewCell.self, for: indexPath)
+        let model = self.movies?.results[indexPath.row]
+        cell.fill(with: model)
         return cell
     }
 
