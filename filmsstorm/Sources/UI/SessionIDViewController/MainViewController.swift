@@ -50,7 +50,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
         super.viewDidLoad()
         let screenSize = UIScreen.main.bounds
         
-        let screenWidth = self.view.bounds.width - 20 / 3
+        let screenWidth = self.view.bounds.width - 20 / 2
 
 
 
@@ -120,6 +120,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
         self.networking.logout(sessionID: sessionID) { [weak self] result in
             switch result {
             case .success:
+                UserDefaultsContainer.unregister()
                 self?.eventHandler?(.back)
                 self?.hideActivity()
             case .failure(let error):

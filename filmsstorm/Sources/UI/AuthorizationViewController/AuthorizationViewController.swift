@@ -42,6 +42,14 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - VC life cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.sessionIdCheker()
+    }
+
+    
     // MARK: - IBAction
    
     @IBAction func buttonTapped(_ sender: Any) {
@@ -93,6 +101,14 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
                 print(error.stringDescription)
                 self.eventHandler?(.error(.networkingError(error)))
             }
+            
+        }
+    }
+    
+    private func sessionIdCheker() {
+        if !UserDefaultsContainer.session.isEmpty {
+            self.eventHandler?(.login)
+        } else {
             
         }
     }
