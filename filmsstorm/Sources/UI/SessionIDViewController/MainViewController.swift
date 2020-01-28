@@ -118,29 +118,19 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.455),
                                               heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .flexible(0),
-                                                         top: .fixed(5),
-                                                         trailing: .flexible(16),
-                                                         bottom: nil)
-        let itemSize2 = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.455),
-                                              heightDimension: .fractionalHeight(1))
-        let item2 = NSCollectionLayoutItem(layoutSize: itemSize2)
-        item2.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil,
-                                                          top: .fixed(5),
-                                                          trailing: .flexible(0),
-                                                          bottom: nil)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                heightDimension: .fractionalHeight(0.48))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                         subitems: [item, item2])
-
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        let spacing = CGFloat(6)
+        group.interItemSpacing = .fixed(spacing)
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 10
-
+        section.interGroupSpacing = 0
+        section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 7, bottom: 0, trailing: 7)
         let layout = UICollectionViewCompositionalLayout(section: section)
-       self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
-
+        self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
+        
     }
 }
 
