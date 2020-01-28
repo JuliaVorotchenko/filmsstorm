@@ -115,19 +115,32 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     }
     
     private func setCollectionView() {
-        guard let colletionView = self.rootView?.collectionView else { return  }
-        let availableWidth = colletionView.bounds.inset(by: colletionView.layoutMargins).width
-        let availableHeight = colletionView.bounds.inset(by: colletionView.layoutMargins).height
-        let maxNumColumns = 2
-        let rowNum = 2.3
-        let cellWidth = ((availableWidth - CGFloat(30)) / CGFloat(maxNumColumns)).rounded(.down)
-        let cellHeight = ((availableHeight - CGFloat(5)) / CGFloat(rowNum)).rounded(.down)
-        let itemSize = CGSize(width: cellWidth, height: cellHeight)
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = itemSize
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 12, bottom: 0.0, right: 12)
-        layout.sectionInsetReference = .fromSafeArea
-        self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.455),
+                                              heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .flexible(0),
+                                                         top: .fixed(5),
+                                                         trailing: .flexible(16),
+                                                         bottom: nil)
+        let itemSize2 = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.455),
+                                              heightDimension: .fractionalHeight(1))
+        let item2 = NSCollectionLayoutItem(layoutSize: itemSize2)
+        item2.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil,
+                                                          top: .fixed(5),
+                                                          trailing: .flexible(0),
+                                                          bottom: nil)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .fractionalHeight(0.48))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                         subitems: [item, item2])
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+
+        let layout = UICollectionViewCompositionalLayout(section: section)
+       self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
+
     }
 }
 

@@ -22,4 +22,3 @@ extension UICollectionView {
         return cast
     }
 }
-

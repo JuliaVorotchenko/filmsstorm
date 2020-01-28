@@ -23,7 +23,7 @@
                         <color key="textColor" red="0.1764705882" green="0.12941176469999999" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RhY-Gb-pJg">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RhY-Gb-pJg">
                         <rect key="frame" x="0.0" y="1.5" width="185" height="156.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.90231592949999995" green="1" blue="0.49127406029999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -46,7 +46,7 @@
                 <outlet property="movieImage" destination="RhY-Gb-pJg" id="sAl-GO-pk2"/>
                 <outlet property="movieName" destination="MzV-fy-ZeR" id="124-Jm-gUK"/>
             </connections>
-            <point key="canvasLocation" x="-638.40579710144937" y="-20.758928571428569"/>
+            <point key="canvasLocation" x="-643" y="15"/>
         </collectionViewCell>
     </objects>
     <resources>

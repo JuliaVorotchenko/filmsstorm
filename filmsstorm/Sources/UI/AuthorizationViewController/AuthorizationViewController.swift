@@ -49,7 +49,6 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
         self.sessionIdCheker()
     }
 
-    
     // MARK: - IBAction
    
     @IBAction func buttonTapped(_ sender: Any) {
