@@ -32,6 +32,10 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     
     // MARK: - Init and deinit
     
+    deinit {
+        print(F.toString(Self.self))
+    }
+    
     init(networking: NetworkManager, event: ((AuthEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event

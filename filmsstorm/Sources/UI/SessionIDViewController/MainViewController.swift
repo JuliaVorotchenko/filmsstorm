@@ -15,22 +15,31 @@ enum SessionIDEvent: EventProtocol {
 }
 
 class MainViewController: UIViewController, Controller, ActivityViewPresenter {
-
+    
     // MARK: - Subtypes
     
     typealias Event = SessionIDEvent
     typealias RootViewType = MainView
     
+    enum Section: CaseIterable {
+        case  main
+    }
+    
+    // MARK: - Public Properties
+    
+    let eventHandler: ((SessionIDEvent) -> Void)?
+    let loadingView = ActivityView()
+    
     // MARK: - Private properties
     
     private let networking: NetworkManager
-    let eventHandler: ((SessionIDEvent) -> Void)?
-    let loadingView = ActivityView()
-    var movies: PopularMoviesModel?
+    private var sections = [MovieListResult]()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, MovieListResult>?
     
     // MARK: - Init and deinit
     
     deinit {
+        print(F.toString(Self.self))
     }
     
     init(networking: NetworkManager, event: ((SessionIDEvent) -> Void)?) {
@@ -44,35 +53,32 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     }
     
     // MARK: - Life cycle
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.setCollectionView()
         self.rootView?.collectionView.register(MainCollectionViewCell.self)
         self.getPopularMovies()
-        
+        self.createDataSource()
     }
     
     // MARK: - IBActions
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
-           self.logout()
-       }
+        self.logout()
+    }
     
     // MARK: - Private Methods
-    private func setCollectionViewDelegate() {
-        self.rootView?.collectionView.dataSource = self
-    }
     
     private func getPopularMovies() {
         self.networking.getPopularMovies { [weak self] result in
             switch result {
             case .success(let model):
                 print("getpopularMainVC", model.results[0])
-                self?.movies = model
+                self?.sections = model.results
+                self?.createDataSource()
                 
-                self?.rootView?.collectionView.reloadData()
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
                 print(error.stringDescription)
@@ -87,7 +93,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
             case .success(let usermodel):
                 UserDefaultsContainer.username = usermodel.username ?? ""
                 DispatchQueue.main.async {
-
+                    
                 }
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
@@ -124,27 +130,35 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
         let spacing = CGFloat(6)
         group.interItemSpacing = .fixed(spacing)
+        
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 10
         section.interGroupSpacing = 0
         section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 7, bottom: 0, trailing: 7)
+        
         let layout = UICollectionViewCompositionalLayout(section: section)
         self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
-        
     }
-}
-
-extension MainViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.movies?.results.count ?? 0
+    
+    // MARK: - set diffableDatasource
+    
+    func createDataSource() {
+        
+        guard let collectionView = self.rootView?.collectionView else { return }
+        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collection, indexPath, item -> UICollectionViewCell? in
+            let cell: MainCollectionViewCell = collection.dequeueReusableCell(MainCollectionViewCell.self, for: indexPath)
+            cell.fill(with: item)
+            return cell
+        }
+        let snapshot = self.createSnapshot()
+        self.dataSource?.apply(snapshot)
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: MainCollectionViewCell = collectionView.dequeueReusableCell(MainCollectionViewCell.self, for: indexPath)
-        let model = self.movies?.results[indexPath.row]
-        cell.fill(with: model)
-        return cell
+    func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, MovieListResult> {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, MovieListResult>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(self.sections)
+        return snapshot
     }
-
 }

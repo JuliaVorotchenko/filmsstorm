@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PopularMoviesModel: Codable {
+struct PopularMoviesModel: Codable, Hashable {
     let page: Int
     let results: [MovieListResult]
     let totalResults: Int
@@ -22,7 +22,7 @@ struct PopularMoviesModel: Codable {
     }
 }
 
-struct MovieListResult: Codable {
+struct MovieListResult: Codable, Hashable {
     let posterPath: String?
     let adult: Bool?
     let overview: String?
