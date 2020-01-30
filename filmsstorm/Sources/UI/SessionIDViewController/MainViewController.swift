@@ -126,7 +126,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .fractionalHeight(0.48))
+                                               heightDimension: .fractionalHeight(0.495))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
         let spacing = CGFloat(6)
         group.interItemSpacing = .fixed(spacing)

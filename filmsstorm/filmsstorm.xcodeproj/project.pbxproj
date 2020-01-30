@@ -49,6 +49,7 @@
 		CD4F215323BA158D00EB1850 /* RequestToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215223BA158D00EB1850 /* RequestToken.swift */; };
 		CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215423BA3A3300EB1850 /* SessionID.swift */; };
 		CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */; };
+		CD536EF323E2E639000FEE79 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD536EF223E2E639000FEE79 /* UIImageView+Extensions.swift */; };
 		CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD53CDB723D631C000E16E2E /* ActivityView.swift */; };
 		CD5E2A1C23BE591600439953 /* UseDefaultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E2A1B23BE591600439953 /* UseDefaultsContainer.swift */; };
 		CD7C524723D10C530081C915 /* SearchEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C524623D10C530081C915 /* SearchEndpoint.swift */; };
@@ -144,6 +145,7 @@
 		CD4F215223BA158D00EB1850 /* RequestToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToken.swift; sourceTree = "<group>"; };
 		CD4F215423BA3A3300EB1850 /* SessionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
 		CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRequestBody.swift; sourceTree = "<group>"; };
+		CD536EF223E2E639000FEE79 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		CD53CDB723D631C000E16E2E /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		CD5E2A1B23BE591600439953 /* UseDefaultsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseDefaultsContainer.swift; sourceTree = "<group>"; };
 		CD7C524623D10C530081C915 /* SearchEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEndpoint.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 			children = (
 				CD7E748223D8A0E20097F198 /* UIViewController+Extensions.swift */,
 				CD4C166723DDFF2100D0F641 /* UICollectionView+Extensions.swift */,
+				CD536EF223E2E639000FEE79 /* UIImageView+Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -846,6 +849,7 @@
 				CD85326523CBAE96005CD47B /* FavouriteMovieMarkBody.swift in Sources */,
 				CD29430623C71087001D651A /* UserModel.swift in Sources */,
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
+				CD536EF323E2E639000FEE79 /* UIImageView+Extensions.swift in Sources */,
 				CD2A99E623CF352D00FDD0CB /* AccountEndPoint.swift in Sources */,
 				CD4C166B23DE0D9400D0F641 /* Functions.swift in Sources */,
 				CDB8792023B9020C0099F946 /* MainView.swift in Sources */,
