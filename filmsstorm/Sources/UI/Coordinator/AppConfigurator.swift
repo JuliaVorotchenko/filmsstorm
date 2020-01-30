@@ -25,7 +25,12 @@ final class AppConfigurator {
         let navigationController = UINavigationController()
         window.rootViewController = navigationController
         navigationController.navigationBar.isHidden = true
-        self.coordinator = AppCoordinator(navigationController: navigationController)
+        if !UserDefaultsContainer.session.isEmpty {
+          self.coordinator = MainCoordinator(navigationController: navigationController)
+        } else {
+            self.coordinator = LoginFlowCoordinator(navigationController: navigationController)
+        
+        }
         self.coordinator?.start()
         window.makeKeyAndVisible()
     }

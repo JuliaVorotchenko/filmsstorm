@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppCoordinator: Coordinator {
+class LoginFlowCoordinator: Coordinator {
     
     // MARK: - Properties
     

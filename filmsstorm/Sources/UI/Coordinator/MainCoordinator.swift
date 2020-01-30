@@ -26,8 +26,22 @@ class MainCoordinator: Coordinator {
      // MARK: - Coordinator
      
      func start() {
-         self.createAuthController()
+         self.createSessionIDViewController()
      }
-     
+     private func createSessionIDViewController() {
+            let controller = SessionIDViewController(networking: self.networking, event: self.sessionEvent)
+            self.navigationController.viewControllers = [controller]
+        }
+        
+        private func sessionEvent(_ event: SessionIDEvent) {
+            switch event {
+            case .back:
+                self.navigationController.popViewController(animated: true)
+            case .showSessionId:
+                print("Session ID")
+            case .error(let errorMessage):
+                self.showAppErrorAlert(with: errorMessage)
+            }
+        }
     
 }

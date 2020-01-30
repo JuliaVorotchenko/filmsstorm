@@ -55,6 +55,7 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
     // MARK: - IBActions
     
     @IBAction func backButtonTaapped(_ sender: Any) {
+        UserDefaultsContainer.unregister()
         self.logout()
     }
     @IBAction func getUserButton(_ sender: Any) {
@@ -85,6 +86,8 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
         self.networking.logout(sessionID: sessionID) { [weak self] result in
             switch result {
             case .success:
+                print("ok")
+                UserDefaultsContainer.unregister()
                 self?.eventHandler?(.back)
                 self?.hideActivity()
             case .failure(let error):
