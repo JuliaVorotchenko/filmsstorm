@@ -66,6 +66,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     // MARK: - IBActions
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
+        UserDefaultsContainer.unregister()
         self.logout()
     }
     
@@ -108,7 +109,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
         self.networking.logout(sessionID: sessionID) { [weak self] result in
             switch result {
             case .success:
-                UserDefaultsContainer.unregister()
+                //UserDefaultsContainer.unregister()
                 self?.eventHandler?(.back)
                 self?.hideActivity()
             case .failure(let error):

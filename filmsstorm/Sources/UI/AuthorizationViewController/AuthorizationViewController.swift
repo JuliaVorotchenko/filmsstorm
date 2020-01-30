@@ -111,8 +111,6 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     private func sessionIdCheker() {
         if !UserDefaultsContainer.session.isEmpty {
             self.eventHandler?(.login)
-        } else {
-            
         }
     }
 }
