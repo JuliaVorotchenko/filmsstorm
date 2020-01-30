@@ -46,6 +46,8 @@
 		CD4F215323BA158D00EB1850 /* RequestToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215223BA158D00EB1850 /* RequestToken.swift */; };
 		CD4F215523BA3A3300EB1850 /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215423BA3A3300EB1850 /* SessionID.swift */; };
 		CD4F215723BAA55C00EB1850 /* SessionRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */; };
+		CD536EF523E36014000FEE79 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD536EF423E36014000FEE79 /* LoginCoordinator.swift */; };
+		CD536EF723E36034000FEE79 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD536EF623E36034000FEE79 /* MainCoordinator.swift */; };
 		CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD53CDB723D631C000E16E2E /* ActivityView.swift */; };
 		CD5E2A1C23BE591600439953 /* UseDefaultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E2A1B23BE591600439953 /* UseDefaultsContainer.swift */; };
 		CD7C524723D10C530081C915 /* SearchEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C524623D10C530081C915 /* SearchEndpoint.swift */; };
@@ -135,6 +137,8 @@
 		CD4F215223BA158D00EB1850 /* RequestToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestToken.swift; sourceTree = "<group>"; };
 		CD4F215423BA3A3300EB1850 /* SessionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
 		CD4F215623BAA55C00EB1850 /* SessionRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRequestBody.swift; sourceTree = "<group>"; };
+		CD536EF423E36014000FEE79 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		CD536EF623E36034000FEE79 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		CD53CDB723D631C000E16E2E /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		CD5E2A1B23BE591600439953 /* UseDefaultsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseDefaultsContainer.swift; sourceTree = "<group>"; };
 		CD7C524623D10C530081C915 /* SearchEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEndpoint.swift; sourceTree = "<group>"; };
@@ -459,6 +463,8 @@
 			children = (
 				CDB8792123B909040099F946 /* AppConfigurator.swift */,
 				CDB8792323B93C240099F946 /* AppCoordinator.swift */,
+				CD536EF423E36014000FEE79 /* LoginCoordinator.swift */,
+				CD536EF623E36034000FEE79 /* MainCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -806,7 +812,9 @@
 				CD0CDAA923C67768002EC487 /* APIEndPoint.swift in Sources */,
 				CD5E2A1C23BE591600439953 /* UseDefaultsContainer.swift in Sources */,
 				CD0CDAB123C67860002EC487 /* HTTPTask.swift in Sources */,
+				CD536EF723E36034000FEE79 /* MainCoordinator.swift in Sources */,
 				CD0CDA7923C3E797002EC487 /* Controller.swift in Sources */,
+				CD536EF523E36014000FEE79 /* LoginCoordinator.swift in Sources */,
 				CD3B9A2323D1FC0600DA2F2C /* Optional+Extension.swift in Sources */,
 				CD0CDA7823C3E797002EC487 /* RootViewGettable.swift in Sources */,
 				CD161ADF23D0C843008F03B7 /* AuthRequestModel.swift in Sources */,
