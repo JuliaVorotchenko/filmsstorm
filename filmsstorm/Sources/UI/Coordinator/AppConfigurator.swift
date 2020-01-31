@@ -12,6 +12,7 @@ final class AppConfigurator {
     // MARK: - Private properties
 
     private var coordinator: Coordinator?
+    private let navigationController = UINavigationController()
     
     // MARK: - Init
 
@@ -25,12 +26,7 @@ final class AppConfigurator {
         let navigationController = UINavigationController()
         window.rootViewController = navigationController
         navigationController.navigationBar.isHidden = true
-        if !UserDefaultsContainer.session.isEmpty {
-          self.coordinator = MainCoordinator(navigationController: navigationController)
-        } else {
-            self.coordinator = LoginFlowCoordinator(navigationController: navigationController)
-        
-        }
+        self.coordinator = AppCoordinator(navigationController: navigationController)
         self.coordinator?.start()
         window.makeKeyAndVisible()
     }
