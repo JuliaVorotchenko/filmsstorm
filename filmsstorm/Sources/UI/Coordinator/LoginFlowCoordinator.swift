@@ -11,15 +11,16 @@ import UIKit
 class LoginFlowCoordinator: Coordinator {
     
     // MARK: - Properties
-    
+    var eventHandler: ((AppCoordinatorEvent) -> Void)?
     var childCoordinators = [Coordinator]()
     let navigationController: UINavigationController
     private let networking = NetworkManager()
     
     // MARK: - Init and deinit
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, eventHandler: ((AppCoordinatorEvent) -> Void)?) {
         self.navigationController = navigationController
+        self.eventHandler = eventHandler
     }
     
     // MARK: - Coordinator
@@ -34,26 +35,11 @@ class LoginFlowCoordinator: Coordinator {
         let controller = AuthorizationViewController(networking: self.networking, event: self.authEvent)
         self.navigationController.viewControllers = [controller]
     }
+    
     private func authEvent(_ event: AuthEvent) {
         switch event {
         case .login:
-            self.createSessionIDViewController()
-        case .error(let errorMessage):
-            self.showAppErrorAlert(with: errorMessage)
-        }
-    }
-    
-    private func createSessionIDViewController() {
-        let controller = SessionIDViewController(networking: self.networking, event: self.sessionEvent)
-        self.navigationController.viewControllers = [controller]
-    }
-    
-    private func sessionEvent(_ event: SessionIDEvent) {
-        switch event {
-        case .back:
-            self.createAuthController()
-        case .showSessionId:
-            print("Session ID")
+            self.eventHandler?(.main)
         case .error(let errorMessage):
             self.showAppErrorAlert(with: errorMessage)
         }
