@@ -27,7 +27,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     // MARK: - Properties
     
     private let networking: NetworkManager
-    let eventHandler: ((Event) -> Void)?
+    let eventHandler: ((AuthEvent) -> Void)?
     let loadingView: ActivityView = .init()
     
     // MARK: - Init and deinit

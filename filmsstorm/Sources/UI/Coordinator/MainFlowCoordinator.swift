@@ -12,14 +12,14 @@ import UIKit
 class MainFlowCoordinator: Coordinator {
     
     // MARK: - Properties
-    var eventHandler:  ((AppCoordinatorEvent) -> Void)?
+    var eventHandler:  ((AppConfiguratorEvent) -> Void)?
     var childCoordinators = [Coordinator]()
     let navigationController: UINavigationController
     private let networking = NetworkManager()
     
     // MARK: - Init and deinit
     
-    init(navigationController: UINavigationController, eventHandler: ((AppCoordinatorEvent) -> Void)?) {
+    init(navigationController: UINavigationController, eventHandler: ((AppConfiguratorEvent) -> Void)?) {
         self.navigationController = navigationController
         self.eventHandler = eventHandler
     }
@@ -37,7 +37,7 @@ class MainFlowCoordinator: Coordinator {
     private func sessionEvent(_ event: SessionIDEvent) {
         switch event {
         case .back:
-            self.eventHandler?(.login)
+            self.eventHandler?(.authorizationFlow)
         case .showSessionId:
             print("Session ID")
         case .error(let errorMessage):

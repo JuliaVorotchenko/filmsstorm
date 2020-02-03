@@ -7,65 +7,65 @@
 //
 
 import UIKit
+//
+//enum AppCoordinatorEvent {
+//    case login
+//    case main
+//}
 
-enum AppCoordinatorEvent {
-    case login
-    case main
-}
-
-class AppCoordinator: Coordinator {
-    
-    // MARK: - Properties
-    
-    var childCoordinators = [Coordinator]()
-    let navigationController: UINavigationController
-    private let networking = NetworkManager()
-    var tabBar: UITabBarController?
-    
-    // MARK: - Init and deinit
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-    
-    // MARK: - Coordinator
-    
-    func start() {
-        
-        
-        
-        if UserDefaultsContainer.session.isEmpty {
-            let coordinator = LoginFlowCoordinator(navigationController: self.navigationController, eventHandler: appEvent(_:))
-            self.addCoordinator(coordinator)
-            coordinator.start()
-        } else {
-            createTabBarCoordinator()
-        }
-    }
-    
-    private func createLoginCoordinator() {
-        let coordinator = LoginFlowCoordinator(navigationController: self.navigationController, eventHandler: appEvent(_:))
-        self.addCoordinator(coordinator)
-        coordinator.start()
-    }
-    
-    private func appEvent(_ event: AppCoordinatorEvent) -> Void {
-        switch event {
-        case .login: createLoginCoordinator()
-        case .main: createTabBarCoordinator()
-        }
-    }
-    
-    private func createTabBarCoordinator() {
-        let coordinator = TabBarCoordinator(navigationController: self.navigationController, eventHandler: appEvent(_:))
-        self.addCoordinator(coordinator)
-        coordinator.start()
-    }
-}
+//class AppCoordinator: Coordinator {
+//    
+//    // MARK: - Properties
+//    
+//    var childCoordinators = [Coordinator]()
+//    let navigationController: UINavigationController
+//    private let networking = NetworkManager()
+//    var tabBar: UITabBarController?
+//    
+//    // MARK: - Init and deinit
+//    
+//    init(navigationController: UINavigationController) {
+//        self.navigationController = navigationController
+//    }
+//    
+//    // MARK: - Coordinator
+//    
+//    func start() {
+//        
+//        
+//        
+//        if UserDefaultsContainer.session.isEmpty {
+//            let coordinator = LoginFlowCoordinator(navigationController: self.navigationController, eventHandler: appEvent(_:))
+//            self.addCoordinator(coordinator)
+//            coordinator.start()
+//        } else {
+//            createTabBarCoordinator()
+//        }
+//    }
+//    
+////    private func createLoginCoordinator() {
+////        let coordinator = LoginFlowCoordinator(navigationController: self.navigationController, eventHandler: appEvent(_:))
+////        self.addCoordinator(coordinator)
+////        coordinator.start()
+////    }
+////    
+////    private func appEvent(_ event: AppCoordinatorEvent) -> Void {
+////        switch event {
+////        case .login: createLoginCoordinator()
+////        case .main: createTabBarCoordinator()
+////        }
+////    }
+////    
+////    private func createTabBarCoordinator() {
+////        let coordinator = TabBarCoordinator(navigationController: self.navigationController, eventHandler: appEvent(_:))
+////        self.addCoordinator(coordinator)
+////        coordinator.start()
+////    }
+//}
 
 class TabBarCoordinator: Coordinator {
     
-    var eventHandler: ((AppCoordinatorEvent) -> Void)?
+    var eventHandler: ((AppConfiguratorEvent) -> Void)?
     var childCoordinators = [Coordinator]()
     let navigationController: UINavigationController
     private let networking = NetworkManager()
@@ -73,7 +73,7 @@ class TabBarCoordinator: Coordinator {
     
     // MARK: - Init and deinit
     
-    init(navigationController: UINavigationController, eventHandler: ((AppCoordinatorEvent) -> Void)?) {
+    init(navigationController: UINavigationController, eventHandler: ((AppConfiguratorEvent) -> Void)?) {
         self.navigationController = navigationController
         self.eventHandler = eventHandler
     }
