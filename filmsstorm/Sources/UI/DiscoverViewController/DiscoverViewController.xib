@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DiscoverViewController" customModule="filmsstorm" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="DiscoverView" customModule="filmsstorm" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65H-QM-RaU">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <color key="backgroundColor" red="0.87843137250000003" green="0.92549019610000005" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="tintColor" red="0.33725490200000002" green="0.30196078430000001" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="barTintColor" red="0.87843137250000003" green="0.92549019610000005" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" red="0.33725490200000002" green="0.30196078430000001" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </textAttributes>
+                    <textAttributes key="largeTitleTextAttributes">
+                        <color key="textColor" red="0.33725490200000002" green="0.30196078430000001" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="Main" id="fOH-Sl-kmi">
+                            <barButtonItem key="leftBarButtonItem" title="Logout" id="le9-1n-FJE" userLabel="Logout">
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="-1" id="YRL-l6-qfP"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" title="Item" image="magnifyingglass" catalog="system" id="lK6-Bt-Hqn"/>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="P9P-Nl-yw5">
+                    <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                    <color key="backgroundColor" red="0.8784313725490196" green="0.92549019607843142" blue="0.67450980392156867" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TFU-qg-V5M">
+                        <size key="itemSize" width="130" height="220"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="12" minY="10" maxX="12" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="SSg-W0-2x1"/>
+                        <outlet property="delegate" destination="-1" id="AWa-YO-eVd"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+            <constraints>
+                <constraint firstItem="P9P-Nl-yw5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8Z5-8k-iCi"/>
+                <constraint firstItem="65H-QM-RaU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Esz-FA-0Nr"/>
+                <constraint firstItem="65H-QM-RaU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Rt1-Qd-gyc"/>
+                <constraint firstItem="P9P-Nl-yw5" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="nuJ-wQ-Dvo"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="P9P-Nl-yw5" secondAttribute="bottom" id="pqL-re-zzL"/>
+                <constraint firstItem="65H-QM-RaU" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="v1E-0e-j11"/>
+                <constraint firstItem="P9P-Nl-yw5" firstAttribute="top" secondItem="65H-QM-RaU" secondAttribute="bottom" symbolic="YES" id="xhJ-Kr-5S7"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <connections>
+                <outlet property="collectionView" destination="P9P-Nl-yw5" id="phd-dA-IXR"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="114.50892857142857"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="64" height="56"/>
+    </resources>
+</document>

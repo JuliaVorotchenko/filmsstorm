@@ -19,13 +19,17 @@ class MainFlowCoordinator: Coordinator {
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
-    
+
+    deinit {
+        print(Self.self)
+    }
+
     init(networking: NetworkManager,
-         navigationController: UINavigationController,
          eventHandler: ((AppEvent) -> Void)?) {
         self.networking = networking
-        self.navigationController = navigationController
         self.eventHandler = eventHandler
+        self.navigationController = UINavigationController()
+        self.navigationController.navigationBar.isHidden = true
     }
     
     // MARK: - Coordinator
@@ -34,11 +38,11 @@ class MainFlowCoordinator: Coordinator {
         self.createSessionIDViewController()
     }
     private func createSessionIDViewController() {
-        let controller = SessionIDViewController(networking: self.networking, event: self.sessionEvent)
+        let controller = DiscoverViewController(networking: self.networking, event: self.sessionEvent)
         self.navigationController.viewControllers = [controller]
     }
     
-    private func sessionEvent(_ event: SessionIDEvent) {
+    private func sessionEvent(_ event: DiscoverEvent) {
         switch event {
         case .logout:
             self.eventHandler?(.authorizationFlow)

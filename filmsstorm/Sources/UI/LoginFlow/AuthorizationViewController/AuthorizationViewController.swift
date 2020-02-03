@@ -16,8 +16,7 @@ enum AuthEvent: EventProtocol {
 class AuthorizationViewController: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
-    
-    typealias Event = AuthEvent
+
     typealias RootViewType = AuthorizationView
     
     // MARK: - Properties
@@ -28,6 +27,10 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     
     // MARK: - Init and deinit
     
+    deinit {
+        print(F.toString(Self.self))
+    }
+    
     init(networking: NetworkManager, event: ((AuthEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
@@ -37,13 +40,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Life cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+
     // MARK: - IBAction
    
     @IBAction func buttonTapped(_ sender: Any) {
@@ -92,10 +89,8 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
                 self.eventHandler?(.login)
             case .failure(let error):
                 self.hideActivity()
-                print(error.stringDescription)
                 self.eventHandler?(.error(.networkingError(error)))
             }
-            
         }
     }
 }

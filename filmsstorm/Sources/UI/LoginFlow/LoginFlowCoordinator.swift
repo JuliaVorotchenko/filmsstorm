@@ -18,6 +18,9 @@ class LoginFlowCoordinator: Coordinator {
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
+    deinit {
+        print(Self.self)
+    }
     
     init(networking: NetworkManager,
          eventHandler: ((AppEvent) -> Void)?) {

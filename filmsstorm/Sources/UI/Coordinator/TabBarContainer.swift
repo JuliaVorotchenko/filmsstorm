@@ -18,6 +18,9 @@ class TabBarContainer: AppEventSource {
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
+    deinit {
+        print(TabBarContainer.self)
+    }
 
     init(networking: NetworkManager, eventHandler: ((AppEvent) -> Void)?) {
         self.networking = networking
@@ -31,20 +34,17 @@ class TabBarContainer: AppEventSource {
     }
     
     private func createTabBar() {
-        self.createMainFlow()
+        self.createMainFlowCoordinator()
 
         let controllers = self.childCoordinators.compactMap { $0.navigationController }
         self.tabBarController.setViewControllers(controllers, animated: true)
     }
 
-    private func createMainFlow() {
+    private func createMainFlowCoordinator() {
 
-        let mainNavigation = UINavigationController()
-        mainNavigation.navigationBar.isHidden = true
-        let main = MainFlowCoordinator(networking: self.networking,
-                                       navigationController: mainNavigation,
+        let coordinator = MainFlowCoordinator(networking: self.networking,
                                        eventHandler: self.eventHandler)
-        self.childCoordinators.append(main)
-        main.start()
+        self.childCoordinators.append(coordinator)
+        coordinator.start()
     }
 }

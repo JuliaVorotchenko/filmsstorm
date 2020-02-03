@@ -69,6 +69,7 @@ class UserDefaultsContainer {
     static func unregister() {
         self.session = ""
         self.token = ""
+        self.username = ""
     }
     
 }

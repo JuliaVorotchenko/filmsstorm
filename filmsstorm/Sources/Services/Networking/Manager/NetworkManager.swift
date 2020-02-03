@@ -33,6 +33,9 @@ class NetworkManager {
     
     func getUserDetails(sessionID: String, completion: @escaping (Result<UserModel, NetworkError>) -> Void) {
         self.router.request(.account(.getAccountDetails(sessionID: sessionID)), completion: completion)
-        
     }
-}
+    
+    func getPopularMovies(completion: @escaping (Result<PopularMoviesModel, NetworkError>) -> Void) {
+        self.router.request(.movie(.getMoviePopular), completion: completion)
+        }
+    }
