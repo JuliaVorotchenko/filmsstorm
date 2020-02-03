@@ -27,7 +27,7 @@ import UIKit
  Coordinator CAN NOT:
  - Save any controller as property;
  */
-protocol Coordinator: AnyObject, AppErrorPresentable {
+protocol Coordinator: AnyObject, AppEventSource {
     var childCoordinators: [Coordinator] { get set }
     var navigationController: UINavigationController { get }
     func start()

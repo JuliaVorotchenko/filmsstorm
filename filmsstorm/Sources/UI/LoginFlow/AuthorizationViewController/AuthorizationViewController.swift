@@ -12,11 +12,7 @@ enum AuthEvent: EventProtocol {
     case login
     case error(AppError)
 }
-/*
- 1. Get request token with APIkey
- 2. Validate request token with password and username
- 3. Get sessionID
- */
+
 class AuthorizationViewController: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes

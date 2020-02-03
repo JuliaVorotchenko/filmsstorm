@@ -11,16 +11,19 @@ import UIKit
 class LoginFlowCoordinator: Coordinator {
     
     // MARK: - Properties
-    var eventHandler: ((AppConfiguratorEvent) -> Void)?
+
     var childCoordinators = [Coordinator]()
-    let navigationController: UINavigationController
-    private let networking = NetworkManager()
+    let eventHandler: ((AppEvent) -> Void)?
+    let navigationController = UINavigationController()
+    private let networking: NetworkManager
     
     // MARK: - Init and deinit
     
-    init(navigationController: UINavigationController, eventHandler: ((AppConfiguratorEvent) -> Void)?) {
-        self.navigationController = navigationController
+    init(networking: NetworkManager,
+         eventHandler: ((AppEvent) -> Void)?) {
+        self.networking = networking
         self.eventHandler = eventHandler
+        self.navigationController.navigationBar.isHidden = true
     }
     
     // MARK: - Coordinator
@@ -41,7 +44,7 @@ class LoginFlowCoordinator: Coordinator {
         case .login:
             self.eventHandler?(.mainFlow)
         case .error(let errorMessage):
-            self.showAppErrorAlert(with: errorMessage)
+            self.eventHandler?(.appError(errorMessage))
         }
     }
 }

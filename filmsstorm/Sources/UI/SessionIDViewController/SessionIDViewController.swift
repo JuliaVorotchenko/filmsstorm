@@ -9,16 +9,14 @@
 import UIKit
 
 enum SessionIDEvent: EventProtocol {
-    case back
-    case showSessionId
+    case logout
     case error(AppError)
 }
 
 class SessionIDViewController: UIViewController, Controller, ActivityViewPresenter {
 
     // MARK: - Subtypes
-    
-    typealias Event = SessionIDEvent
+
     typealias RootViewType = SessionIDView
     
     // MARK: - temporary values
@@ -46,12 +44,6 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Life cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     // MARK: - IBActions
     
     @IBAction func backButtonTaapped(_ sender: Any) {
@@ -59,7 +51,7 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
         self.logout()
     }
     @IBAction func getUserButton(_ sender: Any) {
-        getUserDetails()
+        self.getUserDetails()
     }
     
     // MARK: - Private Methods
@@ -86,12 +78,10 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
         self.networking.logout(sessionID: sessionID) { [weak self] result in
             switch result {
             case .success:
-                print("ok")
                 UserDefaultsContainer.unregister()
-                self?.eventHandler?(.back)
+                self?.eventHandler?(.logout)
                 self?.hideActivity()
             case .failure(let error):
-                print(error.stringDescription)
                 self?.hideActivity()
                 self?.eventHandler?(.error(.networkingError(error)))
                 
