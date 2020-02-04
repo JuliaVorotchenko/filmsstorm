@@ -20,6 +20,8 @@ final class AppConfigurator {
 
     private let window: UIWindow
     private let networking = NetworkManager()
+    private let loginNavigation = UINavigationController()
+    private var tabBarContainer: TabBarContainer?
     
     // MARK: - Init
     
@@ -42,17 +44,22 @@ final class AppConfigurator {
     }
     
     private func createLoginCoordinator() {
-        let coordinator = LoginFlowCoordinator(networking: self.networking,
+        self.tabBarContainer = nil
+        let coordinator = LoginFlowCoordinator(navigationController: self.loginNavigation,
+                                               networking: self.networking,
                                                eventHandler: self.appEvent)
+        
         self.window.rootViewController = coordinator.navigationController
         coordinator.start()
     }
     
     private func createTabBarCoordinator() {
-        let coordinator = TabBarContainer(networking: self.networking,
-                                          eventHandler: self.appEvent)
-        self.window.rootViewController = coordinator.tabBarController
-        coordinator.start()
+        self.loginNavigation.viewControllers = []
+        let container = TabBarContainer(networking: self.networking,
+                                        eventHandler: self.appEvent)
+        self.tabBarContainer = container
+        self.window.rootViewController = container.tabBarControllers
+        
     }
 
     private func appEvent(_ event: AppEvent) {

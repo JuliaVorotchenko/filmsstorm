@@ -37,6 +37,7 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
     // MARK: - Init and deinit
     
     deinit {
+        self.hideActivity()
         print(F.toString(Self.self))
     }
     
@@ -53,7 +54,6 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
     // MARK: - Life cycle
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         self.setCollectionView()
         self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
@@ -64,7 +64,6 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
     // MARK: - IBActions
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
-        UserDefaultsContainer.unregister()
         self.logout()
     }
     
@@ -74,29 +73,10 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
         self.networking.getPopularMovies { [weak self] result in
             switch result {
             case .success(let model):
-                print("getpopularMainVC", model.results[0])
                 self?.sections = model.results
                 self?.createDataSource()
-                
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
-                print(error.stringDescription)
-            }
-        }
-    }
-    
-    private func getUserDetails() {
-        let sessionID = UserDefaultsContainer.session
-        self.networking.getUserDetails(sessionID: sessionID) { [weak self] result in
-            switch result {
-            case .success(let usermodel):
-                UserDefaultsContainer.username = usermodel.username ?? ""
-                DispatchQueue.main.async {
-                    
-                }
-            case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
-                print(error.stringDescription)
             }
         }
     }

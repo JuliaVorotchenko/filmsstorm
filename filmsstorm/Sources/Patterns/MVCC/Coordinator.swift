@@ -32,14 +32,3 @@ protocol Coordinator: AnyObject, AppEventSource {
     var navigationController: UINavigationController { get }
     func start()
 }
-
-extension Coordinator {
-    func addCoordinator(_ childCoordinator: Coordinator) {
-        self.childCoordinators.append(childCoordinator)
-    }
-    
-    func removeCoordinator(_ childCoordinator: Coordinator) {
-        self.childCoordinators = self.childCoordinators.filter { $0 !== childCoordinator }
-    }
-
-}

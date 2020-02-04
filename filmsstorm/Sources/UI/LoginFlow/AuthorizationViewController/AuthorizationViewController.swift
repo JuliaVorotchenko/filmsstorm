@@ -28,6 +28,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     // MARK: - Init and deinit
     
     deinit {
+        self.hideActivity()
         print(F.toString(Self.self))
     }
     
@@ -52,14 +53,13 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     private func getToken() {
         
         self.showActivity()
-        self.networking.getToken { (result) in
+        self.networking.getToken { [weak self] (result) in
             switch result {
             case .success(let token):
-                self.validateToken(token: token.requestToken)
+                self?.validateToken(token: token.requestToken)
             case .failure(let error):
-                print(error.stringDescription)
-                self.hideActivity()
-                self.eventHandler?(.error(.networkingError(error)))
+                self?.hideActivity()
+                self?.eventHandler?(.error(.networkingError(error)))
             }
         }
     }
@@ -68,28 +68,28 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
         guard let username = self.rootView?.usernameTextField.text,
             let password = self.rootView?.passwordTextField.text else { return }
         let model = AuthRequestModel(username: username, password: password, requestToken: token)
-        self.networking.validateToken(with: model) { (result) in
+        self.networking.validateToken(with: model) { [weak self] (result) in
             switch result {
             case .success(let token):
-                self.createSession(validToken: token.requestToken)
+                self?.createSession(validToken: token.requestToken)
             case .failure(let error):
-                self.hideActivity()
-                print(error.stringDescription)
-                self.eventHandler?(.error(.networkingError(error)))
+                self?.hideActivity()
+                self?.eventHandler?(.error(.networkingError(error)))
             }
         }
     }
     
     private func createSession(validToken: String) {
         let model = SessionRequestBody(requestToken: validToken)
-        self.networking.createSession(with: model) { (result) in
+        self.networking.createSession(with: model) { [weak self] (result) in
             switch result {
             case .success(let sessionID):
+                self?.hideActivity()
                 UserDefaultsContainer.session = sessionID.sessionID
-                self.eventHandler?(.login)
+                self?.eventHandler?(.login)
             case .failure(let error):
-                self.hideActivity()
-                self.eventHandler?(.error(.networkingError(error)))
+                self?.hideActivity()
+                self?.eventHandler?(.error(.networkingError(error)))
             }
         }
     }

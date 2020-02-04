@@ -25,10 +25,11 @@ class MainFlowCoordinator: Coordinator {
     }
 
     init(networking: NetworkManager,
+         navigationController: UINavigationController,
          eventHandler: ((AppEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = eventHandler
-        self.navigationController = UINavigationController()
+        self.navigationController = navigationController
         self.navigationController.navigationBar.isHidden = true
     }
     
