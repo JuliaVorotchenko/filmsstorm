@@ -8,10 +8,8 @@
 
 import UIKit
 
-class MainView: UIView {
+class DiscoverView: UIView {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    let cellID = "MainCollectionViewCell"
-    
+
 }

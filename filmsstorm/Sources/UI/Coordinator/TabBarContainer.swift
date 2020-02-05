@@ -9,42 +9,41 @@
 import UIKit
 
 class TabBarContainer: AppEventSource {
-    
+
     // MARK: - Properties
 
-    let eventHandler: ((AppEvent) -> Void)?
     var childCoordinators = [Coordinator]()
-    private (set) var tabBarController = UITabBarController()
+    let eventHandler: ((AppEvent) -> Void)?
+    private(set) var tabBarControllers = UITabBarController()
+    private let mainFlowNav = UINavigationController()
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
-    
-    init(networking: NetworkManager, eventHandler: ((AppEvent) -> Void)?) {
+    deinit {
+        self.mainFlowNav.viewControllers = []
+        print(TabBarContainer.self)
+    }
+
+    init(networking: NetworkManager,
+         eventHandler: ((AppEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = eventHandler
-    }
-    
-    // MARK: - Coordinator
-    
-    func start() {
         self.createTabBar()
     }
     
-    // MARK: - Private methods
-    
     private func createTabBar() {
-        self.createMainFlow()
+        self.createMainFlowCoordinator()
+
         let controllers = self.childCoordinators.compactMap { $0.navigationController }
-        self.tabBarController.setViewControllers(controllers, animated: true)
+        
+        self.tabBarControllers.viewControllers = controllers
     }
     
-    private func createMainFlow() {
-        let mainNavigation = UINavigationController()
-        mainNavigation.navigationBar.isHidden = true
-        let main = MainFlowCoordinator(networking: self.networking,
-                                       navigationController: mainNavigation,
-                                       eventHandler: self.eventHandler)
-        self.childCoordinators.append(main)
-        main.start()
+    private func createMainFlowCoordinator() {
+        
+        let coordinator = DiscoverFlowCoordinator(networking: self.networking, navigationController: mainFlowNav,
+                                              eventHandler: self.eventHandler)
+        self.childCoordinators.append(coordinator)
+        coordinator.start()
     }
 }

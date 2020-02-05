@@ -15,11 +15,13 @@ enum AppEvent {
 }
 
 final class AppConfigurator {
-    
+
     // MARK: - Private properties
-    
+
     private let window: UIWindow
     private let networking = NetworkManager()
+    private let loginNavigation = UINavigationController()
+    private var tabBarContainer: TabBarContainer?
     
     // MARK: - Init
     
@@ -31,27 +33,35 @@ final class AppConfigurator {
     // MARK: - Private methods
     
     private func configure() {
+
         if UserDefaultsContainer.session.isEmpty {
             self.createLoginCoordinator()
         } else {
             self.createTabBarCoordinator()
         }
-        
+
         self.window.makeKeyAndVisible()
     }
     
     private func createLoginCoordinator() {
-        let coordinator = LoginFlowCoordinator(networking: self.networking, eventHandler: self.appEvent)
+        self.tabBarContainer = nil
+        let coordinator = LoginFlowCoordinator(navigationController: self.loginNavigation,
+                                               networking: self.networking,
+                                               eventHandler: self.appEvent)
+        
         self.window.rootViewController = coordinator.navigationController
         coordinator.start()
     }
     
     private func createTabBarCoordinator() {
-        let coordinator = TabBarContainer(networking: self.networking, eventHandler: self.appEvent)
-        self.window.rootViewController = coordinator.tabBarController
-        coordinator.start()
+        self.loginNavigation.viewControllers = []
+        let container = TabBarContainer(networking: self.networking,
+                                        eventHandler: self.appEvent)
+        self.tabBarContainer = container
+        self.window.rootViewController = container.tabBarControllers
+        
     }
-    
+
     private func appEvent(_ event: AppEvent) {
         switch event {
         case .mainFlow:
@@ -62,7 +72,7 @@ final class AppConfigurator {
             self.handleAppError(error)
         }
     }
-    
+
     private func handleAppError(_ event: AppError) {
         switch event {
         case .networkingError(let error):
@@ -72,11 +82,11 @@ final class AppConfigurator {
                                                       message: error.debugDescription)
         }
     }
-    
+
     private func networkError(_ error: NetworkError) {
         switch error {
-        case .networkingResponse(let networkError):
-            if case .authenticationError = networkError {
+        case .networkingResponse(let nError):
+            if case .authenticationError = nError {
                 self.appEvent(.authorizationFlow)
             }
             self.showAlert(with: error)
@@ -84,8 +94,9 @@ final class AppConfigurator {
             self.showAlert(with: error)
         }
     }
-    
+
     private func showAlert(with error: NetworkError) {
-        self.window.rootViewController?.showAlert(title: TextConstants.serverError, message: error.stringDescription)
+        self.window.rootViewController?.showAlert(title: TextConstants.serverError,
+                                                  message: error.stringDescription)
     }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="MainView" customModule="filmsstorm" customModuleProvider="target">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="DiscoverView" customModule="filmsstorm" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -40,7 +40,7 @@
                     </items>
                 </navigationBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="P9P-Nl-yw5">
-                    <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                    <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                     <color key="backgroundColor" red="0.8784313725490196" green="0.92549019607843142" blue="0.67450980392156867" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TFU-qg-V5M">
                         <size key="itemSize" width="130" height="220"/>
@@ -53,34 +53,14 @@
                         <outlet property="delegate" destination="-1" id="AWa-YO-eVd"/>
                     </connections>
                 </collectionView>
-                <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNB-pn-EXI">
-                    <rect key="frame" x="0.0" y="813" width="414" height="83"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <items>
-                        <tabBarItem title="Discover" image="info" catalog="system" id="Q6C-p9-7c3">
-                            <color key="badgeColor" red="0.33725490200000002" green="0.30196078430000001" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        </tabBarItem>
-                        <tabBarItem title="My Collection" image="heart" catalog="system" id="wxX-cU-SLE">
-                            <color key="badgeColor" red="0.33725490200000002" green="0.30196078430000001" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        </tabBarItem>
-                        <tabBarItem title="My Account" image="person.circle" catalog="system" id="Wyp-Zl-k3b">
-                            <color key="badgeColor" red="0.33725490200000002" green="0.30196078430000001" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        </tabBarItem>
-                    </items>
-                    <color key="tintColor" red="0.33725490200000002" green="0.30196078430000001" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <color key="barTintColor" red="0.87843137250000003" green="0.92549019610000005" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                </tabBar>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
             <constraints>
-                <constraint firstItem="bNB-pn-EXI" firstAttribute="top" secondItem="P9P-Nl-yw5" secondAttribute="bottom" symbolic="YES" id="0u3-tL-u2k"/>
                 <constraint firstItem="P9P-Nl-yw5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8Z5-8k-iCi"/>
-                <constraint firstItem="bNB-pn-EXI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="9lM-cI-F4W"/>
                 <constraint firstItem="65H-QM-RaU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Esz-FA-0Nr"/>
-                <constraint firstItem="bNB-pn-EXI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="K7S-xe-O5d"/>
                 <constraint firstItem="65H-QM-RaU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Rt1-Qd-gyc"/>
                 <constraint firstItem="P9P-Nl-yw5" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="nuJ-wQ-Dvo"/>
-                <constraint firstAttribute="bottom" secondItem="bNB-pn-EXI" secondAttribute="bottom" symbolic="YES" id="qQ2-3F-sQE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="P9P-Nl-yw5" secondAttribute="bottom" id="pqL-re-zzL"/>
                 <constraint firstItem="65H-QM-RaU" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="v1E-0e-j11"/>
                 <constraint firstItem="P9P-Nl-yw5" firstAttribute="top" secondItem="65H-QM-RaU" secondAttribute="bottom" symbolic="YES" id="xhJ-Kr-5S7"/>
             </constraints>
@@ -92,9 +72,6 @@
         </view>
     </objects>
     <resources>
-        <image name="heart" catalog="system" width="64" height="54"/>
-        <image name="info" catalog="system" width="46" height="64"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
-        <image name="person.circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>

@@ -9,16 +9,15 @@
 import UIKit
 
 enum DiscoverEvent: EventProtocol {
-    case back
+    case logout
     case error(AppError)
 }
 
-class MainViewController: UIViewController, Controller, ActivityViewPresenter {
+class DiscoverViewController: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
-    
-    typealias Event = DiscoverEvent
-    typealias RootViewType = MainView
+
+    typealias RootViewType = DiscoverView
     
     enum Section: CaseIterable {
         case  main
@@ -38,6 +37,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     // MARK: - Init and deinit
     
     deinit {
+        self.hideActivity()
         print(F.toString(Self.self))
     }
     
@@ -54,10 +54,9 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     // MARK: - Life cycle
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         self.setCollectionView()
-        self.rootView?.collectionView.register(MainCollectionViewCell.self)
+        self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
         self.getPopularMovies()
         self.createDataSource()
     }
@@ -65,7 +64,6 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     // MARK: - IBActions
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
-        UserDefaultsContainer.unregister()
         self.logout()
     }
     
@@ -75,29 +73,10 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
         self.networking.getPopularMovies { [weak self] result in
             switch result {
             case .success(let model):
-                print("getpopularMainVC", model.results[0])
                 self?.sections = model.results
                 self?.createDataSource()
-                
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
-                print(error.stringDescription)
-            }
-        }
-    }
-    
-    private func getUserDetails() {
-        let sessionID = UserDefaultsContainer.session
-        self.networking.getUserDetails(sessionID: sessionID) { [weak self] result in
-            switch result {
-            case .success(let usermodel):
-                UserDefaultsContainer.username = usermodel.username ?? ""
-                DispatchQueue.main.async {
-                    
-                }
-            case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
-                print(error.stringDescription)
             }
         }
     }
@@ -108,8 +87,8 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
         self.networking.logout(sessionID: sessionID) { [weak self] result in
             switch result {
             case .success:
-                //UserDefaultsContainer.unregister()
-                self?.eventHandler?(.back)
+                UserDefaultsContainer.unregister()
+                self?.eventHandler?(.logout)
                 self?.hideActivity()
             case .failure(let error):
                 print(error.stringDescription)
@@ -146,7 +125,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
         
         guard let collectionView = self.rootView?.collectionView else { return }
         self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collection, indexPath, item -> UICollectionViewCell? in
-            let cell: MainCollectionViewCell = collection.dequeueReusableCell(MainCollectionViewCell.self, for: indexPath)
+            let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
             cell.fill(with: item)
             return cell
         }
