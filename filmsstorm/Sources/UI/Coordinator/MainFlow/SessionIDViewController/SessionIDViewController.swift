@@ -9,8 +9,7 @@
 import UIKit
 
 enum SessionIDEvent: EventProtocol {
-    case back
-    case showSessionId
+    case logout
     case error(AppError)
 }
 
@@ -18,7 +17,6 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
 
     // MARK: - Subtypes
     
-    typealias Event = SessionIDEvent
     typealias RootViewType = SessionIDView
     
     // MARK: - temporary values
@@ -55,6 +53,7 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
     // MARK: - IBActions
     
     @IBAction func backButtonTaapped(_ sender: Any) {
+        UserDefaultsContainer.unregister()
         self.logout()
     }
     @IBAction func getUserButton(_ sender: Any) {
@@ -85,7 +84,9 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
         self.networking.logout(sessionID: sessionID) { [weak self] result in
             switch result {
             case .success:
-                self?.eventHandler?(.back)
+                print("ok")
+                UserDefaultsContainer.unregister()
+                self?.eventHandler?(.logout)
                 self?.hideActivity()
             case .failure(let error):
                 print(error.stringDescription)
