@@ -21,7 +21,6 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     
     // MARK: - Subtypes
     
-    typealias Event = AuthEvent
     typealias RootViewType = AuthorizationView
     
     // MARK: - Properties

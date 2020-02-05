@@ -12,14 +12,15 @@ import UIKit
 class MainFlowCoordinator: Coordinator {
     
     // MARK: - Properties
-    var eventHandler:  ((AppConfiguratorEvent) -> Void)?
+    var eventHandler: ((AppEvent) -> Void)?
     var childCoordinators = [Coordinator]()
     let navigationController: UINavigationController
-    private let networking = NetworkManager()
+    private var networking = NetworkManager()
     
     // MARK: - Init and deinit
     
-    init(navigationController: UINavigationController, eventHandler: ((AppConfiguratorEvent) -> Void)?) {
+    init(networking: NetworkManager, navigationController: UINavigationController, eventHandler: ((AppEvent) -> Void)?) {
+        self.networking = networking
         self.navigationController = navigationController
         self.eventHandler = eventHandler
     }
@@ -29,6 +30,9 @@ class MainFlowCoordinator: Coordinator {
     func start() {
         self.createSessionIDViewController()
     }
+    
+    // MARK: - Private methods
+
     private func createSessionIDViewController() {
         let controller = SessionIDViewController(networking: self.networking, event: self.sessionEvent)
         self.navigationController.viewControllers = [controller]
@@ -36,43 +40,41 @@ class MainFlowCoordinator: Coordinator {
     
     private func sessionEvent(_ event: SessionIDEvent) {
         switch event {
-        case .back:
+        case .logout:
             self.eventHandler?(.authorizationFlow)
-        case .showSessionId:
-            print("Session ID")
         case .error(let errorMessage):
-            self.showAppErrorAlert(with: errorMessage)
+            self.eventHandler?(.appError(errorMessage))
         }
     }
     
 }
 
 
-class TabBarFirstCoordinator: Coordinator {
-    // MARK: - Properties
-    
-    var childCoordinators = [Coordinator]()
-    let navigationController: UINavigationController
-    private let networking = NetworkManager()
-    
-    // MARK: - Init and deinit
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-    
-    // MARK: - Coordinator
-    
-    func start() {
-        self.createEmptyViewComntroller()
-    }
-    
-    func createEmptyViewComntroller() {
-        let controller = EmptyViewComntroller(image: UIImage(named: "tmdbLogo"), title: "First")
-        self.navigationController.viewControllers = [controller]
-        
-    }
-}
+//class TabBarFirstCoordinator: Coordinator {
+//    // MARK: - Properties
+//    
+//    var childCoordinators = [Coordinator]()
+//    let navigationController: UINavigationController
+//    private let networking = NetworkManager()
+//    
+//    // MARK: - Init and deinit
+//    
+//    init(navigationController: UINavigationController) {
+//        self.navigationController = navigationController
+//    }
+//    
+//    // MARK: - Coordinator
+//    
+//    func start() {
+//        self.createEmptyViewComntroller()
+//    }
+//    
+//    func createEmptyViewComntroller() {
+//        let controller = EmptyViewComntroller(image: UIImage(named: "tmdbLogo"), title: "First")
+//        self.navigationController.viewControllers = [controller]
+//        
+//    }
+//}
 
 
 class EmptyViewComntroller: UIViewController {

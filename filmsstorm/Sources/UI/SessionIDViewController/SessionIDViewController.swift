@@ -9,8 +9,7 @@
 import UIKit
 
 enum SessionIDEvent: EventProtocol {
-    case back
-    case showSessionId
+    case logout
     case error(AppError)
 }
 
@@ -18,7 +17,6 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
 
     // MARK: - Subtypes
     
-    typealias Event = SessionIDEvent
     typealias RootViewType = SessionIDView
     
     // MARK: - temporary values
@@ -88,7 +86,7 @@ class SessionIDViewController: UIViewController, Controller, ActivityViewPresent
             case .success:
                 print("ok")
                 UserDefaultsContainer.unregister()
-                self?.eventHandler?(.back)
+                self?.eventHandler?(.logout)
                 self?.hideActivity()
             case .failure(let error):
                 print(error.stringDescription)

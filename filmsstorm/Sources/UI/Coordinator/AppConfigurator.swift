@@ -8,59 +8,86 @@
 
 import UIKit
 
-
-enum AppConfiguratorEvent {
+enum AppEvent {
     case mainFlow
     case authorizationFlow
+    case appError(AppError)
 }
 
 final class AppConfigurator {
+    
     // MARK: - Private properties
     
-    private var coordinator: Coordinator?
-    private let navigationController = UINavigationController()
+    private let window: UIWindow
+    private let networking = NetworkManager()
     
     // MARK: - Init
     
     init(window: UIWindow) {
-        self.configure(window: window)
+        self.window = window
+        self.configure()
     }
     
     // MARK: - Private methods
     
-    private func configure(window: UIWindow) {
-        let navigationController = UINavigationController()
-        window.rootViewController = navigationController
-        navigationController.navigationBar.isHidden = true
+    private func configure() {
         if UserDefaultsContainer.session.isEmpty {
-            createLoginCoordinator()
+            self.createLoginCoordinator()
         } else {
-           createMainFlowCoordinator()
+            self.createTabBarCoordinator()
         }
-        self.coordinator?.start()
-        window.makeKeyAndVisible()
+        
+        self.window.makeKeyAndVisible()
     }
     
     private func createLoginCoordinator() {
-        let coordinator = LoginFlowCoordinator(navigationController: self.navigationController, eventHandler: appEvent(_:))
-        self.coordinator?.addCoordinator(coordinator)
+        let coordinator = LoginFlowCoordinator(networking: self.networking, eventHandler: self.appEvent)
+        self.window.rootViewController = coordinator.navigationController
         coordinator.start()
     }
     
     private func createTabBarCoordinator() {
-        let coordinator = TabBarCoordinator(navigationController: self.navigationController, eventHandler: appEvent(_:))
+        let coordinator = TabBarContainer(networking: self.networking, eventHandler: self.appEvent)
+        self.window.rootViewController = coordinator.tabBarController
         coordinator.start()
     }
     
-    private func createMainFlowCoordinator() {
-        let coordinator = MainFlowCoordinator(navigationController: self.navigationController, eventHandler: appEvent(_:))
-        coordinator.start()
-    }
+   
     
-    private func appEvent(_ event: AppConfiguratorEvent) -> Void {
+    private func appEvent(_ event: AppEvent) {
         switch event {
-        case .mainFlow: createLoginCoordinator()
-        case .authorizationFlow: createTabBarCoordinator()
+        case .mainFlow:
+            self.createTabBarCoordinator()
+        case .authorizationFlow:
+            self.createLoginCoordinator()
+        case .appError(let error):
+            self.handleAppError(error)
         }
+    }
+    
+    private func handleAppError(_ event: AppError) {
+        switch event {
+        case .networkingError(let error):
+            self.showAlert(with: error)
+        case .unowned(let error):
+            self.window.rootViewController?.showAlert(title: TextConstants.appError,
+                                                      message: error.debugDescription)
+        }
+    }
+    
+    private func networkError(_ error: NetworkError) {
+        switch error {
+        case .networkingResponse(let networkError):
+            if case .authenticationError = networkError {
+                self.appEvent(.authorizationFlow)
+            }
+            self.showAlert(with: error)
+        default:
+            self.showAlert(with: error)
+        }
+    }
+    
+    private func showAlert(with error: NetworkError) {
+        self.window.rootViewController?.showAlert(title: TextConstants.serverError, message: error.stringDescription)
     }
 }
