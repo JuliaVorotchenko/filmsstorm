@@ -42,7 +42,7 @@ class LoginFlowCoordinator: Coordinator, AppEventSource {
         case .login:
             self.eventHandler?(.mainFlow)
         case .error(let errorMessage):
-            self.showAppErrorAlert(with: errorMessage)
+            self.eventHandler?(.appError(errorMessage))
         }
     }
 }
