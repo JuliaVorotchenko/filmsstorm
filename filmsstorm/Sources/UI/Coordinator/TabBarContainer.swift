@@ -48,4 +48,3 @@ class TabBarContainer: AppEventSource {
         main.start()
     }
 }
-

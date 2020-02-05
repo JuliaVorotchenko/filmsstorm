@@ -49,34 +49,6 @@ class MainFlowCoordinator: Coordinator, AppEventSource {
     
 }
 
-
-//class TabBarFirstCoordinator: Coordinator {
-//    // MARK: - Properties
-//    
-//    var childCoordinators = [Coordinator]()
-//    let navigationController: UINavigationController
-//    private let networking = NetworkManager()
-//    
-//    // MARK: - Init and deinit
-//    
-//    init(navigationController: UINavigationController) {
-//        self.navigationController = navigationController
-//    }
-//    
-//    // MARK: - Coordinator
-//    
-//    func start() {
-//        self.createEmptyViewComntroller()
-//    }
-//    
-//    func createEmptyViewComntroller() {
-//        let controller = EmptyViewComntroller(image: UIImage(named: "tmdbLogo"), title: "First")
-//        self.navigationController.viewControllers = [controller]
-//        
-//    }
-//}
-
-
 class EmptyViewComntroller: UIViewController {
     
     init(image: UIImage?, title: String) {

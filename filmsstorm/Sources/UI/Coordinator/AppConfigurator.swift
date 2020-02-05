@@ -52,8 +52,6 @@ final class AppConfigurator {
         coordinator.start()
     }
     
-   
-    
     private func appEvent(_ event: AppEvent) {
         switch event {
         case .mainFlow:
