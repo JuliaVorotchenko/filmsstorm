@@ -8,9 +8,8 @@
 
 import UIKit
 
-enum SessionIDEvent: EventProtocol {
+enum DiscoverEvent: EventProtocol {
     case back
-    case showSessionId
     case error(AppError)
 }
 
@@ -18,7 +17,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
     
-    typealias Event = SessionIDEvent
+    typealias Event = DiscoverEvent
     typealias RootViewType = MainView
     
     enum Section: CaseIterable {
@@ -27,7 +26,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Public Properties
     
-    let eventHandler: ((SessionIDEvent) -> Void)?
+    let eventHandler: ((DiscoverEvent) -> Void)?
     let loadingView = ActivityView()
     
     // MARK: - Private properties
@@ -42,7 +41,7 @@ class MainViewController: UIViewController, Controller, ActivityViewPresenter {
         print(F.toString(Self.self))
     }
     
-    init(networking: NetworkManager, event: ((SessionIDEvent) -> Void)?) {
+    init(networking: NetworkManager, event: ((DiscoverEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
         super.init(nibName: F.toString(type(of: self)), bundle: nil)
