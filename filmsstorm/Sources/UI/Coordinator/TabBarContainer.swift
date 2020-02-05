@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabBarContainer {
+class TabBarContainer: AppEventSource {
     
     // MARK: - Properties
 

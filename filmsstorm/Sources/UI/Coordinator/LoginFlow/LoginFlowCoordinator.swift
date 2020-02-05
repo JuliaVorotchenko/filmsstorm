@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginFlowCoordinator: Coordinator {
+class LoginFlowCoordinator: Coordinator, AppEventSource {
     
     // MARK: - Properties
     var eventHandler: ((AppEvent) -> Void)?

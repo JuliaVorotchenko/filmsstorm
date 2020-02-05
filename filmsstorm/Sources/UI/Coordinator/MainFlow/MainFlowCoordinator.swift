@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MainFlowCoordinator: Coordinator {
+class MainFlowCoordinator: Coordinator, AppEventSource {
     
     // MARK: - Properties
     var eventHandler: ((AppEvent) -> Void)?
