@@ -13,11 +13,25 @@
  * Init controllers;
  * Navigate controllers (show and hide instack, modally and in any other way);
  * Subscribes on controller's events and react on events;
- * Show or hide sub-coordinators if needed.
- * Impl AppErrorPresentable to display app errors.
+ * Show or hide sub-coordinators if needed;
+ * Conforms AppEventSource to handle app events.
  
  ### Coordinator CAN NOT:
  * Save any controller as property;
+ 
+ ```swift
+   protocol Coordinator: AnyObject, AppEventSource {
+      var childCoordinators: [Coordinator] { get set }
+      var navigationController: UINavigationController { get }
+      func start()
+   }
+```
+ 
+ ```swift
+   protocol AppEventSource {
+      var eventHandler: ((AppEvent) -> Void)? { get }
+   }
+ ```
  
  ## Controller
    You must implement this proptocol on each UIViewController which is used in coordinators.
