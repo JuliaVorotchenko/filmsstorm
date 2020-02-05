@@ -9,20 +9,28 @@
 import Foundation
 import UIKit
 
-class MainFlowCoordinator: Coordinator, AppEventSource {
-    
+class DiscoverFlowCoordinator: Coordinator {
+
     // MARK: - Properties
-    var eventHandler: ((AppEvent) -> Void)?
+
     var childCoordinators = [Coordinator]()
+    let eventHandler: ((AppEvent) -> Void)?
     let navigationController: UINavigationController
-    private var networking = NetworkManager()
+    private let networking: NetworkManager
     
     // MARK: - Init and deinit
-    
-    init(networking: NetworkManager, navigationController: UINavigationController, eventHandler: ((AppEvent) -> Void)?) {
+
+    deinit {
+        print(Self.self)
+    }
+
+    init(networking: NetworkManager,
+         navigationController: UINavigationController,
+         eventHandler: ((AppEvent) -> Void)?) {
         self.networking = networking
-        self.navigationController = navigationController
         self.eventHandler = eventHandler
+        self.navigationController = navigationController
+        self.navigationController.navigationBar.isHidden = true
     }
     
     // MARK: - Coordinator
@@ -30,15 +38,12 @@ class MainFlowCoordinator: Coordinator, AppEventSource {
     func start() {
         self.createSessionIDViewController()
     }
-    
-    // MARK: - Private methods
-
     private func createSessionIDViewController() {
-        let controller = SessionIDViewController(networking: self.networking, event: self.sessionEvent)
+        let controller = DiscoverViewController(networking: self.networking, event: self.sessionEvent)
         self.navigationController.viewControllers = [controller]
     }
     
-    private func sessionEvent(_ event: SessionIDEvent) {
+    private func sessionEvent(_ event: DiscoverEvent) {
         switch event {
         case .logout:
             self.eventHandler?(.authorizationFlow)
@@ -46,7 +51,6 @@ class MainFlowCoordinator: Coordinator, AppEventSource {
             self.eventHandler?(.appError(errorMessage))
         }
     }
-    
 }
 
 class EmptyViewComntroller: UIViewController {

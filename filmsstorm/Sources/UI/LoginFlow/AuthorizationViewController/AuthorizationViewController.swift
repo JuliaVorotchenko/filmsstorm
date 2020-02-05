@@ -12,15 +12,11 @@ enum AuthEvent: EventProtocol {
     case login
     case error(AppError)
 }
-/*
- 1. Get request token with APIkey
- 2. Validate request token with password and username
- 3. Get sessionID
- */
+
 class AuthorizationViewController: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
-    
+
     typealias RootViewType = AuthorizationView
     
     // MARK: - Properties
@@ -32,6 +28,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     // MARK: - Init and deinit
     
     deinit {
+        self.hideActivity()
         print(F.toString(Self.self))
     }
     
@@ -43,13 +40,6 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - VC life cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.sessionIdCheker()
     }
 
     // MARK: - IBAction
@@ -68,7 +58,6 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
             case .success(let token):
                 self?.validateToken(token: token.requestToken)
             case .failure(let error):
-                print(error.stringDescription)
                 self?.hideActivity()
                 self?.eventHandler?(.error(.networkingError(error)))
             }
@@ -85,7 +74,6 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
                 self?.createSession(validToken: token.requestToken)
             case .failure(let error):
                 self?.hideActivity()
-                print(error.stringDescription)
                 self?.eventHandler?(.error(.networkingError(error)))
             }
         }
@@ -96,20 +84,13 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
         self.networking.createSession(with: model) { [weak self] (result) in
             switch result {
             case .success(let sessionID):
+                self?.hideActivity()
                 UserDefaultsContainer.session = sessionID.sessionID
                 self?.eventHandler?(.login)
             case .failure(let error):
                 self?.hideActivity()
-                print(error.stringDescription)
                 self?.eventHandler?(.error(.networkingError(error)))
             }
-            
-        }
-    }
-    
-    private func sessionIdCheker() {
-        if !UserDefaultsContainer.session.isEmpty {
-            self.eventHandler?(.login)
         }
     }
 }
