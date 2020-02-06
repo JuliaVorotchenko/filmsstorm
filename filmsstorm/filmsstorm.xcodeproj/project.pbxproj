@@ -65,6 +65,10 @@
 		CD0CDA7923C3E797002EC487 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDA7623C3E797002EC487 /* Controller.swift */; };
 		CD0CDA7A23C3E797002EC487 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDA7723C3E797002EC487 /* Coordinator.swift */; };
 		CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD499B6223E4715D00BF0545 /* TabBarContainer.swift */; };
+		CD4DB86F23EC5EC800F53B28 /* ProfileFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4DB86E23EC5EC800F53B28 /* ProfileFlowCoordinator.swift */; };
+		CD4DB87323EC5F3D00F53B28 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */; };
+		CD4DB87423EC5F3D00F53B28 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */; };
+		CD4DB87623EC5F6700F53B28 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4DB87523EC5F6700F53B28 /* ProfileView.swift */; };
 		CD536EF723E36034000FEE79 /* DiscoverFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD536EF623E36034000FEE79 /* DiscoverFlowCoordinator.swift */; };
 		CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD53CDB723D631C000E16E2E /* ActivityView.swift */; };
 		CD7E748623D8F3450097F198 /* AppEventSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E748523D8F3450097F198 /* AppEventSource.swift */; };
@@ -163,6 +167,10 @@
 		CD0CDA7623C3E797002EC487 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		CD0CDA7723C3E797002EC487 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CD499B6223E4715D00BF0545 /* TabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
+		CD4DB86E23EC5EC800F53B28 /* ProfileFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlowCoordinator.swift; sourceTree = "<group>"; };
+		CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		CD4DB87523EC5F6700F53B28 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		CD536EF623E36034000FEE79 /* DiscoverFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverFlowCoordinator.swift; sourceTree = "<group>"; };
 		CD53CDB723D631C000E16E2E /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		CD7E748523D8F3450097F198 /* AppEventSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEventSource.swift; sourceTree = "<group>"; };
@@ -484,6 +492,25 @@
 			path = DiscoverFlow;
 			sourceTree = "<group>";
 		};
+		CD4DB86C23EC5E4B00F53B28 /* ProfileFlow */ = {
+			isa = PBXGroup;
+			children = (
+				CD4DB86E23EC5EC800F53B28 /* ProfileFlowCoordinator.swift */,
+				CD4DB87023EC5EDA00F53B28 /* ProfileViewController */,
+			);
+			path = ProfileFlow;
+			sourceTree = "<group>";
+		};
+		CD4DB87023EC5EDA00F53B28 /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */,
+				CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */,
+				CD4DB87523EC5F6700F53B28 /* ProfileView.swift */,
+			);
+			path = ProfileViewController;
+			sourceTree = "<group>";
+		};
 		CD53CDB623D6319900E16E2E /* ActivityView */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,6 +558,7 @@
 				CDB8791123B8FFBF0099F946 /* Coordinator */,
 				2E289C8823E8C3C9001917DB /* LoginFlow */,
 				CD4DB86B23EB677A00F53B28 /* DiscoverFlow */,
+				CD4DB86C23EC5E4B00F53B28 /* ProfileFlow */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -712,6 +740,7 @@
 			files = (
 				2E51663723AFD6CA00EDF51E /* LaunchScreen.storyboard in Resources */,
 				2E289C9023E8DE84001917DB /* DiscoverCollectionViewCell.xib in Resources */,
+				CD4DB87423EC5F3D00F53B28 /* ProfileViewController.xib in Resources */,
 				CDB8791823B900D80099F946 /* AuthorizationViewController.xib in Resources */,
 				2E16981923AFE05A0002E28E /* GoogleService-Info.plist in Resources */,
 				2E51663423AFD6CA00EDF51E /* Preview Assets.xcassets in Resources */,
@@ -870,6 +899,7 @@
 				2E289CDE23E8DFCA001917DB /* NetworkManager.swift in Sources */,
 				2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */,
 				2E289CB623E8DED4001917DB /* PopularMoviesModel.swift in Sources */,
+				CD4DB87323EC5F3D00F53B28 /* ProfileViewController.swift in Sources */,
 				2E289CE923E8DFCA001917DB /* NetworkRouter.swift in Sources */,
 				CDB8792423B93C240099F946 /* LoginFlowCoordinator.swift in Sources */,
 				2E289CE623E8DFCA001917DB /* SearchEndpoint.swift in Sources */,
@@ -900,6 +930,7 @@
 				2E289CB323E8DED4001917DB /* SessionID.swift in Sources */,
 				2E289CEC23E8DFCA001917DB /* HTTPMethod.swift in Sources */,
 				2E289CEE23E8DFCA001917DB /* EndPointType.swift in Sources */,
+				CD4DB87623EC5F6700F53B28 /* ProfileView.swift in Sources */,
 				2E289C9F23E8DEBD001917DB /* UICollectionView+Extensions.swift in Sources */,
 				2E289CE323E8DFCA001917DB /* AccountEndPoint.swift in Sources */,
 				2E289CD923E8DFCA001917DB /* ParameterEncoding.swift in Sources */,
@@ -912,6 +943,7 @@
 				2E289CDF23E8DFCA001917DB /* PeopleEndPointt.swift in Sources */,
 				2E289CB723E8DED4001917DB /* RequestToken.swift in Sources */,
 				2E289CDB23E8DFCA001917DB /* JSONParameterEncoder.swift in Sources */,
+				CD4DB86F23EC5EC800F53B28 /* ProfileFlowCoordinator.swift in Sources */,
 				2E289CBA23E8DED4001917DB /* AuthRequestModel.swift in Sources */,
 				CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */,
 				2E289CEB23E8DFCA001917DB /* NetworkService.swift in Sources */,

@@ -36,14 +36,14 @@ class DiscoverFlowCoordinator: Coordinator {
     // MARK: - Coordinator
     
     func start() {
-        self.createSessionIDViewController()
+        self.createDiscoverViewController()
     }
-    private func createSessionIDViewController() {
-        let controller = DiscoverViewController(networking: self.networking, event: self.sessionEvent)
+    private func createDiscoverViewController() {
+        let controller = DiscoverViewController(networking: self.networking, event: self.discoverEvent)
         self.navigationController.viewControllers = [controller]
     }
     
-    private func sessionEvent(_ event: DiscoverEvent) {
+    private func discoverEvent(_ event: DiscoverEvent) {
         switch event {
         case .logout:
             self.eventHandler?(.authorizationFlow)
@@ -53,15 +53,4 @@ class DiscoverFlowCoordinator: Coordinator {
     }
 }
 
-class EmptyViewComntroller: UIViewController {
-    
-    init(image: UIImage?, title: String) {
-        super.init(nibName: nil, bundle: nil)
-        self.tabBarItem = .init(title: title, image: image, selectedImage: nil)
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
+

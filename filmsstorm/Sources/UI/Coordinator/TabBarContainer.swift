@@ -14,7 +14,7 @@ class TabBarContainer: AppEventSource {
 
     var childCoordinators = [Coordinator]()
     let eventHandler: ((AppEvent) -> Void)?
-    private(set) var tabBarControllers = UITabBarController()
+    private(set) var tabBarController = UITabBarController()
     private let mainFlowNav = UINavigationController()
     private let networking: NetworkManager
     
@@ -33,17 +33,46 @@ class TabBarContainer: AppEventSource {
     
     private func createTabBar() {
         self.createMainFlowCoordinator()
-
         let controllers = self.childCoordinators.compactMap { $0.navigationController }
-        
-        self.tabBarControllers.viewControllers = controllers
+        self.tabBarController.viewControllers = controllers
+        self.setTabBar()
+    
     }
     
     private func createMainFlowCoordinator() {
-        
         let coordinator = DiscoverFlowCoordinator(networking: self.networking, navigationController: mainFlowNav,
                                               eventHandler: self.eventHandler)
         self.childCoordinators.append(coordinator)
         coordinator.start()
+    }
+    
+    private func setTabBar() {
+    
+        let emptyVC = EmptyViewComntroller(image: nil, title: "Empty")
+        let profileVC = ProfileViewController()
+        profileVC.title = "My profile"
+        
+        var profileTabBarItem = profileVC.tabBarItem
+        profileTabBarItem = UITabBarItem(title: "My Account", image: nil, tag: 1)
+        
+       
+        var emptyTabBarItem = emptyVC.tabBarItem
+        emptyTabBarItem = UITabBarItem(title: "Empty vc", image: nil, tag: 0)
+        
+        self.tabBarController.viewControllers = [emptyVC, profileVC]
+    }
+}
+
+
+class EmptyViewComntroller: UIViewController {
+    
+    init(image: UIImage?, title: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.tabBarItem = .init(title: title, image: image, selectedImage: nil)
+
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

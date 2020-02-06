@@ -58,7 +58,7 @@ final class AppConfigurator {
         let container = TabBarContainer(networking: self.networking,
                                         eventHandler: self.appEvent)
         self.tabBarContainer = container
-        self.window.rootViewController = container.tabBarControllers
+        self.window.rootViewController = container.tabBarController
         
     }
 
