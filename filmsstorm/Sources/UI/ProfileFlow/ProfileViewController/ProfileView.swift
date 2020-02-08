@@ -21,7 +21,7 @@ class ProfileView: UIView {
         self.avatarContainerView.layer.borderWidth = 3.0
         
         self.avatarImage.layer.cornerRadius = avatarImage.frame.size.width / 2
-        
+        self.avatarImage.image = UIImage(named: "user")
     }
     
 }

@@ -36,15 +36,15 @@ class ProfileFlowCoordinator: Coordinator {
     
     // MARK: - Coordinator
     func start() {
-        createProfileViewController()
+        self.createProfileViewController()
     }
     
     private func createProfileViewController() {
-        let controller = ProfileViewController(networking: self.networking, event: self.profileeEvent)
+        let controller = ProfileViewController(networking: self.networking, event: self.profileEvent)
         self.navigationController.viewControllers = [controller]
     }
-    
-    private func profileeEvent(_ event: ProfileEvent) {
+        
+    private func profileEvent(_ event: ProfileEvent) {
         switch event {
         case .logout:
             self.eventHandler?(.authorizationFlow)

@@ -38,6 +38,7 @@ class DiscoverFlowCoordinator: Coordinator {
     func start() {
         self.createDiscoverViewController()
     }
+    
     private func createDiscoverViewController() {
         let controller = DiscoverViewController(networking: self.networking, event: self.discoverEvent)
         self.navigationController.viewControllers = [controller]

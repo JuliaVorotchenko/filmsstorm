@@ -30,10 +30,24 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     
     private let networking: NetworkManager
     
+    // MARK: - IBActions
     
+    @IBAction func closeButton(_ sender: Any) {
+        self.eventHandler?(.close)
+    }
     
+    @IBAction func setImagesQualityButton(_ sender: Any) {
+    }
     
-    init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
+    @IBAction func aboutButton(_ sender: Any) {
+    }
+    
+    @IBAction func logoutButton(_ sender: Any) {
+        print("k")
+        self.logout()
+    }
+    
+init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
         super.init(nibName: F.toString(type(of: self)), bundle: nil)
@@ -49,5 +63,21 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
         
     }
     
-    
+    private func logout() {
+        self.showActivity()
+        let sessionID = UserDefaultsContainer.session
+        self.networking.logout(sessionID: sessionID) { [weak self] result in
+            switch result {
+            case .success:
+                UserDefaultsContainer.unregister()
+                self?.eventHandler?(.logout)
+                self?.hideActivity()
+            case .failure(let error):
+                print(error.stringDescription)
+                self?.hideActivity()
+                self?.eventHandler?(.error(.networkingError(error)))
+                
+            }
+        }
+    }
 }

@@ -64,7 +64,7 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
     // MARK: - IBActions
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
-        self.logout()
+      
     }
     
     // MARK: - Private Methods
@@ -77,24 +77,6 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
                 self?.createDataSource()
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
-    
-    private func logout() {
-        self.showActivity()
-        let sessionID = UserDefaultsContainer.session
-        self.networking.logout(sessionID: sessionID) { [weak self] result in
-            switch result {
-            case .success:
-                UserDefaultsContainer.unregister()
-                self?.eventHandler?(.logout)
-                self?.hideActivity()
-            case .failure(let error):
-                print(error.stringDescription)
-                self?.hideActivity()
-                self?.eventHandler?(.error(.networkingError(error)))
-                
             }
         }
     }

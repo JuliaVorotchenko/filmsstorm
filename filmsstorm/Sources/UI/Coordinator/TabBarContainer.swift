@@ -18,6 +18,7 @@ class TabBarContainer: AppEventSource {
     private let mainFlowNav = UINavigationController()
     private let networking: NetworkManager
     
+    
     // MARK: - Init and deinit
     deinit {
         self.mainFlowNav.viewControllers = []
@@ -33,10 +34,10 @@ class TabBarContainer: AppEventSource {
     
     private func createTabBar() {
         self.createMainFlowCoordinator()
+        createPFCoordinator()
         let controllers = self.childCoordinators.compactMap { $0.navigationController }
         self.tabBarController.viewControllers = controllers
-        self.setTabBar()
-    
+        //setTabBar()
     }
     
     private func createMainFlowCoordinator() {
@@ -49,25 +50,27 @@ class TabBarContainer: AppEventSource {
     private func createPFCoordinator() {
         let coordinator = ProfileFlowCoordinator(networking: self.networking, navigationController: self.mainFlowNav,
                                                  eventHandler: self.eventHandler)
+        
         self.childCoordinators.append(coordinator)
         coordinator.start()
     }
     
     
     private func setTabBar() {
-    
+
         let emptyVC = EmptyViewComntroller(image: nil, title: "Empty")
-//        let profileVC = ProfileViewController(
-//        profileVC.title = "My profile"
-//
+        
+
+
 //        var profileTabBarItem = profileVC.tabBarItem
 //        profileTabBarItem = UITabBarItem(title: "My Account", image: nil, tag: 1)
-//
+
         
         var emptyTabBarItem = emptyVC.tabBarItem
         emptyTabBarItem = UITabBarItem(title: "Empty vc", image: nil, tag: 0)
         
-        self.tabBarController.viewControllers = [emptyVC]
+
+        self.tabBarController.tabBar.setItems([emptyTabBarItem!], animated: true)
     }
 }
 
