@@ -64,7 +64,10 @@
 		CD0CDA7823C3E797002EC487 /* RootViewGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDA7423C3E797002EC487 /* RootViewGettable.swift */; };
 		CD0CDA7923C3E797002EC487 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDA7623C3E797002EC487 /* Controller.swift */; };
 		CD0CDA7A23C3E797002EC487 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDA7723C3E797002EC487 /* Coordinator.swift */; };
-		CD38AD9023F09AE9005DC50B /* AboutFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD8F23F09AE9005DC50B /* AboutFlowCoordinator.swift */; };
+		CD38AD9023F09AE9005DC50B /* AboutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD8F23F09AE9005DC50B /* AboutCoordinator.swift */; };
+		CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9323F09C91005DC50B /* AboutViewController.swift */; };
+		CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD38AD9423F09C91005DC50B /* AboutViewController.xib */; };
+		CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9723F0A096005DC50B /* AboutView.swift */; };
 		CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD499B6223E4715D00BF0545 /* TabBarContainer.swift */; };
 		CD4DB86F23EC5EC800F53B28 /* ProfileFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4DB86E23EC5EC800F53B28 /* ProfileFlowCoordinator.swift */; };
 		CD4DB87323EC5F3D00F53B28 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */; };
@@ -167,7 +170,10 @@
 		CD0CDA7423C3E797002EC487 /* RootViewGettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewGettable.swift; sourceTree = "<group>"; };
 		CD0CDA7623C3E797002EC487 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		CD0CDA7723C3E797002EC487 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		CD38AD8F23F09AE9005DC50B /* AboutFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutFlowCoordinator.swift; sourceTree = "<group>"; };
+		CD38AD8F23F09AE9005DC50B /* AboutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCoordinator.swift; sourceTree = "<group>"; };
+		CD38AD9323F09C91005DC50B /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		CD38AD9423F09C91005DC50B /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		CD38AD9723F0A096005DC50B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		CD499B6223E4715D00BF0545 /* TabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
 		CD4DB86E23EC5EC800F53B28 /* ProfileFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlowCoordinator.swift; sourceTree = "<group>"; };
 		CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -485,12 +491,32 @@
 			path = MVCC;
 			sourceTree = "<group>";
 		};
-		CD38AD8E23F09A76005DC50B /* AboutFlow */ = {
+		CD38AD8E23F09A76005DC50B /* AboutViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CD38AD8F23F09AE9005DC50B /* AboutFlowCoordinator.swift */,
+				CD38AD8F23F09AE9005DC50B /* AboutCoordinator.swift */,
+				CD38AD9123F09B48005DC50B /* AboutViewController */,
 			);
-			path = AboutFlow;
+			path = AboutViewController;
+			sourceTree = "<group>";
+		};
+		CD38AD9123F09B48005DC50B /* AboutViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CD38AD9323F09C91005DC50B /* AboutViewController.swift */,
+				CD38AD9423F09C91005DC50B /* AboutViewController.xib */,
+				CD38AD9723F0A096005DC50B /* AboutView.swift */,
+			);
+			path = AboutViewController;
+			sourceTree = "<group>";
+		};
+		CD38AD9223F09B9B005DC50B /* TabBarFlows */ = {
+			isa = PBXGroup;
+			children = (
+				CD4DB86B23EB677A00F53B28 /* DiscoverFlow */,
+				CD4DB86C23EC5E4B00F53B28 /* ProfileFlow */,
+			);
+			path = TabBarFlows;
 			sourceTree = "<group>";
 		};
 		CD4DB86B23EB677A00F53B28 /* DiscoverFlow */ = {
@@ -505,6 +531,7 @@
 		CD4DB86C23EC5E4B00F53B28 /* ProfileFlow */ = {
 			isa = PBXGroup;
 			children = (
+				CD38AD8E23F09A76005DC50B /* AboutViewController */,
 				CD4DB86E23EC5EC800F53B28 /* ProfileFlowCoordinator.swift */,
 				CD4DB87023EC5EDA00F53B28 /* ProfileViewController */,
 			);
@@ -565,11 +592,9 @@
 		CDB8790B23B8FF290099F946 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				CD38AD8E23F09A76005DC50B /* AboutFlow */,
 				CDB8791123B8FFBF0099F946 /* Coordinator */,
+				CD38AD9223F09B9B005DC50B /* TabBarFlows */,
 				2E289C8823E8C3C9001917DB /* LoginFlow */,
-				CD4DB86B23EB677A00F53B28 /* DiscoverFlow */,
-				CD4DB86C23EC5E4B00F53B28 /* ProfileFlow */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -756,6 +781,7 @@
 				2E16981923AFE05A0002E28E /* GoogleService-Info.plist in Resources */,
 				2E51663423AFD6CA00EDF51E /* Preview Assets.xcassets in Resources */,
 				2E289C9323E8DE84001917DB /* DiscoverViewController.xib in Resources */,
+				CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */,
 				2E51663123AFD6CA00EDF51E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -919,6 +945,7 @@
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
 				2E289C9E23E8DEBD001917DB /* UIViewController+Extensions.swift in Sources */,
 				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
+				CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */,
 				2E289CB923E8DED4001917DB /* FavouriteMovieMarkBody.swift in Sources */,
 				2E289CB123E8DED4001917DB /* UseDefaultsContainer.swift in Sources */,
 				2E289CB223E8DED4001917DB /* Auth.swift in Sources */,
@@ -950,8 +977,9 @@
 				2E289C9223E8DE84001917DB /* DiscoverViewController.swift in Sources */,
 				2E289CB423E8DED4001917DB /* LogoutModel.swift in Sources */,
 				CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */,
-				CD38AD9023F09AE9005DC50B /* AboutFlowCoordinator.swift in Sources */,
+				CD38AD9023F09AE9005DC50B /* AboutCoordinator.swift in Sources */,
 				2E289CE023E8DFCA001917DB /* DiscoverEndPoint.swift in Sources */,
+				CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */,
 				2E289CDF23E8DFCA001917DB /* PeopleEndPointt.swift in Sources */,
 				2E289CB723E8DED4001917DB /* RequestToken.swift in Sources */,
 				2E289CDB23E8DFCA001917DB /* JSONParameterEncoder.swift in Sources */,

@@ -61,7 +61,7 @@ final class AppConfigurator {
         self.window.rootViewController = container.tabBarController
         
     }
-
+    
     private func appEvent(_ event: AppEvent) {
         switch event {
         case .mainFlow:

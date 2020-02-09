@@ -34,7 +34,7 @@ class TabBarContainer: AppEventSource {
     
     private func createTabBar() {
         self.createMainFlowCoordinator()
-        self.createPFCoordinator()
+        self.createProfileFlowCoordinator()
         let controllers = self.childCoordinators.compactMap { $0.navigationController }
         self.tabBarController.setViewControllers(controllers, animated: true)
         
@@ -47,7 +47,7 @@ class TabBarContainer: AppEventSource {
         coordinator.start()
     }
     
-    private func createPFCoordinator() {
+    private func createProfileFlowCoordinator() {
         let coordinator = ProfileFlowCoordinator(networking: self.networking, navigationController: self.profileFlow,
                                                  eventHandler: self.eventHandler)
         

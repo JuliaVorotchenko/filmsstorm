@@ -35,6 +35,7 @@ class ProfileFlowCoordinator: Coordinator {
     }
     
     // MARK: - Coordinator
+    
     func start() {
         self.createProfileViewController()
     }
@@ -48,8 +49,6 @@ class ProfileFlowCoordinator: Coordinator {
         switch event {
         case .logout:
             self.eventHandler?(.authorizationFlow)
-        case .close:
-            self.eventHandler?(.mainFlow)
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
         }

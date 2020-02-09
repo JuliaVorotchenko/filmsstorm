@@ -10,7 +10,6 @@ import UIKit
 
 enum ProfileEvent: EventProtocol {
     case logout
-    case close
     case error(AppError)
 }
 
@@ -36,13 +35,15 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     }
     
     @IBAction func aboutButton(_ sender: Any) {
+        self.toAbout()
     }
     
     @IBAction func logoutButton(_ sender: Any) {
-        print("k")
         self.logout()
     }
     
+    // MARK: - Init & deinit
+
 init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
@@ -53,12 +54,16 @@ init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - VC lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rootView?.setAvatar()
         
     }
     
+    // MARK: - Private methods
+
     private func logout() {
         self.showActivity()
         let sessionID = UserDefaultsContainer.session
@@ -75,4 +80,10 @@ init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
             }
         }
     }
+    
+    private func toAbout() {
+        let vc = AboutViewController(networking: self.networking)
+        self.navigationController?.present(vc, animated: true, completion: nil)
+    }
+
 }
