@@ -14,7 +14,7 @@ enum ProfileEvent: EventProtocol {
     case error(AppError)
 }
 
-class ProfileViewController: UIViewController, Controller, ActivityViewPresenter  {
+class ProfileViewController: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
     
@@ -31,10 +31,6 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     private let networking: NetworkManager
     
     // MARK: - IBActions
-    
-    @IBAction func closeButton(_ sender: Any) {
-        self.eventHandler?(.close)
-    }
     
     @IBAction func setImagesQualityButton(_ sender: Any) {
     }
@@ -76,7 +72,6 @@ init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
                 print(error.stringDescription)
                 self?.hideActivity()
                 self?.eventHandler?(.error(.networkingError(error)))
-                
             }
         }
     }

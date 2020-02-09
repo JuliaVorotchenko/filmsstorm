@@ -11,15 +11,14 @@ import UIKit
 
 class ProfileFlowCoordinator: Coordinator {
     
-      // MARK: - Properties
+    // MARK: - Properties
     
-   var childCoordinators = [Coordinator]()
+    var childCoordinators = [Coordinator]()
     let eventHandler: ((AppEvent) -> Void)?
     let navigationController: UINavigationController
     private let networking: NetworkManager
     
-    
-     // MARK: - Init and deinit
+    // MARK: - Init and deinit
     
     deinit {
         print(Self.self)
@@ -32,6 +31,7 @@ class ProfileFlowCoordinator: Coordinator {
         self.eventHandler = eventHandler
         self.navigationController = navigationController
         self.navigationController.navigationBar.isHidden = true
+        self.navigationController.tabBarItem = .init(title: "Profile", image: nil, selectedImage: nil)
     }
     
     // MARK: - Coordinator
@@ -43,7 +43,7 @@ class ProfileFlowCoordinator: Coordinator {
         let controller = ProfileViewController(networking: self.networking, event: self.profileEvent)
         self.navigationController.viewControllers = [controller]
     }
-        
+    
     private func profileEvent(_ event: ProfileEvent) {
         switch event {
         case .logout:

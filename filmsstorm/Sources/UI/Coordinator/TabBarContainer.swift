@@ -16,8 +16,8 @@ class TabBarContainer: AppEventSource {
     let eventHandler: ((AppEvent) -> Void)?
     private(set) var tabBarController = UITabBarController()
     private let mainFlowNav = UINavigationController()
+    private let profileFlow = UINavigationController()
     private let networking: NetworkManager
-    
     
     // MARK: - Init and deinit
     deinit {
@@ -34,10 +34,10 @@ class TabBarContainer: AppEventSource {
     
     private func createTabBar() {
         self.createMainFlowCoordinator()
-        createPFCoordinator()
+        self.createPFCoordinator()
         let controllers = self.childCoordinators.compactMap { $0.navigationController }
-        self.tabBarController.viewControllers = controllers
-        //setTabBar()
+        self.tabBarController.setViewControllers(controllers, animated: true)
+        
     }
     
     private func createMainFlowCoordinator() {
@@ -48,33 +48,16 @@ class TabBarContainer: AppEventSource {
     }
     
     private func createPFCoordinator() {
-        let coordinator = ProfileFlowCoordinator(networking: self.networking, navigationController: self.mainFlowNav,
+        let coordinator = ProfileFlowCoordinator(networking: self.networking, navigationController: self.profileFlow,
                                                  eventHandler: self.eventHandler)
         
         self.childCoordinators.append(coordinator)
         coordinator.start()
     }
     
-    
-    private func setTabBar() {
-
-        let emptyVC = EmptyViewComntroller(image: nil, title: "Empty")
-        
-
-
-//        var profileTabBarItem = profileVC.tabBarItem
-//        profileTabBarItem = UITabBarItem(title: "My Account", image: nil, tag: 1)
-
-        
-        var emptyTabBarItem = emptyVC.tabBarItem
-        emptyTabBarItem = UITabBarItem(title: "Empty vc", image: nil, tag: 0)
-        
-
-        self.tabBarController.tabBar.setItems([emptyTabBarItem!], animated: true)
-    }
 }
 
-class EmptyViewComntroller: UIViewController {
+class EmptyViewController: UIViewController {
     
     init(image: UIImage?, title: String) {
         super.init(nibName: nil, bundle: nil)
