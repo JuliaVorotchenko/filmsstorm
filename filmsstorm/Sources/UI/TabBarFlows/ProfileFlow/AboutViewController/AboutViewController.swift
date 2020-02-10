@@ -8,27 +8,30 @@
 
 import UIKit
 
+enum AboutEvent: EventProtocol {
+    case profile
+}
+
 class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
-    
+   
     // MARK: - Subtypes
     
-    typealias Event = ProfileEvent
+    typealias Event = AboutEvent
     typealias RootViewType = AboutView
     
     // MARK: - Public Properties
     
     let loadingView = ActivityView()
-    let eventHandler: ((ProfileEvent) -> Void)?
+    let eventHandler: ((AboutEvent) -> Void)?
     
     // MARK: - Private properties
     private let networking: NetworkManager
     
     // MARK: - Init & deinit
     
-    init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
+    init(networking: NetworkManager, event: ((AboutEvent) -> Void)?) {
         self.eventHandler = event
         self.networking = networking
-        //self.aboutEvent = aboutEvent
         super.init(nibName: F.toString(type(of: self)), bundle: nil)
     }
     
@@ -43,7 +46,7 @@ class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
     // MARK: - IBActions
     
     @IBAction func backToProfile(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.eventHandler?(.profile)
     }
     
     // MARK: - VC lifecycle
