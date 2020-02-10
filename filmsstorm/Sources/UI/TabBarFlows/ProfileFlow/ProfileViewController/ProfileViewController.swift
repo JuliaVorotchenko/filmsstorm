@@ -60,6 +60,7 @@ init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rootView?.setAvatar()
+        self.tabBarController?.tabBar.isHidden = false
         
     }
     

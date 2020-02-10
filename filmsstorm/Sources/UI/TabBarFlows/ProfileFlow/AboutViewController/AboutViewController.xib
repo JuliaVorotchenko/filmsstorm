@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController" customModule="filmsstorm" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="AboutView" customModule="filmsstorm" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="I7q-ra-VAl">
+                    <rect key="frame" x="20" y="104" width="335" height="413"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="tmdbLogo" translatesAutoresizingMaskIntoConstraints="NO" id="u1t-ml-LgR" userLabel="emblemView">
+                            <rect key="frame" x="0.0" y="0.0" width="335" height="96.5"/>
+                            <color key="tintColor" red="0.2784313725" green="0.62745098040000002" blue="0.1450980392" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                        </imageView>
+                        <stackView opaque="NO" contentMode="scaleAspectFill" ambiguous="YES" axis="vertical" distribution="fillEqually" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="gbX-un-zd4" userLabel="appPropertiesStack">
+                            <rect key="frame" x="0.0" y="131.5" width="335" height="12"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="App developed by JuliaVorotchenko" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAZ-QZ-cF7" userLabel="appNameLabel">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="0.0"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <color key="textColor" red="0.42352941179999998" green="0.054901960780000002" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="This product uses the TMDb API but is not certified by TMDb" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uph-Bw-ohr" userLabel="appVersionLabel">
+                                    <rect key="frame" x="0.0" y="12" width="335" height="0.0"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" red="0.42352941179999998" green="0.054901960780000002" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="uph-Bw-ohr" secondAttribute="trailing" id="jZu-Qn-j31"/>
+                                <constraint firstAttribute="trailing" secondItem="QAZ-QZ-cF7" secondAttribute="trailing" id="rwP-fV-dAo"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="GIi-xu-zVG" userLabel="appDeveloper">
+                            <rect key="frame" x="0.0" y="178.5" width="335" height="38.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Icons made by FreePik, Madebyoliver and Roundicons from flaticon.com" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WW6-ZF-YM8" userLabel="developer">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="38.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <color key="textColor" red="0.42352941179999998" green="0.054901960780000002" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="poweredBy" translatesAutoresizingMaskIntoConstraints="NO" id="Enx-G5-llB">
+                            <rect key="frame" x="0.0" y="252" width="335" height="161"/>
+                        </imageView>
+                    </subviews>
+                </stackView>
+                <navigationBar contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="eiG-6P-QGx">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" red="0.33725490200000002" green="0.30196078430000001" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="About" largeTitleDisplayMode="always" id="dVG-99-Boa">
+                            <barButtonItem key="leftBarButtonItem" title="Back" id="iGH-QT-2M5">
+                                <color key="tintColor" red="0.42352941179999998" green="0.054901960780000002" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="backToProfile:" destination="-1" id="8YP-S6-duf"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <color key="backgroundColor" red="0.87843137250000003" green="0.92549019610000005" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="I7q-ra-VAl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="62b-8C-JAW"/>
+                <constraint firstItem="eiG-6P-QGx" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="8nb-rn-eQ0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="I7q-ra-VAl" secondAttribute="bottom" constant="150" id="V2g-rH-APO"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="I7q-ra-VAl" secondAttribute="trailing" constant="20" id="aOn-HQ-Juj"/>
+                <constraint firstItem="eiG-6P-QGx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="lZh-ta-Uxc"/>
+                <constraint firstItem="I7q-ra-VAl" firstAttribute="top" secondItem="eiG-6P-QGx" secondAttribute="bottom" constant="60" id="mZi-pH-wgj"/>
+                <constraint firstItem="eiG-6P-QGx" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="pSx-JA-nL8"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <connections>
+                <outlet property="appNameLabel" destination="QAZ-QZ-cF7" id="9cf-zu-li0"/>
+                <outlet property="appVersionLabel" destination="uph-Bw-ohr" id="78B-Zu-MhR"/>
+                <outlet property="customNavigationItem" destination="dVG-99-Boa" id="IE5-Fk-WWU"/>
+                <outlet property="developerLabel" destination="WW6-ZF-YM8" id="naa-Fr-nfG"/>
+                <outlet property="emblemViewImage" destination="u1t-ml-LgR" id="jkI-VK-xAJ"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="148.66071428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="poweredBy" width="204" height="80.5"/>
+        <image name="tmdbLogo" width="104" height="113"/>
+    </resources>
+</document>

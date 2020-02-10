@@ -64,7 +64,6 @@
 		CD0CDA7823C3E797002EC487 /* RootViewGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDA7423C3E797002EC487 /* RootViewGettable.swift */; };
 		CD0CDA7923C3E797002EC487 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDA7623C3E797002EC487 /* Controller.swift */; };
 		CD0CDA7A23C3E797002EC487 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0CDA7723C3E797002EC487 /* Coordinator.swift */; };
-		CD38AD9023F09AE9005DC50B /* AboutCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD8F23F09AE9005DC50B /* AboutCoordinator.swift */; };
 		CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9323F09C91005DC50B /* AboutViewController.swift */; };
 		CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD38AD9423F09C91005DC50B /* AboutViewController.xib */; };
 		CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9723F0A096005DC50B /* AboutView.swift */; };
@@ -170,7 +169,6 @@
 		CD0CDA7423C3E797002EC487 /* RootViewGettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewGettable.swift; sourceTree = "<group>"; };
 		CD0CDA7623C3E797002EC487 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		CD0CDA7723C3E797002EC487 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		CD38AD8F23F09AE9005DC50B /* AboutCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCoordinator.swift; sourceTree = "<group>"; };
 		CD38AD9323F09C91005DC50B /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		CD38AD9423F09C91005DC50B /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		CD38AD9723F0A096005DC50B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -491,15 +489,6 @@
 			path = MVCC;
 			sourceTree = "<group>";
 		};
-		CD38AD8E23F09A76005DC50B /* AboutViewCoordinator */ = {
-			isa = PBXGroup;
-			children = (
-				CD38AD8F23F09AE9005DC50B /* AboutCoordinator.swift */,
-				CD38AD9123F09B48005DC50B /* AboutViewController */,
-			);
-			path = AboutViewCoordinator;
-			sourceTree = "<group>";
-		};
 		CD38AD9123F09B48005DC50B /* AboutViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,7 +522,7 @@
 			children = (
 				CD4DB86E23EC5EC800F53B28 /* ProfileFlowCoordinator.swift */,
 				CD4DB87023EC5EDA00F53B28 /* ProfileViewController */,
-				CD38AD8E23F09A76005DC50B /* AboutViewCoordinator */,
+				CD38AD9123F09B48005DC50B /* AboutViewController */,
 			);
 			path = ProfileFlow;
 			sourceTree = "<group>";
@@ -977,7 +966,6 @@
 				2E289C9223E8DE84001917DB /* DiscoverViewController.swift in Sources */,
 				2E289CB423E8DED4001917DB /* LogoutModel.swift in Sources */,
 				CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */,
-				CD38AD9023F09AE9005DC50B /* AboutCoordinator.swift in Sources */,
 				2E289CE023E8DFCA001917DB /* DiscoverEndPoint.swift in Sources */,
 				CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */,
 				2E289CDF23E8DFCA001917DB /* PeopleEndPointt.swift in Sources */,

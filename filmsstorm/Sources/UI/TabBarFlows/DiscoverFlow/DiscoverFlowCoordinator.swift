@@ -54,4 +54,3 @@ class DiscoverFlowCoordinator: Coordinator {
         }
     }
 }
-

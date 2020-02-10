@@ -44,12 +44,10 @@ class ProfileFlowCoordinator: Coordinator {
         let controller = ProfileViewController(networking: self.networking, event: self.profileEvent)
         self.navigationController.viewControllers = [controller]
     }
-    
-    private func createAboutCoordinator() {
-        let coordinator = AboutCoordinator(networking: self.networking, navigationController: self.navigationController,
-                                           eventProfile: self.profileEvent)
-        self.childCoordinators.append(coordinator)
-        coordinator.start()
+
+    private func createAboutViewController() {
+        let controller = AboutViewController(networking: self.networking, event: self.profileEvent)
+        self.navigationController.pushViewController(controller, animated: true)
     }
     
     private func profileEvent(_ event: ProfileEvent) {
@@ -59,7 +57,7 @@ class ProfileFlowCoordinator: Coordinator {
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
         case .about:
-            self.createAboutCoordinator()
+            self.createAboutViewController()
         }
     }
     
