@@ -10,6 +10,7 @@ import UIKit
 
 enum ProfileEvent: EventProtocol {
     case logout
+    case about
     case error(AppError)
 }
 
@@ -35,7 +36,7 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     }
     
     @IBAction func aboutButton(_ sender: Any) {
-        self.toAbout()
+        self.eventHandler?(.about)
     }
     
     @IBAction func logoutButton(_ sender: Any) {
@@ -80,10 +81,4 @@ init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
             }
         }
     }
-    
-    private func toAbout() {
-        let vc = AboutViewController(networking: self.networking)
-        self.navigationController?.present(vc, animated: true, completion: nil)
-    }
-
 }

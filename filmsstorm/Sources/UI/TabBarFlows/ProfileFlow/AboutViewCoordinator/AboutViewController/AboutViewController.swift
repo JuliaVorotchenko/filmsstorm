@@ -8,7 +8,11 @@
 
 import UIKit
 
-class AboutViewController: UIViewController, ActivityViewPresenter {
+
+
+class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
+    typealias Event = ProfileEvent
+    
 
     // MARK: - Subtypes
    
@@ -17,13 +21,15 @@ class AboutViewController: UIViewController, ActivityViewPresenter {
     // MARK: - Public Properties
     
     let loadingView = ActivityView()
+    let eventHandler: ((ProfileEvent) -> Void)?
     
     // MARK: - Private properties
     private let networking: NetworkManager
     
     // MARK: - IBActions
     
-    init(networking: NetworkManager) {
+    init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
+         self.eventHandler = event
         self.networking = networking
         super.init(nibName: F.toString(type(of: self)), bundle: nil)
     }

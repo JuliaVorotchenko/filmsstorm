@@ -491,21 +491,21 @@
 			path = MVCC;
 			sourceTree = "<group>";
 		};
-		CD38AD8E23F09A76005DC50B /* AboutViewController */ = {
+		CD38AD8E23F09A76005DC50B /* AboutViewCoordinator */ = {
 			isa = PBXGroup;
 			children = (
 				CD38AD8F23F09AE9005DC50B /* AboutCoordinator.swift */,
 				CD38AD9123F09B48005DC50B /* AboutViewController */,
 			);
-			path = AboutViewController;
+			path = AboutViewCoordinator;
 			sourceTree = "<group>";
 		};
 		CD38AD9123F09B48005DC50B /* AboutViewController */ = {
 			isa = PBXGroup;
 			children = (
 				CD38AD9323F09C91005DC50B /* AboutViewController.swift */,
-				CD38AD9423F09C91005DC50B /* AboutViewController.xib */,
 				CD38AD9723F0A096005DC50B /* AboutView.swift */,
+				CD38AD9423F09C91005DC50B /* AboutViewController.xib */,
 			);
 			path = AboutViewController;
 			sourceTree = "<group>";
@@ -531,9 +531,9 @@
 		CD4DB86C23EC5E4B00F53B28 /* ProfileFlow */ = {
 			isa = PBXGroup;
 			children = (
-				CD38AD8E23F09A76005DC50B /* AboutViewController */,
 				CD4DB86E23EC5EC800F53B28 /* ProfileFlowCoordinator.swift */,
 				CD4DB87023EC5EDA00F53B28 /* ProfileViewController */,
+				CD38AD8E23F09A76005DC50B /* AboutViewCoordinator */,
 			);
 			path = ProfileFlow;
 			sourceTree = "<group>";

@@ -10,11 +10,13 @@ import Foundation
 import UIKit
 
 class AboutCoordinator: Coordinator {
+    var eventHandler: ((AppEvent) -> Void)?
+    
     
     // MARK: - Properties
        
        var childCoordinators = [Coordinator]()
-       let eventHandler: ((AppEvent) -> Void)?
+       let eventProfile: ((ProfileEvent) -> Void)?
        let navigationController: UINavigationController
        private let networking: NetworkManager
     
@@ -26,11 +28,10 @@ class AboutCoordinator: Coordinator {
     
     init(networking: NetworkManager,
             navigationController: UINavigationController,
-            eventHandler: ((AppEvent) -> Void)?) {
+            eventProfile: ((ProfileEvent) -> Void)?) {
            self.networking = networking
-           self.eventHandler = eventHandler
+           self.eventProfile = eventProfile
            self.navigationController = navigationController
-           self.navigationController.navigationBar.isHidden = false
        }
     
      // MARK: - Coordinator
@@ -40,9 +41,7 @@ class AboutCoordinator: Coordinator {
     }
     
     private func createAboutViewController() {
-        let controller = AboutViewController(networking: self.networking)
-        self.navigationController.viewControllers = [controller]
+        let controller = AboutViewController(networking: self.networking, event: self.eventProfile)
+        self.navigationController.present(controller, animated: true, completion: nil)
     }
-        
 }
-

@@ -33,14 +33,14 @@ class TabBarContainer: AppEventSource {
     }
     
     private func createTabBar() {
-        self.createMainFlowCoordinator()
+        self.createDiscoverFlowCoordinator()
         self.createProfileFlowCoordinator()
         let controllers = self.childCoordinators.compactMap { $0.navigationController }
         self.tabBarController.setViewControllers(controllers, animated: true)
         
     }
     
-    private func createMainFlowCoordinator() {
+    private func createDiscoverFlowCoordinator() {
         let coordinator = DiscoverFlowCoordinator(networking: self.networking, navigationController: self.mainFlowNav,
                                               eventHandler: self.eventHandler)
         self.childCoordinators.append(coordinator)

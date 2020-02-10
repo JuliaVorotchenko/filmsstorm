@@ -45,12 +45,21 @@ class ProfileFlowCoordinator: Coordinator {
         self.navigationController.viewControllers = [controller]
     }
     
+    private func createAboutCoordinator() {
+        let coordinator = AboutCoordinator(networking: self.networking, navigationController: self.navigationController,
+                                           eventProfile: self.profileEvent)
+        self.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
     private func profileEvent(_ event: ProfileEvent) {
         switch event {
         case .logout:
             self.eventHandler?(.authorizationFlow)
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
+        case .about:
+            self.createAboutCoordinator()
         }
     }
     
