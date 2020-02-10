@@ -32,6 +32,7 @@ class AboutCoordinator: Coordinator {
            self.networking = networking
            self.eventProfile = eventProfile
            self.navigationController = navigationController
+        
        }
     
      // MARK: - Coordinator
@@ -41,7 +42,21 @@ class AboutCoordinator: Coordinator {
     }
     
     private func createAboutViewController() {
-        let controller = AboutViewController(networking: self.networking, event: self.eventProfile)
-        self.navigationController.present(controller, animated: true, completion: nil)
+        let controller = AboutViewController(networking: self.networking, event: self.eventProfile, aboutEvent: aboutEvent(_:))
+        self.navigationController.viewControllers = [controller]
     }
+    
+    private func createProfileViewController() {
+        let controller = ProfileViewController(networking: self.networking, event: self.eventProfile)
+        self.navigationController.viewControllers = [controller]
+    }
+    
+    private func aboutEvent(_ event: AboutEvent) {
+        switch event {
+        case .backToProfile:
+            self.createProfileViewController()
+        }
+    }
+    
+    
 }

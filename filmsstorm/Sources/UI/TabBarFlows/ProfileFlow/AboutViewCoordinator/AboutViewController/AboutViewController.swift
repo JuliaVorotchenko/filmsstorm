@@ -8,6 +8,9 @@
 
 import UIKit
 
+enum AboutEvent: EventProtocol {
+    case backToProfile
+}
 
 
 class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
@@ -22,15 +25,23 @@ class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
     
     let loadingView = ActivityView()
     let eventHandler: ((ProfileEvent) -> Void)?
+    let aboutEvent: ((AboutEvent) -> Void)?
+    
+    // MARK: - IBActions
+
+    @IBAction func backToProfile(_ sender: Any) {
+        self.aboutEvent?(.backToProfile)
+    }
     
     // MARK: - Private properties
     private let networking: NetworkManager
     
     // MARK: - IBActions
     
-    init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
+    init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?, aboutEvent: ((AboutEvent) -> Void)?) {
          self.eventHandler = event
         self.networking = networking
+        self.aboutEvent = aboutEvent
         super.init(nibName: F.toString(type(of: self)), bundle: nil)
     }
     
