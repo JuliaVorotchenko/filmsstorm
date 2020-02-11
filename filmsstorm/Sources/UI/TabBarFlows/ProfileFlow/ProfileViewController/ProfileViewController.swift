@@ -31,19 +31,6 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     
     private let networking: NetworkManager
     
-    // MARK: - IBActions
-    
-    @IBAction func setImagesQualityButton(_ sender: Any) {
-    }
-    
-    @IBAction func aboutButton(_ sender: Any) {
-        self.eventHandler?(.about)
-    }
-    
-    @IBAction func logoutButton(_ sender: Any) {
-        self.logout()
-    }
-    
     // MARK: - Init & deinit
     
     init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
@@ -69,8 +56,11 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
         self.rootView?.tableView.register(UINib(nibName: "QualitySettingViewCell", bundle: nil),
                                           forCellReuseIdentifier: "QualitySettingViewCell")
         
-        self.rootView?.tableView.register(UINib(nibName: "AboutLogoutViewCell", bundle: nil),
-                                          forCellReuseIdentifier: "AboutLogoutViewCell")
+        self.rootView?.tableView.register(UINib(nibName: "AboutViewCell", bundle: nil),
+                                          forCellReuseIdentifier: "AboutViewCell")
+         
+        self.rootView?.tableView.register(UINib(nibName: "LogoutViewCell", bundle: nil),
+                                                 forCellReuseIdentifier: "LogoutViewCell")
     }
     
     // MARK: - Table view data source & delegate
@@ -80,31 +70,47 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
-    
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
         
         if indexPath.row == 0 {
-            guard let cell0 = tableView.dequeueReusableCell(withIdentifier: "AvatarViewCell", for: indexPath) as? AvatarViewCell else { return UITableViewCell() }
+            guard let cell0 = tableView.dequeueReusableCell(withIdentifier: "AvatarViewCell",
+                                                            for: indexPath) as? AvatarViewCell else { return UITableViewCell() }
+            cell0.setAvatar()
             cell = cell0
         }
         
         if indexPath.row == 1 {
-            guard let cell1 = tableView.dequeueReusableCell(withIdentifier: "QualitySettingViewCell", for: indexPath) as? QualitySettingViewCell else { return UITableViewCell() }
+            guard let cell1 = tableView.dequeueReusableCell(withIdentifier: "QualitySettingViewCell",
+                                                            for: indexPath) as? QualitySettingViewCell else { return UITableViewCell() }
             cell = cell1
         }
         
         if indexPath.row == 2 {
-            guard let cell2 = tableView.dequeueReusableCell(withIdentifier: "AboutLogoutViewCell", for: indexPath) as? AboutLogoutViewCell else { return UITableViewCell() }
+            guard let cell2 = tableView.dequeueReusableCell(withIdentifier: "AboutViewCell",
+                                                            for: indexPath) as? AboutViewCell else { return UITableViewCell() }
+            cell2.aboutTappedAction = { [unowned self] in
+                self.eventHandler?(.about)
+            }
             cell = cell2
+        }
+        
+        if indexPath.row == 3 {
+            guard let cell3 = tableView.dequeueReusableCell(withIdentifier: "LogoutViewCell",
+                                                            for: indexPath) as? LogoutViewCell else { return UITableViewCell() }
+            cell3.logoutTappedAction = { [unowned self] in
+                self.logout()
+            }
+            cell = cell3
+            
         }
         
         return cell
     }
+    
     
     private func setTableVievDelegate() {
         self.rootView?.tableView.delegate = self

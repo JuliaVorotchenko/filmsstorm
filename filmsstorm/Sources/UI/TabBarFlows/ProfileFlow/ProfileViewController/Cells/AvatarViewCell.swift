@@ -10,17 +10,28 @@ import UIKit
 
 class AvatarViewCell: UITableViewCell {
     
+    @IBOutlet weak var avatarContainer: UIView!
     @IBOutlet weak var avatarView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    
+        
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
     }
     
+    func setAvatar() {
+        self.avatarContainer.backgroundColor = .clear
+        
+        self.avatarContainer.layer.cornerRadius = avatarContainer.frame.size.width / 2
+        self.avatarContainer.layer.borderColor = CGColor(srgbRed: 71, green: 160, blue: 37, alpha: 0.85)
+        self.avatarContainer.layer.borderWidth = 3.0
+        
+        self.avatarView.layer.cornerRadius = avatarView.frame.size.width / 2
+        self.avatarView.image = UIImage(named: "user")
+    }
 }
