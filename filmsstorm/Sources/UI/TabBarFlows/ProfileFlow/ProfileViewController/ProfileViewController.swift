@@ -15,7 +15,7 @@ enum ProfileEvent: EventProtocol {
     case error(AppError)
 }
 
-class ProfileViewController: UIViewController, Controller, ActivityViewPresenter, UITableViewDataSource, UITableViewDelegate {
+class ProfileViewController: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
     
@@ -63,6 +63,28 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
                                                  forCellReuseIdentifier: "LogoutViewCell")
     }
     
+    // MARK: - Private methods
+    
+    private func logout() {
+        self.showActivity()
+        let sessionID = UserDefaultsContainer.session
+        self.networking.logout(sessionID: sessionID) { [weak self] result in
+            switch result {
+            case .success:
+                UserDefaultsContainer.unregister()
+                self?.eventHandler?(.logout)
+                self?.hideActivity()
+            case .failure(let error):
+                print(error.stringDescription)
+                self?.hideActivity()
+                self?.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+    }
+}
+
+extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+   
     // MARK: - Table view data source & delegate
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -111,28 +133,8 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
         return cell
     }
     
-    
     private func setTableVievDelegate() {
         self.rootView?.tableView.delegate = self
         self.rootView?.tableView.dataSource = self
-    }
-    
-    // MARK: - Private methods
-    
-    private func logout() {
-        self.showActivity()
-        let sessionID = UserDefaultsContainer.session
-        self.networking.logout(sessionID: sessionID) { [weak self] result in
-            switch result {
-            case .success:
-                UserDefaultsContainer.unregister()
-                self?.eventHandler?(.logout)
-                self?.hideActivity()
-            case .failure(let error):
-                print(error.stringDescription)
-                self?.hideActivity()
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
     }
 }

@@ -26,7 +26,6 @@ class AvatarViewCell: UITableViewCell {
     
     func setAvatar() {
         self.avatarContainer.backgroundColor = .clear
-        
         self.avatarContainer.layer.cornerRadius = avatarContainer.frame.size.width / 2
         self.avatarContainer.layer.borderColor = CGColor(srgbRed: 71, green: 160, blue: 37, alpha: 0.85)
         self.avatarContainer.layer.borderWidth = 3.0
