@@ -68,6 +68,12 @@
 		CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD38AD9423F09C91005DC50B /* AboutViewController.xib */; };
 		CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9723F0A096005DC50B /* AboutView.swift */; };
 		CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD499B6223E4715D00BF0545 /* TabBarContainer.swift */; };
+		CD4C703E23F2CCB40057FE82 /* AvatarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C703C23F2CCB40057FE82 /* AvatarViewCell.swift */; };
+		CD4C703F23F2CCB40057FE82 /* AvatarViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4C703D23F2CCB40057FE82 /* AvatarViewCell.xib */; };
+		CD4C704223F2CCEF0057FE82 /* QualitySettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C704023F2CCEF0057FE82 /* QualitySettingViewCell.swift */; };
+		CD4C704323F2CCEF0057FE82 /* QualitySettingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4C704123F2CCEF0057FE82 /* QualitySettingViewCell.xib */; };
+		CD4C704623F2CD180057FE82 /* AboutLogoutViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C704423F2CD180057FE82 /* AboutLogoutViewCell.swift */; };
+		CD4C704723F2CD180057FE82 /* AboutLogoutViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4C704523F2CD180057FE82 /* AboutLogoutViewCell.xib */; };
 		CD4DB86F23EC5EC800F53B28 /* ProfileFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4DB86E23EC5EC800F53B28 /* ProfileFlowCoordinator.swift */; };
 		CD4DB87323EC5F3D00F53B28 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */; };
 		CD4DB87423EC5F3D00F53B28 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */; };
@@ -173,6 +179,12 @@
 		CD38AD9423F09C91005DC50B /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		CD38AD9723F0A096005DC50B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		CD499B6223E4715D00BF0545 /* TabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
+		CD4C703C23F2CCB40057FE82 /* AvatarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewCell.swift; sourceTree = "<group>"; };
+		CD4C703D23F2CCB40057FE82 /* AvatarViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarViewCell.xib; sourceTree = "<group>"; };
+		CD4C704023F2CCEF0057FE82 /* QualitySettingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualitySettingViewCell.swift; sourceTree = "<group>"; };
+		CD4C704123F2CCEF0057FE82 /* QualitySettingViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QualitySettingViewCell.xib; sourceTree = "<group>"; };
+		CD4C704423F2CD180057FE82 /* AboutLogoutViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutLogoutViewCell.swift; sourceTree = "<group>"; };
+		CD4C704523F2CD180057FE82 /* AboutLogoutViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutLogoutViewCell.xib; sourceTree = "<group>"; };
 		CD4DB86E23EC5EC800F53B28 /* ProfileFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlowCoordinator.swift; sourceTree = "<group>"; };
 		CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
@@ -508,6 +520,19 @@
 			path = TabBarFlows;
 			sourceTree = "<group>";
 		};
+		CD4C704823F2CD250057FE82 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CD4C703C23F2CCB40057FE82 /* AvatarViewCell.swift */,
+				CD4C703D23F2CCB40057FE82 /* AvatarViewCell.xib */,
+				CD4C704023F2CCEF0057FE82 /* QualitySettingViewCell.swift */,
+				CD4C704123F2CCEF0057FE82 /* QualitySettingViewCell.xib */,
+				CD4C704423F2CD180057FE82 /* AboutLogoutViewCell.swift */,
+				CD4C704523F2CD180057FE82 /* AboutLogoutViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		CD4DB86B23EB677A00F53B28 /* DiscoverFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +555,7 @@
 		CD4DB87023EC5EDA00F53B28 /* ProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
+				CD4C704823F2CD250057FE82 /* Cells */,
 				CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */,
 				CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */,
 				CD4DB87523EC5F6700F53B28 /* ProfileView.swift */,
@@ -763,11 +789,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD4C704723F2CD180057FE82 /* AboutLogoutViewCell.xib in Resources */,
 				2E51663723AFD6CA00EDF51E /* LaunchScreen.storyboard in Resources */,
+				CD4C704323F2CCEF0057FE82 /* QualitySettingViewCell.xib in Resources */,
 				2E289C9023E8DE84001917DB /* DiscoverCollectionViewCell.xib in Resources */,
 				CD4DB87423EC5F3D00F53B28 /* ProfileViewController.xib in Resources */,
 				CDB8791823B900D80099F946 /* AuthorizationViewController.xib in Resources */,
 				2E16981923AFE05A0002E28E /* GoogleService-Info.plist in Resources */,
+				CD4C703F23F2CCB40057FE82 /* AvatarViewCell.xib in Resources */,
 				2E51663423AFD6CA00EDF51E /* Preview Assets.xcassets in Resources */,
 				2E289C9323E8DE84001917DB /* DiscoverViewController.xib in Resources */,
 				CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */,
@@ -923,6 +952,7 @@
 				2E289CED23E8DFCA001917DB /* Router.swift in Sources */,
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				2E289CDE23E8DFCA001917DB /* NetworkManager.swift in Sources */,
+				CD4C704223F2CCEF0057FE82 /* QualitySettingViewCell.swift in Sources */,
 				2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */,
 				2E289CB623E8DED4001917DB /* PopularMoviesModel.swift in Sources */,
 				CD4DB87323EC5F3D00F53B28 /* ProfileViewController.swift in Sources */,
@@ -942,6 +972,8 @@
 				CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */,
 				2E289C8F23E8DE84001917DB /* DiscoverCollectionViewCell.swift in Sources */,
 				CD0CDA7A23C3E797002EC487 /* Coordinator.swift in Sources */,
+				CD4C704623F2CD180057FE82 /* AboutLogoutViewCell.swift in Sources */,
+				CD4C703E23F2CCB40057FE82 /* AvatarViewCell.swift in Sources */,
 				CD7E748623D8F3450097F198 /* AppEventSource.swift in Sources */,
 				2E289CE723E8DFCA001917DB /* TVEndPoint.swift in Sources */,
 				2E289CDC23E8DFCA001917DB /* NetworkError.swift in Sources */,
