@@ -51,7 +51,7 @@
                     <constraint firstItem="CID-QU-0o5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="rzr-rw-2oZ"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.83529411760000005" green="0.90196078430000004" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.8784313725490196" green="0.92549019607843142" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="aboutButton" destination="Hga-Aj-Jgp" id="1UL-SX-Vot"/>

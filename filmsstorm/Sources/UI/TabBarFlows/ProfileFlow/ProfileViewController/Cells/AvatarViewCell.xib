@@ -50,7 +50,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.83529411760000005" green="0.90196078430000004" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.8784313725490196" green="0.92549019607843142" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="vOC-te-7TW" firstAttribute="leading" secondItem="szz-sV-Ik1" secondAttribute="leading" constant="20" symbolic="YES" id="DUG-fO-voE"/>
                             <constraint firstAttribute="bottom" secondItem="vOC-te-7TW" secondAttribute="bottom" constant="20" symbolic="YES" id="IdH-iw-HmC"/>

@@ -16,7 +16,6 @@ class LogoutViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.logoutButton.addTarget(self, action: #selector(logoutButtonTapped(_:)), for: .touchUpInside)
     }
     
     @IBAction func logoutButtonTapped(_ sender: Any) {

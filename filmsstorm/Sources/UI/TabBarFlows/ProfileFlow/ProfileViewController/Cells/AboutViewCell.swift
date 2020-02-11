@@ -15,7 +15,6 @@ class AboutViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.aboutButton.addTarget(self, action: #selector(aboutButtonTapped(_:)), for: .touchUpInside)
     }
     
     @IBAction func aboutButtonTapped(_ sender: Any) {

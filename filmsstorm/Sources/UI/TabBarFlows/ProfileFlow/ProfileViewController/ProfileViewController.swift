@@ -49,18 +49,7 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
         self.setTableVievDelegate()
-        
-        self.rootView?.tableView.register(UINib(nibName: "AvatarViewCell", bundle: nil),
-                                          forCellReuseIdentifier: "AvatarViewCell")
-        
-        self.rootView?.tableView.register(UINib(nibName: "QualitySettingViewCell", bundle: nil),
-                                          forCellReuseIdentifier: "QualitySettingViewCell")
-        
-        self.rootView?.tableView.register(UINib(nibName: "AboutViewCell", bundle: nil),
-                                          forCellReuseIdentifier: "AboutViewCell")
-         
-        self.rootView?.tableView.register(UINib(nibName: "LogoutViewCell", bundle: nil),
-                                                 forCellReuseIdentifier: "LogoutViewCell")
+        self.regiterCells()
     }
     
     // MARK: - Private methods
@@ -84,12 +73,8 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
 }
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
-   
-    // MARK: - Table view data source & delegate
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
+    // MARK: - Table view data source & delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -136,5 +121,20 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     private func setTableVievDelegate() {
         self.rootView?.tableView.delegate = self
         self.rootView?.tableView.dataSource = self
+    }
+    
+    private func regiterCells() {
+        
+        self.rootView?.tableView.register(UINib(nibName: "AvatarViewCell", bundle: nil),
+                                          forCellReuseIdentifier: "AvatarViewCell")
+        
+        self.rootView?.tableView.register(UINib(nibName: "QualitySettingViewCell", bundle: nil),
+                                          forCellReuseIdentifier: "QualitySettingViewCell")
+        
+        self.rootView?.tableView.register(UINib(nibName: "AboutViewCell", bundle: nil),
+                                          forCellReuseIdentifier: "AboutViewCell")
+        
+        self.rootView?.tableView.register(UINib(nibName: "LogoutViewCell", bundle: nil),
+                                          forCellReuseIdentifier: "LogoutViewCell")
     }
 }
