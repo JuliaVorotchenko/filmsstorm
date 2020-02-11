@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 enum ProfileEvent: EventProtocol {
     case logout
@@ -14,7 +15,7 @@ enum ProfileEvent: EventProtocol {
     case error(AppError)
 }
 
-class ProfileViewController: UIViewController, Controller, ActivityViewPresenter {
+class ProfileViewController: UIViewController, Controller, ActivityViewPresenter, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Subtypes
     
@@ -44,8 +45,8 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     }
     
     // MARK: - Init & deinit
-
-init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
+    
+    init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
         super.init(nibName: F.toString(type(of: self)), bundle: nil)
@@ -56,16 +57,62 @@ init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
     }
     
     // MARK: - VC lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.rootView?.setAvatar()
         self.tabBarController?.tabBar.isHidden = false
+        self.setTableVievDelegate()
         
+        self.rootView?.tableView.register(UINib(nibName: "AvatarViewCell", bundle: nil),
+                                          forCellReuseIdentifier: "AvatarViewCell")
+        
+        self.rootView?.tableView.register(UINib(nibName: "QualitySettingViewCell", bundle: nil),
+                                          forCellReuseIdentifier: "QualitySettingViewCell")
+        
+        self.rootView?.tableView.register(UINib(nibName: "AboutLogoutViewCell", bundle: nil),
+                                          forCellReuseIdentifier: "AboutLogoutViewCell")
+    }
+    
+    // MARK: - Table view data source & delegate
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = UITableViewCell()
+        
+        if indexPath.row == 0 {
+            guard let cell0 = tableView.dequeueReusableCell(withIdentifier: "AvatarViewCell", for: indexPath) as? AvatarViewCell else { return UITableViewCell() }
+            cell = cell0
+        }
+        
+        if indexPath.row == 1 {
+            guard let cell1 = tableView.dequeueReusableCell(withIdentifier: "QualitySettingViewCell", for: indexPath) as? QualitySettingViewCell else { return UITableViewCell() }
+            cell = cell1
+        }
+        
+        if indexPath.row == 2 {
+            guard let cell2 = tableView.dequeueReusableCell(withIdentifier: "AboutLogoutViewCell", for: indexPath) as? AboutLogoutViewCell else { return UITableViewCell() }
+            cell = cell2
+        }
+        
+        return cell
+    }
+    
+    private func setTableVievDelegate() {
+        self.rootView?.tableView.delegate = self
+        self.rootView?.tableView.dataSource = self
     }
     
     // MARK: - Private methods
-
+    
     private func logout() {
         self.showActivity()
         let sessionID = UserDefaultsContainer.session

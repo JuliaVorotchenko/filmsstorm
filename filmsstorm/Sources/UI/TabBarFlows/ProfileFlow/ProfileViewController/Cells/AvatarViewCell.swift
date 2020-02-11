@@ -9,7 +9,10 @@
 import UIKit
 
 class AvatarViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var avatarView: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     
