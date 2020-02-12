@@ -6,15 +6,15 @@
 //  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
 
-struct Hash: Codable {
+struct Hash: Codable, Hashable {
        let hash: String?
    }
    
-   struct Avatar: Codable {
+   struct Avatar: Codable, Hashable {
        let gravatar: Hash?
    }
 
-struct UserModel: Codable {
+struct UserModel: Codable, Hashable {
    
     let avatar: Avatar?
     let id: Int?

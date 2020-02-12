@@ -22,6 +22,10 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     typealias RootViewType = ProfileView
     typealias Event = ProfileEvent
     
+    enum Section: CaseIterable {
+        case main
+    }
+    
     // MARK: - Public Properties
     
     let loadingView = ActivityView()
@@ -30,6 +34,7 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     // MARK: - Private properties
     
     private let networking: NetworkManager
+    private var user: UserModel?
     
     // MARK: - Init & deinit
     
@@ -50,6 +55,7 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
         self.tabBarController?.tabBar.isHidden = false
         self.setTableVievDelegate()
         self.regiterCells()
+        self.getUserDetails()
     }
     
     // MARK: - Private methods
@@ -70,11 +76,23 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
             }
         }
     }
+    
+    func getUserDetails() {
+        self.networking.getUserDetails(sessionID: UserDefaultsContainer.session) { [weak self] result in
+            switch result {
+            case .success(let model):
+                self?.user = model
+                self?.rootView?.tableView.reloadData()
+            case .failure(let error):
+                self?.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+    }
 }
 
-extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+extension ProfileViewController: UITableViewDataSource {
     
-    // MARK: - Table view data source & delegate
+    // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -84,57 +102,45 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         var cell = UITableViewCell()
         
         if indexPath.row == 0 {
-            guard let cell0 = tableView.dequeueReusableCell(withIdentifier: "AvatarViewCell",
-                                                            for: indexPath) as? AvatarViewCell else { return UITableViewCell() }
-            cell0.setAvatar()
+            let cell0: AvatarViewCell = tableView.dequeueReusableCell(AvatarViewCell.self, for: indexPath)
+            guard let userModel = self.user else { return UITableViewCell() }
+            cell0.fill(model: userModel)
             cell = cell0
         }
         
         if indexPath.row == 1 {
-            guard let cell1 = tableView.dequeueReusableCell(withIdentifier: "QualitySettingViewCell",
-                                                            for: indexPath) as? QualitySettingViewCell else { return UITableViewCell() }
+            let cell1: QualitySettingViewCell = tableView.dequeueReusableCell(QualitySettingViewCell.self, for: indexPath)
             cell = cell1
         }
         
         if indexPath.row == 2 {
-            guard let cell2 = tableView.dequeueReusableCell(withIdentifier: "AboutViewCell",
-                                                            for: indexPath) as? AboutViewCell else { return UITableViewCell() }
-            cell2.aboutTappedAction = { [unowned self] in
-                self.eventHandler?(.about)
+            let cell2: AboutViewCell = tableView.dequeueReusableCell(AboutViewCell.self, for: indexPath)
+            cell2.aboutTappedAction = { [weak self] in
+                self?.eventHandler?(.about)
             }
             cell = cell2
         }
         
         if indexPath.row == 3 {
-            guard let cell3 = tableView.dequeueReusableCell(withIdentifier: "LogoutViewCell",
-                                                            for: indexPath) as? LogoutViewCell else { return UITableViewCell() }
-            cell3.logoutTappedAction = { [unowned self] in
-                self.logout()
+            let cell3: LogoutViewCell  = tableView.dequeueReusableCell(LogoutViewCell.self, for: indexPath)
+            cell3.logoutTappedAction = { [weak self] in
+                self?.logout()
             }
             cell = cell3
-            
         }
         
         return cell
     }
     
     private func setTableVievDelegate() {
-        self.rootView?.tableView.delegate = self
         self.rootView?.tableView.dataSource = self
     }
     
     private func regiterCells() {
-        
-        self.rootView?.tableView.register(UINib(nibName: "AvatarViewCell", bundle: nil),
-                                          forCellReuseIdentifier: "AvatarViewCell")
-        
-        self.rootView?.tableView.register(UINib(nibName: "QualitySettingViewCell", bundle: nil),
-                                          forCellReuseIdentifier: "QualitySettingViewCell")
-        
-        self.rootView?.tableView.register(UINib(nibName: "AboutViewCell", bundle: nil),
-                                          forCellReuseIdentifier: "AboutViewCell")
-        
-        self.rootView?.tableView.register(UINib(nibName: "LogoutViewCell", bundle: nil),
-                                          forCellReuseIdentifier: "LogoutViewCell")
+        let tableView = self.rootView?.tableView
+        tableView?.register(AvatarViewCell.self)
+        tableView?.register(QualitySettingViewCell.self)
+        tableView?.register(AboutViewCell.self)
+        tableView?.register(LogoutViewCell.self)
     }
 }

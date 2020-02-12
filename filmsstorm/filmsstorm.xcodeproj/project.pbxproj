@@ -78,6 +78,7 @@
 		CD4DB87323EC5F3D00F53B28 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */; };
 		CD4DB87423EC5F3D00F53B28 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */; };
 		CD4DB87623EC5F6700F53B28 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4DB87523EC5F6700F53B28 /* ProfileView.swift */; };
+		CD51B26323F47DF100E3C924 /* UITableView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51B26223F47DF100E3C924 /* UITableView + Extensions.swift */; };
 		CD536EF723E36034000FEE79 /* DiscoverFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD536EF623E36034000FEE79 /* DiscoverFlowCoordinator.swift */; };
 		CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD53CDB723D631C000E16E2E /* ActivityView.swift */; };
 		CD58B43923F3036800A871BE /* LogoutViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD58B43723F3036800A871BE /* LogoutViewCell.swift */; };
@@ -191,6 +192,7 @@
 		CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		CD4DB87523EC5F6700F53B28 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		CD51B26223F47DF100E3C924 /* UITableView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extensions.swift"; sourceTree = "<group>"; };
 		CD536EF623E36034000FEE79 /* DiscoverFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverFlowCoordinator.swift; sourceTree = "<group>"; };
 		CD53CDB723D631C000E16E2E /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		CD58B43723F3036800A871BE /* LogoutViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewCell.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				2E289C9623E8DEBD001917DB /* UIImageView+Extensions.swift */,
 				2E289C9723E8DEBD001917DB /* UIViewController+Extensions.swift */,
 				2E289C9823E8DEBD001917DB /* UICollectionView+Extensions.swift */,
+				CD51B26223F47DF100E3C924 /* UITableView + Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -960,6 +963,7 @@
 				2E289CED23E8DFCA001917DB /* Router.swift in Sources */,
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				2E289CDE23E8DFCA001917DB /* NetworkManager.swift in Sources */,
+				CD51B26323F47DF100E3C924 /* UITableView + Extensions.swift in Sources */,
 				CD4C704223F2CCEF0057FE82 /* QualitySettingViewCell.swift in Sources */,
 				2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */,
 				2E289CB623E8DED4001917DB /* PopularMoviesModel.swift in Sources */,

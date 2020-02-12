@@ -56,7 +56,7 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setCollectionView()
-        self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
+       self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
         self.getPopularMovies()
         self.createDataSource()
     }
