@@ -100,9 +100,11 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     }
     
     private func createItems() {
+        let logoutImage = UIImage(named: "logout")
+        let aboutImage = UIImage(named: "about")
         guard let userModel = self.user else { return }
-        let aboutCellModel = ActionCellModel(name: "About us", image: nil, action: self.onAbout)
-        let logoutCellModel = ActionCellModel(name: "Logout", image: nil, action: self.onLogout)
+        let aboutCellModel = ActionCellModel(name: "About us", image: aboutImage, action: self.onAbout)
+        let logoutCellModel = ActionCellModel(name: "Logout", image: logoutImage, action: self.onLogout)
         self.items = [.profile(userModel), .imageQuality, .about(aboutCellModel), .logout(logoutCellModel)]
         self.update(sections: Section.allCases, items: self.items)
     }
@@ -124,6 +126,7 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
         tableView?.register(AvatarViewCell.self)
         tableView?.register(QualitySettingViewCell.self)
         tableView?.register(ActionViewCell.self)
+
         tableView?.dataSource = self.dataSource
     }
     
@@ -132,7 +135,6 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
         return self.rootView.map {
             UITableViewDiffableDataSource(tableView: $0.tableView) { (tableView, indexPath, items) -> UITableViewCell? in
                 var cell = UITableViewCell()
-                
                 switch items {
                 case .profile(let model):
                     let avatarCell: AvatarViewCell = tableView.dequeueReusableCell(AvatarViewCell.self, for: indexPath)

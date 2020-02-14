@@ -38,6 +38,9 @@ class TabBarContainer: AppEventSource {
         let controllers = self.childCoordinators.compactMap { $0.navigationController }
         self.tabBarController.setViewControllers(controllers, animated: true)
         
+        self.tabBarController.tabBar.isTranslucent = false
+        self.tabBarController.tabBar.barTintColor = UIColor(named: .background)
+        self.tabBarController.tabBar.tintColor = UIColor(named: .primary)
     }
     
     private func createDiscoverFlowCoordinator() {
@@ -54,18 +57,5 @@ class TabBarContainer: AppEventSource {
         self.childCoordinators.append(coordinator)
         coordinator.start()
     }
-    
 }
 
-class EmptyViewController: UIViewController {
-    
-    init(image: UIImage?, title: String) {
-        super.init(nibName: nil, bundle: nil)
-        self.tabBarItem = .init(title: title, image: image, selectedImage: nil)
-
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}

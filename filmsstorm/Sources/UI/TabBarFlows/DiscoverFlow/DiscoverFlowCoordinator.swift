@@ -31,7 +31,7 @@ class DiscoverFlowCoordinator: Coordinator {
         self.eventHandler = eventHandler
         self.navigationController = navigationController
         self.navigationController.navigationBar.isHidden = true
-        self.navigationController.tabBarItem = .init(title: "Discover", image: nil, selectedImage: nil)
+        self.navigationController.tabBarItem = .init(title: "Discover", image: UIImage(named: "discover"), selectedImage: nil)
     }
     
     // MARK: - Coordinator

@@ -59,7 +59,6 @@ final class AppConfigurator {
                                         eventHandler: self.appEvent)
         self.tabBarContainer = container
         self.window.rootViewController = container.tabBarController
-        
     }
     
     private func appEvent(_ event: AppEvent) {

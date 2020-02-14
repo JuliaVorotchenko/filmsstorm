@@ -31,7 +31,7 @@ class ProfileFlowCoordinator: Coordinator {
         self.eventHandler = eventHandler
         self.navigationController = navigationController
         self.navigationController.navigationBar.isHidden = true
-        self.navigationController.tabBarItem = .init(title: "Profile", image: nil, selectedImage: nil)
+        self.navigationController.tabBarItem = .init(title: "Profile", image: UIImage(named: "profile"), selectedImage: nil)
     }
     
     // MARK: - Coordinator

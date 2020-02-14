@@ -11,7 +11,8 @@ import UIKit
 class QualitySettingViewCell: UITableViewCell {
 
     @IBOutlet weak var imageQualityLabel: UILabel!
-    @IBOutlet weak var setImageQuality: UISegmentedControl!
+    @IBOutlet weak var setQuality: UISwitch!
+    
    
     override func awakeFromNib() {
         super.awakeFromNib()
