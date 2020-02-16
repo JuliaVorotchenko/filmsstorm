@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     }
     
     enum Item: Hashable {
-        case profile(UserModel)
+        case profile(UserModel?)
         case imageQuality
         case about(ActionCellModel)
         case logout(ActionCellModel)
@@ -65,6 +65,11 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
         self.getUserDetails()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.createItems()
+    }
+    
     // MARK: - Private methods
     
     private func onLogout() {
@@ -99,10 +104,9 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     private func createItems() {
         let logoutImage = UIImage(named: "logout")
         let aboutImage = UIImage(named: "about")
-        guard let userModel = self.user else { return }
         let aboutCellModel = ActionCellModel(name: "About us", image: aboutImage, action: self.onAbout)
         let logoutCellModel = ActionCellModel(name: "Logout", image: logoutImage, action: self.onLogout)
-        self.items = [.profile(userModel), .imageQuality, .about(aboutCellModel), .logout(logoutCellModel)]
+        self.items = [.profile(self.user), .imageQuality, .about(aboutCellModel), .logout(logoutCellModel)]
         self.update(sections: Section.allCases, items: self.items)
     }
     
@@ -127,28 +131,25 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     }
     
     private func diffableDataSource() -> UITableViewDiffableDataSource<Section, Item>? {
-        
         return self.rootView.map {
             UITableViewDiffableDataSource(tableView: $0.tableView) { (tableView, indexPath, items) -> UITableViewCell? in
-                var cell = UITableViewCell()
                 switch items {
                 case .profile(let model):
-                    let avatarCell: AvatarViewCell = tableView.dequeueReusableCell(AvatarViewCell.self, for: indexPath)
-                    avatarCell.fill(model: model)
-                    cell = avatarCell
+                    let cell: AvatarViewCell = tableView.dequeueReusableCell(AvatarViewCell.self, for: indexPath)
+                    cell.fill(model: model)
+                    return cell
                 case .imageQuality:
-                    let qualityCell: QualitySettingViewCell = tableView.dequeueReusableCell(QualitySettingViewCell.self, for: indexPath)
-                    cell = qualityCell
+                    let cell: QualitySettingViewCell = tableView.dequeueReusableCell(QualitySettingViewCell.self, for: indexPath)
+                    return cell
                 case .about(let model):
-                    let aboutCell: ActionViewCell = tableView.dequeueReusableCell(ActionViewCell.self, for: indexPath)
-                    aboutCell.fill(with: model)
-                    cell = aboutCell
+                    let cell: ActionViewCell = tableView.dequeueReusableCell(ActionViewCell.self, for: indexPath)
+                    cell.fill(with: model)
+                    return cell
                 case .logout(let model):
-                    let logoutCell: ActionViewCell = tableView.dequeueReusableCell(ActionViewCell.self, for: indexPath)
-                    logoutCell.fill(with: model)
-                    cell = logoutCell
+                    let cell: ActionViewCell = tableView.dequeueReusableCell(ActionViewCell.self, for: indexPath)
+                    cell.fill(with: model)
+                    return cell
                 }
-                return cell
             }
         }
     }

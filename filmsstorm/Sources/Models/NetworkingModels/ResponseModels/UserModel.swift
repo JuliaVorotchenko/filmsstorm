@@ -6,17 +6,21 @@
 //  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
 
-struct Hash: Codable, Hashable {
-       let hash: String?
-   }
-   
-   struct Avatar: Codable, Hashable {
-       let gravatar: Hash?
-   }
+struct GravatarModel: Codable, Hashable {
+    let hashString: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case hashString = "hash"
+    }
+}
+
+struct AvatarModel: Codable, Hashable {
+    let gravatar: GravatarModel?
+}
 
 struct UserModel: Codable, Hashable {
-   
-    let avatar: Avatar?
+    
+    let avatar: AvatarModel?
     let id: Int?
     let language: String?
     let country: String?
