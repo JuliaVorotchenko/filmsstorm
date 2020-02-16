@@ -58,10 +58,9 @@ final class AppConfigurator {
         let container = TabBarContainer(networking: self.networking,
                                         eventHandler: self.appEvent)
         self.tabBarContainer = container
-        self.window.rootViewController = container.tabBarControllers
-        
+        self.window.rootViewController = container.tabBarController
     }
-
+    
     private func appEvent(_ event: AppEvent) {
         switch event {
         case .mainFlow:

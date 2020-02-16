@@ -9,28 +9,28 @@
 import UIKit
 
 protocol ImageLoadingService {
-    func loadImage(from urlString: String?, completion: @escaping (Result<UIImage, ImageError>) -> Void)
+    func loadImage(from urlString: String?,
+                   mainPath: Path,
+                   completion: @escaping (Result<UIImage, ImageError>) -> Void)
+}
+
+enum Path: String {
+    case mainPath = "https://image.tmdb.org/t/p/w500"
+    case gravatar = "https://www.gravatar.com/avatar/"
 }
 
 struct ImageLoadingServiceImpl: ImageLoadingService {
     
-    // MARK: - Static properties
-    
-    private static let mainPath = "https://image.tmdb.org/t/p/w500"
-    
     // MARK: - Private properties
     
-    private let path: String
     private let cache: NSCache<NSURL, UIImage>
     private let networkService: NetworkServiceProtocol
     private let queue: DispatchQueue
     
     // MARK: - Initialization
     
-    init(path: String = Self.mainPath,
-         networkService: NetworkServiceProtocol = NetworkService(),
+    init(networkService: NetworkServiceProtocol = NetworkService(),
          queue: DispatchQueue = .main) {
-        self.path = path
         self.cache = .init()
         self.networkService = networkService
         self.queue = queue
@@ -38,9 +38,11 @@ struct ImageLoadingServiceImpl: ImageLoadingService {
     
     // MARK: - Public methods
 
-    func loadImage(from urlString: String?, completion: @escaping (Result<UIImage, ImageError>) -> Void) {
+    func loadImage(from urlString: String?,
+                   mainPath: Path,
+                   completion: @escaping (Result<UIImage, ImageError>) -> Void) {
         let imagePath = urlString ?? ""
-        guard let url = URL(string: self.path + imagePath) else { fatalError("Unable create url") }
+        guard let url = URL(string: mainPath.rawValue + imagePath) else { fatalError("Unable create url") }
         
         if let cachedImage = self.cache.object(forKey: url as NSURL) {
             completion(.success(cachedImage))

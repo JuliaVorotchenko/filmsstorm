@@ -14,8 +14,9 @@ class TabBarContainer: AppEventSource {
 
     var childCoordinators = [Coordinator]()
     let eventHandler: ((AppEvent) -> Void)?
-    private(set) var tabBarControllers = UITabBarController()
+    private(set) var tabBarController = UITabBarController()
     private let mainFlowNav = UINavigationController()
+    private let profileFlow = UINavigationController()
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
@@ -32,17 +33,27 @@ class TabBarContainer: AppEventSource {
     }
     
     private func createTabBar() {
-        self.createMainFlowCoordinator()
-
+        self.createDiscoverFlowCoordinator()
+        self.createProfileFlowCoordinator()
         let controllers = self.childCoordinators.compactMap { $0.navigationController }
+        self.tabBarController.setViewControllers(controllers, animated: true)
         
-        self.tabBarControllers.viewControllers = controllers
+        self.tabBarController.tabBar.isTranslucent = false
+        self.tabBarController.tabBar.barTintColor = UIColor(named: .background)
+        self.tabBarController.tabBar.tintColor = UIColor(named: .primary)
     }
     
-    private func createMainFlowCoordinator() {
-        
-        let coordinator = DiscoverFlowCoordinator(networking: self.networking, navigationController: mainFlowNav,
+    private func createDiscoverFlowCoordinator() {
+        let coordinator = DiscoverFlowCoordinator(networking: self.networking, navigationController: self.mainFlowNav,
                                               eventHandler: self.eventHandler)
+        self.childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    private func createProfileFlowCoordinator() {
+        let coordinator = ProfileFlowCoordinator(networking: self.networking, navigationController: self.profileFlow,
+                                                 eventHandler: self.eventHandler)
+        
         self.childCoordinators.append(coordinator)
         coordinator.start()
     }
