@@ -17,8 +17,7 @@ enum AppColor: String {
     case surface
     case surfaceUp
     case background
-    
-    
+    case text
 }
 
 extension UIColor {

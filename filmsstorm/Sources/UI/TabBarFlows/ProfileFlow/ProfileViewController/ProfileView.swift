@@ -13,6 +13,5 @@ class ProfileView: UIView {
     @IBOutlet weak var avatarContainerView: UIView!
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
 }

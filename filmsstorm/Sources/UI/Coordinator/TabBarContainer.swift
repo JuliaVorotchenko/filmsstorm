@@ -58,4 +58,3 @@ class TabBarContainer: AppEventSource {
         coordinator.start()
     }
 }
-

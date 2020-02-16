@@ -61,11 +61,8 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setupTableView()
-        
         self.getUserDetails()
-        // self.createItems()
     }
     
     // MARK: - Private methods
@@ -126,7 +123,6 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
         tableView?.register(AvatarViewCell.self)
         tableView?.register(QualitySettingViewCell.self)
         tableView?.register(ActionViewCell.self)
-
         tableView?.dataSource = self.dataSource
     }
     

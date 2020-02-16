@@ -49,9 +49,8 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sL-UP-56g" userLabel="Username">
                                                 <rect key="frame" x="0.0" y="0.0" width="387" height="50"/>
-                                                <color key="backgroundColor" red="0.95686274510000002" green="0.96862745100000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="20"/>
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="text"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -65,6 +64,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
+                        <color key="backgroundColor" name="background"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="239" id="9bQ-Hn-4zm"/>
                             <constraint firstItem="vOC-te-7TW" firstAttribute="leading" secondItem="szz-sV-Ik1" secondAttribute="leading" id="DUG-fO-voE"/>
@@ -94,7 +94,10 @@
     <resources>
         <image name="profile" width="24" height="24"/>
         <namedColor name="background">
-            <color red="0.95686274509803915" green="0.96862745098039216" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.9570000171661377" green="0.96899998188018799" blue="0.99199998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="text">
+            <color red="0.12439398760392821" green="0.1236665373840222" blue="0.12512143782383423" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>
