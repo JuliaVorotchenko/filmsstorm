@@ -27,15 +27,15 @@ class NetworkManager {
         self.router.request(.auth(.createSession(model)), completion: completion)
     }
     
-    func logout(sessionID: String, completion: @escaping (Result<LogoutModel, NetworkError>) -> Void) {
-        self.router.request(.auth(.logout(sessionID: sessionID)), completion: completion)
+    func logout(completion: @escaping (Result<LogoutModel, NetworkError>) -> Void) {
+        self.router.request(.auth(.logout(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
     }
     
-    func getUserDetails(sessionID: String, completion: @escaping (Result<UserModel, NetworkError>) -> Void) {
-        self.router.request(.account(.getAccountDetails(sessionID: sessionID)), completion: completion)
+    func getUserDetails(completion: @escaping (Result<UserModel, NetworkError>) -> Void) {
+        self.router.request(.account(.getAccountDetails(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
     }
     
     func getPopularMovies(completion: @escaping (Result<PopularMoviesModel, NetworkError>) -> Void) {
         self.router.request(.movie(.getMoviePopular), completion: completion)
-        }
     }
+}

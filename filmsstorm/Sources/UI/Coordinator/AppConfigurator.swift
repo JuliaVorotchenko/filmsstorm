@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import KeychainSwift
 
 enum AppEvent {
     case mainFlow
@@ -21,9 +20,7 @@ final class AppConfigurator {
 
     private let window: UIWindow
     private let networking = NetworkManager()
-    private let loginNavigation = UINavigationController()
     private var tabBarContainer: TabBarContainer?
-    private var keyChain = KeychainSwift()
     
     // MARK: - Init
     
@@ -35,31 +32,18 @@ final class AppConfigurator {
     // MARK: - Private methods
     
     private func configure() {
-//
-//        if UserDefaultsContainer.session.isEmpty {
-//            self.createLoginCoordinator()
-//        } else {
-//            self.createTabBarCoordinator()
-//        }
-//
-//        self.window.makeKeyAndVisible()
-       // self.keyChain.set(false, forKey: AppKeys.isLoggedIn, withAccess: .accessibleWhenUnlocked)
-        guard let loggedIn = self.keyChain.getBool(AppKeyChain.isLoggedIn) else { fatalError("Ololo")}
-        if loggedIn {
+
+        if KeyChainContainer.sessionID?.isEmpty == false {
             self.createTabBarCoordinator()
         } else {
             self.createLoginCoordinator()
         }
-        
         self.window.makeKeyAndVisible()
-        
-        
     }
     
     private func createLoginCoordinator() {
         self.tabBarContainer = nil
-        let coordinator = LoginFlowCoordinator(navigationController: self.loginNavigation,
-                                               networking: self.networking,
+        let coordinator = LoginFlowCoordinator(networking: self.networking,
                                                eventHandler: self.appEvent)
         
         self.window.rootViewController = coordinator.navigationController
@@ -67,7 +51,6 @@ final class AppConfigurator {
     }
     
     private func createTabBarCoordinator() {
-        self.loginNavigation.viewControllers = []
         let container = TabBarContainer(networking: self.networking,
                                         eventHandler: self.appEvent)
         self.tabBarContainer = container

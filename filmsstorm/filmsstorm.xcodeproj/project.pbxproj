@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,7 +19,7 @@
 		2E289C9F23E8DEBD001917DB /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289C9823E8DEBD001917DB /* UICollectionView+Extensions.swift */; };
 		2E289CA023E8DEBD001917DB /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289C9A23E8DEBD001917DB /* Optional+Extension.swift */; };
 		2E289CA123E8DEBD001917DB /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289C9C23E8DEBD001917DB /* Functions.swift */; };
-		2E289CB123E8DED4001917DB /* UseDefaultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CA423E8DED4001917DB /* UseDefaultsContainer.swift */; };
+		2E289CB123E8DED4001917DB /* KeyChainContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CA423E8DED4001917DB /* KeyChainContainer.swift */; };
 		2E289CB223E8DED4001917DB /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CA623E8DED4001917DB /* Auth.swift */; };
 		2E289CB323E8DED4001917DB /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CA823E8DED4001917DB /* SessionID.swift */; };
 		2E289CB423E8DED4001917DB /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CA923E8DED4001917DB /* LogoutModel.swift */; };
@@ -134,7 +134,7 @@
 		2E289C9823E8DEBD001917DB /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		2E289C9A23E8DEBD001917DB /* Optional+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
 		2E289C9C23E8DEBD001917DB /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
-		2E289CA423E8DED4001917DB /* UseDefaultsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseDefaultsContainer.swift; sourceTree = "<group>"; };
+		2E289CA423E8DED4001917DB /* KeyChainContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainContainer.swift; sourceTree = "<group>"; };
 		2E289CA623E8DED4001917DB /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		2E289CA823E8DED4001917DB /* SessionID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
 		2E289CA923E8DED4001917DB /* LogoutModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
@@ -317,17 +317,17 @@
 		2E289CA223E8DED4001917DB /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				2E289CA323E8DED4001917DB /* UseDefaultsContainer */,
+				2E289CA323E8DED4001917DB /* KeyChainContainer */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
 		};
-		2E289CA323E8DED4001917DB /* UseDefaultsContainer */ = {
+		2E289CA323E8DED4001917DB /* KeyChainContainer */ = {
 			isa = PBXGroup;
 			children = (
-				2E289CA423E8DED4001917DB /* UseDefaultsContainer.swift */,
+				2E289CA423E8DED4001917DB /* KeyChainContainer.swift */,
 			);
-			path = UseDefaultsContainer;
+			path = KeyChainContainer;
 			sourceTree = "<group>";
 		};
 		2E289CA523E8DED4001917DB /* NetworkingModels */ = {
@@ -1041,7 +1041,7 @@
 				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
 				CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */,
 				2E289CB923E8DED4001917DB /* FavouriteMovieMarkBody.swift in Sources */,
-				2E289CB123E8DED4001917DB /* UseDefaultsContainer.swift in Sources */,
+				2E289CB123E8DED4001917DB /* KeyChainContainer.swift in Sources */,
 				2E289CB223E8DED4001917DB /* Auth.swift in Sources */,
 				2E289CE123E8DFCA001917DB /* TVSeasonEndPoint.swift in Sources */,
 				CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */,
