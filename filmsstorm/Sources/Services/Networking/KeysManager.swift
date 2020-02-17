@@ -11,6 +11,7 @@ import Foundation
 struct Keys: Decodable {
     let apiKey: String
     
+    
     enum CodingKeys: String, CodingKey {
         case apiKey = "ApiKey"
     }
@@ -30,4 +31,12 @@ class KeysManager: NSObject {
             fatalError(error.localizedDescription)
         }
     }
+}
+
+
+struct AppKeyChain {
+   static let sessionID = "sessionID"
+   static let isLoggedIn = "isLoggedIn"
+    static let password = "password"
+    static let username = "username"
 }

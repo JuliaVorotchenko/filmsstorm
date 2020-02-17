@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KeychainSwift
 
 enum AppEvent {
     case mainFlow
@@ -22,6 +23,7 @@ final class AppConfigurator {
     private let networking = NetworkManager()
     private let loginNavigation = UINavigationController()
     private var tabBarContainer: TabBarContainer?
+    private var keyChain = KeychainSwift()
     
     // MARK: - Init
     
@@ -33,14 +35,25 @@ final class AppConfigurator {
     // MARK: - Private methods
     
     private func configure() {
-
-        if UserDefaultsContainer.session.isEmpty {
-            self.createLoginCoordinator()
-        } else {
+//
+//        if UserDefaultsContainer.session.isEmpty {
+//            self.createLoginCoordinator()
+//        } else {
+//            self.createTabBarCoordinator()
+//        }
+//
+//        self.window.makeKeyAndVisible()
+       // self.keyChain.set(false, forKey: AppKeys.isLoggedIn, withAccess: .accessibleWhenUnlocked)
+        guard let loggedIn = self.keyChain.getBool(AppKeyChain.isLoggedIn) else { fatalError("Ololo")}
+        if loggedIn {
             self.createTabBarCoordinator()
+        } else {
+            self.createLoginCoordinator()
         }
-
+        
         self.window.makeKeyAndVisible()
+        
+        
     }
     
     private func createLoginCoordinator() {

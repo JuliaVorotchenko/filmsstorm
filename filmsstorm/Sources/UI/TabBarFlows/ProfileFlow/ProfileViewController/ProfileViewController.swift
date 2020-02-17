@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import KeychainSwift
 
 enum ProfileEvent: EventProtocol {
     case logout
@@ -44,6 +45,7 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     private var user: UserModel?
     private var items: [Item] = []
     private lazy var dataSource = self.diffableDataSource()
+    private var keyChain = KeychainSwift()
     
     // MARK: - Init & deinit
     
@@ -74,11 +76,16 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     
     private func onLogout() {
         self.showActivity()
-        let sessionID = UserDefaultsContainer.session
+        //let sessionID = UserDefaultsContainer.session
+        guard let sessionID = self.keyChain.get(AppKeyChain.sessionID) else { return }
         self.networking.logout(sessionID: sessionID) { [weak self] result in
             switch result {
             case .success:
-                UserDefaultsContainer.unregister()
+                self?.keyChain.delete(AppKeyChain.sessionID)
+                self?.keyChain.set(false, forKey: AppKeyChain.isLoggedIn, withAccess: .accessibleWhenUnlocked)
+                self?.keyChain.set("", forKey: AppKeyChain.username, withAccess: .accessibleWhenUnlocked)
+                self?.keyChain.set("", forKey: AppKeyChain.password, withAccess: .accessibleWhenUnlocked)
+                //UserDefaultsContainer.unregister()
                 self?.eventHandler?(.logout)
                 self?.hideActivity()
             case .failure(let error):
@@ -90,7 +97,8 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     }
     
     func getUserDetails() {
-        self.networking.getUserDetails(sessionID: UserDefaultsContainer.session) { [weak self] result in
+         guard let sessionID = self.keyChain.get(AppKeyChain.sessionID) else { return }
+        self.networking.getUserDetails(sessionID: sessionID) { [weak self] result in
             switch result {
             case .success(let model):
                 self?.user = model

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KeychainSwift
 
 enum AuthEvent: EventProtocol {
     case login
@@ -24,6 +25,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     private let networking: NetworkManager
     let eventHandler: ((AuthEvent) -> Void)?
     let loadingView: ActivityView = .init()
+    private var keyChain = KeychainSwift()
     
     // MARK: - Init and deinit
     
@@ -71,6 +73,8 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
         self.networking.validateToken(with: model) { [weak self] (result) in
             switch result {
             case .success(let token):
+                self?.keyChain.set(password, forKey: AppKeyChain.password, withAccess: .accessibleWhenUnlocked)
+                self?.keyChain.set(username, forKey: AppKeyChain.username, withAccess: .accessibleWhenUnlocked)
                 self?.createSession(validToken: token.requestToken)
             case .failure(let error):
                 self?.hideActivity()
@@ -85,7 +89,9 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
             switch result {
             case .success(let sessionID):
                 self?.hideActivity()
-                UserDefaultsContainer.session = sessionID.sessionID
+                //UserDefaultsContainer.session = sessionID.sessionID
+                self?.keyChain.set(sessionID.sessionID, forKey: AppKeyChain.sessionID, withAccess: .accessibleWhenUnlocked)
+                self?.keyChain.set(true, forKey: AppKeyChain.isLoggedIn, withAccess: .accessibleWhenUnlocked)
                 self?.eventHandler?(.login)
             case .failure(let error):
                 self?.hideActivity()
