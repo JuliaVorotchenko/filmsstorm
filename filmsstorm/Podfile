@@ -16,4 +16,6 @@ target 'filmsstorm' do
     # Pods for testing
   end
 
+pod 'KeychainSwift', '~> 19.0'
+
 end
