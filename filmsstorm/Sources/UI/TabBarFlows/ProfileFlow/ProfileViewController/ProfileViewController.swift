@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import Foundation
-import KeychainSwift
+
 
 enum ProfileEvent: EventProtocol {
     case logout
@@ -45,8 +44,7 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     private var user: UserModel?
     private var items: [Item] = []
     private lazy var dataSource = self.diffableDataSource()
-    private var keyChain = KeychainSwift()
-    
+   
     // MARK: - Init & deinit
     
     init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {

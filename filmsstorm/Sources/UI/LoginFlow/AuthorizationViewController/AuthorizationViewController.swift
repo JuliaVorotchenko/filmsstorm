@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import KeychainSwift
 
 enum AuthEvent: EventProtocol {
     case login
@@ -25,7 +24,6 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     private let networking: NetworkManager
     let eventHandler: ((AuthEvent) -> Void)?
     let loadingView: ActivityView = .init()
-    private var keyChain = KeychainSwift()
     
     // MARK: - Init and deinit
     
