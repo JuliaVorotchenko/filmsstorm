@@ -19,7 +19,7 @@
 		2E289C9F23E8DEBD001917DB /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289C9823E8DEBD001917DB /* UICollectionView+Extensions.swift */; };
 		2E289CA023E8DEBD001917DB /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289C9A23E8DEBD001917DB /* Optional+Extension.swift */; };
 		2E289CA123E8DEBD001917DB /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289C9C23E8DEBD001917DB /* Functions.swift */; };
-		2E289CB123E8DED4001917DB /* UseDefaultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CA423E8DED4001917DB /* UseDefaultsContainer.swift */; };
+		2E289CB123E8DED4001917DB /* KeyChainContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CA423E8DED4001917DB /* KeyChainContainer.swift */; };
 		2E289CB223E8DED4001917DB /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CA623E8DED4001917DB /* Auth.swift */; };
 		2E289CB323E8DED4001917DB /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CA823E8DED4001917DB /* SessionID.swift */; };
 		2E289CB423E8DED4001917DB /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CA923E8DED4001917DB /* LogoutModel.swift */; };
@@ -76,6 +76,7 @@
 		CD0EF99023F5F7B1000A3CB4 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD0EF98623F5F7B1000A3CB4 /* Montserrat-Regular.ttf */; };
 		CD0EF99223F6000D000A3CB4 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0EF99123F6000D000A3CB4 /* UIColor+Extensions.swift */; };
 		CD0EF99423F60B9B000A3CB4 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0EF99323F60B9B000A3CB4 /* Colors.xcassets */; };
+		CD0F668923F9DF46003DEE13 /* KeysManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0F668823F9DF46003DEE13 /* KeysManager.swift */; };
 		CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9323F09C91005DC50B /* AboutViewController.swift */; };
 		CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD38AD9423F09C91005DC50B /* AboutViewController.xib */; };
 		CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9723F0A096005DC50B /* AboutView.swift */; };
@@ -94,6 +95,7 @@
 		CD536EF723E36034000FEE79 /* DiscoverFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD536EF623E36034000FEE79 /* DiscoverFlowCoordinator.swift */; };
 		CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD53CDB723D631C000E16E2E /* ActivityView.swift */; };
 		CD7E748623D8F3450097F198 /* AppEventSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E748523D8F3450097F198 /* AppEventSource.swift */; };
+		CD8997BD23F9DCB2003367C1 /* FilmsstormList.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD8997BC23F9DCB2003367C1 /* FilmsstormList.plist */; };
 		CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791523B900D80099F946 /* AuthorizationViewController.swift */; };
 		CDB8791823B900D80099F946 /* AuthorizationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB8791623B900D80099F946 /* AuthorizationViewController.xib */; };
 		CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791D23B901F20099F946 /* AuthorizationView.swift */; };
@@ -132,7 +134,7 @@
 		2E289C9823E8DEBD001917DB /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		2E289C9A23E8DEBD001917DB /* Optional+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
 		2E289C9C23E8DEBD001917DB /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
-		2E289CA423E8DED4001917DB /* UseDefaultsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseDefaultsContainer.swift; sourceTree = "<group>"; };
+		2E289CA423E8DED4001917DB /* KeyChainContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainContainer.swift; sourceTree = "<group>"; };
 		2E289CA623E8DED4001917DB /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		2E289CA823E8DED4001917DB /* SessionID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
 		2E289CA923E8DED4001917DB /* LogoutModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		CD0EF98623F5F7B1000A3CB4 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		CD0EF99123F6000D000A3CB4 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		CD0EF99323F60B9B000A3CB4 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		CD0F668823F9DF46003DEE13 /* KeysManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysManager.swift; sourceTree = "<group>"; };
 		CD38AD9323F09C91005DC50B /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		CD38AD9423F09C91005DC50B /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		CD38AD9723F0A096005DC50B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -218,6 +221,7 @@
 		CD536EF623E36034000FEE79 /* DiscoverFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverFlowCoordinator.swift; sourceTree = "<group>"; };
 		CD53CDB723D631C000E16E2E /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		CD7E748523D8F3450097F198 /* AppEventSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEventSource.swift; sourceTree = "<group>"; };
+		CD8997BC23F9DCB2003367C1 /* FilmsstormList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FilmsstormList.plist; sourceTree = "<group>"; };
 		CDB8791523B900D80099F946 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		CDB8791623B900D80099F946 /* AuthorizationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorizationViewController.xib; sourceTree = "<group>"; };
 		CDB8791D23B901F20099F946 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
@@ -313,17 +317,17 @@
 		2E289CA223E8DED4001917DB /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				2E289CA323E8DED4001917DB /* UseDefaultsContainer */,
+				2E289CA323E8DED4001917DB /* KeyChainContainer */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
 		};
-		2E289CA323E8DED4001917DB /* UseDefaultsContainer */ = {
+		2E289CA323E8DED4001917DB /* KeyChainContainer */ = {
 			isa = PBXGroup;
 			children = (
-				2E289CA423E8DED4001917DB /* UseDefaultsContainer.swift */,
+				2E289CA423E8DED4001917DB /* KeyChainContainer.swift */,
 			);
-			path = UseDefaultsContainer;
+			path = KeyChainContainer;
 			sourceTree = "<group>";
 		};
 		2E289CA523E8DED4001917DB /* NetworkingModels */ = {
@@ -367,6 +371,8 @@
 				2E289CC423E8DFCA001917DB /* Manager */,
 				2E289CC623E8DFCA001917DB /* EndPoint */,
 				2E289CD123E8DFCA001917DB /* Service */,
+				CD8997BC23F9DCB2003367C1 /* FilmsstormList.plist */,
+				CD0F668823F9DF46003DEE13 /* KeysManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -746,6 +752,7 @@
 				2E51662023AFD6C500EDF51E /* Sources */,
 				2E51662123AFD6C500EDF51E /* Frameworks */,
 				2E51662223AFD6C500EDF51E /* Resources */,
+				82F90AC4C6E380D32EFD0CC5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -783,6 +790,7 @@
 				2E51664423AFD6CA00EDF51E /* Sources */,
 				2E51664523AFD6CA00EDF51E /* Frameworks */,
 				2E51664623AFD6CA00EDF51E /* Resources */,
+				ED131C06329153706473356B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -860,6 +868,7 @@
 				CD0EF98B23F5F7B1000A3CB4 /* Montserrat-Bold.ttf in Resources */,
 				2E51663423AFD6CA00EDF51E /* Preview Assets.xcassets in Resources */,
 				2E289C9323E8DE84001917DB /* DiscoverViewController.xib in Resources */,
+				CD8997BD23F9DCB2003367C1 /* FilmsstormList.plist in Resources */,
 				CD0EF98723F5F7B1000A3CB4 /* Montserrat-Medium.ttf in Resources */,
 				CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */,
 				CD0EF98A23F5F7B1000A3CB4 /* Montserrat-Thin.ttf in Resources */,
@@ -901,6 +910,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		82F90AC4C6E380D32EFD0CC5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-filmsstorm/Pods-filmsstorm-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-filmsstorm/Pods-filmsstorm-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-filmsstorm/Pods-filmsstorm-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		9C26D2CF2137D39F0394DF0A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -968,6 +994,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		ED131C06329153706473356B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-filmsstorm-filmsstormUITests/Pods-filmsstorm-filmsstormUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -998,7 +1041,7 @@
 				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
 				CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */,
 				2E289CB923E8DED4001917DB /* FavouriteMovieMarkBody.swift in Sources */,
-				2E289CB123E8DED4001917DB /* UseDefaultsContainer.swift in Sources */,
+				2E289CB123E8DED4001917DB /* KeyChainContainer.swift in Sources */,
 				2E289CB223E8DED4001917DB /* Auth.swift in Sources */,
 				2E289CE123E8DFCA001917DB /* TVSeasonEndPoint.swift in Sources */,
 				CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */,
@@ -1026,6 +1069,7 @@
 				2E289CE323E8DFCA001917DB /* AccountEndPoint.swift in Sources */,
 				2E289CD923E8DFCA001917DB /* ParameterEncoding.swift in Sources */,
 				2E289CB823E8DED4001917DB /* SessionRequestBody.swift in Sources */,
+				CD0F668923F9DF46003DEE13 /* KeysManager.swift in Sources */,
 				2E289C9123E8DE84001917DB /* DiscoverView.swift in Sources */,
 				2E289C9223E8DE84001917DB /* DiscoverViewController.swift in Sources */,
 				2E289CB423E8DED4001917DB /* LogoutModel.swift in Sources */,

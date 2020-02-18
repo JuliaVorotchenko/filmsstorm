@@ -85,7 +85,7 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
             switch result {
             case .success(let sessionID):
                 self?.hideActivity()
-                UserDefaultsContainer.session = sessionID.sessionID
+                KeyChainContainer.sessionID = sessionID.sessionID
                 self?.eventHandler?(.login)
             case .failure(let error):
                 self?.hideActivity()

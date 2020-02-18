@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Foundation
+
 
 enum ProfileEvent: EventProtocol {
     case logout
@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     private var user: UserModel?
     private var items: [Item] = []
     private lazy var dataSource = self.diffableDataSource()
-    
+   
     // MARK: - Init & deinit
     
     init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
@@ -55,6 +55,10 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        print(F.toString(Self.self))
     }
     
     // MARK: - VC lifecycle
@@ -74,11 +78,10 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     
     private func onLogout() {
         self.showActivity()
-        let sessionID = UserDefaultsContainer.session
-        self.networking.logout(sessionID: sessionID) { [weak self] result in
+        self.networking.logout { [weak self] result in
             switch result {
             case .success:
-                UserDefaultsContainer.unregister()
+                KeyChainContainer.unregister()
                 self?.eventHandler?(.logout)
                 self?.hideActivity()
             case .failure(let error):
@@ -90,7 +93,7 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     }
     
     func getUserDetails() {
-        self.networking.getUserDetails(sessionID: UserDefaultsContainer.session) { [weak self] result in
+        self.networking.getUserDetails { [weak self] result in
             switch result {
             case .success(let model):
                 self?.user = model
@@ -100,12 +103,12 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
             }
         }
     }
-    
+
     private func createItems() {
         let logoutImage = UIImage(named: "logout")
         let aboutImage = UIImage(named: "about")
-        let aboutCellModel = ActionCellModel(name: "About us", image: aboutImage, action: self.onAbout)
-        let logoutCellModel = ActionCellModel(name: "Logout", image: logoutImage, action: self.onLogout)
+        let aboutCellModel = ActionCellModel(name: "About us", image: aboutImage) { [weak self] in self?.onAbout() }
+        let logoutCellModel = ActionCellModel(name: "Logout", image: logoutImage, action: { [weak self] in self?.onLogout() })
         self.items = [.profile(self.user), .imageQuality, .about(aboutCellModel), .logout(logoutCellModel)]
         self.update(sections: Section.allCases, items: self.items)
     }

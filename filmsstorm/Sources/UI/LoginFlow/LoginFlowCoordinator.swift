@@ -14,21 +14,18 @@ class LoginFlowCoordinator: Coordinator {
 
     var childCoordinators = [Coordinator]()
     let eventHandler: ((AppEvent) -> Void)?
-    let navigationController: UINavigationController
+    let navigationController: UINavigationController = .init()
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
     deinit {
-        self.navigationController.viewControllers = []
         print(F.toString(Self.self))
     }
     
-    init(navigationController: UINavigationController,
-         networking: NetworkManager,
+    init(networking: NetworkManager,
          eventHandler: ((AppEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = eventHandler
-        self.navigationController = navigationController
         self.navigationController.navigationBar.isHidden = true
     }
     
@@ -49,9 +46,14 @@ class LoginFlowCoordinator: Coordinator {
     private func authEvent(_ event: AuthEvent) {
         switch event {
         case .login:
-            self.eventHandler?(.mainFlow)
+            self.onLogin()
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
         }
+    }
+    
+    private func onLogin() {
+        self.navigationController.viewControllers.removeAll()
+        self.eventHandler?(.mainFlow)
     }
 }

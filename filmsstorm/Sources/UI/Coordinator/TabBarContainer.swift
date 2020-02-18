@@ -21,7 +21,8 @@ class TabBarContainer: AppEventSource {
     
     // MARK: - Init and deinit
     deinit {
-        self.mainFlowNav.viewControllers = []
+        self.mainFlowNav.viewControllers.removeAll()
+        self.profileFlow.viewControllers.removeAll()
         print(TabBarContainer.self)
     }
 
