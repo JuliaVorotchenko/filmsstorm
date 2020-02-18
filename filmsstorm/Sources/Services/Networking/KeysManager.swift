@@ -31,10 +31,3 @@ class KeysManager: NSObject {
         }
     }
 }
-
-struct AppKeyChain {
-    static let sessionID = "sessionID"
-    static let isLoggedIn = "isLoggedIn"
-    static let password = "password"
-    static let username = "username"
-}
