@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 enum ProfileEvent: EventProtocol {
     case logout
     case about

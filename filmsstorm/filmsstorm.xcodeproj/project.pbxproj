@@ -101,8 +101,9 @@
 		CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791D23B901F20099F946 /* AuthorizationView.swift */; };
 		CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792123B909040099F946 /* AppConfigurator.swift */; };
 		CDB8792423B93C240099F946 /* LoginFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792323B93C240099F946 /* LoginFlowCoordinator.swift */; };
-		CDD5914323FD84B000DBA664 /* NavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD5914223FD84B000DBA664 /* NavigationView.xib */; };
-		CDD5914523FD84E500DBA664 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5914423FD84E500DBA664 /* NavigationView.swift */; };
+		CDD5914323FD84B000DBA664 /* DiscoverHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD5914223FD84B000DBA664 /* DiscoverHeaderView.xib */; };
+		CDD5914523FD84E500DBA664 /* DiscoverHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */; };
+		CDD5914823FDD3F400DBA664 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5914723FDD3F400DBA664 /* NibDesignable.swift */; };
 		EF69E43B310A0AD220DE1C48 /* Pods_filmsstormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3AA44BFE965E894CADF19A /* Pods_filmsstormTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -229,8 +230,9 @@
 		CDB8791D23B901F20099F946 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		CDB8792123B909040099F946 /* AppConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurator.swift; sourceTree = "<group>"; };
 		CDB8792323B93C240099F946 /* LoginFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowCoordinator.swift; sourceTree = "<group>"; };
-		CDD5914223FD84B000DBA664 /* NavigationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationView.xib; sourceTree = "<group>"; };
-		CDD5914423FD84E500DBA664 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		CDD5914223FD84B000DBA664 /* DiscoverHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverHeaderView.xib; sourceTree = "<group>"; };
+		CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverHeaderView.swift; sourceTree = "<group>"; };
+		CDD5914723FDD3F400DBA664 /* NibDesignable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
 		EA79238A8EC29AB9C6DB940C /* Pods-filmsstormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.release.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.release.xcconfig"; sourceTree = "<group>"; };
 		F49330B6ECFAEA477A36F2CE /* Pods-filmsstorm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm.release.xcconfig"; path = "Target Support Files/Pods-filmsstorm/Pods-filmsstorm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -272,13 +274,15 @@
 			path = LoginFlow;
 			sourceTree = "<group>";
 		};
-		2E289C8923E8DE83001917DB /* Cell */ = {
+		2E289C8923E8DE83001917DB /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				CDD5914223FD84B000DBA664 /* DiscoverHeaderView.xib */,
+				CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */,
 				2E289C8A23E8DE83001917DB /* DiscoverCollectionViewCell.swift */,
 				2E289C8B23E8DE83001917DB /* DiscoverCollectionViewCell.xib */,
 			);
-			path = Cell;
+			path = Private;
 			sourceTree = "<group>";
 		};
 		2E289C9423E8DEBD001917DB /* Extensions */ = {
@@ -664,6 +668,7 @@
 		CD7E748C23D8F67E0097F198 /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
+				CDD5914623FDD3BC00DBA664 /* NibDesignable */,
 				CD53CDB623D6319900E16E2E /* ActivityView */,
 			);
 			path = AppKit;
@@ -672,7 +677,6 @@
 		CDB8790B23B8FF290099F946 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				CDD5914123FD844D00DBA664 /* CunstomView */,
 				CDB8791123B8FFBF0099F946 /* Coordinator */,
 				CD38AD9223F09B9B005DC50B /* TabBarFlows */,
 				2E289C8823E8C3C9001917DB /* LoginFlow */,
@@ -711,7 +715,7 @@
 		CDB8791323B9002C0099F946 /* DiscoverViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2E289C8923E8DE83001917DB /* Cell */,
+				2E289C8923E8DE83001917DB /* Private */,
 				2E289C8C23E8DE83001917DB /* DiscoverView.swift */,
 				2E289C8D23E8DE84001917DB /* DiscoverViewController.swift */,
 				2E289C8E23E8DE84001917DB /* DiscoverViewController.xib */,
@@ -732,13 +736,12 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		CDD5914123FD844D00DBA664 /* CunstomView */ = {
+		CDD5914623FDD3BC00DBA664 /* NibDesignable */ = {
 			isa = PBXGroup;
 			children = (
-				CDD5914223FD84B000DBA664 /* NavigationView.xib */,
-				CDD5914423FD84E500DBA664 /* NavigationView.swift */,
+				CDD5914723FDD3F400DBA664 /* NibDesignable.swift */,
 			);
-			path = CunstomView;
+			path = NibDesignable;
 			sourceTree = "<group>";
 		};
 		CF9F48FE6F309788D89B0A33 /* Pods */ = {
@@ -885,7 +888,7 @@
 				CD8997BD23F9DCB2003367C1 /* FilmsstormList.plist in Resources */,
 				CD0EF98723F5F7B1000A3CB4 /* Montserrat-Medium.ttf in Resources */,
 				CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */,
-				CDD5914323FD84B000DBA664 /* NavigationView.xib in Resources */,
+				CDD5914323FD84B000DBA664 /* DiscoverHeaderView.xib in Resources */,
 				CD0EF98A23F5F7B1000A3CB4 /* Montserrat-Thin.ttf in Resources */,
 				CD0EF98D23F5F7B1000A3CB4 /* Montserrat-ExtraBold.ttf in Resources */,
 				2E51663123AFD6CA00EDF51E /* Assets.xcassets in Resources */,
@@ -1036,7 +1039,7 @@
 				2E289CEA23E8DFCA001917DB /* HTTPTask.swift in Sources */,
 				2E289CB523E8DED4001917DB /* UserModel.swift in Sources */,
 				2E289CE523E8DFCA001917DB /* APIEndPoint.swift in Sources */,
-				CDD5914523FD84E500DBA664 /* NavigationView.swift in Sources */,
+				CDD5914523FD84E500DBA664 /* DiscoverHeaderView.swift in Sources */,
 				2E289C9D23E8DEBD001917DB /* UIImageView+Extensions.swift in Sources */,
 				2E289CED23E8DFCA001917DB /* Router.swift in Sources */,
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
@@ -1078,6 +1081,7 @@
 				CD0CDA7823C3E797002EC487 /* RootViewGettable.swift in Sources */,
 				2E289CE823E8DFCA001917DB /* MovieEndPoint.swift in Sources */,
 				2E289CB323E8DED4001917DB /* SessionID.swift in Sources */,
+				CDD5914823FDD3F400DBA664 /* NibDesignable.swift in Sources */,
 				2E289CEC23E8DFCA001917DB /* HTTPMethod.swift in Sources */,
 				2E289CEE23E8DFCA001917DB /* EndPointType.swift in Sources */,
 				CD4DB87623EC5F6700F53B28 /* ProfileView.swift in Sources */,

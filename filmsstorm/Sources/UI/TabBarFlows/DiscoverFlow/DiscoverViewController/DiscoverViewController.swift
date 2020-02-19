@@ -16,7 +16,7 @@ enum DiscoverEvent: EventProtocol {
 class DiscoverViewController: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
-
+    
     typealias RootViewType = DiscoverView
     
     enum Section: CaseIterable {
@@ -56,15 +56,16 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setCollectionView()
-       self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
+        self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
         self.getPopularMovies()
         self.createDataSource()
+        self.setupHeader()
     }
     
     // MARK: - IBActions
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
-      
+        
     }
     
     // MARK: - Private Methods
@@ -99,6 +100,22 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
+    }
+    
+    private func setupHeader() {
+        let model = DiscoverHeaderModel { [weak self] in self?.onHeaderEvents($0) }
+        self.rootView?.headerView.fill(with: model)
+    }
+    
+    private func onHeaderEvents(_ event: DiscoverHeaderEvent) {
+        switch event {
+        case .onSearch:
+            print("search")
+        case .onTVShow:
+            print("TV")
+        case .onMovie:
+            print("mov")
+        }
     }
     
     // MARK: - set diffableDatasource

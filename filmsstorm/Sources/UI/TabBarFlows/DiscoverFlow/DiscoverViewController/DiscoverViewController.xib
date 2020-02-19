@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="27u-pn-kQi" userLabel="nav" customClass="NavigationView" customModule="filmsstorm" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="27u-pn-kQi" userLabel="nav" customClass="DiscoverHeaderView" customModule="filmsstorm" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="44" width="414" height="60"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
@@ -53,6 +53,7 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <connections>
                 <outlet property="collectionView" destination="P9P-Nl-yw5" id="phd-dA-IXR"/>
+                <outlet property="headerView" destination="27u-pn-kQi" id="Iet-z0-SxP"/>
             </connections>
             <point key="canvasLocation" x="136.23188405797103" y="113.16964285714285"/>
         </view>
