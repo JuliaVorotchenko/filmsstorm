@@ -52,12 +52,11 @@ class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
     // MARK: - Private methods
     
     private func customNavViewSetup() {
-        self.rootView?.navigationView.actionHandler = onBackEvent
+        self.rootView?.navigationView.actionHandler = self.onBackEvent
     }
 
     private func onBackEvent() {
            self.eventHandler?(.profile)
     }
     
-  
 }

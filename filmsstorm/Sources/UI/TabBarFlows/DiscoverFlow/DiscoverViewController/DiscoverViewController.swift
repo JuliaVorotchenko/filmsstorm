@@ -94,9 +94,8 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
         group.interItemSpacing = .fixed(spacing)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
-        section.interGroupSpacing = 0
-        section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 7, bottom: 0, trailing: 7)
+        section.interGroupSpacing = 7
+        section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 9, bottom: 0, trailing: 9)
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
@@ -125,6 +124,7 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
         guard let collectionView = self.rootView?.collectionView else { return }
         self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collection, indexPath, item -> UICollectionViewCell? in
             let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
+            cell.setCornerRadius()
             cell.fill(with: item)
             return cell
         }

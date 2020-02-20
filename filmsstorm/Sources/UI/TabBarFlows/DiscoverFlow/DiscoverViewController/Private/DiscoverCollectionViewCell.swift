@@ -11,11 +11,21 @@ import UIKit
 class DiscoverCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet private weak var movieImage: UIImageView!
-    @IBOutlet private weak var movieName: UILabel!
+
+    @IBOutlet var imageview: UIImageView?
+    
+    @IBOutlet var likeButton: UIView?
+    
+    @IBOutlet var favouriteButton: UIView?
     
     public func fill(with model: MovieListResult?) {
         self.movieImage.setImage(from: model?.posterPath)
-        self.movieName.text = model?.title
+    }
+    
+    public func setCornerRadius() {
+        self.imageview?.layer.cornerRadius = 7
+        self.likeButton?.layer.cornerRadius = 7
+        self.favouriteButton?.layer.cornerRadius = 7
     }
     
 }
