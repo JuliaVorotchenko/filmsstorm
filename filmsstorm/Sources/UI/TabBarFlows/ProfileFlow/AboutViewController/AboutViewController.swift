@@ -19,6 +19,12 @@ class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
     typealias Event = AboutEvent
     typealias RootViewType = AboutView
     
+    // MARK: - VC lifecycle
+      override func viewDidLoad() {
+          super.viewDidLoad()
+        self.customNavViewSetup()
+      }
+    
     // MARK: - Public Properties
     
     let loadingView = ActivityView()
@@ -43,14 +49,15 @@ class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
         print(Self.self)
     }
     
-    // MARK: - IBActions
+    // MARK: - Private methods
     
-    @IBAction func backToProfile(_ sender: Any) {
-        self.eventHandler?(.profile)
+    private func customNavViewSetup() {
+        self.rootView?.navigationView.actionHandler = onBackEvent
+    }
+
+    private func onBackEvent() {
+           self.eventHandler?(.profile)
     }
     
-    // MARK: - VC lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+  
 }

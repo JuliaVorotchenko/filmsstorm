@@ -46,7 +46,7 @@ class ProfileFlowCoordinator: Coordinator {
     }
 
     private func createAboutViewController() {
-        let controller = AboutViewController(networking: self.networking, event: aboutEvent)
+        let controller = AboutViewController(networking: self.networking, event: self.aboutEvent)
         self.navigationController.pushViewController(controller, animated: true)
     }
     
@@ -64,6 +64,7 @@ class ProfileFlowCoordinator: Coordinator {
     private func aboutEvent(_ event: AboutEvent) {
         switch event {
         case .profile:
+            print("hey profile")
             self.navigationController.popViewController(animated: true)
         }
     }

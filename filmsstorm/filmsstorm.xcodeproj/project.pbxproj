@@ -101,6 +101,8 @@
 		CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791D23B901F20099F946 /* AuthorizationView.swift */; };
 		CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792123B909040099F946 /* AppConfigurator.swift */; };
 		CDB8792423B93C240099F946 /* LoginFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792323B93C240099F946 /* LoginFlowCoordinator.swift */; };
+		CDB9CD3F23FE96B400F45778 /* CustomNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB9CD3E23FE96B400F45778 /* CustomNavigationView.xib */; };
+		CDB9CD4123FE96F100F45778 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB9CD4023FE96F100F45778 /* CustomNavigationView.swift */; };
 		CDD5914323FD84B000DBA664 /* DiscoverHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD5914223FD84B000DBA664 /* DiscoverHeaderView.xib */; };
 		CDD5914523FD84E500DBA664 /* DiscoverHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */; };
 		CDD5914823FDD3F400DBA664 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5914723FDD3F400DBA664 /* NibDesignable.swift */; };
@@ -230,6 +232,8 @@
 		CDB8791D23B901F20099F946 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		CDB8792123B909040099F946 /* AppConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurator.swift; sourceTree = "<group>"; };
 		CDB8792323B93C240099F946 /* LoginFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowCoordinator.swift; sourceTree = "<group>"; };
+		CDB9CD3E23FE96B400F45778 /* CustomNavigationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNavigationView.xib; sourceTree = "<group>"; };
+		CDB9CD4023FE96F100F45778 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
 		CDD5914223FD84B000DBA664 /* DiscoverHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverHeaderView.xib; sourceTree = "<group>"; };
 		CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverHeaderView.swift; sourceTree = "<group>"; };
 		CDD5914723FDD3F400DBA664 /* NibDesignable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
@@ -573,6 +577,7 @@
 		CD38AD9123F09B48005DC50B /* AboutViewController */ = {
 			isa = PBXGroup;
 			children = (
+				CDB9CD4223FE9DAB00F45778 /* Private */,
 				CD38AD9323F09C91005DC50B /* AboutViewController.swift */,
 				CD38AD9723F0A096005DC50B /* AboutView.swift */,
 				CD38AD9423F09C91005DC50B /* AboutViewController.xib */,
@@ -589,7 +594,7 @@
 			path = TabBarFlows;
 			sourceTree = "<group>";
 		};
-		CD4C704823F2CD250057FE82 /* Cells */ = {
+		CD4C704823F2CD250057FE82 /* Private */ = {
 			isa = PBXGroup;
 			children = (
 				CD4C703C23F2CCB40057FE82 /* AvatarViewCell.swift */,
@@ -599,7 +604,7 @@
 				CD4C704423F2CD180057FE82 /* ActionViewCell.swift */,
 				CD4C704523F2CD180057FE82 /* ActionViewCell.xib */,
 			);
-			path = Cells;
+			path = Private;
 			sourceTree = "<group>";
 		};
 		CD4DB86B23EB677A00F53B28 /* DiscoverFlow */ = {
@@ -624,7 +629,7 @@
 		CD4DB87023EC5EDA00F53B28 /* ProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CD4C704823F2CD250057FE82 /* Cells */,
+				CD4C704823F2CD250057FE82 /* Private */,
 				CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */,
 				CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */,
 				CD4DB87523EC5F6700F53B28 /* ProfileView.swift */,
@@ -734,6 +739,15 @@
 				CD7E748823D8F5890097F198 /* Lib */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		CDB9CD4223FE9DAB00F45778 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				CDB9CD4023FE96F100F45778 /* CustomNavigationView.swift */,
+				CDB9CD3E23FE96B400F45778 /* CustomNavigationView.xib */,
+			);
+			path = Private;
 			sourceTree = "<group>";
 		};
 		CDD5914623FDD3BC00DBA664 /* NibDesignable */ = {
@@ -870,6 +884,7 @@
 				CD0EF98823F5F7B1000A3CB4 /* Montserrat-Light.ttf in Resources */,
 				CD4C704723F2CD180057FE82 /* ActionViewCell.xib in Resources */,
 				2E51663723AFD6CA00EDF51E /* LaunchScreen.storyboard in Resources */,
+				CDB9CD3F23FE96B400F45778 /* CustomNavigationView.xib in Resources */,
 				CD4C704323F2CCEF0057FE82 /* QualitySettingViewCell.xib in Resources */,
 				CD0EF98923F5F7B1000A3CB4 /* Montserrat-ExtraLight.ttf in Resources */,
 				2E289C9023E8DE84001917DB /* DiscoverCollectionViewCell.xib in Resources */,
@@ -1099,6 +1114,7 @@
 				2E289CDF23E8DFCA001917DB /* PeopleEndPointt.swift in Sources */,
 				2E289CB723E8DED4001917DB /* RequestToken.swift in Sources */,
 				2E289CDB23E8DFCA001917DB /* JSONParameterEncoder.swift in Sources */,
+				CDB9CD4123FE96F100F45778 /* CustomNavigationView.swift in Sources */,
 				CD4DB86F23EC5EC800F53B28 /* ProfileFlowCoordinator.swift in Sources */,
 				2E289CBA23E8DED4001917DB /* AuthRequestModel.swift in Sources */,
 				CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */,
