@@ -62,12 +62,6 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
         self.setupHeader()
     }
     
-    // MARK: - IBActions
-    
-    @IBAction func logoutButtonTapped(_ sender: Any) {
-        
-    }
-    
     // MARK: - Private Methods
     
     private func getPopularMovies() {
@@ -106,6 +100,7 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
         self.rootView?.headerView.fill(with: model)
     }
     
+   
     private func onHeaderEvents(_ event: DiscoverHeaderEvent) {
         switch event {
         case .onSearch:
@@ -131,15 +126,17 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
     func createDataSource() {
         
         guard let collectionView = self.rootView?.collectionView else { return }
-        let model = MovieCardEventModel { [weak self] in
-            self?.onCardEvent($0)
-        }
         
         self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collection, indexPath, item -> UICollectionViewCell? in
+           
+            let eventModel = MovieCardEventModel { [weak self] in
+                self?.onCardEvent($0)
+            }
+            
             let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
-            cell.setCornerRadius()
+            cell.setCornerRadiusWithShadow()
             cell.fill(with: item)
-            cell.actionFill(with: model.self)
+            cell.actionFill(with: eventModel)
             return cell
         }
         let snapshot = self.createSnapshot()
