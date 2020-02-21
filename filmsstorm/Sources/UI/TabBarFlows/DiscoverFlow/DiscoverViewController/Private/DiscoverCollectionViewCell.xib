@@ -36,13 +36,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NwZ-VC-sh9" userLabel="LikeView">
                                         <rect key="frame" x="15" y="19" width="37" height="37"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwZ-g2-odQ" userLabel="likeButton">
-                                                <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <connections>
-                                                    <action selector="onLike:" destination="gTV-IL-0wX" eventType="touchUpInside" id="0SR-Tu-K4M"/>
-                                                </connections>
-                                            </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Sls-H8-LIM">
                                                 <rect key="frame" x="3.5" y="6" width="30" height="25"/>
                                                 <subviews>
@@ -59,6 +52,13 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwZ-g2-odQ" userLabel="likeButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="onLike:" destination="gTV-IL-0wX" eventType="touchUpInside" id="0SR-Tu-K4M"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -85,13 +85,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NFu-LI-Hgl" userLabel="FavView">
                                         <rect key="frame" x="40.5" y="19" width="37" height="37"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8FZ-cU-4h0" userLabel="favButton">
-                                                <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <connections>
-                                                    <action selector="onFav:" destination="gTV-IL-0wX" eventType="touchUpInside" id="LiH-PV-hjP"/>
-                                                </connections>
-                                            </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lPL-Sg-UQg">
                                                 <rect key="frame" x="3" y="6" width="31" height="25"/>
                                                 <subviews>
@@ -106,6 +99,13 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8FZ-cU-4h0" userLabel="favButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="onFav:" destination="gTV-IL-0wX" eventType="touchUpInside" id="LiH-PV-hjP"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>

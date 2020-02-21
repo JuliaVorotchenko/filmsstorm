@@ -100,7 +100,6 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
         self.rootView?.headerView.fill(with: model)
     }
     
-   
     private func onHeaderEvents(_ event: DiscoverHeaderEvent) {
         switch event {
         case .onSearch:

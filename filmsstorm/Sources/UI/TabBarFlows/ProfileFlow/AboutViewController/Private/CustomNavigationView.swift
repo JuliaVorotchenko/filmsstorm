@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class CustomNavigationView: NibDesignableImpl {
     
     @IBOutlet var backButton: UIButton?
@@ -18,7 +16,6 @@ class CustomNavigationView: NibDesignableImpl {
     var actionHandler: (() -> Void)?
 
     @IBAction func onBack(_ sender: UIButton) {
-        print("onback tapped")
         self.actionHandler?()
     }
 

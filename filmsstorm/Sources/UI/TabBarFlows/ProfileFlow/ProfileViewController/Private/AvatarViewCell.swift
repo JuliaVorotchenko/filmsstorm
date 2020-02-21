@@ -10,11 +10,9 @@ import UIKit
 
 class AvatarViewCell: UITableViewCell {
     
-
     @IBOutlet var containerView: UIView!
     @IBOutlet weak var avatarView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    
     
     @IBOutlet var combineView: UIView!
    

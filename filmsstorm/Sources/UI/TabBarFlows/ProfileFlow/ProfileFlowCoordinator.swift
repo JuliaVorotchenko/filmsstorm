@@ -64,7 +64,6 @@ class ProfileFlowCoordinator: Coordinator {
     private func aboutEvent(_ event: AboutEvent) {
         switch event {
         case .profile:
-            print("hey profile")
             self.navigationController.popViewController(animated: true)
         }
     }
