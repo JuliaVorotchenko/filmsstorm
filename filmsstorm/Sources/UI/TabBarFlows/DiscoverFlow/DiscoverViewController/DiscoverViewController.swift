@@ -117,15 +117,29 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
         }
     }
     
+    private func onCardEvent(_ event: MovieCardEvent) {
+        switch event {
+        case .like:
+            print("you liked movie")
+        case .favourites:
+            print("you added moview to favourites")
+        }
+    }
+    
     // MARK: - set diffableDatasource
     
     func createDataSource() {
         
         guard let collectionView = self.rootView?.collectionView else { return }
+        let model = MovieCardEventModel { [weak self] in
+            self?.onCardEvent($0)
+        }
+        
         self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collection, indexPath, item -> UICollectionViewCell? in
             let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
             cell.setCornerRadius()
             cell.fill(with: item)
+            cell.actionFill(with: model.self)
             return cell
         }
         let snapshot = self.createSnapshot()
