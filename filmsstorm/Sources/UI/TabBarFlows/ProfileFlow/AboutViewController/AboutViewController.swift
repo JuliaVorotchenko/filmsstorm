@@ -13,11 +13,17 @@ enum AboutEvent: EventProtocol {
 }
 
 class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
-   
+    
     // MARK: - Subtypes
     
     typealias Event = AboutEvent
     typealias RootViewType = AboutView
+    
+    // MARK: - VC lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.customNavViewSetup()
+    }
     
     // MARK: - Public Properties
     
@@ -25,6 +31,7 @@ class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
     let eventHandler: ((AboutEvent) -> Void)?
     
     // MARK: - Private properties
+    
     private let networking: NetworkManager
     
     // MARK: - Init & deinit
@@ -43,14 +50,16 @@ class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
         print(Self.self)
     }
     
-    // MARK: - IBActions
+    // MARK: - Private methods
     
-    @IBAction func backToProfile(_ sender: Any) {
+    private func customNavViewSetup() {
+        self.rootView?.navigationView.actionHandler = { [weak self] in
+            self?.onBackEvent()
+        }
+    }
+    
+    private func onBackEvent() {
         self.eventHandler?(.profile)
     }
     
-    // MARK: - VC lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 }

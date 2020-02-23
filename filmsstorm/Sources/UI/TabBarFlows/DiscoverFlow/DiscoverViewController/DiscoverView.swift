@@ -11,5 +11,6 @@ import UIKit
 class DiscoverView: UIView {
 
     @IBOutlet weak var collectionView: UICollectionView!
-
+    @IBOutlet weak var headerView: DiscoverHeaderView!
+    
 }

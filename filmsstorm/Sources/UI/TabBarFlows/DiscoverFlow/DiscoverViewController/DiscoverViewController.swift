@@ -16,7 +16,7 @@ enum DiscoverEvent: EventProtocol {
 class DiscoverViewController: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
-
+    
     typealias RootViewType = DiscoverView
     
     enum Section: CaseIterable {
@@ -56,15 +56,10 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setCollectionView()
-       self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
+        self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
         self.getPopularMovies()
         self.createDataSource()
-    }
-    
-    // MARK: - IBActions
-    
-    @IBAction func logoutButtonTapped(_ sender: Any) {
-      
+        self.setupHeader()
     }
     
     // MARK: - Private Methods
@@ -93,12 +88,36 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
         group.interItemSpacing = .fixed(spacing)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
-        section.interGroupSpacing = 0
-        section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 7, bottom: 0, trailing: 7)
+        section.interGroupSpacing = 7
+        section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 9, bottom: 0, trailing: 9)
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
+    }
+    
+    private func setupHeader() {
+        let model = DiscoverHeaderModel { [weak self] in self?.onHeaderEvents($0) }
+        self.rootView?.headerView.fill(with: model)
+    }
+    
+    private func onHeaderEvents(_ event: DiscoverHeaderEvent) {
+        switch event {
+        case .onSearch:
+            print("search")
+        case .onTVShow:
+            print("TV")
+        case .onMovie:
+            print("mov")
+        }
+    }
+    
+    private func onCardEvent(_ event: MovieCardEvent) {
+        switch event {
+        case .like:
+            print("you liked movie")
+        case .favourites:
+            print("you added moview to favourites")
+        }
     }
     
     // MARK: - set diffableDatasource
@@ -106,9 +125,17 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
     func createDataSource() {
         
         guard let collectionView = self.rootView?.collectionView else { return }
+        
         self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collection, indexPath, item -> UICollectionViewCell? in
+           
+            let eventModel = MovieCardEventModel { [weak self] in
+                self?.onCardEvent($0)
+            }
+            
             let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
+            cell.setCornerRadiusWithShadow()
             cell.fill(with: item)
+            cell.actionFill(with: eventModel)
             return cell
         }
         let snapshot = self.createSnapshot()
