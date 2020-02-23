@@ -81,6 +81,10 @@
 		CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD38AD9423F09C91005DC50B /* AboutViewController.xib */; };
 		CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9723F0A096005DC50B /* AboutView.swift */; };
 		CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD499B6223E4715D00BF0545 /* TabBarContainer.swift */; };
+		CD4B3D502402EC6500F3FCF6 /* DiscoverPresentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresentationService.swift */; };
+		CD4B3D522402ECBA00F3FCF6 /* ProfilePresentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D512402ECBA00F3FCF6 /* ProfilePresentationService.swift */; };
+		CD4B3D542402ECF800F3FCF6 /* AuthorizationPresentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D532402ECF800F3FCF6 /* AuthorizationPresentationService.swift */; };
+		CD4B3D562402ED3900F3FCF6 /* AboutPresentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D552402ED3900F3FCF6 /* AboutPresentationService.swift */; };
 		CD4C703E23F2CCB40057FE82 /* AvatarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C703C23F2CCB40057FE82 /* AvatarViewCell.swift */; };
 		CD4C703F23F2CCB40057FE82 /* AvatarViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4C703D23F2CCB40057FE82 /* AvatarViewCell.xib */; };
 		CD4C704223F2CCEF0057FE82 /* QualitySettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C704023F2CCEF0057FE82 /* QualitySettingViewCell.swift */; };
@@ -212,6 +216,10 @@
 		CD38AD9423F09C91005DC50B /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		CD38AD9723F0A096005DC50B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		CD499B6223E4715D00BF0545 /* TabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
+		CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresentationService.swift; sourceTree = "<group>"; };
+		CD4B3D512402ECBA00F3FCF6 /* ProfilePresentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresentationService.swift; sourceTree = "<group>"; };
+		CD4B3D532402ECF800F3FCF6 /* AuthorizationPresentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresentationService.swift; sourceTree = "<group>"; };
+		CD4B3D552402ED3900F3FCF6 /* AboutPresentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPresentationService.swift; sourceTree = "<group>"; };
 		CD4C703C23F2CCB40057FE82 /* AvatarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewCell.swift; sourceTree = "<group>"; };
 		CD4C703D23F2CCB40057FE82 /* AvatarViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarViewCell.xib; sourceTree = "<group>"; };
 		CD4C704023F2CCEF0057FE82 /* QualitySettingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualitySettingViewCell.swift; sourceTree = "<group>"; };
@@ -581,6 +589,7 @@
 				CD38AD9323F09C91005DC50B /* AboutViewController.swift */,
 				CD38AD9723F0A096005DC50B /* AboutView.swift */,
 				CD38AD9423F09C91005DC50B /* AboutViewController.xib */,
+				CD4B3D552402ED3900F3FCF6 /* AboutPresentationService.swift */,
 			);
 			path = AboutViewController;
 			sourceTree = "<group>";
@@ -633,6 +642,7 @@
 				CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */,
 				CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */,
 				CD4DB87523EC5F6700F53B28 /* ProfileView.swift */,
+				CD4B3D512402ECBA00F3FCF6 /* ProfilePresentationService.swift */,
 			);
 			path = ProfileViewController;
 			sourceTree = "<group>";
@@ -713,6 +723,7 @@
 				CDB8791523B900D80099F946 /* AuthorizationViewController.swift */,
 				CDB8791623B900D80099F946 /* AuthorizationViewController.xib */,
 				CDB8791D23B901F20099F946 /* AuthorizationView.swift */,
+				CD4B3D532402ECF800F3FCF6 /* AuthorizationPresentationService.swift */,
 			);
 			path = AuthorizationViewController;
 			sourceTree = "<group>";
@@ -723,6 +734,7 @@
 				2E289C8923E8DE83001917DB /* Private */,
 				2E289C8C23E8DE83001917DB /* DiscoverView.swift */,
 				2E289C8D23E8DE84001917DB /* DiscoverViewController.swift */,
+				CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresentationService.swift */,
 				2E289C8E23E8DE84001917DB /* DiscoverViewController.xib */,
 			);
 			path = DiscoverViewController;
@@ -1058,6 +1070,7 @@
 				2E289C9D23E8DEBD001917DB /* UIImageView+Extensions.swift in Sources */,
 				2E289CED23E8DFCA001917DB /* Router.swift in Sources */,
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
+				CD4B3D542402ECF800F3FCF6 /* AuthorizationPresentationService.swift in Sources */,
 				2E289CDE23E8DFCA001917DB /* NetworkManager.swift in Sources */,
 				CD51B26323F47DF100E3C924 /* UITableView+Extensions.swift in Sources */,
 				CD4C704223F2CCEF0057FE82 /* QualitySettingViewCell.swift in Sources */,
@@ -1096,6 +1109,7 @@
 				CD0CDA7823C3E797002EC487 /* RootViewGettable.swift in Sources */,
 				2E289CE823E8DFCA001917DB /* MovieEndPoint.swift in Sources */,
 				2E289CB323E8DED4001917DB /* SessionID.swift in Sources */,
+				CD4B3D562402ED3900F3FCF6 /* AboutPresentationService.swift in Sources */,
 				CDD5914823FDD3F400DBA664 /* NibDesignable.swift in Sources */,
 				2E289CEC23E8DFCA001917DB /* HTTPMethod.swift in Sources */,
 				2E289CEE23E8DFCA001917DB /* EndPointType.swift in Sources */,
@@ -1103,12 +1117,14 @@
 				2E289C9F23E8DEBD001917DB /* UICollectionView+Extensions.swift in Sources */,
 				2E289CE323E8DFCA001917DB /* AccountEndPoint.swift in Sources */,
 				2E289CD923E8DFCA001917DB /* ParameterEncoding.swift in Sources */,
+				CD4B3D522402ECBA00F3FCF6 /* ProfilePresentationService.swift in Sources */,
 				2E289CB823E8DED4001917DB /* SessionRequestBody.swift in Sources */,
 				CD0F668923F9DF46003DEE13 /* KeysManager.swift in Sources */,
 				2E289C9123E8DE84001917DB /* DiscoverView.swift in Sources */,
 				2E289C9223E8DE84001917DB /* DiscoverViewController.swift in Sources */,
 				2E289CB423E8DED4001917DB /* LogoutModel.swift in Sources */,
 				CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */,
+				CD4B3D502402EC6500F3FCF6 /* DiscoverPresentationService.swift in Sources */,
 				2E289CE023E8DFCA001917DB /* DiscoverEndPoint.swift in Sources */,
 				CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */,
 				2E289CDF23E8DFCA001917DB /* PeopleEndPointt.swift in Sources */,

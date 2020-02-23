@@ -38,8 +38,8 @@ class LoginFlowCoordinator: Coordinator {
     // MARK: - Private methods
     
     private func createAuthController() {
-        let controller = AuthorizationViewController(networking: self.networking,
-                                                     event: self.authEvent)
+        let presentation = AuthorizationPresentationServiceImpl(networking: self.networking, event: self.authEvent(_:))
+        let controller = AuthorizationViewController(presentation)
         self.navigationController.viewControllers = [controller]
     }
     

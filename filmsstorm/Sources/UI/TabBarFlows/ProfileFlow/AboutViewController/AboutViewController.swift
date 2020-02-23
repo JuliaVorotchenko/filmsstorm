@@ -8,16 +8,14 @@
 
 import UIKit
 
-enum AboutEvent: EventProtocol {
-    case profile
-}
 
-class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
-    
+class AboutViewController<T: AboutPresentationService>: UIViewController, ActivityViewPresenter, Controller {
+   
     // MARK: - Subtypes
     
     typealias Event = AboutEvent
     typealias RootViewType = AboutView
+    typealias Service = T
     
     // MARK: - VC lifecycle
     override func viewDidLoad() {
@@ -28,18 +26,13 @@ class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
     // MARK: - Public Properties
     
     let loadingView = ActivityView()
-    let eventHandler: ((AboutEvent) -> Void)?
-    
-    // MARK: - Private properties
-    
-    private let networking: NetworkManager
-    
+    let presentation: Service
+ 
     // MARK: - Init & deinit
     
-    init(networking: NetworkManager, event: ((AboutEvent) -> Void)?) {
-        self.eventHandler = event
-        self.networking = networking
-        super.init(nibName: F.toString(type(of: self)), bundle: nil)
+    required init(_ presentation: Service) {
+        self.presentation = presentation
+        super.init(nibName: F.nibNamefor(Self.self), bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -47,19 +40,16 @@ class AboutViewController: UIViewController, ActivityViewPresenter, Controller {
     }
     
     deinit {
-        print(Self.self)
+        self.hideActivity()
+             print(F.toString(Self.self))
     }
     
     // MARK: - Private methods
     
     private func customNavViewSetup() {
         self.rootView?.navigationView.actionHandler = { [weak self] in
-            self?.onBackEvent()
+            self?.presentation.onBackEvent()
         }
     }
-    
-    private func onBackEvent() {
-        self.eventHandler?(.profile)
-    }
-    
+
 }
