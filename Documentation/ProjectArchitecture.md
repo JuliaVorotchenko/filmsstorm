@@ -6,6 +6,7 @@
  * **View** - Object to represent data on UI. You must inherite Cotroller type to use it as View.
  * **Controller** - Object, which acts as the intermediary between the application's view objects and its model objects.
  * **Coordinator** - Entity, which allows to manage all controllers and sub-coordinators.
+ * **Presenter** - Entity, that contains the buisness logic of the app.
  
  ### Coordinator's roles:
  * Incapsulates dependencies;
@@ -63,4 +64,19 @@
  ``` swift
     protocol EventProtocol {}
  ```
+ 
+## Presenter
+   ### Presenter's  roles:
+* Mediates between ViewControllers and Networking
+* Realizes buisness logic
+
+All presenters have to be under Presener protocol:
+```swift
+ protocol Presenter: AnyObject, EventSourse {
+    
+}
+ ```
+
+
+   
  
