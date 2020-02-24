@@ -23,10 +23,20 @@ import UIKit
  - Know how to present itself;
  - Modify any data before presentation.
  */
-protocol Controller: RootViewGettable, ControllerEventSourse {}
+protocol Controller: RootViewGettable {
+    associatedtype Service: Presenter
+    var presentation: Service { get }
+    
+    init(_ presentation: Service)
+}
+
+/// Presenter is responsible for buisness logic realization
+protocol Presenter: AnyObject, EventSourse {
+    
+}
 
 /// You must use this protocol to handle Controller's events in Coordinator (or use delegation as simple alternative).
-protocol ControllerEventSourse {
+protocol EventSourse {
     associatedtype Event: EventProtocol
     var eventHandler: ((Event) -> Void)? { get }
 }

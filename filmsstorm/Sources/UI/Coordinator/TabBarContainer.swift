@@ -9,9 +9,9 @@
 import UIKit
 
 class TabBarContainer: AppEventSource {
-
+    
     // MARK: - Properties
-
+    
     var childCoordinators = [Coordinator]()
     let eventHandler: ((AppEvent) -> Void)?
     private(set) var tabBarController = UITabBarController()
@@ -25,7 +25,7 @@ class TabBarContainer: AppEventSource {
         self.profileFlow.viewControllers.removeAll()
         print(TabBarContainer.self)
     }
-
+    
     init(networking: NetworkManager,
          eventHandler: ((AppEvent) -> Void)?) {
         self.networking = networking
@@ -46,7 +46,7 @@ class TabBarContainer: AppEventSource {
     
     private func createDiscoverFlowCoordinator() {
         let coordinator = DiscoverFlowCoordinator(networking: self.networking, navigationController: self.mainFlowNav,
-                                              eventHandler: self.eventHandler)
+                                                  eventHandler: self.eventHandler)
         self.childCoordinators.append(coordinator)
         coordinator.start()
     }

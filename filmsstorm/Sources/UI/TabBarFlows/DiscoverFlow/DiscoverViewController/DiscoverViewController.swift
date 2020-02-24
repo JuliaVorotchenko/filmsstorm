@@ -8,16 +8,13 @@
 
 import UIKit
 
-enum DiscoverEvent: EventProtocol {
-    case logout
-    case error(AppError)
-}
 
-class DiscoverViewController: UIViewController, Controller, ActivityViewPresenter {
+class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
     
     typealias RootViewType = DiscoverView
+    typealias Service = T
     
     enum Section: CaseIterable {
         case  main
@@ -25,12 +22,11 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
     
     // MARK: - Public Properties
     
-    let eventHandler: ((DiscoverEvent) -> Void)?
-    let loadingView = ActivityView()
+    internal let loadingView = ActivityView()
+    internal let presentation: Service
     
     // MARK: - Private properties
     
-    private let networking: NetworkManager
     private var sections = [MovieListResult]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, MovieListResult>?
     
@@ -41,10 +37,9 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
         print(F.toString(Self.self))
     }
     
-    init(networking: NetworkManager, event: ((DiscoverEvent) -> Void)?) {
-        self.networking = networking
-        self.eventHandler = event
-        super.init(nibName: F.toString(type(of: self)), bundle: nil)
+    required init(_ presentation: Service) {
+        self.presentation = presentation
+        super.init(nibName: F.nibNamefor(Self.self), bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -65,14 +60,9 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
     // MARK: - Private Methods
     
     private func getPopularMovies() {
-        self.networking.getPopularMovies { [weak self] result in
-            switch result {
-            case .success(let model):
-                self?.sections = model.results
-                self?.createDataSource()
-            case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
+        self.presentation.getPopularMovies { [weak self] in
+            self?.sections = $0
+            self?.createDataSource()
         }
     }
     
@@ -126,9 +116,9 @@ class DiscoverViewController: UIViewController, Controller, ActivityViewPresente
         
         guard let collectionView = self.rootView?.collectionView else { return }
         
-        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collection, indexPath, item -> UICollectionViewCell? in
-           
-            let eventModel = MovieCardEventModel { [weak self] in
+        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self ] collection, indexPath, item -> UICollectionViewCell? in
+            
+            let eventModel = MovieCardEventModel {
                 self?.onCardEvent($0)
             }
             

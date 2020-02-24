@@ -29,7 +29,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     // MARK: - Private properties
     
     private var actionHandler: ((MovieCardEvent) -> Void)?
-  
+    
     // MARK: - Public Methods
     
     public func fill(with model: MovieListResult?) {
@@ -44,12 +44,12 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
         self.imageview?.layer.cornerRadius = 7
         self.likeButton?.layer.cornerRadius = 7
         self.favouriteButton?.layer.cornerRadius = 7
-       
+        
         self.contentView.layer.cornerRadius = 2.0
         self.contentView.layer.borderWidth = 1.0
         self.contentView.layer.borderColor = UIColor.clear.cgColor
         self.contentView.layer.masksToBounds = true
-
+        
         self.layer.backgroundColor = UIColor.clear.cgColor
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
@@ -71,5 +71,4 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
         print("fav tapped")
         self.actionHandler?(.favourites)
     }
-    
 }

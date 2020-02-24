@@ -6,9 +6,19 @@
 //  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-enum F {
+enum F { // swiftlint:disable:this type_name
+    
+    static func nibNamefor(_ vcType: UIViewController.Type) -> String {
+        let nibName = "\(vcType)"
+            .components(separatedBy: ".")
+            .first
+            .map { $0.prefix { $0 != "<" } }
+            .map(String.init)
+        return nibName ?? Self.toString(vcType)
+    }
+    
     static func toString(_ anyClass: AnyClass) -> String {
         return .init(describing: anyClass)
     }

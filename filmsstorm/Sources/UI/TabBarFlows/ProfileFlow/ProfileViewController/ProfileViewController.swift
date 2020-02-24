@@ -8,18 +8,13 @@
 
 import UIKit
 
-enum ProfileEvent: EventProtocol {
-    case logout
-    case about
-    case error(AppError)
-}
-
-class ProfileViewController: UIViewController, Controller, ActivityViewPresenter {
-    
+class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller, ActivityViewPresenter {
+   
     // MARK: - Subtypes
     
     typealias RootViewType = ProfileView
-    typealias Event = ProfileEvent
+    
+    typealias Service = T
     
     enum Section: CaseIterable {
         case main
@@ -33,23 +28,18 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     }
     
     // MARK: - Public Properties
-    
+    var presentation: T
     let loadingView = ActivityView()
-    let eventHandler: ((ProfileEvent) -> Void)?
-    
-    // MARK: - Private properties
-    
-    private let networking: NetworkManager
-    private var user: UserModel?
+
     private var items: [Item] = []
     private lazy var dataSource = self.diffableDataSource()
+    private var user: UserModel?
    
     // MARK: - Init & deinit
     
-    init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
-        self.networking = networking
-        self.eventHandler = event
-        super.init(nibName: F.toString(type(of: self)), bundle: nil)
+    required init(_ presentation: Service) {
+        self.presentation = presentation
+        super.init(nibName: F.nibNamefor(Self.self), bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -64,8 +54,11 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupTableView()
-        self.getUserDetails()
+   self.setupTableView()
+        self.presentation.getUserDetails { [weak self] in
+            self?.user = $0
+            self?.createItems()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -75,45 +68,13 @@ class ProfileViewController: UIViewController, Controller, ActivityViewPresenter
     
     // MARK: - Private methods
     
-    private func onLogout() {
-        self.showActivity()
-        self.networking.logout { [weak self] result in
-            switch result {
-            case .success:
-                KeyChainContainer.unregister()
-                self?.eventHandler?(.logout)
-                self?.hideActivity()
-            case .failure(let error):
-                print(error.stringDescription)
-                self?.hideActivity()
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
-    
-    func getUserDetails() {
-        self.networking.getUserDetails { [weak self] result in
-            switch result {
-            case .success(let model):
-                self?.user = model
-                self?.createItems()
-            case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
-
     private func createItems() {
         let logoutImage = UIImage(named: "logout")
         let aboutImage = UIImage(named: "about")
-        let aboutCellModel = ActionCellModel(name: "About us", image: aboutImage) { [weak self] in self?.onAbout() }
-        let logoutCellModel = ActionCellModel(name: "Logout", image: logoutImage, action: { [weak self] in self?.onLogout() })
+        let aboutCellModel = ActionCellModel(name: "About us", image: aboutImage) { [weak self] in self?.presentation.onAbout() }
+        let logoutCellModel = ActionCellModel(name: "Logout", image: logoutImage, action: { [weak self] in self?.presentation.onLogout() })
         self.items = [.profile(self.user), .imageQuality, .about(aboutCellModel), .logout(logoutCellModel)]
         self.update(sections: Section.allCases, items: self.items)
-    }
-    
-    private func onAbout() {
-        self.eventHandler?(.about)
     }
     
     private func update(sections: [Section], items: [Item]) {

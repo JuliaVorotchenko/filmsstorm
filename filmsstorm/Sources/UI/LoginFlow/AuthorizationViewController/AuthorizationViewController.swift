@@ -8,22 +8,20 @@
 
 import UIKit
 
-enum AuthEvent: EventProtocol {
-    case login
-    case error(AppError)
-}
-
-class AuthorizationViewController: UIViewController, Controller, ActivityViewPresenter {
-    
+class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, Controller, ActivityViewPresenter {
+ 
     // MARK: - Subtypes
 
     typealias RootViewType = AuthorizationView
+    typealias Service = T
     
     // MARK: - Properties
     
-    private let networking: NetworkManager
-    let eventHandler: ((AuthEvent) -> Void)?
     let loadingView: ActivityView = .init()
+    
+    // MARK: - Private properties
+
+    internal let presentation: Service
     
     // MARK: - Init and deinit
     
@@ -32,10 +30,10 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
         print(F.toString(Self.self))
     }
     
-    init(networking: NetworkManager, event: ((AuthEvent) -> Void)?) {
-        self.networking = networking
-        self.eventHandler = event
-        super.init(nibName: String(describing: type(of: self)), bundle: nil)
+    required init(_ presentation: Service) {
+        self.presentation = presentation
+        super.init(nibName: F.nibNamefor(Self.self), bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -45,52 +43,19 @@ class AuthorizationViewController: UIViewController, Controller, ActivityViewPre
     // MARK: - IBAction
    
     @IBAction func buttonTapped(_ sender: Any) {
-        self.getToken()
+        guard let username = self.rootView?.usernameTextField.text,
+            let password = self.rootView?.passwordTextField.text  else { return }
+        self.presentation.getToken(username: username, password: password)
     }
     
     // MARK: - Private methods
-
-    private func getToken() {
-        
-        self.showActivity()
-        self.networking.getToken { [weak self] (result) in
-            switch result {
-            case .success(let token):
-                self?.validateToken(token: token.requestToken)
-            case .failure(let error):
-                self?.hideActivity()
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
-    
-    private func validateToken(token: String) {
-        guard let username = self.rootView?.usernameTextField.text,
-            let password = self.rootView?.passwordTextField.text else { return }
-        let model = AuthRequestModel(username: username, password: password, requestToken: token)
-        self.networking.validateToken(with: model) { [weak self] (result) in
-            switch result {
-            case .success(let token):
-                self?.createSession(validToken: token.requestToken)
-            case .failure(let error):
-                self?.hideActivity()
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
-    
-    private func createSession(validToken: String) {
-        let model = SessionRequestBody(requestToken: validToken)
-        self.networking.createSession(with: model) { [weak self] (result) in
-            switch result {
-            case .success(let sessionID):
-                self?.hideActivity()
-                KeyChainContainer.sessionID = sessionID.sessionID
-                self?.eventHandler?(.login)
-            case .failure(let error):
-                self?.hideActivity()
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
+   
+    private func configureActivity(_ activity: ActivityState) {
+        switch activity {
+        case .show:
+            self.showActivity()
+        case .hide:
+            self.hideActivity()
         }
     }
 }
