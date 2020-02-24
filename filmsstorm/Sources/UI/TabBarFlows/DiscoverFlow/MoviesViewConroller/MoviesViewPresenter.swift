@@ -1,46 +1,47 @@
 //
-//  DiscoverPresentationService.swift
+//  MoviesViewPresenter.swift
 //  filmsstorm
 //
-//  Created by Юлия Воротченко on 23.02.2020.
+//  Created by Юлия Воротченко on 24.02.2020.
 //  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
 
 import Foundation
 
-enum DiscoverEvent: EventProtocol {
-    case logout
+enum MoviesEvent: EventProtocol {
+    case movie
     case error(AppError)
 }
 
-protocol DiscoverPresenter: Presenter {
+protocol MoviesPresenter: Presenter {
     var showActivity: ((ActivityState) -> Void)? { get set }
     func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?)
+    func onMovie()
 }
 
-class DiscoverPresenterImpl: DiscoverPresenter {
+class MoviesPresenterImpl: MoviesPresenter {
     
     // MARK: - Private Properties
-    internal let headerEventHandler: ((DiscoverHeaderEvent) -> Void)?
-    internal let eventHandler: ((DiscoverEvent) -> Void)?
+    
+    internal let eventHandler: ((MoviesEvent) -> Void)?
     internal var showActivity: ((ActivityState) -> Void)?
     private let networking: NetworkManager
+    var view = MoviesView()
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: ((DiscoverEvent) -> Void)?, headerEvent: ((DiscoverHeaderEvent) -> Void)?) {
+    init(networking: NetworkManager, event: ((MoviesEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
-        self.headerEventHandler = headerEvent
     }
     
     // MARK: - Methods
     
-    func getPopularMovies(_ complition: (( [MovieListResult]) -> Void)?) {
+    func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?) {
         self.networking.getPopularMovies { [weak self] result in
             switch result {
             case .success(let model):
-                complition?(model.results)
+                completion?(model.results)
                 
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
@@ -48,15 +49,11 @@ class DiscoverPresenterImpl: DiscoverPresenter {
         }
     }
     
-    func onMovies() {
-        self.headerEventHandler?(.onMovies)
+    func onMovie() {
+        self.eventHandler?(.movie)
     }
     
-    func onShows() {
-        self.headerEventHandler?(.onShows)
-    }
-    
-    func onSearch() {
-        self.headerEventHandler?(.onSearch)
+    func setTitle() {
+        self.view.navigationView?.titleLabel?.text = "Movies"
     }
 }

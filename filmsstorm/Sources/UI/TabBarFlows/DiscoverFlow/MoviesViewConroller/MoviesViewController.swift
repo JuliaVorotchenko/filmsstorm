@@ -1,18 +1,18 @@
 //
-//  SessionIDViewController.swift
+//  MoviesViewController.swift
 //  filmsstorm
 //
-//  Created by Юлия Воротченко on 29.12.2019.
-//  Copyright © 2019 Alexander Andriushchenko. All rights reserved.
+//  Created by Юлия Воротченко on 24.02.2020.
+//  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
 
 import UIKit
 
-class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Controller, ActivityViewPresenter {
+class MoviesViewController<T: MoviesPresenterImpl>: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
-    
-    typealias RootViewType = DiscoverView
+       
+    typealias RootViewType = ShowsView
     typealias Service = T
     
     enum Section: CaseIterable {
@@ -49,11 +49,7 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setCollectionView()
-        self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
-        self.getPopularMovies()
-        self.createDataSource()
-        self.setupHeader()
+
     }
     
     // MARK: - Private Methods
@@ -85,22 +81,11 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
     }
     
     private func setupHeader() {
-        let model = DiscoverHeaderModel { [weak self] in self?.onHeaderEvents($0) }
-        self.rootView?.headerView.fill(with: model)
+        self.presenter.setTitle()
     }
     
-    private func onHeaderEvents(_ event: DiscoverHeaderEvent) {
-        switch event {
-        case .onSearch:
-            self.presenter.onSearch()
-            print("search")
-        case .onShows:
-            print("TV")
-            self.presenter.onShows()
-        case .onMovies:
-            print("mov")
-            self.presenter.onMovies()
-        }
+    private func onHeaderEvents() {
+        
     }
     
     private func onCardEvent(_ event: MovieCardEvent) {

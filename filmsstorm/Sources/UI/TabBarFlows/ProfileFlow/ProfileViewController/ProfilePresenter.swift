@@ -65,7 +65,6 @@ class ProfilePresenterImpl: ProfilePresenter {
             switch result {
             case .success(let model):
                 complition?(model)
-            //self?.createItems()
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
             }

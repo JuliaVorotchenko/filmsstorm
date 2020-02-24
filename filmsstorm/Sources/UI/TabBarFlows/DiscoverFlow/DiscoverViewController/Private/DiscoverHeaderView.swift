@@ -10,8 +10,8 @@ import UIKit
 
 enum DiscoverHeaderEvent {
     case onSearch
-    case onTVShow
-    case onMovie
+    case onShows
+    case onMovies
 }
 
 struct DiscoverHeaderModel {
@@ -42,9 +42,9 @@ class DiscoverHeaderView: NibDesignableImpl {
     }
     
     @IBAction func onTVShows(_ sender: UIButton) {
-        self.actionHandler?(.onTVShow)
+        self.actionHandler?(.onShows)
     }
     @IBAction func onMovies(_ sender: UIButton) {
-        self.actionHandler?(.onMovie)
+        self.actionHandler?(.onMovies)
     }
 }

@@ -1,31 +1,28 @@
 //
-//  SessionIDViewController.swift
+//  ShowsViewController.swift
 //  filmsstorm
 //
-//  Created by Юлия Воротченко on 29.12.2019.
-//  Copyright © 2019 Alexander Andriushchenko. All rights reserved.
+//  Created by Юлия Воротченко on 24.02.2020.
+//  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
 
 import UIKit
 
-class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Controller, ActivityViewPresenter {
-    
+class ShowsViewController<T: ShowPresenterImpl>: UIViewController, Controller, ActivityViewPresenter {
+
     // MARK: - Subtypes
-    
-    typealias RootViewType = DiscoverView
+       
+    typealias RootViewType = ShowsView
     typealias Service = T
     
     enum Section: CaseIterable {
         case  main
     }
     
-    // MARK: - Public Properties
+    // MARK: - Private Properties
     
     internal let loadingView = ActivityView()
     internal let presenter: Service
-    
-    // MARK: - Private properties
-    
     private var sections = [MovieListResult]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, MovieListResult>?
     
@@ -45,15 +42,10 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Life cycle
+     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setCollectionView()
-        self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
-        self.getPopularMovies()
-        self.createDataSource()
-        self.setupHeader()
     }
     
     // MARK: - Private Methods
@@ -85,22 +77,11 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
     }
     
     private func setupHeader() {
-        let model = DiscoverHeaderModel { [weak self] in self?.onHeaderEvents($0) }
-        self.rootView?.headerView.fill(with: model)
+        
     }
     
-    private func onHeaderEvents(_ event: DiscoverHeaderEvent) {
-        switch event {
-        case .onSearch:
-            self.presenter.onSearch()
-            print("search")
-        case .onShows:
-            print("TV")
-            self.presenter.onShows()
-        case .onMovies:
-            print("mov")
-            self.presenter.onMovies()
-        }
+    private func onHeaderEvents() {
+        
     }
     
     private func onCardEvent(_ event: MovieCardEvent) {
@@ -113,32 +94,33 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
     }
     
     // MARK: - set diffableDatasource
-    
-    func createDataSource() {
-        
-        guard let collectionView = self.rootView?.collectionView else { return }
-        
-        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self ] collection, indexPath, item -> UICollectionViewCell? in
-            
-            let eventModel = MovieCardEventModel {
-                self?.onCardEvent($0)
-            }
-            
-            let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
-            cell.setCornerRadiusWithShadow()
-            cell.fill(with: item)
-            cell.actionFill(with: eventModel)
-            return cell
-        }
-        let snapshot = self.createSnapshot()
-        self.dataSource?.apply(snapshot)
-        
-    }
-    
-    func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, MovieListResult> {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, MovieListResult>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(self.sections)
-        return snapshot
-    }
+      
+      func createDataSource() {
+          
+          guard let collectionView = self.rootView?.collectionView else { return }
+          
+          self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self ] collection, indexPath, item -> UICollectionViewCell? in
+              
+              let eventModel = MovieCardEventModel {
+                  self?.onCardEvent($0)
+              }
+              
+              let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
+              cell.setCornerRadiusWithShadow()
+              cell.fill(with: item)
+              cell.actionFill(with: eventModel)
+              return cell
+          }
+          let snapshot = self.createSnapshot()
+          self.dataSource?.apply(snapshot)
+          
+      }
+      
+      func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, MovieListResult> {
+          var snapshot = NSDiffableDataSourceSnapshot<Section, MovieListResult>()
+          snapshot.appendSections([.main])
+          snapshot.appendItems(self.sections)
+          return snapshot
+      }
+
 }

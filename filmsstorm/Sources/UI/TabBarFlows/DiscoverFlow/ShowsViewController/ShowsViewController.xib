@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShowsViewController" customModule="filmsstorm" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="GTc-2W-2j4" id="Xox-L1-vtg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="GTc-2W-2j4" customClass="ShowsView" customModule="filmsstorm" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OxF-0J-RRZ" customClass="CustomNavigationView" customModule="filmsstorm" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="0iU-bl-rvw"/>
+                    </constraints>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="3mQ-XB-jFg">
+                    <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Tu8-uL-Ono">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="3mQ-XB-jFg" firstAttribute="top" secondItem="OxF-0J-RRZ" secondAttribute="bottom" id="0VG-Nl-QbC"/>
+                <constraint firstItem="3mQ-XB-jFg" firstAttribute="leading" secondItem="7tS-pk-tcq" secondAttribute="leading" id="9rK-hm-yy1"/>
+                <constraint firstItem="7tS-pk-tcq" firstAttribute="bottom" secondItem="3mQ-XB-jFg" secondAttribute="bottom" id="Fg4-FP-qHl"/>
+                <constraint firstItem="OxF-0J-RRZ" firstAttribute="leading" secondItem="7tS-pk-tcq" secondAttribute="leading" id="S8z-0a-w6h"/>
+                <constraint firstItem="7tS-pk-tcq" firstAttribute="trailing" secondItem="OxF-0J-RRZ" secondAttribute="trailing" id="klg-fj-9sO"/>
+                <constraint firstItem="7tS-pk-tcq" firstAttribute="trailing" secondItem="3mQ-XB-jFg" secondAttribute="trailing" id="n5g-z3-cKZ"/>
+                <constraint firstItem="OxF-0J-RRZ" firstAttribute="top" secondItem="7tS-pk-tcq" secondAttribute="top" id="yCn-nl-dnH"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="7tS-pk-tcq"/>
+            <connections>
+                <outlet property="collectionView" destination="3mQ-XB-jFg" id="Hgj-Vg-crj"/>
+                <outlet property="navigationView" destination="OxF-0J-RRZ" id="tnH-jj-BrL"/>
+            </connections>
+            <point key="canvasLocation" x="68" y="-21"/>
+        </view>
+    </objects>
+</document>

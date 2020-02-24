@@ -37,15 +37,15 @@
                                         <rect key="frame" x="15" y="19" width="37" height="37"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Sls-H8-LIM">
-                                                <rect key="frame" x="10.5" y="6" width="16.5" height="25"/>
+                                                <rect key="frame" x="3.5" y="6" width="30" height="25"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="tAE-BJ-Lpm">
-                                                        <rect key="frame" x="0.0" y="0.0" width="16.5" height="15"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="tAE-BJ-Lpm">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="25"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" name="primary"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0kh-zv-yD4">
-                                                        <rect key="frame" x="0.0" y="15" width="16.5" height="10"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0kh-zv-yD4">
+                                                        <rect key="frame" x="0.0" y="25" width="30" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -86,13 +86,13 @@
                                         <rect key="frame" x="40.5" y="19" width="37" height="37"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lPL-Sg-UQg">
-                                                <rect key="frame" x="4.5" y="6" width="28.5" height="25"/>
+                                                <rect key="frame" x="3" y="6" width="31" height="25"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myList" translatesAutoresizingMaskIntoConstraints="NO" id="hzo-RQ-69b">
-                                                        <rect key="frame" x="0.0" y="0.0" width="28.5" height="15.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="25"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="My List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myt-QD-rCL">
-                                                        <rect key="frame" x="0.0" y="15.5" width="28.5" height="9.5"/>
+                                                        <rect key="frame" x="0.0" y="25" width="31" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="8"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
