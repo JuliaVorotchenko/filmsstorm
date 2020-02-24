@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller, ActivityViewPresenter {
    
     // MARK: - Subtypes

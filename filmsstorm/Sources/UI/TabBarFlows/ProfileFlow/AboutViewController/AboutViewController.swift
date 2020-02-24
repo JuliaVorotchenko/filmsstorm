@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class AboutViewController<T: AboutPresenter>: UIViewController, ActivityViewPresenter, Controller {
     
     // MARK: - Subtypes
