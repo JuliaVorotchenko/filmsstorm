@@ -30,6 +30,7 @@ protocol Controller: RootViewGettable {
     init(_ presentation: Service)
 }
 
+/// Presentation service is responsible for buisness logic realization
 protocol PresentationService: AnyObject, EventSourse {
     
 }

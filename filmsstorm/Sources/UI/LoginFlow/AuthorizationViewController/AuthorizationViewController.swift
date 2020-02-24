@@ -16,8 +16,12 @@ class AuthorizationViewController<T: AuthorizationPresentationService>: UIViewCo
     typealias Service = T
     
     // MARK: - Properties
+    
     let loadingView: ActivityView = .init()
-    let presentation: Service
+    
+    // MARK: - Private properties
+
+    internal let presentation: Service
     
     // MARK: - Init and deinit
     

@@ -10,20 +10,20 @@ import Foundation
 import UIKit
 
 class DiscoverFlowCoordinator: Coordinator {
-
+    
     // MARK: - Properties
-
+    
     var childCoordinators = [Coordinator]()
     let eventHandler: ((AppEvent) -> Void)?
     let navigationController: UINavigationController
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
-
+    
     deinit {
         print(Self.self)
     }
-
+    
     init(networking: NetworkManager,
          navigationController: UINavigationController,
          eventHandler: ((AppEvent) -> Void)?) {

@@ -11,25 +11,24 @@ enum AboutEvent: EventProtocol {
 }
 
 protocol AboutPresentationService: PresentationService {
-     var showActivity: ((ActivityState) -> Void)? { get set }
+    var showActivity: ((ActivityState) -> Void)? { get set }
     func onBackEvent()
 }
 
 class AboutPresentationServiceImpl: AboutPresentationService {
     
     // MARK: - Private properties
-
-    var showActivity: ((ActivityState) -> Void)?
-     let eventHandler: ((AboutEvent) -> Void)?
+    
+    internal  var showActivity: ((ActivityState) -> Void)?
+    internal let eventHandler: ((AboutEvent) -> Void)?
     
     // MARK: - Init and deinit
     init(event: ((AboutEvent) -> Void)?) {
-          self.eventHandler = event
+        self.eventHandler = event
     }
     
-// MARK: - Methods
+    // MARK: - Methods
     func onBackEvent() {
-           self.eventHandler?(.profile)
-       }
-       
+        self.eventHandler?(.profile)
+    }
 }

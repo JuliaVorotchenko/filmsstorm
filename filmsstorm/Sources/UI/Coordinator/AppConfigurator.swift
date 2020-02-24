@@ -14,10 +14,15 @@ enum AppEvent {
     case appError(AppError)
 }
 
+enum ActivityState {
+    case show
+    case hide
+}
+
 final class AppConfigurator {
-
+    
     // MARK: - Private properties
-
+    
     private let window: UIWindow
     private let networking = NetworkManager()
     private var tabBarContainer: TabBarContainer?
@@ -32,7 +37,7 @@ final class AppConfigurator {
     // MARK: - Private methods
     
     private func configure() {
-
+        
         if KeyChainContainer.sessionID?.isEmpty == false {
             self.createTabBarCoordinator()
         } else {
@@ -67,7 +72,7 @@ final class AppConfigurator {
             self.handleAppError(error)
         }
     }
-
+    
     private func handleAppError(_ event: AppError) {
         switch event {
         case .networkingError(let error):
@@ -77,7 +82,7 @@ final class AppConfigurator {
                                                       message: error.debugDescription)
         }
     }
-
+    
     private func networkError(_ error: NetworkError) {
         switch error {
         case .networkingResponse(let nError):
@@ -89,7 +94,7 @@ final class AppConfigurator {
             self.showAlert(with: error)
         }
     }
-
+    
     private func showAlert(with error: NetworkError) {
         self.window.rootViewController?.showAlert(title: TextConstants.serverError,
                                                   message: error.stringDescription)

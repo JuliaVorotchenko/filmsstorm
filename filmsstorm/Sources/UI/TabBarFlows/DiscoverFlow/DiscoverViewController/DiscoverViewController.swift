@@ -22,8 +22,8 @@ class DiscoverViewController<T: DiscoverPresentationService>: UIViewController, 
     
     // MARK: - Public Properties
     
-    let loadingView = ActivityView()
-    let presentation: Service
+    internal let loadingView = ActivityView()
+    internal let presentation: Service
     
     // MARK: - Private properties
     
@@ -40,7 +40,6 @@ class DiscoverViewController<T: DiscoverPresentationService>: UIViewController, 
     required init(_ presentation: Service) {
         self.presentation = presentation
         super.init(nibName: F.nibNamefor(Self.self), bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) {

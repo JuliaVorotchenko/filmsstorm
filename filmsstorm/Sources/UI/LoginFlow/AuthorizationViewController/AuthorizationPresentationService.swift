@@ -11,11 +11,6 @@ enum AuthEvent: EventProtocol {
     case error(AppError)
 }
 
-enum ActivityState {
-    case show
-    case hide
-}
-
 protocol AuthorizationPresentationService: PresentationService {
     var showActivity: ((ActivityState) -> Void)? { get set }
     func getToken(username: String, password: String)
@@ -26,8 +21,8 @@ class AuthorizationPresentationServiceImpl: AuthorizationPresentationService {
     // MARK: - Private properties
 
     private let networking: NetworkManager
-    let eventHandler: ((AuthEvent) -> Void)?
-    var showActivity: ((ActivityState) -> Void)?
+    internal let eventHandler: ((AuthEvent) -> Void)?
+    internal var showActivity: ((ActivityState) -> Void)?
     
     // MARK: - Init and deinit
 
@@ -37,6 +32,7 @@ class AuthorizationPresentationServiceImpl: AuthorizationPresentationService {
        }
     
     // MARK: - Private methods
+    
     func getToken(username: String, password: String) {
         self.showActivity?(.show)
            self.networking.getToken { [weak self] (result) in

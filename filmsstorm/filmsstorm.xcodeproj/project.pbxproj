@@ -639,10 +639,10 @@
 			isa = PBXGroup;
 			children = (
 				CD4C704823F2CD250057FE82 /* Private */,
+				CD4B3D512402ECBA00F3FCF6 /* ProfilePresentationService.swift */,
 				CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */,
 				CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */,
 				CD4DB87523EC5F6700F53B28 /* ProfileView.swift */,
-				CD4B3D512402ECBA00F3FCF6 /* ProfilePresentationService.swift */,
 			);
 			path = ProfileViewController;
 			sourceTree = "<group>";
@@ -720,10 +720,10 @@
 		CDB8791223B9001B0099F946 /* AuthorizationViewController */ = {
 			isa = PBXGroup;
 			children = (
+				CD4B3D532402ECF800F3FCF6 /* AuthorizationPresentationService.swift */,
 				CDB8791523B900D80099F946 /* AuthorizationViewController.swift */,
 				CDB8791623B900D80099F946 /* AuthorizationViewController.xib */,
 				CDB8791D23B901F20099F946 /* AuthorizationView.swift */,
-				CD4B3D532402ECF800F3FCF6 /* AuthorizationPresentationService.swift */,
 			);
 			path = AuthorizationViewController;
 			sourceTree = "<group>";

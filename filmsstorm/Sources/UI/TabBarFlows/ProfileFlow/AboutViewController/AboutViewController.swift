@@ -10,7 +10,7 @@ import UIKit
 
 
 class AboutViewController<T: AboutPresentationService>: UIViewController, ActivityViewPresenter, Controller {
-   
+    
     // MARK: - Subtypes
     
     typealias Event = AboutEvent
@@ -26,8 +26,8 @@ class AboutViewController<T: AboutPresentationService>: UIViewController, Activi
     // MARK: - Public Properties
     
     let loadingView = ActivityView()
-    let presentation: Service
- 
+    internal let presentation: Service
+    
     // MARK: - Init & deinit
     
     required init(_ presentation: Service) {
@@ -41,7 +41,7 @@ class AboutViewController<T: AboutPresentationService>: UIViewController, Activi
     
     deinit {
         self.hideActivity()
-             print(F.toString(Self.self))
+        print(F.toString(Self.self))
     }
     
     // MARK: - Private methods
@@ -51,5 +51,4 @@ class AboutViewController<T: AboutPresentationService>: UIViewController, Activi
             self?.presentation.onBackEvent()
         }
     }
-
 }

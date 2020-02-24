@@ -13,56 +13,59 @@ enum ProfileEvent: EventProtocol {
 }
 
 protocol ProfilePresentationService: PresentationService {
-     var showActivity: ((ActivityState) -> Void)? { get set }
+    var showActivity: ((ActivityState) -> Void)? { get set }
     func onAbout()
     func onLogout()
-    func getUserDetails(_ complition: ((UserModel) -> Void)?)
+    func getUserDetails(_ completion: ((UserModel) -> Void)?)
 }
 
 class ProfilePresentationServiceImpl: ProfilePresentationService {
-
+    
     // MARK: - Subtypes
     
     typealias Event = ProfileEvent
     
-    // MARK: - Private properties
-   
+    // MARK: - Public properties
+    
     var user: UserModel?
-    var showActivity: ((ActivityState) -> Void)?
+    
+    // MARK: - Private properties
+    
+    internal var showActivity: ((ActivityState) -> Void)?
     private let networking: NetworkManager
-    let eventHandler: ((ProfileEvent) -> Void)?
+    internal let eventHandler: ((ProfileEvent) -> Void)?
     
     // MARK: - Init and deinit
-
+    
     init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
     }
     
     // MARK: - Private methods
-
+    
     func onLogout() {
         self.showActivity?(.show)
-           self.networking.logout { [weak self] result in
-               switch result {
-               case .success:
-                   KeyChainContainer.unregister()
-                   self?.eventHandler?(.logout)
-                   self?.showActivity?(.hide)
-               case .failure(let error):
-                   print(error.stringDescription)
-                   self?.showActivity?(.hide)
-                   self?.eventHandler?(.error(.networkingError(error)))
-               }
-           }
-       }
-        
+        self.networking.logout { [weak self] result in
+            switch result {
+            case .success:
+                KeyChainContainer.unregister()
+                self?.eventHandler?(.logout)
+                self?.showActivity?(.hide)
+            case .failure(let error):
+                print(error.stringDescription)
+                self?.showActivity?(.hide)
+                self?.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+    }
+    
     func getUserDetails(_ complition: ((UserModel) -> Void)?) {
         self.networking.getUserDetails { [weak self] result in
             switch result {
             case .success(let model):
                 complition?(model)
-                //self?.createItems()
+            //self?.createItems()
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
             }

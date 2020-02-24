@@ -20,12 +20,14 @@ protocol DiscoverPresentationService: PresentationService {
 
 class DiscoverPresentationServiceImpl: DiscoverPresentationService {
     
-    // MARK: - Properties
-    let eventHandler: ((DiscoverEvent) -> Void)?
-     var showActivity: ((ActivityState) -> Void)?
+    // MARK: - Private Properties
+    
+    internal let eventHandler: ((DiscoverEvent) -> Void)?
+    internal var showActivity: ((ActivityState) -> Void)?
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
+    
     init(networking: NetworkManager, event: ((DiscoverEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
