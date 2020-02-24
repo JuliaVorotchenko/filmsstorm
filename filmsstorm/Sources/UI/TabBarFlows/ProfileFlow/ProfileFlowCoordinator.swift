@@ -41,13 +41,13 @@ class ProfileFlowCoordinator: Coordinator {
     }
     
     private func createProfileViewController() {
-        let presentation = ProfilePresentationServiceImpl(networking: self.networking, event: self.profileEvent(_:))
+        let presentation = ProfilePresenterImpl(networking: self.networking, event: self.profileEvent(_:))
         let controller = ProfileViewController(presentation)
         self.navigationController.viewControllers = [controller]
     }
 
     private func createAboutViewController() {
-        let presentation = AboutPresentationServiceImpl(event: aboutEvent(_:))
+        let presentation = AboutPresenterImpl(event: aboutEvent(_:))
         let controller = AboutViewController(presentation)
         self.navigationController.pushViewController(controller, animated: true)
     }

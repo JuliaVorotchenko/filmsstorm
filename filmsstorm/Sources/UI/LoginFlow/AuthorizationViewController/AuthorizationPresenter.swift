@@ -11,12 +11,12 @@ enum AuthEvent: EventProtocol {
     case error(AppError)
 }
 
-protocol AuthorizationPresentationService: PresentationService {
+protocol AuthorizationPresenter: Presenter {
     var showActivity: ((ActivityState) -> Void)? { get set }
     func getToken(username: String, password: String)
 }
 
-class AuthorizationPresentationServiceImpl: AuthorizationPresentationService {
+class AuthorizationPresenterImpl: AuthorizationPresenter {
    
     // MARK: - Private properties
 

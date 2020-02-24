@@ -9,7 +9,7 @@
 import UIKit
 
 
-class AboutViewController<T: AboutPresentationService>: UIViewController, ActivityViewPresenter, Controller {
+class AboutViewController<T: AboutPresenter>: UIViewController, ActivityViewPresenter, Controller {
     
     // MARK: - Subtypes
     

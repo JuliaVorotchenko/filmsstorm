@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AuthorizationViewController<T: AuthorizationPresentationService>: UIViewController, Controller, ActivityViewPresenter {
+class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, Controller, ActivityViewPresenter {
  
     // MARK: - Subtypes
 
@@ -49,6 +49,7 @@ class AuthorizationViewController<T: AuthorizationPresentationService>: UIViewCo
     }
     
     // MARK: - Private methods
+   
     private func configureActivity(_ activity: ActivityState) {
         switch activity {
         case .show:

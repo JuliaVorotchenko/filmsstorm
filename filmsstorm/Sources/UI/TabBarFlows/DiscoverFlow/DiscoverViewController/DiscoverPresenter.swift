@@ -13,12 +13,12 @@ enum DiscoverEvent: EventProtocol {
     case error(AppError)
 }
 
-protocol DiscoverPresentationService: PresentationService {
+protocol DiscoverPresenter: Presenter {
     var showActivity: ((ActivityState) -> Void)? { get set }
     func getPopularMovies(_ complition: (( [MovieListResult]) -> Void)?)
 }
 
-class DiscoverPresentationServiceImpl: DiscoverPresentationService {
+class DiscoverPresenterImpl: DiscoverPresenter {
     
     // MARK: - Private Properties
     

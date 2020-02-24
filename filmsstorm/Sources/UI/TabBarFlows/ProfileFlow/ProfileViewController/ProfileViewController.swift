@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ProfileViewController<T: ProfilePresentationService>: UIViewController, Controller, ActivityViewPresenter {
+class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller, ActivityViewPresenter {
    
     // MARK: - Subtypes
     

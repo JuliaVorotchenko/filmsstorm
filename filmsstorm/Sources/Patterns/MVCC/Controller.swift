@@ -24,14 +24,14 @@ import UIKit
  - Modify any data before presentation.
  */
 protocol Controller: RootViewGettable {
-    associatedtype Service: PresentationService
+    associatedtype Service: Presenter
     var presentation: Service { get }
     
     init(_ presentation: Service)
 }
 
-/// Presentation service is responsible for buisness logic realization
-protocol PresentationService: AnyObject, EventSourse {
+/// Presenter is responsible for buisness logic realization
+protocol Presenter: AnyObject, EventSourse {
     
 }
 

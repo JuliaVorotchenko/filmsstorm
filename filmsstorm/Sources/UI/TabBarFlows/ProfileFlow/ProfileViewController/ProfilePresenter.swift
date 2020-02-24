@@ -12,14 +12,14 @@ enum ProfileEvent: EventProtocol {
     case error(AppError)
 }
 
-protocol ProfilePresentationService: PresentationService {
+protocol ProfilePresenter: Presenter {
     var showActivity: ((ActivityState) -> Void)? { get set }
     func onAbout()
     func onLogout()
     func getUserDetails(_ completion: ((UserModel) -> Void)?)
 }
 
-class ProfilePresentationServiceImpl: ProfilePresentationService {
+class ProfilePresenterImpl: ProfilePresenter {
     
     // MARK: - Subtypes
     

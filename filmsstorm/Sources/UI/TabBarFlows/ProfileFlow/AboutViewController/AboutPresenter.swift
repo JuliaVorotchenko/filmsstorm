@@ -10,12 +10,12 @@ enum AboutEvent: EventProtocol {
     case profile
 }
 
-protocol AboutPresentationService: PresentationService {
+protocol AboutPresenter: Presenter {
     var showActivity: ((ActivityState) -> Void)? { get set }
     func onBackEvent()
 }
 
-class AboutPresentationServiceImpl: AboutPresentationService {
+class AboutPresenterImpl: AboutPresenter {
     
     // MARK: - Private properties
     

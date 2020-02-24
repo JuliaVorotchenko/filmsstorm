@@ -9,7 +9,7 @@
 import UIKit
 
 
-class DiscoverViewController<T: DiscoverPresentationService>: UIViewController, Controller, ActivityViewPresenter {
+class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
     
