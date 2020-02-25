@@ -36,11 +36,11 @@ class DiscoverPresenterImpl: DiscoverPresenter {
     
     // MARK: - Methods
     
-    func getPopularMovies(_ complition: (( [MovieListResult]) -> Void)?) {
-        self.networking.getPopularMovies { [weak self] result in
+    func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?) {
+        self.networking.getUpcomingMovies { [weak self] result in
             switch result {
             case .success(let model):
-                complition?(model.results)
+                completion?(model.results)
                 
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))

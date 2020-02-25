@@ -81,6 +81,7 @@
 		CD2D91BA24053457001A1445 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D91B924053457001A1445 /* FavouritesView.swift */; };
 		CD2D91BC2405347B001A1445 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D91BB2405347B001A1445 /* FavouritesViewController.swift */; };
 		CD2D91BE2405348E001A1445 /* FavouritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D91BD2405348E001A1445 /* FavouritesPresenter.swift */; };
+		CD2D91C02405429B001A1445 /* UpcomingMoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D91BF2405429B001A1445 /* UpcomingMoviesModel.swift */; };
 		CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9323F09C91005DC50B /* AboutViewController.swift */; };
 		CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD38AD9423F09C91005DC50B /* AboutViewController.xib */; };
 		CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9723F0A096005DC50B /* AboutView.swift */; };
@@ -233,6 +234,7 @@
 		CD2D91B924053457001A1445 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		CD2D91BB2405347B001A1445 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		CD2D91BD2405348E001A1445 /* FavouritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesPresenter.swift; sourceTree = "<group>"; };
+		CD2D91BF2405429B001A1445 /* UpcomingMoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesModel.swift; sourceTree = "<group>"; };
 		CD38AD9323F09C91005DC50B /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		CD38AD9423F09C91005DC50B /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		CD38AD9723F0A096005DC50B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				2E289CA923E8DED4001917DB /* LogoutModel.swift */,
 				2E289CAA23E8DED4001917DB /* UserModel.swift */,
 				2E289CAB23E8DED4001917DB /* PopularMoviesModel.swift */,
+				CD2D91BF2405429B001A1445 /* UpcomingMoviesModel.swift */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -419,14 +422,14 @@
 		2E289CBB23E8DFCA001917DB /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				2E289CBC23E8DFCA001917DB /* Headers.swift */,
 				2E289CBD23E8DFCA001917DB /* Encoding */,
-				2E289CC223E8DFCA001917DB /* Image */,
-				2E289CC423E8DFCA001917DB /* Manager */,
 				2E289CC623E8DFCA001917DB /* EndPoint */,
-				2E289CD123E8DFCA001917DB /* Service */,
 				CD8997BC23F9DCB2003367C1 /* FilmsstormList.plist */,
+				2E289CBC23E8DFCA001917DB /* Headers.swift */,
+				2E289CC223E8DFCA001917DB /* Image */,
 				CD0F668823F9DF46003DEE13 /* KeysManager.swift */,
+				2E289CC423E8DFCA001917DB /* Manager */,
+				2E289CD123E8DFCA001917DB /* Service */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -620,10 +623,10 @@
 			isa = PBXGroup;
 			children = (
 				CDB9CD4223FE9DAB00F45778 /* Private */,
-				CD38AD9323F09C91005DC50B /* AboutViewController.swift */,
-				CD38AD9723F0A096005DC50B /* AboutView.swift */,
-				CD38AD9423F09C91005DC50B /* AboutViewController.xib */,
 				CD4B3D552402ED3900F3FCF6 /* AboutPresenter.swift */,
+				CD38AD9723F0A096005DC50B /* AboutView.swift */,
+				CD38AD9323F09C91005DC50B /* AboutViewController.swift */,
+				CD38AD9423F09C91005DC50B /* AboutViewController.xib */,
 			);
 			path = AboutViewController;
 			sourceTree = "<group>";
@@ -631,8 +634,8 @@
 		CD38AD9223F09B9B005DC50B /* TabBarFlows */ = {
 			isa = PBXGroup;
 			children = (
-				CDB2A37524044E2400D27A9B /* FavouritesFlow */,
 				CD4DB86B23EB677A00F53B28 /* DiscoverFlow */,
+				CDB2A37524044E2400D27A9B /* FavouritesFlow */,
 				CD4DB86C23EC5E4B00F53B28 /* ProfileFlow */,
 			);
 			path = TabBarFlows;
@@ -678,9 +681,9 @@
 			children = (
 				CD4C704823F2CD250057FE82 /* Private */,
 				CD4B3D512402ECBA00F3FCF6 /* ProfilePresenter.swift */,
+				CD4DB87523EC5F6700F53B28 /* ProfileView.swift */,
 				CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */,
 				CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */,
-				CD4DB87523EC5F6700F53B28 /* ProfileView.swift */,
 			);
 			path = ProfileViewController;
 			sourceTree = "<group>";
@@ -731,10 +734,10 @@
 			isa = PBXGroup;
 			children = (
 				CDB2A37A24044F0200D27A9B /* Private */,
-				CDB2A38B2404528F00D27A9B /* ShowsViewController.xib */,
-				CDB2A38D240452A100D27A9B /* ShowsViewController.swift */,
-				CDB2A38F2404531500D27A9B /* ShowsView.swift */,
 				CDB2A3912404532600D27A9B /* ShowsPresenter.swift */,
+				CDB2A38F2404531500D27A9B /* ShowsView.swift */,
+				CDB2A38D240452A100D27A9B /* ShowsViewController.swift */,
+				CDB2A38B2404528F00D27A9B /* ShowsViewController.xib */,
 			);
 			path = ShowsViewController;
 			sourceTree = "<group>";
@@ -743,9 +746,9 @@
 			isa = PBXGroup;
 			children = (
 				CDB2A37924044EB300D27A9B /* Private */,
-				CDB2A383240450AA00D27A9B /* MoviesViewController.xib */,
 				CDB2A385240450C300D27A9B /* MoviesView.swift */,
 				CDB2A387240450DD00D27A9B /* MoviesViewController.swift */,
+				CDB2A383240450AA00D27A9B /* MoviesViewController.xib */,
 				CDB2A389240450F900D27A9B /* MoviesViewPresenter.swift */,
 			);
 			path = MoviesViewConroller;
@@ -754,9 +757,9 @@
 		CDB2A37424044DEB00D27A9B /* SearchViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CDB2A37F2404503D00D27A9B /* SearchViewController.swift */,
 				CDB2A3812404505900D27A9B /* SearchPresenter.swift */,
 				CDB2A37D2404501600D27A9B /* SearchView.swift */,
+				CDB2A37F2404503D00D27A9B /* SearchViewController.swift */,
 				CDB2A37B24044FFD00D27A9B /* SearchViewController.xib */,
 			);
 			path = SearchViewController;
@@ -774,10 +777,10 @@
 		CDB2A37824044E5D00D27A9B /* FavouritesViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CD2D91B724053442001A1445 /* FavouritesViewController.xib */,
+				CD2D91BD2405348E001A1445 /* FavouritesPresenter.swift */,
 				CD2D91B924053457001A1445 /* FavouritesView.swift */,
 				CD2D91BB2405347B001A1445 /* FavouritesViewController.swift */,
-				CD2D91BD2405348E001A1445 /* FavouritesPresenter.swift */,
+				CD2D91B724053442001A1445 /* FavouritesViewController.xib */,
 			);
 			path = FavouritesViewController;
 			sourceTree = "<group>";
@@ -828,9 +831,9 @@
 			isa = PBXGroup;
 			children = (
 				CD4B3D532402ECF800F3FCF6 /* AuthorizationPresenter.swift */,
+				CDB8791D23B901F20099F946 /* AuthorizationView.swift */,
 				CDB8791523B900D80099F946 /* AuthorizationViewController.swift */,
 				CDB8791623B900D80099F946 /* AuthorizationViewController.xib */,
-				CDB8791D23B901F20099F946 /* AuthorizationView.swift */,
 			);
 			path = AuthorizationViewController;
 			sourceTree = "<group>";
@@ -839,9 +842,9 @@
 			isa = PBXGroup;
 			children = (
 				2E289C8923E8DE83001917DB /* Private */,
+				CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */,
 				2E289C8C23E8DE83001917DB /* DiscoverView.swift */,
 				2E289C8D23E8DE84001917DB /* DiscoverViewController.swift */,
-				CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */,
 				2E289C8E23E8DE84001917DB /* DiscoverViewController.xib */,
 			);
 			path = DiscoverViewController;
@@ -1239,6 +1242,7 @@
 				2E289CD923E8DFCA001917DB /* ParameterEncoding.swift in Sources */,
 				CD4B3D522402ECBA00F3FCF6 /* ProfilePresenter.swift in Sources */,
 				2E289CB823E8DED4001917DB /* SessionRequestBody.swift in Sources */,
+				CD2D91C02405429B001A1445 /* UpcomingMoviesModel.swift in Sources */,
 				CD0F668923F9DF46003DEE13 /* KeysManager.swift in Sources */,
 				2E289C9123E8DE84001917DB /* DiscoverView.swift in Sources */,
 				2E289C9223E8DE84001917DB /* DiscoverViewController.swift in Sources */,
