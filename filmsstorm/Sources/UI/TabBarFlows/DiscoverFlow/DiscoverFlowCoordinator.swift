@@ -71,8 +71,8 @@ class DiscoverFlowCoordinator: Coordinator {
     
     private func createSearchViewController() {
         let presenter = SearchPresenterImpl(networking: self.networking, event: self.searchEvents(_:))
-          let controller = SearchViewController(presenter)
-          self.navigationController.pushViewController(controller, animated: true)
+        let controller = SearchViewController(presenter)
+        self.navigationController.pushViewController(controller, animated: true)
     }
     
     private func discoverHeaderEvents(_ event: DiscoverHeaderEvent) {
@@ -90,7 +90,7 @@ class DiscoverFlowCoordinator: Coordinator {
     }
     
     // MARK: - Movies, Shows, Search Screen Events
-
+    
     private func moviesEvent(_ event: MoviesEvent) {
         switch event {
         case .movie:
@@ -113,8 +113,8 @@ class DiscoverFlowCoordinator: Coordinator {
         switch event {
         case .mediaItem:
             print("media item view controller has to appear")
-            case .error(let errorMessage):
-                self.eventHandler?(.appError(errorMessage))
+        case .error(let errorMessage):
+            self.eventHandler?(.appError(errorMessage))
         }
     }
 }

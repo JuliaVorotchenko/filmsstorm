@@ -19,7 +19,7 @@ protocol SearchPresenter: Presenter {
 }
 
 class SearchPresenterImpl: Presenter {
-   
+    
     // MARK: - Private Properties
     
     internal let eventHandler: ((SearchEvent) -> Void)?
@@ -28,17 +28,15 @@ class SearchPresenterImpl: Presenter {
     var view = SearchView()
     
     // MARK: - Init and deinit
-      
-      init(networking: NetworkManager, event: ((SearchEvent) -> Void)?) {
-          self.networking = networking
-          self.eventHandler = event
-      }
-     
+    
+    init(networking: NetworkManager, event: ((SearchEvent) -> Void)?) {
+        self.networking = networking
+        self.eventHandler = event
+    }
+    
     // MARK: - Methods
-   
+    
     func onShow() {
-           self.eventHandler?(.mediaItem)
-       }
+        self.eventHandler?(.mediaItem)
+    }
 }
-
-

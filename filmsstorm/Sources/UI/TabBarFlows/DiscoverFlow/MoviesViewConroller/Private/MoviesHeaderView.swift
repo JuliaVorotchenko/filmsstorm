@@ -13,7 +13,5 @@ enum MoviesHeaderEvent: EventProtocol {
 }
 
 class MoviesHeaderView: UIView {
-
-   
-
+    
 }

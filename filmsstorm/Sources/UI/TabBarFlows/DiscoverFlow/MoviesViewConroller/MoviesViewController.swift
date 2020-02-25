@@ -49,12 +49,15 @@ class MoviesViewController<T: MoviesPresenterImpl>: UIViewController, Controller
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.setupHeader()
+        self.setCollectionView()
+        self.getPopularMovies()
     }
     
     // MARK: - Private Methods
     
     private func getPopularMovies() {
+        print("get popular movies")
         self.presenter.getPopularMovies { [weak self] in
             self?.sections = $0
             self?.createDataSource()
@@ -81,6 +84,7 @@ class MoviesViewController<T: MoviesPresenterImpl>: UIViewController, Controller
     }
     
     private func setupHeader() {
+        print("setup header ")
         self.presenter.setTitle()
     }
     

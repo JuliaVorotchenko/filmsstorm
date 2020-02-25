@@ -19,13 +19,10 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
         case  main
     }
     
-    // MARK: - Public Properties
-    
+    // MARK: - Private properties
+   
     internal let loadingView = ActivityView()
     internal let presenter: Service
-    
-    // MARK: - Private properties
-    
     private var sections = [MovieListResult]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, MovieListResult>?
     
