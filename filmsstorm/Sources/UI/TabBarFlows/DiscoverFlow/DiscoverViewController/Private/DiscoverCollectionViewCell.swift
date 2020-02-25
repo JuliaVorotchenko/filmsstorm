@@ -36,6 +36,10 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
         self.movieImage.setImage(from: model?.posterPath)
     }
     
+    public func fillShows(with model: ShowListResult?) {
+         self.movieImage.setImage(from: model?.posterPath)
+    }
+    
     public func actionFill(with model: MovieCardEventModel) {
         self.actionHandler = model.action
     }

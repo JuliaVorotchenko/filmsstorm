@@ -54,6 +54,7 @@ class MoviesPresenterImpl: MoviesPresenter {
     }
     
     func setTitle() {
+        print("presenter movies set title")
         self.view.navigationView?.titleLabel?.text = "Movies"
     }
 }

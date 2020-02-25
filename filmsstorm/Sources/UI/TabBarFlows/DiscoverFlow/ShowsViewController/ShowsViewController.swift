@@ -23,8 +23,8 @@ class ShowsViewController<T: ShowPresenterImpl>: UIViewController, Controller, A
     
     internal let loadingView = ActivityView()
     internal let presenter: Service
-    private var sections = [MovieListResult]()
-    private var dataSource: UICollectionViewDiffableDataSource<Section, MovieListResult>?
+    private var sections = [ShowListResult]()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, ShowListResult>?
     
     // MARK: - Init and deinit
     
@@ -46,12 +46,16 @@ class ShowsViewController<T: ShowPresenterImpl>: UIViewController, Controller, A
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setCollectionView()
+        self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
+        self.getPopularMovies()
+        self.createDataSource()
     }
     
     // MARK: - Private Methods
     
     private func getPopularMovies() {
-        self.presenter.getPopularMovies { [weak self] in
+        self.presenter.getPopularShows { [weak self] in
             self?.sections = $0
             self?.createDataSource()
         }
@@ -107,7 +111,7 @@ class ShowsViewController<T: ShowPresenterImpl>: UIViewController, Controller, A
               
               let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
               cell.setCornerRadiusWithShadow()
-              cell.fill(with: item)
+              cell.fillShows(with: item)
               cell.actionFill(with: eventModel)
               return cell
           }
@@ -116,8 +120,8 @@ class ShowsViewController<T: ShowPresenterImpl>: UIViewController, Controller, A
           
       }
       
-      func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, MovieListResult> {
-          var snapshot = NSDiffableDataSourceSnapshot<Section, MovieListResult>()
+      func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, ShowListResult> {
+          var snapshot = NSDiffableDataSourceSnapshot<Section, ShowListResult>()
           snapshot.appendSections([.main])
           snapshot.appendItems(self.sections)
           return snapshot

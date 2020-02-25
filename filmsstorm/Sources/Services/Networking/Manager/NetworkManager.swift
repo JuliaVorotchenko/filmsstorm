@@ -42,5 +42,9 @@ class NetworkManager {
     func getUpcomingMovies(completion: @escaping (Result<UpcomingMoviesModel, NetworkError>) -> Void) {
         self.router.request(.movie(.getUpcoming), completion: completion)
     }
+    
+    func getPopularShows(completion: @escaping (Result<PopularShowsModel, NetworkError>) -> Void) {
+        self.router.request(.tv(.getTVShowPopular), completion: completion)
+    }
    
 }

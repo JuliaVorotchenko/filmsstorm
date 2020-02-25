@@ -15,7 +15,7 @@ enum ShowsEvent: EventProtocol {
 
 protocol ShowsPresenter: Presenter {
     var showActivity: ((ActivityState) -> Void)? { get set }
-    func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?)
+    func getPopularShows(_ completion: (( [ShowListResult]) -> Void)?)
     func onShow()
 }
 
@@ -37,8 +37,8 @@ class ShowPresenterImpl: ShowsPresenter {
     
     // MARK: - Methods
     
-    func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?) {
-        self.networking.getPopularMovies { [weak self] result in
+    func getPopularShows(_ completion: (( [ShowListResult]) -> Void)?) {
+        self.networking.getPopularShows { [weak self] result in
             switch result {
             case .success(let model):
                 completion?(model.results)

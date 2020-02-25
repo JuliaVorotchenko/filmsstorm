@@ -11,8 +11,8 @@ import UIKit
 class MoviesViewController<T: MoviesPresenterImpl>: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
-       
-    typealias RootViewType = ShowsView
+    
+    typealias RootViewType = MoviesView
     typealias Service = T
     
     enum Section: CaseIterable {
@@ -51,6 +51,7 @@ class MoviesViewController<T: MoviesPresenterImpl>: UIViewController, Controller
         super.viewDidLoad()
         self.setupHeader()
         self.setCollectionView()
+        self.rootView?.collectionView?.register(DiscoverCollectionViewCell.self)
         self.getPopularMovies()
     }
     
@@ -80,7 +81,7 @@ class MoviesViewController<T: MoviesPresenterImpl>: UIViewController, Controller
         section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 9, bottom: 0, trailing: 9)
         
         let layout = UICollectionViewCompositionalLayout(section: section)
-        self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
+        self.rootView?.collectionView?.setCollectionViewLayout(layout, animated: true)
     }
     
     private func setupHeader() {
