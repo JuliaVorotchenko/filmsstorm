@@ -9,7 +9,7 @@
 import Foundation
 
 enum ShowsEvent: EventProtocol {
-    case show
+    case mediaItem
     case error(AppError)
 }
 
@@ -50,6 +50,6 @@ class ShowPresenterImpl: ShowsPresenter {
     }
     
     func onShow() {
-        self.eventHandler?(.show)
+        self.eventHandler?(.mediaItem)
     }
 }

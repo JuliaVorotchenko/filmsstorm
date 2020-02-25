@@ -37,12 +37,16 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     }
     
     public func fillShows(with model: ShowListResult?) {
-         self.movieImage.setImage(from: model?.posterPath)
+        self.movieImage.setImage(from: model?.posterPath)
     }
     
     public func actionFill(with model: MovieCardEventModel) {
         self.actionHandler = model.action
     }
+    
+    //    public func fill<T>(with model: T?) {
+    //        self.movieImage.setImage(from: model.posterPath)
+    //    }
     
     public func setCornerRadiusWithShadow() {
         self.imageview?.layer.cornerRadius = 7

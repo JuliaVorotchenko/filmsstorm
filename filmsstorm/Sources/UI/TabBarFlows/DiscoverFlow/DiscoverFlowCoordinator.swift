@@ -52,6 +52,8 @@ class DiscoverFlowCoordinator: Coordinator {
             self.eventHandler?(.authorizationFlow)
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
+        case .onMediaItem:
+            self.createMediaItemViewController()
         }
     }
     
@@ -89,12 +91,27 @@ class DiscoverFlowCoordinator: Coordinator {
         }
     }
     
+    // MARK: - Media Item Card Event
+    
+    private func createMediaItemViewController() {
+        let presenter = MediaItemPresenterImpl(networking: self.networking, event: self.mediaItemEvent(_:))
+        let controller = MediaItemViewController(presenter)
+        self.navigationController.pushViewController(controller, animated: true)
+    }
+    
+    private func mediaItemEvent( _ event: MediaItemEvent) {
+        switch event {
+        case .someCase:
+            print("media item case")
+        }
+    }
+
     // MARK: - Movies, Shows, Search Screen Events
     
     private func moviesEvent(_ event: MoviesEvent) {
         switch event {
         case .movie:
-            print("media item view controller has to appear")
+            self.createMediaItemViewController()
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
         }
@@ -102,8 +119,8 @@ class DiscoverFlowCoordinator: Coordinator {
     
     private func showsEvent(_ event: ShowsEvent) {
         switch event {
-        case .show:
-            print("media item view controller has to appear")
+        case .mediaItem:
+             self.createMediaItemViewController()
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
         }

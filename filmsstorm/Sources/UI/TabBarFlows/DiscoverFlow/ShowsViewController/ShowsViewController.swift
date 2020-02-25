@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ShowsViewController<T: ShowPresenterImpl>: UIViewController, Controller, ActivityViewPresenter {
-
+class ShowsViewController<T: ShowPresenterImpl>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
+    
     // MARK: - Subtypes
-       
+    
     typealias RootViewType = ShowsView
     typealias Service = T
     
@@ -42,7 +42,7 @@ class ShowsViewController<T: ShowPresenterImpl>: UIViewController, Controller, A
         fatalError("init(coder:) has not been implemented")
     }
     
-     // MARK: - Life cycle
+    // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +50,7 @@ class ShowsViewController<T: ShowPresenterImpl>: UIViewController, Controller, A
         self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
         self.getPopularMovies()
         self.createDataSource()
+        self.rootView?.collectionView?.delegate = self
     }
     
     // MARK: - Private Methods
@@ -98,33 +99,38 @@ class ShowsViewController<T: ShowPresenterImpl>: UIViewController, Controller, A
     }
     
     // MARK: - set diffableDatasource
-      
-      func createDataSource() {
-          
-          guard let collectionView = self.rootView?.collectionView else { return }
-          
-          self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self ] collection, indexPath, item -> UICollectionViewCell? in
-              
-              let eventModel = MovieCardEventModel {
-                  self?.onCardEvent($0)
-              }
-              
-              let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
-              cell.setCornerRadiusWithShadow()
-              cell.fillShows(with: item)
-              cell.actionFill(with: eventModel)
-              return cell
-          }
-          let snapshot = self.createSnapshot()
-          self.dataSource?.apply(snapshot)
-          
-      }
-      
-      func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, ShowListResult> {
-          var snapshot = NSDiffableDataSourceSnapshot<Section, ShowListResult>()
-          snapshot.appendSections([.main])
-          snapshot.appendItems(self.sections)
-          return snapshot
-      }
-
+    
+    func createDataSource() {
+        
+        guard let collectionView = self.rootView?.collectionView else { return }
+        
+        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self ] collection, indexPath, item -> UICollectionViewCell? in
+            
+            let eventModel = MovieCardEventModel {
+                self?.onCardEvent($0)
+            }
+            
+            let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
+            cell.setCornerRadiusWithShadow()
+            cell.fillShows(with: item)
+            cell.actionFill(with: eventModel)
+            return cell
+        }
+        let snapshot = self.createSnapshot()
+        self.dataSource?.apply(snapshot)
+        
+    }
+    
+    func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, ShowListResult> {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, ShowListResult>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(self.sections)
+        return snapshot
+    }
+    
+    // MARK: - CollectionView Delegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.presenter.onShow()
+    }
 }

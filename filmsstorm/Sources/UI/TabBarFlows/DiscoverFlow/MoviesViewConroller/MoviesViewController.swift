@@ -8,7 +8,8 @@
 
 import UIKit
 
-class MoviesViewController<T: MoviesPresenterImpl>: UIViewController, Controller, ActivityViewPresenter {
+class MoviesViewController<T: MoviesPresenterImpl>: UIViewController, Controller, ActivityViewPresenter,
+UICollectionViewDelegate {
     
     // MARK: - Subtypes
     
@@ -19,13 +20,10 @@ class MoviesViewController<T: MoviesPresenterImpl>: UIViewController, Controller
         case  main
     }
     
-    // MARK: - Public Properties
+    // MARK: - Private properties
     
     internal let loadingView = ActivityView()
     internal let presenter: Service
-    
-    // MARK: - Private properties
-    
     private var sections = [MovieListResult]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, MovieListResult>?
     
@@ -53,12 +51,12 @@ class MoviesViewController<T: MoviesPresenterImpl>: UIViewController, Controller
         self.setCollectionView()
         self.rootView?.collectionView?.register(DiscoverCollectionViewCell.self)
         self.getPopularMovies()
+        self.rootView?.collectionView?.delegate = self
     }
     
     // MARK: - Private Methods
     
     private func getPopularMovies() {
-        print("get popular movies")
         self.presenter.getPopularMovies { [weak self] in
             self?.sections = $0
             self?.createDataSource()
@@ -130,5 +128,11 @@ class MoviesViewController<T: MoviesPresenterImpl>: UIViewController, Controller
         snapshot.appendSections([.main])
         snapshot.appendItems(self.sections)
         return snapshot
+    }
+    
+    // MARK: - CollectionView Delegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.presenter.onMovie()
     }
 }

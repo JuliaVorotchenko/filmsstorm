@@ -11,6 +11,7 @@ import Foundation
 enum DiscoverEvent: EventProtocol {
     case logout
     case error(AppError)
+    case onMediaItem
 }
 
 protocol DiscoverPresenter: Presenter {
@@ -58,5 +59,9 @@ class DiscoverPresenterImpl: DiscoverPresenter {
     
     func onSearch() {
         self.headerEventHandler?(.onSearch)
+    }
+    
+    func onMediaItem() {
+        self.eventHandler?(.onMediaItem)
     }
 }

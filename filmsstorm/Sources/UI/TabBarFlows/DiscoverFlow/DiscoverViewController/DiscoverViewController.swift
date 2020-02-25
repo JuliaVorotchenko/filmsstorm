@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Controller, ActivityViewPresenter {
+class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
     
     // MARK: - Subtypes
     
@@ -90,12 +90,9 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
         switch event {
         case .onSearch:
             self.presenter.onSearch()
-            print("search")
         case .onShows:
-            print("TV")
             self.presenter.onShows()
         case .onMovies:
-            print("mov")
             self.presenter.onMovies()
         }
     }
@@ -137,5 +134,11 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
         snapshot.appendSections([.main])
         snapshot.appendItems(self.sections)
         return snapshot
+    }
+    
+    // MARK: - CollectionView Delegate
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.presenter.onMediaItem()
     }
 }
