@@ -9,11 +9,13 @@
 import Foundation
 
 enum MediaItemEvent: EventProtocol {
-    case someCase
+    case back
 }
 
 protocol MediaItemPresenter: Presenter {
     var showActivity: ((ActivityState) -> Void)? { get set }
+    func getMediaItem()
+    func onBack()
 }
 
 class MediaItemPresenterImpl: MediaItemPresenter {
@@ -36,5 +38,9 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     
     func getMediaItem() {
         
+    }
+    
+    func onBack() {
+        self.eventHandler?(.back)
     }
 }

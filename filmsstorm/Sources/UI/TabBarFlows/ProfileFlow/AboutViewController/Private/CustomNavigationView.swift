@@ -20,6 +20,7 @@ class CustomNavigationView: NibDesignableImpl {
     }
     
     func titleFill(with title: String) {
+         print("title fill")
         self.titleLabel?.text = title
     }
     

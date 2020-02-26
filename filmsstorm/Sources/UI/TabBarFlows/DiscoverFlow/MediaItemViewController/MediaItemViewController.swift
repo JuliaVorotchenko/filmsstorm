@@ -12,7 +12,7 @@ class MediaItemViewController<T: MediaItemPresenterImpl>: UIViewController, Cont
     
     // MARK: - Subtypes
     
-    typealias RootViewType = MoviesView
+    typealias RootViewType = MediaItemView
     typealias Service = T
     
     enum Section: CaseIterable {
@@ -44,6 +44,15 @@ class MediaItemViewController<T: MediaItemPresenterImpl>: UIViewController, Cont
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupNavigationView()
+    }
+    
+   private func setupNavigationView() {
+    
+        self.rootView?.navigationView?.actionHandler = { [weak self] in
+            self?.presenter.onBack()
+        }
+        self.rootView?.navigationView?.titleFill(with: "MediaItem Name")
     }
 
 }

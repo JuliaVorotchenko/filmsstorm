@@ -11,12 +11,14 @@ import Foundation
 enum MoviesEvent: EventProtocol {
     case movie
     case error(AppError)
+    case back
 }
 
 protocol MoviesPresenter: Presenter {
     var showActivity: ((ActivityState) -> Void)? { get set }
     func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?)
     func onMovie()
+    func onDiscover()
 }
 
 class MoviesPresenterImpl: MoviesPresenter {
@@ -26,7 +28,6 @@ class MoviesPresenterImpl: MoviesPresenter {
     internal let eventHandler: ((MoviesEvent) -> Void)?
     internal var showActivity: ((ActivityState) -> Void)?
     private let networking: NetworkManager
-    var view = MoviesView()
     
     // MARK: - Init and deinit
     
@@ -53,7 +54,7 @@ class MoviesPresenterImpl: MoviesPresenter {
         self.eventHandler?(.movie)
     }
     
-    func setTitle() {
-        self.view.navigationView?.titleFill(with: "Movies")
+    func onDiscover() {
+        self.eventHandler?(.back)
     }
 }

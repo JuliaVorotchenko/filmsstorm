@@ -101,8 +101,8 @@ class DiscoverFlowCoordinator: Coordinator {
     
     private func mediaItemEvent( _ event: MediaItemEvent) {
         switch event {
-        case .someCase:
-            print("media item case")
+        case .back:
+            self.navigationController.popViewController(animated: true)
         }
     }
 
@@ -114,6 +114,8 @@ class DiscoverFlowCoordinator: Coordinator {
             self.createMediaItemViewController()
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
+        case .back:
+            self.createDiscoverViewController()
         }
     }
     
@@ -121,6 +123,8 @@ class DiscoverFlowCoordinator: Coordinator {
         switch event {
         case .mediaItem:
              self.createMediaItemViewController()
+        case .back:
+            self.createDiscoverViewController()
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
         }
@@ -129,7 +133,9 @@ class DiscoverFlowCoordinator: Coordinator {
     private func searchEvents(_ event: SearchEvent) {
         switch event {
         case .mediaItem:
-            print("media item view controller has to appear")
+            self.createMediaItemViewController()
+        case .back:
+            self.navigationController.popViewController(animated: true)
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
         }

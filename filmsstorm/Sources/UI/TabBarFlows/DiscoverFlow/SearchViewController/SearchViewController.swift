@@ -9,9 +9,9 @@
 import UIKit
 
 class SearchViewController<T: SearchPresenterImpl>: UIViewController, Controller, ActivityViewPresenter {
-
+    
     // MARK: - Subtypes
-       
+    
     typealias RootViewType = SearchView
     typealias Service = T
     
@@ -42,13 +42,14 @@ class SearchViewController<T: SearchPresenterImpl>: UIViewController, Controller
         fatalError("init(coder:) has not been implemented")
     }
     
-     // MARK: - Life cycle
+    // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupNavigationView()
     }
     
-     // MARK: - Private Methods
+    // MARK: - Private Methods
     private func onCardEvent(_ event: MovieCardEvent) {
         switch event {
         case .like:
@@ -58,4 +59,10 @@ class SearchViewController<T: SearchPresenterImpl>: UIViewController, Controller
         }
     }
     
+    private func setupNavigationView() {
+        self.rootView?.navigationView?.actionHandler = { [weak self] in
+            self?.presenter.onBack()
+        }
+        self.rootView?.navigationView?.titleFill(with: "Search")
+    }
 }

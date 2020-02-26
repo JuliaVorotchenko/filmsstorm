@@ -18,18 +18,31 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favourites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzf-12-IjY">
-                    <rect key="frame" x="167.5" y="442.5" width="79" height="21"/>
+                    <rect key="frame" x="167.5" y="437.5" width="79" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hut-sQ-0yY" customClass="CustomNavigationView" customModule="filmsstorm" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="uaG-gM-yLW"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="Zzf-12-IjY" firstAttribute="centerX" secondItem="8RU-ex-DpB" secondAttribute="centerX" id="8Bh-TC-hCq"/>
-                <constraint firstItem="Zzf-12-IjY" firstAttribute="centerY" secondItem="8RU-ex-DpB" secondAttribute="centerY" id="HKD-ia-wWY"/>
+                <constraint firstItem="Zzf-12-IjY" firstAttribute="centerX" secondItem="MCG-Q3-42H" secondAttribute="centerX" id="8Bh-TC-hCq"/>
+                <constraint firstItem="Zzf-12-IjY" firstAttribute="centerY" secondItem="MCG-Q3-42H" secondAttribute="centerY" id="HKD-ia-wWY"/>
+                <constraint firstItem="dau-gL-OBM" firstAttribute="top" secondItem="Hut-sQ-0yY" secondAttribute="top" id="bwR-aV-H4M"/>
+                <constraint firstItem="Hut-sQ-0yY" firstAttribute="leading" secondItem="MCG-Q3-42H" secondAttribute="leading" id="ddL-QZ-LCA"/>
+                <constraint firstAttribute="trailing" secondItem="Hut-sQ-0yY" secondAttribute="trailing" id="hhT-kE-QW5"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="8RU-ex-DpB"/>
+            <viewLayoutGuide key="safeArea" id="dau-gL-OBM"/>
+            <connections>
+                <outlet property="navigationView" destination="Hut-sQ-0yY" id="3n4-LA-dPW"/>
+            </connections>
             <point key="canvasLocation" x="93" y="179"/>
         </view>
     </objects>

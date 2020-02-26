@@ -10,6 +10,7 @@ import Foundation
 
 enum ShowsEvent: EventProtocol {
     case mediaItem
+    case back
     case error(AppError)
 }
 
@@ -17,6 +18,7 @@ protocol ShowsPresenter: Presenter {
     var showActivity: ((ActivityState) -> Void)? { get set }
     func getPopularShows(_ completion: (( [ShowListResult]) -> Void)?)
     func onShow()
+    func onBack()
 }
 
 class ShowPresenterImpl: ShowsPresenter {
@@ -51,5 +53,9 @@ class ShowPresenterImpl: ShowsPresenter {
     
     func onShow() {
         self.eventHandler?(.mediaItem)
+    }
+    
+    func onBack() {
+        self.eventHandler?(.back)
     }
 }

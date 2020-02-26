@@ -5,6 +5,7 @@
 //  Created by Юлия Воротченко on 23.02.2020.
 //  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
+import Foundation
 
 enum AboutEvent: EventProtocol {
     case profile

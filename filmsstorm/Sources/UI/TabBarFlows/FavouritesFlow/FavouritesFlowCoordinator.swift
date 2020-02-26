@@ -37,10 +37,10 @@ class FavouritesFlowCoordinator: Coordinator {
     // MARK: - Coordinator
     
     func start() {
-        self.createFavouritesViewCOntroller()
+        self.createFavouritesViewController()
     }
     
-    private func createFavouritesViewCOntroller() {
+    private func createFavouritesViewController() {
         let presenter = FavouritesPresenterImpl(networking: self.networking, event: self.favouritesEvent(_:))
         let controller = FavouritesViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)

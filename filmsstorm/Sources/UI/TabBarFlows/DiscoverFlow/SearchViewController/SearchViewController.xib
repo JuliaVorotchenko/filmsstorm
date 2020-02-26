@@ -17,15 +17,23 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="WgV-AN-eSf">
-                    <rect key="frame" x="0.0" y="44" width="414" height="55"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtH-6W-Bn7" customClass="CustomNavigationView" customModule="filmsstorm" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="55" id="kLo-R0-h4w"/>
+                        <constraint firstAttribute="height" constant="60" id="sGj-Hx-LO9"/>
+                    </constraints>
+                </view>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="WgV-AN-eSf">
+                    <rect key="frame" x="0.0" y="104" width="414" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="3EC-o4-Y4r"/>
                     </constraints>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lBA-ht-n4M">
-                    <rect key="frame" x="0.0" y="99" width="414" height="763"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" id="lBA-ht-n4M">
+                    <rect key="frame" x="0.0" y="164" width="414" height="732"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ehi-5f-yfR">
                         <size key="itemSize" width="50" height="50"/>
@@ -37,20 +45,21 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="lBA-ht-n4M" firstAttribute="top" secondItem="WgV-AN-eSf" secondAttribute="bottom" symbolic="YES" id="9Nx-ZN-5BD"/>
-                <constraint firstItem="WgV-AN-eSf" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="IrJ-wP-zty"/>
-                <constraint firstItem="lBA-ht-n4M" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="R0h-dl-Z04"/>
-                <constraint firstItem="WgV-AN-eSf" firstAttribute="top" secondItem="3Pc-Bd-cPz" secondAttribute="top" id="ZCd-00-N5p"/>
-                <constraint firstItem="3Pc-Bd-cPz" firstAttribute="trailing" secondItem="lBA-ht-n4M" secondAttribute="trailing" id="lpN-I0-wMl"/>
-                <constraint firstItem="WgV-AN-eSf" firstAttribute="trailing" secondItem="3Pc-Bd-cPz" secondAttribute="trailing" id="nVw-ng-AXZ"/>
-                <constraint firstItem="3Pc-Bd-cPz" firstAttribute="bottom" secondItem="lBA-ht-n4M" secondAttribute="bottom" id="r3R-lW-VgT"/>
+                <constraint firstItem="WgV-AN-eSf" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="03a-Uc-wTz"/>
+                <constraint firstItem="lBA-ht-n4M" firstAttribute="top" secondItem="WgV-AN-eSf" secondAttribute="bottom" symbolic="YES" id="8GL-f9-U34"/>
+                <constraint firstItem="HtH-6W-Bn7" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="9y5-bl-6Qi"/>
+                <constraint firstItem="HtH-6W-Bn7" firstAttribute="top" secondItem="3Pc-Bd-cPz" secondAttribute="top" id="BBy-mS-jiS"/>
+                <constraint firstItem="WgV-AN-eSf" firstAttribute="trailing" secondItem="3Pc-Bd-cPz" secondAttribute="trailing" id="Mks-HP-kze"/>
+                <constraint firstItem="WgV-AN-eSf" firstAttribute="top" secondItem="HtH-6W-Bn7" secondAttribute="bottom" id="bbW-vc-N4b"/>
+                <constraint firstItem="3Pc-Bd-cPz" firstAttribute="trailing" secondItem="HtH-6W-Bn7" secondAttribute="trailing" id="k5S-wM-X4i"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="3Pc-Bd-cPz"/>
             <connections>
                 <outlet property="collectionView" destination="lBA-ht-n4M" id="fkW-Nk-NH2"/>
+                <outlet property="navigationView" destination="HtH-6W-Bn7" id="vbH-3U-isF"/>
                 <outlet property="searchBar" destination="WgV-AN-eSf" id="Ius-iz-ald"/>
             </connections>
-            <point key="canvasLocation" x="-90" y="66"/>
+            <point key="canvasLocation" x="-91.304347826086968" y="65.625"/>
         </view>
     </objects>
 </document>

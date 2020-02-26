@@ -47,6 +47,7 @@ class ShowsViewController<T: ShowPresenterImpl>: UIViewController, Controller, A
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setCollectionView()
+        self.setupNavigationView()
         self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
         self.getPopularMovies()
         self.createDataSource()
@@ -81,12 +82,11 @@ class ShowsViewController<T: ShowPresenterImpl>: UIViewController, Controller, A
         self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
     }
     
-    private func setupHeader() {
-        
-    }
-    
-    private func onHeaderEvents() {
-        
+    private func setupNavigationView() {
+        self.rootView?.navigationView?.actionHandler = { [weak self] in
+            self?.presenter.onBack()
+        }
+        self.rootView?.navigationView?.titleFill(with: "TVShows")
     }
     
     private func onCardEvent(_ event: MovieCardEvent) {

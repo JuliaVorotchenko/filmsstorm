@@ -17,6 +17,10 @@ enum DiscoverEvent: EventProtocol {
 protocol DiscoverPresenter: Presenter {
     var showActivity: ((ActivityState) -> Void)? { get set }
     func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?)
+    func onMovies()
+    func onShows()
+    func onSearch()
+    func onMediaItem()
 }
 
 class DiscoverPresenterImpl: DiscoverPresenter {

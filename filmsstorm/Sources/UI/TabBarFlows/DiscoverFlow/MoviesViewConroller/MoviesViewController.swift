@@ -47,7 +47,7 @@ UICollectionViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupHeader()
+        self.setupNavigationView()
         self.setCollectionView()
         self.rootView?.collectionView?.register(DiscoverCollectionViewCell.self)
         self.getPopularMovies()
@@ -82,13 +82,11 @@ UICollectionViewDelegate {
         self.rootView?.collectionView?.setCollectionViewLayout(layout, animated: true)
     }
     
-    private func setupHeader() {
-        print("setup header ")
-        self.presenter.setTitle()
-    }
-    
-    private func onHeaderEvents() {
-        
+    private func setupNavigationView() {
+        self.rootView?.navigationView?.actionHandler = { [weak self] in
+            self?.presenter.onDiscover()
+        }
+        self.rootView?.navigationView?.titleFill(with: "Movies")
     }
     
     private func onCardEvent(_ event: MovieCardEvent) {

@@ -39,9 +39,13 @@ class FavouritesViewController<T: FavouritesPresenterImpl>: UIViewController, Co
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setupNavigaionView()
     }
     
     // MARK: - Private Methods
     
+    private func setupNavigaionView() {
+        self.rootView?.navigationView.backButton?.isHidden = true
+               self.rootView?.navigationView?.titleFill(with: "Favourites")
+    }
 }

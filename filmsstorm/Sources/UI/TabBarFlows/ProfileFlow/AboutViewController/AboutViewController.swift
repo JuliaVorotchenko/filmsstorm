@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AboutViewController<T: AboutPresenter>: UIViewController, ActivityViewPresenter, Controller {
+class AboutViewController<T: AboutPresenterImpl>: UIViewController, ActivityViewPresenter, Controller {
     
     // MARK: - Subtypes
     
@@ -49,5 +49,6 @@ class AboutViewController<T: AboutPresenter>: UIViewController, ActivityViewPres
         self.rootView?.navigationView.actionHandler = { [weak self] in
             self?.presenter.onBackEvent()
         }
+        self.rootView?.navigationView.titleFill(with: "About")
     }
 }

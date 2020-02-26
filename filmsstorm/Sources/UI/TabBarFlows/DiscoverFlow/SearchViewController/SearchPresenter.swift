@@ -10,12 +10,14 @@ import Foundation
 
 enum SearchEvent: EventProtocol {
     case mediaItem
+    case back
     case error(AppError)
 }
 
 protocol SearchPresenter: Presenter {
     var showActivity: ((ActivityState) -> Void)? { get set }
     func onMediaItem()
+    func onBack()
 }
 
 class SearchPresenterImpl: Presenter {
@@ -25,7 +27,6 @@ class SearchPresenterImpl: Presenter {
     internal let eventHandler: ((SearchEvent) -> Void)?
     internal var showActivity: ((ActivityState) -> Void)?
     private let networking: NetworkManager
-    var view = SearchView()
     
     // MARK: - Init and deinit
     
@@ -36,7 +37,11 @@ class SearchPresenterImpl: Presenter {
     
     // MARK: - Methods
     
-    func onShow() {
+    func onMediaItem() {
         self.eventHandler?(.mediaItem)
+    }
+    
+    func onBack() {
+        self.eventHandler?(.back)
     }
 }
