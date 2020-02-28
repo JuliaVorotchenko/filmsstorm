@@ -112,8 +112,7 @@ class ShowsViewController<T: ShowPresenterImpl>: UIViewController, Controller, A
             
             let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
             cell.setCornerRadiusWithShadow()
-            cell.fillShows(with: item)
-            cell.actionFill(with: eventModel)
+            cell.fillShows(with: item, eventModel)
             return cell
         }
         let snapshot = self.createSnapshot()

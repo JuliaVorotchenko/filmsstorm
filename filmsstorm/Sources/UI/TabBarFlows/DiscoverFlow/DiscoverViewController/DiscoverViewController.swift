@@ -120,8 +120,8 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
             
             let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
             cell.setCornerRadiusWithShadow()
-            cell.fill(with: item)
-            cell.actionFill(with: eventModel)
+           
+            cell.fillMovies(with: item, eventModel)
             return cell
         }
         let snapshot = self.createSnapshot()

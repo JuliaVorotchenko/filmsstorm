@@ -33,42 +33,26 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public Methods
     
-    public func fill(with model: MovieListResult?) {
+    public func fillMovies(with model: MovieListResult?, _ eventModel: MovieCardEventModel) {
         self.imageView?.setImage(from: model?.posterPath)
+        self.actionHandler = eventModel.action
     }
     
-    public func fillShows(with model: ShowListResult?) {
+    public func fillShows(with model: ShowListResult?, _ eventModel: MovieCardEventModel) {
         self.imageView?.setImage(from: model?.posterPath)
+        self.actionHandler = eventModel.action
     }
     
     public func actionFill(with model: MovieCardEventModel) {
         self.actionHandler = model.action
     }
     
-    //    public func fill<T>(with model: T?) {
-    //        self.movieImage.setImage(from: model.posterPath)
-    //    }
-
+   
+    
     public func setCornerRadiusWithShadow() {
-        self.setCornerRadius(radius: 2)
-        self.likeButton?.setCornerRadius(radius: 7)
-        self.favouriteButton?.setCornerRadius(radius: 7)
-        
-//
-//        self.contentView.layer.cornerRadius = 2.0
-//        self.contentView.layer.borderWidth = 1.0
-//        self.contentView.layer.borderColor = UIColor.clear.cgColor
-//        self.contentView.layer.masksToBounds = true
-
-//        self.layer.backgroundColor = UIColor.clear.cgColor
-//        self.layer.shadowColor = UIColor.gray.cgColor
-//        self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-//        self.layer.shadowRadius = 2.0
-//        self.layer.shadowOpacity = 0.8
-//        self.layer.masksToBounds = false
-//        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds,
-//                                             cornerRadius: self.contentView.layer.cornerRadius).cgPath
-        
+        self.rounded(cornerRadius: 2)
+        self.likeButton?.rounded(cornerRadius: 7)
+        self.favouriteButton?.rounded(cornerRadius: 7)
         self.addShadow(color: .cyan, offset: CGSize(width: 2.0, height: 2.0), opacity: 0.8, radius: 2.0, shadowRect: nil)
        
     }
