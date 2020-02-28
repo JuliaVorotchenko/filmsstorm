@@ -86,6 +86,7 @@
 		CD2D91C724058CE1001A1445 /* MediaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D91C624058CE1001A1445 /* MediaItemView.swift */; };
 		CD2D91C924058CF7001A1445 /* MediaItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D91C824058CF7001A1445 /* MediaItemViewController.swift */; };
 		CD2D91CB24058D1B001A1445 /* MediaItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D91CA24058D1B001A1445 /* MediaItemPresenter.swift */; };
+		CD2E5A762409640000DEC598 /* UIView+Exensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E5A752409640000DEC598 /* UIView+Exensions.swift */; };
 		CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9323F09C91005DC50B /* AboutViewController.swift */; };
 		CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD38AD9423F09C91005DC50B /* AboutViewController.xib */; };
 		CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9723F0A096005DC50B /* AboutView.swift */; };
@@ -243,6 +244,7 @@
 		CD2D91C624058CE1001A1445 /* MediaItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemView.swift; sourceTree = "<group>"; };
 		CD2D91C824058CF7001A1445 /* MediaItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemViewController.swift; sourceTree = "<group>"; };
 		CD2D91CA24058D1B001A1445 /* MediaItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemPresenter.swift; sourceTree = "<group>"; };
+		CD2E5A752409640000DEC598 /* UIView+Exensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Exensions.swift"; sourceTree = "<group>"; };
 		CD38AD9323F09C91005DC50B /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		CD38AD9423F09C91005DC50B /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		CD38AD9723F0A096005DC50B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				2E289C9823E8DEBD001917DB /* UICollectionView+Extensions.swift */,
 				CD51B26223F47DF100E3C924 /* UITableView+Extensions.swift */,
 				CD0EF99123F6000D000A3CB4 /* UIColor+Extensions.swift */,
+				CD2E5A752409640000DEC598 /* UIView+Exensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1214,6 +1217,7 @@
 				2E289CB123E8DED4001917DB /* KeyChainContainer.swift in Sources */,
 				2E289CE123E8DFCA001917DB /* TVSeasonEndPoint.swift in Sources */,
 				CDB2A37724044E5100D27A9B /* FavouritesFlowCoordinator.swift in Sources */,
+				CD2E5A762409640000DEC598 /* UIView+Exensions.swift in Sources */,
 				CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */,
 				2E289C8F23E8DE84001917DB /* DiscoverCollectionViewCell.swift in Sources */,
 				CD0CDA7A23C3E797002EC487 /* Coordinator.swift in Sources */,
