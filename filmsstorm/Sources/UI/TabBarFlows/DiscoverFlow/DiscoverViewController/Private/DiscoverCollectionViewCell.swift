@@ -20,9 +20,7 @@ struct MovieCardEventModel {
 class DiscoverCollectionViewCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
-    
-    
-    @IBOutlet var cellContainerView: UIView!
+
     @IBOutlet var imageView: UIImageView?
     @IBOutlet var likeButton: UIView?
     @IBOutlet var favouriteButton: UIView?
@@ -42,15 +40,9 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
         self.imageView?.setImage(from: model?.posterPath)
         self.actionHandler = eventModel.action
     }
-    
-    public func actionFill(with model: MovieCardEventModel) {
-        self.actionHandler = model.action
-    }
-    
-   
-    
+
     public func setCornerRadiusWithShadow() {
-        self.rounded(cornerRadius: 2)
+        self.imageView?.rounded(cornerRadius: 4)
         self.likeButton?.rounded(cornerRadius: 7)
         self.favouriteButton?.rounded(cornerRadius: 7)
         self.addShadow(color: .cyan, offset: CGSize(width: 2.0, height: 2.0), opacity: 0.8, radius: 2.0, shadowRect: nil)
