@@ -21,7 +21,7 @@ class DiscoverFlowCoordinator: Coordinator {
     // MARK: - Init and deinit
     
     deinit {
-        print(Self.self)
+        F.Log(F.toString(Self.self))
     }
     
     init(networking: NetworkManager,
@@ -69,7 +69,7 @@ class DiscoverFlowCoordinator: Coordinator {
     }
     
     // MARK: - Movies VC
-
+    
     private func createMoviesViewController() {
         let presenter = MoviesPresenterImpl(networking: self.networking, event: self.moviesEvent)
         let controller = ItemsViewController(presenter)
@@ -88,17 +88,17 @@ class DiscoverFlowCoordinator: Coordinator {
     }
     
     // MARK: - Shows VC
-
+    
     private func createShowsViewController() {
-         let presenter = ShowPresenterImpl(networking: self.networking, event: self.showsEvent)
-               let controller = ItemsViewController(presenter)
-               self.navigationController.pushViewController(controller, animated: true)
+        let presenter = ShowPresenterImpl(networking: self.networking, event: self.showsEvent)
+        let controller = ItemsViewController(presenter)
+        self.navigationController.pushViewController(controller, animated: true)
     }
     
     private func showsEvent(_ event: ShowsEvent) {
         switch event {
         case .mediaItem(let model):
-             self.createMediaItemViewController(from: model)
+            self.createMediaItemViewController(from: model)
         case .back:
             self.createDiscoverViewController()
         case .error(let errorMessage):
@@ -107,7 +107,7 @@ class DiscoverFlowCoordinator: Coordinator {
     }
     
     // MARK: - Search VC
-
+    
     private func createSearchViewController() {
         let presenter = SearchPresenterImpl(networking: self.networking, event: self.searchEvents)
         let controller = SearchViewController(presenter)
@@ -115,16 +115,16 @@ class DiscoverFlowCoordinator: Coordinator {
     }
     
     private func searchEvents(_ event: SearchEvent) {
-          switch event {
-          case .mediaItem:
-            print(#function)
-              //self.createMediaItemViewController()
-          case .back:
-              self.navigationController.popViewController(animated: true)
-          case .error(let errorMessage):
-              self.eventHandler?(.appError(errorMessage))
-          }
-      }
+        switch event {
+        case .mediaItem:
+            F.Log(#function)
+        //self.createMediaItemViewController()
+        case .back:
+            self.navigationController.popViewController(animated: true)
+        case .error(let errorMessage):
+            self.eventHandler?(.appError(errorMessage))
+        }
+    }
     
     // MARK: - Media Item VC
     

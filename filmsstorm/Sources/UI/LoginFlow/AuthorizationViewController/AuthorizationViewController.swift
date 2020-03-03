@@ -27,7 +27,7 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     
     deinit {
         self.hideActivity()
-        print(F.toString(Self.self))
+        F.Log(F.toString(Self.self))
     }
     
     required init(_ presentation: Service) {

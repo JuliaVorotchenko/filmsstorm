@@ -25,7 +25,7 @@ class TabBarContainer: AppEventSource {
         self.mainFlowNav.viewControllers.removeAll()
         self.profileFlow.viewControllers.removeAll()
         self.favouritesFlow.viewControllers.removeAll()
-        print(TabBarContainer.self)
+        F.Log(F.toString(Self.self))
     }
     
     init(networking: NetworkManager,

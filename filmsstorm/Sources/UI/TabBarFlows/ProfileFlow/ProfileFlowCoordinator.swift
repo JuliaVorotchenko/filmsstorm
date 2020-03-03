@@ -21,7 +21,7 @@ class ProfileFlowCoordinator: Coordinator {
     // MARK: - Init and deinit
     
     deinit {
-        print(Self.self)
+        F.Log(F.toString(Self.self))
     }
     
     init(networking: NetworkManager,
@@ -45,7 +45,7 @@ class ProfileFlowCoordinator: Coordinator {
         let controller = ProfileViewController(presenter)
         self.navigationController.viewControllers = [controller]
     }
-
+    
     private func createAboutViewController() {
         let presenter = AboutPresenterImpl(event: aboutEvent(_:))
         let controller = AboutViewController(presenter)

@@ -31,7 +31,7 @@ UICollectionViewDelegate {
     
     deinit {
         self.hideActivity()
-        print(F.toString(Self.self))
+        F.Log(F.toString(Self.self))
     }
     
     required init(_ presenter: Service) {
@@ -79,9 +79,9 @@ UICollectionViewDelegate {
     private func onCardEvent(_ event: MovieCardEvent) {
         switch event {
         case .like(let model):
-            print("you liked movie\(model)")
+            F.Log("you liked movie\(model)")
         case .favourites:
-            print("you added moview to favourites")
+            F.Log("you added moview to favourites")
         }
     }
     
@@ -92,7 +92,7 @@ UICollectionViewDelegate {
         guard let collectionView = self.rootView?.collectionView else { return }
         
         self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self ] collection, indexPath, item -> UICollectionViewCell? in
-          
+            
             let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
             cell.fill(with: item, onAction: .init { self?.onCardEvent($0)})
             return cell

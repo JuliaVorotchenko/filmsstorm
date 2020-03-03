@@ -22,4 +22,8 @@ enum F { // swiftlint:disable:this type_name
     static func toString(_ anyClass: AnyClass) -> String {
         return .init(describing: anyClass)
     }
+    
+    static func Log(_ object: Any) {
+        print(object)
+    }
 }

@@ -21,7 +21,7 @@ class FavouritesFlowCoordinator: Coordinator {
     // MARK: - Init and deinit
     
     deinit {
-        print(Self.self)
+        F.Log(F.toString(Self.self))
     }
     
     init(networking: NetworkManager,
@@ -51,7 +51,7 @@ class FavouritesFlowCoordinator: Coordinator {
     private func favouritesEvent(_ event: FavouritesEvent) {
         switch event {
         case .unowned:
-            print("some fav event")
+            F.Log("some fav event")
         }
     }
 }

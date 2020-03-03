@@ -19,7 +19,7 @@ class LoginFlowCoordinator: Coordinator {
     
     // MARK: - Init and deinit
     deinit {
-        print(F.toString(Self.self))
+       F.Log(F.toString(Self.self))
     }
     
     init(networking: NetworkManager,

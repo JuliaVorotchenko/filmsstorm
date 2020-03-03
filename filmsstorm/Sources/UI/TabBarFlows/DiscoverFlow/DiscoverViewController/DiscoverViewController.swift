@@ -25,7 +25,7 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
     }
     
     // MARK: - Private properties
-   
+    
     internal let loadingView = ActivityView()
     internal let presenter: Service
     private var sections = [DiscoverCellModel]()
@@ -35,7 +35,7 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
     
     deinit {
         self.hideActivity()
-        print(F.toString(Self.self))
+        F.Log(F.toString(Self.self))
     }
     
     required init(_ presenter: Service) {
@@ -91,9 +91,9 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
     private func onCardEvent(_ event: MovieCardEvent) {
         switch event {
         case .like(let model):
-            print(model?.name)
+            F.Log(model?.name)
         case .favourites(let model):
-            print(model?.name)
+            F.Log(model?.name)
         }
     }
     
@@ -122,7 +122,7 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
     }
     
     // MARK: - CollectionView Delegate
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = self.sections[indexPath.row]
         self.presenter.onMedia(item: model)

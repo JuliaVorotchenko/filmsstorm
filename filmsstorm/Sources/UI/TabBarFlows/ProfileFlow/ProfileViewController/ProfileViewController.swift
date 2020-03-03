@@ -47,7 +47,7 @@ class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller, 
     }
     
     deinit {
-        print(F.toString(Self.self))
+        F.Log(self)
     }
     
     // MARK: - VC lifecycle

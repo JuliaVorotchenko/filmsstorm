@@ -30,7 +30,7 @@ class SearchViewController<T: SearchPresenterImpl>: UIViewController, Controller
     
     deinit {
         self.hideActivity()
-        print(F.toString(Self.self))
+        F.Log(F.toString(Self.self))
     }
     
     required init(_ presentation: Service) {
@@ -53,9 +53,9 @@ class SearchViewController<T: SearchPresenterImpl>: UIViewController, Controller
     private func onCardEvent(_ event: MovieCardEvent) {
         switch event {
         case .like:
-            print("you liked movie")
+            F.Log("you liked movie")
         case .favourites:
-            print("you added moview to favourites")
+            F.Log("you added moview to favourites")
         }
     }
     

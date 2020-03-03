@@ -40,7 +40,7 @@ class AboutViewController<T: AboutPresenterImpl>: UIViewController, ActivityView
     
     deinit {
         self.hideActivity()
-        print(F.toString(Self.self))
+        F.Log(F.toString(Self.self))
     }
     
     // MARK: - Private methods

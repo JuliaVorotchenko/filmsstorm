@@ -24,7 +24,7 @@ class FavouritesViewController<T: FavouritesPresenterImpl>: UIViewController, Co
     
     deinit {
         self.hideActivity()
-        print(F.toString(Self.self))
+        F.Log(F.toString(Self.self))
     }
     
     required init(_ presentation: Service) {
@@ -46,6 +46,6 @@ class FavouritesViewController<T: FavouritesPresenterImpl>: UIViewController, Co
     
     private func setupNavigaionView() {
         self.rootView?.navigationView.backButton?.isHidden = true
-               self.rootView?.navigationView?.titleFill(with: "Favourites")
+        self.rootView?.navigationView?.titleFill(with: "Favourites")
     }
 }

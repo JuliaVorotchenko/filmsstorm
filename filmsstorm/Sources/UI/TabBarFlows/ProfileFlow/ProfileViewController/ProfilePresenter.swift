@@ -53,7 +53,7 @@ class ProfilePresenterImpl: ProfilePresenter {
                 self?.eventHandler?(.logout)
                 self?.showActivity?(.hide)
             case .failure(let error):
-                print(error.stringDescription)
+                F.Log(error.stringDescription)
                 self?.showActivity?(.hide)
                 self?.eventHandler?(.error(.networkingError(error)))
             }
