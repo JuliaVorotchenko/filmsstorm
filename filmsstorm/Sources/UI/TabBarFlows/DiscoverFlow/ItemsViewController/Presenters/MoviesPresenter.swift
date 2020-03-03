@@ -9,19 +9,19 @@
 import Foundation
 
 enum MoviesEvent: EventProtocol {
-    case movie
+    case movie(ConfigureModel)
     case error(AppError)
     case back
 }
 
-protocol MoviesPresenter: Presenter {
+protocol ItemsPresenter: Presenter {
     var showActivity: ((ActivityState) -> Void)? { get set }
-    func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?)
-    func onMovie()
-    func onDiscover()
+    func getItems(_ completion: Handler<[DiscoverCellModel]>?)
+    func onMedia(item: ConfigureModel)
+    func onBack()
 }
 
-class MoviesPresenterImpl: MoviesPresenter {
+class MoviesPresenterImpl: ItemsPresenter {
     
     // MARK: - Private Properties
     
@@ -38,23 +38,22 @@ class MoviesPresenterImpl: MoviesPresenter {
     
     // MARK: - Methods
     
-    func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?) {
+    func getItems(_ completion: Handler<[DiscoverCellModel]>?) {
         self.networking.getPopularMovies { [weak self] result in
             switch result {
             case .success(let model):
-                completion?(model.results)
-                
+                completion?(model.results.map(DiscoverCellModel.create))
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
             }
         }
     }
     
-    func onMovie() {
-        self.eventHandler?(.movie)
+    func onMedia(item: ConfigureModel) {
+        self.eventHandler?(.movie(item))
     }
     
-    func onDiscover() {
+    func onBack() {
         self.eventHandler?(.back)
     }
 }

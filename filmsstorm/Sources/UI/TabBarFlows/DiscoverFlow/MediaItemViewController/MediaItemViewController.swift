@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MediaItemViewController<T: MediaItemPresenterImpl>: UIViewController, Controller, ActivityViewPresenter {
+class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
     

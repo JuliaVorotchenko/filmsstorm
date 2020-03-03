@@ -151,9 +151,7 @@
             </constraints>
             <size key="customSize" width="355" height="493"/>
             <connections>
-                <outlet property="favouriteButton" destination="NFu-LI-Hgl" id="QOr-mS-umn"/>
                 <outlet property="imageView" destination="RhY-Gb-pJg" id="Y06-dL-Ev5"/>
-                <outlet property="likeButton" destination="NwZ-VC-sh9" id="MyG-1X-YA6"/>
             </connections>
             <point key="canvasLocation" x="-1109.4202898550725" y="-216.29464285714286"/>
         </collectionViewCell>

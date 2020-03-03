@@ -9,9 +9,10 @@
 import Foundation
 
 enum DiscoverEvent: EventProtocol {
-    case logout
     case error(AppError)
-    case onMediaItem
+    case onHeaderEvent(DiscoverHeaderEvent)
+    case onMediaItem(ConfigureModel)
+    
 }
 
 protocol DiscoverPresenter: Presenter {
@@ -20,23 +21,22 @@ protocol DiscoverPresenter: Presenter {
     func onMovies()
     func onShows()
     func onSearch()
-    func onMediaItem()
+    func onMedia(item: ConfigureModel)
 }
 
 class DiscoverPresenterImpl: DiscoverPresenter {
     
+    
     // MARK: - Private Properties
-    internal let headerEventHandler: ((DiscoverHeaderEvent) -> Void)?
-    internal let eventHandler: ((DiscoverEvent) -> Void)?
+    internal let eventHandler: Handler<DiscoverEvent>?
     internal var showActivity: ((ActivityState) -> Void)?
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: ((DiscoverEvent) -> Void)?, headerEvent: ((DiscoverHeaderEvent) -> Void)?) {
+    init(networking: NetworkManager, event: ((DiscoverEvent) -> Void)?) {
         self.networking = networking
         self.eventHandler = event
-        self.headerEventHandler = headerEvent
     }
     
     // MARK: - Methods
@@ -54,18 +54,18 @@ class DiscoverPresenterImpl: DiscoverPresenter {
     }
     
     func onMovies() {
-        self.headerEventHandler?(.onMovies)
+        self.eventHandler?(.onHeaderEvent(.onMovies))
     }
     
     func onShows() {
-        self.headerEventHandler?(.onShows)
+        self.eventHandler?(.onHeaderEvent(.onShows))
     }
     
     func onSearch() {
-        self.headerEventHandler?(.onSearch)
+        self.eventHandler?(.onHeaderEvent(.onSearch))
     }
     
-    func onMediaItem() {
-        self.eventHandler?(.onMediaItem)
+    func onMedia(item: ConfigureModel) {
+        self.eventHandler?(.onMediaItem(item))
     }
 }

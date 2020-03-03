@@ -9,26 +9,18 @@
 import Foundation
 
 enum ShowsEvent: EventProtocol {
-    case mediaItem
+    case mediaItem(ConfigureModel)
     case back
     case error(AppError)
 }
 
-protocol ShowsPresenter: Presenter {
-    var showActivity: ((ActivityState) -> Void)? { get set }
-    func getPopularShows(_ completion: (( [ShowListResult]) -> Void)?)
-    func onShow()
-    func onBack()
-}
-
-class ShowPresenterImpl: ShowsPresenter {
+class ShowPresenterImpl: ItemsPresenter {
     
     // MARK: - Private Properties
     
-    internal let eventHandler: ((ShowsEvent) -> Void)?
-    internal var showActivity: ((ActivityState) -> Void)?
+    internal let eventHandler: Handler<ShowsEvent>?
+    internal var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
-    var view = ShowsView()
     
     // MARK: - Init and deinit
     
@@ -39,11 +31,11 @@ class ShowPresenterImpl: ShowsPresenter {
     
     // MARK: - Methods
     
-    func getPopularShows(_ completion: (( [ShowListResult]) -> Void)?) {
+    func getItems(_ completion: Handler<[DiscoverCellModel]>?) {
         self.networking.getPopularShows { [weak self] result in
             switch result {
             case .success(let model):
-                completion?(model.results)
+                completion?(model.results.map(DiscoverCellModel.create))
                 
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
@@ -51,8 +43,8 @@ class ShowPresenterImpl: ShowsPresenter {
         }
     }
     
-    func onShow() {
-        self.eventHandler?(.mediaItem)
+    func onMedia(item: ConfigureModel) {
+        self.eventHandler?(.mediaItem(item))
     }
     
     func onBack() {

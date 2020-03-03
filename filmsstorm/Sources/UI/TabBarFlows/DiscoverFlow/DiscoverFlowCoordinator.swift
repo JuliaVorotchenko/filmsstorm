@@ -41,40 +41,20 @@ class DiscoverFlowCoordinator: Coordinator {
     }
     
     private func createDiscoverViewController() {
-        let presentation = DiscoverPresenterImpl(networking: self.networking, event: self.discoverEvent(_:), headerEvent: self.discoverHeaderEvents(_:))
-        let controller = DiscoverViewController(presentation)
+        let presenter = DiscoverPresenterImpl(networking: self.networking, event: self.discoverEvent)
+        let controller = DiscoverViewController(presenter)
         self.navigationController.viewControllers = [controller]
     }
     
     private func discoverEvent(_ event: DiscoverEvent) {
         switch event {
-        case .logout:
-            self.eventHandler?(.authorizationFlow)
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
-        case .onMediaItem:
-            self.createMediaItemViewController()
+        case .onMediaItem(let model):
+            self.createMediaItemViewController(from: model)
+        case .onHeaderEvent(let event):
+            self.discoverHeaderEvents(event)
         }
-    }
-    
-    // MARK: - Discover Header Events
-    
-    private func createMoviesViewController() {
-        let presenter = MoviesPresenterImpl(networking: self.networking, event: self.moviesEvent(_:))
-        let controller = MoviesViewController(presenter)
-        self.navigationController.pushViewController(controller, animated: true)
-    }
-    
-    private func createShowsViewController() {
-        let presenter = ShowPresenterImpl(networking: self.networking, event: self.showsEvent(_:))
-        let controller = ShowsViewController(presenter)
-        self.navigationController.pushViewController(controller, animated: true)
-    }
-    
-    private func createSearchViewController() {
-        let presenter = SearchPresenterImpl(networking: self.networking, event: self.searchEvents(_:))
-        let controller = SearchViewController(presenter)
-        self.navigationController.pushViewController(controller, animated: true)
     }
     
     private func discoverHeaderEvents(_ event: DiscoverHeaderEvent) {
@@ -91,10 +71,67 @@ class DiscoverFlowCoordinator: Coordinator {
         }
     }
     
-    // MARK: - Media Item Card Event
+    // MARK: - Movies VC
+
+    private func createMoviesViewController() {
+        let presenter = MoviesPresenterImpl(networking: self.networking, event: self.moviesEvent)
+        let controller = ItemsViewController(presenter)
+        self.navigationController.pushViewController(controller, animated: true)
+    }
     
-    private func createMediaItemViewController() {
-        let presenter = MediaItemPresenterImpl(networking: self.networking, event: self.mediaItemEvent(_:))
+    private func moviesEvent(_ event: MoviesEvent) {
+        switch event {
+        case .movie(let model):
+            self.createMediaItemViewController(from: model)
+        case .error(let errorMessage):
+            self.eventHandler?(.appError(errorMessage))
+        case .back:
+            self.createDiscoverViewController()
+        }
+    }
+    
+    // MARK: - Shows VC
+
+    private func createShowsViewController() {
+        let presenter = ShowPresenterImpl(networking: self.networking, event: self.showsEvent)
+        let controller = ItemsViewController     self.navigationController.pushViewController(controller, animated: true)
+    }
+    
+    private func showsEvent(_ event: ShowsEvent) {
+        switch event {
+        case .mediaItem(let model):
+             self.createMediaItemViewController(from: model)
+        case .back:
+            self.createDiscoverViewController()
+        case .error(let errorMessage):
+            self.eventHandler?(.appError(errorMessage))
+        }
+    }
+    
+    // MARK: - Search VC
+
+    private func createSearchViewController() {
+        let presenter = SearchPresenterImpl(networking: self.networking, event: self.searchEvents)
+        let controller = SearchViewController(presenter)
+        self.navigationController.pushViewController(controller, animated: true)
+    }
+    
+    private func searchEvents(_ event: SearchEvent) {
+          switch event {
+          case .mediaItem:
+            print(#function)
+              //self.createMediaItemViewController()
+          case .back:
+              self.navigationController.popViewController(animated: true)
+          case .error(let errorMessage):
+              self.eventHandler?(.appError(errorMessage))
+          }
+      }
+    
+    // MARK: - Media Item VC
+    
+    private func createMediaItemViewController(from model: ConfigureModel) {
+        let presenter = MediaItemPresenterImpl(networking: self.networking, event: self.mediaItemEvent)
         let controller = MediaItemViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -103,41 +140,6 @@ class DiscoverFlowCoordinator: Coordinator {
         switch event {
         case .back:
             self.navigationController.popViewController(animated: true)
-        }
-    }
-
-    // MARK: - Movies, Shows, Search Screen Events
-    
-    private func moviesEvent(_ event: MoviesEvent) {
-        switch event {
-        case .movie:
-            self.createMediaItemViewController()
-        case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
-        case .back:
-            self.createDiscoverViewController()
-        }
-    }
-    
-    private func showsEvent(_ event: ShowsEvent) {
-        switch event {
-        case .mediaItem:
-             self.createMediaItemViewController()
-        case .back:
-            self.createDiscoverViewController()
-        case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
-        }
-    }
-    
-    private func searchEvents(_ event: SearchEvent) {
-        switch event {
-        case .mediaItem:
-            self.createMediaItemViewController()
-        case .back:
-            self.navigationController.popViewController(animated: true)
-        case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
         }
     }
 }

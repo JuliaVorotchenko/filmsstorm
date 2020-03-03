@@ -9,7 +9,7 @@
 import Foundation
 
 enum SearchEvent: EventProtocol {
-    case mediaItem
+    case mediaItem(ConfigureModel)
     case back
     case error(AppError)
 }
@@ -37,8 +37,8 @@ class SearchPresenterImpl: Presenter {
     
     // MARK: - Methods
     
-    func onMediaItem() {
-        self.eventHandler?(.mediaItem)
+    func onMediaItem(item: ConfigureModel) {
+        self.eventHandler?(.mediaItem(item))
     }
     
     func onBack() {

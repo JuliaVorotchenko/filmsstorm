@@ -8,13 +8,25 @@
 
 import UIKit
 
-enum MovieCardEvent {
-    case like
-    case favourites
+typealias Handler<T> = (T) -> Void
+
+enum MovieCardEvent: Equatable {
+    case like(DiscoverCellModel?)
+    case favourites(DiscoverCellModel?)
 }
 
 struct MovieCardEventModel {
     let action: ((MovieCardEvent) -> Void)
+}
+
+struct ActionModel<Model: Equatable>: Hashable, Equatable {
+    let action: Handler<Model>?
+    
+    func hash(into hasher: inout Hasher) { }
+    
+    static func == (lhs: ActionModel<Model>, rhs: ActionModel<Model>) -> Bool {
+        return true
+    }
 }
 
 class DiscoverCollectionViewCell: UICollectionViewCell {
@@ -22,42 +34,46 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     // MARK: - IBOutlets
 
     @IBOutlet var imageView: UIImageView?
-    @IBOutlet var likeButton: UIView?
-    @IBOutlet var favouriteButton: UIView?
     
     // MARK: - Private properties
     
+    private var item: DiscoverCellModel?
     private var actionHandler: ((MovieCardEvent) -> Void)?
     
-    // MARK: - Public Methods
+    // MARK: - Cell life cycle
     
-    public func fillMovies(with model: MovieListResult?, _ eventModel: MovieCardEventModel) {
-        self.imageView?.setImage(from: model?.posterPath)
-        self.actionHandler = eventModel.action
+    override func awakeFromNib() {
+        self.setupUI()
     }
     
-    public func fillShows(with model: ShowListResult?, _ eventModel: MovieCardEventModel) {
-        self.imageView?.setImage(from: model?.posterPath)
-        self.actionHandler = eventModel.action
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.item = nil
     }
 
-    public func setCornerRadiusWithShadow() {
-        self.imageView?.rounded(cornerRadius: 4)
-        self.likeButton?.rounded(cornerRadius: 7)
-        self.favouriteButton?.rounded(cornerRadius: 7)
-        self.addShadow(color: .cyan, offset: CGSize(width: 2.0, height: 2.0), opacity: 0.8, radius: 2.0, shadowRect: nil)
-       
+    // MARK: - Public Methods
+    
+    public func fill(with model: DiscoverCellModel?, onAction: ActionModel<MovieCardEvent>?) {
+        self.item = model
+        self.imageView?.setImage(from: model?.posterPath)
+        self.actionHandler = onAction?.action
     }
+
+    
+    // MARK: - Private Methods
+    
+    private func setupUI() {
+        self.addShadow()
+    }
+
     
     // MARK: - IBActions
     
     @IBAction func onLike(_ sender: UIButton) {
-        print("like tapped")
-        self.actionHandler?(.like)
+        self.actionHandler?(.like(self.item))
     }
     
     @IBAction func onFav(_ sender: UIButton) {
-        print("fav tapped")
-        self.actionHandler?(.favourites)
+        self.actionHandler?(.favourites(self.item))
     }
 }

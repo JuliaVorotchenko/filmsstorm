@@ -15,26 +15,22 @@ enum DiscoverHeaderEvent {
 }
 
 struct DiscoverHeaderModel {
-    
-    let action: ((DiscoverHeaderEvent) -> Void)?
+    let movieButton: String
+    let showsButton: String
+    let action: Handler<DiscoverHeaderEvent>?
 }
 
 class DiscoverHeaderView: NibDesignableImpl {
-    
-    struct Constants {
-        static let movieButton = "Movies"
-        static let tvButton = "TVShows"
-    }
-    
+   
     @IBOutlet var tvButton: UIButton?
     @IBOutlet var movieButton: UIButton?
     
-    var actionHandler: ((DiscoverHeaderEvent) -> Void)?
+    var actionHandler: Handler<DiscoverHeaderEvent>?
     
     func fill(with model: DiscoverHeaderModel) {
         self.actionHandler = model.action
-        self.tvButton?.setTitle(Constants.tvButton, for: .normal)
-        self.movieButton?.setTitle(Constants.movieButton, for: .normal)
+        self.tvButton?.setTitle(model.showsButton, for: .normal)
+        self.movieButton?.setTitle(model.movieButton, for: .normal)
     }
     
     @IBAction func onSearch(_ sender: UIButton) {

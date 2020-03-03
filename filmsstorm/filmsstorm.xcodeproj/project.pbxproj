@@ -117,11 +117,8 @@
 		CDB2A3822404505900D27A9B /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A3812404505900D27A9B /* SearchPresenter.swift */; };
 		CDB2A384240450AA00D27A9B /* MoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB2A383240450AA00D27A9B /* MoviesViewController.xib */; };
 		CDB2A386240450C300D27A9B /* MoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A385240450C300D27A9B /* MoviesView.swift */; };
-		CDB2A388240450DD00D27A9B /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A387240450DD00D27A9B /* MoviesViewController.swift */; };
+		CDB2A388240450DD00D27A9B /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A387240450DD00D27A9B /* ItemsViewController.swift */; };
 		CDB2A38A240450F900D27A9B /* MoviesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A389240450F900D27A9B /* MoviesPresenter.swift */; };
-		CDB2A38C2404528F00D27A9B /* ShowsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB2A38B2404528F00D27A9B /* ShowsViewController.xib */; };
-		CDB2A38E240452A100D27A9B /* ShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A38D240452A100D27A9B /* ShowsViewController.swift */; };
-		CDB2A3902404531500D27A9B /* ShowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A38F2404531500D27A9B /* ShowsView.swift */; };
 		CDB2A3922404532600D27A9B /* ShowsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A3912404532600D27A9B /* ShowsPresenter.swift */; };
 		CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8791523B900D80099F946 /* AuthorizationViewController.swift */; };
 		CDB8791823B900D80099F946 /* AuthorizationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB8791623B900D80099F946 /* AuthorizationViewController.xib */; };
@@ -134,6 +131,8 @@
 		CDD5914523FD84E500DBA664 /* DiscoverHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */; };
 		CDD5914823FDD3F400DBA664 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5914723FDD3F400DBA664 /* NibDesignable.swift */; };
 		CDE0AF75240BA98F008D610F /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF74240BA98F008D610F /* SearchModel.swift */; };
+		CDE0AF77240D6BFB008D610F /* DiscoverCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF76240D6BFB008D610F /* DiscoverCellModel.swift */; };
+		CDE0AF7A240D7522008D610F /* CollectionLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF79240D7522008D610F /* CollectionLayoutFactory.swift */; };
 		EF69E43B310A0AD220DE1C48 /* Pods_filmsstormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3AA44BFE965E894CADF19A /* Pods_filmsstormTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -276,11 +275,8 @@
 		CDB2A3812404505900D27A9B /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		CDB2A383240450AA00D27A9B /* MoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesViewController.xib; sourceTree = "<group>"; };
 		CDB2A385240450C300D27A9B /* MoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesView.swift; sourceTree = "<group>"; };
-		CDB2A387240450DD00D27A9B /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
+		CDB2A387240450DD00D27A9B /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		CDB2A389240450F900D27A9B /* MoviesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesPresenter.swift; sourceTree = "<group>"; };
-		CDB2A38B2404528F00D27A9B /* ShowsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowsViewController.xib; sourceTree = "<group>"; };
-		CDB2A38D240452A100D27A9B /* ShowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsViewController.swift; sourceTree = "<group>"; };
-		CDB2A38F2404531500D27A9B /* ShowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsView.swift; sourceTree = "<group>"; };
 		CDB2A3912404532600D27A9B /* ShowsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsPresenter.swift; sourceTree = "<group>"; };
 		CDB8791523B900D80099F946 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		CDB8791623B900D80099F946 /* AuthorizationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorizationViewController.xib; sourceTree = "<group>"; };
@@ -293,6 +289,8 @@
 		CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverHeaderView.swift; sourceTree = "<group>"; };
 		CDD5914723FDD3F400DBA664 /* NibDesignable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
 		CDE0AF74240BA98F008D610F /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		CDE0AF76240D6BFB008D610F /* DiscoverCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCellModel.swift; sourceTree = "<group>"; };
+		CDE0AF79240D7522008D610F /* CollectionLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLayoutFactory.swift; sourceTree = "<group>"; };
 		EA79238A8EC29AB9C6DB940C /* Pods-filmsstormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.release.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.release.xcconfig"; sourceTree = "<group>"; };
 		F49330B6ECFAEA477A36F2CE /* Pods-filmsstorm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm.release.xcconfig"; path = "Target Support Files/Pods-filmsstorm/Pods-filmsstorm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -341,6 +339,7 @@
 				CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */,
 				2E289C8A23E8DE83001917DB /* DiscoverCollectionViewCell.swift */,
 				2E289C8B23E8DE83001917DB /* DiscoverCollectionViewCell.xib */,
+				CDE0AF76240D6BFB008D610F /* DiscoverCellModel.swift */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -685,8 +684,7 @@
 				CD536EF623E36034000FEE79 /* DiscoverFlowCoordinator.swift */,
 				CDB8791323B9002C0099F946 /* DiscoverViewController */,
 				CD2D91C3240580B3001A1445 /* MediaItemViewController */,
-				CDB2A37324044DDE00D27A9B /* MoviesViewConroller */,
-				CDB2A37224044DC000D27A9B /* ShowsViewController */,
+				CDB2A37324044DDE00D27A9B /* ItemsViewController */,
 				CDB2A37424044DEB00D27A9B /* SearchViewController */,
 			);
 			path = DiscoverFlow;
@@ -756,26 +754,15 @@
 			path = AppKit;
 			sourceTree = "<group>";
 		};
-		CDB2A37224044DC000D27A9B /* ShowsViewController */ = {
+		CDB2A37324044DDE00D27A9B /* ItemsViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CDB2A3912404532600D27A9B /* ShowsPresenter.swift */,
-				CDB2A38F2404531500D27A9B /* ShowsView.swift */,
-				CDB2A38D240452A100D27A9B /* ShowsViewController.swift */,
-				CDB2A38B2404528F00D27A9B /* ShowsViewController.xib */,
-			);
-			path = ShowsViewController;
-			sourceTree = "<group>";
-		};
-		CDB2A37324044DDE00D27A9B /* MoviesViewConroller */ = {
-			isa = PBXGroup;
-			children = (
+				CDE0AF7B240E6370008D610F /* Presenters */,
 				CDB2A385240450C300D27A9B /* MoviesView.swift */,
-				CDB2A387240450DD00D27A9B /* MoviesViewController.swift */,
+				CDB2A387240450DD00D27A9B /* ItemsViewController.swift */,
 				CDB2A383240450AA00D27A9B /* MoviesViewController.xib */,
-				CDB2A389240450F900D27A9B /* MoviesPresenter.swift */,
 			);
-			path = MoviesViewConroller;
+			path = ItemsViewController;
 			sourceTree = "<group>";
 		};
 		CDB2A37424044DEB00D27A9B /* SearchViewController */ = {
@@ -863,6 +850,7 @@
 		CDB8791423B9005D0099F946 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				CDE0AF78240D74FD008D610F /* Assembly */,
 				CD0CDA7223C3E797002EC487 /* Patterns */,
 				CDB8790B23B8FF290099F946 /* UI */,
 				CDB8790F23B8FFA10099F946 /* Models */,
@@ -888,6 +876,23 @@
 				CDD5914723FDD3F400DBA664 /* NibDesignable.swift */,
 			);
 			path = NibDesignable;
+			sourceTree = "<group>";
+		};
+		CDE0AF78240D74FD008D610F /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				CDE0AF79240D7522008D610F /* CollectionLayoutFactory.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		CDE0AF7B240E6370008D610F /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				CDB2A389240450F900D27A9B /* MoviesPresenter.swift */,
+				CDB2A3912404532600D27A9B /* ShowsPresenter.swift */,
+			);
+			path = Presenters;
 			sourceTree = "<group>";
 		};
 		CF9F48FE6F309788D89B0A33 /* Pods */ = {
@@ -1036,7 +1041,6 @@
 				2E289C9323E8DE84001917DB /* DiscoverViewController.xib in Resources */,
 				CD8997BD23F9DCB2003367C1 /* FilmsstormList.plist in Resources */,
 				CD0EF98723F5F7B1000A3CB4 /* Montserrat-Medium.ttf in Resources */,
-				CDB2A38C2404528F00D27A9B /* ShowsViewController.xib in Resources */,
 				CD2D91C524058CC3001A1445 /* MediaItemViewController.xib in Resources */,
 				CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */,
 				CDD5914323FD84B000DBA664 /* DiscoverHeaderView.xib in Resources */,
@@ -1194,11 +1198,11 @@
 				2E289CE523E8DFCA001917DB /* APIEndPoint.swift in Sources */,
 				CDD5914523FD84E500DBA664 /* DiscoverHeaderView.swift in Sources */,
 				2E289C9D23E8DEBD001917DB /* UIImageView+Extensions.swift in Sources */,
+				CDE0AF77240D6BFB008D610F /* DiscoverCellModel.swift in Sources */,
 				2E289CED23E8DFCA001917DB /* Router.swift in Sources */,
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				CD4B3D542402ECF800F3FCF6 /* AuthorizationPresenter.swift in Sources */,
 				2E289CDE23E8DFCA001917DB /* NetworkManager.swift in Sources */,
-				CDB2A38E240452A100D27A9B /* ShowsViewController.swift in Sources */,
 				CD51B26323F47DF100E3C924 /* UITableView+Extensions.swift in Sources */,
 				CD4C704223F2CCEF0057FE82 /* QualitySettingViewCell.swift in Sources */,
 				2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */,
@@ -1210,7 +1214,7 @@
 				2E289CE623E8DFCA001917DB /* SearchEndpoint.swift in Sources */,
 				2E289CE423E8DFCA001917DB /* ReviewEndPoint.swift in Sources */,
 				CD0EF99223F6000D000A3CB4 /* UIColor+Extensions.swift in Sources */,
-				CDB2A388240450DD00D27A9B /* MoviesViewController.swift in Sources */,
+				CDB2A388240450DD00D27A9B /* ItemsViewController.swift in Sources */,
 				2E289CE223E8DFCA001917DB /* AuthEndPoint.swift in Sources */,
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
 				2E289C9E23E8DEBD001917DB /* UIViewController+Extensions.swift in Sources */,
@@ -1251,6 +1255,7 @@
 				CD4DB87623EC5F6700F53B28 /* ProfileView.swift in Sources */,
 				2E289C9F23E8DEBD001917DB /* UICollectionView+Extensions.swift in Sources */,
 				CDB2A3822404505900D27A9B /* SearchPresenter.swift in Sources */,
+				CDE0AF7A240D7522008D610F /* CollectionLayoutFactory.swift in Sources */,
 				CDB2A38A240450F900D27A9B /* MoviesPresenter.swift in Sources */,
 				2E289CE323E8DFCA001917DB /* AccountEndPoint.swift in Sources */,
 				2E289CD923E8DFCA001917DB /* ParameterEncoding.swift in Sources */,
@@ -1276,7 +1281,6 @@
 				CD2D91C924058CF7001A1445 /* MediaItemViewController.swift in Sources */,
 				2E289CBA23E8DED4001917DB /* AuthRequestModel.swift in Sources */,
 				CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */,
-				CDB2A3902404531500D27A9B /* ShowsView.swift in Sources */,
 				2E289CEB23E8DFCA001917DB /* NetworkService.swift in Sources */,
 				CD2D91BA24053457001A1445 /* FavouritesView.swift in Sources */,
 				2E289CD823E8DFCA001917DB /* Headers.swift in Sources */,

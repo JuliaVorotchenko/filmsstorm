@@ -33,7 +33,7 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     required init(_ presentation: Service) {
         self.presenter = presentation
         super.init(nibName: F.nibNamefor(Self.self), bundle: nil)
-        
+        self.setupActivity(with: self.presenter)
     }
     
     required init?(coder: NSCoder) {
@@ -58,4 +58,9 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
             self.hideActivity()
         }
     }
+    
+    private func setupActivity(with presenter: Service) {
+        presenter.showActivity = { [weak self] in self?.configureActivity($0)}
+    }
+    
 }
