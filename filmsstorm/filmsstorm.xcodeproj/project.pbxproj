@@ -89,6 +89,21 @@
 		CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9323F09C91005DC50B /* AboutViewController.swift */; };
 		CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD38AD9423F09C91005DC50B /* AboutViewController.xib */; };
 		CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9723F0A096005DC50B /* AboutView.swift */; };
+		CD38EFD6240EF9B500F93536 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFD5240EF9B500F93536 /* Array+Extension.swift */; };
+		CD38EFD8240EF9E500F93536 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFD7240EF9E500F93536 /* Dictionary+Extensions.swift */; };
+		CD38EFDA240EFA4700F93536 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFD9240EFA4700F93536 /* Extension+String.swift */; };
+		CD38EFDC240EFA8400F93536 /* UIImage+CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFDB240EFA8400F93536 /* UIImage+CALayer.swift */; };
+		CD38EFDE240EFAB000F93536 /*  UIImage+Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFDD240EFAB000F93536 /*  UIImage+Crop.swift */; };
+		CD38EFE0240EFB8E00F93536 /* UIImage+ImageFromColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFDF240EFB8E00F93536 /* UIImage+ImageFromColor.swift */; };
+		CD38EFE2240EFBB300F93536 /* UIRectCorner+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFE1240EFBB300F93536 /* UIRectCorner+Extensions.swift */; };
+		CD38EFE4240EFBF400F93536 /* UIView+BackgroundGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFE3240EFBF400F93536 /* UIView+BackgroundGradient.swift */; };
+		CD38EFE6240EFC2200F93536 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFE5240EFC2200F93536 /* UIView+Border.swift */; };
+		CD38EFE8240EFC6200F93536 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFE7240EFC6200F93536 /* UIView+CornerRadius.swift */; };
+		CD38EFEA240EFCBB00F93536 /*  UIView+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFE9240EFCBB00F93536 /*  UIView+Geometry.swift */; };
+		CD38EFEC240EFD6F00F93536 /* UIView+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFEB240EFD6F00F93536 /* UIView+Keyboard.swift */; };
+		CD38EFEE240EFD9300F93536 /* UIView+PerformAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFED240EFD9300F93536 /* UIView+PerformAnimation.swift */; };
+		CD38EFF0240EFDB000F93536 /* UIView+RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFEF240EFDB000F93536 /* UIView+RoundedCorners.swift */; };
+		CD38EFF2240EFDEB00F93536 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38EFF1240EFDEB00F93536 /* UIView+Shadow.swift */; };
 		CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD499B6223E4715D00BF0545 /* TabBarContainer.swift */; };
 		CD4AE3B6240E787C00ACC0E3 /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */; };
 		CD4B3D502402EC6500F3FCF6 /* DiscoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */; };
@@ -247,6 +262,21 @@
 		CD38AD9323F09C91005DC50B /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		CD38AD9423F09C91005DC50B /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		CD38AD9723F0A096005DC50B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		CD38EFD5240EF9B500F93536 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		CD38EFD7240EF9E500F93536 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
+		CD38EFD9240EFA4700F93536 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		CD38EFDB240EFA8400F93536 /* UIImage+CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CALayer.swift"; sourceTree = "<group>"; };
+		CD38EFDD240EFAB000F93536 /*  UIImage+Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " UIImage+Crop.swift"; sourceTree = "<group>"; };
+		CD38EFDF240EFB8E00F93536 /* UIImage+ImageFromColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+ImageFromColor.swift"; sourceTree = "<group>"; };
+		CD38EFE1240EFBB300F93536 /* UIRectCorner+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRectCorner+Extensions.swift"; sourceTree = "<group>"; };
+		CD38EFE3240EFBF400F93536 /* UIView+BackgroundGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+BackgroundGradient.swift"; sourceTree = "<group>"; };
+		CD38EFE5240EFC2200F93536 /* UIView+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
+		CD38EFE7240EFC6200F93536 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
+		CD38EFE9240EFCBB00F93536 /*  UIView+Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " UIView+Geometry.swift"; sourceTree = "<group>"; };
+		CD38EFEB240EFD6F00F93536 /* UIView+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Keyboard.swift"; sourceTree = "<group>"; };
+		CD38EFED240EFD9300F93536 /* UIView+PerformAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+PerformAnimation.swift"; sourceTree = "<group>"; };
+		CD38EFEF240EFDB000F93536 /* UIView+RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RoundedCorners.swift"; sourceTree = "<group>"; };
+		CD38EFF1240EFDEB00F93536 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		CD499B6223E4715D00BF0545 /* TabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
 		CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
 		CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresenter.swift; sourceTree = "<group>"; };
@@ -362,6 +392,18 @@
 				CD51B26223F47DF100E3C924 /* UITableView+Extensions.swift */,
 				CD0EF99123F6000D000A3CB4 /* UIColor+Extensions.swift */,
 				CD2E5A752409640000DEC598 /* UIView+Exensions.swift */,
+				CD38EFDB240EFA8400F93536 /* UIImage+CALayer.swift */,
+				CD38EFDD240EFAB000F93536 /*  UIImage+Crop.swift */,
+				CD38EFDF240EFB8E00F93536 /* UIImage+ImageFromColor.swift */,
+				CD38EFE1240EFBB300F93536 /* UIRectCorner+Extensions.swift */,
+				CD38EFE3240EFBF400F93536 /* UIView+BackgroundGradient.swift */,
+				CD38EFE5240EFC2200F93536 /* UIView+Border.swift */,
+				CD38EFE7240EFC6200F93536 /* UIView+CornerRadius.swift */,
+				CD38EFE9240EFCBB00F93536 /*  UIView+Geometry.swift */,
+				CD38EFEB240EFD6F00F93536 /* UIView+Keyboard.swift */,
+				CD38EFED240EFD9300F93536 /* UIView+PerformAnimation.swift */,
+				CD38EFEF240EFDB000F93536 /* UIView+RoundedCorners.swift */,
+				CD38EFF1240EFDEB00F93536 /* UIView+Shadow.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -370,6 +412,9 @@
 			isa = PBXGroup;
 			children = (
 				2E289C9A23E8DEBD001917DB /* Optional+Extension.swift */,
+				CD38EFD5240EF9B500F93536 /* Array+Extension.swift */,
+				CD38EFD7240EF9E500F93536 /* Dictionary+Extensions.swift */,
+				CD38EFD9240EFA4700F93536 /* Extension+String.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1205,11 +1250,15 @@
 				2E289CB523E8DED4001917DB /* UserModel.swift in Sources */,
 				2E289CE523E8DFCA001917DB /* APIEndPoint.swift in Sources */,
 				CDD5914523FD84E500DBA664 /* DiscoverHeaderView.swift in Sources */,
+				CD38EFDA240EFA4700F93536 /* Extension+String.swift in Sources */,
 				2E289C9D23E8DEBD001917DB /* UIImageView+Extensions.swift in Sources */,
 				CDE0AF77240D6BFB008D610F /* DiscoverCellModel.swift in Sources */,
 				CD4AE3B6240E787C00ACC0E3 /* LogoutModel.swift in Sources */,
+				CD38EFE2240EFBB300F93536 /* UIRectCorner+Extensions.swift in Sources */,
 				2E289CED23E8DFCA001917DB /* Router.swift in Sources */,
+				CD38EFD6240EF9B500F93536 /* Array+Extension.swift in Sources */,
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
+				CD38EFD8240EF9E500F93536 /* Dictionary+Extensions.swift in Sources */,
 				CD4B3D542402ECF800F3FCF6 /* AuthorizationPresenter.swift in Sources */,
 				2E289CDE23E8DFCA001917DB /* NetworkManager.swift in Sources */,
 				CD51B26323F47DF100E3C924 /* UITableView+Extensions.swift in Sources */,
@@ -1217,6 +1266,7 @@
 				2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */,
 				2E289CB623E8DED4001917DB /* PopularMoviesModel.swift in Sources */,
 				CD4DB87323EC5F3D00F53B28 /* ProfileViewController.swift in Sources */,
+				CD38EFE8240EFC6200F93536 /* UIView+CornerRadius.swift in Sources */,
 				CD2D91C724058CE1001A1445 /* MediaItemView.swift in Sources */,
 				2E289CE923E8DFCA001917DB /* NetworkRouter.swift in Sources */,
 				CDB8792423B93C240099F946 /* LoginFlowCoordinator.swift in Sources */,
@@ -1238,11 +1288,14 @@
 				2E289C8F23E8DE84001917DB /* DiscoverCollectionViewCell.swift in Sources */,
 				CDE0AF75240BA98F008D610F /* SearchModel.swift in Sources */,
 				CD0CDA7A23C3E797002EC487 /* Coordinator.swift in Sources */,
+				CD38EFF2240EFDEB00F93536 /* UIView+Shadow.swift in Sources */,
 				CD4C704623F2CD180057FE82 /* ActionViewCell.swift in Sources */,
 				CD4C703E23F2CCB40057FE82 /* AvatarViewCell.swift in Sources */,
+				CD38EFE4240EFBF400F93536 /* UIView+BackgroundGradient.swift in Sources */,
 				CD7E748623D8F3450097F198 /* AppEventSource.swift in Sources */,
 				2E289CE723E8DFCA001917DB /* TVEndPoint.swift in Sources */,
 				2E289CDC23E8DFCA001917DB /* NetworkError.swift in Sources */,
+				CD38EFE6240EFC2200F93536 /* UIView+Border.swift in Sources */,
 				CDB2A386240450C300D27A9B /* MoviesView.swift in Sources */,
 				2E289CA023E8DEBD001917DB /* Optional+Extension.swift in Sources */,
 				CD2D91C224056E96001A1445 /* PopularShowsModel.swift in Sources */,
@@ -1251,6 +1304,7 @@
 				CDB2A37E2404501600D27A9B /* SearchView.swift in Sources */,
 				2E289CA123E8DEBD001917DB /* Functions.swift in Sources */,
 				CDB2A3802404503D00D27A9B /* SearchViewController.swift in Sources */,
+				CD38EFEE240EFD9300F93536 /* UIView+PerformAnimation.swift in Sources */,
 				CD536EF723E36034000FEE79 /* DiscoverFlowCoordinator.swift in Sources */,
 				2E289CDD23E8DFCA001917DB /* ImageLoadingService.swift in Sources */,
 				CD0CDA7923C3E797002EC487 /* Controller.swift in Sources */,
@@ -1258,7 +1312,9 @@
 				2E289CE823E8DFCA001917DB /* MovieEndPoint.swift in Sources */,
 				2E289CB323E8DED4001917DB /* SessionID.swift in Sources */,
 				CD4B3D562402ED3900F3FCF6 /* AboutPresenter.swift in Sources */,
+				CD38EFDC240EFA8400F93536 /* UIImage+CALayer.swift in Sources */,
 				CDD5914823FDD3F400DBA664 /* NibDesignable.swift in Sources */,
+				CD38EFDE240EFAB000F93536 /*  UIImage+Crop.swift in Sources */,
 				2E289CEC23E8DFCA001917DB /* HTTPMethod.swift in Sources */,
 				2E289CEE23E8DFCA001917DB /* EndPointType.swift in Sources */,
 				CD4DB87623EC5F6700F53B28 /* ProfileView.swift in Sources */,
@@ -1273,15 +1329,19 @@
 				CD2D91C02405429B001A1445 /* UpcomingMoviesModel.swift in Sources */,
 				CD0F668923F9DF46003DEE13 /* KeysManager.swift in Sources */,
 				2E289C9123E8DE84001917DB /* DiscoverView.swift in Sources */,
+				CD38EFF0240EFDB000F93536 /* UIView+RoundedCorners.swift in Sources */,
 				2E289C9223E8DE84001917DB /* DiscoverViewController.swift in Sources */,
 				CD2D91BC2405347B001A1445 /* FavouritesViewController.swift in Sources */,
 				CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */,
 				CDB2A3922404532600D27A9B /* ShowsPresenter.swift in Sources */,
 				CD4B3D502402EC6500F3FCF6 /* DiscoverPresenter.swift in Sources */,
+				CD38EFE0240EFB8E00F93536 /* UIImage+ImageFromColor.swift in Sources */,
 				2E289CE023E8DFCA001917DB /* DiscoverEndPoint.swift in Sources */,
+				CD38EFEA240EFCBB00F93536 /*  UIView+Geometry.swift in Sources */,
 				CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */,
 				2E289CDF23E8DFCA001917DB /* PeopleEndPointt.swift in Sources */,
 				2E289CB723E8DED4001917DB /* RequestToken.swift in Sources */,
+				CD38EFEC240EFD6F00F93536 /* UIView+Keyboard.swift in Sources */,
 				2E289CDB23E8DFCA001917DB /* JSONParameterEncoder.swift in Sources */,
 				CDB9CD4123FE96F100F45778 /* CustomNavigationView.swift in Sources */,
 				CD4DB86F23EC5EC800F53B28 /* ProfileFlowCoordinator.swift in Sources */,

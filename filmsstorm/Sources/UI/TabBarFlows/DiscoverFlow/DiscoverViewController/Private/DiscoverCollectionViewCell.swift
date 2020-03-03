@@ -34,9 +34,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     // MARK: - IBOutlets
 
     @IBOutlet var imageView: UIImageView?
-    @IBOutlet var likeButtonView: UIView!
-    @IBOutlet var favButtonView: UIView!
-    
+   
     // MARK: - Private properties
     
     private var item: DiscoverCellModel?
@@ -64,9 +62,6 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     // MARK: - Private Methods
     
     private func setupUI() {
-        self.imageView?.rounded(cornerRadius: 3)
-        self.likeButtonView.rounded(cornerRadius: 5)
-        self.favButtonView.rounded(cornerRadius: 5)
         self.addShadow()
     }
 

@@ -25,6 +25,11 @@
                         <rect key="frame" x="0.0" y="1.5" width="185" height="235.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.90231592949999995" green="1" blue="0.49127406029999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="P1r-BR-9LG">
                         <rect key="frame" x="0.0" y="167" width="185" height="71"/>
@@ -74,6 +79,11 @@
                                             <constraint firstItem="Sls-H8-LIM" firstAttribute="centerY" secondItem="NwZ-VC-sh9" secondAttribute="centerY" id="npf-Fk-qvq"/>
                                             <constraint firstAttribute="width" constant="37" id="vYN-aE-qZE"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -124,6 +134,11 @@
                                             <constraint firstAttribute="width" constant="37" id="olQ-P0-ShH"/>
                                             <constraint firstItem="lPL-Sg-UQg" firstAttribute="centerX" secondItem="NFu-LI-Hgl" secondAttribute="centerX" id="rkH-gx-CTw"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -151,9 +166,7 @@
             </constraints>
             <size key="customSize" width="355" height="493"/>
             <connections>
-                <outlet property="favButtonView" destination="NFu-LI-Hgl" id="PFe-8c-vhi"/>
                 <outlet property="imageView" destination="RhY-Gb-pJg" id="Y06-dL-Ev5"/>
-                <outlet property="likeButtonView" destination="NwZ-VC-sh9" id="vIo-N8-T0g"/>
             </connections>
             <point key="canvasLocation" x="-1109.4202898550725" y="-216.29464285714286"/>
         </collectionViewCell>

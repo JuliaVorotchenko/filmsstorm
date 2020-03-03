@@ -15,17 +15,17 @@ enum SearchEvent: EventProtocol {
 }
 
 protocol SearchPresenter: Presenter {
-    var showActivity: ((ActivityState) -> Void)? { get set }
-    func onMediaItem()
+    var showActivity: Handler<ActivityState>? { get set }
+    func onMediaItem(item: ConfigureModel)
     func onBack()
 }
 
-class SearchPresenterImpl: Presenter {
+class SearchPresenterImpl: SearchPresenter {
     
     // MARK: - Private Properties
     
-    let eventHandler: ((SearchEvent) -> Void)?
-    var showActivity: ((ActivityState) -> Void)?
+    let eventHandler: Handler<SearchEvent>?
+    var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
