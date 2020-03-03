@@ -18,10 +18,10 @@ class ShowPresenterImpl: ItemsPresenter {
     
     // MARK: - Private Properties
     
-    internal let eventHandler: Handler<ShowsEvent>?
-    internal var showActivity: Handler<ActivityState>?
+    let eventHandler: Handler<ShowsEvent>?
+    var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
-    internal let title = "TVShows"
+    let title = Constants.showsTitle
     
     // MARK: - Init and deinit
     

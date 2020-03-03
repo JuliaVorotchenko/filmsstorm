@@ -21,8 +21,8 @@ class AuthorizationPresenterImpl: AuthorizationPresenter {
     // MARK: - Private properties
 
     private let networking: NetworkManager
-    internal let eventHandler: ((AuthEvent) -> Void)?
-    internal var showActivity: ((ActivityState) -> Void)?
+    let eventHandler: ((AuthEvent) -> Void)?
+    var showActivity: ((ActivityState) -> Void)?
     
     // MARK: - Init and deinit
 

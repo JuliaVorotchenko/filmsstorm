@@ -9,11 +9,11 @@
 import UIKit
 
 struct Constants {
-    static let movieButton = "Movies"
-    static let showsButton = "TVShows"
+    static let movieTitle = "Movies"
+    static let showsTitle = "TVShows"
 }
 
-class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
+class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
     
     // MARK: - Subtypes
     
@@ -26,8 +26,8 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
     
     // MARK: - Private properties
     
-    internal let loadingView = ActivityView()
-    internal let presenter: Service
+    let loadingView = ActivityView()
+    let presenter: Service
     private var sections = [DiscoverCellModel]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
     
@@ -73,7 +73,7 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
     }
     
     private func setupHeader() {
-        let model = DiscoverHeaderModel(movieButton: Constants.movieButton, showsButton: Constants.showsButton ) { [weak self] in self?.onHeaderEvents($0) }
+        let model = DiscoverHeaderModel(movieButton: Constants.movieTitle, showsButton: Constants.showsTitle ) { [weak self] in self?.onHeaderEvents($0) }
         self.rootView?.headerView.fill(with: model)
     }
     

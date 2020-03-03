@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavouritesViewController<T: FavouritesPresenterImpl>: UIViewController, Controller, ActivityViewPresenter {
+class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
     
@@ -17,8 +17,8 @@ class FavouritesViewController<T: FavouritesPresenterImpl>: UIViewController, Co
     
     // MARK: - Private properties
     
-    internal let loadingView = ActivityView()
-    internal let presenter: Service
+    let loadingView = ActivityView()
+    let presenter: Service
     
     // MARK: - Init and deinit
     

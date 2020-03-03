@@ -22,11 +22,10 @@ class MediaItemPresenterImpl: MediaItemPresenter {
    
      // MARK: - Private Properties
     
-    internal let eventHandler: Handler<MediaItemEvent>?
-    internal var showActivity: Handler<ActivityState>?
+    let eventHandler: Handler<MediaItemEvent>?
+    var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
-    var view = MediaItemView()
-    
+   
     // MARK: - Init and deinit
       
      init(networking: NetworkManager, event: Handler<MediaItemEvent>?) {

@@ -20,8 +20,8 @@ class AboutPresenterImpl: AboutPresenter {
     
     // MARK: - Private properties
     
-    internal  var showActivity: ((ActivityState) -> Void)?
-    internal let eventHandler: ((AboutEvent) -> Void)?
+    var showActivity: ((ActivityState) -> Void)?
+    let eventHandler: ((AboutEvent) -> Void)?
     
     // MARK: - Init and deinit
     init(event: ((AboutEvent) -> Void)?) {

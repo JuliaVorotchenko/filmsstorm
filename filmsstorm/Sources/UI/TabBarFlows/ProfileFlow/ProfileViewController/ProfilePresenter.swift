@@ -31,9 +31,9 @@ class ProfilePresenterImpl: ProfilePresenter {
     
     // MARK: - Private properties
     
-    internal var showActivity: ((ActivityState) -> Void)?
+    var showActivity: ((ActivityState) -> Void)?
     private let networking: NetworkManager
-    internal let eventHandler: ((ProfileEvent) -> Void)?
+    let eventHandler: ((ProfileEvent) -> Void)?
     
     // MARK: - Init and deinit
     

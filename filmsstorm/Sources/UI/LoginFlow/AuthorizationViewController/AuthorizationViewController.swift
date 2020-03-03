@@ -21,7 +21,7 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     
     // MARK: - Private properties
 
-    internal let presenter: Service
+    let presenter: Service
     
     // MARK: - Init and deinit
     

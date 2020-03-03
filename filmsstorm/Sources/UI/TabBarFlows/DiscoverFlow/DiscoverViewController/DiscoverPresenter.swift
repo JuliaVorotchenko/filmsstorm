@@ -16,7 +16,7 @@ enum DiscoverEvent: EventProtocol {
 }
 
 protocol DiscoverPresenter: Presenter {
-    var showActivity: Handler<ActivityState>? { get set }
+    var  showActivity: Handler<ActivityState>? { get set }
     func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?)
     func onMovies()
     func onShows()
@@ -27,8 +27,8 @@ protocol DiscoverPresenter: Presenter {
 class DiscoverPresenterImpl: DiscoverPresenter {
     
     // MARK: - Private Properties
-    internal let eventHandler: Handler<DiscoverEvent>?
-    internal var showActivity: Handler<ActivityState>?
+    let eventHandler: Handler<DiscoverEvent>?
+    var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
     
     // MARK: - Init and deinit

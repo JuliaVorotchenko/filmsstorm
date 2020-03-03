@@ -22,8 +22,8 @@ UICollectionViewDelegate {
     
     // MARK: - Private properties
     
-    internal let loadingView = ActivityView()
-    internal let presenter: Service
+    let loadingView = ActivityView()
+    let presenter: Service
     private var sections = [DiscoverCellModel]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
     

@@ -24,8 +24,8 @@ class SearchPresenterImpl: Presenter {
     
     // MARK: - Private Properties
     
-    internal let eventHandler: ((SearchEvent) -> Void)?
-    internal var showActivity: ((ActivityState) -> Void)?
+    let eventHandler: ((SearchEvent) -> Void)?
+    var showActivity: ((ActivityState) -> Void)?
     private let networking: NetworkManager
     
     // MARK: - Init and deinit

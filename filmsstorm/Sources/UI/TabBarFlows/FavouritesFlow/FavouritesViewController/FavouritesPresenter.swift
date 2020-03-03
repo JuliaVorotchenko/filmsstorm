@@ -20,8 +20,8 @@ class FavouritesPresenterImpl: FavouritesPresenter {
     
     // MARK: - Private Properties
     
-    internal let eventHandler: ((FavouritesEvent) -> Void)?
-    internal var showActivity: ((ActivityState) -> Void)?
+    let eventHandler: ((FavouritesEvent) -> Void)?
+    var showActivity: ((ActivityState) -> Void)?
     private let networking: NetworkManager
     
     // MARK: - Init and deinit

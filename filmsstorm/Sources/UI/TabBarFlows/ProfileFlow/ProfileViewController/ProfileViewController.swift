@@ -28,7 +28,7 @@ class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller, 
     }
     
     // MARK: - Public Properties
-    var presenter: T
+    let presenter: T
     let loadingView = ActivityView()
 
     private var items: [Item] = []

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController<T: SearchPresenterImpl>: UIViewController, Controller, ActivityViewPresenter {
+class SearchViewController<T: SearchPresenter>: UIViewController, Controller, ActivityViewPresenter {
     
     // MARK: - Subtypes
     
@@ -21,8 +21,8 @@ class SearchViewController<T: SearchPresenterImpl>: UIViewController, Controller
     
     // MARK: - Private Properties
     
-    internal let loadingView = ActivityView()
-    internal let presenter: Service
+    let loadingView = ActivityView()
+    let presenter: Service
     private var sections = [MovieListResult]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, MovieListResult>?
     

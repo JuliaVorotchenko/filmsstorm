@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AboutViewController<T: AboutPresenterImpl>: UIViewController, ActivityViewPresenter, Controller {
+class AboutViewController<T: AboutPresenter>: UIViewController, ActivityViewPresenter, Controller {
     
     // MARK: - Subtypes
     
@@ -25,7 +25,7 @@ class AboutViewController<T: AboutPresenterImpl>: UIViewController, ActivityView
     // MARK: - Public Properties
     
     let loadingView = ActivityView()
-    internal let presenter: Service
+    let presenter: Service
     
     // MARK: - Init & deinit
     

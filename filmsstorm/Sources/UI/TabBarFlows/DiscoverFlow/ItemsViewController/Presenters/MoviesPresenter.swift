@@ -26,10 +26,10 @@ class MoviesPresenterImpl: ItemsPresenter {
     
     // MARK: - Private Properties
     
-    internal let eventHandler: Handler<MoviesEvent>?
-    internal var showActivity: Handler<ActivityState>?
+    let eventHandler: Handler<MoviesEvent>?
+    var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
-    internal let title = "Movies"
+    let title = Constants.movieTitle
     
     // MARK: - Init and deinit
     

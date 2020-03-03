@@ -21,8 +21,8 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     // MARK: - Private properties
     
-    internal let loadingView = ActivityView()
-    internal let presenter: Service
+    let loadingView = ActivityView()
+    let presenter: Service
 
     // MARK: - Init and deinit
     
