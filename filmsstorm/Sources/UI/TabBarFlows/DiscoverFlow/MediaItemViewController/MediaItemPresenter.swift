@@ -13,7 +13,7 @@ enum MediaItemEvent: EventProtocol {
 }
 
 protocol MediaItemPresenter: Presenter {
-    var showActivity: ((ActivityState) -> Void)? { get set }
+    var showActivity: Handler<ActivityState>? { get set }
     func getMediaItem()
     func onBack()
 }
@@ -22,14 +22,14 @@ class MediaItemPresenterImpl: MediaItemPresenter {
    
      // MARK: - Private Properties
     
-    internal let eventHandler: ((MediaItemEvent) -> Void)?
-    internal var showActivity: ((ActivityState) -> Void)?
+    internal let eventHandler: Handler<MediaItemEvent>?
+    internal var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
     var view = MediaItemView()
     
     // MARK: - Init and deinit
       
-     init(networking: NetworkManager, event: ((MediaItemEvent) -> Void)?) {
+     init(networking: NetworkManager, event: Handler<MediaItemEvent>?) {
              self.networking = networking
              self.eventHandler = event
          }

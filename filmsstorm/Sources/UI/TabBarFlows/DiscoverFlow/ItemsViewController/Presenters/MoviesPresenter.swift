@@ -15,7 +15,8 @@ enum MoviesEvent: EventProtocol {
 }
 
 protocol ItemsPresenter: Presenter {
-    var showActivity: ((ActivityState) -> Void)? { get set }
+    var showActivity: Handler<ActivityState>? { get set }
+    var title: String { get }
     func getItems(_ completion: Handler<[DiscoverCellModel]>?)
     func onMedia(item: ConfigureModel)
     func onBack()
@@ -25,13 +26,14 @@ class MoviesPresenterImpl: ItemsPresenter {
     
     // MARK: - Private Properties
     
-    internal let eventHandler: ((MoviesEvent) -> Void)?
-    internal var showActivity: ((ActivityState) -> Void)?
+    internal let eventHandler: Handler<MoviesEvent>?
+    internal var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
+    internal let title = "Movies"
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: ((MoviesEvent) -> Void)?) {
+    init(networking: NetworkManager, event: Handler<MoviesEvent>?) {
         self.networking = networking
         self.eventHandler = event
     }

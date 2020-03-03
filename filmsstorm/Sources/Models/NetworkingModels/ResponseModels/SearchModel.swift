@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct SearchModel: Codable, Hashable {
     
     let page: Int
@@ -110,4 +109,3 @@ struct PersonListResult {
         case knownFor = "known_for"
     }
 }
-

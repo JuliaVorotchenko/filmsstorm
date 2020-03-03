@@ -34,11 +34,13 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     // MARK: - IBOutlets
 
     @IBOutlet var imageView: UIImageView?
+    @IBOutlet var likeButtonView: UIView!
+    @IBOutlet var favButtonView: UIView!
     
     // MARK: - Private properties
     
     private var item: DiscoverCellModel?
-    private var actionHandler: ((MovieCardEvent) -> Void)?
+    private var actionHandler: Handler<MovieCardEvent>?
     
     // MARK: - Cell life cycle
     
@@ -59,14 +61,15 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
         self.actionHandler = onAction?.action
     }
 
-    
     // MARK: - Private Methods
     
     private func setupUI() {
+        self.imageView?.rounded(cornerRadius: 3)
+        self.likeButtonView.rounded(cornerRadius: 5)
+        self.favButtonView.rounded(cornerRadius: 5)
         self.addShadow()
     }
 
-    
     // MARK: - IBActions
     
     @IBAction func onLike(_ sender: UIButton) {

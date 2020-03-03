@@ -60,13 +60,10 @@ class DiscoverFlowCoordinator: Coordinator {
     private func discoverHeaderEvents(_ event: DiscoverHeaderEvent) {
         switch event {
         case .onMovies:
-            print("MoviesVC")
             self.createMoviesViewController()
         case .onShows:
-            print("showsVC")
             self.createShowsViewController()
         case .onSearch:
-            print("searchVC")
             self.createSearchViewController()
         }
     }
@@ -93,8 +90,9 @@ class DiscoverFlowCoordinator: Coordinator {
     // MARK: - Shows VC
 
     private func createShowsViewController() {
-        let presenter = ShowPresenterImpl(networking: self.networking, event: self.showsEvent)
-        let controller = ItemsViewController     self.navigationController.pushViewController(controller, animated: true)
+         let presenter = ShowPresenterImpl(networking: self.networking, event: self.showsEvent)
+               let controller = ItemsViewController(presenter)
+               self.navigationController.pushViewController(controller, animated: true)
     }
     
     private func showsEvent(_ event: ShowsEvent) {

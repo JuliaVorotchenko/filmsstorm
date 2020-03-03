@@ -21,6 +21,7 @@ class ShowPresenterImpl: ItemsPresenter {
     internal let eventHandler: Handler<ShowsEvent>?
     internal var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
+    internal let title = "TVShows"
     
     // MARK: - Init and deinit
     

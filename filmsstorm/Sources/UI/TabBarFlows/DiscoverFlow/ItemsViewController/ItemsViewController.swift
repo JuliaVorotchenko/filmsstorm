@@ -11,7 +11,6 @@ import UIKit
 class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller, ActivityViewPresenter,
 UICollectionViewDelegate {
     
-    
     // MARK: - Subtypes
     
     typealias RootViewType = MoviesView
@@ -73,7 +72,8 @@ UICollectionViewDelegate {
         self.rootView?.navigationView?.actionHandler = { [weak self] in
             self?.presenter.onBack()
         }
-        self.rootView?.navigationView?.titleFill(with: "Movies")
+        let title = self.presenter.title
+        self.rootView?.navigationView?.titleFill(with: title)
     }
     
     private func onCardEvent(_ event: MovieCardEvent) {

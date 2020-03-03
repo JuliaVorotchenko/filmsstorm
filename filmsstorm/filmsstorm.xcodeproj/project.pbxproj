@@ -21,7 +21,6 @@
 		2E289CA123E8DEBD001917DB /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289C9C23E8DEBD001917DB /* Functions.swift */; };
 		2E289CB123E8DED4001917DB /* KeyChainContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CA423E8DED4001917DB /* KeyChainContainer.swift */; };
 		2E289CB323E8DED4001917DB /* SessionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CA823E8DED4001917DB /* SessionID.swift */; };
-		2E289CB423E8DED4001917DB /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CA923E8DED4001917DB /* LogoutModel.swift */; };
 		2E289CB523E8DED4001917DB /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CAA23E8DED4001917DB /* UserModel.swift */; };
 		2E289CB623E8DED4001917DB /* PopularMoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CAB23E8DED4001917DB /* PopularMoviesModel.swift */; };
 		2E289CB723E8DED4001917DB /* RequestToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CAD23E8DED4001917DB /* RequestToken.swift */; };
@@ -91,6 +90,7 @@
 		CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD38AD9423F09C91005DC50B /* AboutViewController.xib */; };
 		CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9723F0A096005DC50B /* AboutView.swift */; };
 		CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD499B6223E4715D00BF0545 /* TabBarContainer.swift */; };
+		CD4AE3B6240E787C00ACC0E3 /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */; };
 		CD4B3D502402EC6500F3FCF6 /* DiscoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */; };
 		CD4B3D522402ECBA00F3FCF6 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D512402ECBA00F3FCF6 /* ProfilePresenter.swift */; };
 		CD4B3D542402ECF800F3FCF6 /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D532402ECF800F3FCF6 /* AuthorizationPresenter.swift */; };
@@ -115,7 +115,7 @@
 		CDB2A37E2404501600D27A9B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A37D2404501600D27A9B /* SearchView.swift */; };
 		CDB2A3802404503D00D27A9B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A37F2404503D00D27A9B /* SearchViewController.swift */; };
 		CDB2A3822404505900D27A9B /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A3812404505900D27A9B /* SearchPresenter.swift */; };
-		CDB2A384240450AA00D27A9B /* MoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB2A383240450AA00D27A9B /* MoviesViewController.xib */; };
+		CDB2A384240450AA00D27A9B /* ItemsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB2A383240450AA00D27A9B /* ItemsViewController.xib */; };
 		CDB2A386240450C300D27A9B /* MoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A385240450C300D27A9B /* MoviesView.swift */; };
 		CDB2A388240450DD00D27A9B /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A387240450DD00D27A9B /* ItemsViewController.swift */; };
 		CDB2A38A240450F900D27A9B /* MoviesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A389240450F900D27A9B /* MoviesPresenter.swift */; };
@@ -168,7 +168,6 @@
 		2E289C9C23E8DEBD001917DB /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		2E289CA423E8DED4001917DB /* KeyChainContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainContainer.swift; sourceTree = "<group>"; };
 		2E289CA823E8DED4001917DB /* SessionID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionID.swift; sourceTree = "<group>"; };
-		2E289CA923E8DED4001917DB /* LogoutModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
 		2E289CAA23E8DED4001917DB /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		2E289CAB23E8DED4001917DB /* PopularMoviesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularMoviesModel.swift; sourceTree = "<group>"; };
 		2E289CAD23E8DED4001917DB /* RequestToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestToken.swift; sourceTree = "<group>"; };
@@ -249,6 +248,7 @@
 		CD38AD9423F09C91005DC50B /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		CD38AD9723F0A096005DC50B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		CD499B6223E4715D00BF0545 /* TabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
+		CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
 		CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresenter.swift; sourceTree = "<group>"; };
 		CD4B3D512402ECBA00F3FCF6 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		CD4B3D532402ECF800F3FCF6 /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
@@ -273,7 +273,7 @@
 		CDB2A37D2404501600D27A9B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		CDB2A37F2404503D00D27A9B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CDB2A3812404505900D27A9B /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
-		CDB2A383240450AA00D27A9B /* MoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesViewController.xib; sourceTree = "<group>"; };
+		CDB2A383240450AA00D27A9B /* ItemsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemsViewController.xib; sourceTree = "<group>"; };
 		CDB2A385240450C300D27A9B /* MoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesView.swift; sourceTree = "<group>"; };
 		CDB2A387240450DD00D27A9B /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		CDB2A389240450F900D27A9B /* MoviesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesPresenter.swift; sourceTree = "<group>"; };
@@ -411,12 +411,12 @@
 			isa = PBXGroup;
 			children = (
 				2E289CA823E8DED4001917DB /* SessionID.swift */,
-				2E289CA923E8DED4001917DB /* LogoutModel.swift */,
 				2E289CAA23E8DED4001917DB /* UserModel.swift */,
 				2E289CAB23E8DED4001917DB /* PopularMoviesModel.swift */,
 				CD2D91BF2405429B001A1445 /* UpcomingMoviesModel.swift */,
 				CD2D91C124056E96001A1445 /* PopularShowsModel.swift */,
 				CDE0AF74240BA98F008D610F /* SearchModel.swift */,
+				CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -665,6 +665,15 @@
 			path = TabBarFlows;
 			sourceTree = "<group>";
 		};
+		CD4AE3B4240E77EC00ACC0E3 /* NavigationView */ = {
+			isa = PBXGroup;
+			children = (
+				CDB9CD3E23FE96B400F45778 /* CustomNavigationView.xib */,
+				CDB9CD4023FE96F100F45778 /* CustomNavigationView.swift */,
+			);
+			path = NavigationView;
+			sourceTree = "<group>";
+		};
 		CD4C704823F2CD250057FE82 /* Private */ = {
 			isa = PBXGroup;
 			children = (
@@ -748,6 +757,7 @@
 		CD7E748C23D8F67E0097F198 /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
+				CD4AE3B4240E77EC00ACC0E3 /* NavigationView */,
 				CDD5914623FDD3BC00DBA664 /* NibDesignable */,
 				CD53CDB623D6319900E16E2E /* ActivityView */,
 			);
@@ -760,7 +770,7 @@
 				CDE0AF7B240E6370008D610F /* Presenters */,
 				CDB2A385240450C300D27A9B /* MoviesView.swift */,
 				CDB2A387240450DD00D27A9B /* ItemsViewController.swift */,
-				CDB2A383240450AA00D27A9B /* MoviesViewController.xib */,
+				CDB2A383240450AA00D27A9B /* ItemsViewController.xib */,
 			);
 			path = ItemsViewController;
 			sourceTree = "<group>";
@@ -864,8 +874,6 @@
 		CDB9CD4223FE9DAB00F45778 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				CDB9CD4023FE96F100F45778 /* CustomNavigationView.swift */,
-				CDB9CD3E23FE96B400F45778 /* CustomNavigationView.xib */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -1019,7 +1027,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD0EF98823F5F7B1000A3CB4 /* Montserrat-Light.ttf in Resources */,
-				CDB2A384240450AA00D27A9B /* MoviesViewController.xib in Resources */,
+				CDB2A384240450AA00D27A9B /* ItemsViewController.xib in Resources */,
 				CD4C704723F2CD180057FE82 /* ActionViewCell.xib in Resources */,
 				2E51663723AFD6CA00EDF51E /* LaunchScreen.storyboard in Resources */,
 				CDB9CD3F23FE96B400F45778 /* CustomNavigationView.xib in Resources */,
@@ -1199,6 +1207,7 @@
 				CDD5914523FD84E500DBA664 /* DiscoverHeaderView.swift in Sources */,
 				2E289C9D23E8DEBD001917DB /* UIImageView+Extensions.swift in Sources */,
 				CDE0AF77240D6BFB008D610F /* DiscoverCellModel.swift in Sources */,
+				CD4AE3B6240E787C00ACC0E3 /* LogoutModel.swift in Sources */,
 				2E289CED23E8DFCA001917DB /* Router.swift in Sources */,
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				CD4B3D542402ECF800F3FCF6 /* AuthorizationPresenter.swift in Sources */,
@@ -1265,7 +1274,6 @@
 				CD0F668923F9DF46003DEE13 /* KeysManager.swift in Sources */,
 				2E289C9123E8DE84001917DB /* DiscoverView.swift in Sources */,
 				2E289C9223E8DE84001917DB /* DiscoverViewController.swift in Sources */,
-				2E289CB423E8DED4001917DB /* LogoutModel.swift in Sources */,
 				CD2D91BC2405347B001A1445 /* FavouritesViewController.swift in Sources */,
 				CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */,
 				CDB2A3922404532600D27A9B /* ShowsPresenter.swift in Sources */,
