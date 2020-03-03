@@ -91,9 +91,9 @@ class DiscoverViewController<T: DiscoverPresenterImpl>: UIViewController, Contro
     private func onCardEvent(_ event: MovieCardEvent) {
         switch event {
         case .like(let model):
-            F.Log(model?.name)
+            F.Log(model?.name as Any)
         case .favourites(let model):
-            F.Log(model?.name)
+            F.Log(model?.name as Any)
         }
     }
     

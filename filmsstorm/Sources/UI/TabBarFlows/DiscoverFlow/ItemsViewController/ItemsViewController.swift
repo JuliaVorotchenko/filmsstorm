@@ -79,7 +79,7 @@ UICollectionViewDelegate {
     private func onCardEvent(_ event: MovieCardEvent) {
         switch event {
         case .like(let model):
-            F.Log("you liked movie\(model)")
+            F.Log("you liked movie\(String(describing: model))")
         case .favourites:
             F.Log("you added moview to favourites")
         }
