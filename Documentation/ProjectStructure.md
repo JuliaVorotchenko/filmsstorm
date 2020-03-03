@@ -91,6 +91,8 @@ Target folder
 
 **Sources/UI/Flow/ViewController/Private** - entities specific for current view controller only;
 
+**Sources/UI/Flow/ViewController/Presenter** - entities specific for certain view controller buisness logic;
+
 **Models/Entities** - contains models, each in a separate subfolder, grouped by purpose;
 
 **Models/Persistence** - contains mappable models, each in a separate subfolder, grouped by purpose;
