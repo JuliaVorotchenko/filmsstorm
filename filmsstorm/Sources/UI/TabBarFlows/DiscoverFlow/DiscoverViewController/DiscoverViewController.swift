@@ -8,8 +8,12 @@
 
 import UIKit
 
+struct Constants {
+    static let movieTitle = "Movies"
+    static let showsTitle = "TVShows"
+}
 
-class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller, ActivityViewPresenter {
+class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
     
     // MARK: - Subtypes
     
@@ -20,25 +24,22 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
         case  main
     }
     
-    // MARK: - Public Properties
-    
-    internal let loadingView = ActivityView()
-    internal let presentation: Service
-    
     // MARK: - Private properties
     
-    private var sections = [MovieListResult]()
-    private var dataSource: UICollectionViewDiffableDataSource<Section, MovieListResult>?
+    let loadingView = ActivityView()
+    let presenter: Service
+    private var sections = [DiscoverCellModel]()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
     
     // MARK: - Init and deinit
     
     deinit {
         self.hideActivity()
-        print(F.toString(Self.self))
+        F.Log(F.toString(Self.self))
     }
     
-    required init(_ presentation: Service) {
-        self.presentation = presentation
+    required init(_ presenter: Service) {
+        self.presenter = presenter
         super.init(nibName: F.nibNamefor(Self.self), bundle: nil)
     }
     
@@ -60,53 +61,39 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     // MARK: - Private Methods
     
     private func getPopularMovies() {
-        self.presentation.getPopularMovies { [weak self] in
-            self?.sections = $0
+        self.presenter.getPopularMovies { [weak self] value in
+            self?.sections = value.map(DiscoverCellModel.create)
             self?.createDataSource()
         }
     }
     
     private func setCollectionView() {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.455),
-                                              heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .fractionalHeight(0.495))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-        let spacing = CGFloat(6)
-        group.interItemSpacing = .fixed(spacing)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 7
-        section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 9, bottom: 0, trailing: 9)
-        
-        let layout = UICollectionViewCompositionalLayout(section: section)
+        let layout = CollectionLayoutFactory.standart()
         self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
     }
     
     private func setupHeader() {
-        let model = DiscoverHeaderModel { [weak self] in self?.onHeaderEvents($0) }
+        let model = DiscoverHeaderModel(movieButton: Constants.movieTitle, showsButton: Constants.showsTitle ) { [weak self] in self?.onHeaderEvents($0) }
         self.rootView?.headerView.fill(with: model)
     }
     
     private func onHeaderEvents(_ event: DiscoverHeaderEvent) {
         switch event {
         case .onSearch:
-            print("search")
-        case .onTVShow:
-            print("TV")
-        case .onMovie:
-            print("mov")
+            self.presenter.onSearch()
+        case .onShows:
+            self.presenter.onShows()
+        case .onMovies:
+            self.presenter.onMovies()
         }
     }
     
     private func onCardEvent(_ event: MovieCardEvent) {
         switch event {
-        case .like:
-            print("you liked movie")
-        case .favourites:
-            print("you added moview to favourites")
+        case .like(let model):
+            F.Log(model?.name as Any)
+        case .favourites(let model):
+            F.Log(model?.name as Any)
         }
     }
     
@@ -118,14 +105,8 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
         
         self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self ] collection, indexPath, item -> UICollectionViewCell? in
             
-            let eventModel = MovieCardEventModel {
-                self?.onCardEvent($0)
-            }
-            
             let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
-            cell.setCornerRadiusWithShadow()
-            cell.fill(with: item)
-            cell.actionFill(with: eventModel)
+            cell.fill(with: item, onAction: .init { self?.onCardEvent($0)})
             return cell
         }
         let snapshot = self.createSnapshot()
@@ -133,10 +114,17 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
         
     }
     
-    func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, MovieListResult> {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, MovieListResult>()
+    func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, DiscoverCellModel> {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(self.sections)
         return snapshot
+    }
+    
+    // MARK: - CollectionView Delegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = self.sections[indexPath.row]
+        self.presenter.onMedia(item: model)
     }
 }

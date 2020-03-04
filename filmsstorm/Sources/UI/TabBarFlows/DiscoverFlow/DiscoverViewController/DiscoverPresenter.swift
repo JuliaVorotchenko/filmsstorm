@@ -9,41 +9,62 @@
 import Foundation
 
 enum DiscoverEvent: EventProtocol {
-    case logout
     case error(AppError)
+    case onHeaderEvent(DiscoverHeaderEvent)
+    case onMediaItem(ConfigureModel)
+    
 }
 
 protocol DiscoverPresenter: Presenter {
-    var showActivity: ((ActivityState) -> Void)? { get set }
-    func getPopularMovies(_ complition: (( [MovieListResult]) -> Void)?)
+    var  showActivity: Handler<ActivityState>? { get set }
+    func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?)
+    func onMovies()
+    func onShows()
+    func onSearch()
+    func onMedia(item: ConfigureModel)
 }
 
 class DiscoverPresenterImpl: DiscoverPresenter {
     
     // MARK: - Private Properties
-    
-    internal let eventHandler: ((DiscoverEvent) -> Void)?
-    internal var showActivity: ((ActivityState) -> Void)?
+    let eventHandler: Handler<DiscoverEvent>?
+    var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: ((DiscoverEvent) -> Void)?) {
+    init(networking: NetworkManager, event: Handler<DiscoverEvent>?) {
         self.networking = networking
         self.eventHandler = event
     }
     
     // MARK: - Methods
     
-    func getPopularMovies(_ complition: (( [MovieListResult]) -> Void)?) {
-        self.networking.getPopularMovies { [weak self] result in
+    func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?) {
+        self.networking.getUpcomingMovies { [weak self] result in
             switch result {
             case .success(let model):
-                complition?(model.results)
+                completion?(model.results)
                 
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
             }
         }
+    }
+    
+    func onMovies() {
+        self.eventHandler?(.onHeaderEvent(.onMovies))
+    }
+    
+    func onShows() {
+        self.eventHandler?(.onHeaderEvent(.onShows))
+    }
+    
+    func onSearch() {
+        self.eventHandler?(.onHeaderEvent(.onSearch))
+    }
+    
+    func onMedia(item: ConfigureModel) {
+        self.eventHandler?(.onMediaItem(item))
     }
 }

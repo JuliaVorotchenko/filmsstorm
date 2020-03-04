@@ -21,7 +21,7 @@ class ProfileFlowCoordinator: Coordinator {
     // MARK: - Init and deinit
     
     deinit {
-        print(Self.self)
+        F.Log(F.toString(Self.self))
     }
     
     init(networking: NetworkManager,
@@ -41,14 +41,14 @@ class ProfileFlowCoordinator: Coordinator {
     }
     
     private func createProfileViewController() {
-        let presentation = ProfilePresenterImpl(networking: self.networking, event: self.profileEvent(_:))
-        let controller = ProfileViewController(presentation)
+        let presenter = ProfilePresenterImpl(networking: self.networking, event: self.profileEvent(_:))
+        let controller = ProfileViewController(presenter)
         self.navigationController.viewControllers = [controller]
     }
-
+    
     private func createAboutViewController() {
-        let presentation = AboutPresenterImpl(event: aboutEvent(_:))
-        let controller = AboutViewController(presentation)
+        let presenter = AboutPresenterImpl(event: aboutEvent(_:))
+        let controller = AboutViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
     

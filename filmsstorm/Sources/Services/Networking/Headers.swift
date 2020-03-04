@@ -13,4 +13,6 @@ struct  Headers {
     static let contentTypeValue = "application/json"
     static let apiKey = "api_key"
     static let apiKeyValue = KeysManager.retreieveKeys().apiKey
+    static let region = "region"
+    static let ua = "ua"
 }

@@ -42,7 +42,6 @@
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="Zhk-EX-Pa6" secondAttribute="bottom" id="PO4-jI-vG8"/>
                                                     <constraint firstAttribute="trailing" secondItem="Zhk-EX-Pa6" secondAttribute="trailing" id="PoQ-Ig-5NX"/>

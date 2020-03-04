@@ -28,7 +28,7 @@ class AvatarViewCell: UITableViewCell {
     }
     
     private func setAvatar() {
-        self.avatarView.layer.cornerRadius = avatarView.frame.size.width / 2
+        self.avatarView.roundedWithWidth()
         self.avatarView.layer.borderColor = UIColor(red: 0.153, green: 0.153, blue: 0.455, alpha: 1).cgColor
         self.avatarView.layer.borderWidth = 10.0
         

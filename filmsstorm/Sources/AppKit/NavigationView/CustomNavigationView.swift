@@ -14,9 +14,13 @@ class CustomNavigationView: NibDesignableImpl {
     @IBOutlet var titleLabel: UILabel?
     
     var actionHandler: (() -> Void)?
-
+    
     @IBAction func onBack(_ sender: UIButton) {
         self.actionHandler?()
     }
-
+    
+    func titleFill(with title: String) {
+        self.titleLabel?.text = title
+    }
+    
 }

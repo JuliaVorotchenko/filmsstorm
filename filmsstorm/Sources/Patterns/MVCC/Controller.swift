@@ -25,7 +25,7 @@ import UIKit
  */
 protocol Controller: RootViewGettable {
     associatedtype Service: Presenter
-    var presentation: Service { get }
+    var presenter: Service { get }
     
     init(_ presentation: Service)
 }

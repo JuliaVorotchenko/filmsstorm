@@ -21,6 +21,7 @@ extension APIEndPoint {
         case getMovieNowPlaying
         case getMoviePopular
         case getMovieTopRated
+        case getUpcoming
         
         var path: String {
             switch self {
@@ -46,6 +47,8 @@ extension APIEndPoint {
                 return "/movie/popular"
             case .getMovieTopRated:
                 return "/movie/top_rated"
+            case .getUpcoming:
+                return "/movie/upcoming"
             }
         }
         
@@ -60,6 +63,7 @@ extension APIEndPoint {
             .getMovieLatest,
             .getMovieNowPlaying,
             .getMoviePopular,
+            .getUpcoming,
             .getMovieTopRated:
                 return .get
                 
@@ -87,6 +91,11 @@ extension APIEndPoint {
             .getMovieSimilars,
             .getMovieReviews:
                 return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue])
+                
+            case .getUpcoming:
+                return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue,
+                                                                                Headers.region: Headers.ua,
+                                                                                "language": "uk"])
                 
             case .rateMovie(_, let rateValue):
                 return .requestParametersAndHeaders(bodyParameters: ["value": rateValue],

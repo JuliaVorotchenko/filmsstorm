@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ItemsViewController" customModule="filmsstorm" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="l0X-uD-ckE" id="66C-XH-Z5Y"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="l0X-uD-ckE" customClass="MoviesView" customModule="filmsstorm" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBc-CP-JnU" customClass="CustomNavigationView" customModule="filmsstorm" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="U9a-Et-hWY"/>
+                    </constraints>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="B0B-NI-AFD">
+                    <rect key="frame" x="0.0" y="103" width="414" height="759"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ccv-Gd-wV6">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="B0B-NI-AFD" firstAttribute="leading" secondItem="Xq8-2T-hPg" secondAttribute="leading" id="3Fc-Ux-pHV"/>
+                <constraint firstItem="Xq8-2T-hPg" firstAttribute="bottom" secondItem="B0B-NI-AFD" secondAttribute="bottom" id="H9y-hd-fd4"/>
+                <constraint firstItem="hBc-CP-JnU" firstAttribute="top" secondItem="Xq8-2T-hPg" secondAttribute="top" id="XFM-1B-mQ6"/>
+                <constraint firstItem="hBc-CP-JnU" firstAttribute="leading" secondItem="Xq8-2T-hPg" secondAttribute="leading" id="j2d-Yj-nsY"/>
+                <constraint firstItem="B0B-NI-AFD" firstAttribute="top" secondItem="hBc-CP-JnU" secondAttribute="bottom" constant="-1" id="oZR-fs-Cdc"/>
+                <constraint firstItem="Xq8-2T-hPg" firstAttribute="trailing" secondItem="B0B-NI-AFD" secondAttribute="trailing" id="vWJ-Z0-42F"/>
+                <constraint firstItem="hBc-CP-JnU" firstAttribute="trailing" secondItem="Xq8-2T-hPg" secondAttribute="trailing" id="vcl-9Q-CNG"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Xq8-2T-hPg"/>
+            <connections>
+                <outlet property="collectionView" destination="B0B-NI-AFD" id="cY8-ZE-5LA"/>
+                <outlet property="navigationView" destination="hBc-CP-JnU" id="89U-Pb-B3R"/>
+            </connections>
+            <point key="canvasLocation" x="-159.42028985507247" y="-1.3392857142857142"/>
+        </view>
+    </objects>
+</document>

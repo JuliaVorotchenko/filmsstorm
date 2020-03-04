@@ -31,9 +31,9 @@ class ProfilePresenterImpl: ProfilePresenter {
     
     // MARK: - Private properties
     
-    internal var showActivity: ((ActivityState) -> Void)?
+    var showActivity: ((ActivityState) -> Void)?
     private let networking: NetworkManager
-    internal let eventHandler: ((ProfileEvent) -> Void)?
+    let eventHandler: ((ProfileEvent) -> Void)?
     
     // MARK: - Init and deinit
     
@@ -53,7 +53,7 @@ class ProfilePresenterImpl: ProfilePresenter {
                 self?.eventHandler?(.logout)
                 self?.showActivity?(.hide)
             case .failure(let error):
-                print(error.stringDescription)
+                F.Log(error.stringDescription)
                 self?.showActivity?(.hide)
                 self?.eventHandler?(.error(.networkingError(error)))
             }
@@ -65,7 +65,6 @@ class ProfilePresenterImpl: ProfilePresenter {
             switch result {
             case .success(let model):
                 complition?(model)
-            //self?.createItems()
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
             }

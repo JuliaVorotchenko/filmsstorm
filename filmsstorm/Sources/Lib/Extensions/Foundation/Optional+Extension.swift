@@ -12,4 +12,9 @@ extension Optional {
     public func `do`(_ action: (Wrapped) -> Void) {
         self.map(action)
     }
+    
+    public func apply<Result>(_ transform: ((Wrapped) -> Result)?) -> Result? {
+        return self.flatMap { transform?($0) }
+    }
+    
 }

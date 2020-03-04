@@ -25,12 +25,12 @@ class AboutViewController<T: AboutPresenter>: UIViewController, ActivityViewPres
     // MARK: - Public Properties
     
     let loadingView = ActivityView()
-    internal let presentation: Service
+    let presenter: Service
     
     // MARK: - Init & deinit
     
     required init(_ presentation: Service) {
-        self.presentation = presentation
+        self.presenter = presentation
         super.init(nibName: F.nibNamefor(Self.self), bundle: nil)
     }
     
@@ -40,14 +40,15 @@ class AboutViewController<T: AboutPresenter>: UIViewController, ActivityViewPres
     
     deinit {
         self.hideActivity()
-        print(F.toString(Self.self))
+        F.Log(F.toString(Self.self))
     }
     
     // MARK: - Private methods
     
     private func customNavViewSetup() {
         self.rootView?.navigationView.actionHandler = { [weak self] in
-            self?.presentation.onBackEvent()
+            self?.presenter.onBackEvent()
         }
+        self.rootView?.navigationView.titleFill(with: "About")
     }
 }

@@ -21,19 +21,19 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     
     // MARK: - Private properties
 
-    internal let presentation: Service
+    let presenter: Service
     
     // MARK: - Init and deinit
     
     deinit {
         self.hideActivity()
-        print(F.toString(Self.self))
+        F.Log(F.toString(Self.self))
     }
     
     required init(_ presentation: Service) {
-        self.presentation = presentation
+        self.presenter = presentation
         super.init(nibName: F.nibNamefor(Self.self), bundle: nil)
-        
+        self.setupActivity(with: self.presenter)
     }
     
     required init?(coder: NSCoder) {
@@ -45,7 +45,7 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     @IBAction func buttonTapped(_ sender: Any) {
         guard let username = self.rootView?.usernameTextField.text,
             let password = self.rootView?.passwordTextField.text  else { return }
-        self.presentation.getToken(username: username, password: password)
+        self.presenter.getToken(username: username, password: password)
     }
     
     // MARK: - Private methods
@@ -58,4 +58,9 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
             self.hideActivity()
         }
     }
+    
+    private func setupActivity(with presenter: Service) {
+        presenter.showActivity = { [weak self] in self?.configureActivity($0)}
+    }
+    
 }

@@ -46,7 +46,7 @@ class ActivityView: UIView {
     }
     
     deinit {
-        print(type(of: self))
+        F.Log(F.toString(Self.self))
     }
     
     // MARK: - Private methods

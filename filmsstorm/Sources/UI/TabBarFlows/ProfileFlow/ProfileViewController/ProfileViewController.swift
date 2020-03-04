@@ -28,7 +28,7 @@ class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller, 
     }
     
     // MARK: - Public Properties
-    var presentation: T
+    let presenter: T
     let loadingView = ActivityView()
 
     private var items: [Item] = []
@@ -38,7 +38,7 @@ class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller, 
     // MARK: - Init & deinit
     
     required init(_ presentation: Service) {
-        self.presentation = presentation
+        self.presenter = presentation
         super.init(nibName: F.nibNamefor(Self.self), bundle: nil)
     }
     
@@ -47,7 +47,7 @@ class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller, 
     }
     
     deinit {
-        print(F.toString(Self.self))
+        F.Log(self)
     }
     
     // MARK: - VC lifecycle
@@ -55,7 +55,7 @@ class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller, 
     override func viewDidLoad() {
         super.viewDidLoad()
    self.setupTableView()
-        self.presentation.getUserDetails { [weak self] in
+        self.presenter.getUserDetails { [weak self] in
             self?.user = $0
             self?.createItems()
         }
@@ -71,8 +71,8 @@ class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller, 
     private func createItems() {
         let logoutImage = UIImage(named: "logout")
         let aboutImage = UIImage(named: "about")
-        let aboutCellModel = ActionCellModel(name: "About us", image: aboutImage) { [weak self] in self?.presentation.onAbout() }
-        let logoutCellModel = ActionCellModel(name: "Logout", image: logoutImage, action: { [weak self] in self?.presentation.onLogout() })
+        let aboutCellModel = ActionCellModel(name: "About us", image: aboutImage) { [weak self] in self?.presenter.onAbout() }
+        let logoutCellModel = ActionCellModel(name: "Logout", image: logoutImage, action: { [weak self] in self?.presenter.onLogout() })
         self.items = [.profile(self.user), .imageQuality, .about(aboutCellModel), .logout(logoutCellModel)]
         self.update(sections: Section.allCases, items: self.items)
     }
