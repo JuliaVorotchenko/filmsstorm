@@ -42,4 +42,3 @@ extension UIView {
         set { self.frame = CGRect(x: self.minX, y: self.minY, width: self.width, height: newValue) }
     }
 }
-

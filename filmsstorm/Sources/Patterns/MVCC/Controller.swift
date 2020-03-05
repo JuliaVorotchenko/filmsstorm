@@ -14,9 +14,7 @@ import UIKit
  
  Controller`s  roles:
  - define reusable view to display data;
- - generate events for coordinator about user`s action;
  - RootViewGettable to get  access to controller`s view;
- - ControllerEventSourse to provide events for coordinator.
  
  Controller CAN NOT:
  - Show other controllers;
@@ -28,11 +26,6 @@ protocol Controller: RootViewGettable {
     var presenter: Service { get }
     
     init(_ presentation: Service)
-}
-
-/// Presenter is responsible for buisness logic realization
-protocol Presenter: AnyObject, EventSourse {
-    
 }
 
 /// You must use this protocol to handle Controller's events in Coordinator (or use delegation as simple alternative).

@@ -27,7 +27,7 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     // MARK: - Private properties
     
     let loadingView = ActivityView()
-    let presenter: Service
+    let presenter: T
     private var sections = [DiscoverCellModel]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
     
@@ -90,10 +90,12 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     
     private func onCardEvent(_ event: MovieCardEvent) {
         switch event {
-        case .like(let model):
-            F.Log(model?.name as Any)
+        case .watchlist(let model):
+            self.presenter.addToWatchList(model)
+            F.Log("you added to watch list \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
         case .favourites(let model):
-            F.Log(model?.name as Any)
+            self.presenter.addToFavourites(model)
+            F.Log("you added to favourites \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
         }
     }
     

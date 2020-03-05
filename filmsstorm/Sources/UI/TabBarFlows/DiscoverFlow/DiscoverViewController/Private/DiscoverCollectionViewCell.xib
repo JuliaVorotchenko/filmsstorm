@@ -64,7 +64,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
-                                                    <action selector="onLike:" destination="gTV-IL-0wX" eventType="touchUpInside" id="0SR-Tu-K4M"/>
+                                                    <action selector="onFavorites:" destination="gTV-IL-0wX" eventType="touchUpInside" id="0SR-Tu-K4M"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -119,7 +119,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
-                                                    <action selector="onFav:" destination="gTV-IL-0wX" eventType="touchUpInside" id="LiH-PV-hjP"/>
+                                                    <action selector="onWatchlist:" destination="gTV-IL-0wX" eventType="touchUpInside" id="LiH-PV-hjP"/>
                                                 </connections>
                                             </button>
                                         </subviews>

@@ -12,11 +12,14 @@ extension APIEndPoint {
     
     enum AccountEndPoint: EndPointType {
         case getAccountDetails(sessionID: String)
-        case getFavouriteMovies(sessionID: String, accountID: Int)
-        case getFavouriteTVShows(sessionID: String, accountID: Int)
-        case markAsFavourite(sessionID: String, mediaType: String, mediaID: String, favourite: Bool, accountID: Int)
-        case getRatedMovies(sessionID: String, accountID: Int)
-        case getRatedTVShows(accountID: String, sessionID: String)
+        case getFavouriteMovies(sessionID: String)
+        case getFavouriteTVShows(sessionID: String)
+        case addToFavourites(sessionID: String, model: AddFavouritesRequestModel)
+        case getRatedMovies(sessionID: String)
+        case getRatedTVShows(sessionID: String)
+        case addToWatchList(sessionID: String, model: AddWatchListRequestModel)
+        case getMoviesWatchList(sessionID: String)
+        case getShowsWatchList(sessionID: String)
         
         var base: String {
             return "https://api.themoviedb.org/3"
@@ -31,16 +34,30 @@ extension APIEndPoint {
             switch self {
             case .getAccountDetails:
                 return "/account"
-            case .getFavouriteMovies(_, let accountID):
-                return "/account/\(accountID)/favorite/movies"
-            case .getFavouriteTVShows(_, let accountID):
-                return "/account/\(accountID)/favorite/tv"
-            case .markAsFavourite(_, _, _, _, let accountID):
-                return "/account/\(accountID)/favorite"
-            case .getRatedMovies(_, let accountID):
-                return "/account/\(accountID)/rated/movies"
-            case .getRatedTVShows(let accountID, _):
-                return "/account/\(accountID)/rated/movies"
+                
+            case .getFavouriteMovies:
+                return "/account/account_id/favorite/movies"
+                
+            case .getFavouriteTVShows:
+                return "/account/account_id/favorite/tv"
+                
+            case .addToFavourites:
+                return "/account/account_id/favorite"
+                
+            case .getRatedMovies:
+                return "/account/account_id/rated/movies"
+                
+            case .getRatedTVShows:
+                return "/account/account_id/rated/movies"
+                
+            case .addToWatchList:
+                return "/account/account_id/watchlist"
+                
+            case .getMoviesWatchList:
+                return "/account/account_id/watchlist/movies"
+                
+            case .getShowsWatchList:
+                return "/account/account_id/watchlist/tv"
             }
         }
         var httpMethod: HTTPMethod {
@@ -49,10 +66,13 @@ extension APIEndPoint {
                  .getFavouriteMovies,
                  .getFavouriteTVShows,
                  .getRatedMovies,
-                 .getRatedTVShows:
+                 .getRatedTVShows,
+                 .getMoviesWatchList,
+                 .getShowsWatchList:
                 return .get
                 
-            case .markAsFavourite:
+            case .addToFavourites,
+                 .addToWatchList:
                 return .post
             }
         }
@@ -62,16 +82,24 @@ extension APIEndPoint {
                 
             case  .getRatedMovies,
                   .getRatedTVShows,
-                  .getFavouriteMovies,
-                  .getFavouriteTVShows:
+                  .getMoviesWatchList,
+                  .getShowsWatchList:
                 return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue])
-            case .getAccountDetails(let sessionID):
+            
+            case .getAccountDetails(let sessionID),
+                 .getFavouriteMovies(let sessionID),
+                 .getFavouriteTVShows(let sessionID):
                 return .requestParameters(bodyParameters: nil, urlParameters: ["session_id": sessionID,
                                                                                Headers.apiKey: Headers.apiKeyValue])
-            case .markAsFavourite(_, let mediaType, let mediaID, let favourite, _):
-                return .requestParametersAndHeaders(bodyParameters: ["media_type": mediaType,
-                                                                     "media_id": mediaID,
-                                                                     "favorite": favourite], urlParameters: [Headers.apiKey: Headers.apiKeyValue], additionHeaders: [Headers.contentType: Headers.contentTypeValue])
+            case .addToFavourites(let sessionID, let model):
+                return .requestParamAndHeaders(model: model,
+                                               urlParameters:  [Headers.apiKey: Headers.apiKeyValue, "session_id": sessionID],
+                                               additionHeaders:  [Headers.contentType: Headers.contentTypeValue])
+                
+            case .addToWatchList(let sessionID, let model):
+                return .requestParamAndHeaders(model: model,
+                                               urlParameters:  [Headers.apiKey: Headers.apiKeyValue, "session_id": sessionID],
+                                               additionHeaders:  [Headers.contentType: Headers.contentTypeValue])
             }
         }
     }

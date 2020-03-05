@@ -11,7 +11,7 @@ import UIKit
 typealias Handler<T> = (T) -> Void
 
 enum MovieCardEvent: Equatable {
-    case like(DiscoverCellModel?)
+    case watchlist(DiscoverCellModel?)
     case favourites(DiscoverCellModel?)
 }
 
@@ -32,9 +32,9 @@ struct ActionModel<Model: Equatable>: Hashable, Equatable {
 class DiscoverCollectionViewCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
-
+    
     @IBOutlet var imageView: UIImageView?
-   
+    
     // MARK: - Private properties
     
     private var item: DiscoverCellModel?
@@ -43,6 +43,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     // MARK: - Cell life cycle
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         self.setupUI()
     }
     
@@ -50,7 +51,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         self.item = nil
     }
-
+    
     // MARK: - Public Methods
     
     public func fill(with model: DiscoverCellModel?, onAction: ActionModel<MovieCardEvent>?) {
@@ -58,20 +59,20 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
         self.imageView?.setImage(from: model?.posterPath)
         self.actionHandler = onAction?.action
     }
-
+    
     // MARK: - Private Methods
     
     private func setupUI() {
         self.addShadow()
     }
-
+    
     // MARK: - IBActions
     
-    @IBAction func onLike(_ sender: UIButton) {
-        self.actionHandler?(.like(self.item))
+    @IBAction func onFavorites(_ sender: UIButton) {
+         self.actionHandler?(.favourites(self.item))
     }
     
-    @IBAction func onFav(_ sender: UIButton) {
-        self.actionHandler?(.favourites(self.item))
+    @IBAction func onWatchlist(_ sender: UIButton) {
+        self.actionHandler?(.watchlist(self.item))
     }
 }
