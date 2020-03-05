@@ -22,6 +22,8 @@ protocol DiscoverPresenter: Presenter {
     func onShows()
     func onSearch()
     func onMedia(item: ConfigureModel)
+    func addToFavourites(_ item: DiscoverCellModel?)
+    func addToWatchList(_ item: DiscoverCellModel?)
 }
 
 class DiscoverPresenterImpl: DiscoverPresenter {
@@ -52,31 +54,32 @@ class DiscoverPresenterImpl: DiscoverPresenter {
         }
     }
     
-    func addToFavourites() {
-        let model = AddFavouritesRequestModel(mediaType: "movie", mediaID: 550, isFavourite: true)
+    func addToFavourites(_ item: DiscoverCellModel?) {
+        guard let item = item, let id = item.id else { return }
+        let model = AddFavouritesRequestModel(mediaType: item.mediaType, mediaID: id, isFavourite: true)
         self.networking.addToFavourites(with: model) { result in
             switch result {
             case .success(let response):
                 print(response.statusMessage)
-        
             case .failure(let error):
                 print(error.stringDescription)
-    
+                
             }
         }
     }
     
-    func addToWatchList() {
-           let model = AddWatchListRequestModel(mediaType: "movie", mediaID: 550, toWatchList: true)
-           self.networking.addToWatchlist(with: model) { result in
-               switch result {
-               case .success(let response):
-                   print(response.statusMessage)
-               case .failure(let error):
-                   print(error.stringDescription)
-               }
-           }
-       }
+    func addToWatchList(_ item: DiscoverCellModel?) {
+        guard let item = item, let id = item.id else { return }
+        let model = AddWatchListRequestModel(mediaType: item.mediaType, mediaID: id, toWatchList: true)
+        self.networking.addToWatchlist(with: model) { result in
+            switch result {
+            case .success(let response):
+                print(response.statusMessage)
+            case .failure(let error):
+                print(error.stringDescription)
+            }
+        }
+    }
     
     func onMovies() {
         self.eventHandler?(.onHeaderEvent(.onMovies))

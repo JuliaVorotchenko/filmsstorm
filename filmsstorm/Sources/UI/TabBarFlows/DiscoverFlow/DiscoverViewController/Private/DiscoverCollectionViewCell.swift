@@ -69,41 +69,10 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     // MARK: - IBActions
     
     @IBAction func onFavorites(_ sender: UIButton) {
-        print("on like")
          self.actionHandler?(.favourites(self.item))
-        self.addToFavourites(self.item)
     }
     
     @IBAction func onWatchlist(_ sender: UIButton) {
-        print("onfav")
         self.actionHandler?(.watchlist(self.item))
-        self.addToWatchList(self.item)
-    }
-    
-    func addToFavourites(_ item: DiscoverCellModel?) {
-        guard let item = item, let id = item.id else { return }
-        let model = AddFavouritesRequestModel(mediaType: item.mediaType, mediaID: id, isFavourite: true)
-        self.networking.addToFavourites(with: model) { result in
-            switch result {
-            case .success(let response):
-                print(response.statusMessage)
-            case .failure(let error):
-                print(error.stringDescription)
-                
-            }
-        }
-    }
-    
-    func addToWatchList(_ item: DiscoverCellModel?) {
-        guard let item = item, let id = item.id else { return }
-        let model = AddWatchListRequestModel(mediaType: item.mediaType, mediaID: id, toWatchList: true)
-        self.networking.addToWatchlist(with: model) { result in
-            switch result {
-            case .success(let response):
-                print(response.statusMessage)
-            case .failure(let error):
-                print(error.stringDescription)
-            }
-        }
     }
 }
