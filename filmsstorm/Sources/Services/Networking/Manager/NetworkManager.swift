@@ -76,4 +76,3 @@ class NetworkManager {
         self.router.request(.account(.getShowsWatchList(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
     }
 }
-

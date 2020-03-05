@@ -11,7 +11,7 @@ import UIKit
 typealias Handler<T> = (T) -> Void
 
 enum MovieCardEvent: Equatable {
-    case like(DiscoverCellModel?)
+    case watchlist(DiscoverCellModel?)
     case favourites(DiscoverCellModel?)
 }
 
@@ -32,9 +32,9 @@ struct ActionModel<Model: Equatable>: Hashable, Equatable {
 class DiscoverCollectionViewCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
-
+    
     @IBOutlet var imageView: UIImageView?
-   
+    
     // MARK: - Private properties
     
     private var item: DiscoverCellModel?
@@ -51,7 +51,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         self.item = nil
     }
-
+    
     // MARK: - Public Methods
     
     public func fill(with model: DiscoverCellModel?, onAction: ActionModel<MovieCardEvent>?) {
@@ -59,43 +59,44 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
         self.imageView?.setImage(from: model?.posterPath)
         self.actionHandler = onAction?.action
     }
-
+    
     // MARK: - Private Methods
     
     private func setupUI() {
         self.addShadow()
     }
-
+    
     // MARK: - IBActions
     
-    @IBAction func onLike(_ sender: UIButton) {
-        self.actionHandler?(.like(self.item))
-         self.addToFavourites()
+    @IBAction func onFavorites(_ sender: UIButton) {
+        print("on like")
+         self.actionHandler?(.favourites(self.item))
+        self.addToFavourites(self.item)
     }
     
-    @IBAction func onFav(_ sender: UIButton) {
-        self.actionHandler?(.favourites(self.item))
-        self.addToWatchList()
+    @IBAction func onWatchlist(_ sender: UIButton) {
+        print("onfav")
+        self.actionHandler?(.watchlist(self.item))
+        self.addToWatchList(self.item)
     }
     
-    func addToFavourites() {
-        let model = AddFavouritesRequestModel(mediaType: "movie", mediaID: 550, isFavourite: true)
-       
-        self.networking.addToFavourites(with: model)  { result in
+    func addToFavourites(_ item: DiscoverCellModel?) {
+        guard let item = item, let id = item.id else { return }
+        let model = AddFavouritesRequestModel(mediaType: item.mediaType, mediaID: id, isFavourite: true)
+        self.networking.addToFavourites(with: model) { result in
             switch result {
             case .success(let response):
                 print(response.statusMessage)
-        
             case .failure(let error):
                 print(error.stringDescription)
-    
+                
             }
         }
     }
     
-    func addToWatchList() {
-        let model = AddWatchListRequestModel(mediaType: "movie", mediaID: 550, toWatchList: true)
-        
+    func addToWatchList(_ item: DiscoverCellModel?) {
+        guard let item = item, let id = item.id else { return }
+        let model = AddWatchListRequestModel(mediaType: item.mediaType, mediaID: id, toWatchList: true)
         self.networking.addToWatchlist(with: model) { result in
             switch result {
             case .success(let response):
@@ -105,5 +106,4 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-
 }

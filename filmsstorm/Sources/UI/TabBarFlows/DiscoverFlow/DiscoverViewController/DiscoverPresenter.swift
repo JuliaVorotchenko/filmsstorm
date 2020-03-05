@@ -52,6 +52,32 @@ class DiscoverPresenterImpl: DiscoverPresenter {
         }
     }
     
+    func addToFavourites() {
+        let model = AddFavouritesRequestModel(mediaType: "movie", mediaID: 550, isFavourite: true)
+        self.networking.addToFavourites(with: model) { result in
+            switch result {
+            case .success(let response):
+                print(response.statusMessage)
+        
+            case .failure(let error):
+                print(error.stringDescription)
+    
+            }
+        }
+    }
+    
+    func addToWatchList() {
+           let model = AddWatchListRequestModel(mediaType: "movie", mediaID: 550, toWatchList: true)
+           self.networking.addToWatchlist(with: model) { result in
+               switch result {
+               case .success(let response):
+                   print(response.statusMessage)
+               case .failure(let error):
+                   print(error.stringDescription)
+               }
+           }
+       }
+    
     func onMovies() {
         self.eventHandler?(.onHeaderEvent(.onMovies))
     }

@@ -90,10 +90,10 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     
     private func onCardEvent(_ event: MovieCardEvent) {
         switch event {
-        case .like(let model):
-            F.Log(model?.name as Any)
+        case .watchlist(let model):
+            F.Log("you added to watch list \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
         case .favourites(let model):
-            F.Log(model?.name as Any)
+            F.Log("you added to favourites \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
         }
     }
     
