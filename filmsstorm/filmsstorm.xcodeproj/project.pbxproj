@@ -145,6 +145,11 @@
 		CDD5914323FD84B000DBA664 /* DiscoverHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD5914223FD84B000DBA664 /* DiscoverHeaderView.xib */; };
 		CDD5914523FD84E500DBA664 /* DiscoverHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */; };
 		CDD5914823FDD3F400DBA664 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5914723FDD3F400DBA664 /* NibDesignable.swift */; };
+		CDE080932410101C00B9A53F /* AddFavouritesRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE080922410101C00B9A53F /* AddFavouritesRequestModel.swift */; };
+		CDE080952410103700B9A53F /* AddWatchListRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE080942410103700B9A53F /* AddWatchListRequestModel.swift */; };
+		CDE080972410136100B9A53F /* AddToFavouritesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE080962410136100B9A53F /* AddToFavouritesModel.swift */; };
+		CDE0809924110C2500B9A53F /* FavouritesWatchlistMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0809824110C2500B9A53F /* FavouritesWatchlistMovies.swift */; };
+		CDE0809B24110E2D00B9A53F /* FavoritesWatchlistShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0809A24110E2D00B9A53F /* FavoritesWatchlistShows.swift */; };
 		CDE0AF75240BA98F008D610F /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF74240BA98F008D610F /* SearchModel.swift */; };
 		CDE0AF77240D6BFB008D610F /* DiscoverCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF76240D6BFB008D610F /* DiscoverCellModel.swift */; };
 		CDE0AF7A240D7522008D610F /* CollectionLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF79240D7522008D610F /* CollectionLayoutFactory.swift */; };
@@ -318,6 +323,11 @@
 		CDD5914223FD84B000DBA664 /* DiscoverHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverHeaderView.xib; sourceTree = "<group>"; };
 		CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverHeaderView.swift; sourceTree = "<group>"; };
 		CDD5914723FDD3F400DBA664 /* NibDesignable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
+		CDE080922410101C00B9A53F /* AddFavouritesRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavouritesRequestModel.swift; sourceTree = "<group>"; };
+		CDE080942410103700B9A53F /* AddWatchListRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWatchListRequestModel.swift; sourceTree = "<group>"; };
+		CDE080962410136100B9A53F /* AddToFavouritesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFavouritesModel.swift; sourceTree = "<group>"; };
+		CDE0809824110C2500B9A53F /* FavouritesWatchlistMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesWatchlistMovies.swift; sourceTree = "<group>"; };
+		CDE0809A24110E2D00B9A53F /* FavoritesWatchlistShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesWatchlistShows.swift; sourceTree = "<group>"; };
 		CDE0AF74240BA98F008D610F /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		CDE0AF76240D6BFB008D610F /* DiscoverCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCellModel.swift; sourceTree = "<group>"; };
 		CDE0AF79240D7522008D610F /* CollectionLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLayoutFactory.swift; sourceTree = "<group>"; };
@@ -462,6 +472,9 @@
 				CD2D91C124056E96001A1445 /* PopularShowsModel.swift */,
 				CDE0AF74240BA98F008D610F /* SearchModel.swift */,
 				CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */,
+				CDE080962410136100B9A53F /* AddToFavouritesModel.swift */,
+				CDE0809824110C2500B9A53F /* FavouritesWatchlistMovies.swift */,
+				CDE0809A24110E2D00B9A53F /* FavoritesWatchlistShows.swift */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -473,6 +486,8 @@
 				2E289CAE23E8DED4001917DB /* SessionRequestBody.swift */,
 				2E289CAF23E8DED4001917DB /* FavouriteMovieMarkBody.swift */,
 				2E289CB023E8DED4001917DB /* AuthRequestModel.swift */,
+				CDE080922410101C00B9A53F /* AddFavouritesRequestModel.swift */,
+				CDE080942410103700B9A53F /* AddWatchListRequestModel.swift */,
 			);
 			path = RequestModels;
 			sourceTree = "<group>";
@@ -1288,6 +1303,7 @@
 				2E289C8F23E8DE84001917DB /* DiscoverCollectionViewCell.swift in Sources */,
 				CDE0AF75240BA98F008D610F /* SearchModel.swift in Sources */,
 				CD0CDA7A23C3E797002EC487 /* Coordinator.swift in Sources */,
+				CDE0809B24110E2D00B9A53F /* FavoritesWatchlistShows.swift in Sources */,
 				CD38EFF2240EFDEB00F93536 /* UIView+Shadow.swift in Sources */,
 				CD4C704623F2CD180057FE82 /* ActionViewCell.swift in Sources */,
 				CD4C703E23F2CCB40057FE82 /* AvatarViewCell.swift in Sources */,
@@ -1305,11 +1321,13 @@
 				2E289CA123E8DEBD001917DB /* Functions.swift in Sources */,
 				CDB2A3802404503D00D27A9B /* SearchViewController.swift in Sources */,
 				CD38EFEE240EFD9300F93536 /* UIView+PerformAnimation.swift in Sources */,
+				CDE080952410103700B9A53F /* AddWatchListRequestModel.swift in Sources */,
 				CD536EF723E36034000FEE79 /* DiscoverFlowCoordinator.swift in Sources */,
 				2E289CDD23E8DFCA001917DB /* ImageLoadingService.swift in Sources */,
 				CD0CDA7923C3E797002EC487 /* Controller.swift in Sources */,
 				CD0CDA7823C3E797002EC487 /* RootViewGettable.swift in Sources */,
 				2E289CE823E8DFCA001917DB /* MovieEndPoint.swift in Sources */,
+				CDE080932410101C00B9A53F /* AddFavouritesRequestModel.swift in Sources */,
 				2E289CB323E8DED4001917DB /* SessionID.swift in Sources */,
 				CD4B3D562402ED3900F3FCF6 /* AboutPresenter.swift in Sources */,
 				CD38EFDC240EFA8400F93536 /* UIImage+CALayer.swift in Sources */,
@@ -1318,6 +1336,7 @@
 				2E289CEC23E8DFCA001917DB /* HTTPMethod.swift in Sources */,
 				2E289CEE23E8DFCA001917DB /* EndPointType.swift in Sources */,
 				CD4DB87623EC5F6700F53B28 /* ProfileView.swift in Sources */,
+				CDE080972410136100B9A53F /* AddToFavouritesModel.swift in Sources */,
 				2E289C9F23E8DEBD001917DB /* UICollectionView+Extensions.swift in Sources */,
 				CDB2A3822404505900D27A9B /* SearchPresenter.swift in Sources */,
 				CDE0AF7A240D7522008D610F /* CollectionLayoutFactory.swift in Sources */,
@@ -1330,6 +1349,7 @@
 				CD0F668923F9DF46003DEE13 /* KeysManager.swift in Sources */,
 				2E289C9123E8DE84001917DB /* DiscoverView.swift in Sources */,
 				CD38EFF0240EFDB000F93536 /* UIView+RoundedCorners.swift in Sources */,
+				CDE0809924110C2500B9A53F /* FavouritesWatchlistMovies.swift in Sources */,
 				2E289C9223E8DE84001917DB /* DiscoverViewController.swift in Sources */,
 				CD2D91BC2405347B001A1445 /* FavouritesViewController.swift in Sources */,
 				CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */,

@@ -39,6 +39,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     
     private var item: DiscoverCellModel?
     private var actionHandler: Handler<MovieCardEvent>?
+    private let networking = NetworkManager()
     
     // MARK: - Cell life cycle
     
@@ -69,9 +70,40 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     
     @IBAction func onLike(_ sender: UIButton) {
         self.actionHandler?(.like(self.item))
+         self.addToFavourites()
     }
     
     @IBAction func onFav(_ sender: UIButton) {
         self.actionHandler?(.favourites(self.item))
+        self.addToWatchList()
     }
+    
+    func addToFavourites() {
+        let model = AddFavouritesRequestModel(mediaType: "movie", mediaID: 550, isFavourite: true)
+       
+        self.networking.addToFavourites(with: model)  { result in
+            switch result {
+            case .success(let response):
+                print(response.statusMessage)
+        
+            case .failure(let error):
+                print(error.stringDescription)
+    
+            }
+        }
+    }
+    
+    func addToWatchList() {
+        let model = AddWatchListRequestModel(mediaType: "movie", mediaID: 550, toWatchList: true)
+        
+        self.networking.addToWatchlist(with: model) { result in
+            switch result {
+            case .success(let response):
+                print(response.statusMessage)
+            case .failure(let error):
+                print(error.stringDescription)
+            }
+        }
+    }
+
 }

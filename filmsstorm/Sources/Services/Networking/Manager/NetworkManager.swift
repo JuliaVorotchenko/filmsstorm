@@ -32,7 +32,8 @@ class NetworkManager {
     }
     
     func getUserDetails(completion: @escaping (Result<UserModel, NetworkError>) -> Void) {
-        self.router.request(.account(.getAccountDetails(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
+        self.router.request(.account(.getAccountDetails(sessionID: KeyChainContainer.sessionID ?? "")),
+                            completion: completion)
     }
     
     func getPopularMovies(completion: @escaping (Result<PopularMoviesModel, NetworkError>) -> Void) {
@@ -46,5 +47,33 @@ class NetworkManager {
     func getPopularShows(completion: @escaping (Result<PopularShowsModel, NetworkError>) -> Void) {
         self.router.request(.tv(.getTVShowPopular), completion: completion)
     }
-   
+    
+    func addToFavourites(with model: AddFavouritesRequestModel,
+                         completion: @escaping (Result<AddToFavouritesModel, NetworkError>) -> Void) {
+        self.router.request(.account(.addToFavourites(sessionID: KeyChainContainer.sessionID ?? "", model: model)),
+                            completion: completion)
+    }
+    
+    func addToWatchlist(with model: AddWatchListRequestModel,
+                        completion: @escaping (Result<AddToFavouritesModel, NetworkError>) -> Void) {
+        self.router.request(.account(.addToWatchList(sessionID: KeyChainContainer.sessionID ?? "", model: model)),
+                            completion: completion)
+    }
+    
+    func getFavoriteMovies(completion: @escaping (Result<FavouritesWatchlistMovies, NetworkError>) -> Void) {
+        self.router.request(.account(.getFavouriteMovies(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
+    }
+    
+    func getFavoriteShows(completion: @escaping (Result<FavoritesWatchlistShows, NetworkError>) -> Void) {
+        self.router.request(.account(.getFavouriteTVShows(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
+    }
+    
+    func getWathchListMovies(completion: @escaping (Result<FavouritesWatchlistMovies, NetworkError>) -> Void) {
+        self.router.request(.account(.getMoviesWatchList(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
+    }
+    
+    func getWatchListShows(completion: @escaping (Result<FavoritesWatchlistShows, NetworkError>) -> Void) {
+        self.router.request(.account(.getShowsWatchList(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
+    }
 }
+
