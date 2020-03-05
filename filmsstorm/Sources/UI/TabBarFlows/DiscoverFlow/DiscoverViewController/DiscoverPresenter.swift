@@ -47,7 +47,6 @@ class DiscoverPresenterImpl: DiscoverPresenter {
             switch result {
             case .success(let model):
                 completion?(model.results)
-                
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
             }
@@ -56,7 +55,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
     
     func addToFavourites(_ item: DiscoverCellModel?) {
         guard let item = item, let id = item.id else { return }
-        let model = AddFavouritesRequestModel(mediaType: item.mediaType, mediaID: id, isFavourite: true)
+        let model = AddFavouritesRequestModel(mediaType: item.mediaType.rawValue, mediaID: id, isFavourite: true)
         self.networking.addToFavourites(with: model) { result in
             switch result {
             case .success(let response):
@@ -70,7 +69,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
     
     func addToWatchList(_ item: DiscoverCellModel?) {
         guard let item = item, let id = item.id else { return }
-        let model = AddWatchListRequestModel(mediaType: item.mediaType, mediaID: id, toWatchList: true)
+        let model = AddWatchListRequestModel(mediaType: item.mediaType.rawValue, mediaID: id, toWatchList: true)
         self.networking.addToWatchlist(with: model) { result in
             switch result {
             case .success(let response):

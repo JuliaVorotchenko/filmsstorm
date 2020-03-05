@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ConfigureModel {
-    var mediaType: String { get set }
+    var mediaType: MediaType { get }
     var id: Int? { get }
     var name: String? { get }
     var voteAverage: Double? { get }
@@ -19,8 +19,13 @@ protocol ConfigureModel {
     var backDropPath: String? { get }
 }
 
+enum MediaType: String {
+    case movie
+    case tv
+}
+
 struct DiscoverCellModel: ConfigureModel, Equatable, Hashable {
-    var mediaType: String
+    let mediaType: MediaType
     let id: Int?
     let name: String?
     let voteAverage: Double?
@@ -30,12 +35,13 @@ struct DiscoverCellModel: ConfigureModel, Equatable, Hashable {
     let backDropPath: String?
     
     static func create(_ model: MovieListResult) -> Self {
-        return .init(mediaType: "movie", id: model.id, name: model.title, voteAverage: model.voteAverage,
+        return .init(mediaType: .movie, id: model.id, name: model.title, voteAverage: model.voteAverage,
                      overview: model.overview, releaseDate: model.releaseDate,
                      posterPath: model.posterPath, backDropPath: model.backDropPath)
     }
     
     static func create(_ model: ShowListResult) -> Self {
-        return .init(mediaType: "tv", id: model.id, name: model.name, voteAverage: model.voteAverage, overview: model.overview, releaseDate: model.firstAirDate, posterPath: model.posterPath, backDropPath: model.backDropPath)
+        return .init(mediaType: .tv, id: model.id, name: model.name, voteAverage: model.voteAverage,
+                     overview: model.overview, releaseDate: model.firstAirDate, posterPath: model.posterPath, backDropPath: model.backDropPath)
     }
 }

@@ -39,11 +39,11 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     
     private var item: DiscoverCellModel?
     private var actionHandler: Handler<MovieCardEvent>?
-    private let networking = NetworkManager()
     
     // MARK: - Cell life cycle
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         self.setupUI()
     }
     

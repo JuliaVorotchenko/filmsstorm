@@ -25,7 +25,6 @@
 		2E289CB623E8DED4001917DB /* PopularMoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CAB23E8DED4001917DB /* PopularMoviesModel.swift */; };
 		2E289CB723E8DED4001917DB /* RequestToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CAD23E8DED4001917DB /* RequestToken.swift */; };
 		2E289CB823E8DED4001917DB /* SessionRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CAE23E8DED4001917DB /* SessionRequestBody.swift */; };
-		2E289CB923E8DED4001917DB /* FavouriteMovieMarkBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CAF23E8DED4001917DB /* FavouriteMovieMarkBody.swift */; };
 		2E289CBA23E8DED4001917DB /* AuthRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CB023E8DED4001917DB /* AuthRequestModel.swift */; };
 		2E289CD823E8DFCA001917DB /* Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CBC23E8DFCA001917DB /* Headers.swift */; };
 		2E289CD923E8DFCA001917DB /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CBE23E8DFCA001917DB /* ParameterEncoding.swift */; };
@@ -142,6 +141,7 @@
 		CDB8792423B93C240099F946 /* LoginFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB8792323B93C240099F946 /* LoginFlowCoordinator.swift */; };
 		CDB9CD3F23FE96B400F45778 /* CustomNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB9CD3E23FE96B400F45778 /* CustomNavigationView.xib */; };
 		CDB9CD4123FE96F100F45778 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB9CD4023FE96F100F45778 /* CustomNavigationView.swift */; };
+		CDC2F5362411972C00AB7B72 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC2F5352411972C00AB7B72 /* Presenter.swift */; };
 		CDD5914323FD84B000DBA664 /* DiscoverHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD5914223FD84B000DBA664 /* DiscoverHeaderView.xib */; };
 		CDD5914523FD84E500DBA664 /* DiscoverHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */; };
 		CDD5914823FDD3F400DBA664 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5914723FDD3F400DBA664 /* NibDesignable.swift */; };
@@ -192,7 +192,6 @@
 		2E289CAB23E8DED4001917DB /* PopularMoviesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularMoviesModel.swift; sourceTree = "<group>"; };
 		2E289CAD23E8DED4001917DB /* RequestToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestToken.swift; sourceTree = "<group>"; };
 		2E289CAE23E8DED4001917DB /* SessionRequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRequestBody.swift; sourceTree = "<group>"; };
-		2E289CAF23E8DED4001917DB /* FavouriteMovieMarkBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteMovieMarkBody.swift; sourceTree = "<group>"; };
 		2E289CB023E8DED4001917DB /* AuthRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRequestModel.swift; sourceTree = "<group>"; };
 		2E289CBC23E8DFCA001917DB /* Headers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Headers.swift; sourceTree = "<group>"; };
 		2E289CBE23E8DFCA001917DB /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
@@ -320,6 +319,7 @@
 		CDB8792323B93C240099F946 /* LoginFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowCoordinator.swift; sourceTree = "<group>"; };
 		CDB9CD3E23FE96B400F45778 /* CustomNavigationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNavigationView.xib; sourceTree = "<group>"; };
 		CDB9CD4023FE96F100F45778 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
+		CDC2F5352411972C00AB7B72 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		CDD5914223FD84B000DBA664 /* DiscoverHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverHeaderView.xib; sourceTree = "<group>"; };
 		CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverHeaderView.swift; sourceTree = "<group>"; };
 		CDD5914723FDD3F400DBA664 /* NibDesignable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
@@ -484,7 +484,6 @@
 			children = (
 				2E289CAD23E8DED4001917DB /* RequestToken.swift */,
 				2E289CAE23E8DED4001917DB /* SessionRequestBody.swift */,
-				2E289CAF23E8DED4001917DB /* FavouriteMovieMarkBody.swift */,
 				2E289CB023E8DED4001917DB /* AuthRequestModel.swift */,
 				CDE080922410101C00B9A53F /* AddFavouritesRequestModel.swift */,
 				CDE080942410103700B9A53F /* AddWatchListRequestModel.swift */,
@@ -663,6 +662,7 @@
 			children = (
 				CD0CDA7623C3E797002EC487 /* Controller.swift */,
 				CD0CDA7723C3E797002EC487 /* Coordinator.swift */,
+				CDC2F5352411972C00AB7B72 /* Presenter.swift */,
 			);
 			path = MVCC;
 			sourceTree = "<group>";
@@ -1294,7 +1294,6 @@
 				2E289C9E23E8DEBD001917DB /* UIViewController+Extensions.swift in Sources */,
 				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
 				CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */,
-				2E289CB923E8DED4001917DB /* FavouriteMovieMarkBody.swift in Sources */,
 				2E289CB123E8DED4001917DB /* KeyChainContainer.swift in Sources */,
 				2E289CE123E8DFCA001917DB /* TVSeasonEndPoint.swift in Sources */,
 				CDB2A37724044E5100D27A9B /* FavouritesFlowCoordinator.swift in Sources */,
@@ -1311,6 +1310,7 @@
 				CD7E748623D8F3450097F198 /* AppEventSource.swift in Sources */,
 				2E289CE723E8DFCA001917DB /* TVEndPoint.swift in Sources */,
 				2E289CDC23E8DFCA001917DB /* NetworkError.swift in Sources */,
+				CDC2F5362411972C00AB7B72 /* Presenter.swift in Sources */,
 				CD38EFE6240EFC2200F93536 /* UIView+Border.swift in Sources */,
 				CDB2A386240450C300D27A9B /* MoviesView.swift in Sources */,
 				2E289CA023E8DEBD001917DB /* Optional+Extension.swift in Sources */,
