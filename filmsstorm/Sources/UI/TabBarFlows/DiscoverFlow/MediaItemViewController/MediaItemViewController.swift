@@ -16,13 +16,16 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     typealias Service = T
     
     enum Section: CaseIterable {
-        case  main
+        case main
+        case overview
+        case similars
     }
     
     // MARK: - Private properties
     
     let loadingView = ActivityView()
     let presenter: Service
+    
 
     // MARK: - Init and deinit
     
