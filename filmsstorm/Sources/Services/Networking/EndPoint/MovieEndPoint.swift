@@ -30,7 +30,7 @@ extension APIEndPoint {
             case .getMovieImages(let movieID):
                 return "/movie/\(movieID)/images"
             case .getMovieVideos(let model):
-                return "/movie/\(String(describing: model.id))/videos"
+                return "/movie/\(String(model.id))/videos"
             case .getMovieSimilars(let model):
                 return "/movie/\(String(describing: model.id))/similar"
             case .getMovieReviews(let movieID):

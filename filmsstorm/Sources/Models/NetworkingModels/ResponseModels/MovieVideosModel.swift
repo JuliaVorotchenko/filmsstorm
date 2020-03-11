@@ -10,7 +10,7 @@ import Foundation
 
 struct ItemVideoModel: Codable, Hashable {
     let id: Int?
-    let result: [VideoModel]
+    let results: [VideoModel]
 }
 
 struct VideoModel: Codable, Hashable {

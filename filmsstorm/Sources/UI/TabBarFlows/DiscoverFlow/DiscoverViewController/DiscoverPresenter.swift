@@ -94,7 +94,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
             self.networking.getMovieVideos(with: item) { result in
                 switch result {
                 case .success(let videoModel):
-                    print("video movie result:", videoModel.site)
+                    print("video movie result:", videoModel)
                 case .failure(let error):
                     print("video movie result:", error.stringDescription)
                 }
@@ -104,7 +104,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
             self.networking.getShowVideos(with: item) { result in
                 switch result {
                 case .success(let videoModel):
-                    print("show movie result:", videoModel.site)
+                    print("show movie result:", videoModel)
                 case .failure(let error):
                     print("show movie result:", error.stringDescription)
                 }

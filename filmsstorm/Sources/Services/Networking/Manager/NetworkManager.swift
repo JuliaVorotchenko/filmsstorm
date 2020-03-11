@@ -92,7 +92,7 @@ class NetworkManager {
         self.router.request(.tv(.getTVShowSimilar(model: model)), completion: completion)
     }
     
-    func getMovieVideos(with model: DiscoverCellModel, completion: @escaping(Result<VideoModel, NetworkError>) -> Void) {
+    func getMovieVideos(with model: DiscoverCellModel, completion: @escaping(Result<ItemVideoModel, NetworkError>) -> Void) {
         self.router.request(.movie(.getMovieVideos(model: model)), completion: completion)
     }
     
