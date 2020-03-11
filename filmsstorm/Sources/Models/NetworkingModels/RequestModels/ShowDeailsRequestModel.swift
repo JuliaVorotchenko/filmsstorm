@@ -9,11 +9,9 @@
 import Foundation
 
 struct ShowDeailsRequestModel: Codable {
-    let apiKey: String
     let id: Int
     
     enum CodingKeys: String, CodingKey {
-        case apiKey = "api_key"
         case id = "tv_id"
     }
 }

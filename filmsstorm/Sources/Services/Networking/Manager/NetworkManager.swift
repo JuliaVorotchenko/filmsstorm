@@ -75,4 +75,28 @@ class NetworkManager {
     func getWatchListShows(completion: @escaping (Result<FavoritesWatchlistShows, NetworkError>) -> Void) {
         self.router.request(.account(.getShowsWatchList(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
     }
+    
+    func getMovieDetails(with model: DiscoverCellModel, completion: @escaping (Result<MovieDetailsModel, NetworkError>) -> Void) {
+        self.router.request(.movie(.getMovieDetails(model: model)), completion: completion)
+    }
+    
+    func getMovieSimilars(with model: DiscoverCellModel, completion: @escaping(Result<MovieSimilarsModel, NetworkError>) -> Void) {
+        self.router.request(.movie(.getMovieSimilars(model: model)), completion: completion)
+    }
+    
+    func getShowDetails(with model: DiscoverCellModel, completion: @escaping(Result<ShowDetailsModel, NetworkError>) -> Void) {
+        self.router.request(.tv(.getTVShowDetails(model: model)), completion: completion)
+    }
+    
+    func getShowSimilars(with model: DiscoverCellModel, completion: @escaping(Result<ShowSimilarsModel, NetworkError>) -> Void) {
+        self.router.request(.tv(.getTVShowSimilar(model: model)), completion: completion)
+    }
+    
+    func getMovieVideos(with model: DiscoverCellModel, completion: @escaping(Result<VideoModel, NetworkError>) -> Void) {
+        self.router.request(.movie(.getMovieVideos(model: model)), completion: completion)
+    }
+    
+    func getShowVideos(with model: DiscoverCellModel, completion: @escaping(Result<VideoModel, NetworkError>) -> Void) {
+        self.router.request(.tv(.getTVShowVideos(model: model)), completion: completion)
+    }
 }

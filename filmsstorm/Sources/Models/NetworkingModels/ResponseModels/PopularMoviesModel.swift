@@ -28,7 +28,7 @@ struct MovieListResult: Codable, Hashable {
     let overview: String?
     let releaseDate: String?
     let genreIDs: [Int]?
-    let id: Int?
+    let id: Int
     let originalTitle: String?
     let originalLanguage: String?
     let title: String?

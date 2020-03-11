@@ -10,7 +10,7 @@ import UIKit
 
 protocol ConfigureModel {
     var mediaType: MediaType { get }
-    var id: Int? { get }
+    var id: Int { get }
     var name: String? { get }
     var voteAverage: Double? { get }
     var overview: String? { get }
@@ -19,14 +19,14 @@ protocol ConfigureModel {
     var backDropPath: String? { get }
 }
 
-enum MediaType: String {
-    case movie
-    case tv
+enum MediaType: String, Codable {
+    case movie = "movie_id"
+    case tv = "tv_id"
 }
 
-struct DiscoverCellModel: ConfigureModel, Equatable, Hashable {
+struct DiscoverCellModel: ConfigureModel, Codable, Equatable, Hashable {
     let mediaType: MediaType
-    let id: Int?
+    let id: Int
     let name: String?
     let voteAverage: Double?
     let overview: String?
@@ -35,12 +35,14 @@ struct DiscoverCellModel: ConfigureModel, Equatable, Hashable {
     let backDropPath: String?
     
     static func create(_ model: MovieListResult) -> Self {
+    
         return .init(mediaType: .movie, id: model.id, name: model.title, voteAverage: model.voteAverage,
                      overview: model.overview, releaseDate: model.releaseDate,
                      posterPath: model.posterPath, backDropPath: model.backDropPath)
     }
     
     static func create(_ model: ShowListResult) -> Self {
+       
         return .init(mediaType: .tv, id: model.id, name: model.name, voteAverage: model.voteAverage,
                      overview: model.overview, releaseDate: model.firstAirDate, posterPath: model.posterPath, backDropPath: model.backDropPath)
     }

@@ -9,10 +9,10 @@
 import Foundation
 extension APIEndPoint {
     enum TVEndPoint: EndPointType {
-        case getTVShowDetails(tvID: Int)
+        case getTVShowDetails(model: DiscoverCellModel)
         case getTVShowImages(tvID: Int)
-        case getTVShowSimilar(tvID: Int)
-        case getTVShowVideos(tvID: Int)
+        case getTVShowSimilar(model: DiscoverCellModel)
+        case getTVShowVideos(model: DiscoverCellModel)
         case rateTVShow(tvID: Int, ratingValue: Int)
         case deleteTVShowRating(tvID: Int)
         case getTVShowLatest
@@ -31,14 +31,14 @@ extension APIEndPoint {
         
         var path: String {
             switch self {
-            case .getTVShowDetails(let tvID):
-                return "/tv/\(tvID)"
+            case .getTVShowDetails(let model):
+                return "/tv/\(String(describing: model.id))"
             case .getTVShowImages(let tvID):
                 return "/tv/\(tvID)/images"
-            case .getTVShowSimilar(let tvID):
-                return "/tv/\(tvID)/similar"
-            case .getTVShowVideos(let tvID):
-                return "/tv/\(tvID)/videos"
+            case .getTVShowSimilar(let model):
+                return "/tv/\(String(describing: model.id))/similar"
+            case .getTVShowVideos(let model):
+                return "/tv/\(String(describing: model.id))/videos"
             case .rateTVShow(let tvID, _):
                 return "/tv/\(tvID)/rating"
             case .deleteTVShowRating(let tvID):
@@ -78,17 +78,19 @@ extension APIEndPoint {
         var task: HTTPTask {
             switch self {
             case
-            .getTVShowDetails,
             .getTVShowImages,
-            .getTVShowSimilar,
-            .getTVShowVideos,
             .getTVShowLatest,
             .getTVShowAiring,
             .getTVShowPopular,
             .getTVShowTopRated:
-                
                 return .requestParameters(bodyParameters: nil, urlParameters: [Headers.apiKey: Headers.apiKeyValue])
                 
+            case
+            .getTVShowDetails(let model),
+            .getTVShowSimilar(let model),
+            .getTVShowVideos(let model):
+                return .requestParameters(bodyParameters: nil, urlParameters: [Headers.apiKey: Headers.apiKeyValue,
+                                                                               "tv_id": model.id])
             case
             .deleteTVShowRating:
                 return .requestParametersAndHeaders(bodyParameters: nil,

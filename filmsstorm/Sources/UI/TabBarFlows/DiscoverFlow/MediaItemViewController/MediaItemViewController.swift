@@ -26,7 +26,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     let loadingView = ActivityView()
     let presenter: Service
     
-
     // MARK: - Init and deinit
     
     deinit {

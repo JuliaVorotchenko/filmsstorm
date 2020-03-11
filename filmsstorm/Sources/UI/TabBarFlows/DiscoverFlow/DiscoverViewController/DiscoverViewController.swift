@@ -128,5 +128,8 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = self.sections[indexPath.row]
         self.presenter.onMedia(item: model)
+        //self.presenter.getItemDetails(model)
+       // self.presenter.getItemSimilars(model)
+        self.presenter.getItemVideo(model)
     }
 }

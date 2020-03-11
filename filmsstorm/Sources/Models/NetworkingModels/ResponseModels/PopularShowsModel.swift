@@ -25,7 +25,7 @@ struct PopularShowsModel: Codable, Hashable {
 struct ShowListResult: Codable, Hashable {
     let posterPath: String?
     let popularity: Double?
-    let id: Int?
+    let id: Int
     let backDropPath: String?
     let voteAverage: Double?
     let overview: String?

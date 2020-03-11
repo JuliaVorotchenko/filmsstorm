@@ -10,10 +10,10 @@ import Foundation
 
 extension APIEndPoint {
     enum MovieEndPoint: EndPointType {
-        case getMovieDetails(movieID: Int)
+        case getMovieDetails(model: DiscoverCellModel)
         case getMovieImages(movieID: Int)
-        case getMovieVideos(movieID: Int)
-        case getMovieSimilars(movieID: Int)
+        case getMovieVideos(model: DiscoverCellModel)
+        case getMovieSimilars(model: DiscoverCellModel)
         case getMovieReviews(movieID: Int)
         case rateMovie(movieID: Int, rateValue: Int)
         case deleteMovieRating(movieID: Int)
@@ -25,14 +25,14 @@ extension APIEndPoint {
         
         var path: String {
             switch self {
-            case .getMovieDetails(let movieID):
-                return "/movie/\(movieID)"
+            case .getMovieDetails(let model):
+                return "/movie/\(String(describing: model.id))"
             case .getMovieImages(let movieID):
                 return "/movie/\(movieID)/images"
-            case .getMovieVideos(let movieID):
-                return "/movie/\(movieID)/videos"
-            case .getMovieSimilars(let movieID):
-                return "/movie/\(movieID)/similar"
+            case .getMovieVideos(let model):
+                return "/movie/\(String(describing: model.id))/videos"
+            case .getMovieSimilars(let model):
+                return "/movie/\(String(describing: model.id))/similar"
             case .getMovieReviews(let movieID):
                 return "/movie/\(movieID)/reviews"
             case .rateMovie(let movieID, _):
@@ -85,12 +85,15 @@ extension APIEndPoint {
             .getMovieNowPlaying,
             .getMoviePopular,
             .getMovieTopRated,
-            .getMovieDetails,
             .getMovieImages,
-            .getMovieVideos,
-            .getMovieSimilars,
             .getMovieReviews:
                 return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue])
+                
+            case
+            .getMovieDetails(let model),
+            .getMovieSimilars(let model),
+            .getMovieVideos(let model):
+                return .requestParameters(bodyParameters: nil, urlParameters: [Headers.apiKey: Headers.apiKeyValue])
                 
             case .getUpcoming:
                 return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue,
