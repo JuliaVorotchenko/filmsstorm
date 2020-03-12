@@ -9,6 +9,5 @@
 import UIKit
 
 class ItemOverviewViewCell: UITableViewCell {
-
     @IBOutlet var overViewLabel: UILabel!
 }

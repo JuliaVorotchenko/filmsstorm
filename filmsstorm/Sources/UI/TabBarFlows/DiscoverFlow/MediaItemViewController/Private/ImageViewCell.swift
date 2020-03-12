@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ItemImageViewCell: UITableViewCell {
+class ImageViewCell: UITableViewCell {
+  
     @IBOutlet var itemImage: UIImageView!
     
 }
