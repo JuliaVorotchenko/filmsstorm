@@ -128,8 +128,10 @@ class DiscoverFlowCoordinator: Coordinator {
     
     // MARK: - Media Item VC
     
-    private func createMediaItemViewController(from model: ConfigureModel) {
-        let presenter = MediaItemPresenterImpl(networking: self.networking, event: self.mediaItemEvent)
+    private func createMediaItemViewController(from model: DiscoverCellModel) {
+        let presenter = MediaItemPresenterImpl(networking: self.networking,
+                                               event: self.mediaItemEvent,
+                                               itemModel: model)
         let controller = MediaItemViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }

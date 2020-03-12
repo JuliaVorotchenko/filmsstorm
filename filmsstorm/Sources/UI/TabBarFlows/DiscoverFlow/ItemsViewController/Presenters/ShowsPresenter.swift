@@ -9,12 +9,14 @@
 import Foundation
 
 enum ShowsEvent: EventProtocol {
-    case mediaItem(ConfigureModel)
+    case mediaItem(DiscoverCellModel)
     case back
     case error(AppError)
 }
 
 class ShowPresenterImpl: ItemsPresenter {
+    
+    
     
     // MARK: - Private Properties
     
@@ -44,7 +46,7 @@ class ShowPresenterImpl: ItemsPresenter {
         }
     }
     
-    func onMedia(item: ConfigureModel) {
+    func onMedia(item: DiscoverCellModel) {
         self.eventHandler?(.mediaItem(item))
     }
     

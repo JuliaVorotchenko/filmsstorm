@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controller, ActivityViewPresenter {
+class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
     
     // MARK: - Subtypes
     
@@ -54,7 +54,15 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.rootView?.navigationView?.actionHandler = { [weak self] in
             self?.presenter.onBack()
         }
-        self.rootView?.navigationView?.titleFill(with: "MediaItem Name")
+    let item = self.presenter.itemModel
+    self.rootView?.navigationView?.titleFill(with: item.name ?? "oops")
+    
+    }
+    
+    private func cellRegister() {
+        self.rootView?.collectionView.register(ImageViewCell.self)
+        self.rootView?.collectionView.register(ItemDescriptionViewCell.self)
+        self.rootView?.collectionView.register(ItemOverviewViewCell.self)
     }
 
 }

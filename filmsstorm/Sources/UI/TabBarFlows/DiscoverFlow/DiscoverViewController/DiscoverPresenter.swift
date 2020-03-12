@@ -11,7 +11,7 @@ import Foundation
 enum DiscoverEvent: EventProtocol {
     case error(AppError)
     case onHeaderEvent(DiscoverHeaderEvent)
-    case onMediaItem(ConfigureModel)
+    case onMediaItem(DiscoverCellModel)
     
 }
 
@@ -21,12 +21,9 @@ protocol DiscoverPresenter: Presenter {
     func onMovies()
     func onShows()
     func onSearch()
-    func onMedia(item: ConfigureModel)
+    func onMedia(item: DiscoverCellModel)
     func addToFavourites(_ item: DiscoverCellModel?)
     func addToWatchList(_ item: DiscoverCellModel?)
-    func getItemVideo(_ item: DiscoverCellModel?)
-    func getItemDetails(_ item: DiscoverCellModel?)
-    func getItemSimilars(_ item: DiscoverCellModel?)
 }
 
 class DiscoverPresenterImpl: DiscoverPresenter {
@@ -83,91 +80,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
             }
         }
     }
-    
-    func getItemVideo(_ item: DiscoverCellModel?) {
-        print(#function)
-        guard let item = item else { return }
-        
-        switch item.mediaType {
-            
-        case .movie:
-            self.networking.getMovieVideos(with: item) { result in
-                switch result {
-                case .success(let videoModel):
-                    print("video movie result:", videoModel)
-                case .failure(let error):
-                    print("video movie result:", error.stringDescription)
-                }
-            }
-            
-        case .tv:
-            self.networking.getShowVideos(with: item) { result in
-                switch result {
-                case .success(let videoModel):
-                    print("show movie result:", videoModel)
-                case .failure(let error):
-                    print("show movie result:", error.stringDescription)
-                }
-            }
-        }
-    }
-    
-    func getItemDetails(_ item: DiscoverCellModel?) {
-        print(#function)
-        guard let item = item else { return }
-        
-        switch item.mediaType {
-            
-        case .movie:
-            self.networking.getMovieDetails(with: item) { result in
-                switch result {
-                case .success(let detailsModel):
-                    print("movie details model:", detailsModel.originalTitle as Any)
-                case .failure(let error):
-                    print("moviedetails error", error.stringDescription)
-                }
-            }
-            
-        case .tv:
-            self.networking.getShowDetails(with: item) { result in
-                switch result {
-                case .success(let detailsModel):
-                    print("show details model:", detailsModel.name as Any)
-                case .failure(let error):
-                    print("moviedetails error", error.stringDescription)
-                }
-            }
-        }
-    }
-    
-    func getItemSimilars(_ item: DiscoverCellModel?) {
-         print(#function)
-        guard let item = item else { return }
-        
-        switch item.mediaType {
-            
-        case .movie:
-            self.networking.getMovieSimilars(with: item) { result in
-                switch result {
-                case .success(let similarsModel):
-                    print("movie similars:", similarsModel.results?.count as Any)
-                case .failure(let error):
-                    print("movie similars:", error.localizedDescription)
-                }
-            }
-            
-        case .tv:
-            self.networking.getShowSimilars(with: item) { result in
-                switch result {
-                case.success(let similarsModel):
-                    print("show similars:", similarsModel.results?.count as Any)
-                case .failure(let error):
-                    print("show similars:", error.localizedDescription)
-                }
-            }
-        }
-    }
-    
+
     // MARK: - Activity Movies
     
     func onMovies() {
@@ -182,7 +95,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
         self.eventHandler?(.onHeaderEvent(.onSearch))
     }
     
-    func onMedia(item: ConfigureModel) {
+    func onMedia(item: DiscoverCellModel) {
         self.eventHandler?(.onMediaItem(item))
     }
 }
