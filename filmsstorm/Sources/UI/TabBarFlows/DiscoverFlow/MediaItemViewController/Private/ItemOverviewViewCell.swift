@@ -8,6 +8,10 @@
 
 import UIKit
 
-class ItemOverviewViewCell: UITableViewCell {
+class ItemOverviewViewCell: UICollectionViewCell {
     @IBOutlet var overViewLabel: UILabel!
+    
+    func fill(model: DiscoverCellModel) {
+        self.overViewLabel.text = model.overview
+    }
 }

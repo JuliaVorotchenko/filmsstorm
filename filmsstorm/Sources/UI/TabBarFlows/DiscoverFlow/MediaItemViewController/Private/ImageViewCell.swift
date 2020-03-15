@@ -8,8 +8,12 @@
 
 import UIKit
 
-class ImageViewCell: UITableViewCell {
+class ImageViewCell: UICollectionViewCell {
   
     @IBOutlet var itemImage: UIImageView!
     
+    func fill(model: DiscoverCellModel) {
+        let path = model.posterPath
+        self.itemImage.setImage(from: path, mainPath: .mainPath)
+    }
 }

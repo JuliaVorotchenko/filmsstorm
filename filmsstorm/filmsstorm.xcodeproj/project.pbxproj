@@ -99,6 +99,7 @@
 		CD2D91C924058CF7001A1445 /* MediaItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D91C824058CF7001A1445 /* MediaItemViewController.swift */; };
 		CD2D91CB24058D1B001A1445 /* MediaItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D91CA24058D1B001A1445 /* MediaItemPresenter.swift */; };
 		CD2E5A762409640000DEC598 /* UIView+Exensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E5A752409640000DEC598 /* UIView+Exensions.swift */; };
+		CD328A77241E804400BF7224 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD328A76241E804400BF7224 /* SectionHeader.swift */; };
 		CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9323F09C91005DC50B /* AboutViewController.swift */; };
 		CD38AD9623F09C91005DC50B /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD38AD9423F09C91005DC50B /* AboutViewController.xib */; };
 		CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD38AD9723F0A096005DC50B /* AboutView.swift */; };
@@ -297,6 +298,7 @@
 		CD2D91C824058CF7001A1445 /* MediaItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemViewController.swift; sourceTree = "<group>"; };
 		CD2D91CA24058D1B001A1445 /* MediaItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemPresenter.swift; sourceTree = "<group>"; };
 		CD2E5A752409640000DEC598 /* UIView+Exensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Exensions.swift"; sourceTree = "<group>"; };
+		CD328A76241E804400BF7224 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		CD38AD9323F09C91005DC50B /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		CD38AD9423F09C91005DC50B /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		CD38AD9723F0A096005DC50B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -725,6 +727,7 @@
 				CD0D2A832417E9A200722181 /* ItemDescriptionViewCell.swift */,
 				CD0D2A852417EA2A00722181 /* ItemOverviewViewCell.xib */,
 				CD0D2A872417EA3F00722181 /* ItemOverviewViewCell.swift */,
+				CD328A76241E804400BF7224 /* SectionHeader.swift */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -761,9 +764,9 @@
 			isa = PBXGroup;
 			children = (
 				CD0D2A7C2417E5BB00722181 /* Private */,
-				CD2D91C424058CC3001A1445 /* MediaItemViewController.xib */,
-				CD2D91C624058CE1001A1445 /* MediaItemView.swift */,
 				CD2D91C824058CF7001A1445 /* MediaItemViewController.swift */,
+				CD2D91C624058CE1001A1445 /* MediaItemView.swift */,
+				CD2D91C424058CC3001A1445 /* MediaItemViewController.xib */,
 				CD2D91CA24058D1B001A1445 /* MediaItemPresenter.swift */,
 			);
 			path = MediaItemViewController;
@@ -1379,6 +1382,7 @@
 				CD38EFE2240EFBB300F93536 /* UIRectCorner+Extensions.swift in Sources */,
 				2E289CED23E8DFCA001917DB /* Router.swift in Sources */,
 				CD38EFD6240EF9B500F93536 /* Array+Extension.swift in Sources */,
+				CD328A77241E804400BF7224 /* SectionHeader.swift in Sources */,
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				CD38EFD8240EF9E500F93536 /* Dictionary+Extensions.swift in Sources */,
 				CD4B3D542402ECF800F3FCF6 /* AuthorizationPresenter.swift in Sources */,

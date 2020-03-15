@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemDescriptionViewCell: UITableViewCell {
+class ItemDescriptionViewCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     
@@ -28,12 +28,41 @@ class ItemDescriptionViewCell: UITableViewCell {
     
     @IBOutlet var playButtonView: UIView!
     
+    // MARK: - Cell life cycle
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.setupUI()
+    }
+
+    // MARK: - Methods
+    
+    func fill(model: DiscoverCellModel) {
+        let imagePath = model.posterPath
+        let backgroundPath = model.backDropPath
+        self.itemImage.setImage(from: imagePath, mainPath: .mainPath)
+        self.backgroundImage.setImage(from: backgroundPath, mainPath: .mainPath)
+        self.itemName.text = model.name
+        self.originalName.text = model.name
+        self.ratingLabel.text = String("\(model.voteAverage)")
+        self.yearLabel.text = "22.03.15"
+    }
+    
+    func setupUI() {
+        self.likeButton.rounded(cornerRadius: 5)
+        self.likeButton.rounded(cornerRadius: 5)
+        self.playButtonView.rounded(cornerRadius: 8)
+    }
+
+    
     // MARK: - IBActions
     
     @IBAction func onLike(_ sender: UIButton) {
     }
+   
     @IBAction func onList(_ sender: UIButton) {
     }
+   
     @IBAction func onPlay(_ sender: Any) {
     }
 }

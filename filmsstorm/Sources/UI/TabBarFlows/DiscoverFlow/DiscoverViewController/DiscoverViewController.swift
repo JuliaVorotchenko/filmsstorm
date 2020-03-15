@@ -120,6 +120,7 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
         var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(self.sections)
+       
         return snapshot
     }
     

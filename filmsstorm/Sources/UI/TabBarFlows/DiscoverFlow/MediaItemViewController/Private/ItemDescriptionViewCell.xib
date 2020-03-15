@@ -276,7 +276,7 @@
         <image name="myList" width="15.5" height="11"/>
         <image name="play" width="12.5" height="13"/>
         <namedColor name="playRed">
-            <color red="0.90980392156862744" green="0.17254901960784313" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.9100000262260437" green="0.17299999296665192" blue="0.16500000655651093" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
