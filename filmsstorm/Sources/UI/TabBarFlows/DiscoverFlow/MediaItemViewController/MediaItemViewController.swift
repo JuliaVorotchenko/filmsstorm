@@ -15,12 +15,12 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     typealias RootViewType = MediaItemView
     typealias Service = T
     
-    enum Section: Int {
-        case main = 0
-        case overview = 1
-        case similars = 2
-        case actors = 3
+    enum Section: CaseIterable {
+        case similars
+        case actors
     }
+    
+    let elementKind = "sectionHeader"
     
     // MARK: - Private properties
     
@@ -51,77 +51,43 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         super.viewDidLoad()
         self.setupNavigationView()
         self.setCollectionView()
-       
+        self.setDescriptionView()
     }
     
     // MARK: - Private methods
     
-    
     private func setupNavigationView() {
-        
         self.rootView?.navigationView?.actionHandler = { [weak self] in
             self?.presenter.onBack()
         }
         let item = self.presenter.itemModel
         self.rootView?.navigationView?.titleFill(with: item.name ?? "oops")
-        
     }
     
     private func setCollectionView() {
+        let layout = self.createLayout()
         let collectionView = self.rootView?.collectionView
-        collectionView?.register(ItemOverviewViewCell.self)
-        collectionView?.register(ItemDescriptionViewCell.self)
-        collectionView?.register(ImageViewCell.self)
+        collectionView?.setCollectionViewLayout(layout, animated: true)
         collectionView?.delegate = self
+        collectionView?.register(ImageViewCell.self)
+        collectionView?.register(SectionHeaderView.self, forSupplementaryViewOfKind: self.elementKind,
+                                 withReuseIdentifier: SectionHeaderView.reuseIdentifier)
+        self.createDataSource()
     }
-
+    
+    private func setDescriptionView() {
+       let model = self.presenter.itemModel
+        self.rootView?.descriptionView.fill(model: model)
+    }
     
     private func createLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { sectionNumber, env -> NSCollectionLayoutSection? in
-            
-            switch Section(rawValue: sectionNumber) {
-            case .main:
-                return self.mainSection()
-            case .overview:
-                return self.overviewSection()
-            case .similars:
+            if sectionNumber == 0 {
                 return self.similarsSection()
-            case .actors:
+            } else {
                 return self.similarsSection()
-            default:
-                return nil
             }
         }
-    }
-    
-    
-    
-    private func mainSection() -> NSCollectionLayoutSection {
-        let sectionWidth = self.view.bounds.width
-        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(sectionWidth),
-                                              heightDimension: .absolute(248))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(sectionWidth),
-                                               heightDimension: .absolute(248))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-        
-        return NSCollectionLayoutSection(group: group)
-    }
-    
-    private func overviewSection() -> NSCollectionLayoutSection {
-        let sectionWidth = self.view.bounds.width
-        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(sectionWidth),
-                                              heightDimension: .absolute(170))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(sectionWidth),
-                                               heightDimension: .absolute(248))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-        
-        return NSCollectionLayoutSection(group: group)
     }
     
     private func similarsSection() -> NSCollectionLayoutSection {
@@ -137,8 +103,8 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         
-        let sectionHeader = self.createHeaderSection()
-        section.boundarySupplementaryItems = [sectionHeader]
+//        let sectionHeader = self.createHeaderSection()
+//        section.boundarySupplementaryItems = [sectionHeader]
         return section
     }
     
@@ -153,23 +119,38 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     func createDataSource() {
         guard let collectionView = self.rootView?.collectionView else { return }
         
-         self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self ] collection, indexPath, item -> UICollectionViewCell? in
-            
+        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collection, indexPath, item -> UICollectionViewCell? in
             
             let imageCell: ImageViewCell = collection.dequeueReusableCell(ImageViewCell.self, for: indexPath)
-            imageCell.fill(model: (self?.presenter.itemModel)!)
+            imageCell.fill(model: item)
             return imageCell
         }
+        
+//        self.dataSource?.supplementaryViewProvider = { [weak self] (collectionView: UICollectionView,
+//            kind: String,
+//            indexPath: IndexPath) -> UICollectionReusableView? in
+//
+//            if kind == self?.elementKind {
+//                if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+//                                                                                    withReuseIdentifier: SectionHeaderView.reuseIdentifier,
+//                                                                                    for: indexPath) as? SectionHeaderView {
+//                    headerView.title.text = "Similars"
+//                  return headerView
+//                }
+//            }
+//
+//        }
+        
         let snapshot = self.createSnapshot()
         self.dataSource?.apply(snapshot)
     }
     
     func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, DiscoverCellModel> {
         var snapShot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
-        snapShot.appendSections([.main, .overview, .similars, .actors])
+        snapShot.appendSections([.similars, .actors])
         snapShot.appendItems(self.sections)
         return snapShot
+        
+    }
     
-}
-
 }

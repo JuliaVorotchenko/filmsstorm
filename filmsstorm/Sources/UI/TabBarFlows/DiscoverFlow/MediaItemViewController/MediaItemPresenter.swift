@@ -23,7 +23,6 @@ protocol MediaItemPresenter: Presenter {
 
 class MediaItemPresenterImpl: MediaItemPresenter {
 
-
     // MARK: - Private Properties
     
     let eventHandler: Handler<MediaItemEvent>?

@@ -22,40 +22,67 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="60"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="Wba-xV-geB"/>
+                        <constraint firstAttribute="height" constant="60" id="eaW-s8-lcI"/>
                     </constraints>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Nbi-Tz-j3d">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1SB-wH-aqu">
                     <rect key="frame" x="0.0" y="104" width="414" height="792"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bqq-Zn-c2l">
-                        <size key="itemSize" width="50" height="50"/>
-                        <size key="headerReferenceSize" width="50" height="50"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="h13-d2-32B"/>
-                        <outlet property="delegate" destination="-1" id="zqH-FC-NWd"/>
-                    </connections>
-                </collectionView>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vCe-7F-YCh">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="792"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" id="qvD-th-Xsz" userLabel="descriptionView" customClass="ItemDescriptionView" customModule="filmsstorm" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="792"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" name="background"/>
+                                    <viewLayoutGuide key="safeArea" id="wSs-8b-Ow8"/>
+                                </view>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" id="Nbi-Tz-j3d">
+                                    <rect key="frame" x="0.0" y="792" width="414" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" name="background"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bqq-Zn-c2l">
+                                        <size key="itemSize" width="50" height="50"/>
+                                        <size key="headerReferenceSize" width="50" height="50"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="h13-d2-32B"/>
+                                        <outlet property="delegate" destination="-1" id="zqH-FC-NWd"/>
+                                    </connections>
+                                </collectionView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="vCe-7F-YCh" firstAttribute="bottom" secondItem="gqT-pJ-TEd" secondAttribute="bottom" id="7dN-mV-IaL"/>
+                        <constraint firstItem="vCe-7F-YCh" firstAttribute="width" secondItem="8KB-Fy-uZK" secondAttribute="width" id="Chh-Bj-4Bb"/>
+                        <constraint firstItem="vCe-7F-YCh" firstAttribute="trailing" secondItem="gqT-pJ-TEd" secondAttribute="trailing" id="O5x-wB-XYX"/>
+                        <constraint firstItem="vCe-7F-YCh" firstAttribute="top" secondItem="gqT-pJ-TEd" secondAttribute="top" id="VK1-nS-JUh"/>
+                        <constraint firstItem="vCe-7F-YCh" firstAttribute="leading" secondItem="gqT-pJ-TEd" secondAttribute="leading" id="uEN-kT-hr2"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="gqT-pJ-TEd"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="8KB-Fy-uZK"/>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" name="background"/>
             <constraints>
-                <constraint firstItem="Nbi-Tz-j3d" firstAttribute="top" secondItem="Azy-dW-JbS" secondAttribute="bottom" id="FgR-Se-3Gh"/>
-                <constraint firstItem="Azy-dW-JbS" firstAttribute="top" secondItem="yra-LO-dkJ" secondAttribute="top" id="Oq6-Rf-Ngm"/>
-                <constraint firstItem="Nbi-Tz-j3d" firstAttribute="leading" secondItem="yra-LO-dkJ" secondAttribute="leading" id="R2u-lh-295"/>
-                <constraint firstItem="Azy-dW-JbS" firstAttribute="leading" secondItem="yra-LO-dkJ" secondAttribute="leading" id="gIB-Eu-Dgk"/>
-                <constraint firstItem="Nbi-Tz-j3d" firstAttribute="trailing" secondItem="yra-LO-dkJ" secondAttribute="trailing" id="lww-tr-laB"/>
-                <constraint firstItem="Azy-dW-JbS" firstAttribute="trailing" secondItem="yra-LO-dkJ" secondAttribute="trailing" id="o8L-Ko-P2h"/>
-                <constraint firstAttribute="bottom" secondItem="Nbi-Tz-j3d" secondAttribute="bottom" id="uHn-X5-D1v"/>
+                <constraint firstItem="1SB-wH-aqu" firstAttribute="top" secondItem="Azy-dW-JbS" secondAttribute="bottom" id="1xx-ZK-oFd"/>
+                <constraint firstItem="1SB-wH-aqu" firstAttribute="trailing" secondItem="yra-LO-dkJ" secondAttribute="trailing" id="FPX-VY-sj2"/>
+                <constraint firstAttribute="bottom" secondItem="1SB-wH-aqu" secondAttribute="bottom" id="J09-6m-ldI"/>
+                <constraint firstItem="Azy-dW-JbS" firstAttribute="top" secondItem="yra-LO-dkJ" secondAttribute="top" id="Pn2-W5-8BY"/>
+                <constraint firstItem="Azy-dW-JbS" firstAttribute="leading" secondItem="yra-LO-dkJ" secondAttribute="leading" id="az2-QF-Fkx"/>
+                <constraint firstItem="1SB-wH-aqu" firstAttribute="leading" secondItem="yra-LO-dkJ" secondAttribute="leading" id="exX-XA-exF"/>
+                <constraint firstItem="Azy-dW-JbS" firstAttribute="trailing" secondItem="yra-LO-dkJ" secondAttribute="trailing" id="yc9-P8-T2o"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="yra-LO-dkJ"/>
             <connections>
                 <outlet property="collectionView" destination="Nbi-Tz-j3d" id="E9k-Tc-MZ7"/>
+                <outlet property="descriptionView" destination="qvD-th-Xsz" id="kDz-zv-eRr"/>
                 <outlet property="navigationView" destination="Azy-dW-JbS" id="MAZ-sS-2TU"/>
             </connections>
-            <point key="canvasLocation" x="76.811594202898561" y="48.883928571428569"/>
+            <point key="canvasLocation" x="60.869565217391312" y="79.6875"/>
         </view>
     </objects>
     <resources>

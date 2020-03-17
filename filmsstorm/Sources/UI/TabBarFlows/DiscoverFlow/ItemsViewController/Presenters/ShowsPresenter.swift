@@ -16,8 +16,6 @@ enum ShowsEvent: EventProtocol {
 
 class ShowPresenterImpl: ItemsPresenter {
     
-    
-    
     // MARK: - Private Properties
     
     let eventHandler: Handler<ShowsEvent>?

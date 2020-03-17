@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="ABeeZee-Italic.ttf">
+            <string>ABeeZee-Italic</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="MDD-6S-SfO" customClass="SectionHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="407" height="52"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRg-Nl-khn">
+                    <rect key="frame" x="14" y="16" width="379" height="20"/>
+                    <fontDescription key="fontDescription" name="ABeeZee-Italic" family="ABeeZee" pointSize="17"/>
+                    <color key="textColor" name="sectionHeader"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" name="background"/>
+            <constraints>
+                <constraint firstItem="gRg-Nl-khn" firstAttribute="centerY" secondItem="MDD-6S-SfO" secondAttribute="centerY" id="39C-Sm-gyu"/>
+                <constraint firstItem="gRg-Nl-khn" firstAttribute="centerX" secondItem="MDD-6S-SfO" secondAttribute="centerX" id="b4v-3o-SwA"/>
+                <constraint firstItem="gRg-Nl-khn" firstAttribute="leading" secondItem="MDD-6S-SfO" secondAttribute="leading" constant="14" id="nhH-cY-Nzt"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="title" destination="gRg-Nl-khn" id="oww-TS-bvl"/>
+            </connections>
+            <point key="canvasLocation" x="-32.608695652173914" y="-170.75892857142856"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="background">
+            <color red="0.9570000171661377" green="0.96899998188018799" blue="0.99199998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sectionHeader">
+            <color red="0.50999999046325684" green="0.50999999046325684" blue="0.50999999046325684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

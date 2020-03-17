@@ -9,15 +9,15 @@
 import Foundation
  
 struct Genre: Codable, Hashable {
-    let id: Int?
-    let name: String?
+    let id: Int
+    let name: String
 }
 
 struct ProductionCompany: Codable, Hashable {
-    let name: String?
-    let id: Int?
-    let logoPath: String?
-    let originCountry: String?
+    let name: String
+    let id: Int
+    let logoPath: String
+    let originCountry: String
     
     enum CodingKeys: String, CodingKey {
         case name
@@ -28,8 +28,8 @@ struct ProductionCompany: Codable, Hashable {
 }
 
 struct ProductionCountry: Codable, Hashable {
-    let iso: String?
-    let name: String?
+    let iso: String
+    let name: String
     
     enum CodingKeys: String, CodingKey {
         case iso = "iso_3166_1"
@@ -38,8 +38,8 @@ struct ProductionCountry: Codable, Hashable {
 }
 
 struct SpokenLanguage: Codable, Hashable {
-    let iso: String?
-    let name: String?
+    let iso: String
+    let name: String
     
     enum CodingKeys: String, CodingKey {
            case iso = "iso_639_1"
@@ -48,30 +48,30 @@ struct SpokenLanguage: Codable, Hashable {
 }
 
 struct MovieDetailsModel: Codable, Hashable {
-    let adult: Bool?
-    let backDroppath: String?
-    let collection: Collection?
-    let budget: Int?
-    let genres: [Genre]?
-    let homepage: String?
-    let id: Int?
-    let imdbId: String?
-    let originalLanguage: String?
-    let originalTitle: String?
-    let overview: String?
-    let popularuty: Double?
-    let posterPath: String?
-    let companies: [ProductionCompany]?
-    let countries: [ProductionCountry]?
-    let releaseDate: String?
-    let revenue: Int?
-    let runtime: Int?
-    let languages: [SpokenLanguage]?
-    let status: String?
-    let tagline: String?
-    let title: String?
-    let voteAverage: Double?
-    let voteCount: Int?
+    let adult: Bool
+    let backDroppath: String
+    let collection: Collection
+    let budget: Int
+    let genres: [Genre]
+    let homepage: String
+    let id: Int
+    let imdbId: String
+    let originalLanguage: String
+    let originalTitle: String
+    let overview: String
+    let popularuty: Double
+    let posterPath: String
+    let companies: [ProductionCompany]
+    let countries: [ProductionCountry]
+    let releaseDate: String
+    let revenue: Int
+    let runtime: Int
+    let languages: [SpokenLanguage]
+    let status: String
+    let tagline: String
+    let title: String
+    let voteAverage: Double
+    let voteCount: Int
     
     enum CodingKeys: String, CodingKey {
        case adult

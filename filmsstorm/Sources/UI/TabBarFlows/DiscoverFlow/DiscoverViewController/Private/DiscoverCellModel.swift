@@ -36,14 +36,21 @@ struct DiscoverCellModel: ConfigureModel, Codable, Equatable, Hashable {
     
     static func create(_ model: MovieListResult) -> Self {
     
-        return .init(mediaType: .movie, id: model.id, name: model.title, voteAverage: model.voteAverage,
-                     overview: model.overview, releaseDate: model.releaseDate,
-                     posterPath: model.posterPath, backDropPath: model.backDropPath)
+        return .init(mediaType: .movie, id: model.id, name: model.title,
+                     voteAverage: model.voteAverage,
+                     overview: model.overview,
+                     releaseDate: model.releaseDate,
+                     posterPath: model.posterPath,
+                     backDropPath: model.backDropPath)
     }
     
     static func create(_ model: ShowListResult) -> Self {
        
-        return .init(mediaType: .tv, id: model.id, name: model.name, voteAverage: model.voteAverage,
-                     overview: model.overview, releaseDate: model.firstAirDate, posterPath: model.posterPath, backDropPath: model.backDropPath)
+        return .init(mediaType: .tv, id: model.id, name: model.name,
+                     voteAverage: model.voteAverage,
+                     overview: model.overview,
+                     releaseDate: model.firstAirDate,
+                     posterPath: model.posterPath,
+                     backDropPath: model.backDropPath)
     }
 }
