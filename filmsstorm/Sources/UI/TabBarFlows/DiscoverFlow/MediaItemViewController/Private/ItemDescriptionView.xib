@@ -13,6 +13,9 @@
         <array key="Abel-Regular.ttf">
             <string>Abel-Regular</string>
         </array>
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
         <array key="SourceSansPro-Bold.ttf">
             <string>SourceSansPro-Bold</string>
         </array>
@@ -27,8 +30,8 @@
                 <outlet property="genreLabel" destination="EM0-a5-WSJ" id="hUa-3f-G0o"/>
                 <outlet property="itemImage" destination="aav-gl-Ly2" id="rGz-aY-ck3"/>
                 <outlet property="itemName" destination="Bk2-aM-lmw" id="ih4-Zs-7bY"/>
-                <outlet property="likeButton" destination="Lkf-zH-3RZ" id="bDO-ZE-iWr"/>
-                <outlet property="listButton" destination="eFX-2i-d5l" id="IyO-6z-Tqe"/>
+                <outlet property="likeButton" destination="dQX-T5-9IU" id="Z4b-a0-bom"/>
+                <outlet property="listButton" destination="mdR-kL-w3w" id="A2Q-yb-yF7"/>
                 <outlet property="originalName" destination="329-f2-kQU" id="tdg-AQ-sSJ"/>
                 <outlet property="overviewContainer" destination="RRj-eA-UQH" id="bsL-bQ-3w8"/>
                 <outlet property="overviewLabel" destination="3jN-Vh-b1r" id="hdZ-K9-Dnc"/>
@@ -144,28 +147,52 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ylw-ho-ggQ" userLabel="buttons stack">
                                     <rect key="frame" x="0.0" y="174" width="248" height="37"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFX-2i-d5l" userLabel="Like">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sex-qg-2Cf" userLabel="FavView">
                                             <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zJv-qS-OWD">
+                                                    <rect key="frame" x="4.5" y="6" width="28.5" height="25.5"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="myList" translatesAutoresizingMaskIntoConstraints="NO" id="Kwj-fk-A3D">
+                                                            <rect key="frame" x="0.0" y="0.0" width="28.5" height="15.5"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="My List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Lz-uM-QzL">
+                                                            <rect key="frame" x="0.0" y="15.5" width="28.5" height="10"/>
+                                                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="8"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25.5" id="3rh-h0-OTg"/>
+                                                        <constraint firstAttribute="width" constant="28.5" id="sNV-fJ-Jq4"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdR-kL-w3w" userLabel="favButton">
+                                                    <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <action selector="onList:" destination="-1" eventType="touchUpInside" id="dDc-yA-wFn"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="37" id="FRW-oC-RVH"/>
-                                                <constraint firstAttribute="height" constant="37" id="kvM-9e-WDk"/>
+                                                <constraint firstItem="zJv-qS-OWD" firstAttribute="centerY" secondItem="Sex-qg-2Cf" secondAttribute="centerY" id="4Dl-N9-7FN"/>
+                                                <constraint firstItem="mdR-kL-w3w" firstAttribute="top" secondItem="Sex-qg-2Cf" secondAttribute="top" id="Fgn-Jl-LZz"/>
+                                                <constraint firstAttribute="width" constant="37" id="M0z-Zo-8wT"/>
+                                                <constraint firstItem="zJv-qS-OWD" firstAttribute="centerX" secondItem="Sex-qg-2Cf" secondAttribute="centerX" id="iCA-J0-aAn"/>
+                                                <constraint firstAttribute="trailing" secondItem="mdR-kL-w3w" secondAttribute="trailing" id="ioR-Fz-bZU"/>
+                                                <constraint firstItem="mdR-kL-w3w" firstAttribute="leading" secondItem="Sex-qg-2Cf" secondAttribute="leading" id="mqB-69-ohI"/>
+                                                <constraint firstAttribute="bottom" secondItem="mdR-kL-w3w" secondAttribute="bottom" id="sD5-RI-mum"/>
+                                                <constraint firstAttribute="height" constant="37" id="wSP-T9-071"/>
                                             </constraints>
-                                            <state key="normal" image="myList">
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="My List">
-                                                        <attributes>
-                                                            <color key="NSColor" red="0.022557218309859156" green="0.010838468309859154" blue="0.01485475352112676" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="8" name="Helvetica"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" minimumLineHeight="34" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO" headerLevel="4"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                            </state>
-                                            <connections>
-                                                <action selector="onList:" destination="-1" eventType="touchUpInside" id="Cbj-wL-qiZ"/>
-                                            </connections>
-                                        </button>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXz-3Q-5BV" userLabel="playView">
                                             <rect key="frame" x="77" y="0.0" width="94" height="37"/>
                                             <subviews>
@@ -219,32 +246,54 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lkf-zH-3RZ" userLabel="My List">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ss-1j-4dj" userLabel="LikeView">
                                             <rect key="frame" x="211" y="0.0" width="37" height="37"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="zSd-10-6gD">
+                                                    <rect key="frame" x="10.5" y="5.5" width="16.5" height="26"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="Coc-vw-xvt">
+                                                            <rect key="frame" x="0.0" y="0.0" width="16.5" height="15"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" name="primary"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hx-vG-3as" userLabel="LikeLabel">
+                                                            <rect key="frame" x="0.0" y="16" width="16.5" height="10"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="26" id="gv5-HO-aLW"/>
+                                                        <constraint firstAttribute="width" constant="16.5" id="nvl-Y7-BUN"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQX-T5-9IU" userLabel="likeButton">
+                                                    <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <action selector="onLike:" destination="-1" eventType="touchUpInside" id="Frp-oR-1qR"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="37" id="MYV-ow-6Yt"/>
-                                                <constraint firstAttribute="width" constant="37" id="RXQ-15-iud"/>
+                                                <constraint firstAttribute="trailing" secondItem="dQX-T5-9IU" secondAttribute="trailing" id="9Pw-8q-qfK"/>
+                                                <constraint firstItem="dQX-T5-9IU" firstAttribute="leading" secondItem="0Ss-1j-4dj" secondAttribute="leading" id="DFd-OL-BAQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="dQX-T5-9IU" secondAttribute="bottom" id="EEq-Zo-YM9"/>
+                                                <constraint firstItem="zSd-10-6gD" firstAttribute="centerX" secondItem="0Ss-1j-4dj" secondAttribute="centerX" id="Okg-Ep-iYX"/>
+                                                <constraint firstItem="zSd-10-6gD" firstAttribute="centerY" secondItem="0Ss-1j-4dj" secondAttribute="centerY" id="X6d-cf-dEj"/>
+                                                <constraint firstItem="dQX-T5-9IU" firstAttribute="top" secondItem="0Ss-1j-4dj" secondAttribute="top" id="mSh-V3-Xbb"/>
+                                                <constraint firstAttribute="width" constant="37" id="n3k-XZ-XW6"/>
+                                                <constraint firstAttribute="height" constant="37" id="uhE-gc-t57"/>
                                             </constraints>
-                                            <state key="normal" image="like">
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="Like">
-                                                        <attributes>
-                                                            <font key="NSFont" metaFont="system" size="8"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" minimumLineHeight="33" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                            </state>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="0.0"/>
+                                                    <real key="value" value="5"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="onLike:" destination="-1" eventType="touchUpInside" id="FHT-4q-Tnw"/>
-                                            </connections>
-                                        </button>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -329,6 +378,9 @@
         </namedColor>
         <namedColor name="playRed">
             <color red="0.9100000262260437" green="0.17299999296665192" blue="0.16500000655651093" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primary">
+            <color red="0.15299999713897705" green="0.15299999713897705" blue="0.45500001311302185" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
