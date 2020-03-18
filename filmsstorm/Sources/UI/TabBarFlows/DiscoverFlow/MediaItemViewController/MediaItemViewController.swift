@@ -47,6 +47,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     // MARK: - Life cycle
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
@@ -76,8 +77,12 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     }
     
     private func setDescriptionView() {
-       let model = self.presenter.itemModel
-        self.rootView?.descriptionView.fill(model: model)
+        F.Log(#function)
+        
+        let model = self.presenter.getItemDetails(self.presenter.itemModel)
+        guard let detail = model else { return }
+        
+        self.rootView?.descriptionView.fill(model: detail)
     }
     
     private func createLayout() -> UICollectionViewLayout {

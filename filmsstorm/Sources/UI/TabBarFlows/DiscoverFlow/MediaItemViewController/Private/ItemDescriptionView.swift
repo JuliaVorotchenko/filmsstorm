@@ -28,7 +28,7 @@ class ItemDescriptionView: NibDesignableImpl {
     
     // MARK: - Private properties
        
-    private var item: DiscoverCellModel?
+    private var item: MediaItemModel?
     
     
     // MARK: - Cell life cycle
@@ -40,14 +40,14 @@ class ItemDescriptionView: NibDesignableImpl {
 
     // MARK: - Methods
     
-    func fill(model: DiscoverCellModel) {
+    func fill(model: MediaItemModel) {
         self.item = model
-        self.itemImage.setImage(from: model.posterPath)
-        self.backgroundImage.setImage(from: model.backDropPath)
+        self.itemImage.setImage(from: model.poster)
+        self.backgroundImage.setImage(from: model.background)
         self.itemName.text = model.name
-        self.originalName.text = model.name
-        self.ratingLabel.text = String("\(model.voteAverage)")
-        self.yearLabel.text = "22.03.15"
+        self.originalName.text = model.originalName
+        self.ratingLabel.text = String("\(model.rating)")
+        self.yearLabel.text = model.releaseDate
         self.overviewLabel.text = model.overview
     }
     
