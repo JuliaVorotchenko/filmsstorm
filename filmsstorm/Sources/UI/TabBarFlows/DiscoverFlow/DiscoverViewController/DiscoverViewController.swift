@@ -99,6 +99,7 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
         }
     }
     
+    
     // MARK: - set diffableDatasource
     
     func createDataSource() {
@@ -128,6 +129,8 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = self.sections[indexPath.row]
-        self.presenter.onMedia(item: model)
+        self.presenter.getItemDetails(model)
+        guard let itemDetails = self.presenter.mediaIemModel else { return }
+        self.presenter.onMedia(item: model, itemDetails: itemDetails)
     }
 }

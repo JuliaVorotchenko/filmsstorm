@@ -52,10 +52,15 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         super.viewDidLoad()
         self.setupNavigationView()
         self.setCollectionView()
-        self.setDescriptionView()
+        self.setDetails()
     }
     
     // MARK: - Private methods
+    
+    private func setDetails() {
+        let details = self.presenter.itemDetails
+        self.rootView?.descriptionView.fill(model: details)
+    }
     
     private func setupNavigationView() {
         self.rootView?.navigationView?.actionHandler = { [weak self] in
@@ -74,15 +79,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         collectionView?.register(SectionHeaderView.self, forSupplementaryViewOfKind: self.elementKind,
                                  withReuseIdentifier: SectionHeaderView.reuseIdentifier)
         self.createDataSource()
-    }
-    
-    private func setDescriptionView() {
-        F.Log(#function)
-        
-        let model = self.presenter.getItemDetails(self.presenter.itemModel)
-        guard let detail = model else { return }
-        
-        self.rootView?.descriptionView.fill(model: detail)
     }
     
     private func createLayout() -> UICollectionViewLayout {

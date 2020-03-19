@@ -50,8 +50,8 @@ class DiscoverFlowCoordinator: Coordinator {
         switch event {
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
-        case .onMediaItem(let model):
-            self.createMediaItemViewController(from: model)
+        case .onMediaItem(let model, let itemDetails):
+            self.createMediaItemViewController(from: model, itemDetails: itemDetails)
         case .onHeaderEvent(let event):
             self.discoverHeaderEvents(event)
         }
@@ -79,7 +79,8 @@ class DiscoverFlowCoordinator: Coordinator {
     private func moviesEvent(_ event: MoviesEvent) {
         switch event {
         case .movie(let model):
-            self.createMediaItemViewController(from: model)
+            print("")
+           // self.createMediaItemViewController(from: model, itemDetails: <#MediaItemModel#>)
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
         case .back:
@@ -98,7 +99,8 @@ class DiscoverFlowCoordinator: Coordinator {
     private func showsEvent(_ event: ShowsEvent) {
         switch event {
         case .mediaItem(let model):
-            self.createMediaItemViewController(from: model)
+             print("")
+            //self.createMediaItemViewController(from: model, itemDetails: <#MediaItemModel#>)
         case .back:
             self.createDiscoverViewController()
         case .error(let errorMessage):
@@ -128,10 +130,11 @@ class DiscoverFlowCoordinator: Coordinator {
     
     // MARK: - Media Item VC
     
-    private func createMediaItemViewController(from model: DiscoverCellModel) {
+    private func createMediaItemViewController(from model: DiscoverCellModel, itemDetails: MediaItemModel) {
         let presenter = MediaItemPresenterImpl(networking: self.networking,
                                                event: self.mediaItemEvent,
-                                               itemModel: model)
+                                               itemModel: model,
+                                               itemDeails: itemDetails)
         let controller = MediaItemViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }

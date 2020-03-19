@@ -15,72 +15,34 @@ enum MediaItemEvent: EventProtocol {
 protocol MediaItemPresenter: Presenter {
     var showActivity: Handler<ActivityState>? { get set }
     var itemModel: DiscoverCellModel { get set }
-    var itemDetails: MediaItemModel? { get set }
+    var itemDetails: MediaItemModel { get set }
     func onBack()
     func getItemVideo(_ item: DiscoverCellModel?)
-    func getItemDetails(_ item: DiscoverCellModel?) -> MediaItemModel
     func getItemSimilars(_ item: DiscoverCellModel?)
 }
 
 class MediaItemPresenterImpl: MediaItemPresenter {
-    
-    
-    
+
     // MARK: - Private Properties
     
     let eventHandler: Handler<MediaItemEvent>?
     var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
     var itemModel: DiscoverCellModel
-    var itemDetails: MediaItemModel? = .none
+    var itemDetails: MediaItemModel
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: Handler<MediaItemEvent>?, itemModel: DiscoverCellModel) {
+    init(networking: NetworkManager, event: Handler<MediaItemEvent>?, itemModel: DiscoverCellModel, itemDeails: MediaItemModel) {
         self.networking = networking
         self.eventHandler = event
         self.itemModel = itemModel
+        self.itemDetails = itemDeails
     }
     
     // MARK: - Methods
     
-    func getItemDetails(_ item: DiscoverCellModel?) -> MediaItemModel {
-        print(#function)
-       
-        var itemDetail: MediaItemModel
-        switch item!.mediaType {
-            
-        case .movie:
-           
-            self.networking.getMovieDetails(with: item!) { result in
-                 
-                switch result {
-                case .success(let detailsModel):
-                    itemDetail = MediaItemModel.create(detailsModel)
-                    print("itemDet pres:", self.itemDetails)
-                    print("movie details model:", detailsModel.originalTitle as Any)
-                case .failure(let error):
-                    print("moviedetails error", error.stringDescription)
-                }
-            }
-            return itemDetail
-            
-        case .tv:
-            self.networking.getShowDetails(with: item!) { result in
-                switch result {
-                case .success(let detailsModel):
-                     itemDetail = MediaItemModel.create(detailsModel)
-                    print("itemDet pres:", self.itemDetails)
-                    print("show details model:", detailsModel.name as Any)
-                case .failure(let error):
-                    print("show error", error.stringDescription)
-                }
-            }
-             return itemDetail
-        }
-        
-        
-    }
+    
     
     func getItemSimilars(_ item: DiscoverCellModel?) {
         print(#function)
