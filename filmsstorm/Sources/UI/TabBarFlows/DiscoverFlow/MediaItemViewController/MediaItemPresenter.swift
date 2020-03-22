@@ -22,10 +22,13 @@ protocol MediaItemPresenter: Presenter {
     func onBack()
     func getItemVideo(_ item: DiscoverCellModel?)
     func getItemSimilars(_ item: DiscoverCellModel?)
-    func getItemDetails(_ item: DiscoverCellModel)
+    func getItemDetails(_ completion: ((MediaItemModel) -> Void)?)
 }
 
 class MediaItemPresenterImpl: MediaItemPresenter {
+    
+    
+   
     
     // MARK: - Private Properties
     
@@ -48,29 +51,25 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     
     // MARK: - Methods
     
-    func getItemDetails(_ item: DiscoverCellModel) {
+    func getItemDetails(_ completion: ((MediaItemModel) -> Void)?) {
         print(#function)
-        switch item.mediaType {
+        switch self.itemModel.mediaType {
         case .movie:
-            self.networking.getMovieDetails(with: item) { result in
+            self.networking.getMovieDetails(with: itemModel) { result in
                 
                 switch result {
                 case .success(let detailsModel):
-                    self.mediaItemDetails = MediaItemModel.create(detailsModel)
-                    print("media item details", self.mediaItemDetails?.name)
-                    
+                    completion?(MediaItemModel.create(detailsModel))
                 case .failure(let error):
                     print("moviedetails error", error.stringDescription)
                 }
             }
             
         case .tv:
-            self.networking.getShowDetails(with: item) { result in
+            self.networking.getShowDetails(with: itemModel) { result in
                 switch result {
                 case .success(let detailsModel):
-                    self.mediaItemDetails = MediaItemModel.create(detailsModel)
-                    print("media item details", self.mediaItemDetails?.name)
-                    
+                    completion?(MediaItemModel.create(detailsModel))
                 case .failure(let error):
                     print("show error", error.stringDescription)
                 }

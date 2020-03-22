@@ -9,11 +9,11 @@
 import Foundation
 
 struct Creator: Codable, Hashable {
-    let id: Int
-    let creditId: String
-    let name: String
-    let gender: Int
-    let profilePath: String
+    let id: Int?
+    let creditId: String?
+    let name: String?
+    let gender: Int?
+    let profilePath: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -24,18 +24,18 @@ struct Creator: Codable, Hashable {
     }
 }
 
-struct LastEpisodeToAir: Codable, Hashable {
-    let airDate: String
-    let episodeNumber: Int
-    let id: Int
-    let name: String
-    let overview: String
-    let productionCode: String
-    let seasonNumber: Int
-    let showId: Int
-    let stillPath: String
-    let voteAverage: Double
-    let voteCount: Int
+struct Episode: Codable, Hashable {
+    let airDate: String?
+    let episodeNumber: Int?
+    let id: Int?
+    let name: String?
+    let overview: String?
+    let productionCode: String?
+    let seasonNumber: Int?
+    let showId: Int?
+    let stillPath: String?
+    let voteAverage: Double?
+    let voteCount: Int?
     
     enum CodingKeys: String, CodingKey {
        case airDate = "air_date"
@@ -53,10 +53,10 @@ struct LastEpisodeToAir: Codable, Hashable {
 }
 
 struct Network: Codable, Hashable {
-    let name: String
-    let id: Int
-    let logoPath: String
-    let originCountry: String
+    let name: String?
+    let id: Int?
+    let logoPath: String?
+    let originCountry: String?
     
     enum CodingKeys: String, CodingKey {
         case name = "name"
@@ -67,13 +67,13 @@ struct Network: Codable, Hashable {
 }
 
 struct Season: Codable, Hashable {
-    let airDate: String
-    let episodeCount: Int
-    let id: Int
-    let name: String
-    let overview: String
-    let posterPath: String
-    let seasonNumber: Int
+    let airDate: String?
+    let episodeCount: Int?
+    let id: Int?
+    let name: String?
+    let overview: String?
+    let posterPath: String?
+    let seasonNumber: Int?
     
     enum CodingKeys: String, CodingKey {
        case airDate = "air_date"
@@ -87,34 +87,34 @@ struct Season: Codable, Hashable {
 }
 
 struct ShowDetailsModel: Codable, Hashable {
-    let backdropPath: String? = ""
-    let creator: [Creator]
-    let runTime: [Int]
+    let backdropPath: String
+    let creator: [Creator]?
+    let runTime: [Int]?
     let firstAirDate: String
     let genres: [Genre]
-    let homepage: String
+    let homepage: String?
     let id: Int
-    let inProduction: Bool
-    let languages: [String]
-    let lastAirDate: String
-    let lastEpisodeToAir: LastEpisodeToAir
+    let inProduction: Bool?
+    let languages: [String]?
+    let lastAirDate: String?
+    let lastEpisodeToAir: Episode?
     let name: String
-    let nextEpisodeToAir: String? = ""
-    let networks: [Network]
-    let episodesNumber: Int
-    let seasonsNumber: Int
-    let originCountry: [String]
-    let originalLanguage: String
+    let nextEpisodeToAir: Episode?
+    let networks: [Network]?
+    let episodesNumber: Int?
+    let seasonsNumber: Int?
+    let originCountry: [String]?
+    let originalLanguage: String?
     let originalName: String
     let overview: String
-    let popularity: Double
-    let posterPath: String? = ""
+    let popularity: Double?
+    let posterPath: String
     let companies: [ProducionCompany]
-    let seasons: [Season]
-    let status: String
-    let type: String
+    let seasons: [Season]?
+    let status: String?
+    let type: String?
     let voteAverage: Double
-    let voteCount: Int
+    let voteCount: Int?
     
     enum CodingKeys: String, CodingKey {
         case backdropPath = "backdrop_path"

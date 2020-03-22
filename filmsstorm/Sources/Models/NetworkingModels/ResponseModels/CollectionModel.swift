@@ -45,17 +45,14 @@ struct CollectionPart: Codable, Hashable {
 struct Collection: Codable, Hashable {
     let id: Int
     let name: String
-    let overview: String
     let posterPath: String? = nil
     let backdropPath: String
-    let parts: [CollectionPart]
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case name = "name"
-        case overview = "overview"
         case posterPath = "poster_path"
         case backdropPath = "backdrop_path"
-        case parts = "parts"
+       
     }
 }

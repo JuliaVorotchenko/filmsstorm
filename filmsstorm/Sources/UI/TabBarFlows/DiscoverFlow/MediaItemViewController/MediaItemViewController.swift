@@ -54,22 +54,19 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.setupNavigationView()
         self.setCollectionView()
         getItemDetails()
-        setViewDescription()
+        
     }
     
     // MARK: - Private methods
     
-    
-    
     private func getItemDetails() {
         let item = self.presenter.itemModel
-        self.presenter.getItemDetails(item)
+        self.presenter.getItemDetails { model in
+            print(model.originalName, model.genre)
+            self.rootView?.descriptionView.fill(model: model)
+        }
     }
     
-    func setViewDescription() {
-        let descr = self.presenter.mediaItemDetails
-        print("mediaitemVC", descr?.name, #function)
-    }
     
     private func setupNavigationView() {
         self.rootView?.navigationView?.actionHandler = { [weak self] in
