@@ -24,8 +24,8 @@ protocol MediaItem: Codable, Hashable {
 struct MediaItemModel: Codable, Equatable, Hashable {
     let mediaType: MediaType
     let id: Int
-    let poster: String
-    let background: String
+    let poster: String?
+    let background: String?
     let name: String
     let originalName: String
     let rating: Double
@@ -37,7 +37,7 @@ struct MediaItemModel: Codable, Equatable, Hashable {
     
         return .init(mediaType: .movie,
                      id: model.id,
-                     poster: model.posterPath!,
+                     poster: model.posterPath,
                      background: model.backdropPath,
                      name: model.title,
                      originalName: model.originalTitle,
@@ -50,8 +50,8 @@ struct MediaItemModel: Codable, Equatable, Hashable {
     static func create(_ model: ShowDetailsModel) -> Self {
         return .init(mediaType: .tv,
                      id: model.id,
-                     poster: model.posterPath!,
-                     background: model.backdropPath!,
+                     poster: model.posterPath,
+                     background: model.backdropPath,
                      name: model.name,
                      originalName: model.originalName,
                      rating: model.voteAverage,

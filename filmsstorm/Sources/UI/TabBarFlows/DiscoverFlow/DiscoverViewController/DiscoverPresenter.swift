@@ -11,29 +11,26 @@ import Foundation
 enum DiscoverEvent: EventProtocol {
     case error(AppError)
     case onHeaderEvent(DiscoverHeaderEvent)
-    case onMediaItem(DiscoverCellModel, MediaItemModel)
+    case onMediaItem(DiscoverCellModel)
     
 }
 
 protocol DiscoverPresenter: Presenter {
     var  showActivity: Handler<ActivityState>? { get set }
-    var mediaIemModel: MediaItemModel? { get set }
     func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?)
     func onMovies()
     func onShows()
     func onSearch()
-    func onMedia(item: DiscoverCellModel, itemDetails: MediaItemModel)
+    func onMedia(item: DiscoverCellModel)
     func addToFavourites(_ item: DiscoverCellModel?)
     func addToWatchList(_ item: DiscoverCellModel?)
-    func getItemDetails(_ item: DiscoverCellModel)
 }
 
 class DiscoverPresenterImpl: DiscoverPresenter {
-    
+  
     // MARK: - Private Properties
     let eventHandler: Handler<DiscoverEvent>?
     var showActivity: Handler<ActivityState>?
-    var mediaIemModel: MediaItemModel? = .none
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
@@ -83,41 +80,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
             }
         }
     }
-    
-    func getItemDetails(_ item: DiscoverCellModel) {
-        print(#function)
-        switch item.mediaType {
-            
-        case .movie:
-            
-            self.networking.getMovieDetails(with: item) { result in
-                
-                switch result {
-                case .success(let detailsModel):
-                    self.mediaIemModel = MediaItemModel.create(detailsModel)
-                    print("itemDet pres:", self.mediaIemModel)
-                    print("movie details model:", detailsModel.originalTitle as Any)
-                case .failure(let error):
-                    print("moviedetails error", error.stringDescription)
-                }
-            }
-            
-        case .tv:
-            self.networking.getShowDetails(with: item) { result in
-                switch result {
-                case .success(let detailsModel):
-                    self.mediaIemModel = MediaItemModel.create(detailsModel)
-                    print("itemDet pres:", self.mediaIemModel)
-                    print("show details model:", detailsModel.name as Any)
-                case .failure(let error):
-                    print("show error", error.stringDescription)
-                }
-            }
-        }
         
-        
-    }
-    
     // MARK: - Activity Movies
     
     func onMovies() {
@@ -132,7 +95,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
         self.eventHandler?(.onHeaderEvent(.onSearch))
     }
     
-    func onMedia(item: DiscoverCellModel, itemDetails: MediaItemModel) {
-         self.eventHandler?(.onMediaItem(item, itemDetails))
+    func onMedia(item: DiscoverCellModel) {
+         self.eventHandler?(.onMediaItem(item))
     }
 }

@@ -29,6 +29,8 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     private var sections = [DiscoverCellModel]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
     
+    var itemDetails: MediaItemModel?
+    
     // MARK: - Init and deinit
     
     deinit {
@@ -47,19 +49,26 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     // MARK: - Life cycle
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
         self.setCollectionView()
-        self.setDetails()
+        getItemDetails()
+        setViewDescription()
     }
     
     // MARK: - Private methods
     
-    private func setDetails() {
-        let details = self.presenter.itemDetails
-        self.rootView?.descriptionView.fill(model: details)
+    
+    
+    private func getItemDetails() {
+        let item = self.presenter.itemModel
+        self.presenter.getItemDetails(item)
+    }
+    
+    func setViewDescription() {
+        let descr = self.presenter.mediaItemDetails
+        print("mediaitemVC", descr?.name, #function)
     }
     
     private func setupNavigationView() {
@@ -104,8 +113,8 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         
-//        let sectionHeader = self.createHeaderSection()
-//        section.boundarySupplementaryItems = [sectionHeader]
+        //        let sectionHeader = self.createHeaderSection()
+        //        section.boundarySupplementaryItems = [sectionHeader]
         return section
     }
     
@@ -127,20 +136,20 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
             return imageCell
         }
         
-//        self.dataSource?.supplementaryViewProvider = { [weak self] (collectionView: UICollectionView,
-//            kind: String,
-//            indexPath: IndexPath) -> UICollectionReusableView? in
-//
-//            if kind == self?.elementKind {
-//                if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-//                                                                                    withReuseIdentifier: SectionHeaderView.reuseIdentifier,
-//                                                                                    for: indexPath) as? SectionHeaderView {
-//                    headerView.title.text = "Similars"
-//                  return headerView
-//                }
-//            }
-//
-//        }
+        //        self.dataSource?.supplementaryViewProvider = { [weak self] (collectionView: UICollectionView,
+        //            kind: String,
+        //            indexPath: IndexPath) -> UICollectionReusableView? in
+        //
+        //            if kind == self?.elementKind {
+        //                if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+        //                                                                                    withReuseIdentifier: SectionHeaderView.reuseIdentifier,
+        //                                                                                    for: indexPath) as? SectionHeaderView {
+        //                    headerView.title.text = "Similars"
+        //                  return headerView
+        //                }
+        //            }
+        //
+        //        }
         
         let snapshot = self.createSnapshot()
         self.dataSource?.apply(snapshot)
