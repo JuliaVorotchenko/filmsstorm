@@ -62,7 +62,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     private func getItemDetails() {
         let item = self.presenter.itemModel
         self.presenter.getItemDetails { model in
-            print(model.originalName, model.genre)
+            print("poster:", model.poster, "backgrond:", model.background)
             self.rootView?.descriptionView.fill(model: model)
         }
     }

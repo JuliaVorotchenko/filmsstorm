@@ -7,7 +7,7 @@
 //
 
 struct Genre: Codable, Hashable {
-    let id: Int
+    let id: Int?
     let name: String
     
     enum CodingKeys: String, CodingKey {
@@ -17,10 +17,10 @@ struct Genre: Codable, Hashable {
 }
 
 struct ProducionCompany: Codable, Hashable {
-    let id: Int
+    let id: Int?
     let logo: String? = ""
-    let name: String
-    let originCountry: String
+    let name: String?
+    let originCountry: String?
     
     enum CodingKeys: String, CodingKey {
        case name = "name"
@@ -31,8 +31,8 @@ struct ProducionCompany: Codable, Hashable {
 }
 
 struct ProductionCountry: Codable, Hashable {
-    let country: String
-    let name: String
+    let country: String?
+    let name: String?
     
     enum CodingKeys: String, CodingKey {
         case country = "iso_3166_1"
@@ -41,8 +41,8 @@ struct ProductionCountry: Codable, Hashable {
 }
 
 struct Language: Codable, Hashable {
-    let language: String
-    let name: String
+    let language: String?
+    let name: String?
     
     enum CodingKeys: String, CodingKey {
         case language = "iso_639_1"
@@ -51,10 +51,10 @@ struct Language: Codable, Hashable {
 }
 
 struct MovieDetailsModel: Codable, Hashable {
-    let adult: Bool
-    let backdropPath: String
+    let adult: Bool?
+    let backdropPath: String?
     let collection: Collection?
-    let budget: Int
+    let budget: Int?
     let genres: [Genre]
     let homepage: String?
     let id: Int
@@ -64,8 +64,8 @@ struct MovieDetailsModel: Codable, Hashable {
     let overview: String
     let popularity: Double?
     let posterPath: String
-    let productionCompanies: [ProducionCompany]
-    let producionCounries: [ProductionCountry]
+    let productionCompanies: [ProducionCompany]?
+    let producionCounries: [ProductionCountry]?
     let releaseDate: String
     let revenue: Int?
     let runtime: Int?
@@ -105,4 +105,3 @@ struct MovieDetailsModel: Codable, Hashable {
         case voteCount = "vote_count"
     }
 }
-

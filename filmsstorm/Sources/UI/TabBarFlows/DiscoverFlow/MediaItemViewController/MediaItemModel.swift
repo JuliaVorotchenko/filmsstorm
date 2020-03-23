@@ -25,7 +25,7 @@ struct MediaItemModel: Codable, Equatable, Hashable {
     let mediaType: MediaType
     let id: Int
     let poster: String?
-    let background: String?
+    let background: String
     let name: String
     let originalName: String
     let rating: Double
@@ -38,7 +38,7 @@ struct MediaItemModel: Codable, Equatable, Hashable {
         return .init(mediaType: .movie,
                      id: model.id,
                      poster: model.posterPath,
-                     background: model.backdropPath,
+                     background: model.backdropPath ?? model.posterPath,
                      name: model.title,
                      originalName: model.originalTitle,
                      rating: model.voteAverage,

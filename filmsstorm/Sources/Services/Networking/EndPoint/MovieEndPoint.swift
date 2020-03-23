@@ -97,7 +97,6 @@ extension APIEndPoint {
                 
             case .getUpcoming:
                 return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue,
-                                                                                Headers.region: Headers.ua,
                                                                                 "language": "uk"])
                 
             case .rateMovie(_, let rateValue):

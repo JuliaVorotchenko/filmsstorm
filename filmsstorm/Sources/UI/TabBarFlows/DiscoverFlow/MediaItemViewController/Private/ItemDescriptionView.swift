@@ -29,8 +29,7 @@ class ItemDescriptionView: NibDesignableImpl {
     // MARK: - Private properties
        
     private var item: MediaItemModel?
-    
-    
+        
     // MARK: - Cell life cycle
     
     override func awakeFromNib() {
@@ -46,6 +45,7 @@ class ItemDescriptionView: NibDesignableImpl {
         self.backgroundImage.setImage(from: model.background)
         self.itemName.text = model.name
         self.originalName.text = model.originalName
+        self.genreLabel.text = model.genre.map { $0.name }.prefix(2).joined(separator: ", ")
         self.ratingLabel.text = String("\(model.rating)")
         self.yearLabel.text = model.releaseDate
         self.overviewLabel.text = model.overview
@@ -59,7 +59,6 @@ class ItemDescriptionView: NibDesignableImpl {
         self.listButton.rounded(cornerRadius: 5)
         self.playButtonView.rounded(cornerRadius: 8)
         self.itemImage.rounded(cornerRadius: 5)
-        self.itemImage.addShadow(color: .white, opacity: 0.3)
     }
 
     // MARK: - IBActions

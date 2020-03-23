@@ -28,8 +28,8 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1SB-wH-aqu">
                     <rect key="frame" x="0.0" y="104" width="414" height="792"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vCe-7F-YCh">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="792"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="vCe-7F-YCh">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="795"/>
                             <subviews>
                                 <view contentMode="scaleToFill" id="qvD-th-Xsz" userLabel="descriptionView" customClass="ItemDescriptionView" customModule="filmsstorm" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="792"/>
@@ -38,7 +38,7 @@
                                     <viewLayoutGuide key="safeArea" id="wSs-8b-Ow8"/>
                                 </view>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" id="Nbi-Tz-j3d">
-                                    <rect key="frame" x="0.0" y="792" width="414" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="795" width="414" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" name="background"/>
                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bqq-Zn-c2l">
@@ -55,6 +55,7 @@
                             </subviews>
                         </stackView>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="vCe-7F-YCh" firstAttribute="bottom" secondItem="gqT-pJ-TEd" secondAttribute="bottom" id="7dN-mV-IaL"/>
                         <constraint firstItem="vCe-7F-YCh" firstAttribute="width" secondItem="8KB-Fy-uZK" secondAttribute="width" id="Chh-Bj-4Bb"/>
