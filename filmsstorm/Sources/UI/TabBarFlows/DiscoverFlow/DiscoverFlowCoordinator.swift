@@ -140,6 +140,8 @@ class DiscoverFlowCoordinator: Coordinator {
         switch event {
         case .back:
             self.navigationController.popViewController(animated: true)
+        case .error(let errorMessage):
+            self.eventHandler?(.appError(errorMessage))
         }
     }
 }

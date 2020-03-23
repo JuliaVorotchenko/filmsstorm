@@ -94,7 +94,7 @@ UICollectionViewDelegate {
         self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self ] collection, indexPath, item -> UICollectionViewCell? in
             
             let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
-            cell.fill(with: item, onAction: .init { self?.onCardEvent($0)})
+            cell.fill(with: item)
             return cell
         }
         let snapshot = self.createSnapshot()

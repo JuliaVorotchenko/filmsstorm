@@ -61,19 +61,30 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     private func getItemDetails() {
         let item = self.presenter.itemModel
-        self.presenter.getItemDetails { model in
-            print("poster:", model.poster, "backgrond:", model.background)
-            self.rootView?.descriptionView.fill(model: model)
+
+        self.presenter.getItemDetails { [weak self] model in
+            self?.rootView?.descriptionView.fill(detailsModel: model, requestModel: item, onAction: .init {
+                self?.onCardEvent($0)})
         }
     }
-    
-    
+
     private func setupNavigationView() {
         self.rootView?.navigationView?.actionHandler = { [weak self] in
             self?.presenter.onBack()
         }
         let item = self.presenter.itemModel
         self.rootView?.navigationView?.titleFill(with: item.name ?? "oops")
+    }
+    
+    private func onCardEvent(_ event: MovieCardEvent) {
+        switch event {
+        case .watchlist(let model):
+            self.presenter.addToWatchList(model)
+            F.Log("you added to watch list \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
+        case .favourites(let model):
+            self.presenter.addToFavourites(model)
+            F.Log("you added to favourites \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
+        }
     }
     
     private func setCollectionView() {

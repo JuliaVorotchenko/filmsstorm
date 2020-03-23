@@ -8,6 +8,25 @@
 
 import UIKit
 
+enum MovieCardEvent: Equatable {
+    case watchlist(DiscoverCellModel?)
+    case favourites(DiscoverCellModel?)
+}
+
+struct MovieCardEventModel {
+    let action: ((MovieCardEvent) -> Void)
+}
+
+struct ActionModel<Model: Equatable>: Hashable, Equatable {
+    let action: Handler<Model>?
+    
+    func hash(into hasher: inout Hasher) { }
+    
+    static func == (lhs: ActionModel<Model>, rhs: ActionModel<Model>) -> Bool {
+        return true
+    }
+}
+
 class ItemDescriptionView: NibDesignableImpl {
     
     // MARK: - IBOutlets
@@ -28,7 +47,9 @@ class ItemDescriptionView: NibDesignableImpl {
     
     // MARK: - Private properties
        
-    private var item: MediaItemModel?
+    private var itemDetails: MediaItemModel?
+    private var item: DiscoverCellModel?
+    private var actionHandler: Handler<MovieCardEvent>?
         
     // MARK: - Cell life cycle
     
@@ -36,19 +57,22 @@ class ItemDescriptionView: NibDesignableImpl {
         super.awakeFromNib()
         self.setupUI()
     }
-
+    
     // MARK: - Methods
     
-    func fill(model: MediaItemModel) {
-        self.item = model
-        self.itemImage.setImage(from: model.poster)
-        self.backgroundImage.setImage(from: model.background)
-        self.itemName.text = model.name
-        self.originalName.text = model.originalName
-        self.genreLabel.text = model.genre.map { $0.name }.prefix(2).joined(separator: ", ")
-        self.ratingLabel.text = String("\(model.rating)")
-        self.yearLabel.text = model.releaseDate
-        self.overviewLabel.text = model.overview
+    func fill(detailsModel: MediaItemModel, requestModel: DiscoverCellModel?, onAction: ActionModel<MovieCardEvent>?) {
+         self.actionHandler = onAction?.action
+        self.item = requestModel
+        
+        self.itemDetails = detailsModel
+        self.itemImage.setImage(from: detailsModel.poster)
+        self.backgroundImage.setImage(from: detailsModel.background)
+        self.itemName.text = detailsModel.name
+        self.originalName.text = detailsModel.originalName
+        self.genreLabel.text = detailsModel.genre.map { $0.name }.prefix(2).joined(separator: ", ")
+        self.ratingLabel.text = String("\(detailsModel.rating)")
+        self.yearLabel.text = detailsModel.releaseDate
+        self.overviewLabel.text = detailsModel.overview
     }
     
     func setupUI() {
@@ -64,9 +88,11 @@ class ItemDescriptionView: NibDesignableImpl {
     // MARK: - IBActions
     
     @IBAction func onList(_ sender: UIButton) {
+         self.actionHandler?(.watchlist(self.item))
     }
     @IBAction func onPlay(_ sender: UIButton) {
     }
     @IBAction func onLike(_ sender: UIButton) {
+          self.actionHandler?(.favourites(self.item))
     }
 }

@@ -49,11 +49,11 @@
                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7P-ls-7Ci" userLabel="descrView">
                     <rect key="frame" x="0.0" y="0.0" width="445" height="248"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tmdbLogo" translatesAutoresizingMaskIntoConstraints="NO" id="tjA-Hg-1uX" userLabel="backgroundImage">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tjA-Hg-1uX" userLabel="backgroundImage">
                             <rect key="frame" x="0.0" y="0.0" width="445" height="248"/>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.grid.3x3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aav-gl-Ly2" userLabel="itemImage">
-                            <rect key="frame" x="18" y="17.5" width="150" height="198.5"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aav-gl-Ly2" userLabel="itemImage">
+                            <rect key="frame" x="18" y="17" width="150" height="200"/>
                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="150" id="ftt-lN-dZ2"/>
@@ -66,13 +66,13 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cnD-bZ-x72" userLabel="namesStck">
                                     <rect key="frame" x="0.0" y="0.0" width="247" height="35.5"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Film name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bk2-aM-lmw">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Film name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bk2-aM-lmw">
                                             <rect key="frame" x="0.0" y="0.0" width="247" height="19"/>
                                             <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Original film name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="329-f2-kQU">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Original film name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="329-f2-kQU">
                                             <rect key="frame" x="0.0" y="19" width="247" height="16.5"/>
                                             <fontDescription key="fontDescription" name="ABeeZee-Italic" family="ABeeZee" pointSize="14"/>
                                             <nil key="textColor"/>
@@ -83,8 +83,8 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="PmI-Yc-AMv" userLabel="descriptStack">
                                     <rect key="frame" x="10" y="43.5" width="227" height="57"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="l5z-bp-Pgb" userLabel="genre stack">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="13"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="l5z-bp-Pgb" userLabel="genre stack">
+                                            <rect key="frame" x="0.0" y="0.0" width="125" height="13"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre:" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Smw-mG-Ov5" userLabel="genrelabel">
                                                     <rect key="frame" x="0.0" y="0.0" width="60.5" height="13"/>
@@ -94,8 +94,8 @@
                                                     <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comedy" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EM0-a5-WSJ">
-                                                    <rect key="frame" x="67.5" y="0.0" width="60.5" height="13"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comedy" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EM0-a5-WSJ">
+                                                    <rect key="frame" x="64.5" y="0.0" width="60.5" height="13"/>
                                                     <fontDescription key="fontDescription" name="ABeeZee-Italic" family="ABeeZee" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -121,8 +121,8 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" id="wNI-eA-mFz" userLabel="ratig stack">
-                                            <rect key="frame" x="0.0" y="38" width="85.5" height="19"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" id="wNI-eA-mFz" userLabel="ratig stack">
+                                            <rect key="frame" x="0.0" y="38" width="77.5" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cnb-QR-qXh" userLabel="rating">
@@ -132,7 +132,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BEc-ap-cmx">
-                                                    <rect key="frame" x="63" y="0.0" width="22.5" height="19"/>
+                                                    <rect key="frame" x="55" y="0.0" width="22.5" height="19"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="ABeeZee-Italic" family="ABeeZee" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -367,11 +367,9 @@
         </view>
     </objects>
     <resources>
-        <image name="circle.grid.3x3.fill" catalog="system" width="64" height="56"/>
         <image name="like" width="15" height="15"/>
         <image name="myList" width="15.5" height="11"/>
         <image name="play" width="12.5" height="13"/>
-        <image name="tmdbLogo" width="104" height="113"/>
         <namedColor name="background">
             <color red="0.9570000171661377" green="0.96899998188018799" blue="0.99199998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

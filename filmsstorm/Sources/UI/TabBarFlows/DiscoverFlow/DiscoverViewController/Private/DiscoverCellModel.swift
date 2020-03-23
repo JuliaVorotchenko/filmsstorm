@@ -20,8 +20,8 @@ protocol ConfigureModel {
 }
 
 enum MediaType: String, Codable {
-    case movie = "movie_id"
-    case tv = "tv_id"
+    case movie
+    case tv
 }
 
 struct DiscoverCellModel: ConfigureModel, Codable, Equatable, Hashable {

@@ -22,8 +22,6 @@ protocol DiscoverPresenter: Presenter {
     func onShows()
     func onSearch()
     func onMedia(item: DiscoverCellModel)
-    func addToFavourites(_ item: DiscoverCellModel?)
-    func addToWatchList(_ item: DiscoverCellModel?)
 }
 
 class DiscoverPresenterImpl: DiscoverPresenter {
@@ -53,34 +51,6 @@ class DiscoverPresenterImpl: DiscoverPresenter {
         }
     }
     
-    func addToFavourites(_ item: DiscoverCellModel?) {
-        guard let item = item else { return }
-        let model = AddFavouritesRequestModel(mediaType: item.mediaType.rawValue, mediaID: item.id, isFavourite: true)
-        self.networking.addToFavourites(with: model) { result in
-            switch result {
-            case .success(let response):
-                print(response.statusMessage)
-            case .failure(let error):
-                print(error.stringDescription)
-                
-            }
-        }
-    }
-    
-    func addToWatchList(_ item: DiscoverCellModel?) {
-        
-        guard let item = item else { return }
-        let model = AddWatchListRequestModel(mediaType: item.mediaType.rawValue, mediaID: item.id, toWatchList: true)
-        self.networking.addToWatchlist(with: model) { result in
-            switch result {
-            case .success(let response):
-                print(response.statusMessage)
-            case .failure(let error):
-                print(error.stringDescription)
-            }
-        }
-    }
-        
     // MARK: - Activity Movies
     
     func onMovies() {

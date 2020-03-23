@@ -9,20 +9,20 @@
 import Foundation
 
 struct CollectionPart: Codable, Hashable {
-    let adult: Bool
+    let adult: Bool?
     let backdropPath: String?
-    let genres: [Int]
-    let id: Int
-    let language: String
-    let originalTitle: String
-    let overview: String
-    let releaseDate: String
-    let posterPath: String
-    let popularity: Double
-    let title: String
-    let video: Bool
-    let voteAverage: Double
-    let voteCount: Int
+    let genres: [Int]?
+    let id: Int?
+    let language: String?
+    let originalTitle: String?
+    let overview: String?
+    let releaseDate: String?
+    let posterPath: String?
+    let popularity: Double?
+    let title: String?
+    let video: Bool?
+    let voteAverage: Double?
+    let voteCount: Int?
     
     enum CodingKeys: String, CodingKey {
         case adult = "adult"
@@ -43,10 +43,10 @@ struct CollectionPart: Codable, Hashable {
 }
 
 struct Collection: Codable, Hashable {
-    let id: Int
-    let name: String
-    let posterPath: String? = nil
-    let backdropPath: String
+    let id: Int?
+    let name: String?
+    let posterPath: String?
+    let backdropPath: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"

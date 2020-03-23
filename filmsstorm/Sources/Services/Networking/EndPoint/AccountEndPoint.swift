@@ -89,16 +89,18 @@ extension APIEndPoint {
             case .getAccountDetails(let sessionID),
                  .getFavouriteMovies(let sessionID),
                  .getFavouriteTVShows(let sessionID):
-                return .requestParameters(bodyParameters: nil, urlParameters: ["session_id": sessionID,
+                return .requestParameters(bodyParameters: nil, urlParameters: [Headers.sessionID: sessionID,
                                                                                Headers.apiKey: Headers.apiKeyValue])
             case .addToFavourites(let sessionID, let model):
                 return .requestParamAndHeaders(model: model,
-                                               urlParameters:  [Headers.apiKey: Headers.apiKeyValue, "session_id": sessionID],
+                                               urlParameters:  [Headers.apiKey: Headers.apiKeyValue,
+                                                                Headers.sessionID: sessionID],
                                                additionHeaders:  [Headers.contentType: Headers.contentTypeValue])
                 
             case .addToWatchList(let sessionID, let model):
                 return .requestParamAndHeaders(model: model,
-                                               urlParameters:  [Headers.apiKey: Headers.apiKeyValue, "session_id": sessionID],
+                                               urlParameters:  [Headers.apiKey: Headers.apiKeyValue,
+                                                                Headers.sessionID: sessionID],
                                                additionHeaders:  [Headers.contentType: Headers.contentTypeValue])
             }
         }

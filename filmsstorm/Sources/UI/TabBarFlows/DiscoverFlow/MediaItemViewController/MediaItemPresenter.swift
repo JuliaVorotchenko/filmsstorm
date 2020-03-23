@@ -10,6 +10,7 @@ import Foundation
 
 enum MediaItemEvent: EventProtocol {
     case back
+    case error(AppError)
 }
 
 protocol MediaItemPresenter: Presenter {
@@ -23,12 +24,11 @@ protocol MediaItemPresenter: Presenter {
     func getItemVideo(_ item: DiscoverCellModel?)
     func getItemSimilars(_ item: DiscoverCellModel?)
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?)
+    func addToFavourites(_ item: DiscoverCellModel?)
+    func addToWatchList(_ item: DiscoverCellModel?)
 }
 
 class MediaItemPresenterImpl: MediaItemPresenter {
-    
-    
-   
     
     // MARK: - Private Properties
     
@@ -49,10 +49,9 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         self.itemModel = itemModel
     }
     
-    // MARK: - Methods
+    // MARK: - Networking Methods
     
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?) {
-        print(#function)
         switch self.itemModel.mediaType {
         case .movie:
             self.networking.getMovieDetails(with: itemModel) { result in
@@ -61,7 +60,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                 case .success(let detailsModel):
                     completion?(MediaItemModel.create(detailsModel))
                 case .failure(let error):
-                    print("moviedetails error", error.stringDescription)
+                    self.eventHandler?(.error(.networkingError(error)))
                 }
             }
             
@@ -71,7 +70,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                 case .success(let detailsModel):
                     completion?(MediaItemModel.create(detailsModel))
                 case .failure(let error):
-                    print("show error", error.stringDescription)
+                    self.eventHandler?(.error(.networkingError(error)))
                 }
             }
         }
@@ -112,12 +111,13 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         switch item.mediaType {
             
         case .movie:
-            self.networking.getMovieVideos(with: item) { result in
+            self.networking.getMovieVideos(with: item) { [weak self] result in
                 switch result {
                 case .success(let videoModel):
                     print("video movie result:", videoModel.results[0].name)
                 case .failure(let error):
                     print("video movie result:", error.stringDescription)
+                    self?.eventHandler?(.error(.networkingError(error)))
                 }
             }
             
@@ -128,10 +128,49 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                     print("show movie result:", videoModel.results[0].name)
                 case .failure(let error):
                     print("show movie result:", error.stringDescription)
+                    self.eventHandler?(.error(.networkingError(error)))
                 }
             }
         }
     }
+    
+    func addToFavourites(_ item: DiscoverCellModel?) {
+        print(#function)
+        guard let item = item else { return }
+        let model = AddFavouritesRequestModel(mediaType: item.mediaType.rawValue,
+                                              mediaID: item.id,
+                                              isFavourite: true)
+        print("request model", model)
+        self.networking.addToFavourites(with: model) { result in
+            switch result {
+            case .success(let response):
+                print("liked", response.statusMessage)
+            case .failure(let error):
+                print(error.stringDescription)
+                self.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+    }
+    
+    func addToWatchList(_ item: DiscoverCellModel?) {
+        print(#function)
+        guard let item = item else { return }
+        let model = AddWatchListRequestModel(mediaType: item.mediaType.rawValue,
+                                             mediaID: item.id,
+                                             toWatchList: true)
+        print("request model", model)
+        self.networking.addToWatchlist(with: model) { result in
+            switch result {
+            case .success(let response):
+                print("added watchlist", response.statusMessage)
+            case .failure(let error):
+                print(error.stringDescription)
+                self.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+    }
+    
+    // MARK: - Event Methods
     
     func onBack() {
         self.eventHandler?(.back)

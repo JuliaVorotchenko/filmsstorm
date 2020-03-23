@@ -73,7 +73,8 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     }
     
     private func setupHeader() {
-        let model = DiscoverHeaderModel(movieButton: Constants.movieTitle, showsButton: Constants.showsTitle ) { [weak self] in self?.onHeaderEvents($0) }
+        let model = DiscoverHeaderModel(movieButton: Constants.movieTitle, showsButton: Constants.showsTitle ) { [weak self] in
+            self?.onHeaderEvents($0) }
         self.rootView?.headerView.fill(with: model)
     }
     
@@ -87,28 +88,20 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
             self.presenter.onMovies()
         }
     }
-    
-    private func onCardEvent(_ event: MovieCardEvent) {
-        switch event {
-        case .watchlist(let model):
-            self.presenter.addToWatchList(model)
-            F.Log("you added to watch list \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
-        case .favourites(let model):
-            self.presenter.addToFavourites(model)
-            F.Log("you added to favourites \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
-        }
-    }
-    
+
     // MARK: - set diffableDatasource
     
     func createDataSource() {
         
         guard let collectionView = self.rootView?.collectionView else { return }
         
-        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self ] collection, indexPath, item -> UICollectionViewCell? in
+        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self]
+            collection,
+            indexPath,
+            item -> UICollectionViewCell? in
             
             let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
-            cell.fill(with: item, onAction: .init { self?.onCardEvent($0)})
+            cell.fill(with: item)
             return cell
         }
         let snapshot = self.createSnapshot()

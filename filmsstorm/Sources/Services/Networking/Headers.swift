@@ -15,4 +15,6 @@ struct  Headers {
     static let apiKeyValue = KeysManager.retreieveKeys().apiKey
     static let region = "region"
     static let ua = "ua"
+    static let sessionID = "session_id"
+    
 }
