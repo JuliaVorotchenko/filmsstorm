@@ -38,19 +38,20 @@ class ItemDescriptionView: NibDesignableImpl {
     @IBOutlet var genreLabel: UILabel!
     @IBOutlet var yearLabel: UILabel!
     @IBOutlet var ratingLabel: UILabel!
-    @IBOutlet var likeButton: UIButton!
-    @IBOutlet var listButton: UIButton!
-    @IBOutlet var playButton: UIButton!
+    @IBOutlet var likeButton: AnimatedButton!
+    @IBOutlet var listButton: AnimatedButton!
+    @IBOutlet var playButton: AnimatedButton!
     @IBOutlet var playButtonView: UIView!
     @IBOutlet var overviewLabel: UILabel!
     @IBOutlet var overviewContainer: UIView!
     
     // MARK: - Private properties
-       
+    
     private var itemDetails: MediaItemModel?
     private var item: DiscoverCellModel?
     private var actionHandler: Handler<MovieCardEvent>?
-        
+    private var isTapped: Bool = false
+    
     // MARK: - Cell life cycle
     
     override func awakeFromNib() {
@@ -61,7 +62,7 @@ class ItemDescriptionView: NibDesignableImpl {
     // MARK: - Methods
     
     func fill(detailsModel: MediaItemModel, requestModel: DiscoverCellModel?, onAction: ActionModel<MovieCardEvent>?) {
-         self.actionHandler = onAction?.action
+        self.actionHandler = onAction?.action
         self.item = requestModel
         
         self.itemDetails = detailsModel
@@ -84,15 +85,34 @@ class ItemDescriptionView: NibDesignableImpl {
         self.playButtonView.rounded(cornerRadius: 8)
         self.itemImage.rounded(cornerRadius: 5)
     }
-
+    
     // MARK: - IBActions
     
     @IBAction func onList(_ sender: UIButton) {
-         self.actionHandler?(.watchlist(self.item))
+        self.isTapped = !self.isTapped
+        if self.isTapped {
+            self.listButton.setImage(UIImage(named: "watchlisted"), for: .normal)
+            self.listButton.likeBounce(0.5)
+        } else {
+            self.listButton.setImage(UIImage(named: "watchlist"), for: .normal)
+            self.listButton.unLikeBounce(0.3)
+        }
+        self.actionHandler?(.watchlist(self.item))
     }
+    
     @IBAction func onPlay(_ sender: UIButton) {
     }
+    
     @IBAction func onLike(_ sender: UIButton) {
-          self.actionHandler?(.favourites(self.item))
+        self.isTapped = !self.isTapped
+        if self.isTapped {
+            self.likeButton.setImage(UIImage(named: "liked"), for: .normal)
+            self.likeButton.likeBounce(0.5)
+        } else {
+            self.likeButton.unLikeBounce(0.3)
+            self.likeButton.setImage(UIImage(named: "like"), for: .normal)
+        }
+        
+        self.actionHandler?(.favourites(self.item))
     }
 }

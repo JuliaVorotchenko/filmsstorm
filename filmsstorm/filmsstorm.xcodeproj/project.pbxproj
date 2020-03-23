@@ -141,6 +141,8 @@
 		CD51B26323F47DF100E3C924 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51B26223F47DF100E3C924 /* UITableView+Extensions.swift */; };
 		CD536EF723E36034000FEE79 /* DiscoverFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD536EF623E36034000FEE79 /* DiscoverFlowCoordinator.swift */; };
 		CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD53CDB723D631C000E16E2E /* ActivityView.swift */; };
+		CD6C24ED24296A04009E4B84 /* AnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C24EC24296A04009E4B84 /* AnimatedView.swift */; };
+		CD6C24EF24296A22009E4B84 /* AnimatedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C24EE24296A22009E4B84 /* AnimatedButton.swift */; };
 		CD7C8D382420DE95005F14BB /* SectionHeeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7C8D372420DE95005F14BB /* SectionHeeaderView.xib */; };
 		CD7C8D3A2420F3A9005F14BB /* MediaItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C8D392420F3A9005F14BB /* MediaItemModel.swift */; };
 		CD7E748623D8F3450097F198 /* AppEventSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E748523D8F3450097F198 /* AppEventSource.swift */; };
@@ -340,6 +342,8 @@
 		CD51B26223F47DF100E3C924 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		CD536EF623E36034000FEE79 /* DiscoverFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverFlowCoordinator.swift; sourceTree = "<group>"; };
 		CD53CDB723D631C000E16E2E /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		CD6C24EC24296A04009E4B84 /* AnimatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedView.swift; sourceTree = "<group>"; };
+		CD6C24EE24296A22009E4B84 /* AnimatedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedButton.swift; sourceTree = "<group>"; };
 		CD7C8D372420DE95005F14BB /* SectionHeeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeeaderView.xib; sourceTree = "<group>"; };
 		CD7C8D392420F3A9005F14BB /* MediaItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemModel.swift; sourceTree = "<group>"; };
 		CD7E748523D8F3450097F198 /* AppEventSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEventSource.swift; sourceTree = "<group>"; };
@@ -888,6 +892,15 @@
 			path = ActivityView;
 			sourceTree = "<group>";
 		};
+		CD6C24EB242969E6009E4B84 /* ButtonAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				CD6C24EC24296A04009E4B84 /* AnimatedView.swift */,
+				CD6C24EE24296A22009E4B84 /* AnimatedButton.swift */,
+			);
+			path = ButtonAnimation;
+			sourceTree = "<group>";
+		};
 		CD7E748423D8F3230097F198 /* AppErrorPresentable */ = {
 			isa = PBXGroup;
 			children = (
@@ -916,6 +929,7 @@
 		CD7E748C23D8F67E0097F198 /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
+				CD6C24EB242969E6009E4B84 /* ButtonAnimation */,
 				CD4AE3B4240E77EC00ACC0E3 /* NavigationView */,
 				CDD5914623FDD3BC00DBA664 /* NibDesignable */,
 				CD53CDB623D6319900E16E2E /* ActivityView */,
@@ -1405,6 +1419,7 @@
 				CDB2A388240450DD00D27A9B /* ItemsViewController.swift in Sources */,
 				2E289CE223E8DFCA001917DB /* AuthEndPoint.swift in Sources */,
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
+				CD6C24ED24296A04009E4B84 /* AnimatedView.swift in Sources */,
 				2E289C9E23E8DEBD001917DB /* UIViewController+Extensions.swift in Sources */,
 				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
 				CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */,
@@ -1425,6 +1440,7 @@
 				CD4C703E23F2CCB40057FE82 /* AvatarViewCell.swift in Sources */,
 				CD38EFE4240EFBF400F93536 /* UIView+BackgroundGradient.swift in Sources */,
 				CD7E748623D8F3450097F198 /* AppEventSource.swift in Sources */,
+				CD6C24EF24296A22009E4B84 /* AnimatedButton.swift in Sources */,
 				2E289CE723E8DFCA001917DB /* TVEndPoint.swift in Sources */,
 				2E289CDC23E8DFCA001917DB /* NetworkError.swift in Sources */,
 				CDC2F5362411972C00AB7B72 /* Presenter.swift in Sources */,
