@@ -50,7 +50,8 @@ class ItemDescriptionView: NibDesignableImpl {
     private var itemDetails: MediaItemModel?
     private var item: DiscoverCellModel?
     private var actionHandler: Handler<MovieCardEvent>?
-    private var isTapped: Bool = false
+    private var likeIsTapped: Bool = false
+    private var listIsTapped: Bool = false
     
     // MARK: - Cell life cycle
     
@@ -89,14 +90,15 @@ class ItemDescriptionView: NibDesignableImpl {
     // MARK: - IBActions
     
     @IBAction func onList(_ sender: UIButton) {
-        self.isTapped = !self.isTapped
-        if self.isTapped {
+        self.listIsTapped = !self.listIsTapped
+        if self.listIsTapped {
             self.listButton.setImage(UIImage(named: "watchlisted"), for: .normal)
             self.listButton.likeBounce(0.5)
         } else {
             self.listButton.setImage(UIImage(named: "watchlist"), for: .normal)
             self.listButton.unLikeBounce(0.3)
         }
+        
         self.actionHandler?(.watchlist(self.item))
     }
     
@@ -104,8 +106,8 @@ class ItemDescriptionView: NibDesignableImpl {
     }
     
     @IBAction func onLike(_ sender: UIButton) {
-        self.isTapped = !self.isTapped
-        if self.isTapped {
+        self.likeIsTapped = !self.likeIsTapped
+        if self.likeIsTapped {
             self.likeButton.setImage(UIImage(named: "liked"), for: .normal)
             self.likeButton.likeBounce(0.5)
         } else {
