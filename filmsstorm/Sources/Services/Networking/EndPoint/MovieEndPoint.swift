@@ -10,6 +10,7 @@ import Foundation
 
 extension APIEndPoint {
     enum MovieEndPoint: EndPointType {
+        case getMovieCredits(model: DiscoverCellModel)
         case getMovieDetails(model: DiscoverCellModel)
         case getMovieImages(movieID: Int)
         case getMovieVideos(model: DiscoverCellModel)
@@ -25,6 +26,8 @@ extension APIEndPoint {
         
         var path: String {
             switch self {
+            case .getMovieCredits(let model):
+                return "/movie/\(String(describing: model.id))/credits"
             case .getMovieDetails(let model):
                 return "/movie/\(String(describing: model.id))"
             case .getMovieImages(let movieID):
@@ -55,6 +58,7 @@ extension APIEndPoint {
         var httpMethod: HTTPMethod {
             switch self {
             case
+            .getMovieCredits,
             .getMovieDetails,
             .getMovieImages,
             .getMovieVideos,
@@ -90,10 +94,12 @@ extension APIEndPoint {
                 return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue])
                 
             case
+            .getMovieCredits(let model),
             .getMovieDetails(let model),
             .getMovieSimilars(let model),
             .getMovieVideos(let model):
-                return .requestParameters(bodyParameters: nil, urlParameters: [Headers.apiKey: Headers.apiKeyValue])
+                return .requestParameters(bodyParameters: nil, urlParameters: [Headers.apiKey: Headers.apiKeyValue,
+                                                                               Headers.movieId: model.id])
                 
             case .getUpcoming:
                 return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue,

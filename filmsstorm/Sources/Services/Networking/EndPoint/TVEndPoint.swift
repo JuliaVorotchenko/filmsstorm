@@ -9,6 +9,7 @@
 import Foundation
 extension APIEndPoint {
     enum TVEndPoint: EndPointType {
+        case getTVShowCredits(model: DiscoverCellModel)
         case getTVShowDetails(model: DiscoverCellModel)
         case getTVShowImages(tvID: Int)
         case getTVShowSimilar(model: DiscoverCellModel)
@@ -31,6 +32,8 @@ extension APIEndPoint {
         
         var path: String {
             switch self {
+            case .getTVShowCredits(let model):
+                return "/tv/\(String(describing: model.id))/credits"
             case .getTVShowDetails(let model):
                 return "/tv/\(String(describing: model.id))"
             case .getTVShowImages(let tvID):
@@ -57,6 +60,7 @@ extension APIEndPoint {
         var httpMethod: HTTPMethod {
             switch self {
             case
+            .getTVShowCredits,
             .getTVShowDetails,
             .getTVShowImages,
             .getTVShowSimilar,
@@ -86,11 +90,12 @@ extension APIEndPoint {
                 return .requestParameters(bodyParameters: nil, urlParameters: [Headers.apiKey: Headers.apiKeyValue])
                 
             case
+            .getTVShowCredits(let model),
             .getTVShowDetails(let model),
             .getTVShowSimilar(let model),
             .getTVShowVideos(let model):
                 return .requestParameters(bodyParameters: nil, urlParameters: [Headers.apiKey: Headers.apiKeyValue,
-                                                                               "tv_id": model.id])
+                                                                               Headers.tvId: model.id])
             case
             .deleteTVShowRating:
                 return .requestParametersAndHeaders(bodyParameters: nil,

@@ -11,7 +11,7 @@ import Foundation
 protocol MediaItem: Codable, Hashable {
     var mediaType: MediaType { get }
       var id: Int { get }
-      var poster: String { get }
+      var poster: String? { get }
       var background: String { get }
       var name: String { get }
       var originalName: String { get }
@@ -21,7 +21,7 @@ protocol MediaItem: Codable, Hashable {
       var overview: String { get }
 }
 
-struct MediaItemModel: Codable, Equatable, Hashable {
+struct MediaItemModel: MediaItem, Codable, Equatable, Hashable {
     let mediaType: MediaType
     let id: Int
     let poster: String?

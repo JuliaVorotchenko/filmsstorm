@@ -50,7 +50,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     }
     
     // MARK: - Private Methods
-    private func onCardEvent(_ event: MovieCardEvent) {
+    private func onCardEvent(_ event: ItemDescriptionEvent) {
         switch event {
         case .watchlist:
             F.Log("you liked movie")

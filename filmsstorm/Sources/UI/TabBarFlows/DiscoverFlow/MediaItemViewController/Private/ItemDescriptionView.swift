@@ -8,13 +8,13 @@
 
 import UIKit
 
-enum MovieCardEvent: Equatable {
+enum ItemDescriptionEvent: Equatable {
     case watchlist(DiscoverCellModel?)
     case favourites(DiscoverCellModel?)
 }
 
-struct MovieCardEventModel {
-    let action: ((MovieCardEvent) -> Void)
+struct ItemDescriptionEventModel {
+    let action: ((ItemDescriptionEvent) -> Void)
 }
 
 struct ActionModel<Model: Equatable>: Hashable, Equatable {
@@ -49,7 +49,7 @@ class ItemDescriptionView: NibDesignableImpl {
     
     private var itemDetails: MediaItemModel?
     private var item: DiscoverCellModel?
-    private var actionHandler: Handler<MovieCardEvent>?
+    private var actionHandler: Handler<ItemDescriptionEvent>?
     private var likeIsTapped: Bool = false
     private var listIsTapped: Bool = false
     
@@ -62,7 +62,7 @@ class ItemDescriptionView: NibDesignableImpl {
     
     // MARK: - Methods
     
-    func fill(detailsModel: MediaItemModel, requestModel: DiscoverCellModel?, onAction: ActionModel<MovieCardEvent>?) {
+    func fill(detailsModel: MediaItemModel, requestModel: DiscoverCellModel?, onAction: ActionModel<ItemDescriptionEvent>?) {
         self.actionHandler = onAction?.action
         self.item = requestModel
         
@@ -87,25 +87,7 @@ class ItemDescriptionView: NibDesignableImpl {
         self.itemImage.rounded(cornerRadius: 5)
     }
     
-    // MARK: - IBActions
-    
-    @IBAction func onList(_ sender: UIButton) {
-        self.listIsTapped = !self.listIsTapped
-        if self.listIsTapped {
-            self.listButton.setImage(UIImage(named: "watchlisted"), for: .normal)
-            self.listButton.likeBounce(0.5)
-        } else {
-            self.listButton.setImage(UIImage(named: "watchlist"), for: .normal)
-            self.listButton.unLikeBounce(0.3)
-        }
-        
-        self.actionHandler?(.watchlist(self.item))
-    }
-    
-    @IBAction func onPlay(_ sender: UIButton) {
-    }
-    
-    @IBAction func onLike(_ sender: UIButton) {
+    func likedSuccessfully() {
         self.likeIsTapped = !self.likeIsTapped
         if self.likeIsTapped {
             self.likeButton.setImage(UIImage(named: "liked"), for: .normal)
@@ -115,6 +97,29 @@ class ItemDescriptionView: NibDesignableImpl {
             self.likeButton.unLikeBounce(0.3)
         }
         
+    }
+    
+    func watchlistedSuccsessfully() {
+        self.listIsTapped = !self.listIsTapped
+        if self.listIsTapped {
+            self.listButton.setImage(UIImage(named: "watchlisted"), for: .normal)
+            self.listButton.likeBounce(0.5)
+        } else {
+            self.listButton.setImage(UIImage(named: "watchlist"), for: .normal)
+            self.listButton.unLikeBounce(0.3)
+        }
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func onList(_ sender: UIButton) {
+        self.actionHandler?(.watchlist(self.item))
+    }
+    
+    @IBAction func onPlay(_ sender: UIButton) {
+    }
+    
+    @IBAction func onLike(_ sender: UIButton) {
         self.actionHandler?(.favourites(self.item))
     }
 }

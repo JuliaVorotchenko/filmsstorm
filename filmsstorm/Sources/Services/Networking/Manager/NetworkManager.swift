@@ -19,11 +19,13 @@ class NetworkManager {
         self.router.request(.auth(.createRequestToken), completion: completion)
     }
     
-    func validateToken(with model: AuthRequestModel, completion: @escaping (Result<RequestToken, NetworkError>) -> Void) {
+    func validateToken(with model: AuthRequestModel,
+                       completion: @escaping (Result<RequestToken, NetworkError>) -> Void) {
         self.router.request(.auth(.validateRequestToken(model)), completion: completion)
     }
     
-    func createSession(with model: SessionRequestBody, completion: @escaping (Result<SessionID, NetworkError>) -> Void) {
+    func createSession(with model: SessionRequestBody,
+                       completion: @escaping (Result<SessionID, NetworkError>) -> Void) {
         self.router.request(.auth(.createSession(model)), completion: completion)
     }
     
@@ -76,27 +78,43 @@ class NetworkManager {
         self.router.request(.account(.getShowsWatchList(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
     }
     
-    func getMovieDetails(with model: DiscoverCellModel, completion: @escaping (Result<MovieDetailsModel, NetworkError>) -> Void) {
+    func getMovieDetails(with model: DiscoverCellModel,
+                         completion: @escaping (Result<MovieDetailsModel, NetworkError>) -> Void) {
         self.router.request(.movie(.getMovieDetails(model: model)), completion: completion)
     }
     
-    func getMovieSimilars(with model: DiscoverCellModel, completion: @escaping(Result<MovieSimilarsModel, NetworkError>) -> Void) {
+    func getMovieSimilars(with model: DiscoverCellModel,
+                          completion: @escaping(Result<MovieSimilarsModel, NetworkError>) -> Void) {
         self.router.request(.movie(.getMovieSimilars(model: model)), completion: completion)
     }
     
-    func getShowDetails(with model: DiscoverCellModel, completion: @escaping(Result<ShowDetailsModel, NetworkError>) -> Void) {
+    func getShowDetails(with model: DiscoverCellModel,
+                        completion: @escaping(Result<ShowDetailsModel, NetworkError>) -> Void) {
         self.router.request(.tv(.getTVShowDetails(model: model)), completion: completion)
     }
     
-    func getShowSimilars(with model: DiscoverCellModel, completion: @escaping(Result<ShowSimilarsModel, NetworkError>) -> Void) {
+    func getShowSimilars(with model: DiscoverCellModel,
+                         completion: @escaping(Result<ShowSimilarsModel, NetworkError>) -> Void) {
         self.router.request(.tv(.getTVShowSimilar(model: model)), completion: completion)
     }
     
-    func getMovieVideos(with model: DiscoverCellModel, completion: @escaping(Result<ItemVideoModel, NetworkError>) -> Void) {
+    func getMovieVideos(with model: DiscoverCellModel,
+                        completion: @escaping(Result<ItemVideoModel, NetworkError>) -> Void) {
         self.router.request(.movie(.getMovieVideos(model: model)), completion: completion)
     }
     
-    func getShowVideos(with model: DiscoverCellModel, completion: @escaping(Result<ItemVideoModel, NetworkError>) -> Void) {
+    func getShowVideos(with model: DiscoverCellModel,
+                       completion: @escaping(Result<ItemVideoModel, NetworkError>) -> Void) {
         self.router.request(.tv(.getTVShowVideos(model: model)), completion: completion)
+    }
+    
+    func getMovieCredits(with model: DiscoverCellModel,
+                         completion: @escaping(Result<MovieCreditsModel, NetworkError>) -> Void) {
+        self.router.request(.movie(.getMovieCredits(model: model)), completion: completion)
+    }
+    
+    func getShowCredits(with model: DiscoverCellModel,
+                        completion: @escaping(Result<ShowCreditsModel, NetworkError>) -> Void) {
+        self.router.request(.tv(.getTVShowCredits(model: model)), completion: completion)
     }
 }

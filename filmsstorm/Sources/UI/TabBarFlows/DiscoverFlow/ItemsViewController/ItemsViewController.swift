@@ -76,7 +76,7 @@ UICollectionViewDelegate {
         self.rootView?.navigationView?.titleFill(with: title)
     }
     
-    private func onCardEvent(_ event: MovieCardEvent) {
+    private func onCardEvent(_ event: ItemDescriptionEvent) {
         switch event {
         case .watchlist(let model):
             F.Log("you moved item to watch list \(String(describing: model?.name)), \(String(describing: model?.mediaType))")

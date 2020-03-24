@@ -22,13 +22,17 @@ protocol MediaItemPresenter: Presenter {
     
     func onBack()
     func getItemVideo(_ item: DiscoverCellModel?)
-    func getItemSimilars(_ item: DiscoverCellModel?)
+     func getItemSimilars(_ completion: (([DiscoverCellModel]) -> Void)?)
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?)
     func addToFavourites(_ item: DiscoverCellModel?)
     func addToWatchList(_ item: DiscoverCellModel?)
+     func getItemCast(_ completion: (([ActorModel]) -> Void)?) 
 }
 
 class MediaItemPresenterImpl: MediaItemPresenter {
+    
+    
+
     
     // MARK: - Private Properties
     
@@ -54,7 +58,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?) {
         switch self.itemModel.mediaType {
         case .movie:
-            self.networking.getMovieDetails(with: itemModel) { result in
+            self.networking.getMovieDetails(with: self.itemModel) { result in
                 
                 switch result {
                 case .success(let detailsModel):
@@ -65,7 +69,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             }
             
         case .tv:
-            self.networking.getShowDetails(with: itemModel) { result in
+            self.networking.getShowDetails(with: self.itemModel) { result in
                 switch result {
                 case .success(let detailsModel):
                     completion?(MediaItemModel.create(detailsModel))
@@ -76,29 +80,57 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         }
     }
     
-    func getItemSimilars(_ item: DiscoverCellModel?) {
-        print(#function)
-        guard let item = item else { return }
-        
-        switch item.mediaType {
-            
+    func getItemCast(_ completion: (([ActorModel]) -> Void)?) {
+        switch self.itemModel.mediaType {
         case .movie:
-            self.networking.getMovieSimilars(with: item) { result in
+            self.networking.getMovieCredits(with: self.itemModel) { result in
+                
                 switch result {
-                case .success(let similarsModel):
-                    print("movie similars:", similarsModel.results?.count as Any)
+                case .success(let creditsModel):
+                    guard let movieCast = creditsModel.cast else { return }
+                    completion?(movieCast.map { ActorModel.create($0)})
                 case .failure(let error):
-                    print("movie similars:", error.localizedDescription)
+                    self.eventHandler?(.error(.networkingError(error)))
                 }
             }
             
         case .tv:
-            self.networking.getShowSimilars(with: item) { result in
+            self.networking.getShowCredits(with: self.itemModel) { result in
+                
+                switch result {
+                case .success(let creditsModel):
+                   guard let movieCast = creditsModel.cast else { return }
+                   completion?(movieCast.map { ActorModel.create($0)})
+                case .failure(let error):
+                    self.eventHandler?(.error(.networkingError(error)))
+                }
+            }
+        }
+    }
+    
+    func getItemSimilars(_ completion: (([DiscoverCellModel]) -> Void)?) {
+        print(#function)
+        switch self.itemModel.mediaType {
+            
+        case .movie:
+            self.networking.getMovieSimilars(with: self.itemModel) { result in
+                switch result {
+                case .success(let similarsModel):
+                    guard let moviesResult = similarsModel.results else { return }
+                    completion?(moviesResult.map { DiscoverCellModel.create($0)})
+                case .failure(let error):
+                     self.eventHandler?(.error(.networkingError(error)))
+                }
+            }
+            
+        case .tv:
+            self.networking.getShowSimilars(with: self.itemModel) { result in
                 switch result {
                 case.success(let similarsModel):
-                    print("show similars:", similarsModel.results?.count as Any)
+                    guard let moviesResult = similarsModel.results else { return }
+                    completion?(moviesResult.map { DiscoverCellModel.create($0)})
                 case .failure(let error):
-                    print("show similars:", error.localizedDescription)
+                    self.eventHandler?(.error(.networkingError(error)))
                 }
             }
         }
@@ -135,12 +167,10 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     }
     
     func addToFavourites(_ item: DiscoverCellModel?) {
-        print(#function)
         guard let item = item else { return }
         let model = AddFavouritesRequestModel(mediaType: item.mediaType.rawValue,
                                               mediaID: item.id,
                                               isFavourite: true)
-        print("request model", model)
         self.networking.addToFavourites(with: model) { result in
             switch result {
             case .success(let response):
@@ -153,12 +183,10 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     }
     
     func addToWatchList(_ item: DiscoverCellModel?) {
-        print(#function)
         guard let item = item else { return }
         let model = AddWatchListRequestModel(mediaType: item.mediaType.rawValue,
                                              mediaID: item.id,
                                              toWatchList: true)
-        print("request model", model)
         self.networking.addToWatchlist(with: model) { result in
             switch result {
             case .success(let response):

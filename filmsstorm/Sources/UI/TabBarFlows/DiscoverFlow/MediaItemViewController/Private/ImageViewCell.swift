@@ -12,8 +12,13 @@ class ImageViewCell: UICollectionViewCell {
   
     @IBOutlet var itemImage: UIImageView!
     
-    func fill(model: DiscoverCellModel) {
+    func similarsFill(model: DiscoverCellModel) {
         let path = model.posterPath
+        self.itemImage.setImage(from: path, mainPath: .mainPath)
+    }
+    
+    func actorsFill(model: ActorModel) {
+        let path = model.actorImage
         self.itemImage.setImage(from: path, mainPath: .mainPath)
     }
 }
