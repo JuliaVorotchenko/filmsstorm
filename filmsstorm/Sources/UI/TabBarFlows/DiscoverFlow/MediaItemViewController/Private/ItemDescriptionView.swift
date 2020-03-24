@@ -109,8 +109,8 @@ class ItemDescriptionView: NibDesignableImpl {
             self.likeButton.setImage(UIImage(named: "liked"), for: .normal)
             self.likeButton.likeBounce(0.5)
         } else {
-            self.likeButton.unLikeBounce(0.3)
             self.likeButton.setImage(UIImage(named: "like"), for: .normal)
+            self.likeButton.unLikeBounce(0.3)
         }
         
         self.actionHandler?(.favourites(self.item))
