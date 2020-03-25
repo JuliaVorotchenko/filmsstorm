@@ -22,17 +22,16 @@ protocol MediaItemPresenter: Presenter {
     
     func onBack()
     func getItemVideo(_ item: DiscoverCellModel?)
-     func getItemSimilars(_ completion: (([DiscoverCellModel]) -> Void)?)
+    func getMovieSimilars(_ completion: (([MovieListResult]) -> Void)?)
+    func getShowSimilars(_ completion: (([ShowListResult]) -> Void)?)
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?)
     func addToFavourites(_ item: DiscoverCellModel?)
     func addToWatchList(_ item: DiscoverCellModel?)
-     func getItemCast(_ completion: (([ActorModel]) -> Void)?) 
+    func getMovieCast(_ completion: (([MovieCast]) -> Void)?)
+    func getShowCast(_ completion: (([ShowCast]) -> Void)?)
 }
 
 class MediaItemPresenterImpl: MediaItemPresenter {
-    
-    
-
     
     // MARK: - Private Properties
     
@@ -54,6 +53,8 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     }
     
     // MARK: - Networking Methods
+    
+    //item details
     
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?) {
         switch self.itemModel.mediaType {
@@ -80,60 +81,59 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         }
     }
     
-    func getItemCast(_ completion: (([ActorModel]) -> Void)?) {
-        switch self.itemModel.mediaType {
-        case .movie:
-            self.networking.getMovieCredits(with: self.itemModel) { result in
-                
-                switch result {
-                case .success(let creditsModel):
-                    guard let movieCast = creditsModel.cast else { return }
-                    completion?(movieCast.map { ActorModel.create($0)})
-                case .failure(let error):
-                    self.eventHandler?(.error(.networkingError(error)))
-                }
-            }
-            
-        case .tv:
-            self.networking.getShowCredits(with: self.itemModel) { result in
-                
-                switch result {
-                case .success(let creditsModel):
-                   guard let movieCast = creditsModel.cast else { return }
-                   completion?(movieCast.map { ActorModel.create($0)})
-                case .failure(let error):
-                    self.eventHandler?(.error(.networkingError(error)))
-                }
+    //item cast
+    
+    func getMovieCast(_ completion: (([MovieCast]) -> Void)?) {
+        self.networking.getMovieCredits(with: self.itemModel) { result in
+            switch result {
+            case .success(let creditsModel):
+                guard let movieCast = creditsModel.cast else { return }
+                completion?(movieCast)
+            case .failure(let error):
+                self.eventHandler?(.error(.networkingError(error)))
             }
         }
     }
     
-    func getItemSimilars(_ completion: (([DiscoverCellModel]) -> Void)?) {
-        print(#function)
-        switch self.itemModel.mediaType {
-            
-        case .movie:
-            self.networking.getMovieSimilars(with: self.itemModel) { result in
-                switch result {
-                case .success(let similarsModel):
-                    guard let moviesResult = similarsModel.results else { return }
-                    completion?(moviesResult.map { DiscoverCellModel.create($0)})
-                case .failure(let error):
-                     self.eventHandler?(.error(.networkingError(error)))
-                }
-            }
-            
-        case .tv:
-            self.networking.getShowSimilars(with: self.itemModel) { result in
-                switch result {
-                case.success(let similarsModel):
-                    guard let moviesResult = similarsModel.results else { return }
-                    completion?(moviesResult.map { DiscoverCellModel.create($0)})
-                case .failure(let error):
-                    self.eventHandler?(.error(.networkingError(error)))
-                }
+    
+    func getShowCast(_ completion: (([ShowCast]) -> Void)?) {
+        self.networking.getShowCredits(with: self.itemModel) { result in
+            switch result {
+            case .success(let creditsModel):
+                guard let movieCast = creditsModel.cast else { return }
+                completion?(movieCast)
+            case .failure(let error):
+                self.eventHandler?(.error(.networkingError(error)))
             }
         }
+    }
+    
+    //item similars
+    
+    func getMovieSimilars(_ completion: (([MovieListResult]) -> Void)?) {
+        print(#function)
+        self.networking.getMovieSimilars(with: self.itemModel) { result in
+            switch result {
+            case .success(let similarsModel):
+                guard let results = similarsModel.results else { return }
+                completion?(results)
+            case .failure(let error):
+                self.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+    }
+    
+    func getShowSimilars(_ completion: (([ShowListResult]) -> Void)?) {
+        self.networking.getShowSimilars(with: self.itemModel) { result in
+            switch result {
+            case.success(let similarsModel):
+                guard let results = similarsModel.results else { return }
+                completion?(results)
+            case .failure(let error):
+                self.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+        
     }
     
     func getItemVideo(_ item: DiscoverCellModel?) {

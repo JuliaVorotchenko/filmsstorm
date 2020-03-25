@@ -778,8 +778,8 @@
 				CD0D2A7C2417E5BB00722181 /* Private */,
 				CD2D91C824058CF7001A1445 /* MediaItemViewController.swift */,
 				CD2D91C624058CE1001A1445 /* MediaItemView.swift */,
-				CD2D91C424058CC3001A1445 /* MediaItemViewController.xib */,
 				CD2D91CA24058D1B001A1445 /* MediaItemPresenter.swift */,
+				CD2D91C424058CC3001A1445 /* MediaItemViewController.xib */,
 				CD7C8D392420F3A9005F14BB /* MediaItemModel.swift */,
 				CD81EEED242A33B400334BD7 /* ActorModel.swift */,
 			);

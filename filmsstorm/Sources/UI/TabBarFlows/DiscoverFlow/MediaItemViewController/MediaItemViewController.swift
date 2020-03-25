@@ -26,8 +26,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     private var sectionsSimilars = [DiscoverCellModel]()
     private var sectionsActors = [ActorModel]()
-    private var actors = [ActorModel]()
-    private var similars = [DiscoverCellModel]()
+    
     
     private var similarsDataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
     private var actorsDataSource: UICollectionViewDiffableDataSource<Section, ActorModel>?
@@ -57,9 +56,8 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         super.viewDidLoad()
         self.setupNavigationView()
         self.getItemDetails()
-        self.getActors()
-        self.configureSimilarsDataSource()
-        self.configureActorsDataSource()
+        self.getSimilars()
+        self.getCast()
         self.setCollectionView()
     }
     
@@ -75,18 +73,52 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         }
     }
     
-    private func getActors() {
-        self.presenter.getItemCast {  [weak self] model in
-            self?.actors = model
+    private func getSimilars() {
+        switch self.presenter.itemModel.mediaType {
+        case .movie:
+            self.getMoviewSimilars()
+        case .tv:
+            self.getShowSimilars()
         }
     }
     
-    private func getSimilars() {
-        print(#function)
-        self.presenter.getItemSimilars { [weak self] model in
-            self?.similars = model
+    private func getMoviewSimilars() {
+        self.presenter.getMovieSimilars { [weak self] model in
+            self?.sectionsSimilars = model.map(DiscoverCellModel.create)
+            self?.configureSimilarsDataSource()
         }
     }
+    
+    private func getShowSimilars() {
+        self.presenter.getShowSimilars { [weak self] model in
+            self?.sectionsSimilars = model.map(DiscoverCellModel.create)
+            self?.configureSimilarsDataSource()
+        }
+    }
+    
+    private func getCast() {
+        switch self.presenter.itemModel.mediaType {
+        case .movie:
+            self.getMovieCast()
+        case .tv:
+            self.getShowCast()
+        }
+    }
+    
+    private func getMovieCast() {
+        self.presenter.getMovieCast { [weak self] model in
+            self?.sectionsActors = model.map(ActorModel.create(_:))
+            self?.configureActorsDataSource()
+        }
+    }
+    
+    private func getShowCast() {
+      self.presenter.getShowCast { [weak self] model in
+            self?.sectionsActors = model.map(ActorModel.create(_:))
+            self?.configureActorsDataSource()
+        }
+    }
+    
     
     private func setupNavigationView() {
         self.rootView?.navigationView?.actionHandler = { [weak self] in
@@ -109,7 +141,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     
     // MARK: - Private Methods for CollectionView
-  
+    
     private func setCollectionView() {
         let layout = self.createLayout()
         self.rootView?.similarsCollection.setCollectionViewLayout(layout, animated: true)
@@ -119,7 +151,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.rootView?.similarsCollection.register(ImageViewCell.self)
         self.rootView?.actorsCollection.register(ImageViewCell.self)
     }
-        
+    
     private func sectionLayout() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25),
                                               heightDimension: .fractionalHeight(1.0))
@@ -130,10 +162,10 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitem: item, count: 3)
         
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(15.0))
-//        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-//                                                                 elementKind: "sectionHeader",
-//                                                                 alignment: .top)
+        //let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(15.0))
+        //        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+        //                                                                 elementKind: "sectionHeader",
+        //                                                                 alignment: .top)
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         //section.boundarySupplementaryItems = [header]
@@ -178,7 +210,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         return snapshot
     }
     
-    private func createdActorsSnapshot() -> NSDiffableDataSourceSnapshot<Section, ActorModel> {
+    private func createActorsSnapshot() -> NSDiffableDataSourceSnapshot<Section, ActorModel> {
         var snapshot = NSDiffableDataSourceSnapshot<Section, ActorModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(self.sectionsActors)
