@@ -8,14 +8,16 @@
 
 import UIKit
 
-protocol ConfigureModel {
+protocol MediaContainer {
+    var posterPath: String? { get }
+}
+
+protocol ConfigureModel: MediaContainer, Identifier {
     var mediaType: MediaType { get }
-    var id: Int { get }
     var name: String? { get }
     var voteAverage: Double? { get }
     var overview: String? { get }
     var releaseDate: String? { get }
-    var posterPath: String? { get }
     var backDropPath: String? { get }
 }
 
@@ -24,7 +26,7 @@ enum MediaType: String, Codable {
     case tv
 }
 
-struct DiscoverCellModel: ConfigureModel, Codable, Equatable, Hashable {
+struct DiscoverCellModel: ConfigureModel, Codable, Hashable {
     let mediaType: MediaType
     let id: Int
     let name: String?

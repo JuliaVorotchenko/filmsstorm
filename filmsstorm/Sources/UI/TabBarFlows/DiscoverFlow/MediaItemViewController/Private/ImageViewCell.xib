@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="jZf-Dm-L7h" customClass="ImageViewCell" customModule="filmsstorm" customModuleProvider="target">
+        <view contentMode="scaleToFill" restorationIdentifier="ImageViewCell" id="jZf-Dm-L7h" customClass="ImageViewCell" customModule="filmsstorm" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="128" height="190"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>

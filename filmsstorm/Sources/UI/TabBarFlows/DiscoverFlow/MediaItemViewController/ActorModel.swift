@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Actor: Codable, Hashable {
+protocol Actor: Codable {
     var mediaType: MediaType { get }
     var character: String? { get }
     var actorName: String? { get }

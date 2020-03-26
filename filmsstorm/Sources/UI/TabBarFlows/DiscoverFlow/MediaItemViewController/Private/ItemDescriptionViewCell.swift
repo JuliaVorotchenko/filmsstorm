@@ -9,8 +9,8 @@
 import UIKit
 
 enum ItemDescriptionEvent: Equatable {
-    case watchlist(DiscoverCellModel?)
-    case favourites(DiscoverCellModel?)
+    case watchlist(MediaItemModel?)
+    case favourites(MediaItemModel?)
 }
 
 struct ItemDescriptionEventModel {
@@ -27,7 +27,7 @@ struct ActionModel<Model: Equatable>: Hashable, Equatable {
     }
 }
 
-class ItemDescriptionView: NibDesignableImpl {
+class ItemDescriptionViewCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     
@@ -47,8 +47,7 @@ class ItemDescriptionView: NibDesignableImpl {
     
     // MARK: - Private properties
     
-    private var itemDetails: MediaItemModel?
-    private var item: DiscoverCellModel?
+    private var item: MediaItemModel?
     private var actionHandler: Handler<ItemDescriptionEvent>?
     private var likeIsTapped: Bool = false
     private var listIsTapped: Bool = false
@@ -60,21 +59,26 @@ class ItemDescriptionView: NibDesignableImpl {
         self.setupUI()
     }
     
+    override func prepareForReuse() {
+           super.prepareForReuse()
+           self.reset()
+       }
+    
     // MARK: - Methods
     
-    func fill(detailsModel: MediaItemModel, requestModel: DiscoverCellModel?, onAction: ActionModel<ItemDescriptionEvent>?) {
+  func fill(detailsModel: MediaItemModel?, onAction: ActionModel<ItemDescriptionEvent>?) {
         self.actionHandler = onAction?.action
-        self.item = requestModel
-        
-        self.itemDetails = detailsModel
-        self.itemImage.setImage(from: detailsModel.poster)
-        self.backgroundImage.setImage(from: detailsModel.background)
-        self.itemName.text = detailsModel.name
-        self.originalName.text = detailsModel.originalName
-        self.genreLabel.text = detailsModel.genre.map { $0.name }.prefix(2).joined(separator: ", ")
-        self.ratingLabel.text = String("\(detailsModel.rating)")
-        self.yearLabel.text = detailsModel.releaseDate
-        self.overviewLabel.text = detailsModel.overview
+
+        self.item = detailsModel
+        self.itemImage.setImage(from: detailsModel?.posterPath)
+        self.backgroundImage.setImage(from: detailsModel?.backDropPath)
+
+        self.itemName.text = detailsModel?.name
+        self.originalName.text = detailsModel?.originalName
+        self.genreLabel.text = detailsModel?.genre.map { $0.name }.prefix(2).joined(separator: ", ")
+        self.ratingLabel.text = detailsModel?.voteAverage.map { "\($0)" }
+        self.yearLabel.text = detailsModel?.releaseDate
+        self.overviewLabel.text = detailsModel?.overview
     }
     
     func setupUI() {
@@ -108,6 +112,13 @@ class ItemDescriptionView: NibDesignableImpl {
             self.listButton.setImage(UIImage(named: "watchlist"), for: .normal)
             self.listButton.unLikeBounce(0.3)
         }
+    }
+    
+    private func reset() {
+        self.item = nil
+        self.actionHandler = nil
+        self.likeIsTapped = false
+        self.listIsTapped = false
     }
     
     // MARK: - IBActions

@@ -24,25 +24,9 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ItemDescriptionView" customModule="filmsstorm" customModuleProvider="target">
-            <connections>
-                <outlet property="backgroundImage" destination="tjA-Hg-1uX" id="t4r-V1-JWZ"/>
-                <outlet property="genreLabel" destination="EM0-a5-WSJ" id="hUa-3f-G0o"/>
-                <outlet property="itemImage" destination="aav-gl-Ly2" id="rGz-aY-ck3"/>
-                <outlet property="itemName" destination="Bk2-aM-lmw" id="ih4-Zs-7bY"/>
-                <outlet property="likeButton" destination="dQX-T5-9IU" id="Z4b-a0-bom"/>
-                <outlet property="listButton" destination="mdR-kL-w3w" id="A2Q-yb-yF7"/>
-                <outlet property="originalName" destination="329-f2-kQU" id="tdg-AQ-sSJ"/>
-                <outlet property="overviewContainer" destination="RRj-eA-UQH" id="bsL-bQ-3w8"/>
-                <outlet property="overviewLabel" destination="3jN-Vh-b1r" id="hdZ-K9-Dnc"/>
-                <outlet property="playButton" destination="pW8-nl-xtZ" id="tGy-SH-Elu"/>
-                <outlet property="playButtonView" destination="EXz-3Q-5BV" id="D5o-fp-F1c"/>
-                <outlet property="ratingLabel" destination="BEc-ap-cmx" id="KAU-Sh-glb"/>
-                <outlet property="yearLabel" destination="TWn-Tt-s5m" id="Bxb-9e-bBP"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lZe-ly-1de" userLabel="ItemDescriptionView">
+        <view clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ItemDescriptionViewCell" insetsLayoutMarginsFromSafeArea="NO" id="lZe-ly-1de" userLabel="ItemDescriptionView" customClass="ItemDescriptionViewCell" customModule="filmsstorm" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="445" height="522"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -174,7 +158,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" image="watchlist"/>
                                             <connections>
-                                                <action selector="onList:" destination="-1" eventType="touchUpInside" id="dDc-yA-wFn"/>
+                                                <action selector="onList:" destination="lZe-ly-1de" eventType="touchUpInside" id="pNu-74-CXe"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -199,7 +183,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXz-3Q-5BV" userLabel="playView">
                                     <rect key="frame" x="45" y="0.0" width="94" height="37"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW8-nl-xtZ">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW8-nl-xtZ" customClass="AnimatedButton" customModule="filmsstorm" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="94" height="37"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="37" id="5Vy-du-T5O"/>
@@ -208,7 +192,7 @@
                                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <action selector="onPlay:" destination="-1" eventType="touchUpInside" id="wEk-jz-Deb"/>
+                                                <action selector="onPlay:" destination="lZe-ly-1de" eventType="touchUpInside" id="q0X-qF-BKy"/>
                                             </connections>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ezP-fz-roL">
@@ -269,7 +253,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" image="like"/>
                                             <connections>
-                                                <action selector="onLike:" destination="-1" eventType="touchUpInside" id="Frp-oR-1qR"/>
+                                                <action selector="onLike:" destination="lZe-ly-1de" eventType="touchUpInside" id="A17-RK-jpC"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -347,6 +331,21 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backgroundImage" destination="tjA-Hg-1uX" id="CvA-Nx-S0v"/>
+                <outlet property="genreLabel" destination="EM0-a5-WSJ" id="KiV-xR-AxT"/>
+                <outlet property="itemImage" destination="aav-gl-Ly2" id="jnw-PT-l0Z"/>
+                <outlet property="itemName" destination="Bk2-aM-lmw" id="IOK-RN-In7"/>
+                <outlet property="likeButton" destination="dQX-T5-9IU" id="fot-XU-nDV"/>
+                <outlet property="listButton" destination="mdR-kL-w3w" id="QV0-Xn-iZf"/>
+                <outlet property="originalName" destination="329-f2-kQU" id="T5e-YF-0xW"/>
+                <outlet property="overviewContainer" destination="RRj-eA-UQH" id="csw-3t-J9p"/>
+                <outlet property="overviewLabel" destination="3jN-Vh-b1r" id="0NH-Pz-IP6"/>
+                <outlet property="playButton" destination="pW8-nl-xtZ" id="pEz-OK-h61"/>
+                <outlet property="playButtonView" destination="EXz-3Q-5BV" id="teo-UO-9dB"/>
+                <outlet property="ratingLabel" destination="BEc-ap-cmx" id="jku-dh-9jb"/>
+                <outlet property="yearLabel" destination="TWn-Tt-s5m" id="2ws-94-LCV"/>
+            </connections>
             <point key="canvasLocation" x="-100.72463768115942" y="31.473214285714285"/>
         </view>
     </objects>

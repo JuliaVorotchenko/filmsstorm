@@ -9,31 +9,35 @@
 import UIKit
 
 class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
-    
+
     // MARK: - Subtypes
     
     typealias RootViewType = MediaItemView
     typealias Service = T
     
-    enum Section {
-        case main
+    enum Section: CaseIterable {
+        case media
+        case similars
+        case actos
+    }
+
+    enum MediaItemContainer: Hashable {
+        case media(MediaItemModel?)
+        case similars(DiscoverCellModel)
+        case actos(ActorModel)
     }
     
     // MARK: - Private properties
     
     let loadingView = ActivityView()
     let presenter: Service
-    
-    private var sectionsSimilars = [DiscoverCellModel]()
-    private var sectionsActors = [ActorModel]()
-    
-    
-    private var similarsDataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
-    private var actorsDataSource: UICollectionViewDiffableDataSource<Section, ActorModel>?
-    
-    
-    var itemDetails: MediaItemModel?
-    
+
+    var mediaItemModel: MediaItemModel?
+    var discoverCellModel: [DiscoverCellModel]?
+    var actorModel: [ActorModel]?
+
+    private var dataSource: UICollectionViewDiffableDataSource<Section, MediaItemContainer>?
+
     // MARK: - Init and deinit
     
     deinit {
@@ -55,166 +59,140 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
-        self.getItemDetails()
-        self.getSimilars()
-        self.getCast()
         self.setCollectionView()
+        self.getMovieSimilars()
+        self.getFirst()
+        self.getItemDescription()
+        self.createDataSource()
     }
     
     // MARK: - Private methods
-    
-    private func getItemDetails() {
-        
-        let item = self.presenter.itemModel
-        
+
+    private func getFirst() {
+        self.presenter.getMovieCast { [weak self] models in
+            self?.actorModel = models
+            self?.updateData()
+        }
+    }
+
+    private func getMovieSimilars() {
+        self.presenter.getMovieSimilars { [weak self] in
+            self?.discoverCellModel = $0
+            self?.updateData()
+        }
+    }
+
+    private func getItemDescription() {
         self.presenter.getItemDetails { [weak self] model in
-            self?.rootView?.descriptionView.fill(detailsModel: model, requestModel: item, onAction: .init {
-                self?.onCardEvent($0)})
+            self?.mediaItemModel = model
+            self?.updateData()
         }
     }
-    
-    private func getSimilars() {
-        switch self.presenter.itemModel.mediaType {
-        case .movie:
-            self.getMoviewSimilars()
-        case .tv:
-            self.getShowSimilars()
-        }
-    }
-    
-    private func getMoviewSimilars() {
-        self.presenter.getMovieSimilars { [weak self] model in
-            self?.sectionsSimilars = model.map(DiscoverCellModel.create)
-            self?.configureSimilarsDataSource()
-        }
-    }
-    
-    private func getShowSimilars() {
-        self.presenter.getShowSimilars { [weak self] model in
-            self?.sectionsSimilars = model.map(DiscoverCellModel.create)
-            self?.configureSimilarsDataSource()
-        }
-    }
-    
-    private func getCast() {
-        switch self.presenter.itemModel.mediaType {
-        case .movie:
-            self.getMovieCast()
-        case .tv:
-            self.getShowCast()
-        }
-    }
-    
-    private func getMovieCast() {
-        self.presenter.getMovieCast { [weak self] model in
-            self?.sectionsActors = model.map(ActorModel.create(_:))
-            self?.configureActorsDataSource()
-        }
-    }
-    
-    private func getShowCast() {
-      self.presenter.getShowCast { [weak self] model in
-            self?.sectionsActors = model.map(ActorModel.create(_:))
-            self?.configureActorsDataSource()
-        }
-    }
-    
-    
+
     private func setupNavigationView() {
         self.rootView?.navigationView?.actionHandler = { [weak self] in
             self?.presenter.onBack()
         }
         let item = self.presenter.itemModel
-        self.rootView?.navigationView?.titleFill(with: item.name ?? "oops")
+        self.rootView?.navigationView?.titleFill(with: item.name ?? "N/A")
     }
-    
-    private func onCardEvent(_ event: ItemDescriptionEvent) {
-        switch event {
-        case .watchlist(let model):
-            self.presenter.addToWatchList(model)
-            self.rootView?.descriptionView.watchlistedSuccsessfully()
-        case .favourites(let model):
-            self.presenter.addToFavourites(model)
-            self.rootView?.descriptionView.likedSuccessfully()
-        }
-    }
-    
-    
+
     // MARK: - Private Methods for CollectionView
     
     private func setCollectionView() {
-        let layout = self.createLayout()
-        self.rootView?.similarsCollection.setCollectionViewLayout(layout, animated: true)
-        self.rootView?.actorsCollection.setCollectionViewLayout(layout, animated: true)
-        self.rootView?.similarsCollection.delegate = self
-        self.rootView?.actorsCollection.delegate = self
-        self.rootView?.similarsCollection.register(ImageViewCell.self)
-        self.rootView?.actorsCollection.register(ImageViewCell.self)
+        let collection = self.rootView?.collecionView
+        collection?.register(ImageViewCell.self)
+        collection?.register(DiscoverCollectionViewCell.self)
+        collection?.register(ItemDescriptionViewCell.self)
+        collection?.setCollectionViewLayout(self.createCompositionalLayout(), animated: false)
     }
-    
-    private func sectionLayout() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25),
-                                              heightDimension: .fractionalHeight(1.0))
+
+    private func updateData() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, MediaItemContainer>()
+        snapshot.appendSections([.media])
+        let model = self.mediaItemModel != nil
+            ? self.mediaItemModel
+            : MediaItemModel.from(configure: self.presenter.itemModel)
+        snapshot.appendItems([.media(model)], toSection: .media)
+
+        snapshot.appendSections([.similars])
+        let similars = self.discoverCellModel?.map(MediaItemContainer.similars)
+        similars.map { snapshot.appendItems($0, toSection: .similars) }
+
+        snapshot.appendSections([.actos])
+        let actors = self.actorModel?.map(MediaItemContainer.actos)
+        actors.map { snapshot.appendItems($0, toSection: .actos) }
+
+        self.dataSource?.apply(snapshot, animatingDifferences: false)
+    }
+
+    func createDataSource() {
+        guard let collectionView = self.rootView?.collecionView else { return }
+        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collection, indexPath, item -> UICollectionViewCell? in
+            switch item {
+            case .media(let model):
+                let cell: ItemDescriptionViewCell = collectionView.dequeueReusableCell(ItemDescriptionViewCell.self, for: indexPath)
+                cell.fill(detailsModel: model, onAction: nil)
+                return cell
+            case .similars(let model):
+                let cell: DiscoverCollectionViewCell = collectionView.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
+                cell.fill(with: model)
+                return cell
+            case .actos(let model):
+                let cell: ImageViewCell = collection.dequeueReusableCell(ImageViewCell.self, for: indexPath)
+                cell.actorsFill(model: model)
+                return cell
+            }
+        }
+        self.updateData()
+    }
+
+    // MARK: - Setup Layout
+
+    func createCompositionalLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, _) -> NSCollectionLayoutSection? in
+            let section = Section.allCases[sectionIndex]
+            switch section {
+            case .actos:
+                return self?.createWaitingChatSection()
+            case .media:
+                return self?.createActiveChatSection()
+            case .similars:
+                return self?.createWaitingChatSection()
+            }
+        }
+        return layout
+    }
+
+    func createWaitingChatSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
+        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+        layoutItem.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 8, bottom: 0, trailing: 8)
+
+        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .estimated(104),
+                                                     heightDimension: .estimated(88))
+        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
+
+        let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+        layoutSection.orthogonalScrollingBehavior = .continuous
+        layoutSection.contentInsets = NSDirectionalEdgeInsets.init(top: 66, leading: 12, bottom: 0, trailing: 12)
+
+        return layoutSection
+    }
+
+    func createActiveChatSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(86))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        item.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 8, trailing: 0)
+
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .fractionalHeight(0.3))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitem: item, count: 3)
-        
-        //let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(15.0))
-        //        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-        //                                                                 elementKind: "sectionHeader",
-        //                                                                 alignment: .top)
+                                               heightDimension: .estimated(1))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
-        //section.boundarySupplementaryItems = [header]
+        section.contentInsets = NSDirectionalEdgeInsets.init(top: 66, leading: 20, bottom: 0, trailing: 20)
         return section
     }
-    
-    private func createLayout() -> UICollectionViewLayout {
-        let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.interSectionSpacing = 16
-        return UICollectionViewCompositionalLayout(section: sectionLayout(), configuration: config)
-    }
-    
-    private func configureSimilarsDataSource() {
-        guard let collectionView = self.rootView?.similarsCollection else { return }
-        
-        self.similarsDataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collection, indexPath, item -> UICollectionViewCell? in
-            let cell: ImageViewCell = collection.dequeueReusableCell(ImageViewCell.self, for: indexPath)
-            cell.similarsFill(model: item)
-            return cell
-        }
-        let snapshot = self.createSimilarsSnapshot()
-        self.similarsDataSource?.apply(snapshot)
-        
-    }
-    
-    private func configureActorsDataSource() {
-        guard let collectionView = self.rootView?.actorsCollection else { return }
-        
-        self.actorsDataSource =  UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collection, indexPath, item -> UICollectionViewCell? in
-            
-            let cell: ImageViewCell = collection.dequeueReusableCell(ImageViewCell.self, for: indexPath)
-            cell.actorsFill(model: item)
-            return cell
-        }
-    }
-    
-    private func createSimilarsSnapshot() -> NSDiffableDataSourceSnapshot<Section, DiscoverCellModel> {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(self.sectionsSimilars)
-        
-        return snapshot
-    }
-    
-    private func createActorsSnapshot() -> NSDiffableDataSourceSnapshot<Section, ActorModel> {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, ActorModel>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(self.sectionsActors)
-        
-        return snapshot
-    }
+
 }
