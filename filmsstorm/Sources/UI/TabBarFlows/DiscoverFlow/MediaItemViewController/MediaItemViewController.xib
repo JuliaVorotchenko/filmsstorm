@@ -26,8 +26,8 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="7g1-HX-4jf">
-                    <rect key="frame" x="0.0" y="112" width="414" height="784"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <rect key="frame" x="0.0" y="104" width="414" height="792"/>
+                    <color key="backgroundColor" name="background"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="q5M-cJ-ok5">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -39,7 +39,7 @@
             <color key="backgroundColor" name="background"/>
             <constraints>
                 <constraint firstItem="7g1-HX-4jf" firstAttribute="leading" secondItem="yra-LO-dkJ" secondAttribute="leading" id="6xo-wI-lbD"/>
-                <constraint firstItem="7g1-HX-4jf" firstAttribute="top" secondItem="Azy-dW-JbS" secondAttribute="bottom" constant="8" symbolic="YES" id="Cga-ZM-QSi"/>
+                <constraint firstItem="7g1-HX-4jf" firstAttribute="top" secondItem="Azy-dW-JbS" secondAttribute="bottom" id="Cga-ZM-QSi"/>
                 <constraint firstItem="Azy-dW-JbS" firstAttribute="leading" secondItem="yra-LO-dkJ" secondAttribute="leading" id="CtX-Kj-7Q8"/>
                 <constraint firstItem="Azy-dW-JbS" firstAttribute="top" secondItem="yra-LO-dkJ" secondAttribute="top" id="H6E-3v-5Tb"/>
                 <constraint firstItem="Azy-dW-JbS" firstAttribute="trailing" secondItem="yra-LO-dkJ" secondAttribute="trailing" id="Rkn-2X-dIa"/>

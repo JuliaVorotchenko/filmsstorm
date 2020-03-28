@@ -101,8 +101,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     private func setCollectionView() {
         let collection = self.rootView?.collecionView
-        collection?.register(ImageViewCell.self)
-        collection?.register(DiscoverCollectionViewCell.self)
+        collection?.register(ActorImageCell.self)
         collection?.register(ItemDescriptionViewCell.self)
         collection?.setCollectionViewLayout(self.createCompositionalLayout(), animated: false)
     }
@@ -135,11 +134,11 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
                 cell.fill(detailsModel: model, onAction: nil)
                 return cell
             case .similars(let model):
-                let cell: DiscoverCollectionViewCell = collectionView.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
-                cell.fill(with: model)
+               let cell: ActorImageCell = collection.dequeueReusableCell(ActorImageCell.self, for: indexPath)
+               cell.similarsFill(model: model)
                 return cell
             case .actos(let model):
-                let cell: ImageViewCell = collection.dequeueReusableCell(ImageViewCell.self, for: indexPath)
+                let cell: ActorImageCell = collection.dequeueReusableCell(ActorImageCell.self, for: indexPath)
                 cell.actorsFill(model: model)
                 return cell
             }
@@ -154,45 +153,40 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
             let section = Section.allCases[sectionIndex]
             switch section {
             case .actos:
-                return self?.createWaitingChatSection()
+                return self?.creaeItemImageSecion()
             case .media:
-                return self?.createActiveChatSection()
+                return self?.createMediaSection()
             case .similars:
-                return self?.createWaitingChatSection()
+                return self?.creaeItemImageSecion()
             }
         }
         return layout
     }
 
-    func createWaitingChatSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalHeight(1))
-        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-        layoutItem.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 8, bottom: 0, trailing: 8)
-
-        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .estimated(104),
-                                                     heightDimension: .estimated(88))
-        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
-
-        let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-        layoutSection.orthogonalScrollingBehavior = .continuous
-        layoutSection.contentInsets = NSDirectionalEdgeInsets.init(top: 66, leading: 12, bottom: 0, trailing: 12)
-
-        return layoutSection
-    }
-
-    func createActiveChatSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(86))
+    func creaeItemImageSecion() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(128.38),
+                                              heightDimension: .absolute(190))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 8, trailing: 0)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .estimated(1))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .absolute(222))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.interItemSpacing = .fixed(14)
 
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: 66, leading: 20, bottom: 0, trailing: 20)
+        section.contentInsets = .init(top: 8, leading: 14, bottom: 0, trailing: 0)
+        section.interGroupSpacing = 14
+        section.orthogonalScrollingBehavior = .continuous
+
         return section
     }
 
+    func createMediaSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(248))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 8, trailing: 0)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(1))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        return section
+    }
 }

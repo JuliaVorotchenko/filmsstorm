@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageViewCell: UICollectionViewCell {
+class ActorImageCell: UICollectionViewCell {
   
     @IBOutlet var itemImage: UIImageView!
     
