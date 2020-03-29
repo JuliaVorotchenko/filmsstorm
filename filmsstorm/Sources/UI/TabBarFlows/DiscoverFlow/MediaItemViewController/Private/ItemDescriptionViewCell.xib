@@ -144,6 +144,14 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sex-qg-2Cf" userLabel="FavView">
                                     <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
                                     <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdR-kL-w3w" userLabel="favButton" customClass="AnimatedButton" customModule="filmsstorm" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" image="watchlist"/>
+                                            <connections>
+                                                <action selector="onList:" destination="lZe-ly-1de" eventType="touchUpInside" id="pNu-74-CXe"/>
+                                            </connections>
+                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="My List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Lz-uM-QzL">
                                             <rect key="frame" x="4" y="26" width="29" height="11"/>
                                             <constraints>
@@ -153,14 +161,6 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdR-kL-w3w" userLabel="favButton" customClass="AnimatedButton" customModule="filmsstorm" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <state key="normal" image="watchlist"/>
-                                            <connections>
-                                                <action selector="onList:" destination="lZe-ly-1de" eventType="touchUpInside" id="pNu-74-CXe"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
@@ -239,6 +239,14 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ss-1j-4dj" userLabel="LikeView">
                                     <rect key="frame" x="147" y="0.0" width="37" height="37"/>
                                     <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQX-T5-9IU" userLabel="likeButton" customClass="AnimatedButton" customModule="filmsstorm" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" image="like"/>
+                                            <connections>
+                                                <action selector="onLike:" destination="lZe-ly-1de" eventType="touchUpInside" id="A17-RK-jpC"/>
+                                            </connections>
+                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hx-vG-3as" userLabel="LikeLabel">
                                             <rect key="frame" x="10" y="26" width="17" height="11"/>
                                             <constraints>
@@ -248,14 +256,6 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQX-T5-9IU" userLabel="likeButton" customClass="AnimatedButton" customModule="filmsstorm" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <state key="normal" image="like"/>
-                                            <connections>
-                                                <action selector="onLike:" destination="lZe-ly-1de" eventType="touchUpInside" id="A17-RK-jpC"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
