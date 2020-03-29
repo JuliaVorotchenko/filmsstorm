@@ -14,19 +14,29 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     
-    @IBOutlet var imageView: UIImageView?
+    @IBOutlet var imageView: LoadingImageView?
 
     // MARK: - Cell life cycle
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        self.setupUI()
+//    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
         self.setupUI()
     }
-    
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.imageView?.image = nil
+        self.imageView?.cancelLoading()
+    }
+
     // MARK: - Public Methods
     
     public func fill(with model: DiscoverCellModel?) {
-        self.imageView?.setImage(from: model?.posterPath)
+        self.imageView?.loadImage(from: model?.posterPath)
     }
     
     // MARK: - Private Methods

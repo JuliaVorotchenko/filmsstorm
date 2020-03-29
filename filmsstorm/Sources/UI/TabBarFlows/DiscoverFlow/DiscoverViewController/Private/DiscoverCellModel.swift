@@ -27,6 +27,7 @@ enum MediaType: String, Codable {
 }
 
 struct DiscoverCellModel: ConfigureModel, Codable, Hashable {
+    private let identifier = UUID()
     let mediaType: MediaType
     let id: Int
     let name: String?
@@ -35,6 +36,14 @@ struct DiscoverCellModel: ConfigureModel, Codable, Hashable {
     let releaseDate: String?
     let posterPath: String?
     let backDropPath: String?
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
+
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
     
     static func create(_ model: MovieListResult) -> Self {
     

@@ -33,10 +33,10 @@
                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7P-ls-7Ci" userLabel="descrView">
                     <rect key="frame" x="0.0" y="0.0" width="445" height="248"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tjA-Hg-1uX" userLabel="backgroundImage">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tjA-Hg-1uX" userLabel="backgroundImage" customClass="LoadingImageView" customModule="filmsstorm" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="445" height="248"/>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aav-gl-Ly2" userLabel="itemImage">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aav-gl-Ly2" userLabel="itemImage" customClass="LoadingImageView" customModule="filmsstorm" customModuleProvider="target">
                             <rect key="frame" x="18" y="17" width="150" height="200"/>
                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -332,9 +332,9 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="backgroundImage" destination="tjA-Hg-1uX" id="CvA-Nx-S0v"/>
+                <outlet property="backgroundImage" destination="tjA-Hg-1uX" id="N2Y-IT-qGi"/>
                 <outlet property="genreLabel" destination="EM0-a5-WSJ" id="KiV-xR-AxT"/>
-                <outlet property="itemImage" destination="aav-gl-Ly2" id="jnw-PT-l0Z"/>
+                <outlet property="itemImage" destination="aav-gl-Ly2" id="Yae-eR-aeV"/>
                 <outlet property="itemName" destination="Bk2-aM-lmw" id="IOK-RN-In7"/>
                 <outlet property="likeButton" destination="dQX-T5-9IU" id="fot-XU-nDV"/>
                 <outlet property="listButton" destination="mdR-kL-w3w" id="QV0-Xn-iZf"/>

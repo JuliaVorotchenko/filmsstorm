@@ -9,10 +9,11 @@
 import UIKit
 
 class SectionHeaderView: UICollectionReusableView {
-    static let reuseIdentifier = "SectionHeader"
+    static let reuseIdentifier = "SectionHeaderView"
     
     @IBOutlet var title: UILabel!
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+
+    func fill(from model: String) {
+        self.title.text = model
     }
 }

@@ -11,11 +11,16 @@ import UIKit
 class AvatarViewCell: UITableViewCell {
     
     @IBOutlet var containerView: UIView!
-    @IBOutlet weak var avatarView: UIImageView!
+    @IBOutlet weak var avatarView: LoadingImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     
     @IBOutlet var combineView: UIView!
-   
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.avatarView.cancelLoading()
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setAvatar()
@@ -23,7 +28,7 @@ class AvatarViewCell: UITableViewCell {
     
     func fill(model: UserModel?) {
         let path = model?.avatar?.gravatar?.hashString
-        self.avatarView.setImage(from: path, mainPath: .gravatar)
+        self.avatarView.loadImage(from: path, mainPath: .gravatar)
         self.usernameLabel.text = model?.username
     }
     

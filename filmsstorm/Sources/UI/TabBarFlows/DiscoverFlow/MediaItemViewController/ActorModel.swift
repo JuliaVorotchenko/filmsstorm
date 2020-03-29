@@ -16,12 +16,21 @@ protocol Actor: Codable {
 }
 
 struct ActorModel: Actor, Codable, Hashable, Equatable {
+
+    private let identifier = UUID()
    
-    
     let mediaType: MediaType
     let character: String?
     let actorName: String?
     let actorImage: String?
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
+
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
     
     static func create(_ model: MovieCast) -> Self {
         

@@ -15,7 +15,13 @@ extension UICollectionView {
         let nib = UINib(nibName: F.toString(anyClass), bundle: nil)
         self.register(nib, forCellWithReuseIdentifier: F.toString(anyClass))
     }
-    
+
+    func registerHeader(_ anyClass: AnyClass) {
+        let name = F.toString(anyClass)
+        let nib = UINib(nibName: name, bundle: nil)
+        self.register(nib, forSupplementaryViewOfKind: name, withReuseIdentifier: name)
+    }
+
     func dequeueReusableCell<T: UICollectionViewCell>(_ anyClass: AnyClass, for indexPath: IndexPath) -> T {
         let cell = self.dequeueReusableCell(withReuseIdentifier: F.toString(anyClass), for: indexPath)
         guard let cast = cell as? T else { fatalError("Dont find cell") }

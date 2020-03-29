@@ -48,7 +48,7 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="yra-LO-dkJ"/>
             <connections>
-                <outlet property="collecionView" destination="7g1-HX-4jf" id="e76-2k-DGN"/>
+                <outlet property="collectionView" destination="7g1-HX-4jf" id="e76-2k-DGN"/>
                 <outlet property="navigationView" destination="Azy-dW-JbS" id="MAZ-sS-2TU"/>
             </connections>
             <point key="canvasLocation" x="60.869565217391312" y="79.6875"/>

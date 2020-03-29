@@ -9,20 +9,16 @@
 import UIKit
 
 class ImageViewCell: UICollectionViewCell {
-  
-    @IBOutlet var itemImage: UIImageView!
+
+    @IBOutlet var itemImage: LoadingImageView?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.itemImage?.cancelLoading()
     }
-    
-    func similarsFill(model: DiscoverCellModel) {
-        let path = model.posterPath
-        self.itemImage.setImage(from: path, mainPath: .mainPath)
-    }
-    
-    func actorsFill(model: ActorModel) {
+
+    func fill(with model: ActorModel) {
         let path = model.actorImage
-        self.itemImage.setImage(from: path, mainPath: .mainPath)
+        self.itemImage?.loadImage(from: path)
     }
 }

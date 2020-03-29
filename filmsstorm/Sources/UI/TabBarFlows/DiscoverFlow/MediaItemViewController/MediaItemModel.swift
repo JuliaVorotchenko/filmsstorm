@@ -16,6 +16,7 @@ protocol MediaItem: ConfigureModel, Codable, Hashable {
 
 struct MediaItemModel: MediaItem, Codable {
 
+    private let identifier = UUID()
     let id: Int
     let name: String?
     let originalName: String
@@ -26,6 +27,14 @@ struct MediaItemModel: MediaItem, Codable {
     let backDropPath: String?
     let mediaType: MediaType
     let genre: [Genre]
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
+
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
 
     static func from(configure model: ConfigureModel) -> Self {
         return .init(id: model.id, name: model.name, originalName: "", voteAverage: model.voteAverage, overview: model.overview, releaseDate: model.releaseDate, posterPath: model.posterPath, backDropPath: model.backDropPath, mediaType: model.mediaType, genre: [.init(id: 1, name: "")])
@@ -38,8 +47,6 @@ struct MediaItemModel: MediaItem, Codable {
                      releaseDate: model.releaseDate, posterPath: model.posterPath,
                      backDropPath: model.backdropPath, mediaType: .movie,
                      genre: model.genres)
-
-
     }
 
     static func create(_ model: ShowDetailsModel) -> Self {

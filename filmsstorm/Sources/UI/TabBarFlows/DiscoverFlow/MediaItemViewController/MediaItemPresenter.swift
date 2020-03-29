@@ -56,7 +56,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?) {
         switch self.itemModel.mediaType {
         case .movie:
-            self.networking.getMovieDetails(with: self.itemModel) {[weak self] result in
+            self.networking.getMovieDetails(with: self.itemModel) { [weak self] result in
                 switch result {
                 case .success(let detailsModel):
                     completion?(MediaItemModel.create(detailsModel))
@@ -139,9 +139,8 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             self.networking.getMovieVideos(with: item) { [weak self] result in
                 switch result {
                 case .success(let videoModel):
-                    print("video movie result:", videoModel.results[0].name)
+                    F.Log("video movie result: \(videoModel.results)")
                 case .failure(let error):
-                    print("video movie result:", error.stringDescription)
                     self?.eventHandler?(.error(.networkingError(error)))
                 }
             }
@@ -150,9 +149,8 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             self.networking.getShowVideos(with: item) { result in
                 switch result {
                 case .success(let videoModel):
-                    print("show movie result:", videoModel.results[0].name)
+                    F.Log("show movie result: \(videoModel.results)")
                 case .failure(let error):
-                    print("show movie result:", error.stringDescription)
                     self.eventHandler?(.error(.networkingError(error)))
                 }
             }
@@ -167,9 +165,8 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         self.networking.addToFavourites(with: model) { result in
             switch result {
             case .success(let response):
-                print("liked", response.statusMessage)
+                F.Log("added watchlist \(response.statusMessage)")
             case .failure(let error):
-                print(error.stringDescription)
                 self.eventHandler?(.error(.networkingError(error)))
             }
         }
@@ -183,9 +180,8 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         self.networking.addToWatchlist(with: model) { result in
             switch result {
             case .success(let response):
-                print("added watchlist", response.statusMessage)
+                F.Log("added watchlist \(response.statusMessage)")
             case .failure(let error):
-                print(error.stringDescription)
                 self.eventHandler?(.error(.networkingError(error)))
             }
         }

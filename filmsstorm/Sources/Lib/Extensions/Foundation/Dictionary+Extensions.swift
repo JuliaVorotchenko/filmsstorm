@@ -21,8 +21,8 @@ extension Dictionary {
     var allValues: [Value] { Array(self.values) }
     
     @discardableResult
-    func append(_ value: Dictionary.Value,
-                forKey key: Dictionary.Key) -> Dictionary<Dictionary.Key, Dictionary.Value> {
+    func append(_ value: Value,
+                forKey key: Key) -> Dictionary<Key, Value> {
         var tmp = self
         tmp.updateValue(value, forKey: key)
         return tmp

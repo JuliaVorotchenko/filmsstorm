@@ -6,7 +6,6 @@
 //  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class DiscoverFlowCoordinator: Coordinator {

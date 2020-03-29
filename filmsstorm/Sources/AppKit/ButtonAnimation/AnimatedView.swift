@@ -25,8 +25,8 @@ class AnimatedView: UIView {
         self.setup()
     }
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         self.setup()
     }
     

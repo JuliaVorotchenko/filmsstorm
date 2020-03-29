@@ -11,7 +11,6 @@ import UIKit
 class MediaItemView: UIView {
 
     @IBOutlet var navigationView: CustomNavigationView!
-    @IBOutlet var collecionView: UICollectionView!
+    @IBOutlet var collectionView: UICollectionView!
 
-    
 }
