@@ -52,7 +52,7 @@ struct Language: Codable, Hashable {
 
 struct MovieDetailsModel: Codable, Hashable {
     let adult: Bool?
-    let backdropPath: String?
+    let backgroundImage: String?
     let collection: Collection?
     let budget: Int?
     let genres: [Genre]
@@ -63,7 +63,7 @@ struct MovieDetailsModel: Codable, Hashable {
     let originalTitle: String
     let overview: String
     let popularity: Double?
-    let posterPath: String
+    let posterImage: String
     let productionCompanies: [ProducionCompany]?
     let producionCounries: [ProductionCountry]?
     let releaseDate: String
@@ -79,7 +79,7 @@ struct MovieDetailsModel: Codable, Hashable {
     
     enum CodingKeys: String, CodingKey {
         case adult = "adult"
-        case backdropPath = "backdrop_path"
+        case backgroundImage = "backdrop_path"
         case collection = "belongs_to_collection"
         case budget = "budget"
         case genres = "genres"
@@ -90,7 +90,7 @@ struct MovieDetailsModel: Codable, Hashable {
         case originalTitle = "original_title"
         case overview = "overview"
         case popularity = "popularity"
-        case posterPath = "poster_path"
+        case posterImage = "poster_path"
         case productionCompanies = "production_companies"
         case producionCounries = "production_countries"
         case releaseDate = "release_date"

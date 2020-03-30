@@ -70,8 +70,8 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.actionHandler = onAction?.action
 
         self.item = detailsModel
-        self.itemImage?.setImage(from: detailsModel?.posterPath)
-        self.backgroundImage?.setImage(from: detailsModel?.backDropPath)
+        self.itemImage?.setImage(from: detailsModel?.posterImage)
+        self.backgroundImage?.setImage(from: detailsModel?.backgroundImage)
 
         self.itemName?.text = detailsModel?.name
         self.originalName?.text = detailsModel?.originalName

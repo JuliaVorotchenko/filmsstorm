@@ -26,7 +26,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     // MARK: - Public Methods
     
     public func fill(with model: DiscoverCellModel?) {
-        self.imageView?.setImage(from: model?.posterPath)
+        self.imageView?.setImage(from: model?.posterImage)
     }
     
     // MARK: - Private Methods

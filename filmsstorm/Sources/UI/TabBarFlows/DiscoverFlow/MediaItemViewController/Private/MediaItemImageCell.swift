@@ -13,7 +13,7 @@ class MediaItemImageCell: UICollectionViewCell {
     @IBOutlet var itemImage: UIImageView?
         
     func similarsFill(model: DiscoverCellModel) {
-        let path = model.posterPath
+        let path = model.posterImage
         self.itemImage?.setImage(from: path, mainPath: .mainPath)
     }
     

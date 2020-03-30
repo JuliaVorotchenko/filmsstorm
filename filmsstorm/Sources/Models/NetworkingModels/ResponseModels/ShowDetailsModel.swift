@@ -87,7 +87,7 @@ struct Season: Codable, Hashable {
 }
 
 struct ShowDetailsModel: Codable, Hashable {
-    let backdropPath: String
+    let backgroundImage: String
     let creator: [Creator]?
     let runTime: [Int]?
     let firstAirDate: String
@@ -108,7 +108,7 @@ struct ShowDetailsModel: Codable, Hashable {
     let originalName: String
     let overview: String
     let popularity: Double?
-    let posterPath: String
+    let posterImage: String
     let companies: [ProducionCompany]
     let seasons: [Season]?
     let status: String?
@@ -117,7 +117,7 @@ struct ShowDetailsModel: Codable, Hashable {
     let voteCount: Int?
     
     enum CodingKeys: String, CodingKey {
-        case backdropPath = "backdrop_path"
+        case backgroundImage = "backdrop_path"
         case creator = "created_by"
         case runTime = "episode_run_time"
         case firstAirDate = "first_air_date"
@@ -138,7 +138,7 @@ struct ShowDetailsModel: Codable, Hashable {
         case originalName = "original_name"
         case overview = "overview"
         case popularity = "popularity"
-        case posterPath = "poster_path"
+        case posterImage = "poster_path"
         case companies = "production_companies"
         case seasons = "seasons"
         case status = "status"

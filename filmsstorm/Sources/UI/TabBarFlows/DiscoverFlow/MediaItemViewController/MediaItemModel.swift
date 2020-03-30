@@ -22,21 +22,21 @@ struct MediaItemModel: MediaItem, Codable {
     let voteAverage: Double?
     let overview: String?
     let releaseDate: String?
-    let posterPath: String?
-    let backDropPath: String?
+    let posterImage: String?
+    let backgroundImage: String?
     let mediaType: MediaType
     let genre: [Genre]
 
     static func from(configure model: ConfigureModel) -> Self {
-        return .init(id: model.id, name: model.name, originalName: "", voteAverage: model.voteAverage, overview: model.overview, releaseDate: model.releaseDate, posterPath: model.posterPath, backDropPath: model.backDropPath, mediaType: model.mediaType, genre: [.init(id: 1, name: "")])
+        return .init(id: model.id, name: model.name, originalName: "", voteAverage: model.voteAverage, overview: model.overview, releaseDate: model.releaseDate, posterImage: model.posterImage, backgroundImage: model.backgroundImage, mediaType: model.mediaType, genre: [.init(id: 1, name: "")])
     }
 
     static func create(_ model: MovieDetailsModel) -> Self {
 
         return .init(id: model.id, name: model.title, originalName: model.originalTitle,
                      voteAverage: model.voteAverage, overview: model.overview,
-                     releaseDate: model.releaseDate, posterPath: model.posterPath,
-                     backDropPath: model.backdropPath, mediaType: .movie,
+                     releaseDate: model.releaseDate, posterImage: model.posterImage,
+                     backgroundImage: model.backgroundImage, mediaType: .movie,
                      genre: model.genres)
 
 
@@ -44,6 +44,6 @@ struct MediaItemModel: MediaItem, Codable {
 
     static func create(_ model: ShowDetailsModel) -> Self {
 
-        return .init(id: model.id, name: model.name, originalName: model.originalName, voteAverage: model.voteAverage, overview: model.overview, releaseDate: model.firstAirDate, posterPath: model.posterPath, backDropPath: model.backdropPath, mediaType: .tv, genre: model.genres)
+        return .init(id: model.id, name: model.name, originalName: model.originalName, voteAverage: model.voteAverage, overview: model.overview, releaseDate: model.firstAirDate, posterImage: model.posterImage, backgroundImage: model.backgroundImage, mediaType: .tv, genre: model.genres)
     }
 }

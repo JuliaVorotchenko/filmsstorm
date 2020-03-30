@@ -23,7 +23,7 @@ struct PopularMoviesModel: Codable, Hashable {
 }
 
 struct MovieListResult: Codable, Hashable {
-    let posterPath: String?
+    let posterImage: String?
     let adult: Bool?
     let overview: String?
     let releaseDate: String?
@@ -39,7 +39,7 @@ struct MovieListResult: Codable, Hashable {
     let voteAverage: Double?
     
     enum CodingKeys: String, CodingKey {
-        case posterPath = "poster_path"
+        case posterImage = "poster_path"
         case adult
         case overview
         case releaseDate = "release_date"

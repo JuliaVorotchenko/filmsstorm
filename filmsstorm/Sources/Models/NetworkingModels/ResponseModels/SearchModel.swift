@@ -25,7 +25,7 @@ struct SearchModel: Codable, Hashable {
 }
 
 struct MovieListReslutWitchMediaType: Codable, Hashable {
-    let posterPath: String?
+    let posterImage: String?
     let adult: Bool?
     let overview: String?
     let releaseDate: String?
@@ -34,7 +34,7 @@ struct MovieListReslutWitchMediaType: Codable, Hashable {
     let originalTitle: String?
     let originalLanguage: String?
     let title: String?
-    let backDropPath: String?
+    let backgroundImage: String?
     let popularity: Double?
     let voteCount: Int?
     let video: Bool?
@@ -42,7 +42,7 @@ struct MovieListReslutWitchMediaType: Codable, Hashable {
     let mediaType: String?
     
     enum CodingKeys: String, CodingKey {
-        case posterPath = "poster_path"
+        case posterImage = "poster_path"
         case adult
         case overview
         case releaseDate = "release_date"
@@ -51,7 +51,7 @@ struct MovieListReslutWitchMediaType: Codable, Hashable {
         case originalTitle = "original_title"
         case originalLanguage = "original_language"
         case title
-        case backDropPath = "backdrop_path"
+        case backgroundImage = "backdrop_path"
         case popularity
         case voteCount = "voteCount"
         case video
@@ -61,10 +61,10 @@ struct MovieListReslutWitchMediaType: Codable, Hashable {
 }
 
 struct ShowListResultWithMediaType: Codable, Hashable {
-    let posterPath: String?
+    let posterImage: String?
     let popularity: Double?
     let id: Int?
-    let backDropPath: String?
+    let backgroundImage: String?
     let voteAverage: Double?
     let overview: String?
     let firstAirDate: String?
@@ -77,10 +77,10 @@ struct ShowListResultWithMediaType: Codable, Hashable {
     let mediaType: String?
     
     enum CodingKeys: String, CodingKey {
-        case posterPath = "poster_path"
+        case posterImage = "poster_path"
         case popularity
         case id
-        case backDropPath = "backdrop_path"
+        case backgroundImage = "backdrop_path"
         case voteAverage = "vote_average"
         case overview
         case firstAirDate = "first_air_date"

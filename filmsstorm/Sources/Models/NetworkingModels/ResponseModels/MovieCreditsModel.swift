@@ -56,9 +56,8 @@ struct MovieCreditsModel: Codable, Hashable {
     let crew: [MediaCrew]?
     
     enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case cast = "cast"
-        case crew = "crew"
+        case id
+        case cast
+        case crew
     }
 }
-

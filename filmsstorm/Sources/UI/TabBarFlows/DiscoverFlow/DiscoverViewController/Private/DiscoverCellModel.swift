@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MediaContainer {
-    var posterPath: String? { get }
+    var posterImage: String? { get }
 }
 
 protocol ConfigureModel: MediaContainer, Identifier {
@@ -18,7 +18,7 @@ protocol ConfigureModel: MediaContainer, Identifier {
     var voteAverage: Double? { get }
     var overview: String? { get }
     var releaseDate: String? { get }
-    var backDropPath: String? { get }
+    var backgroundImage: String? { get }
 }
 
 enum MediaType: String, Codable {
@@ -33,8 +33,8 @@ struct DiscoverCellModel: ConfigureModel, Codable, Hashable {
     let voteAverage: Double?
     let overview: String?
     let releaseDate: String?
-    let posterPath: String?
-    let backDropPath: String?
+    let posterImage: String?
+    let backgroundImage: String?
     
     static func create(_ model: MovieListResult) -> Self {
     
@@ -42,8 +42,8 @@ struct DiscoverCellModel: ConfigureModel, Codable, Hashable {
                      voteAverage: model.voteAverage,
                      overview: model.overview,
                      releaseDate: model.releaseDate,
-                     posterPath: model.posterPath,
-                     backDropPath: model.backDropPath)
+                     posterImage: model.posterImage,
+                     backgroundImage: model.backDropPath)
     }
     
     static func create(_ model: ShowListResult) -> Self {
@@ -52,7 +52,7 @@ struct DiscoverCellModel: ConfigureModel, Codable, Hashable {
                      voteAverage: model.voteAverage,
                      overview: model.overview,
                      releaseDate: model.firstAirDate,
-                     posterPath: model.posterPath,
-                     backDropPath: model.backDropPath)
+                     posterImage: model.posterImage,
+                     backgroundImage: model.backgroundImage)
     }
 }
