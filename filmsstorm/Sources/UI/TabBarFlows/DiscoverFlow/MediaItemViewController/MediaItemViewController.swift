@@ -101,7 +101,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
             F.Log("you added to favourites \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
         }
     }
-
+    
     // MARK: - Private Methods for CollectionView
     
     private func setCollectionView() {
@@ -133,13 +133,13 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
                                                                                                for: indexPath)
                         cell.fill(detailsModel: model, onAction: .init { self.onCardEvent($0) })
                         return cell
-                   
+                        
                     case .similars(let model):
                         let cell: MediaItemImageCell = collectionView.dequeueReusableCell(MediaItemImageCell.self,
                                                                                           for: indexPath)
                         cell.similarsFill(model: model)
                         return cell
-                    
+                        
                     case .actors(let model):
                         let cell: MediaItemImageCell = collectionView.dequeueReusableCell(MediaItemImageCell.self,
                                                                                           for: indexPath)
@@ -153,78 +153,48 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         snapshot.appendSections(Section.allCases)
         Section.allCases.forEach { snapshot.appendItems([], toSection: $0)}
         
-        dataSource?.supplementaryViewProvider = { [weak self] in self?.supplementaryViewProvider(collectionView: $0, kind: $1, indexPath: $2) }
+        dataSource?.supplementaryViewProvider = { [weak self] in self?.supplementaryViewProvider(collectionView: $0,
+                                                                                                 kind: $1,
+                                                                                                 indexPath: $2) }
         dataSource?.apply(snapshot, animatingDifferences: false)
         
         return dataSource
     }
     
-    private func supplementaryViewProvider(collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? {
+    private func supplementaryViewProvider(collectionView: UICollectionView,
+                                           kind: String,
+                                           indexPath: IndexPath) -> UICollectionReusableView? {
         let header = collectionView.dequeueReusableSupplementaryView(
-             ofKind: kind,
-                 withReuseIdentifier: SectionHeaderView.reuseIdentifier,
-                 for: indexPath) as? SectionHeaderView
-             
-             switch Section.allCases[indexPath.section] {
-             case .actors:
-                 header?.fill(with: "Actors")
-             case .similars:
-                 header?.fill(with: "Similars")
-             case .media:
-                 break
-             }
+            ofKind: kind,
+            withReuseIdentifier: SectionHeaderView.reuseIdentifier,
+            for: indexPath) as? SectionHeaderView
         
-             return header
+        switch Section.allCases[indexPath.section] {
+        case .actors:
+            header?.fill(with: "Actors")
+        case .similars:
+            header?.fill(with: "Similars")
+        case .media:
+            break
+        }
+        
+        return header
     }
-        
-        // MARK: - Setup Layout
-        
-        func createCompositionalLayout() -> UICollectionViewLayout {
-            let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, _) -> NSCollectionLayoutSection? in
-                let section = Section.allCases[sectionIndex]
-                switch section {
-                case .actors:
-                    return self?.creaeItemImageSecion()
-                case .media:
-                    return self?.createMediaSection()
-                case .similars:
-                    return self?.creaeItemImageSecion()
-                }
+    
+    // MARK: - Setup Layout
+    
+    func createCompositionalLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, _) -> NSCollectionLayoutSection? in
+            let section = Section.allCases[sectionIndex]
+            switch section {
+            case .actors:
+                return CollectionLayoutFactory.mediaItemImagesSections()
+            case .media:
+                return CollectionLayoutFactory.mediaItemDescriptionSection()
+            case .similars:
+                return CollectionLayoutFactory.mediaItemImagesSections()
             }
-            return layout
         }
-        
-        func creaeItemImageSecion() -> NSCollectionLayoutSection {
-            let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(128),
-                                                  heightDimension: .absolute(190))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-           
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                   heightDimension: .estimated(222))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            group.interItemSpacing = .fixed(14)
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = .init(top: 8, leading: 14, bottom: 15, trailing: 0)
-            section.interGroupSpacing = 14
-            section.orthogonalScrollingBehavior = .continuous
-            
-            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                    heightDimension: .estimated(20))
-            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: headerSize,
-                elementKind: self.sectionHeaderElementKind, alignment: .top)
-            section.boundarySupplementaryItems = [sectionHeader]
-            return section
-        }
-        
-        func createMediaSection() -> NSCollectionLayoutSection {
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(320))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 8, trailing: 0)
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(1))
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-            let section = NSCollectionLayoutSection(group: group)
-            return section
-        }
+        return layout
+    }
 }
