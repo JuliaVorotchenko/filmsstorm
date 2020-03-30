@@ -10,7 +10,7 @@ import UIKit
 
 class SearchView: UIView {
 
-    @IBOutlet var navigationView: CustomNavigationView!
-    @IBOutlet var searchBar: UISearchBar!
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var navigationView: CustomNavigationView?
+    @IBOutlet var searchBar: UISearchBar?
+    @IBOutlet var collectionView: UICollectionView?
 }

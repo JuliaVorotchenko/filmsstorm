@@ -25,16 +25,16 @@ struct ActionCellModel: Hashable {
 
 class ActionViewCell: UITableViewCell {
     
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var iconImage: UIImageView!
-    @IBOutlet private weak var actionButton: UIButton!
+    @IBOutlet private weak var titleLabel: UILabel?
+    @IBOutlet private weak var iconImage: UIImageView?
+    @IBOutlet private weak var actionButton: UIButton?
     
     private var actionHandler: (() -> Void)?
     
     func fill(with model: ActionCellModel) {
         self.actionHandler = model.action
-        self.titleLabel.text = model.name
-        self.iconImage.image = model.image
+        self.titleLabel?.text = model.name
+        self.iconImage?.image = model.image
     }
     
     @IBAction func onAction(_ sender: Any) {

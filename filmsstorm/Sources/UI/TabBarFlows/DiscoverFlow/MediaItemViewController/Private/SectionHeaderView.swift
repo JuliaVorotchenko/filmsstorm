@@ -11,14 +11,14 @@ import UIKit
 class SectionHeaderView: UICollectionReusableView {
     static let reuseIdentifier = "SectionHeaderView"
     
-    @IBOutlet var label: UILabel!
+    @IBOutlet var label: UILabel?
    
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.label.text = ""
+        self.label?.text = ""
     }
     
     func fill(with text: String) {
-        self.label.text = text
+        self.label?.text = text
     }
 }

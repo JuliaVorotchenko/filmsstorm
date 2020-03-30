@@ -45,7 +45,7 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     // MARK: - Private Methods
     
     private func setupNavigaionView() {
-        self.rootView?.navigationView.backButton?.isHidden = true
+        self.rootView?.navigationView?.backButton?.isHidden = true
         self.rootView?.navigationView?.titleFill(with: "Favourites")
     }
 }

@@ -33,17 +33,17 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     
     @IBOutlet var backgroundImage: UIImageView?
     @IBOutlet var itemImage: UIImageView?
-    @IBOutlet var itemName: UILabel!
-    @IBOutlet var originalName: UILabel!
-    @IBOutlet var genreLabel: UILabel!
-    @IBOutlet var yearLabel: UILabel!
-    @IBOutlet var ratingLabel: UILabel!
-    @IBOutlet var likeButton: AnimatedButton!
-    @IBOutlet var listButton: AnimatedButton!
-    @IBOutlet var playButton: AnimatedButton!
-    @IBOutlet var playButtonView: UIView!
-    @IBOutlet var overviewLabel: UILabel!
-    @IBOutlet var overviewContainer: UIView!
+    @IBOutlet var itemName: UILabel?
+    @IBOutlet var originalName: UILabel?
+    @IBOutlet var genreLabel: UILabel?
+    @IBOutlet var yearLabel: UILabel?
+    @IBOutlet var ratingLabel: UILabel?
+    @IBOutlet var likeButton: AnimatedButton?
+    @IBOutlet var listButton: AnimatedButton?
+    @IBOutlet var playButton: AnimatedButton?
+    @IBOutlet var playButtonView: UIView?
+    @IBOutlet var overviewLabel: UILabel?
+    @IBOutlet var overviewContainer: UIView?
     
     // MARK: - Private properties
     
@@ -73,32 +73,32 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.itemImage?.setImage(from: detailsModel?.posterPath)
         self.backgroundImage?.setImage(from: detailsModel?.backDropPath)
 
-        self.itemName.text = detailsModel?.name
-        self.originalName.text = detailsModel?.originalName
-        self.genreLabel.text = detailsModel?.genre.map { $0.name }.prefix(2).joined(separator: ", ")
-        self.ratingLabel.text = detailsModel?.voteAverage.map { "\($0)" }
-        self.yearLabel.text = detailsModel?.releaseDate
-        self.overviewLabel.text = detailsModel?.overview
+        self.itemName?.text = detailsModel?.name
+        self.originalName?.text = detailsModel?.originalName
+        self.genreLabel?.text = detailsModel?.genre.map { $0.name }.prefix(2).joined(separator: ", ")
+        self.ratingLabel?.text = detailsModel?.voteAverage.map { "\($0)" }
+        self.yearLabel?.text = detailsModel?.releaseDate
+        self.overviewLabel?.text = detailsModel?.overview
     }
     
     func setupUI() {
-        self.overviewLabel.font = UIFont(name: "Abel-Regular", size: 14)
-        self.overviewLabel.sizeToFit()
-        self.overviewContainer.sizeToFit()
-        self.likeButton.rounded(cornerRadius: 5)
-        self.listButton.rounded(cornerRadius: 5)
-        self.playButtonView.rounded(cornerRadius: 8)
+        self.overviewLabel?.font = UIFont(name: "Abel-Regular", size: 14)
+        self.overviewLabel?.sizeToFit()
+        self.overviewContainer?.sizeToFit()
+        self.likeButton?.rounded(cornerRadius: 5)
+        self.listButton?.rounded(cornerRadius: 5)
+        self.playButtonView?.rounded(cornerRadius: 8)
         self.itemImage?.rounded(cornerRadius: 5)
     }
     
     func likedSuccessfully() {
         self.likeIsTapped = !self.likeIsTapped
         if self.likeIsTapped {
-            self.likeButton.setImage(UIImage(named: "liked"), for: .normal)
-            self.likeButton.likeBounce(0.5)
+            self.likeButton?.setImage(UIImage(named: "liked"), for: .normal)
+            self.likeButton?.likeBounce(0.5)
         } else {
-            self.likeButton.setImage(UIImage(named: "like"), for: .normal)
-            self.likeButton.unLikeBounce(0.3)
+            self.likeButton?.setImage(UIImage(named: "like"), for: .normal)
+            self.likeButton?.unLikeBounce(0.3)
         }
         
     }
@@ -106,11 +106,11 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     func watchlistedSuccsessfully() {
         self.listIsTapped = !self.listIsTapped
         if self.listIsTapped {
-            self.listButton.setImage(UIImage(named: "watchlisted"), for: .normal)
-            self.listButton.likeBounce(0.5)
+            self.listButton?.setImage(UIImage(named: "watchlisted"), for: .normal)
+            self.listButton?.likeBounce(0.5)
         } else {
-            self.listButton.setImage(UIImage(named: "watchlist"), for: .normal)
-            self.listButton.unLikeBounce(0.3)
+            self.listButton?.setImage(UIImage(named: "watchlist"), for: .normal)
+            self.listButton?.unLikeBounce(0.3)
         }
     }
     

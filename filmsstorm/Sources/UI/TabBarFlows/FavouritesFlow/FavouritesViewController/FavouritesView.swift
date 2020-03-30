@@ -10,5 +10,5 @@ import UIKit
 
 class FavouritesView: UIView {
 
-    @IBOutlet var navigationView: CustomNavigationView!
+    @IBOutlet var navigationView: CustomNavigationView?
 }
