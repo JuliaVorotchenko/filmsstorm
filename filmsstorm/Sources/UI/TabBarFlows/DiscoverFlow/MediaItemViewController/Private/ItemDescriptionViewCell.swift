@@ -124,6 +124,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     // MARK: - IBActions
     
     @IBAction func onList(_ sender: UIButton) {
+        self.watchlistedSuccsessfully()
         self.actionHandler?(.watchlist(self.item))
     }
     
@@ -131,6 +132,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     }
     
     @IBAction func onLike(_ sender: UIButton) {
+        self.likedSuccessfully()
         self.actionHandler?(.favourites(self.item))
     }
 }
