@@ -66,13 +66,13 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     // MARK: - Private methods
     
     private func getItemCast() {
-        self.presenter.getMovieCast { [weak self] models in
+        self.presenter.getItemCast { [weak self] models in
             self?.update(for: .actors, with: models.map(MediaItemContainer.actors))
         }
     }
     
     private func getMovieSimilars() {
-        self.presenter.getMovieSimilars { [weak self] in
+        self.presenter.getItemSimilars { [weak self] in
             self?.update(for: .similars, with: $0.map(MediaItemContainer.similars))
         }
     }
