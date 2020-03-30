@@ -31,8 +31,8 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     
-    @IBOutlet var backgroundImage: UIImageView?
-    @IBOutlet var itemImage: UIImageView?
+    @IBOutlet var backgroundImage: LoadingImageView?
+    @IBOutlet var itemImage: LoadingImageView?
     @IBOutlet var itemName: UILabel?
     @IBOutlet var originalName: UILabel?
     @IBOutlet var genreLabel: UILabel?
@@ -70,8 +70,8 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.actionHandler = onAction?.action
 
         self.item = detailsModel
-        self.itemImage?.setImage(from: detailsModel?.posterImage)
-        self.backgroundImage?.setImage(from: detailsModel?.backgroundImage)
+    self.itemImage?.loadImage(from: detailsModel?.posterImage)
+        self.backgroundImage?.loadImage(from: detailsModel?.backgroundImage)
 
         self.itemName?.text = detailsModel?.name
         self.originalName?.text = detailsModel?.originalName

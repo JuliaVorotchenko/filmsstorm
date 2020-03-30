@@ -39,7 +39,6 @@ struct MediaItemModel: MediaItem, Codable {
                      backgroundImage: model.backgroundImage, mediaType: .movie,
                      genre: model.genres)
 
-
     }
 
     static func create(_ model: ShowDetailsModel) -> Self {

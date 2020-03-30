@@ -121,11 +121,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     func createDataSource() -> UICollectionViewDiffableDataSource<Section, MediaItemContainer>? {
         let dataSource: UICollectionViewDiffableDataSource<Section, MediaItemContainer>? =
             self.rootView?.collecionView
-                .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) {
-                    
-                    collectionView,
-                    indexPath,
-                    item -> UICollectionViewCell in
+                .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, item -> UICollectionViewCell in
                     
                     switch item {
                     case .media(let model):

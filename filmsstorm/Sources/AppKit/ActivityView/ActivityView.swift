@@ -26,6 +26,16 @@ extension ActivityViewPresenter where Self: UIViewController {
     }
 }
 
+extension ActivityViewPresenter where Self: UIView {
+    func hideActivity() {
+          self.loadingView.stopLoader()
+      }
+    
+    func showActivity() {
+          self.loadingView.startLoader(from: self)
+      }
+}
+
 // MARK: - ActivityView realization
 
 class ActivityView: UIView {
@@ -46,7 +56,7 @@ class ActivityView: UIView {
     }
     
     deinit {
-        F.Log(F.toString(Self.self))
+        self.stopLoader()
     }
     
     // MARK: - Private methods
