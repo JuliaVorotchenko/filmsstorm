@@ -25,8 +25,8 @@ protocol MediaItemPresenter: Presenter {
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?)
     func getItemVideo(_ item: DiscoverCellModel?)
 
-    func addToFavourites(_ item: DiscoverCellModel?)
-    func addToWatchList(_ item: DiscoverCellModel?)
+    func addToFavourites(_ item: MediaItemModel?)
+    func addToWatchList(_ item: MediaItemModel?)
 
     func getMovieCast(_ completion: (([ActorModel]) -> Void)?)
     func getShowCast(_ completion: (([ActorModel]) -> Void)?)
@@ -159,7 +159,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         }
     }
     
-    func addToFavourites(_ item: DiscoverCellModel?) {
+    func addToFavourites(_ item: MediaItemModel?) {
         guard let item = item else { return }
         let model = AddFavouritesRequestModel(mediaType: item.mediaType.rawValue,
                                               mediaID: item.id,
@@ -175,7 +175,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         }
     }
     
-    func addToWatchList(_ item: DiscoverCellModel?) {
+    func addToWatchList(_ item: MediaItemModel?) {
         guard let item = item else { return }
         let model = AddWatchListRequestModel(mediaType: item.mediaType.rawValue,
                                              mediaID: item.id,

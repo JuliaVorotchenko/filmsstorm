@@ -99,14 +99,24 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.rootView?.navigationView?.titleFill(with: item.name ?? "N/A")
     }
     
+    private func onCardEvent(_ event: ItemDescriptionEvent) {
+        switch event {
+        case .watchlist(let model):
+            self.presenter.addToWatchList(model)
+            F.Log("you added to watch list \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
+        case .favourites(let model):
+            self.presenter.addToFavourites(model)
+            F.Log("you added to favourites \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
+        }
+    }
+
     // MARK: - Private Methods for CollectionView
     
     private func setCollectionView() {
         let collection = self.rootView?.collecionView
-        collection?.register(ActorImageCell.self)
+        collection?.register(MediaItemImageCell.self)
         collection?.register(ItemDescriptionViewCell.self)
-        collection?.register(UINib(nibName: "SectionHeaderView", bundle: nil),
-                             forSupplementaryViewOfKind: self.sectionHeaderElementKind, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
+        collection?.registerHeader(SectionHeaderView.self)
         collection?.setCollectionViewLayout(self.createCompositionalLayout(), animated: false)
     }
     
@@ -135,43 +145,42 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
             switch item {
             case .media(let model):
                 let cell: ItemDescriptionViewCell = collectionView.dequeueReusableCell(ItemDescriptionViewCell.self, for: indexPath)
-                cell.fill(detailsModel: model, onAction: nil)
+                cell.fill(detailsModel: model, onAction: .init { self.onCardEvent($0) })
                 return cell
             case .similars(let model):
-                let cell: ActorImageCell = collection.dequeueReusableCell(ActorImageCell.self, for: indexPath)
+                let cell: MediaItemImageCell = collection.dequeueReusableCell(MediaItemImageCell.self, for: indexPath)
                 cell.similarsFill(model: model)
                 return cell
             case .actos(let model):
-                let cell: ActorImageCell = collection.dequeueReusableCell(ActorImageCell.self, for: indexPath)
+                let cell: MediaItemImageCell = collection.dequeueReusableCell(MediaItemImageCell.self, for: indexPath)
                 cell.actorsFill(model: model)
                 return cell
             }
             
         }
         
-        self.dataSource?.supplementaryViewProvider = {(
-            collectionView: UICollectionView,
-            kind: String,
-            indexPath: IndexPath) -> UICollectionReusableView? in
-            
-        guard let header = collectionView.dequeueReusableSupplementaryView(
-            ofKind: kind,
-                withReuseIdentifier: SectionHeaderView.reuseIdentifier,
-                for: indexPath) as? SectionHeaderView else {
-                     fatalError("Cannot create new supplementary")
-            }
-            
-            if indexPath.section == 1 {
-               header.label.text = "Similars"
-            } else {
-                header.label.text = "Actors"
-            }
-           
-            return header
-        }
+        self.dataSource?.supplementaryViewProvider = { [weak self] in self?.supplementaryViewProvider(collectionView: $0, kind: $1, indexPath: $2) }
            
         self.updateData()
         }
+    
+    private func supplementaryViewProvider(collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? {
+        let header = collectionView.dequeueReusableSupplementaryView(
+             ofKind: kind,
+                 withReuseIdentifier: SectionHeaderView.reuseIdentifier,
+                 for: indexPath) as? SectionHeaderView
+             
+             switch Section.allCases[indexPath.section] {
+             case .actos:
+                 header?.fill(with: "Actors")
+             case .similars:
+                 header?.fill(with: "Similars")
+             case .media:
+                 break
+             }
+        
+             return header
+    }
         
         // MARK: - Setup Layout
         

@@ -31,8 +31,8 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     
-    @IBOutlet var backgroundImage: UIImageView!
-    @IBOutlet var itemImage: UIImageView!
+    @IBOutlet var backgroundImage: UIImageView?
+    @IBOutlet var itemImage: UIImageView?
     @IBOutlet var itemName: UILabel!
     @IBOutlet var originalName: UILabel!
     @IBOutlet var genreLabel: UILabel!
@@ -70,8 +70,8 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.actionHandler = onAction?.action
 
         self.item = detailsModel
-        self.itemImage.setImage(from: detailsModel?.posterPath)
-        self.backgroundImage.setImage(from: detailsModel?.backDropPath)
+        self.itemImage?.setImage(from: detailsModel?.posterPath)
+        self.backgroundImage?.setImage(from: detailsModel?.backDropPath)
 
         self.itemName.text = detailsModel?.name
         self.originalName.text = detailsModel?.originalName
@@ -88,7 +88,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.likeButton.rounded(cornerRadius: 5)
         self.listButton.rounded(cornerRadius: 5)
         self.playButtonView.rounded(cornerRadius: 8)
-        self.itemImage.rounded(cornerRadius: 5)
+        self.itemImage?.rounded(cornerRadius: 5)
     }
     
     func likedSuccessfully() {

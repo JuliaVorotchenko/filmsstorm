@@ -12,7 +12,13 @@ class SectionHeaderView: UICollectionReusableView {
     static let reuseIdentifier = "SectionHeaderView"
     
     @IBOutlet var label: UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
+   
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.label.text = ""
+    }
+    
+    func fill(with text: String) {
+        self.label.text = text
     }
 }

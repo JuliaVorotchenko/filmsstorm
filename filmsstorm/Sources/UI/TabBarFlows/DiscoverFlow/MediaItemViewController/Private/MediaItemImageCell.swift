@@ -8,14 +8,10 @@
 
 import UIKit
 
-class ActorImageCell: UICollectionViewCell {
+class MediaItemImageCell: UICollectionViewCell {
   
     @IBOutlet var itemImage: UIImageView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
+        
     func similarsFill(model: DiscoverCellModel) {
         let path = model.posterPath
         self.itemImage.setImage(from: path, mainPath: .mainPath)
