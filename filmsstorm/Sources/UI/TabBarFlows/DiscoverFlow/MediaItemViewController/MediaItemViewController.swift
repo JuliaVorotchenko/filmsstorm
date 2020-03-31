@@ -29,8 +29,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     // MARK: - Properties
     
-    let sectionHeaderElementKind = "SectionHeaderView"
-    
     let loadingView = ActivityView()
     let presenter: Service
     
@@ -110,6 +108,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         collection?.register(ItemDescriptionViewCell.self)
         collection?.registerHeader(SectionHeaderView.self)
         collection?.setCollectionViewLayout(self.createCompositionalLayout(), animated: false)
+        collection?.delegate = self
     }
     
     private func update(for section: Section, with items: [MediaItemContainer]) {
@@ -121,13 +120,13 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     func createDataSource() -> UICollectionViewDiffableDataSource<Section, MediaItemContainer>? {
         let dataSource: UICollectionViewDiffableDataSource<Section, MediaItemContainer>? =
             self.rootView?.collecionView
-                .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, item -> UICollectionViewCell in
+                .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collectionView, indexPath, item -> UICollectionViewCell in
                     
                     switch item {
                     case .media(let model):
                         let cell: ItemDescriptionViewCell = collectionView.dequeueReusableCell(ItemDescriptionViewCell.self,
                                                                                                for: indexPath)
-                        cell.fill(detailsModel: model, onAction: .init { self.onCardEvent($0) })
+                        cell.fill(detailsModel: model, onAction: .init { self?.onCardEvent($0) })
                         return cell
                         
                     case .similars(let model):
@@ -177,6 +176,20 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         return header
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = self.dataSource?.itemIdentifier(for: indexPath)
+        model.map {
+            switch $0 {
+            case .actors:
+                break
+            case .media:
+                break
+            case .similars(let model):
+                self.presenter.onSimilarsItem(with: model)
+            }
+        }
+    }
+
     // MARK: - Setup Layout
     
     func createCompositionalLayout() -> UICollectionViewLayout {

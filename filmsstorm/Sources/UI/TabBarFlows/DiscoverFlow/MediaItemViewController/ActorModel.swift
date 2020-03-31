@@ -17,7 +17,6 @@ protocol Actor: Codable {
 
 struct ActorModel: Actor, Codable, Hashable, Equatable {
    
-    
     let mediaType: MediaType
     let character: String?
     let actorName: String?

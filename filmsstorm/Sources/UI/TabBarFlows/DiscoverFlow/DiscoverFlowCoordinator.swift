@@ -142,6 +142,8 @@ class DiscoverFlowCoordinator: Coordinator {
             self.navigationController.popViewController(animated: true)
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
+        case .onMediaItem(let model):
+            self.createMediaItemViewController(from: model)
         }
     }
 }

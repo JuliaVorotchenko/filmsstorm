@@ -28,7 +28,7 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     
     let loadingView = ActivityView()
     let presenter: T
-    private var sections = [DiscoverCellModel]()
+    private var items = [DiscoverCellModel]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
     
     // MARK: - Init and deinit
@@ -62,7 +62,7 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     
     private func getPopularMovies() {
         self.presenter.getPopularMovies { [weak self] value in
-            self?.sections = value.map(DiscoverCellModel.create)
+            self?.items = value.map(DiscoverCellModel.create)
             self?.createDataSource()
         }
     }
@@ -110,7 +110,7 @@ item -> UICollectionViewCell? in
     func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, DiscoverCellModel> {
         var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(self.sections)
+        snapshot.appendItems(self.items)
        
         return snapshot
     }
@@ -118,7 +118,7 @@ item -> UICollectionViewCell? in
     // MARK: - CollectionView Delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = self.sections[indexPath.row]
+        let model = self.items[indexPath.row]
         self.presenter.onMedia(item: model)
     }
 }

@@ -14,7 +14,5 @@ class AboutView: UIView {
     @IBOutlet weak var appNameLabel: UILabel?
     @IBOutlet weak var appVersionLabel: UILabel?
     @IBOutlet weak var developerLabel: UILabel?
-    
     @IBOutlet weak var navigationView: CustomNavigationView?
-    
 }

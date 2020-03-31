@@ -10,6 +10,7 @@ import Foundation
 
 enum MediaItemEvent: EventProtocol {
     case back
+    case onMediaItem(DiscoverCellModel)
     case error(AppError)
 }
 
@@ -18,6 +19,7 @@ protocol MediaItemPresenter: Presenter {
     var itemModel: DiscoverCellModel { get }
     
     func onBack()
+    func onSimilarsItem(with model: DiscoverCellModel)
     
     func addToWatchList(_ item: MediaItemModel?)
     func addToFavourites(_ item: MediaItemModel?)
@@ -51,7 +53,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?) {
         switch self.itemModel.mediaType {
         case .movie:
-            self.networking.getMovieDetails(with: self.itemModel) {[weak self] result in
+            self.networking.getMovieDetails(with: self.itemModel) { [weak self] result in
                 switch result {
                 case .success(let detailsModel):
                     completion?(MediaItemModel.create(detailsModel))
@@ -193,5 +195,9 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     
     func onBack() {
         self.eventHandler?(.back)
+    }
+    
+    func onSimilarsItem(with model: DiscoverCellModel) {
+        self.eventHandler?(.onMediaItem(model))
     }
 }
