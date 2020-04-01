@@ -10,6 +10,6 @@ import UIKit
 
 class AuthorizationView: UIView {
 
-    @IBOutlet weak var usernameTextField: UITextField?
-    @IBOutlet weak var passwordTextField: UITextField?
+    @IBOutlet var usernameTextField: UITextField?
+    @IBOutlet var passwordTextField: UITextField?
 }

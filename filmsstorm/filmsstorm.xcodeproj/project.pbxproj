@@ -122,7 +122,6 @@
 		CD3DEA14241A7BCD0021AEA8 /* Abel-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD3DEA12241A7BCD0021AEA8 /* Abel-Regular.ttf */; };
 		CD3DEA19241A7BDE0021AEA8 /* ABeeZee-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD3DEA16241A7BDE0021AEA8 /* ABeeZee-Italic.ttf */; };
 		CD3DEA1B241A7BDE0021AEA8 /* ABeeZee-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD3DEA18241A7BDE0021AEA8 /* ABeeZee-Regular.ttf */; };
-		CD40EB83242D509C00ACF1DA /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD40EB82242D509C00ACF1DA /* Identifier.swift */; };
 		CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD499B6223E4715D00BF0545 /* TabBarContainer.swift */; };
 		CD4AE3B6240E787C00ACC0E3 /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */; };
 		CD4B3D502402EC6500F3FCF6 /* DiscoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */; };
@@ -327,7 +326,6 @@
 		CD3DEA12241A7BCD0021AEA8 /* Abel-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Abel-Regular.ttf"; sourceTree = "<group>"; };
 		CD3DEA16241A7BDE0021AEA8 /* ABeeZee-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ABeeZee-Italic.ttf"; sourceTree = "<group>"; };
 		CD3DEA18241A7BDE0021AEA8 /* ABeeZee-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ABeeZee-Regular.ttf"; sourceTree = "<group>"; };
-		CD40EB82242D509C00ACF1DA /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		CD499B6223E4715D00BF0545 /* TabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
 		CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
 		CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresenter.swift; sourceTree = "<group>"; };
@@ -728,7 +726,6 @@
 				CD0CDA7623C3E797002EC487 /* Controller.swift */,
 				CD0CDA7723C3E797002EC487 /* Coordinator.swift */,
 				CDC2F5352411972C00AB7B72 /* Presenter.swift */,
-				CD40EB82242D509C00ACF1DA /* Identifier.swift */,
 			);
 			path = MVCC;
 			sourceTree = "<group>";
@@ -1417,7 +1414,6 @@
 				CD38EFE2240EFBB300F93536 /* UIRectCorner+Extensions.swift in Sources */,
 				2E289CED23E8DFCA001917DB /* Router.swift in Sources */,
 				CD38EFD6240EF9B500F93536 /* Array+Extension.swift in Sources */,
-				CD40EB83242D509C00ACF1DA /* Identifier.swift in Sources */,
 				CD328A77241E804400BF7224 /* SectionHeaderView.swift in Sources */,
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				CD38EFD8240EF9E500F93536 /* Dictionary+Extensions.swift in Sources */,

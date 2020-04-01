@@ -115,6 +115,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     }
     
     private func reset() {
+        self.itemImage?.cancelLoading()
         self.item = nil
         self.actionHandler = nil
         self.likeIsTapped = false

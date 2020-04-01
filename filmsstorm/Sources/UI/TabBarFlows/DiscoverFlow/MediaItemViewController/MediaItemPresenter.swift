@@ -16,7 +16,7 @@ enum MediaItemEvent: EventProtocol {
 
 protocol MediaItemPresenter: Presenter {
     var showActivity: Handler<ActivityState>? { get set }
-    var itemModel: DiscoverCellModel { get }
+    var itemModel: ConfigureModel { get }
     
     func onBack()
     func onSimilarsItem(with model: DiscoverCellModel)
@@ -30,17 +30,17 @@ protocol MediaItemPresenter: Presenter {
 }
 
 class MediaItemPresenterImpl: MediaItemPresenter {
-    
+     
     // MARK: - Private Properties
     
     let eventHandler: Handler<MediaItemEvent>?
     var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
-    let itemModel: DiscoverCellModel
+    let itemModel: ConfigureModel
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: Handler<MediaItemEvent>?, itemModel: DiscoverCellModel) {
+    init(networking: NetworkManager, event: Handler<MediaItemEvent>?, itemModel: ConfigureModel) {
         self.networking = networking
         self.eventHandler = event
         self.itemModel = itemModel

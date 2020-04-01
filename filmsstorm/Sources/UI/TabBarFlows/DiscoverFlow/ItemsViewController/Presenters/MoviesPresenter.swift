@@ -9,7 +9,7 @@
 import Foundation
 
 enum MoviesEvent: EventProtocol {
-    case movie(DiscoverCellModel)
+    case movie(ConfigureModel)
     case error(AppError)
     case back
 }

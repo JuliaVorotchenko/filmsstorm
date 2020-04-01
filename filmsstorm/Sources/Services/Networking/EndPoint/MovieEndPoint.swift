@@ -10,11 +10,11 @@ import Foundation
 
 extension APIEndPoint {
     enum MovieEndPoint: EndPointType {
-        case getMovieCredits(model: DiscoverCellModel)
-        case getMovieDetails(model: DiscoverCellModel)
+        case getMovieCredits(model: Identifier)
+        case getMovieDetails(model: Identifier)
         case getMovieImages(movieID: Int)
-        case getMovieVideos(model: DiscoverCellModel)
-        case getMovieSimilars(model: DiscoverCellModel)
+        case getMovieVideos(model: Identifier)
+        case getMovieSimilars(model: Identifier)
         case getMovieReviews(movieID: Int)
         case rateMovie(movieID: Int, rateValue: Int)
         case deleteMovieRating(movieID: Int)

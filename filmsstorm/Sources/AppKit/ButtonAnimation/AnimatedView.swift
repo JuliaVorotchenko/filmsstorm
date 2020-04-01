@@ -44,29 +44,16 @@ class AnimatedView: UIView {
         let image = UIImage(named: "spark")
         let particleScale: CGFloat = 0.06
         let particleScaleRange: CGFloat = 0.03
-
-        let explosionOutCell = CAEmitterCell()
-        explosionOutCell.name = "explosion"
-        explosionOutCell.alphaRange = 0.40
-        explosionOutCell.alphaSpeed = -1.0
-        explosionOutCell.lifetime = 0.8
-        explosionOutCell.lifetimeRange = 0.4
-        explosionOutCell.birthRate = 0
-        explosionOutCell.velocity = 50.00
-        explosionOutCell.velocityRange = 8.00
-        explosionOutCell.contents = image?.cgImage
-        explosionOutCell.scale = particleScale
-        explosionOutCell.scaleRange = particleScaleRange
-
-        self.explosionOutLayer = CAEmitterLayer()
-        self.explosionOutLayer.name = "emitterLayer"
-        self.explosionOutLayer.emitterShape = CAEmitterLayerEmitterShape.circle
-        self.explosionOutLayer.emitterMode = CAEmitterLayerEmitterMode.outline
-        self.explosionOutLayer.emitterSize = CGSize(width: 30, height: 0)
-        self.explosionOutLayer.emitterCells = [explosionOutCell]
-        self.explosionOutLayer.renderMode = CAEmitterLayerRenderMode.oldestFirst
-        self.explosionOutLayer.masksToBounds = false
-        self.layer.addSublayer(self.explosionOutLayer)
+        
+        self.explodeIn(image: image, particleScale: particleScale, particleScaleRange: particleScaleRange)
+        self.explodeOut(image: image, particleScale: particleScale, particleScaleRange: particleScaleRange)
+        
+    }
+    
+    private func explodeIn(image: UIImage?, particleScale: CGFloat, particleScaleRange: CGFloat) {
+        let image = UIImage(named: "spark")
+        let particleScale: CGFloat = 0.06
+        let particleScaleRange: CGFloat = 0.03
         
         let explosionInCell = CAEmitterCell()
         explosionInCell.name = "charge"
@@ -90,6 +77,31 @@ class AnimatedView: UIView {
         self.explosionInLayer.renderMode = CAEmitterLayerRenderMode.oldestFirst
         self.explosionInLayer.masksToBounds = false
         self.layer.addSublayer(self.explosionInLayer)
+    }
+    
+    private func explodeOut(image: UIImage?, particleScale: CGFloat, particleScaleRange: CGFloat) {
+        let explosionOutCell = CAEmitterCell()
+        explosionOutCell.name = "explosion"
+        explosionOutCell.alphaRange = 0.40
+        explosionOutCell.alphaSpeed = -1.0
+        explosionOutCell.lifetime = 0.8
+        explosionOutCell.lifetimeRange = 0.4
+        explosionOutCell.birthRate = 0
+        explosionOutCell.velocity = 50.00
+        explosionOutCell.velocityRange = 8.00
+        explosionOutCell.contents = image?.cgImage
+        explosionOutCell.scale = particleScale
+        explosionOutCell.scaleRange = particleScaleRange
+        
+        self.explosionOutLayer = CAEmitterLayer()
+        self.explosionOutLayer.name = "emitterLayer"
+        self.explosionOutLayer.emitterShape = CAEmitterLayerEmitterShape.circle
+        self.explosionOutLayer.emitterMode = CAEmitterLayerEmitterMode.outline
+        self.explosionOutLayer.emitterSize = CGSize(width: 30, height: 0)
+        self.explosionOutLayer.emitterCells = [explosionOutCell]
+        self.explosionOutLayer.renderMode = CAEmitterLayerRenderMode.oldestFirst
+        self.explosionOutLayer.masksToBounds = false
+        self.layer.addSublayer(self.explosionOutLayer)
         
     }
     

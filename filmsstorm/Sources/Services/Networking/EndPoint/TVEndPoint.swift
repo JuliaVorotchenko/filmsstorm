@@ -9,11 +9,11 @@
 import Foundation
 extension APIEndPoint {
     enum TVEndPoint: EndPointType {
-        case getTVShowCredits(model: DiscoverCellModel)
-        case getTVShowDetails(model: DiscoverCellModel)
+        case getTVShowCredits(model: Identifier)
+        case getTVShowDetails(model: Identifier)
         case getTVShowImages(tvID: Int)
-        case getTVShowSimilar(model: DiscoverCellModel)
-        case getTVShowVideos(model: DiscoverCellModel)
+        case getTVShowSimilar(model: Identifier)
+        case getTVShowVideos(model: Identifier)
         case rateTVShow(tvID: Int, ratingValue: Int)
         case deleteTVShowRating(tvID: Int)
         case getTVShowLatest

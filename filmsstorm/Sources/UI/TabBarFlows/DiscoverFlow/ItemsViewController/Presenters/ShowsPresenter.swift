@@ -9,7 +9,7 @@
 import Foundation
 
 enum ShowsEvent: EventProtocol {
-    case mediaItem(DiscoverCellModel)
+    case mediaItem(ConfigureModel)
     case back
     case error(AppError)
 }

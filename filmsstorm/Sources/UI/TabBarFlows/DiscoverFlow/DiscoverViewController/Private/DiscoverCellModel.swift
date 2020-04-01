@@ -12,6 +12,10 @@ protocol MediaContainer {
     var posterImage: String? { get }
 }
 
+protocol Identifier {
+    var id: Int { get }
+}
+
 protocol ConfigureModel: MediaContainer, Identifier {
     var mediaType: MediaType { get }
     var name: String? { get }

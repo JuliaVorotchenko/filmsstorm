@@ -78,42 +78,42 @@ class NetworkManager {
         self.router.request(.account(.getShowsWatchList(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
     }
     
-    func getMovieDetails(with model: DiscoverCellModel,
+    func getMovieDetails(with model: Identifier,
                          completion: @escaping (Result<MovieDetailsModel, NetworkError>) -> Void) {
         self.router.request(.movie(.getMovieDetails(model: model)), completion: completion)
     }
     
-    func getMovieSimilars(with model: DiscoverCellModel,
+    func getMovieSimilars(with model: Identifier,
                           completion: @escaping(Result<MovieSimilarsModel, NetworkError>) -> Void) {
         self.router.request(.movie(.getMovieSimilars(model: model)), completion: completion)
     }
     
-    func getShowDetails(with model: DiscoverCellModel,
+    func getShowDetails(with model: Identifier,
                         completion: @escaping(Result<ShowDetailsModel, NetworkError>) -> Void) {
         self.router.request(.tv(.getTVShowDetails(model: model)), completion: completion)
     }
     
-    func getShowSimilars(with model: DiscoverCellModel,
+    func getShowSimilars(with model: Identifier,
                          completion: @escaping(Result<ShowSimilarsModel, NetworkError>) -> Void) {
         self.router.request(.tv(.getTVShowSimilar(model: model)), completion: completion)
     }
     
-    func getMovieVideos(with model: DiscoverCellModel,
+    func getMovieVideos(with model: Identifier,
                         completion: @escaping(Result<ItemVideoModel, NetworkError>) -> Void) {
         self.router.request(.movie(.getMovieVideos(model: model)), completion: completion)
     }
     
-    func getShowVideos(with model: DiscoverCellModel,
+    func getShowVideos(with model: Identifier,
                        completion: @escaping(Result<ItemVideoModel, NetworkError>) -> Void) {
         self.router.request(.tv(.getTVShowVideos(model: model)), completion: completion)
     }
     
-    func getMovieCredits(with model: DiscoverCellModel,
+    func getMovieCredits(with model: Identifier,
                          completion: @escaping(Result<MovieCreditsModel, NetworkError>) -> Void) {
         self.router.request(.movie(.getMovieCredits(model: model)), completion: completion)
     }
     
-    func getShowCredits(with model: DiscoverCellModel,
+    func getShowCredits(with model: Identifier,
                         completion: @escaping(Result<ShowCreditsModel, NetworkError>) -> Void) {
         self.router.request(.tv(.getTVShowCredits(model: model)), completion: completion)
     }
