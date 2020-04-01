@@ -95,8 +95,7 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
         
         guard let collectionView = self.rootView?.collectionView else { return }
         
-        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collection, indexPath,
-item -> UICollectionViewCell? in
+        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collection, indexPath, item -> UICollectionViewCell? in
             
             let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
             cell.fill(with: item)

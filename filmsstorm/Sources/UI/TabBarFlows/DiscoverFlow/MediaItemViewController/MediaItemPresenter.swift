@@ -139,7 +139,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             self.networking.getMovieVideos(with: item) { [weak self] result in
                 switch result {
                 case .success(let videoModel):
-                    print("video movie result:", videoModel.results[0].name)
+                    print("video movie result:", videoModel.results[0].name as Any)
                 case .failure(let error):
                     print("video movie result:", error.stringDescription)
                     self?.eventHandler?(.error(.networkingError(error)))
@@ -150,7 +150,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             self.networking.getShowVideos(with: item) { result in
                 switch result {
                 case .success(let videoModel):
-                    print("show movie result:", videoModel.results[0].name)
+                    print("show movie result:", videoModel.results[0].name as Any)
                 case .failure(let error):
                     print("show movie result:", error.stringDescription)
                     self.eventHandler?(.error(.networkingError(error)))

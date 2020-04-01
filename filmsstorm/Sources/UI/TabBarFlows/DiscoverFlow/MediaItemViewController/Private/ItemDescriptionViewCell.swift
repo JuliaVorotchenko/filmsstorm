@@ -60,22 +60,22 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-           super.prepareForReuse()
-           self.reset()
-       }
+        super.prepareForReuse()
+        self.reset()
+    }
     
     // MARK: - Methods
     
-  func fill(detailsModel: MediaItemModel?, onAction: ActionModel<ItemDescriptionEvent>?) {
+    func fill(detailsModel: MediaItemModel?, onAction: ActionModel<ItemDescriptionEvent>?) {
         self.actionHandler = onAction?.action
-
+        
         self.item = detailsModel
-    self.itemImage?.loadImage(from: detailsModel?.posterImage)
+        self.itemImage?.loadImage(from: detailsModel?.posterImage)
         self.backgroundImage?.loadImage(from: detailsModel?.backgroundImage)
-
+        
         self.itemName?.text = detailsModel?.name
         self.originalName?.text = detailsModel?.originalName
-        self.genreLabel?.text = detailsModel?.genre.map { $0.name }.prefix(2).joined(separator: ", ")
+        self.genreLabel?.text = detailsModel?.genre.map { $0.name }.shuffled().prefix(2).joined(separator: ", ")
         self.ratingLabel?.text = detailsModel?.voteAverage.map { "\($0)" }
         self.yearLabel?.text = detailsModel?.releaseDate
         self.overviewLabel?.text = detailsModel?.overview

@@ -15,10 +15,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="185" height="238"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RhY-Gb-pJg" customClass="LoadingImageView" customModule="filmsstorm" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="1.5" width="185" height="235.5"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RhY-Gb-pJg" customClass="LoadingImageView" customModule="filmsstorm" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="185" height="238"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="0.90231592949999995" green="1" blue="0.49127406029999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="3"/>
@@ -41,7 +40,4 @@
             <point key="canvasLocation" x="-1109.4202898550725" y="-216.29464285714286"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="heart.fill" catalog="system" width="64" height="54"/>
-    </resources>
 </document>
