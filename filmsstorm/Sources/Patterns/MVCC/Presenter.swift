@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 /// Presenter is responsible for buisness logic realization
 
 //- generate events for coordinator about user`s action;

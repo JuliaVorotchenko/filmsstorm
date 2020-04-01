@@ -10,6 +10,6 @@ import UIKit
 
 class QualitySettingViewCell: UITableViewCell {
     
-    @IBOutlet weak var imageQualityLabel: UILabel!
-    @IBOutlet weak var setQuality: UISwitch!
+    @IBOutlet weak var imageQualityLabel: UILabel?
+    @IBOutlet weak var setQuality: UISwitch?
 }

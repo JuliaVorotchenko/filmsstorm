@@ -76,7 +76,7 @@ UICollectionViewDelegate {
         self.rootView?.navigationView?.titleFill(with: title)
     }
     
-    private func onCardEvent(_ event: MovieCardEvent) {
+    private func onCardEvent(_ event: ItemDescriptionEvent) {
         switch event {
         case .watchlist(let model):
             F.Log("you moved item to watch list \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
@@ -91,10 +91,10 @@ UICollectionViewDelegate {
         
         guard let collectionView = self.rootView?.collectionView else { return }
         
-        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self ] collection, indexPath, item -> UICollectionViewCell? in
+        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collection, indexPath, item -> UICollectionViewCell? in
             
             let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
-            cell.fill(with: item, onAction: .init { self?.onCardEvent($0)})
+            cell.fill(with: item)
             return cell
         }
         let snapshot = self.createSnapshot()

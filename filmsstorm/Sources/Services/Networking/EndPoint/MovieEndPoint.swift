@@ -10,10 +10,11 @@ import Foundation
 
 extension APIEndPoint {
     enum MovieEndPoint: EndPointType {
-        case getMovieDetails(movieID: Int)
+        case getMovieCredits(model: Identifier)
+        case getMovieDetails(model: Identifier)
         case getMovieImages(movieID: Int)
-        case getMovieVideos(movieID: Int)
-        case getMovieSimilars(movieID: Int)
+        case getMovieVideos(model: Identifier)
+        case getMovieSimilars(model: Identifier)
         case getMovieReviews(movieID: Int)
         case rateMovie(movieID: Int, rateValue: Int)
         case deleteMovieRating(movieID: Int)
@@ -25,14 +26,16 @@ extension APIEndPoint {
         
         var path: String {
             switch self {
-            case .getMovieDetails(let movieID):
-                return "/movie/\(movieID)"
+            case .getMovieCredits(let model):
+                return "/movie/\(String(describing: model.id))/credits"
+            case .getMovieDetails(let model):
+                return "/movie/\(String(describing: model.id))"
             case .getMovieImages(let movieID):
                 return "/movie/\(movieID)/images"
-            case .getMovieVideos(let movieID):
-                return "/movie/\(movieID)/videos"
-            case .getMovieSimilars(let movieID):
-                return "/movie/\(movieID)/similar"
+            case .getMovieVideos(let model):
+                return "/movie/\(String(model.id))/videos"
+            case .getMovieSimilars(let model):
+                return "/movie/\(String(describing: model.id))/similar"
             case .getMovieReviews(let movieID):
                 return "/movie/\(movieID)/reviews"
             case .rateMovie(let movieID, _):
@@ -55,6 +58,7 @@ extension APIEndPoint {
         var httpMethod: HTTPMethod {
             switch self {
             case
+            .getMovieCredits,
             .getMovieDetails,
             .getMovieImages,
             .getMovieVideos,
@@ -85,16 +89,20 @@ extension APIEndPoint {
             .getMovieNowPlaying,
             .getMoviePopular,
             .getMovieTopRated,
-            .getMovieDetails,
             .getMovieImages,
-            .getMovieVideos,
-            .getMovieSimilars,
             .getMovieReviews:
                 return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue])
                 
+            case
+            .getMovieCredits(let model),
+            .getMovieDetails(let model),
+            .getMovieSimilars(let model),
+            .getMovieVideos(let model):
+                return .requestParameters(bodyParameters: nil, urlParameters: [Headers.apiKey: Headers.apiKeyValue,
+                                                                               Headers.movieId: model.id])
+                
             case .getUpcoming:
                 return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue,
-                                                                                Headers.region: Headers.ua,
                                                                                 "language": "uk"])
                 
             case .rateMovie(_, let rateValue):

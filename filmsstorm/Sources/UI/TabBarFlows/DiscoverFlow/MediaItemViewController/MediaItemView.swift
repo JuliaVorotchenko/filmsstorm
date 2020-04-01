@@ -10,12 +10,7 @@ import UIKit
 
 class MediaItemView: UIView {
 
-    @IBOutlet var navigationView: CustomNavigationView!
-    @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var mediaItemImage: UIImageView!
-    @IBOutlet var mediaItemName: UILabel!
-    @IBOutlet var mediaItemYear: UILabel!
-    @IBOutlet var mediaItemAgeLimit: UILabel!
-    @IBOutlet var mediaItemDuration: UILabel!
-    @IBOutlet var mediaItemDesription: UILabel!
+    @IBOutlet var navigationView: CustomNavigationView?
+    @IBOutlet var collecionView: UICollectionView?
+
 }

@@ -43,8 +43,8 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     // MARK: - IBAction
    
     @IBAction func buttonTapped(_ sender: Any) {
-        guard let username = self.rootView?.usernameTextField.text,
-            let password = self.rootView?.passwordTextField.text  else { return }
+        guard let username = self.rootView?.usernameTextField?.text,
+            let password = self.rootView?.passwordTextField?.text  else { return }
         self.presenter.getToken(username: username, password: password)
     }
     

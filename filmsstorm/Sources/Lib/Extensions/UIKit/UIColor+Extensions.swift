@@ -18,6 +18,8 @@ enum AppColor: String {
     case surfaceUp
     case background
     case text
+    case sectionHeader
+    case playRed
 }
 
 extension UIColor {

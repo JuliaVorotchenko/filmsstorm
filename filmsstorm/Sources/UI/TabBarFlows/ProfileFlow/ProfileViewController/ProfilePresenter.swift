@@ -60,11 +60,11 @@ class ProfilePresenterImpl: ProfilePresenter {
         }
     }
     
-    func getUserDetails(_ complition: ((UserModel) -> Void)?) {
+    func getUserDetails(_ completion: ((UserModel) -> Void)?) {
         self.networking.getUserDetails { [weak self] result in
             switch result {
             case .success(let model):
-                complition?(model)
+                completion?(model)
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
             }

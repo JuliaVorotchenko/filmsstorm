@@ -46,9 +46,9 @@ class AboutViewController<T: AboutPresenter>: UIViewController, ActivityViewPres
     // MARK: - Private methods
     
     private func customNavViewSetup() {
-        self.rootView?.navigationView.actionHandler = { [weak self] in
+        self.rootView?.navigationView?.actionHandler = { [weak self] in
             self?.presenter.onBackEvent()
         }
-        self.rootView?.navigationView.titleFill(with: "About")
+        self.rootView?.navigationView?.titleFill(with: "About")
     }
 }

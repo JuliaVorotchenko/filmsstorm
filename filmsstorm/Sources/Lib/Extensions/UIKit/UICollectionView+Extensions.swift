@@ -21,4 +21,9 @@ extension UICollectionView {
         guard let cast = cell as? T else { fatalError("Dont find cell") }
         return cast
     }
+    
+    func registerHeader(_ anyClass: AnyClass) {
+        let name = F.toString(anyClass)
+        self.register(UINib(nibName: name, bundle: nil), forSupplementaryViewOfKind: name, withReuseIdentifier: name)
+    }
 }

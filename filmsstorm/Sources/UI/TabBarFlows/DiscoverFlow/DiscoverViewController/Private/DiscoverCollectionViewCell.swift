@@ -10,54 +10,29 @@ import UIKit
 
 typealias Handler<T> = (T) -> Void
 
-enum MovieCardEvent: Equatable {
-    case watchlist(DiscoverCellModel?)
-    case favourites(DiscoverCellModel?)
-}
-
-struct MovieCardEventModel {
-    let action: ((MovieCardEvent) -> Void)
-}
-
-struct ActionModel<Model: Equatable>: Hashable, Equatable {
-    let action: Handler<Model>?
-    
-    func hash(into hasher: inout Hasher) { }
-    
-    static func == (lhs: ActionModel<Model>, rhs: ActionModel<Model>) -> Bool {
-        return true
-    }
-}
-
 class DiscoverCollectionViewCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     
-    @IBOutlet var imageView: UIImageView?
-    
-    // MARK: - Private properties
-    
-    private var item: DiscoverCellModel?
-    private var actionHandler: Handler<MovieCardEvent>?
+    @IBOutlet var imageView: LoadingImageView?
     
     // MARK: - Cell life cycle
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func layoutSubviews() {
+        super.layoutSubviews()
         self.setupUI()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.item = nil
+        self.imageView?.image = nil
+        self.imageView?.cancelLoading()
     }
     
     // MARK: - Public Methods
     
-    public func fill(with model: DiscoverCellModel?, onAction: ActionModel<MovieCardEvent>?) {
-        self.item = model
-        self.imageView?.setImage(from: model?.posterPath)
-        self.actionHandler = onAction?.action
+    public func fill(with model: DiscoverCellModel?) {
+        self.imageView?.loadImage(from: model?.posterImage)
     }
     
     // MARK: - Private Methods
@@ -66,13 +41,4 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
         self.addShadow()
     }
     
-    // MARK: - IBActions
-    
-    @IBAction func onFavorites(_ sender: UIButton) {
-         self.actionHandler?(.favourites(self.item))
-    }
-    
-    @IBAction func onWatchlist(_ sender: UIButton) {
-        self.actionHandler?(.watchlist(self.item))
-    }
 }

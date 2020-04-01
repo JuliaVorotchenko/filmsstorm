@@ -129,7 +129,9 @@ class DiscoverFlowCoordinator: Coordinator {
     // MARK: - Media Item VC
     
     private func createMediaItemViewController(from model: ConfigureModel) {
-        let presenter = MediaItemPresenterImpl(networking: self.networking, event: self.mediaItemEvent)
+        let presenter = MediaItemPresenterImpl(networking: self.networking,
+                                               event: self.mediaItemEvent,
+                                               itemModel: model)
         let controller = MediaItemViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -138,6 +140,10 @@ class DiscoverFlowCoordinator: Coordinator {
         switch event {
         case .back:
             self.navigationController.popViewController(animated: true)
+        case .error(let errorMessage):
+            self.eventHandler?(.appError(errorMessage))
+        case .onMediaItem(let model):
+            self.createMediaItemViewController(from: model)
         }
     }
 }

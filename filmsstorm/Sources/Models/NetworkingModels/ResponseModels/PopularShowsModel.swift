@@ -23,10 +23,10 @@ struct PopularShowsModel: Codable, Hashable {
 }
 
 struct ShowListResult: Codable, Hashable {
-    let posterPath: String?
+    let posterImage: String?
     let popularity: Double?
-    let id: Int?
-    let backDropPath: String?
+    let id: Int
+    let backgroundImage: String?
     let voteAverage: Double?
     let overview: String?
     let firstAirDate: String?
@@ -38,10 +38,10 @@ struct ShowListResult: Codable, Hashable {
     let originalName: String?
     
     enum CodingKeys: String, CodingKey {
-        case posterPath = "poster_path"
+        case posterImage = "poster_path"
         case popularity
         case id
-        case backDropPath = "backdrop_path"
+        case backgroundImage = "backdrop_path"
         case voteAverage = "vote_average"
         case overview
         case firstAirDate = "first_air_date"

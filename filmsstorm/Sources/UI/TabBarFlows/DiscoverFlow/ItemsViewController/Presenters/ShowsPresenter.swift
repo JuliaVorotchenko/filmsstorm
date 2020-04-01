@@ -44,7 +44,7 @@ class ShowPresenterImpl: ItemsPresenter {
         }
     }
     
-    func onMedia(item: ConfigureModel) {
+    func onMedia(item: DiscoverCellModel) {
         self.eventHandler?(.mediaItem(item))
     }
     

@@ -9,9 +9,11 @@
 import UIKit
 
 protocol ImageLoadingService {
+
     func loadImage(from urlString: String?,
                    mainPath: Path,
-                   completion: @escaping (Result<UIImage, ImageError>) -> Void)
+                   completion: ((Result<UIImage, ImageError>) -> Void)?)
+    func cancelLoading()
 }
 
 enum Path: String {
@@ -19,14 +21,15 @@ enum Path: String {
     case gravatar = "https://www.gravatar.com/avatar/"
 }
 
-struct ImageLoadingServiceImpl: ImageLoadingService {
-    
+class ImageLoadingServiceImpl: ImageLoadingService {
+
     // MARK: - Private properties
     
     private let cache: NSCache<NSURL, UIImage>
     private let networkService: NetworkServiceProtocol
     private let queue: DispatchQueue
-    
+    private var dataTask: URLSessionDataTask?
+
     // MARK: - Initialization
     
     init(networkService: NetworkServiceProtocol = NetworkService(),
@@ -40,30 +43,36 @@ struct ImageLoadingServiceImpl: ImageLoadingService {
 
     func loadImage(from urlString: String?,
                    mainPath: Path,
-                   completion: @escaping (Result<UIImage, ImageError>) -> Void) {
+                   completion: ((Result<UIImage, ImageError>) -> Void)?) {
         let imagePath = urlString ?? ""
         guard let url = URL(string: mainPath.rawValue + imagePath) else { fatalError("Unable create url") }
         
         if let cachedImage = self.cache.object(forKey: url as NSURL) {
-            completion(.success(cachedImage))
+            completion?(.success(cachedImage))
         } else {
-            self.networkService.perform(request: URLRequest(url: url)) { result in
+            self.dataTask = self.networkService.perform(request: URLRequest(url: url)) { [weak self] result in
+                guard let `self` = self else { return }
                 self.queue.async {
                     switch result {
                     case .success(let data, _):
                         switch self.createImage(from: data) {
                         case .success(let image):
                             self.cache.setObject(image, forKey: url as NSURL)
-                            completion(.success(image))
+                            completion?(.success(image))
                         case .failure(let error):
-                            completion(.failure(error))
+                            completion?(.failure(error))
                         }
                     case .failure:
-                        completion(.failure(.unableToCreateImage))
+                        completion?(.failure(.unableToCreateImage))
                     }
                 }
             }
+            self.dataTask?.resume()
         }
+    }
+
+    func cancelLoading() {
+        self.dataTask?.cancel()
     }
     
     // MARK: - Private methods

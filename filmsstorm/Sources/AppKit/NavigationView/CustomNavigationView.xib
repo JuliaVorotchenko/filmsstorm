@@ -35,8 +35,8 @@
                         <action selector="onBack:" destination="-1" eventType="touchUpInside" id="MIE-zp-tW7"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcZ-ob-mpk">
-                    <rect key="frame" x="187.5" y="20.5" width="39.5" height="19"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcZ-ob-mpk">
+                    <rect key="frame" x="61" y="20.5" width="333" height="19"/>
                     <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="16"/>
                     <color key="textColor" name="primary"/>
                     <nil key="highlightedColor"/>
@@ -46,8 +46,9 @@
             <constraints>
                 <constraint firstItem="6Yj-5b-AtY" firstAttribute="centerY" secondItem="xcA-Ur-I7N" secondAttribute="centerY" id="Bv0-yy-8ZQ"/>
                 <constraint firstItem="6Yj-5b-AtY" firstAttribute="leading" secondItem="uZn-mN-LBx" secondAttribute="leading" constant="20.949999999999999" id="FMs-DT-7QF"/>
+                <constraint firstItem="fcZ-ob-mpk" firstAttribute="leading" secondItem="6Yj-5b-AtY" secondAttribute="trailing" constant="15" id="KRv-sl-oHf"/>
+                <constraint firstItem="uZn-mN-LBx" firstAttribute="trailing" secondItem="fcZ-ob-mpk" secondAttribute="trailing" constant="20" id="lbF-gc-5aA"/>
                 <constraint firstItem="fcZ-ob-mpk" firstAttribute="centerY" secondItem="xcA-Ur-I7N" secondAttribute="centerY" id="s6v-6C-ix1"/>
-                <constraint firstItem="fcZ-ob-mpk" firstAttribute="centerX" secondItem="xcA-Ur-I7N" secondAttribute="centerX" id="sBd-Hl-5GZ"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

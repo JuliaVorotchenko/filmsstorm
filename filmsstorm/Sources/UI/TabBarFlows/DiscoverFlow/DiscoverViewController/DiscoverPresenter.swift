@@ -11,7 +11,7 @@ import Foundation
 enum DiscoverEvent: EventProtocol {
     case error(AppError)
     case onHeaderEvent(DiscoverHeaderEvent)
-    case onMediaItem(ConfigureModel)
+    case onMediaItem(DiscoverCellModel)
     
 }
 
@@ -21,13 +21,11 @@ protocol DiscoverPresenter: Presenter {
     func onMovies()
     func onShows()
     func onSearch()
-    func onMedia(item: ConfigureModel)
-    func addToFavourites(_ item: DiscoverCellModel?)
-    func addToWatchList(_ item: DiscoverCellModel?)
+    func onMedia(item: DiscoverCellModel)
 }
 
 class DiscoverPresenterImpl: DiscoverPresenter {
-    
+  
     // MARK: - Private Properties
     let eventHandler: Handler<DiscoverEvent>?
     var showActivity: Handler<ActivityState>?
@@ -40,7 +38,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
         self.eventHandler = event
     }
     
-    // MARK: - Methods
+    // MARK: - Networking Methods
     
     func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?) {
         self.networking.getUpcomingMovies { [weak self] result in
@@ -53,32 +51,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
         }
     }
     
-    func addToFavourites(_ item: DiscoverCellModel?) {
-        guard let item = item, let id = item.id else { return }
-        let model = AddFavouritesRequestModel(mediaType: item.mediaType.rawValue, mediaID: id, isFavourite: true)
-        self.networking.addToFavourites(with: model) { result in
-            switch result {
-            case .success(let response):
-                print(response.statusMessage)
-            case .failure(let error):
-                print(error.stringDescription)
-                
-            }
-        }
-    }
-    
-    func addToWatchList(_ item: DiscoverCellModel?) {
-        guard let item = item, let id = item.id else { return }
-        let model = AddWatchListRequestModel(mediaType: item.mediaType.rawValue, mediaID: id, toWatchList: true)
-        self.networking.addToWatchlist(with: model) { result in
-            switch result {
-            case .success(let response):
-                print(response.statusMessage)
-            case .failure(let error):
-                print(error.stringDescription)
-            }
-        }
-    }
+    // MARK: - Activity Movies
     
     func onMovies() {
         self.eventHandler?(.onHeaderEvent(.onMovies))
@@ -92,7 +65,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
         self.eventHandler?(.onHeaderEvent(.onSearch))
     }
     
-    func onMedia(item: ConfigureModel) {
-        self.eventHandler?(.onMediaItem(item))
+    func onMedia(item: DiscoverCellModel) {
+         self.eventHandler?(.onMediaItem(item))
     }
 }

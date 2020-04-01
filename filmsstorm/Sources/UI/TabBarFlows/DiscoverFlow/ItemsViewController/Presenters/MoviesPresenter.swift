@@ -18,7 +18,7 @@ protocol ItemsPresenter: Presenter {
     var showActivity: Handler<ActivityState>? { get set }
     var title: String { get }
     func getItems(_ completion: Handler<[DiscoverCellModel]>?)
-    func onMedia(item: ConfigureModel)
+    func onMedia(item: DiscoverCellModel)
     func onBack()
 }
 
@@ -51,7 +51,7 @@ class MoviesPresenterImpl: ItemsPresenter {
         }
     }
     
-    func onMedia(item: ConfigureModel) {
+    func onMedia(item: DiscoverCellModel) {
         self.eventHandler?(.movie(item))
     }
     
