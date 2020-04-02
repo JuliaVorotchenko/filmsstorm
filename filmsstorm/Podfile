@@ -19,3 +19,5 @@ target 'filmsstorm' do
 pod 'KeychainSwift', '~> 19.0'
 
 end
+
+pod "YoutubePlayer-in-WKWebView", "~> 0.2.0" 

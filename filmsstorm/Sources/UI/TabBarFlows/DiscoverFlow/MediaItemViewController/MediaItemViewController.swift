@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
     
@@ -107,9 +108,26 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
             F.Log("you added to favourites \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
         case .play(let model):
             F.Log(#function)
+            guard let model = model else { return }
+            self.presenter.onPlay(item: model)
+            
         }
     }
     
+    private func play() {
+        print(#function)
+        guard let videoPath = self.itemVideos[0].key else { return }
+        let path = Path.youtube.rawValue + videoPath
+        guard let url = URL(string: path) else { return }
+        print("videoURL:", url)
+        let player = AVPlayer(url: url)
+        
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        present(playerViewController, animated: true) {
+            player.play()
+        }
+    }
     // MARK: - Private Methods for CollectionView
     
     private func setCollectionView() {
@@ -199,7 +217,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
             }
         }
     }
-
+    
     // MARK: - Setup Layout
     
     func createCompositionalLayout() -> UICollectionViewLayout {
