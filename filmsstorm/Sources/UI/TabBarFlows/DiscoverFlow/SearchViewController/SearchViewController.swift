@@ -56,6 +56,8 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
             F.Log("you liked movie")
         case .favourites:
             F.Log("you added moview to favourites")
+        case.play:
+            F.Log("videos")
         }
     }
     

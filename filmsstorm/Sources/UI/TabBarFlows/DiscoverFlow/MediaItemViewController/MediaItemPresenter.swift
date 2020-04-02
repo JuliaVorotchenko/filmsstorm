@@ -24,7 +24,7 @@ protocol MediaItemPresenter: Presenter {
     func addToWatchList(_ item: MediaItemModel?)
     func addToFavourites(_ item: MediaItemModel?)
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?)
-    func getItemVideo(_ item: DiscoverCellModel?)
+    func getItemVideos(_ completion: @escaping (([VideoModel]) -> Void))
     func getItemSimilars(_ completion: (([DiscoverCellModel]) -> Void)?)
     func getItemCast(_ completion: (([ActorModel]) -> Void)?)
 }
@@ -130,35 +130,29 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     
     //item videos
     
-    func getItemVideo(_ item: DiscoverCellModel?) {
-        guard let item = item else { return }
-        
-        switch item.mediaType {
-            
+    func getItemVideos(_ completion: @escaping (([VideoModel]) -> Void)) {
+        switch self.itemModel.mediaType {
         case .movie:
-            self.networking.getMovieVideos(with: item) { [weak self] result in
+            self.networking.getMovieVideos(with: self.itemModel) { [weak self] result in
                 switch result {
-                case .success(let videoModel):
-                    print("video movie result:", videoModel.results[0].name as Any)
+                case.success(let model):
+                    completion(model.results)
                 case .failure(let error):
-                    print("video movie result:", error.stringDescription)
                     self?.eventHandler?(.error(.networkingError(error)))
                 }
             }
-            
         case .tv:
-            self.networking.getShowVideos(with: item) { result in
+            self.networking.getMovieVideos(with: self.itemModel) { [weak self] result in
                 switch result {
-                case .success(let videoModel):
-                    print("show movie result:", videoModel.results[0].name as Any)
+                case.success(let model):
+                     completion(model.results)
                 case .failure(let error):
-                    print("show movie result:", error.stringDescription)
-                    self.eventHandler?(.error(.networkingError(error)))
+                    self?.eventHandler?(.error(.networkingError(error)))
                 }
             }
         }
     }
-    
+
     func addToFavourites(_ item: MediaItemModel?) {
         guard let item = item else { return }
         let model = AddFavouritesRequestModel(mediaType: item.mediaType.rawValue,
@@ -200,4 +194,5 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     func onSimilarsItem(with model: DiscoverCellModel) {
         self.eventHandler?(.onMediaItem(model))
     }
+    
 }

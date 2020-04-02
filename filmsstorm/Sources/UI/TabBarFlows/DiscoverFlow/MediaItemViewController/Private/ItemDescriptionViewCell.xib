@@ -189,14 +189,9 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW8-nl-xtZ" customClass="AnimatedButton" customModule="filmsstorm" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="94" height="37"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="37" id="5Vy-du-T5O"/>
-                                                </constraints>
-                                                <state key="normal">
-                                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
-                                                    <action selector="onPlay:" destination="GW4-2Z-J5q" eventType="touchUpInside" id="Y8U-82-cvb"/>
+                                                    <action selector="onPlay:" destination="GW4-2Z-J5q" eventType="touchUpInside" id="jEv-xf-04h"/>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ezP-fz-roL">

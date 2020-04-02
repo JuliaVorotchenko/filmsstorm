@@ -11,6 +11,7 @@ import UIKit
 enum ItemDescriptionEvent: Equatable {
     case watchlist(MediaItemModel?)
     case favourites(MediaItemModel?)
+    case play(MediaItemModel?)
 }
 
 struct ItemDescriptionEventModel {
@@ -51,6 +52,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     private var actionHandler: Handler<ItemDescriptionEvent>?
     private var likeIsTapped: Bool = false
     private var listIsTapped: Bool = false
+    private var playIsTapped: Bool = false
     
     // MARK: - Cell life cycle
     
@@ -114,6 +116,8 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         }
     }
     
+   
+    
     private func reset() {
         self.itemImage?.cancelLoading()
         self.item = nil
@@ -130,6 +134,8 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     }
     
     @IBAction func onPlay(_ sender: UIButton) {
+        F.Log("onplay")
+        self.actionHandler?(.play(self.item))
     }
     
     @IBAction func onLike(_ sender: UIButton) {

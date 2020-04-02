@@ -19,6 +19,7 @@ protocol ImageLoadingService {
 enum Path: String {
     case mainPath = "https://image.tmdb.org/t/p/w500"
     case gravatar = "https://www.gravatar.com/avatar/"
+    case youtube = "https://www.youtube.com/watch?v="
 }
 
 class ImageLoadingServiceImpl: ImageLoadingService {

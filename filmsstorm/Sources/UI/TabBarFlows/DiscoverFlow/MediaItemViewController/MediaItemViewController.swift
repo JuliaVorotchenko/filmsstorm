@@ -31,6 +31,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     let loadingView = ActivityView()
     let presenter: Service
+    var itemVideos = [VideoModel]()
     
     private lazy var dataSource = self.createDataSource()
     
@@ -59,6 +60,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.getMovieSimilars()
         self.getItemCast()
         self.getItemDescription()
+        self.getItemVideos()
     }
     
     // MARK: - Private methods
@@ -81,6 +83,12 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         }
     }
     
+    private func getItemVideos() {
+        self.presenter.getItemVideos { [weak self] model in
+            self?.itemVideos = model
+        }
+    }
+    
     private func setupNavigationView() {
         self.rootView?.navigationView?.actionHandler = { [weak self] in
             self?.presenter.onBack()
@@ -89,7 +97,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.rootView?.navigationView?.titleFill(with: item.name ?? "N/A")
     }
     
-    private func onCardEvent(_ event: ItemDescriptionEvent) {
+    private func onItemDescriptionEvent(_ event: ItemDescriptionEvent) {
         switch event {
         case .watchlist(let model):
             self.presenter.addToWatchList(model)
@@ -97,6 +105,8 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         case .favourites(let model):
             self.presenter.addToFavourites(model)
             F.Log("you added to favourites \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
+        case .play(let model):
+            F.Log(#function)
         }
     }
     
@@ -126,7 +136,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
                     case .media(let model):
                         let cell: ItemDescriptionViewCell = collectionView.dequeueReusableCell(ItemDescriptionViewCell.self,
                                                                                                for: indexPath)
-                        cell.fill(detailsModel: model, onAction: .init { self?.onCardEvent($0) })
+                        cell.fill(detailsModel: model, onAction: .init { self?.onItemDescriptionEvent($0) })
                         return cell
                         
                     case .similars(let model):

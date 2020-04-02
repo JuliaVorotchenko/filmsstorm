@@ -61,20 +61,20 @@ struct MovieDetailsModel: Codable, Hashable {
     let imdbID: String?
     let language: String?
     let originalTitle: String
-    let overview: String
+    let overview: String?
     let popularity: Double?
-    let posterImage: String
+    let posterImage: String?
     let productionCompanies: [ProducionCompany]?
     let producionCounries: [ProductionCountry]?
-    let releaseDate: String
+    let releaseDate: String?
     let revenue: Int?
     let runtime: Int?
     let languages: [Language]
-    let status: String
+    let status: String?
     let tagline: String?
-    let title: String
-    let video: Bool
-    let voteAverage: Double
+    let title: String?
+    let video: Bool?
+    let voteAverage: Double?
     let voteCount: Int?
     
     enum CodingKeys: String, CodingKey {

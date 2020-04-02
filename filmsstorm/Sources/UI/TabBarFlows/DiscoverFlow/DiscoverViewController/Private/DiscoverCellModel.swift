@@ -23,6 +23,7 @@ protocol ConfigureModel: MediaContainer, Identifier {
     var overview: String? { get }
     var releaseDate: String? { get }
     var backgroundImage: String? { get }
+    var posterImage: String? { get }
 }
 
 enum MediaType: String, Codable {
@@ -31,6 +32,7 @@ enum MediaType: String, Codable {
 }
 
 struct DiscoverCellModel: ConfigureModel, Codable, Hashable {
+
     let mediaType: MediaType
     let id: Int
     let name: String?

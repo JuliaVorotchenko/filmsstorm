@@ -15,7 +15,7 @@ protocol MediaItem: ConfigureModel, Codable, Hashable {
 }
 
 struct MediaItemModel: MediaItem, Codable {
-
+   
     let id: Int
     let name: String?
     let originalName: String
@@ -28,21 +28,44 @@ struct MediaItemModel: MediaItem, Codable {
     let genre: [Genre]
 
     static func from(configure model: ConfigureModel) -> Self {
-        return .init(id: model.id, name: model.name, originalName: "", voteAverage: model.voteAverage, overview: model.overview, releaseDate: model.releaseDate, posterImage: model.posterImage, backgroundImage: model.backgroundImage, mediaType: model.mediaType, genre: [.init(id: 1, name: "")])
+        return .init(id: model.id,
+                     name: model.name,
+                     originalName: "",
+                     voteAverage: model.voteAverage,
+                     overview: model.overview,
+                     releaseDate: model.releaseDate,
+                     posterImage: model.posterImage,
+                     backgroundImage: model.backgroundImage,
+                     mediaType: model.mediaType,
+                     genre: [.init(id: 1, name: "")])
     }
 
     static func create(_ model: MovieDetailsModel) -> Self {
 
-        return .init(id: model.id, name: model.title, originalName: model.originalTitle,
-                     voteAverage: model.voteAverage, overview: model.overview,
-                     releaseDate: model.releaseDate, posterImage: model.posterImage,
-                     backgroundImage: model.backgroundImage, mediaType: .movie,
+        return .init(id: model.id,
+                     name: model.title,
+                     originalName: model.originalTitle,
+                     voteAverage: model.voteAverage,
+                     overview: model.overview,
+                     releaseDate: model.releaseDate,
+                     posterImage: model.posterImage,
+                     backgroundImage: model.backgroundImage ?? model.posterImage,
+                     mediaType: .movie,
                      genre: model.genres)
 
     }
 
     static func create(_ model: ShowDetailsModel) -> Self {
 
-        return .init(id: model.id, name: model.name, originalName: model.originalName, voteAverage: model.voteAverage, overview: model.overview, releaseDate: model.firstAirDate, posterImage: model.posterImage, backgroundImage: model.backgroundImage, mediaType: .tv, genre: model.genres)
+        return .init(id: model.id,
+                     name: model.name,
+                     originalName: model.originalName ?? model.name,
+                     voteAverage: model.voteAverage,
+                     overview: model.overview,
+                     releaseDate: model.firstAirDate,
+                     posterImage: model.posterImage,
+                     backgroundImage: model.backgroundImage ?? model.posterImage,
+                     mediaType: .tv,
+                     genre: model.genres)
     }
 }

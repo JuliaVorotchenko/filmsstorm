@@ -87,10 +87,10 @@ struct Season: Codable, Hashable {
 }
 
 struct ShowDetailsModel: Codable, Hashable {
-    let backgroundImage: String
+    let backgroundImage: String?
     let creator: [Creator]?
     let runTime: [Int]?
-    let firstAirDate: String
+    let firstAirDate: String?
     let genres: [Genre]
     let homepage: String?
     let id: Int
@@ -105,8 +105,8 @@ struct ShowDetailsModel: Codable, Hashable {
     let seasonsNumber: Int?
     let originCountry: [String]?
     let originalLanguage: String?
-    let originalName: String
-    let overview: String
+    let originalName: String?
+    let overview: String?
     let popularity: Double?
     let posterImage: String
     let companies: [ProducionCompany]
