@@ -22,7 +22,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
     func request<T: Codable>(_ route: EndPoint, completion: @escaping (Result<T, NetworkError>) -> Void) {
         do {
             let request = try self.buildRequest(from: route)
-           F.Log(request.url)
+           //F.Log(request.url)
             self.networkService.perform(request: request) { [weak self] result in
                 guard let `self` = self else { return }
                 self.queue.async {

@@ -32,7 +32,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     let loadingView = ActivityView()
     let presenter: Service
-    var itemVideos = [VideoModel]()
     
     private lazy var dataSource = self.createDataSource()
     
@@ -61,7 +60,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.getMovieSimilars()
         self.getItemCast()
         self.getItemDescription()
-        self.getItemVideos()
     }
     
     // MARK: - Private methods
@@ -81,12 +79,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     private func getItemDescription() {
         self.presenter.getItemDetails { [weak self] model in
             self?.update(for: .media, with: [.media(model)])
-        }
-    }
-    
-    private func getItemVideos() {
-        self.presenter.getItemVideos { [weak self] model in
-            self?.itemVideos = model
         }
     }
     
@@ -114,20 +106,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         }
     }
     
-    private func play() {
-        print(#function)
-        guard let videoPath = self.itemVideos[0].key else { return }
-        let path = Path.youtube.rawValue + videoPath
-        guard let url = URL(string: path) else { return }
-        print("videoURL:", url)
-        let player = AVPlayer(url: url)
-        
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        present(playerViewController, animated: true) {
-            player.play()
-        }
-    }
     // MARK: - Private Methods for CollectionView
     
     private func setCollectionView() {

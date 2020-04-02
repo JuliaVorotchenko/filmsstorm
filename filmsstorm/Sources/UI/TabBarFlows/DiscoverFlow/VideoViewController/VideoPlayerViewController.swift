@@ -42,15 +42,23 @@ class VideoPlayerViewController<T: VideoPlayerViewPresenter >: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
+        self.getItemVideos()
     }
     
     // MARK: - Private methods
+    
+    private func getItemVideos() {
+        self.presenter.getItemVideos { [weak self] model in
+            guard let videoID = model[0].key else { return }
+            self?.rootView?.videoPlayerView?.load(withVideoId: videoID)
+        }
+    }
     
     private func setupNavigationView() {
         self.rootView?.customNavigationView.actionHandler = { [weak self] in
             self?.presenter.onBack()
         }
-        self.rootView?.customNavigationView.titleFill(with: self.presenter.item.name!)
+        guard let itemName = self.presenter.itemModel.name else { return }
+        self.rootView?.customNavigationView.titleFill(with: itemName)
     }
-
 }

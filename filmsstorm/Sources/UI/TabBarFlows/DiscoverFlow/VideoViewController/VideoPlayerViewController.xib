@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,21 +26,21 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byr-tU-EfX" customClass="WKYTPlayerView">
-                    <rect key="frame" x="0.0" y="104" width="414" height="210"/>
-                    <color key="backgroundColor" red="0.51764705879999995" green="0.81176470590000005" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="0.0" y="343" width="414" height="210"/>
+                    <color key="backgroundColor" name="background"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="210" id="Ypu-kB-w3r"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="background"/>
             <constraints>
+                <constraint firstItem="FDN-yj-cI0" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="4Ts-yH-X0d"/>
                 <constraint firstItem="byr-tU-EfX" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="E2R-vV-unI"/>
+                <constraint firstItem="byr-tU-EfX" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="LUy-Na-oRF"/>
                 <constraint firstItem="byr-tU-EfX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="PmL-NF-643"/>
-                <constraint firstItem="FDN-yj-cI0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QCo-Uq-o7d"/>
-                <constraint firstItem="byr-tU-EfX" firstAttribute="top" secondItem="FDN-yj-cI0" secondAttribute="bottom" id="bZx-eP-DHu"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FDN-yj-cI0" secondAttribute="trailing" id="k4q-81-kr6"/>
-                <constraint firstItem="FDN-yj-cI0" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="w6s-I4-Unx"/>
+                <constraint firstItem="FDN-yj-cI0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Yix-Bj-3yX"/>
+                <constraint firstItem="FDN-yj-cI0" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="gH1-Gm-Jxm"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <connections>
@@ -49,4 +50,9 @@
             <point key="canvasLocation" x="139" y="125"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="background">
+            <color red="0.9570000171661377" green="0.96899998188018799" blue="0.99199998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

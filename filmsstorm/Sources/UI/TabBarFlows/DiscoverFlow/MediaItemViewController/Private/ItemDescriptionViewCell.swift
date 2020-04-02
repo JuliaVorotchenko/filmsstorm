@@ -116,8 +116,6 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         }
     }
     
-   
-    
     private func reset() {
         self.itemImage?.cancelLoading()
         self.item = nil

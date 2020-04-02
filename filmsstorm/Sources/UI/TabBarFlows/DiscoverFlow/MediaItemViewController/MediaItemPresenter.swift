@@ -26,7 +26,6 @@ protocol MediaItemPresenter: Presenter {
     func addToWatchList(_ item: MediaItemModel?)
     func addToFavourites(_ item: MediaItemModel?)
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?)
-    func getItemVideos(_ completion: @escaping (([VideoModel]) -> Void))
     func getItemSimilars(_ completion: (([DiscoverCellModel]) -> Void)?)
     func getItemCast(_ completion: (([ActorModel]) -> Void)?)
 }
@@ -130,31 +129,6 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         }
     }
     
-    //item videos
-    
-    func getItemVideos(_ completion: @escaping (([VideoModel]) -> Void)) {
-        switch self.itemModel.mediaType {
-        case .movie:
-            self.networking.getMovieVideos(with: self.itemModel) { [weak self] result in
-                switch result {
-                case.success(let model):
-                    completion(model.results)
-                case .failure(let error):
-                    self?.eventHandler?(.error(.networkingError(error)))
-                }
-            }
-        case .tv:
-            self.networking.getMovieVideos(with: self.itemModel) { [weak self] result in
-                switch result {
-                case.success(let model):
-                     completion(model.results)
-                case .failure(let error):
-                    self?.eventHandler?(.error(.networkingError(error)))
-                }
-            }
-        }
-    }
-
     func addToFavourites(_ item: MediaItemModel?) {
         guard let item = item else { return }
         let model = AddFavouritesRequestModel(mediaType: item.mediaType.rawValue,
@@ -165,7 +139,6 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             case .success(let response):
                 print("liked", response.statusMessage)
             case .failure(let error):
-                print(error.stringDescription)
                 self.eventHandler?(.error(.networkingError(error)))
             }
         }
@@ -181,7 +154,6 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             case .success(let response):
                 print("added watchlist", response.statusMessage)
             case .failure(let error):
-                print(error.stringDescription)
                 self.eventHandler?(.error(.networkingError(error)))
             }
         }
