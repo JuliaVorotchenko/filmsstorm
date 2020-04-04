@@ -9,10 +9,10 @@
 import Foundation
 
 struct FavouritesWatchlistMovies: Hashable, Codable {
-    let page: Int
+    let page: Int?
     let results: [MovieListResult]
-    let totalPages: Int
-    let totalResults: Int
+    let totalPages: Int?
+    let totalResults: Int?
     
     enum CodingKeys: String, CodingKey {
         case page

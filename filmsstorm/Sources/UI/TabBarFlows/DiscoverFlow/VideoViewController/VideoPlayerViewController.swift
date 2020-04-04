@@ -49,7 +49,7 @@ class VideoPlayerViewController<T: VideoPlayerViewPresenter >: UIViewController,
     
     private func getItemVideos() {
         self.presenter.getItemVideos { [weak self] model in
-            guard let videoID = model[0].key else { return }
+            guard let videoID = model.first?.key else { return }
             self?.rootView?.videoPlayerView?.load(withVideoId: videoID)
         }
     }

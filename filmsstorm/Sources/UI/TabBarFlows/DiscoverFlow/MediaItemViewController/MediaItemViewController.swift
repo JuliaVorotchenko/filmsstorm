@@ -99,10 +99,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
             self.presenter.addToFavourites(model)
             F.Log("you added to favourites \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
         case .play(let model):
-            F.Log(#function)
-            guard let model = model else { return }
-            self.presenter.onPlay(item: model)
-            
+            model.map(self.presenter.onPlay)
         }
     }
     

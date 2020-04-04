@@ -20,9 +20,6 @@
         <array key="SourceSansPro-Bold.ttf">
             <string>SourceSansPro-Bold</string>
         </array>
-        <array key="SourceSansPro-Italic.ttf">
-            <string>SourceSansPro-Italic</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -187,13 +184,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXz-3Q-5BV" userLabel="playView">
                                         <rect key="frame" x="45" y="0.0" width="94" height="37"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW8-nl-xtZ" customClass="AnimatedButton" customModule="filmsstorm" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="94" height="37"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <connections>
-                                                    <action selector="onPlay:" destination="GW4-2Z-J5q" eventType="touchUpInside" id="jEv-xf-04h"/>
-                                                </connections>
-                                            </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ezP-fz-roL">
                                                 <rect key="frame" x="12" y="10.5" width="70" height="16"/>
                                                 <subviews>
@@ -203,17 +193,24 @@
                                                             <constraint firstAttribute="height" constant="16" id="t7p-zQ-kGj"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLAY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwQ-wE-mRC">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwQ-wE-mRC">
                                                         <rect key="frame" x="31" y="0.0" width="39" height="16"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="16" id="AY0-s9-qPV"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-Italic" family="Source Sans Pro" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="16"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW8-nl-xtZ" customClass="AnimatedButton" customModule="filmsstorm" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="94" height="37"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="onPlay:" destination="GW4-2Z-J5q" eventType="touchUpInside" id="jEv-xf-04h"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="playRed"/>
                                         <constraints>
