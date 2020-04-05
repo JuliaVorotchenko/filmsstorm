@@ -62,20 +62,10 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.getMovieSimilars()
         self.getItemCast()
         self.getItemDescription()
-        self.getFav()
     }
     
     // MARK: - Private methods
-    private func getFav() {
-        self.presenter.getFav { (inFavs) in
-            print(#function, inFavs)
-            self.infavs = inFavs
-            print("2", self.infavs)
-        }
-       
-        
-    }
-    
+
     private func getItemCast() {
         self.presenter.getItemCast { [weak self] models in
             self?.update(for: .actors, with: models.map(MediaItemContainer.actors))

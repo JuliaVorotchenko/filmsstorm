@@ -74,7 +74,9 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.item = detailsModel
         self.itemImage?.loadImage(from: detailsModel?.posterImage)
         self.backgroundImage?.loadImage(from: detailsModel?.backgroundImage)
-        
+
+        self.likeButton?.backgroundColor = detailsModel?.isLiked == true ? UIColor.green : UIColor.red
+
         self.itemName?.text = detailsModel?.name
         self.originalName?.text = detailsModel?.originalName
         self.genreLabel?.text = detailsModel?.genre.map { $0.name }.shuffled().prefix(2).joined(separator: ", ")

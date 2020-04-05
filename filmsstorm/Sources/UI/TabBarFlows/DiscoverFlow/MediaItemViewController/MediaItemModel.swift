@@ -28,7 +28,22 @@ struct MediaItemModel: MediaItem, Codable {
     let genre: [Genre]
     let isLiked: Bool?
     let isWatchListed: Bool?
-    
+
+    static func update(_ model: Self, isLiked: Bool = false, isWatchlisted: Bool = false) -> Self {
+        return .init(id: model.id,
+                     name: model.name,
+                     originalName: model.originalName,
+                     voteAverage: model.voteAverage,
+                     overview: model.overview,
+                     releaseDate: model.releaseDate,
+                     posterImage: model.posterImage,
+                     backgroundImage: model.backgroundImage,
+                     mediaType: .movie,
+                     genre: model.genre,
+                     isLiked: isLiked,
+                     isWatchListed: isWatchlisted)
+    }
+
     static func create(_ model: MovieDetailsModel, isLiked: Bool = false, isWatchlisted: Bool = false) -> Self {
         
         return .init(id: model.id,
