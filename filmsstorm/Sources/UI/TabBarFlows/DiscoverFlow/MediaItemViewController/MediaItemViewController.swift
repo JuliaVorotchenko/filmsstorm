@@ -33,6 +33,8 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     let loadingView = ActivityView()
     let presenter: Service
     
+    private var infavs = Bool()
+    
     private lazy var dataSource = self.createDataSource()
     
     // MARK: - Init and deinit
@@ -52,7 +54,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     }
     
     // MARK: - Life cycle
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
@@ -60,9 +62,19 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.getMovieSimilars()
         self.getItemCast()
         self.getItemDescription()
+        self.getFav()
     }
     
     // MARK: - Private methods
+    private func getFav() {
+        self.presenter.getFav { (inFavs) in
+            print(#function, inFavs)
+            self.infavs = inFavs
+            print("2", self.infavs)
+        }
+       
+        
+    }
     
     private func getItemCast() {
         self.presenter.getItemCast { [weak self] models in
@@ -103,6 +115,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         }
     }
     
+    
     // MARK: - Private Methods for CollectionView
     
     private func setCollectionView() {
@@ -121,6 +134,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     }
     
     func createDataSource() -> UICollectionViewDiffableDataSource<Section, MediaItemContainer>? {
+        
         let dataSource: UICollectionViewDiffableDataSource<Section, MediaItemContainer>? =
             self.rootView?.collecionView
                 .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collectionView, indexPath, item -> UICollectionViewCell in

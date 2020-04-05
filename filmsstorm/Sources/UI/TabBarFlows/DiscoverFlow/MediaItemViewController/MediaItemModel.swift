@@ -9,13 +9,13 @@
 import Foundation
 
 protocol MediaItem: ConfigureModel, Codable, Hashable {
-
+    
     var originalName: String { get }
     var genre: [Genre] { get }
 }
 
 struct MediaItemModel: MediaItem, Codable {
-   
+    
     let id: Int
     let name: String?
     let originalName: String
@@ -26,22 +26,11 @@ struct MediaItemModel: MediaItem, Codable {
     let backgroundImage: String?
     let mediaType: MediaType
     let genre: [Genre]
-
-    static func from(configure model: ConfigureModel) -> Self {
-        return .init(id: model.id,
-                     name: model.name,
-                     originalName: "",
-                     voteAverage: model.voteAverage,
-                     overview: model.overview,
-                     releaseDate: model.releaseDate,
-                     posterImage: model.posterImage,
-                     backgroundImage: model.backgroundImage,
-                     mediaType: model.mediaType,
-                     genre: [.init(id: 1, name: "")])
-    }
-
-    static func create(_ model: MovieDetailsModel) -> Self {
-
+    let isLiked: Bool?
+    let isWatchListed: Bool?
+    
+    static func create(_ model: MovieDetailsModel, isLiked: Bool = false, isWatchlisted: Bool = false) -> Self {
+        
         return .init(id: model.id,
                      name: model.title,
                      originalName: model.originalTitle,
@@ -51,12 +40,14 @@ struct MediaItemModel: MediaItem, Codable {
                      posterImage: model.posterImage,
                      backgroundImage: model.backgroundImage ?? model.posterImage,
                      mediaType: .movie,
-                     genre: model.genres)
-
+                     genre: model.genres,
+                     isLiked: isLiked,
+                     isWatchListed: isWatchlisted)
+        
     }
-
-    static func create(_ model: ShowDetailsModel) -> Self {
-
+    
+    static func create(_ model: ShowDetailsModel, isLiked: Bool = false, isWatchlisted: Bool = false) -> Self {
+        
         return .init(id: model.id,
                      name: model.name,
                      originalName: model.originalName ?? model.name,
@@ -66,6 +57,8 @@ struct MediaItemModel: MediaItem, Codable {
                      posterImage: model.posterImage,
                      backgroundImage: model.backgroundImage ?? model.posterImage,
                      mediaType: .tv,
-                     genre: model.genres)
+                     genre: model.genres,
+                     isLiked: isLiked,
+                     isWatchListed: isWatchlisted)
     }
 }

@@ -69,7 +69,6 @@ class AuthorizationPresenterImpl: AuthorizationPresenter {
             case .success(let sessionID):
                 self?.showActivity?(.hide)
                 KeyChainContainer.sessionID = sessionID.sessionID
-                self?.getLists()
                 self?.eventHandler?(.login)
             case .failure(let error):
                 self?.showActivity?(.hide)
@@ -78,56 +77,6 @@ class AuthorizationPresenterImpl: AuthorizationPresenter {
         }
     }
     
-    private func getFavouriteMovies() {
-        self.networking.getFavoriteMovies { [weak self] result in
-            switch result {
-            case .success(let favMovies):
-                print(#function, favMovies.results.first?.originalTitle)
-            case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
     
-    private func getFavoriteShows() {
-        self.networking.getFavoriteShows { [weak self] result in
-            switch result {
-            case .success(let favShows):
-                print(#function, favShows.results.first?.originalName)
-            case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
-    
-    private func getMoviesWatchlist() {
-        self.networking.getWathchListMovies { [weak self] result in
-            switch result {
-            case .success(let watchlistMov):
-                print(#function, watchlistMov.results.first?.originalTitle)
-            case .failure(let error):
-                print(#function, error.localizedDescription)
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
-    
-    private func getShowsWatchlist() {
-        self.networking.getWatchListShows { [weak self] result in
-            switch result {
-            case .success(let watchlistShows):
-                print(#function, watchlistShows.results.first?.originalName)
-            case .failure(let error):
-                print(#function, error.localizedDescription)
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
-    
-    private func getLists() {
-        self.getFavouriteMovies()
-        self.getFavoriteShows()
-        self.getMoviesWatchlist()
-        self.getShowsWatchlist()
-    }
+   
 }
