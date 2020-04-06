@@ -165,6 +165,38 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         }
     }
     
+    //remove from lists
+    
+    func removeFromFavorites(_ item: MediaItemModel?) {
+        guard let item = item else { return }
+        let model = AddFavouritesRequestModel(mediaType: item.mediaType.rawValue,
+                                              mediaID: item.id,
+                                              isFavourite: false)
+        self.networking.addToFavourites(with: model) { result in
+            switch result {
+            case .success(let response):
+                print("unliked", response.statusMessage)
+            case .failure(let error):
+                self.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+    }
+    
+    func removeFromWatchlist(_ item: MediaItemModel?) {
+        guard let item = item else { return }
+        let model = AddWatchListRequestModel(mediaType: item.mediaType.rawValue,
+                                             mediaID: item.id,
+                                             toWatchList: false)
+        self.networking.addToWatchlist(with: model) { result in
+            switch result {
+            case .success(let response):
+                print("removed from watchlist", response.statusMessage)
+            case .failure(let error):
+                self.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+    }
+    
     //lists requests
    
     func getFavorites(with model: MediaItemModel, _ completion: ((MediaItemModel) -> Void)?) {

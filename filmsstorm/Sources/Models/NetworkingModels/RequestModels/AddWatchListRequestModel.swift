@@ -19,3 +19,5 @@ struct AddWatchListRequestModel: Codable {
         case toWatchList = "watchlist"
     }
 }
+
+

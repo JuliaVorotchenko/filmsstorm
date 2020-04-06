@@ -69,6 +69,8 @@ class AuthorizationPresenterImpl: AuthorizationPresenter {
             case .success(let sessionID):
                 self?.showActivity?(.hide)
                 KeyChainContainer.sessionID = sessionID.sessionID
+                self?.getFavoriteMovies()
+                self?.getFavoriteShows()
                 self?.eventHandler?(.login)
             case .failure(let error):
                 self?.showActivity?(.hide)
@@ -77,6 +79,29 @@ class AuthorizationPresenterImpl: AuthorizationPresenter {
         }
     }
     
+    private func getFavoriteMovies() {
+        F.Log(#function)
+        self.networking.getFavoriteMovies {  [weak self] result in
+            switch result {
+            case .success(let model):
+                UserDefaultsContainer.favorites.append(contentsOf: model.results.map { $0.id })
+                print(UserDefaultsContainer.favorites)
+            case .failure(let error):
+                self?.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+    }
     
-   
+    private func getFavoriteShows() {
+       F.Log(#function)
+        self.networking.getFavoriteShows { [weak self] result in
+            switch result {
+            case .success(let model):
+                UserDefaultsContainer.favorites.append(contentsOf: model.results.map { $0.id })
+                print(UserDefaultsContainer.favorites)
+            case .failure(let error):
+               self?.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+    }
 }
