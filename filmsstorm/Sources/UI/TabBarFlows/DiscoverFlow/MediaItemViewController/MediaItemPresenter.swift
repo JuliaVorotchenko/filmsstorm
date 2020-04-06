@@ -59,7 +59,8 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             self.networking.getMovieDetails(with: self.itemModel) { [weak self] result in
                 switch result {
                 case .success(let detailsModel):
-                    self?.getFav(with: MediaItemModel.create(detailsModel), completion)
+                    self?.getFavorites(with: MediaItemModel.create(detailsModel), completion)
+                    //self?.getWatchlists(with: MediaItemModel.create(detailsModel), completion)
                 case .failure(let error):
                     self?.eventHandler?(.error(.networkingError(error)))
                 }
@@ -69,9 +70,8 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             self.networking.getShowDetails(with: self.itemModel) { [weak self] result in
                 switch result {
                 case .success(let detailsModel):
-                    let model = MediaItemModel.create(detailsModel)
-                    self?.mediaModel = model
-                    completion?(model)
+                    self?.getFavorites(with: MediaItemModel.create(detailsModel), completion)
+                    //self?.getWatchlists(with: MediaItemModel.create(detailsModel), completion)
                 case .failure(let error):
                     self?.eventHandler?(.error(.networkingError(error)))
                 }
@@ -167,7 +167,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     
     //lists requests
    
-    func getFav(with model: MediaItemModel, _ completion: ((MediaItemModel) -> Void)?) {
+    func getFavorites(with model: MediaItemModel, _ completion: ((MediaItemModel) -> Void)?) {
         switch self.itemModel.mediaType {
         case .movie:
             self.networking.getFavoriteMovies { [weak self] result in
@@ -178,7 +178,9 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                     let isLiked = favMovies.results
                         .map { $0.id }
                         .contains(self.itemModel.id)
+                    
                     let result = MediaItemModel.update(model, isLiked: isLiked, isWatchlisted: false)
+                    self.getWatchlists(with: result, completion)
                     completion?(result)
                 case .failure(let error):
                     self.eventHandler?(.error(.networkingError(error)))
@@ -194,10 +196,50 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                         .map { $0.id }
                         .contains(self.itemModel.id)
 
-                    let result = self.mediaModel
-                        .map { MediaItemModel.update($0, isLiked: isLiked, isWatchlisted: false) }
-
-                    result.map { completion?($0) }
+                    let result = MediaItemModel.update(model, isLiked: isLiked, isWatchlisted: false)
+                    self.getWatchlists(with: result, completion)
+                    completion?(result)
+                case .failure(let error):
+                    self.eventHandler?(.error(.networkingError(error)))
+                }
+            }
+        }
+    }
+    
+    func getWatchlists(with model: MediaItemModel, _ completion: ((MediaItemModel) -> Void)?) {
+        switch self.itemModel.mediaType {
+        case .movie :
+            self.networking.getWathchListMovies { [weak self] result in
+                guard let `self` = self else { return }
+                
+                switch result {
+                case .success(let movWatchlist):
+                    let isWatchlisted = movWatchlist.results
+                        .map { $0.id }
+                        .contains(self.itemModel.id)
+                    
+                    let result = MediaItemModel.update(model, isLiked: false, isWatchlisted: isWatchlisted)
+                    completion?(result)
+                
+                case .failure(let error):
+                    self.eventHandler?(.error(.networkingError(error)))
+                }
+            }
+            
+        case .tv:
+            self.networking.getWatchListShows { [weak self] result in
+                guard let `self` = self else { return }
+                
+                switch result {
+                case.success(let showsWatchlist):
+                    
+                    let isWatchlisted = showsWatchlist.results
+                        .map { $0.id }
+                        .contains(self.itemModel.id)
+                    
+                    let result = MediaItemModel.update(model, isLiked: false, isWatchlisted: isWatchlisted)
+                    completion?(result)
+                
                 case .failure(let error):
                     self.eventHandler?(.error(.networkingError(error)))
                 }

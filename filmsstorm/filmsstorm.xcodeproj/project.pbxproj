@@ -501,6 +501,7 @@
 		2E289CA223E8DED4001917DB /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				CD4921C9243B481B00511CB1 /* New Group */,
 				2E289CA323E8DED4001917DB /* KeyChainContainer */,
 			);
 			path = Persistence;
@@ -861,6 +862,13 @@
 				CD45172524363DC800AD81F0 /* VideoPlayerView.swift */,
 			);
 			path = VideoViewController;
+			sourceTree = "<group>";
+		};
+		CD4921C9243B481B00511CB1 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		CD4AE3B4240E77EC00ACC0E3 /* NavigationView */ = {

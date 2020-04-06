@@ -105,7 +105,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         }
     }
     
-    
     // MARK: - Private Methods for CollectionView
     
     private func setCollectionView() {

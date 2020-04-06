@@ -76,10 +76,11 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.backgroundImage?.loadImage(from: detailsModel?.backgroundImage)
 
         self.likeButton?.backgroundColor = detailsModel?.isLiked == true ? UIColor.green : UIColor.red
+        self.listButton?.backgroundColor = detailsModel?.isWatchListed == true ? UIColor.green : UIColor.red
 
         self.itemName?.text = detailsModel?.name
         self.originalName?.text = detailsModel?.originalName
-        self.genreLabel?.text = detailsModel?.genre.map { $0.name }.shuffled().prefix(2).joined(separator: ", ")
+        self.genreLabel?.text = detailsModel?.genre.map { $0.name }.prefix(2).joined(separator: ", ")
         self.ratingLabel?.text = detailsModel?.voteAverage.map { "\($0)" }
         self.yearLabel?.text = detailsModel?.releaseDate
         self.overviewLabel?.text = detailsModel?.overview
