@@ -75,8 +75,8 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.itemImage?.loadImage(from: detailsModel?.posterImage)
         self.backgroundImage?.loadImage(from: detailsModel?.backgroundImage)
 
-        self.likeButton?.backgroundColor = detailsModel?.isLiked == true ? UIColor.green : UIColor.red
-        self.listButton?.backgroundColor = detailsModel?.isWatchListed == true ? UIColor.green : UIColor.red
+//        self.likeButton?.backgroundColor = detailsModel?.isLiked == true ? UIColor.green : UIColor.red
+//        self.listButton?.backgroundColor = detailsModel?.isWatchListed == true ? UIColor.green : UIColor.red
 
         self.itemName?.text = detailsModel?.name
         self.originalName?.text = detailsModel?.originalName

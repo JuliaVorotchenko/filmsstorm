@@ -133,6 +133,18 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
                         let cell: ItemDescriptionViewCell = collectionView.dequeueReusableCell(ItemDescriptionViewCell.self,
                                                                                                for: indexPath)
                         cell.fill(detailsModel: model, onAction: .init { self?.onItemDescriptionEvent($0) })
+                        
+                        let id = self?.presenter.itemModel.id
+                        if UserDefaultsContainer.favorites.contains(id!) {
+                            cell.likeButton?.backgroundColor = UIColor.green
+                            cell.likeButton?.isUserInteractionEnabled = false
+                        }
+                        
+                       if UserDefaultsContainer.favorites.contains(id!) {
+                           cell.listButton?.backgroundColor = UIColor.green
+                        cell.listButton?.isUserInteractionEnabled = false
+                        }
+                     
                         return cell
                         
                     case .similars(let model):
