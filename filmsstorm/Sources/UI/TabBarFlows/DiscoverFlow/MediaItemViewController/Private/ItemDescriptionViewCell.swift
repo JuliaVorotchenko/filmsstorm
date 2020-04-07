@@ -74,10 +74,6 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.item = detailsModel
         self.itemImage?.loadImage(from: detailsModel?.posterImage)
         self.backgroundImage?.loadImage(from: detailsModel?.backgroundImage)
-
-//        self.likeButton?.backgroundColor = detailsModel?.isLiked == true ? UIColor.green : UIColor.red
-//        self.listButton?.backgroundColor = detailsModel?.isWatchListed == true ? UIColor.green : UIColor.red
-
         self.itemName?.text = detailsModel?.name
         self.originalName?.text = detailsModel?.originalName
         self.genreLabel?.text = detailsModel?.genre.map { $0.name }.prefix(2).joined(separator: ", ")
@@ -99,8 +95,9 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     func likedSuccessfully() {
         self.likeIsTapped = !self.likeIsTapped
         if self.likeIsTapped {
-            self.likeButton?.setImage(UIImage(named: "liked"), for: .normal)
             self.likeButton?.likeBounce(0.5)
+            self.likeButton?.backgroundColor = UIColor.green
+            self.likeButton?.isUserInteractionEnabled = false
         } else {
             self.likeButton?.setImage(UIImage(named: "like"), for: .normal)
             self.likeButton?.unLikeBounce(0.3)
@@ -111,8 +108,9 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     func watchlistedSuccsessfully() {
         self.listIsTapped = !self.listIsTapped
         if self.listIsTapped {
-            self.listButton?.setImage(UIImage(named: "watchlisted"), for: .normal)
             self.listButton?.likeBounce(0.5)
+            self.listButton?.backgroundColor = UIColor.green
+            self.listButton?.isUserInteractionEnabled = false
         } else {
             self.listButton?.setImage(UIImage(named: "watchlist"), for: .normal)
             self.listButton?.unLikeBounce(0.3)

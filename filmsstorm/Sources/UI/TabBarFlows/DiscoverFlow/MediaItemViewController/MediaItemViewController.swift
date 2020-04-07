@@ -54,18 +54,18 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     }
     
     // MARK: - Life cycle
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
         self.setCollectionView()
+        self.getItemDescription()
         self.getMovieSimilars()
         self.getItemCast()
-        self.getItemDescription()
     }
     
     // MARK: - Private methods
-
+    
     private func getItemCast() {
         self.presenter.getItemCast { [weak self] models in
             self?.update(for: .actors, with: models.map(MediaItemContainer.actors))
@@ -96,10 +96,14 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         switch event {
         case .watchlist(let model):
             self.presenter.addToWatchList(model)
-            F.Log("you added to watch list \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
+            self.presenter.updateUserdefaults()
+            print(#function, UserDefaultsContainer.watchList)
+        
         case .favourites(let model):
             self.presenter.addToFavourites(model)
-            F.Log("you added to favourites \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
+            self.presenter.updateUserdefaults()
+            print(#function, UserDefaultsContainer.favorites)
+        
         case .play(let model):
             model.map(self.presenter.onPlay)
         }
@@ -122,6 +126,19 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
     }
     
+    private func itemIdCheck(cell: ItemDescriptionViewCell) {
+        let id = self.presenter.itemModel.id
+        if UserDefaultsContainer.favorites.contains(id) {
+            cell.likeButton?.backgroundColor = UIColor.green
+            cell.likeButton?.isUserInteractionEnabled = false
+        }
+        
+        if UserDefaultsContainer.watchList.contains(id) {
+            cell.listButton?.backgroundColor = UIColor.green
+            cell.listButton?.isUserInteractionEnabled = false
+        }
+    }
+    
     func createDataSource() -> UICollectionViewDiffableDataSource<Section, MediaItemContainer>? {
         
         let dataSource: UICollectionViewDiffableDataSource<Section, MediaItemContainer>? =
@@ -133,18 +150,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
                         let cell: ItemDescriptionViewCell = collectionView.dequeueReusableCell(ItemDescriptionViewCell.self,
                                                                                                for: indexPath)
                         cell.fill(detailsModel: model, onAction: .init { self?.onItemDescriptionEvent($0) })
-                        
-                        let id = self?.presenter.itemModel.id
-                        if UserDefaultsContainer.favorites.contains(id!) {
-                            cell.likeButton?.backgroundColor = UIColor.green
-                            cell.likeButton?.isUserInteractionEnabled = false
-                        }
-                        
-                       if UserDefaultsContainer.favorites.contains(id!) {
-                           cell.listButton?.backgroundColor = UIColor.green
-                        cell.listButton?.isUserInteractionEnabled = false
-                        }
-                     
+                        self?.itemIdCheck(cell: cell)
                         return cell
                         
                     case .similars(let model):

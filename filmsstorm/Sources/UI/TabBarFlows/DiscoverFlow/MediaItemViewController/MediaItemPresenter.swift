@@ -22,6 +22,7 @@ protocol MediaItemPresenter: Presenter {
     func onBack()
     func onSimilarsItem(with model: DiscoverCellModel)
     func onPlay(item: MediaItemModel)
+    func updateUserdefaults()
     
     func addToWatchList(_ item: MediaItemModel?)
     func addToFavourites(_ item: MediaItemModel?)
@@ -31,14 +32,14 @@ protocol MediaItemPresenter: Presenter {
 }
 
 class MediaItemPresenterImpl: MediaItemPresenter {
-
+    
     // MARK: - Private Properties
     
     let eventHandler: Handler<MediaItemEvent>?
     var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
     let itemModel: ConfigureModel
-
+    
     private var mediaModel: MediaItemModel?
     
     // MARK: - Init and deinit
@@ -140,8 +141,8 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                                               isFavourite: true)
         self.networking.addToFavourites(with: model) { result in
             switch result {
-            case .success(let response):
-                print("liked", response.statusMessage)
+            case .success:
+                print("liked", model.mediaID)
                 UserDefaultsContainer.favorites.append(model.mediaID)
                 print(#function, UserDefaultsContainer.favorites)
             case .failure(let error):
@@ -157,8 +158,9 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                                              toWatchList: true)
         self.networking.addToWatchlist(with: model) { result in
             switch result {
-            case .success(let response):
-                print("added watchlist", response.statusMessage)
+            case .success:
+                print("added watchlist", model.mediaID)
+                UserDefaultsContainer.watchList.append(model.mediaID)
                 print(#function, UserDefaultsContainer.watchList)
             case .failure(let error):
                 self.eventHandler?(.error(.networkingError(error)))
@@ -202,10 +204,13 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     
     func updateUserdefaults() {
         UserDefaultsContainer.unregister()
-        self.getFavoriteMovies()
-        self.getFavoriteShows()
-        self.getMoviesWatchlist()
-        self.getShowsWatchlist()
+        DispatchQueue.main.async {
+            self.getFavoriteMovies()
+            self.getFavoriteShows()
+            self.getMoviesWatchlist()
+            self.getShowsWatchlist()
+        }
+        
     }
     
     func getFavoriteMovies() {
@@ -255,7 +260,12 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     // MARK: - Event Methods
     
     func onBack() {
-        self.eventHandler?(.back)
+        DispatchQueue.main.async {
+            //self.updateUserdefaults()
+            self.eventHandler?(.back)
+            print(#function, "favs:",  UserDefaultsContainer.favorites, "watclis", UserDefaultsContainer.watchList)
+        }
+        
     }
     
     func onSimilarsItem(with model: DiscoverCellModel) {

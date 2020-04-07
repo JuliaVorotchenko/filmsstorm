@@ -33,7 +33,6 @@ class AuthorizationPresenterImpl: AuthorizationPresenter {
     
     // MARK: - Public Methods
     
-    
     func getToken(username: String, password: String) {
         self.showActivity?(.show)
         self.networking.getToken { [weak self] (result) in
