@@ -64,6 +64,14 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.getItemCast()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
+        let queue = DispatchQueue.global(qos: .utility)
+        queue.async {
+            self.presenter.updateUserdefaults()
+        }
+    }
+    
     // MARK: - Private methods
     
     private func getItemCast() {
@@ -97,7 +105,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         case .watchlist(let model):
             self.presenter.addToWatchList(model)
             self.presenter.updateUserdefaults()
-            print(#function, UserDefaultsContainer.watchList)
+            print(#function, UserDefaultsContainer.watchlist)
         
         case .favourites(let model):
             self.presenter.addToFavourites(model)
@@ -133,7 +141,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
             cell.likeButton?.isUserInteractionEnabled = false
         }
         
-        if UserDefaultsContainer.watchList.contains(id) {
+        if UserDefaultsContainer.watchlist.contains(id) {
             cell.listButton?.backgroundColor = UIColor.green
             cell.listButton?.isUserInteractionEnabled = false
         }

@@ -92,28 +92,21 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.itemImage?.rounded(cornerRadius: 5)
     }
     
-    func likedSuccessfully() {
+    func onLikeAnimation() {
         self.likeIsTapped = !self.likeIsTapped
         if self.likeIsTapped {
             self.likeButton?.likeBounce(0.5)
             self.likeButton?.backgroundColor = UIColor.green
             self.likeButton?.isUserInteractionEnabled = false
-        } else {
-            self.likeButton?.setImage(UIImage(named: "like"), for: .normal)
-            self.likeButton?.unLikeBounce(0.3)
         }
-        
     }
     
-    func watchlistedSuccsessfully() {
+    func onListAnimation() {
         self.listIsTapped = !self.listIsTapped
         if self.listIsTapped {
             self.listButton?.likeBounce(0.5)
             self.listButton?.backgroundColor = UIColor.green
             self.listButton?.isUserInteractionEnabled = false
-        } else {
-            self.listButton?.setImage(UIImage(named: "watchlist"), for: .normal)
-            self.listButton?.unLikeBounce(0.3)
         }
     }
     
@@ -128,17 +121,16 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     // MARK: - IBActions
     
     @IBAction func onList(_ sender: UIButton) {
-        self.watchlistedSuccsessfully()
+        self.onListAnimation()
         self.actionHandler?(.watchlist(self.item))
     }
     
     @IBAction func onPlay(_ sender: UIButton) {
-        F.Log("onplay")
         self.actionHandler?(.play(self.item))
     }
     
     @IBAction func onLike(_ sender: UIButton) {
-        self.likedSuccessfully()
+        self.onLikeAnimation()
         self.actionHandler?(.favourites(self.item))
     }
 }

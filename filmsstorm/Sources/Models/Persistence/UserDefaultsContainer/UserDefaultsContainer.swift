@@ -19,12 +19,12 @@ class UserDefaultsContainer {
         return UserDefaults.standard
     }
     
-    static var watchList: [Int] {
+    static var watchlist: [Int] {
         get {
             return self.defaults.array(forKey: UserDefaultsKey.watchlist.rawValue) as? [Int] ?? [Int]()
         }
         set {
-            self.defaults.set(newValue, forKey: UserDefaultsKey.watchlist.rawValue)
+            self.defaults.set(newValue.uniqued(), forKey: UserDefaultsKey.watchlist.rawValue)
             self.defaults.synchronize()
         }
     }
@@ -34,7 +34,7 @@ class UserDefaultsContainer {
             return self.defaults.array(forKey: UserDefaultsKey.favorites.rawValue) as? [Int] ?? [Int]()
         }
         set {
-            self.defaults.set(newValue, forKey: UserDefaultsKey.favorites.rawValue)
+            self.defaults.set(newValue.uniqued(), forKey: UserDefaultsKey.favorites.rawValue)
             self.defaults.synchronize()
         }
     }
@@ -47,7 +47,7 @@ class UserDefaultsContainer {
     }
     
     static func unregister() {
-        self.watchList = []
+        self.watchlist = []
         self.favorites = []
     }
     

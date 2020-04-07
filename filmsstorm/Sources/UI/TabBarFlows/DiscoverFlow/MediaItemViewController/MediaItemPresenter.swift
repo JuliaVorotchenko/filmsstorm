@@ -160,8 +160,8 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             switch result {
             case .success:
                 print("added watchlist", model.mediaID)
-                UserDefaultsContainer.watchList.append(model.mediaID)
-                print(#function, UserDefaultsContainer.watchList)
+                UserDefaultsContainer.watchlist.append(model.mediaID)
+                print(#function, UserDefaultsContainer.watchlist)
             case .failure(let error):
                 self.eventHandler?(.error(.networkingError(error)))
             }
@@ -204,13 +204,10 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     
     func updateUserdefaults() {
         UserDefaultsContainer.unregister()
-        DispatchQueue.main.async {
             self.getFavoriteMovies()
             self.getFavoriteShows()
             self.getMoviesWatchlist()
             self.getShowsWatchlist()
-        }
-        
     }
     
     func getFavoriteMovies() {
@@ -239,7 +236,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         self.networking.getWathchListMovies { [weak self] result in
             switch result {
             case .success(let model):
-                UserDefaultsContainer.watchList.append(contentsOf: model.results.map { $0.id})
+                UserDefaultsContainer.watchlist.append(contentsOf: model.results.map { $0.id})
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
             }
@@ -250,7 +247,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         self.networking.getWatchListShows { [weak self] result in
             switch result {
             case .success(let model):
-                UserDefaultsContainer.watchList.append(contentsOf: model.results.map { $0.id})
+                UserDefaultsContainer.watchlist.append(contentsOf: model.results.map { $0.id})
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
             }
@@ -260,12 +257,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     // MARK: - Event Methods
     
     func onBack() {
-        DispatchQueue.main.async {
-            //self.updateUserdefaults()
-            self.eventHandler?(.back)
-            print(#function, "favs:",  UserDefaultsContainer.favorites, "watclis", UserDefaultsContainer.watchList)
-        }
-        
+        self.eventHandler?(.back)
     }
     
     func onSimilarsItem(with model: DiscoverCellModel) {
