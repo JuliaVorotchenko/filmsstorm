@@ -25,7 +25,7 @@ class LoadingImageView: UIImageView, ActivityViewPresenter {
                 self?.image = image
             case .failure:
                 self?.hideActivity()
-                self?.image = UIImage(named: "x")
+                self?.image = UIImage(named: "empty")
             }
         }
     }

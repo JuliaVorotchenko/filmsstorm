@@ -66,13 +66,16 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(false)
-        let queue = DispatchQueue.global(qos: .utility)
-        queue.async {
-            self.presenter.updateUserdefaults()
-        }
+       self.presenter.updateUserdefaults()
     }
     
     // MARK: - Private methods
+    
+    private func getItemDescription() {
+           self.presenter.getItemDetails { [weak self] model in
+               self?.update(for: .media, with: [.media(model)])
+           }
+       }
     
     private func getItemCast() {
         self.presenter.getItemCast { [weak self] models in
@@ -83,12 +86,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     private func getMovieSimilars() {
         self.presenter.getItemSimilars { [weak self] in
             self?.update(for: .similars, with: $0.map(MediaItemContainer.similars))
-        }
-    }
-    
-    private func getItemDescription() {
-        self.presenter.getItemDetails { [weak self] model in
-            self?.update(for: .media, with: [.media(model)])
         }
     }
     
@@ -134,7 +131,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
     }
     
-    private func itemIdCheck(cell: ItemDescriptionViewCell) {
+    private func isItemInList(cell: ItemDescriptionViewCell) {
         let id = self.presenter.itemModel.id
         if UserDefaultsContainer.favorites.contains(id) {
             cell.likeButton?.backgroundColor = UIColor.green
@@ -158,7 +155,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
                         let cell: ItemDescriptionViewCell = collectionView.dequeueReusableCell(ItemDescriptionViewCell.self,
                                                                                                for: indexPath)
                         cell.fill(detailsModel: model, onAction: .init { self?.onItemDescriptionEvent($0) })
-                        self?.itemIdCheck(cell: cell)
+                        self?.isItemInList(cell: cell)
                         return cell
                         
                     case .similars(let model):

@@ -41,7 +41,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     @IBOutlet var ratingLabel: UILabel?
     @IBOutlet var likeButton: AnimatedButton?
     @IBOutlet var listButton: AnimatedButton?
-    @IBOutlet var playButton: AnimatedButton?
+    @IBOutlet var playButton: UIButton?
     @IBOutlet var playButtonView: UIView?
     @IBOutlet var overviewLabel: UILabel?
     @IBOutlet var overviewContainer: UIView?
@@ -52,8 +52,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     private var actionHandler: Handler<ItemDescriptionEvent>?
     private var likeIsTapped: Bool = false
     private var listIsTapped: Bool = false
-    private var playIsTapped: Bool = false
-    
+
     // MARK: - Cell life cycle
     
     override func awakeFromNib() {
@@ -76,7 +75,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.backgroundImage?.loadImage(from: detailsModel?.backgroundImage)
         self.itemName?.text = detailsModel?.name
         self.originalName?.text = detailsModel?.originalName
-        self.genreLabel?.text = detailsModel?.genre.map { $0.name }.prefix(2).joined(separator: ", ")
+        self.genreLabel?.text = detailsModel?.genre.map { $0.name }.shuffled().prefix(2).joined(separator: ", ")
         self.ratingLabel?.text = detailsModel?.voteAverage.map { "\($0)" }
         self.yearLabel?.text = detailsModel?.releaseDate
         self.overviewLabel?.text = detailsModel?.overview
