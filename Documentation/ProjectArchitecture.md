@@ -66,9 +66,12 @@
  ```
  
 ## Presenter
+ Presenter is responsible for app`s buisness logic realization
    ### Presenter's  roles:
 * Mediates between ViewControllers and Networking
-* Realizes buisness logic
+* Generates events for coordinator about user`s action
+* Retrieves data from model
+* Formates data for ViewController
 
 All presenters have to be under Presener protocol:
 ```swift
@@ -76,7 +79,3 @@ All presenters have to be under Presener protocol:
     
 }
  ```
-
-
-   
- 
