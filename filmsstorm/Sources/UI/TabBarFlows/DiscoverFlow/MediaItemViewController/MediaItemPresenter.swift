@@ -51,9 +51,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     }
     
     // MARK: - Networking Methods
-    
-    //item details
-    
+   
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?) {
         switch self.itemModel.mediaType {
         case .movie:
@@ -75,9 +73,6 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                 }
             }
         }
-        
-        
-        
     }
     
     private func createMediaItem(_ model: DetailsModel) -> MediaItemModel {

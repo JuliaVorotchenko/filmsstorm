@@ -67,10 +67,10 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     // MARK: - Private methods
     
     private func getItemDescription() {
-           self.presenter.getItemDetails { [weak self] model in
-               self?.update(for: .media, with: [.media(model)])
-           }
-       }
+        self.presenter.getItemDetails { [weak self] model in
+            self?.update(for: .media, with: [.media(model)])
+        }
+    }
     
     private func getItemCast() {
         self.presenter.getItemCast { [weak self] models in

@@ -52,7 +52,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     private var actionHandler: Handler<ItemDescriptionEvent>?
     private var likeIsTapped = false
     private var listIsTapped = false
-
+    
     // MARK: - Cell life cycle
     
     override func awakeFromNib() {
