@@ -11,7 +11,7 @@ import UIKit
 
 class AnimatedButton: UIButton {
 
-    var animatedView: AnimatedView!
+    var animatedView = AnimatedView()
     
     // MARK: - Initializers
     override init (frame: CGRect) {
@@ -38,7 +38,6 @@ class AnimatedButton: UIButton {
     // MARK: - Setup Methods
     func setup() {
         self.clipsToBounds = false
-        self.animatedView = AnimatedView()
         self.insertSubview(self.animatedView, at: 0)
     }
     
@@ -54,24 +53,24 @@ class AnimatedButton: UIButton {
         self.animate()
         UIView.animateKeyframes(withDuration: duration, delay: 0, options: UIView.KeyframeAnimationOptions(), animations: {
 
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/5, animations: {
-                self.transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/5, animations: { [weak self] in
+                self?.transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
             })
 
-            UIView.addKeyframe(withRelativeStartTime: 1/5, relativeDuration: 1/5, animations: {
-                self.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+            UIView.addKeyframe(withRelativeStartTime: 1/5, relativeDuration: 1/5, animations: { [weak self] in
+                self?.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
             })
 
-            UIView.addKeyframe(withRelativeStartTime: 2/5, relativeDuration: 1/5, animations: {
-                self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            UIView.addKeyframe(withRelativeStartTime: 2/5, relativeDuration: 1/5, animations: { [weak self] in
+                self?.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             })
 
-            UIView.addKeyframe(withRelativeStartTime: 3/5, relativeDuration: 1/5, animations: {
-                self.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            UIView.addKeyframe(withRelativeStartTime: 3/5, relativeDuration: 1/5, animations: { [weak self] in
+                self?.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             })
 
-            UIView.addKeyframe(withRelativeStartTime: 4/5, relativeDuration: 1/5, animations: {
-                self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            UIView.addKeyframe(withRelativeStartTime: 4/5, relativeDuration: 1/5, animations: { [weak self] in
+                self?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             })
 
         })
@@ -82,16 +81,16 @@ class AnimatedButton: UIButton {
         self.transform = CGAffineTransform.identity
         UIView.animateKeyframes(withDuration: duration, delay: 0, options: UIView.KeyframeAnimationOptions(), animations: {
 
-            UIView.addKeyframe(withRelativeStartTime: 1/5, relativeDuration: 1/5, animations: {
-                self.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+            UIView.addKeyframe(withRelativeStartTime: 1/5, relativeDuration: 1/5, animations: { [weak self] in
+                self?.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
             })
 
-            UIView.addKeyframe(withRelativeStartTime: 3/5, relativeDuration: 1/5, animations: {
-                self.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            UIView.addKeyframe(withRelativeStartTime: 3/5, relativeDuration: 1/5, animations: { [weak self] in
+                self?.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             })
 
-            UIView.addKeyframe(withRelativeStartTime: 4/5, relativeDuration: 1/5, animations: {
-                self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            UIView.addKeyframe(withRelativeStartTime: 4/5, relativeDuration: 1/5, animations: { [weak self] in
+                self?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             })
 
         })

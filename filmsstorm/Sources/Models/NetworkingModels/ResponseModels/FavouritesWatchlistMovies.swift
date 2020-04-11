@@ -21,3 +21,5 @@ struct FavouritesWatchlistMovies: Hashable, Codable {
         case totalResults = "total_results"
     }
 }
+
+

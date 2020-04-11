@@ -50,7 +50,6 @@ class ProfilePresenterImpl: ProfilePresenter {
             switch result {
             case .success:
                 KeyChainContainer.unregister()
-                UserDefaultsContainer.unregister()
                 self?.eventHandler?(.logout)
                 self?.showActivity?(.hide)
             case .failure(let error):

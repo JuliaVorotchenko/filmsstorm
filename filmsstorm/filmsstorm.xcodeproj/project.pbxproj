@@ -184,6 +184,7 @@
 		CDE0AF75240BA98F008D610F /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF74240BA98F008D610F /* SearchModel.swift */; };
 		CDE0AF77240D6BFB008D610F /* DiscoverCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF76240D6BFB008D610F /* DiscoverCellModel.swift */; };
 		CDE0AF7A240D7522008D610F /* CollectionLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF79240D7522008D610F /* CollectionLayoutFactory.swift */; };
+		CDFDCC2624424ECC00D89B3E /* SuccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDCC2524424ECC00D89B3E /* SuccessModel.swift */; };
 		EF69E43B310A0AD220DE1C48 /* Pods_filmsstormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3AA44BFE965E894CADF19A /* Pods_filmsstormTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -395,6 +396,7 @@
 		CDE0AF74240BA98F008D610F /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		CDE0AF76240D6BFB008D610F /* DiscoverCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCellModel.swift; sourceTree = "<group>"; };
 		CDE0AF79240D7522008D610F /* CollectionLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLayoutFactory.swift; sourceTree = "<group>"; };
+		CDFDCC2524424ECC00D89B3E /* SuccessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessModel.swift; sourceTree = "<group>"; };
 		EA79238A8EC29AB9C6DB940C /* Pods-filmsstormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.release.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.release.xcconfig"; sourceTree = "<group>"; };
 		F49330B6ECFAEA477A36F2CE /* Pods-filmsstorm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm.release.xcconfig"; path = "Target Support Files/Pods-filmsstorm/Pods-filmsstorm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -547,6 +549,7 @@
 				CD0D2A9724193E2200722181 /* MovieVideosModel.swift */,
 				CD81EEE9242A23E900334BD7 /* MovieCreditsModel.swift */,
 				CD81EEEB242A26FE00334BD7 /* ShowCreditsModel.swift */,
+				CDFDCC2524424ECC00D89B3E /* SuccessModel.swift */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -1540,6 +1543,7 @@
 				CD38EFF0240EFDB000F93536 /* UIView+RoundedCorners.swift in Sources */,
 				CDE0809924110C2500B9A53F /* FavouritesWatchlistMovies.swift in Sources */,
 				CD4921CB243B490900511CB1 /* UserDefaultsStorage.swift in Sources */,
+				CDFDCC2624424ECC00D89B3E /* SuccessModel.swift in Sources */,
 				2E289C9223E8DE84001917DB /* DiscoverViewController.swift in Sources */,
 				CD2D91BC2405347B001A1445 /* FavouritesViewController.swift in Sources */,
 				CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */,

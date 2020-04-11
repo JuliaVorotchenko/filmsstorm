@@ -51,13 +51,13 @@ class NetworkManager {
     }
     
     func addToFavourites(with model: AddFavouritesRequestModel,
-                         completion: @escaping (Result<AddToFavouritesModel, NetworkError>) -> Void) {
+                         completion: @escaping (Result<SuccessModel, NetworkError>) -> Void) {
         self.router.request(.account(.addToFavourites(sessionID: KeyChainContainer.sessionID ?? "", model: model)),
                             completion: completion)
     }
     
     func addToWatchlist(with model: AddWatchListRequestModel,
-                        completion: @escaping (Result<AddToFavouritesModel, NetworkError>) -> Void) {
+                        completion: @escaping (Result<SuccessModel, NetworkError>) -> Void) {
         self.router.request(.account(.addToWatchList(sessionID: KeyChainContainer.sessionID ?? "", model: model)),
                             completion: completion)
     }

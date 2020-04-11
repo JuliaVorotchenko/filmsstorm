@@ -18,7 +18,6 @@ enum DiscoverEvent: EventProtocol {
 protocol DiscoverPresenter: Presenter {
     var  showActivity: Handler<ActivityState>? { get set }
     func getPopularMovies(_ completion: (( [MovieListResult]) -> Void)?)
-    func updateUserdefaults()
     func onMovies()
     func onShows()
     func onSearch()
@@ -51,60 +50,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
             }
         }
     }
-    
-    func updateUserdefaults() {
-        UserDefaultsContainer.unregister()
-            self.getFavoriteMovies()
-            self.getFavoriteShows()
-            self.getMoviesWatchlist()
-            self.getShowsWatchlist()
-    }
-    
-    func getFavoriteMovies() {
-        self.networking.getFavoriteMovies { [weak self] result in
-            switch result {
-            case .success(let model):
-                UserDefaultsContainer.favorites.append(contentsOf: model.results.map { $0.id})
-            case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
-    
-    func getFavoriteShows() {
-        self.networking.getFavoriteMovies { [weak self] result in
-            switch result {
-            case .success(let model):
-                UserDefaultsContainer.favorites.append(contentsOf: model.results.map { $0.id})
-            case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
-    
-    func getMoviesWatchlist() {
-        self.networking.getWathchListMovies { [weak self] result in
-            switch result {
-            case .success(let model):
-                UserDefaultsContainer.watchlist.append(contentsOf: model.results.map { $0.id})
-            case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
-    
-    func getShowsWatchlist() {
-        self.networking.getWatchListShows { [weak self] result in
-            switch result {
-            case .success(let model):
-                UserDefaultsContainer.watchlist.append(contentsOf: model.results.map { $0.id})
-            case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
-    
-    
+
     // MARK: - Activity Movies
     
     func onMovies() {

@@ -56,7 +56,6 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
         self.getPopularMovies()
         self.createDataSource()
         self.setupHeader()
-        self.presenter.updateUserdefaults()
     }
     
     // MARK: - Private Methods

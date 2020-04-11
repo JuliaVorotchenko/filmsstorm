@@ -64,11 +64,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.getItemCast()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(false)
-       self.presenter.updateUserdefaults()
-    }
-    
     // MARK: - Private methods
     
     private func getItemDescription() {
@@ -99,16 +94,10 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     private func onItemDescriptionEvent(_ event: ItemDescriptionEvent) {
         switch event {
-        case .watchlist(let model):
-            self.presenter.addToWatchList(model)
-            self.presenter.updateUserdefaults()
-            print(#function, UserDefaultsContainer.watchlist)
-        
-        case .favourites(let model):
-            self.presenter.addToFavourites(model)
-            self.presenter.updateUserdefaults()
-            print(#function, UserDefaultsContainer.favorites)
-        
+        case .watchlist(let model, let state):
+            model.map { self.presenter.updateWatchlist(for: $0, isWatchlisted: state) }
+        case .favourites(let model, let state):
+            model.map { self.presenter.updateFavorites(for: $0, isFavorite: state) }
         case .play(let model):
             model.map(self.presenter.onPlay)
         }
@@ -131,19 +120,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
     }
     
-    private func isItemInList(cell: ItemDescriptionViewCell) {
-        let id = self.presenter.itemModel.id
-        if UserDefaultsContainer.favorites.contains(id) {
-            cell.likeButton?.backgroundColor = UIColor.green
-            cell.likeButton?.isUserInteractionEnabled = false
-        }
-        
-        if UserDefaultsContainer.watchlist.contains(id) {
-            cell.listButton?.backgroundColor = UIColor.green
-            cell.listButton?.isUserInteractionEnabled = false
-        }
-    }
-    
     func createDataSource() -> UICollectionViewDiffableDataSource<Section, MediaItemContainer>? {
         
         let dataSource: UICollectionViewDiffableDataSource<Section, MediaItemContainer>? =
@@ -155,7 +131,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
                         let cell: ItemDescriptionViewCell = collectionView.dequeueReusableCell(ItemDescriptionViewCell.self,
                                                                                                for: indexPath)
                         cell.fill(detailsModel: model, onAction: .init { self?.onItemDescriptionEvent($0) })
-                        self?.isItemInList(cell: cell)
                         return cell
                         
                     case .similars(let model):
@@ -222,7 +197,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     // MARK: - Setup Layout
     
     func createCompositionalLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, _) -> NSCollectionLayoutSection? in
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
             let section = Section.allCases[sectionIndex]
             switch section {
             case .actors:

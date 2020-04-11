@@ -9,8 +9,8 @@
 import UIKit
 
 enum ItemDescriptionEvent: Equatable {
-    case watchlist(MediaItemModel?)
-    case favourites(MediaItemModel?)
+    case watchlist(MediaItemModel?, isWatchlisted: Bool)
+    case favourites(MediaItemModel?, isLiked: Bool)
     case play(MediaItemModel?)
 }
 
@@ -50,8 +50,8 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     
     private var item: MediaItemModel?
     private var actionHandler: Handler<ItemDescriptionEvent>?
-    private var likeIsTapped: Bool = false
-    private var listIsTapped: Bool = false
+    private var likeIsTapped = false
+    private var listIsTapped = false
 
     // MARK: - Cell life cycle
     
@@ -69,8 +69,11 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     
     func fill(detailsModel: MediaItemModel?, onAction: ActionModel<ItemDescriptionEvent>?) {
         self.actionHandler = onAction?.action
-        
         self.item = detailsModel
+        self.likeIsTapped = detailsModel?.isLiked ?? false
+        self.listIsTapped = detailsModel?.isWatchListed ?? false
+        self.likeButton?.backgroundColor = detailsModel?.isLiked == true ? .green : .clear
+        self.listButton?.backgroundColor = detailsModel?.isWatchListed == true ? .green : .clear
         self.itemImage?.loadImage(from: detailsModel?.posterImage)
         self.backgroundImage?.loadImage(from: detailsModel?.backgroundImage)
         self.itemName?.text = detailsModel?.name
@@ -81,7 +84,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.overviewLabel?.text = detailsModel?.overview
     }
     
-    func setupUI() {
+    private func setupUI() {
         self.overviewLabel?.font = UIFont(name: "Abel-Regular", size: 14)
         self.overviewLabel?.sizeToFit()
         self.overviewContainer?.sizeToFit()
@@ -91,22 +94,14 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.itemImage?.rounded(cornerRadius: 5)
     }
     
-    func onLikeAnimation() {
-        self.likeIsTapped = !self.likeIsTapped
-        if self.likeIsTapped {
-            self.likeButton?.likeBounce(0.5)
-            self.likeButton?.backgroundColor = UIColor.green
-            self.likeButton?.isUserInteractionEnabled = false
-        }
+    func onLikeAnimation(isLiked: Bool) {
+        self.likeButton?.likeBounce(0.5)
+        self.likeButton?.backgroundColor = isLiked ? .green : .clear
     }
     
-    func onListAnimation() {
-        self.listIsTapped = !self.listIsTapped
-        if self.listIsTapped {
-            self.listButton?.likeBounce(0.5)
-            self.listButton?.backgroundColor = UIColor.green
-            self.listButton?.isUserInteractionEnabled = false
-        }
+    func onListAnimation(isWatchlisted: Bool) {
+        self.listButton?.likeBounce(0.5)
+        self.listButton?.backgroundColor = isWatchlisted ? .green : .clear
     }
     
     private func reset() {
@@ -120,8 +115,9 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     // MARK: - IBActions
     
     @IBAction func onList(_ sender: UIButton) {
-        self.onListAnimation()
-        self.actionHandler?(.watchlist(self.item))
+        self.listIsTapped = !self.listIsTapped
+        self.onListAnimation(isWatchlisted: self.listIsTapped)
+        self.actionHandler?(.watchlist(self.item, isWatchlisted: self.listIsTapped))
     }
     
     @IBAction func onPlay(_ sender: UIButton) {
@@ -129,7 +125,8 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     }
     
     @IBAction func onLike(_ sender: UIButton) {
-        self.onLikeAnimation()
-        self.actionHandler?(.favourites(self.item))
+        self.likeIsTapped = !self.likeIsTapped
+        self.onLikeAnimation(isLiked: self.likeIsTapped)
+        self.actionHandler?(.favourites(self.item, isLiked: self.likeIsTapped))
     }
 }
