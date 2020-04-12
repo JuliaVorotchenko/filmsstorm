@@ -32,9 +32,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     let loadingView = ActivityView()
     let presenter: Service
-    
-    private var infavs = Bool()
-    
+        
     private lazy var dataSource = self.createDataSource()
     
     // MARK: - Init and deinit
@@ -185,7 +183,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         model.map {
             switch $0 {
             case .actors:
-                break
+                self.presenter.onActor()
             case .media:
                 break
             case .similars(let model):

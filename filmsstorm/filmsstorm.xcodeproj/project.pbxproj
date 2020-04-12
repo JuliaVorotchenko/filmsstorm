@@ -126,6 +126,10 @@
 		CD45172124363D3600AD81F0 /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD45171F24363D3600AD81F0 /* VideoPlayerViewController.xib */; };
 		CD45172424363D8D00AD81F0 /* VideoPlayerViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45172324363D8D00AD81F0 /* VideoPlayerViewPresenter.swift */; };
 		CD45172624363DC800AD81F0 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45172524363DC800AD81F0 /* VideoPlayerView.swift */; };
+		CD46F68C2443787F0069E29B /* ActorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46F68A2443787F0069E29B /* ActorViewController.swift */; };
+		CD46F68D2443787F0069E29B /* ActorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD46F68B2443787F0069E29B /* ActorViewController.xib */; };
+		CD46F68F244378AE0069E29B /* ActorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46F68E244378AE0069E29B /* ActorView.swift */; };
+		CD46F691244378C80069E29B /* ActorsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46F690244378C80069E29B /* ActorsViewPresenter.swift */; };
 		CD4921CB243B490900511CB1 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4921CA243B490900511CB1 /* UserDefaultsStorage.swift */; };
 		CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD499B6223E4715D00BF0545 /* TabBarContainer.swift */; };
 		CD4AE3B6240E787C00ACC0E3 /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */; };
@@ -336,6 +340,10 @@
 		CD45171F24363D3600AD81F0 /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
 		CD45172324363D8D00AD81F0 /* VideoPlayerViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewPresenter.swift; sourceTree = "<group>"; };
 		CD45172524363DC800AD81F0 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		CD46F68A2443787F0069E29B /* ActorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorViewController.swift; sourceTree = "<group>"; };
+		CD46F68B2443787F0069E29B /* ActorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActorViewController.xib; sourceTree = "<group>"; };
+		CD46F68E244378AE0069E29B /* ActorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorView.swift; sourceTree = "<group>"; };
+		CD46F690244378C80069E29B /* ActorsViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorsViewPresenter.swift; sourceTree = "<group>"; };
 		CD4921CA243B490900511CB1 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		CD499B6223E4715D00BF0545 /* TabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
 		CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
@@ -869,6 +877,17 @@
 			path = VideoViewController;
 			sourceTree = "<group>";
 		};
+		CD46F689244377E10069E29B /* ActorsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CD46F68A2443787F0069E29B /* ActorViewController.swift */,
+				CD46F68B2443787F0069E29B /* ActorViewController.xib */,
+				CD46F68E244378AE0069E29B /* ActorView.swift */,
+				CD46F690244378C80069E29B /* ActorsViewPresenter.swift */,
+			);
+			path = ActorsViewController;
+			sourceTree = "<group>";
+		};
 		CD4921C9243B481B00511CB1 /* UserDefaultsContainer */ = {
 			isa = PBXGroup;
 			children = (
@@ -903,6 +922,7 @@
 			isa = PBXGroup;
 			children = (
 				CD536EF623E36034000FEE79 /* DiscoverFlowCoordinator.swift */,
+				CD46F689244377E10069E29B /* ActorsViewController */,
 				CDB8791323B9002C0099F946 /* DiscoverViewController */,
 				CD2D91C3240580B3001A1445 /* MediaItemViewController */,
 				CDB2A37324044DDE00D27A9B /* ItemsViewController */,
@@ -1261,6 +1281,7 @@
 				CD0EF98923F5F7B1000A3CB4 /* Montserrat-ExtraLight.ttf in Resources */,
 				2E289C9023E8DE84001917DB /* DiscoverCollectionViewCell.xib in Resources */,
 				CD0EF98C23F5F7B1000A3CB4 /* Montserrat-SemiBold.ttf in Resources */,
+				CD46F68D2443787F0069E29B /* ActorViewController.xib in Resources */,
 				CD4DB87423EC5F3D00F53B28 /* ProfileViewController.xib in Resources */,
 				CD0EF98F23F5F7B1000A3CB4 /* Montserrat-Black.ttf in Resources */,
 				CD3DEA0D241A7BBC0021AEA8 /* SourceSansPro-Bold.ttf in Resources */,
@@ -1484,6 +1505,7 @@
 				CD2E5A762409640000DEC598 /* UIView+Exensions.swift in Sources */,
 				CDB8791E23B901F20099F946 /* AuthorizationView.swift in Sources */,
 				2E289C8F23E8DE84001917DB /* DiscoverCollectionViewCell.swift in Sources */,
+				CD46F68F244378AE0069E29B /* ActorView.swift in Sources */,
 				CDE0AF75240BA98F008D610F /* SearchModel.swift in Sources */,
 				CD0CDA7A23C3E797002EC487 /* Coordinator.swift in Sources */,
 				CD0D2A802417E93C00722181 /* MediaItemImageCell.swift in Sources */,
@@ -1535,6 +1557,7 @@
 				2E289CE323E8DFCA001917DB /* AccountEndPoint.swift in Sources */,
 				2E289CD923E8DFCA001917DB /* ParameterEncoding.swift in Sources */,
 				CD4B3D522402ECBA00F3FCF6 /* ProfilePresenter.swift in Sources */,
+				CD46F68C2443787F0069E29B /* ActorViewController.swift in Sources */,
 				CD0D2A8C241806C900722181 /* MovieDeailsRequestModel.swift in Sources */,
 				2E289CB823E8DED4001917DB /* SessionRequestBody.swift in Sources */,
 				CD2D91C02405429B001A1445 /* UpcomingMoviesModel.swift in Sources */,
@@ -1551,6 +1574,7 @@
 				CDB2A3922404532600D27A9B /* ShowsPresenter.swift in Sources */,
 				CD4B3D502402EC6500F3FCF6 /* DiscoverPresenter.swift in Sources */,
 				CD38EFE0240EFB8E00F93536 /* UIImage+ImageFromColor.swift in Sources */,
+				CD46F691244378C80069E29B /* ActorsViewPresenter.swift in Sources */,
 				2E289CE023E8DFCA001917DB /* DiscoverEndPoint.swift in Sources */,
 				CD38EFEA240EFCBB00F93536 /*  UIView+Geometry.swift in Sources */,
 				CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */,
