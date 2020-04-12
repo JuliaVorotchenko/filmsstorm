@@ -122,6 +122,11 @@
 		CD3DEA14241A7BCD0021AEA8 /* Abel-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD3DEA12241A7BCD0021AEA8 /* Abel-Regular.ttf */; };
 		CD3DEA19241A7BDE0021AEA8 /* ABeeZee-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD3DEA16241A7BDE0021AEA8 /* ABeeZee-Italic.ttf */; };
 		CD3DEA1B241A7BDE0021AEA8 /* ABeeZee-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD3DEA18241A7BDE0021AEA8 /* ABeeZee-Regular.ttf */; };
+		CD45172024363D3600AD81F0 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45171E24363D3600AD81F0 /* VideoPlayerViewController.swift */; };
+		CD45172124363D3600AD81F0 /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD45171F24363D3600AD81F0 /* VideoPlayerViewController.xib */; };
+		CD45172424363D8D00AD81F0 /* VideoPlayerViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45172324363D8D00AD81F0 /* VideoPlayerViewPresenter.swift */; };
+		CD45172624363DC800AD81F0 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45172524363DC800AD81F0 /* VideoPlayerView.swift */; };
+		CD4921CB243B490900511CB1 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4921CA243B490900511CB1 /* UserDefaultsStorage.swift */; };
 		CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD499B6223E4715D00BF0545 /* TabBarContainer.swift */; };
 		CD4AE3B6240E787C00ACC0E3 /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */; };
 		CD4B3D502402EC6500F3FCF6 /* DiscoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */; };
@@ -179,6 +184,7 @@
 		CDE0AF75240BA98F008D610F /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF74240BA98F008D610F /* SearchModel.swift */; };
 		CDE0AF77240D6BFB008D610F /* DiscoverCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF76240D6BFB008D610F /* DiscoverCellModel.swift */; };
 		CDE0AF7A240D7522008D610F /* CollectionLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF79240D7522008D610F /* CollectionLayoutFactory.swift */; };
+		CDFDCC2624424ECC00D89B3E /* SuccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDCC2524424ECC00D89B3E /* SuccessModel.swift */; };
 		EF69E43B310A0AD220DE1C48 /* Pods_filmsstormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3AA44BFE965E894CADF19A /* Pods_filmsstormTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -326,6 +332,11 @@
 		CD3DEA12241A7BCD0021AEA8 /* Abel-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Abel-Regular.ttf"; sourceTree = "<group>"; };
 		CD3DEA16241A7BDE0021AEA8 /* ABeeZee-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ABeeZee-Italic.ttf"; sourceTree = "<group>"; };
 		CD3DEA18241A7BDE0021AEA8 /* ABeeZee-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ABeeZee-Regular.ttf"; sourceTree = "<group>"; };
+		CD45171E24363D3600AD81F0 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
+		CD45171F24363D3600AD81F0 /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
+		CD45172324363D8D00AD81F0 /* VideoPlayerViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewPresenter.swift; sourceTree = "<group>"; };
+		CD45172524363DC800AD81F0 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		CD4921CA243B490900511CB1 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		CD499B6223E4715D00BF0545 /* TabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
 		CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
 		CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresenter.swift; sourceTree = "<group>"; };
@@ -385,6 +396,7 @@
 		CDE0AF74240BA98F008D610F /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		CDE0AF76240D6BFB008D610F /* DiscoverCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCellModel.swift; sourceTree = "<group>"; };
 		CDE0AF79240D7522008D610F /* CollectionLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLayoutFactory.swift; sourceTree = "<group>"; };
+		CDFDCC2524424ECC00D89B3E /* SuccessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessModel.swift; sourceTree = "<group>"; };
 		EA79238A8EC29AB9C6DB940C /* Pods-filmsstormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.release.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.release.xcconfig"; sourceTree = "<group>"; };
 		F49330B6ECFAEA477A36F2CE /* Pods-filmsstorm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm.release.xcconfig"; path = "Target Support Files/Pods-filmsstorm/Pods-filmsstorm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -493,6 +505,7 @@
 		2E289CA223E8DED4001917DB /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				CD4921C9243B481B00511CB1 /* UserDefaultsContainer */,
 				2E289CA323E8DED4001917DB /* KeyChainContainer */,
 			);
 			path = Persistence;
@@ -536,6 +549,7 @@
 				CD0D2A9724193E2200722181 /* MovieVideosModel.swift */,
 				CD81EEE9242A23E900334BD7 /* MovieCreditsModel.swift */,
 				CD81EEEB242A26FE00334BD7 /* ShowCreditsModel.swift */,
+				CDFDCC2524424ECC00D89B3E /* SuccessModel.swift */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -844,6 +858,25 @@
 			path = ABeeZee;
 			sourceTree = "<group>";
 		};
+		CD45171D24363D0800AD81F0 /* VideoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CD45171E24363D3600AD81F0 /* VideoPlayerViewController.swift */,
+				CD45171F24363D3600AD81F0 /* VideoPlayerViewController.xib */,
+				CD45172324363D8D00AD81F0 /* VideoPlayerViewPresenter.swift */,
+				CD45172524363DC800AD81F0 /* VideoPlayerView.swift */,
+			);
+			path = VideoViewController;
+			sourceTree = "<group>";
+		};
+		CD4921C9243B481B00511CB1 /* UserDefaultsContainer */ = {
+			isa = PBXGroup;
+			children = (
+				CD4921CA243B490900511CB1 /* UserDefaultsStorage.swift */,
+			);
+			path = UserDefaultsContainer;
+			sourceTree = "<group>";
+		};
 		CD4AE3B4240E77EC00ACC0E3 /* NavigationView */ = {
 			isa = PBXGroup;
 			children = (
@@ -873,6 +906,7 @@
 				CDB8791323B9002C0099F946 /* DiscoverViewController */,
 				CD2D91C3240580B3001A1445 /* MediaItemViewController */,
 				CDB2A37324044DDE00D27A9B /* ItemsViewController */,
+				CD45171D24363D0800AD81F0 /* VideoViewController */,
 				CDB2A37424044DEB00D27A9B /* SearchViewController */,
 			);
 			path = DiscoverFlow;
@@ -1233,6 +1267,7 @@
 				CDB8791823B900D80099F946 /* AuthorizationViewController.xib in Resources */,
 				2E16981923AFE05A0002E28E /* GoogleService-Info.plist in Resources */,
 				CD0EF98E23F5F7B1000A3CB4 /* OFL.txt in Resources */,
+				CD45172124363D3600AD81F0 /* VideoPlayerViewController.xib in Resources */,
 				CD3DEA0E241A7BBC0021AEA8 /* SourceSansPro-Black.ttf in Resources */,
 				CD3DEA19241A7BDE0021AEA8 /* ABeeZee-Italic.ttf in Resources */,
 				CD0EF99023F5F7B1000A3CB4 /* Montserrat-Regular.ttf in Resources */,
@@ -1418,6 +1453,7 @@
 				2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */,
 				CD38EFD8240EF9E500F93536 /* Dictionary+Extensions.swift in Sources */,
 				CD4B3D542402ECF800F3FCF6 /* AuthorizationPresenter.swift in Sources */,
+				CD45172624363DC800AD81F0 /* VideoPlayerView.swift in Sources */,
 				2E289CDE23E8DFCA001917DB /* NetworkManager.swift in Sources */,
 				CD51B26323F47DF100E3C924 /* UITableView+Extensions.swift in Sources */,
 				CD4C704223F2CCEF0057FE82 /* QualitySettingViewCell.swift in Sources */,
@@ -1436,6 +1472,7 @@
 				CDB2A388240450DD00D27A9B /* ItemsViewController.swift in Sources */,
 				2E289CE223E8DFCA001917DB /* AuthEndPoint.swift in Sources */,
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
+				CD45172024363D3600AD81F0 /* VideoPlayerViewController.swift in Sources */,
 				CD6C24ED24296A04009E4B84 /* AnimatedView.swift in Sources */,
 				2E289C9E23E8DEBD001917DB /* UIViewController+Extensions.swift in Sources */,
 				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
@@ -1494,6 +1531,7 @@
 				CDB2A3822404505900D27A9B /* SearchPresenter.swift in Sources */,
 				CDE0AF7A240D7522008D610F /* CollectionLayoutFactory.swift in Sources */,
 				CDB2A38A240450F900D27A9B /* MoviesPresenter.swift in Sources */,
+				CD45172424363D8D00AD81F0 /* VideoPlayerViewPresenter.swift in Sources */,
 				2E289CE323E8DFCA001917DB /* AccountEndPoint.swift in Sources */,
 				2E289CD923E8DFCA001917DB /* ParameterEncoding.swift in Sources */,
 				CD4B3D522402ECBA00F3FCF6 /* ProfilePresenter.swift in Sources */,
@@ -1504,6 +1542,8 @@
 				2E289C9123E8DE84001917DB /* DiscoverView.swift in Sources */,
 				CD38EFF0240EFDB000F93536 /* UIView+RoundedCorners.swift in Sources */,
 				CDE0809924110C2500B9A53F /* FavouritesWatchlistMovies.swift in Sources */,
+				CD4921CB243B490900511CB1 /* UserDefaultsStorage.swift in Sources */,
+				CDFDCC2624424ECC00D89B3E /* SuccessModel.swift in Sources */,
 				2E289C9223E8DE84001917DB /* DiscoverViewController.swift in Sources */,
 				CD2D91BC2405347B001A1445 /* FavouritesViewController.swift in Sources */,
 				CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */,

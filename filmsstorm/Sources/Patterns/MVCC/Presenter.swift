@@ -8,10 +8,16 @@
 
 import Foundation
 
-/// Presenter is responsible for buisness logic realization
+/**
+ 
+ Presenter is responsible for app`s buisness logic realization
 
-//- generate events for coordinator about user`s action;
- //- ControllerEventSourse to provide events for coordinator.
+ - generate events for coordinator about user`s action;
+ - EventSourse to provide events for coordinator;
+ - retrieves data from model;
+ - formates data for ViewController.
+
+ */
 
 protocol Presenter: AnyObject, EventSourse {
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
     
@@ -32,6 +33,8 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     let loadingView = ActivityView()
     let presenter: Service
     
+    private var infavs = Bool()
+    
     private lazy var dataSource = self.createDataSource()
     
     // MARK: - Init and deinit
@@ -56,12 +59,18 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         super.viewDidLoad()
         self.setupNavigationView()
         self.setCollectionView()
+        self.getItemDescription()
         self.getMovieSimilars()
         self.getItemCast()
-        self.getItemDescription()
     }
     
     // MARK: - Private methods
+    
+    private func getItemDescription() {
+        self.presenter.getItemDetails { [weak self] model in
+            self?.update(for: .media, with: [.media(model)])
+        }
+    }
     
     private func getItemCast() {
         self.presenter.getItemCast { [weak self] models in
@@ -75,12 +84,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         }
     }
     
-    private func getItemDescription() {
-        self.presenter.getItemDetails { [weak self] model in
-            self?.update(for: .media, with: [.media(model)])
-        }
-    }
-    
     private func setupNavigationView() {
         self.rootView?.navigationView?.actionHandler = { [weak self] in
             self?.presenter.onBack()
@@ -89,14 +92,14 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.rootView?.navigationView?.titleFill(with: item.name ?? "N/A")
     }
     
-    private func onCardEvent(_ event: ItemDescriptionEvent) {
+    private func onItemDescriptionEvent(_ event: ItemDescriptionEvent) {
         switch event {
-        case .watchlist(let model):
-            self.presenter.addToWatchList(model)
-            F.Log("you added to watch list \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
-        case .favourites(let model):
-            self.presenter.addToFavourites(model)
-            F.Log("you added to favourites \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
+        case .watchlist(let model, let state):
+            model.map { self.presenter.updateWatchlist(for: $0, isWatchlisted: state) }
+        case .favourites(let model, let state):
+            model.map { self.presenter.updateFavorites(for: $0, isFavorite: state) }
+        case .play(let model):
+            model.map(self.presenter.onPlay)
         }
     }
     
@@ -118,6 +121,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     }
     
     func createDataSource() -> UICollectionViewDiffableDataSource<Section, MediaItemContainer>? {
+        
         let dataSource: UICollectionViewDiffableDataSource<Section, MediaItemContainer>? =
             self.rootView?.collecionView
                 .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collectionView, indexPath, item -> UICollectionViewCell in
@@ -126,7 +130,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
                     case .media(let model):
                         let cell: ItemDescriptionViewCell = collectionView.dequeueReusableCell(ItemDescriptionViewCell.self,
                                                                                                for: indexPath)
-                        cell.fill(detailsModel: model, onAction: .init { self?.onCardEvent($0) })
+                        cell.fill(detailsModel: model, onAction: .init { self?.onItemDescriptionEvent($0) })
                         return cell
                         
                     case .similars(let model):
@@ -189,11 +193,11 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
             }
         }
     }
-
+    
     // MARK: - Setup Layout
     
     func createCompositionalLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, _) -> NSCollectionLayoutSection? in
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
             let section = Section.allCases[sectionIndex]
             switch section {
             case .actors:

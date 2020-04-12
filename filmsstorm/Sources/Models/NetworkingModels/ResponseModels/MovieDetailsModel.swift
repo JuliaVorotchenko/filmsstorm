@@ -50,31 +50,32 @@ struct Language: Codable, Hashable {
     }
 }
 
-struct MovieDetailsModel: Codable, Hashable {
+struct MovieDetailsModel: DetailsModel, Hashable {
+   
+    let id: Int
     let adult: Bool?
     let backgroundImage: String?
     let collection: Collection?
     let budget: Int?
     let genres: [Genre]
     let homepage: String?
-    let id: Int
     let imdbID: String?
     let language: String?
-    let originalTitle: String
-    let overview: String
+    let originalName: String?
+    let overview: String?
     let popularity: Double?
-    let posterImage: String
+    let posterImage: String?
     let productionCompanies: [ProducionCompany]?
     let producionCounries: [ProductionCountry]?
-    let releaseDate: String
+    let releaseDate: String?
     let revenue: Int?
     let runtime: Int?
     let languages: [Language]
-    let status: String
+    let status: String?
     let tagline: String?
-    let title: String
-    let video: Bool
-    let voteAverage: Double
+    let name: String?
+    let video: Bool?
+    let voteAverage: Double?
     let voteCount: Int?
     
     enum CodingKeys: String, CodingKey {
@@ -87,7 +88,7 @@ struct MovieDetailsModel: Codable, Hashable {
         case id = "id"
         case imdbID = "imdb_id"
         case language = "original_language"
-        case originalTitle = "original_title"
+        case originalName = "original_title"
         case overview = "overview"
         case popularity = "popularity"
         case posterImage = "poster_path"
@@ -99,7 +100,7 @@ struct MovieDetailsModel: Codable, Hashable {
         case languages = "spoken_languages"
         case status = "status"
         case tagline = "tagline"
-        case title = "title"
+        case name = "title"
         case video = "video"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"

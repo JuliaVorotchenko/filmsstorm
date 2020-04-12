@@ -144,6 +144,25 @@ class DiscoverFlowCoordinator: Coordinator {
             self.eventHandler?(.appError(errorMessage))
         case .onMediaItem(let model):
             self.createMediaItemViewController(from: model)
+        case .onPlay(let model):
+            self.createVideoPlayerViewController(from: model)
+        }
+    }
+    
+    // MARK: - Video Player VC
+    
+    private func createVideoPlayerViewController(from model: MediaItemModel) {
+        let presenter = VideoPlayerViewPresenterImpl(networking: self.networking, event: self.videoPlayerEvent, item: model)
+        let controller = VideoPlayerViewController(presenter)
+        self.navigationController.pushViewController(controller, animated: true)
+    }
+    
+    private func videoPlayerEvent(_ event: VideoEvent) {
+        switch event {
+        case .back:
+            self.navigationController.popViewController(animated: true)
+        case .error(let errorMessage):
+            self.eventHandler?(.appError(errorMessage))
         }
     }
 }

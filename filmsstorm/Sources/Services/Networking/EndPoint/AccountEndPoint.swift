@@ -81,14 +81,14 @@ extension APIEndPoint {
             switch self {
                 
             case  .getRatedMovies,
-                  .getRatedTVShows,
-                  .getMoviesWatchList,
-                  .getShowsWatchList:
+                  .getRatedTVShows:
                 return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue])
             
             case .getAccountDetails(let sessionID),
                  .getFavouriteMovies(let sessionID),
-                 .getFavouriteTVShows(let sessionID):
+                 .getFavouriteTVShows(let sessionID),
+                 .getMoviesWatchList(let sessionID),
+                 .getShowsWatchList(let sessionID):
                 return .requestParameters(bodyParameters: nil, urlParameters: [Headers.sessionID: sessionID,
                                                                                Headers.apiKey: Headers.apiKeyValue])
             case .addToFavourites(let sessionID, let model):

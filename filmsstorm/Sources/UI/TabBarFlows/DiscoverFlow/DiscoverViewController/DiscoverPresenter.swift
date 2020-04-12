@@ -50,7 +50,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
             }
         }
     }
-    
+
     // MARK: - Activity Movies
     
     func onMovies() {

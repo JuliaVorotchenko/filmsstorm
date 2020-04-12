@@ -9,8 +9,9 @@
 import UIKit
 
 enum ItemDescriptionEvent: Equatable {
-    case watchlist(MediaItemModel?)
-    case favourites(MediaItemModel?)
+    case watchlist(MediaItemModel?, isWatchlisted: Bool)
+    case favourites(MediaItemModel?, isLiked: Bool)
+    case play(MediaItemModel?)
 }
 
 struct ItemDescriptionEventModel {
@@ -40,7 +41,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     @IBOutlet var ratingLabel: UILabel?
     @IBOutlet var likeButton: AnimatedButton?
     @IBOutlet var listButton: AnimatedButton?
-    @IBOutlet var playButton: AnimatedButton?
+    @IBOutlet var playButton: UIButton?
     @IBOutlet var playButtonView: UIView?
     @IBOutlet var overviewLabel: UILabel?
     @IBOutlet var overviewContainer: UIView?
@@ -49,8 +50,8 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     
     private var item: MediaItemModel?
     private var actionHandler: Handler<ItemDescriptionEvent>?
-    private var likeIsTapped: Bool = false
-    private var listIsTapped: Bool = false
+    private var likeIsTapped = false
+    private var listIsTapped = false
     
     // MARK: - Cell life cycle
     
@@ -68,11 +69,13 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     
     func fill(detailsModel: MediaItemModel?, onAction: ActionModel<ItemDescriptionEvent>?) {
         self.actionHandler = onAction?.action
-        
         self.item = detailsModel
+        self.likeIsTapped = detailsModel?.isLiked ?? false
+        self.listIsTapped = detailsModel?.isWatchListed ?? false
+        self.likeButton?.backgroundColor = detailsModel?.isLiked == true ? .green : .clear
+        self.listButton?.backgroundColor = detailsModel?.isWatchListed == true ? .green : .clear
         self.itemImage?.loadImage(from: detailsModel?.posterImage)
         self.backgroundImage?.loadImage(from: detailsModel?.backgroundImage)
-        
         self.itemName?.text = detailsModel?.name
         self.originalName?.text = detailsModel?.originalName
         self.genreLabel?.text = detailsModel?.genre.map { $0.name }.shuffled().prefix(2).joined(separator: ", ")
@@ -81,7 +84,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.overviewLabel?.text = detailsModel?.overview
     }
     
-    func setupUI() {
+    private func setupUI() {
         self.overviewLabel?.font = UIFont(name: "Abel-Regular", size: 14)
         self.overviewLabel?.sizeToFit()
         self.overviewContainer?.sizeToFit()
@@ -91,27 +94,14 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.itemImage?.rounded(cornerRadius: 5)
     }
     
-    func likedSuccessfully() {
-        self.likeIsTapped = !self.likeIsTapped
-        if self.likeIsTapped {
-            self.likeButton?.setImage(UIImage(named: "liked"), for: .normal)
-            self.likeButton?.likeBounce(0.5)
-        } else {
-            self.likeButton?.setImage(UIImage(named: "like"), for: .normal)
-            self.likeButton?.unLikeBounce(0.3)
-        }
-        
+    func onLikeAnimation(isLiked: Bool) {
+        self.likeButton?.likeBounce(0.5)
+        self.likeButton?.backgroundColor = isLiked ? .green : .clear
     }
     
-    func watchlistedSuccsessfully() {
-        self.listIsTapped = !self.listIsTapped
-        if self.listIsTapped {
-            self.listButton?.setImage(UIImage(named: "watchlisted"), for: .normal)
-            self.listButton?.likeBounce(0.5)
-        } else {
-            self.listButton?.setImage(UIImage(named: "watchlist"), for: .normal)
-            self.listButton?.unLikeBounce(0.3)
-        }
+    func onListAnimation(isWatchlisted: Bool) {
+        self.listButton?.likeBounce(0.5)
+        self.listButton?.backgroundColor = isWatchlisted ? .green : .clear
     }
     
     private func reset() {
@@ -125,15 +115,18 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     // MARK: - IBActions
     
     @IBAction func onList(_ sender: UIButton) {
-        self.watchlistedSuccsessfully()
-        self.actionHandler?(.watchlist(self.item))
+        self.listIsTapped = !self.listIsTapped
+        self.onListAnimation(isWatchlisted: self.listIsTapped)
+        self.actionHandler?(.watchlist(self.item, isWatchlisted: self.listIsTapped))
     }
     
     @IBAction func onPlay(_ sender: UIButton) {
+        self.actionHandler?(.play(self.item))
     }
     
     @IBAction func onLike(_ sender: UIButton) {
-        self.likedSuccessfully()
-        self.actionHandler?(.favourites(self.item))
+        self.likeIsTapped = !self.likeIsTapped
+        self.onLikeAnimation(isLiked: self.likeIsTapped)
+        self.actionHandler?(.favourites(self.item, isLiked: self.likeIsTapped))
     }
 }

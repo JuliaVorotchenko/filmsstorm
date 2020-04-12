@@ -75,16 +75,7 @@ UICollectionViewDelegate {
         let title = self.presenter.title
         self.rootView?.navigationView?.titleFill(with: title)
     }
-    
-    private func onCardEvent(_ event: ItemDescriptionEvent) {
-        switch event {
-        case .watchlist(let model):
-            F.Log("you moved item to watch list \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
-        case .favourites(let model):
-            F.Log("you added to favourites \(String(describing: model?.name)), \(String(describing: model?.mediaType))")
-        }
-    }
-    
+        
     // MARK: - set diffableDatasource
     
     func createDataSource() {

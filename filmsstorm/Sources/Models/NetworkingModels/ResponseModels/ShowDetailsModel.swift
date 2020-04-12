@@ -86,41 +86,41 @@ struct Season: Codable, Hashable {
     }
 }
 
-struct ShowDetailsModel: Codable, Hashable {
-    let backgroundImage: String
+struct ShowDetailsModel: DetailsModel, Hashable {
+    let id: Int
+    let backgroundImage: String?
     let creator: [Creator]?
     let runTime: [Int]?
-    let firstAirDate: String
+    let releaseDate: String?
     let genres: [Genre]
     let homepage: String?
-    let id: Int
     let inProduction: Bool?
     let languages: [String]?
     let lastAirDate: String?
     let lastEpisodeToAir: Episode?
-    let name: String
+    let name: String?
     let nextEpisodeToAir: Episode?
     let networks: [Network]?
     let episodesNumber: Int?
     let seasonsNumber: Int?
     let originCountry: [String]?
     let originalLanguage: String?
-    let originalName: String
-    let overview: String
+    let originalName: String?
+    let overview: String?
     let popularity: Double?
-    let posterImage: String
+    let posterImage: String?
     let companies: [ProducionCompany]
     let seasons: [Season]?
     let status: String?
     let type: String?
-    let voteAverage: Double
+    let voteAverage: Double?
     let voteCount: Int?
     
     enum CodingKeys: String, CodingKey {
         case backgroundImage = "backdrop_path"
         case creator = "created_by"
         case runTime = "episode_run_time"
-        case firstAirDate = "first_air_date"
+        case releaseDate = "first_air_date"
         case genres = "genres"
         case homepage = "homepage"
         case id = "id"

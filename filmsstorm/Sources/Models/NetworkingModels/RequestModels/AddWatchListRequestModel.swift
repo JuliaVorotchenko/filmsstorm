@@ -18,4 +18,10 @@ struct AddWatchListRequestModel: Codable {
         case mediaID = "media_id"
         case toWatchList = "watchlist"
     }
+    
+    static func create(from model: MediaItemModel, isWatchlisted: Bool) -> Self {
+        return .init(mediaType: model.mediaType.rawValue,
+                     mediaID: model.id,
+                     toWatchList: isWatchlisted)
+    }
 }

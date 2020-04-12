@@ -25,6 +25,7 @@ class NetworkService: NetworkServiceProtocol {
     @discardableResult func perform(request: URLRequest,
                                     completion: @escaping (Result<(Data?, HTTPURLResponse), NetworkError>) -> Void)
         -> URLSessionDataTask {
+           // F.Log(request.debugDescription)
             let dataTask = self.session.dataTask(with: request) { data, response, error in
                 guard let response = response as? HTTPURLResponse else {
                     completion(.failure(.other(URLError: error)))

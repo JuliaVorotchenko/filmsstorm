@@ -18,4 +18,10 @@ struct AddFavouritesRequestModel: Codable {
         case mediaID = "media_id"
         case isFavourite = "favorite"
     }
+    
+    static func create(from model: MediaItemModel, isFavorite: Bool) -> Self {
+        return .init(mediaType: model.mediaType.rawValue,
+                     mediaID: model.id,
+                     isFavourite: isFavorite)
+    }
 }

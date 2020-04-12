@@ -9,9 +9,9 @@
 import UIKit
 
 class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, Controller, ActivityViewPresenter {
- 
+    
     // MARK: - Subtypes
-
+    
     typealias RootViewType = AuthorizationView
     typealias Service = T
     
@@ -20,7 +20,7 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     let loadingView: ActivityView = .init()
     
     // MARK: - Private properties
-
+    
     let presenter: Service
     
     // MARK: - Init and deinit
@@ -39,9 +39,9 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - IBAction
-   
+    
     @IBAction func buttonTapped(_ sender: Any) {
         guard let username = self.rootView?.usernameTextField?.text,
             let password = self.rootView?.passwordTextField?.text  else { return }
@@ -49,7 +49,7 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     }
     
     // MARK: - Private methods
-   
+    
     private func configureActivity(_ activity: ActivityState) {
         switch activity {
         case .show:
