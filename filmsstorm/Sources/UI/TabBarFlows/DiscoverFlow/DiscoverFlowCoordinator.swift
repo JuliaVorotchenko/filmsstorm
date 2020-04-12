@@ -146,8 +146,8 @@ class DiscoverFlowCoordinator: Coordinator {
             self.createMediaItemViewController(from: model)
         case .onPlay(let model):
             self.createVideoPlayerViewController(from: model)
-        case .onActor:
-            self.createActorViewController()
+        case .onActor(let model):
+            self.createActorViewController(from: model)
         }
     }
     
@@ -170,8 +170,8 @@ class DiscoverFlowCoordinator: Coordinator {
     
     // MARK: - Actor VC
     
-    private func createActorViewController() {
-        let presenter = ActorViewPresenterImpl(networking: self.networking, event: self.actorEvent)
+    private func createActorViewController(from model: ActorModel) {
+        let presenter = ActorViewPresenterImpl(networking: self.networking, event: self.actorEvent, actorModel: model)
         let controller = ActorViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }

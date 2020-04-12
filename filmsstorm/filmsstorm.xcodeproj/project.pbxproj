@@ -152,6 +152,8 @@
 		CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD53CDB723D631C000E16E2E /* ActivityView.swift */; };
 		CD6C24ED24296A04009E4B84 /* AnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C24EC24296A04009E4B84 /* AnimatedView.swift */; };
 		CD6C24EF24296A22009E4B84 /* AnimatedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6C24EE24296A22009E4B84 /* AnimatedButton.swift */; };
+		CD6D46A72443A10C008AE56F /* ActorDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D46A62443A10C008AE56F /* ActorDescriptionCell.swift */; };
+		CD6D46A92443A12F008AE56F /* ActorDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6D46A82443A12F008AE56F /* ActorDescriptionCell.xib */; };
 		CD7C8D382420DE95005F14BB /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7C8D372420DE95005F14BB /* SectionHeaderView.xib */; };
 		CD7C8D3A2420F3A9005F14BB /* MediaItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C8D392420F3A9005F14BB /* MediaItemModel.swift */; };
 		CD7E748623D8F3450097F198 /* AppEventSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E748523D8F3450097F198 /* AppEventSource.swift */; };
@@ -366,6 +368,8 @@
 		CD53CDB723D631C000E16E2E /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		CD6C24EC24296A04009E4B84 /* AnimatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedView.swift; sourceTree = "<group>"; };
 		CD6C24EE24296A22009E4B84 /* AnimatedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedButton.swift; sourceTree = "<group>"; };
+		CD6D46A62443A10C008AE56F /* ActorDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorDescriptionCell.swift; sourceTree = "<group>"; };
+		CD6D46A82443A12F008AE56F /* ActorDescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActorDescriptionCell.xib; sourceTree = "<group>"; };
 		CD7C8D372420DE95005F14BB /* SectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
 		CD7C8D392420F3A9005F14BB /* MediaItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemModel.swift; sourceTree = "<group>"; };
 		CD7E748523D8F3450097F198 /* AppEventSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEventSource.swift; sourceTree = "<group>"; };
@@ -880,6 +884,7 @@
 		CD46F689244377E10069E29B /* ActorsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				CD6D46A52443A0CF008AE56F /* Private */,
 				CD46F68A2443787F0069E29B /* ActorViewController.swift */,
 				CD46F68B2443787F0069E29B /* ActorViewController.xib */,
 				CD46F68E244378AE0069E29B /* ActorView.swift */,
@@ -969,6 +974,15 @@
 				CD6C24EE24296A22009E4B84 /* AnimatedButton.swift */,
 			);
 			path = ButtonAnimation;
+			sourceTree = "<group>";
+		};
+		CD6D46A52443A0CF008AE56F /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				CD6D46A62443A10C008AE56F /* ActorDescriptionCell.swift */,
+				CD6D46A82443A12F008AE56F /* ActorDescriptionCell.xib */,
+			);
+			path = Private;
 			sourceTree = "<group>";
 		};
 		CD7E748423D8F3230097F198 /* AppErrorPresentable */ = {
@@ -1309,6 +1323,7 @@
 				CD2D91B824053442001A1445 /* FavouritesViewController.xib in Resources */,
 				CD0EF98A23F5F7B1000A3CB4 /* Montserrat-Thin.ttf in Resources */,
 				CD0EF98D23F5F7B1000A3CB4 /* Montserrat-ExtraBold.ttf in Resources */,
+				CD6D46A92443A12F008AE56F /* ActorDescriptionCell.xib in Resources */,
 				CD0D2A7E2417E8F000722181 /* MediaItemImageCell.xib in Resources */,
 				2E51663123AFD6CA00EDF51E /* Assets.xcassets in Resources */,
 			);
@@ -1485,6 +1500,7 @@
 				CD38EFE8240EFC6200F93536 /* UIView+CornerRadius.swift in Sources */,
 				CD2D91C724058CE1001A1445 /* MediaItemView.swift in Sources */,
 				2E289CE923E8DFCA001917DB /* NetworkRouter.swift in Sources */,
+				CD6D46A72443A10C008AE56F /* ActorDescriptionCell.swift in Sources */,
 				CD0D2A9824193E2200722181 /* MovieVideosModel.swift in Sources */,
 				CDB8792423B93C240099F946 /* LoginFlowCoordinator.swift in Sources */,
 				2E289CE623E8DFCA001917DB /* SearchEndpoint.swift in Sources */,

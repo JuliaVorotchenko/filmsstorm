@@ -49,6 +49,9 @@ class ActorViewController<T: ActorViewPresenter>: UIViewController, Controller, 
         self.rootView?.navigationView.actionHandler = { [weak self] in
             self?.presenter.onBack()
         }
+        guard let actorName = self.presenter.actorModel.actorName else { return }
+        self.rootView?.navigationView.titleFill(with: actorName)
+        
     }
 
 }

@@ -182,8 +182,8 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         let model = self.dataSource?.itemIdentifier(for: indexPath)
         model.map {
             switch $0 {
-            case .actors:
-                self.presenter.onActor()
+            case .actors(let model):
+                self.presenter.onActor(actor: model)
             case .media:
                 break
             case .similars(let model):

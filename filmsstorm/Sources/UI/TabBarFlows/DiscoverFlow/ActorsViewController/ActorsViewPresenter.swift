@@ -14,6 +14,7 @@ enum ActorViewEvent: EventProtocol {
 }
 
 protocol ActorViewPresenter: Presenter {
+    var actorModel: ActorModel { get }
     func onBack() 
 }
 
@@ -23,13 +24,15 @@ class ActorViewPresenterImpl: ActorViewPresenter {
     
     let eventHandler: Handler<ActorViewEvent>?
     var showActivity: Handler<ActivityState>?
+    let actorModel: ActorModel
     private let networking: NetworkManager
   
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: Handler<ActorViewEvent>?) {
+    init(networking: NetworkManager, event: Handler<ActorViewEvent>?, actorModel: ActorModel) {
         self.networking = networking
         self.eventHandler = event
+        self.actorModel = actorModel
     }
     
     // MARK: - Private methods

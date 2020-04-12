@@ -12,7 +12,7 @@ enum MediaItemEvent: EventProtocol {
     case back
     case onMediaItem(DiscoverCellModel)
     case onPlay(MediaItemModel)
-    case onActor
+    case onActor(ActorModel)
     case error(AppError)
 }
 
@@ -23,7 +23,7 @@ protocol MediaItemPresenter: Presenter {
     func onBack()
     func onSimilarsItem(with model: DiscoverCellModel)
     func onPlay(item: MediaItemModel)
-    func onActor()
+    func onActor(actor: ActorModel)
     func updateFavorites(for item: MediaItemModel, isFavorite: Bool)
     func updateWatchlist(for item: MediaItemModel, isWatchlisted: Bool) 
     
@@ -276,8 +276,8 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         self.eventHandler?(.onPlay(item))
     }
     
-    func onActor() {
-        self.eventHandler?(.onActor)
+    func onActor(actor: ActorModel) {
+        self.eventHandler?(.onActor(actor))
     }
     
 }
