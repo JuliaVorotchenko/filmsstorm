@@ -10,8 +10,9 @@ import Foundation
 
 extension APIEndPoint {
     enum PeopleEndPoint: EndPointType {
-        case getPeopleDetails(personID: Int)
+        case getPeopleDetails(personID: Identifier)
         case getPeopleMostPopular
+        case getCombinedCredit(personID: Identifier)
         
         var base: String {
             return "https://api.themoviedb.org/3"
@@ -24,16 +25,19 @@ extension APIEndPoint {
         
         var path: String {
             switch self {
-            case .getPeopleDetails(let personID):
-                return "/person/\(personID)"
+            case .getPeopleDetails(let model):
+                return "/person/\(String(describing: model.id))"
             case .getPeopleMostPopular:
                 return "/person/popular"
+            case .getCombinedCredit(let model):
+                return "/person/\(String(describing: model.id))/combined_credits"
             }
         }
         
         var httpMethod: HTTPMethod {
             switch self {
             case
+            .getCombinedCredit,
             .getPeopleDetails,
             .getPeopleMostPopular:
                 return .get
@@ -44,6 +48,7 @@ extension APIEndPoint {
         var task: HTTPTask {
             switch self {
             case
+            .getCombinedCredit,
             .getPeopleMostPopular,
             .getPeopleDetails:
                 return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue])

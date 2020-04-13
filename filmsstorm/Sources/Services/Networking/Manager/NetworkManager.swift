@@ -117,4 +117,14 @@ class NetworkManager {
                         completion: @escaping(Result<ShowCreditsModel, NetworkError>) -> Void) {
         self.router.request(.tv(.getTVShowCredits(model: model)), completion: completion)
     }
+    
+    func getPersonDetails(with model: Identifier,
+                          completion: @escaping(Result<ActorDetailsModel, NetworkError>) -> Void) {
+        self.router.request(.people(.getPeopleDetails(personID: model)), completion: completion)
+    }
+    
+    func getPersonCredit(with model: Identifier,
+                         completion: @escaping(Result<ActorCombinedCreditsModel, NetworkError>) -> Void) {
+        self.router.request(.people(.getCombinedCredit(personID: model)), completion: completion)
+    }
 }

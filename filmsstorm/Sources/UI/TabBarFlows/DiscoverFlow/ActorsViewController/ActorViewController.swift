@@ -40,7 +40,8 @@ class ActorViewController<T: ActorViewPresenter>: UIViewController, Controller, 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
-
+        self.getActorDetails()
+        self.getActorCredits()
     }
     
     // MARK: - Private methods
@@ -52,6 +53,19 @@ class ActorViewController<T: ActorViewPresenter>: UIViewController, Controller, 
         guard let actorName = self.presenter.actorModel.actorName else { return }
         self.rootView?.navigationView.titleFill(with: actorName)
         
+    }
+    
+    private func getActorDetails() {
+        self.presenter.getActorDetails { result in
+            print(#function, result)
+        }
+    }
+    
+    private func getActorCredits() {
+        self.presenter.getActorCredits { result in
+           
+            print(#function)
+        }
     }
 
 }

@@ -11,11 +11,15 @@ import Foundation
 enum ActorViewEvent: EventProtocol {
     case back
     case onMediaItem(DiscoverCellModel)
+    case error(AppError)
 }
 
 protocol ActorViewPresenter: Presenter {
     var actorModel: ActorModel { get }
-    func onBack() 
+    func getActorDetails(_ completion: ((ActorDetailsModel) -> Void)?)
+     func getActorCredits(_ completion: ((ActorCombinedCreditsModel) -> Void)?)
+    func onBack()
+    
 }
 
 class ActorViewPresenterImpl: ActorViewPresenter {
@@ -37,6 +41,30 @@ class ActorViewPresenterImpl: ActorViewPresenter {
     
     // MARK: - Private methods
     
+    func getActorDetails(_ completion: ((ActorDetailsModel) -> Void)?) {
+      
+        self.networking.getPersonDetails(with: self.actorModel) { [weak self] result in
+            switch result {
+            case .success(let model):
+                completion?(model)
+            case .failure(let error):
+                self?.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+    }
+    
+    func getActorCredits(_ completion: ((ActorCombinedCreditsModel) -> Void)?) {
+        
+        self.networking.getPersonCredit(with: self.actorModel) { [weak self] result in
+            switch result {
+            case .success(let model):
+                completion?(model)
+            case .failure(let error):
+                self?.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+        
+    }
    
     func onBack() {
         self.eventHandler?(.back)
