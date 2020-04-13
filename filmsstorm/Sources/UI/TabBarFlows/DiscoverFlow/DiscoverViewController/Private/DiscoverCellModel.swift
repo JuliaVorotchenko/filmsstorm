@@ -65,4 +65,18 @@ struct DiscoverCellModel: ConfigureModel, Codable, Hashable {
                      posterImage: model.posterImage,
                      backgroundImage: model.backgroundImage)
     }
+    
+    static func create(_ model: CombinedCastModel) -> Self {
+        
+        return .init(mediaType: .tv,
+                     id: model.id,
+                     name: model.title,
+                     voteAverage: model.voteAverage,
+                     overview: model.overview,
+                     releaseDate: model.releaseDate,
+                     posterImage: model.posterImage,
+                     backgroundImage: model.backgroundImage)
+    }
+    
+
 }

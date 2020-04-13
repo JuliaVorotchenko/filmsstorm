@@ -16,7 +16,7 @@ struct ActorCombinedCreditsModel: Codable, Hashable {
 
 struct CombinedCastModel: Codable, Hashable {
     
-    let id: Int?
+    let id: Int
     let character: String?
     let originalTitle: String?
     let overview: String?

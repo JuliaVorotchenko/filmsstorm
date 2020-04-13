@@ -8,14 +8,22 @@
 
 import UIKit
 
-class ActorDescriptionCell: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+class ActorDescriptionCell: UICollectionViewCell {
+    @IBOutlet weak var backgroundImage: LoadingImageView!
+    @IBOutlet weak var actorImage: LoadingImageView!
+    @IBOutlet weak var actorNameLabel: UILabel!
+    @IBOutlet weak var birthDate: UILabel!
+    @IBOutlet weak var birthPlace: UILabel!
+    @IBOutlet weak var age: UILabel!
+    @IBOutlet weak var biographyLabel: UILabel!
+    
+    func fill(with model: ActorDetailsModel) {
+        self.backgroundImage.loadImage(from: model.profilePath)
+        self.actorImage.loadImage(from: model.profilePath)
+        self.actorNameLabel.text = model.name
+        self.birthDate.text = model.birthday
+        self.birthPlace.text = model.birthPlace
+        self.age.text = "78"
+        self.biographyLabel.text = model.biography
     }
-    */
-
 }

@@ -17,8 +17,9 @@ enum ActorViewEvent: EventProtocol {
 protocol ActorViewPresenter: Presenter {
     var actorModel: ActorModel { get }
     func getActorDetails(_ completion: ((ActorDetailsModel) -> Void)?)
-     func getActorCredits(_ completion: ((ActorCombinedCreditsModel) -> Void)?)
+    func getActorCredits(_ completion: (([DiscoverCellModel]) -> Void)?)
     func onBack()
+     func onMediaItem(with model: DiscoverCellModel)
     
 }
 
@@ -53,20 +54,28 @@ class ActorViewPresenterImpl: ActorViewPresenter {
         }
     }
     
-    func getActorCredits(_ completion: ((ActorCombinedCreditsModel) -> Void)?) {
+    func getActorCredits(_ completion: (([DiscoverCellModel]) -> Void)?) {
         
         self.networking.getPersonCredit(with: self.actorModel) { [weak self] result in
             switch result {
             case .success(let model):
-                completion?(model)
+                guard let results = model.cast else { return }
+                completion?(results.map(DiscoverCellModel.create))
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
             }
         }
         
     }
+    
+    func getItemDetails(with model: DiscoverCellModel) {
+    }
    
     func onBack() {
         self.eventHandler?(.back)
+    }
+    
+    func onMediaItem(with model: DiscoverCellModel) {
+         self.eventHandler?(.onMediaItem(model))
     }
 }
