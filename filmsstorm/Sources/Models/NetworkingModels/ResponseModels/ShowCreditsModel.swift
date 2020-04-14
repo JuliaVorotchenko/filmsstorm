@@ -12,7 +12,7 @@ struct ShowCast: Codable, Hashable {
     let character: String?
     let creditID: String?
     let gender: Int?
-    let id: Int?
+    let id: Int
     let name: String?
     let order: Int?
     let profilePath: String?
@@ -31,7 +31,7 @@ struct ShowCast: Codable, Hashable {
 struct ShowCreditsModel: Codable, Hashable {
     let cast: [ShowCast]?
     let crew: [MediaCrew]?
-    let id: Int?
+    let id: Int
     
     enum CodingKeys: String, CodingKey {
         case cast

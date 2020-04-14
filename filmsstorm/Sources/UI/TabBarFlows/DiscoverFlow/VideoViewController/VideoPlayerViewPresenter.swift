@@ -42,7 +42,7 @@ class VideoPlayerViewPresenterImpl: VideoPlayerViewPresenter {
     //item videos
      
      func getItemVideos(_ completion: @escaping (([VideoModel]) -> Void)) {
-         switch self.itemModel.mediaType {
+        switch self.itemModel.mediaType ?? .movie {
          case .movie:
              self.networking.getMovieVideos(with: self.itemModel) { [weak self] result in
                  switch result {

@@ -18,23 +18,21 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     enum Section: CaseIterable {
         case media
-        case similars
         case actors
+        case similars
     }
     
     enum MediaItemContainer: Hashable {
         case media(MediaItemModel?)
-        case similars(DiscoverCellModel)
         case actors(ActorModel)
+        case similars(DiscoverCellModel)
     }
     
     // MARK: - Properties
     
     let loadingView = ActivityView()
     let presenter: Service
-    
-    private var infavs = Bool()
-    
+        
     private lazy var dataSource = self.createDataSource()
     
     // MARK: - Init and deinit
@@ -184,8 +182,8 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         let model = self.dataSource?.itemIdentifier(for: indexPath)
         model.map {
             switch $0 {
-            case .actors:
-                break
+            case .actors(let model):
+                self.presenter.onActor(actor: model)
             case .media:
                 break
             case .similars(let model):

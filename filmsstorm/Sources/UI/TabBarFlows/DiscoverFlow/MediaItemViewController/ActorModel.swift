@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Actor: Codable {
+protocol Actor: Codable, Identifier {
     var mediaType: MediaType { get }
     var character: String? { get }
     var actorName: String? { get }
@@ -16,7 +16,8 @@ protocol Actor: Codable {
 }
 
 struct ActorModel: Actor, Codable, Hashable, Equatable {
-   
+    
+    let idValue: Int
     let mediaType: MediaType
     let character: String?
     let actorName: String?
@@ -24,7 +25,8 @@ struct ActorModel: Actor, Codable, Hashable, Equatable {
     
     static func create(_ model: MovieCast) -> Self {
         
-        return .init(mediaType: .movie,
+        return .init(idValue: model.id,
+                     mediaType: .movie,
                      character: model.character,
                      actorName: model.name,
                      actorImage: model.profilePath)
@@ -32,7 +34,8 @@ struct ActorModel: Actor, Codable, Hashable, Equatable {
     
     static func create(_ model: ShowCast) -> Self {
         
-        return .init(mediaType: .tv,
+        return .init(idValue: model.id,
+                     mediaType: .tv,
                      character: model.character,
                      actorName: model.name,
                      actorImage: model.profilePath)

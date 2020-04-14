@@ -13,7 +13,7 @@ struct MovieCast: Codable, Hashable {
     let character: String?
     let creditID: String?
     let gender: Int?
-    let id: Int?
+    let id: Int
     let name: String?
     let order: Int?
     let profilePath: String?
@@ -34,7 +34,7 @@ struct MediaCrew: Codable, Hashable {
     let creditID: String?
     let departament: String?
     let gender: Int?
-    let id: Int?
+    let id: Int
     let job: String?
     let name: String?
     let profilePath: String?
@@ -51,7 +51,7 @@ struct MediaCrew: Codable, Hashable {
 }
 
 struct MovieCreditsModel: Codable, Hashable {
-    let id: Int?
+    let id: Int
     let cast: [MovieCast]?
     let crew: [MediaCrew]?
     

@@ -27,8 +27,8 @@ protocol DetailsModel: Codable {
 }
 
 struct MediaItemModel: MediaItem {
-    
-    let id: Int
+   
+    let idValue: Int
     let name: String?
     let originalName: String
     let voteAverage: Double?
@@ -36,7 +36,7 @@ struct MediaItemModel: MediaItem {
     let releaseDate: String?
     let posterImage: String?
     let backgroundImage: String?
-    let mediaType: MediaType
+    let mediaType: MediaType?
     let genre: [Genre]
     let isLiked: Bool?
     let isWatchListed: Bool?
@@ -46,7 +46,7 @@ struct MediaItemModel: MediaItem {
                        isLiked: Bool,
                        isWatchlisted: Bool) -> Self {
         
-        return .init(id: model.id,
+        return .init(idValue: model.id,
                      name: model.name,
                      originalName: model.originalName ?? model.name ?? "N/A",
                      voteAverage: model.voteAverage,

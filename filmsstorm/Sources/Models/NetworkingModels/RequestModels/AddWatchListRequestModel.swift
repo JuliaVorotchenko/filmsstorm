@@ -9,7 +9,7 @@
 import Foundation
 
 struct AddWatchListRequestModel: Codable {
-    let mediaType: String
+    let mediaType: MediaType?
     let mediaID: Int
     let toWatchList: Bool
     
@@ -20,8 +20,8 @@ struct AddWatchListRequestModel: Codable {
     }
     
     static func create(from model: MediaItemModel, isWatchlisted: Bool) -> Self {
-        return .init(mediaType: model.mediaType.rawValue,
-                     mediaID: model.id,
+        return .init(mediaType: model.mediaType,
+                     mediaID: model.idValue,
                      toWatchList: isWatchlisted)
     }
 }
