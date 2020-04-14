@@ -17,7 +17,7 @@ protocol Actor: Codable, Identifier {
 
 struct ActorModel: Actor, Codable, Hashable, Equatable {
     
-    let id: Int
+    let idValue: Int
     let mediaType: MediaType
     let character: String?
     let actorName: String?
@@ -25,7 +25,7 @@ struct ActorModel: Actor, Codable, Hashable, Equatable {
     
     static func create(_ model: MovieCast) -> Self {
         
-        return .init(id: model.id,
+        return .init(idValue: model.id,
                      mediaType: .movie,
                      character: model.character,
                      actorName: model.name,
@@ -34,7 +34,7 @@ struct ActorModel: Actor, Codable, Hashable, Equatable {
     
     static func create(_ model: ShowCast) -> Self {
         
-        return .init(id: model.id,
+        return .init(idValue: model.id,
                      mediaType: .tv,
                      character: model.character,
                      actorName: model.name,

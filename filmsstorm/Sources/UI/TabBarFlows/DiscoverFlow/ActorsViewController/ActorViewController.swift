@@ -101,9 +101,8 @@ class ActorViewController<T: ActorViewPresenter>: UIViewController, Controller, 
         
         let dataSource: UICollectionViewDiffableDataSource<Section, ActorContainer>? =
             self.rootView?.collectionView
-                .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) {
-                    [weak self] collectionView,
-                    indexPath, item -> UICollectionViewCell in
+                .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self]
+                    collectionView, indexPath, item -> UICollectionViewCell in
                     
                     switch item {
                     case .actor(let model):
@@ -134,8 +133,7 @@ class ActorViewController<T: ActorViewPresenter>: UIViewController, Controller, 
         return dataSource
     }
     
-   private func supplementaryViewProvider(collectionView: UICollectionView,
-                                           kind: String,
+   private func supplementaryViewProvider(collectionView: UICollectionView, kind: String,
                                            indexPath: IndexPath) -> UICollectionReusableView? {
         let header = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,

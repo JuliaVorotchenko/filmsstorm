@@ -33,15 +33,15 @@ extension APIEndPoint {
         var path: String {
             switch self {
             case .getTVShowCredits(let model):
-                return "/tv/\(String(describing: model.id))/credits"
+                return "/tv/\(String(describing: model.idValue))/credits"
             case .getTVShowDetails(let model):
-                return "/tv/\(String(describing: model.id))"
+                return "/tv/\(String(describing: model.idValue))"
             case .getTVShowImages(let tvID):
                 return "/tv/\(tvID)/images"
             case .getTVShowSimilar(let model):
-                return "/tv/\(String(describing: model.id))/similar"
+                return "/tv/\(String(describing: model.idValue))/similar"
             case .getTVShowVideos(let model):
-                return "/tv/\(String(describing: model.id))/videos"
+                return "/tv/\(String(describing: model.idValue))/videos"
             case .rateTVShow(let tvID, _):
                 return "/tv/\(tvID)/rating"
             case .deleteTVShowRating(let tvID):
@@ -95,7 +95,7 @@ extension APIEndPoint {
             .getTVShowSimilar(let model),
             .getTVShowVideos(let model):
                 return .requestParameters(bodyParameters: nil, urlParameters: [Headers.apiKey: Headers.apiKeyValue,
-                                                                               Headers.tvId: model.id])
+                                                                               Headers.tvId: model.idValue])
             case
             .deleteTVShowRating:
                 return .requestParametersAndHeaders(bodyParameters: nil,

@@ -13,11 +13,11 @@ protocol MediaContainer {
 }
 
 protocol Identifier {
-    var id: Int { get }
+    var idValue: Int { get }
 }
 
 protocol ConfigureModel: MediaContainer, Identifier {
-    var mediaType: MediaType { get }
+    var mediaType: MediaType? { get }
     var name: String? { get }
     var voteAverage: Double? { get }
     var overview: String? { get }
@@ -31,10 +31,10 @@ enum MediaType: String, Codable {
     case tv
 }
 
-struct DiscoverCellModel: ConfigureModel, Codable, Hashable {
-
-    let mediaType: MediaType
-    let id: Int
+struct DiscoverCellModel: ConfigureModel, Codable, Identifiable, Hashable {
+    let id = UUID()
+    let mediaType: MediaType?
+    let idValue: Int
     let name: String?
     let voteAverage: Double?
     let overview: String?
@@ -45,7 +45,7 @@ struct DiscoverCellModel: ConfigureModel, Codable, Hashable {
     static func create(_ model: MovieListResult) -> Self {
     
         return .init(mediaType: .movie,
-                     id: model.id,
+                     idValue: model.id,
                      name: model.title,
                      voteAverage: model.voteAverage,
                      overview: model.overview,
@@ -57,7 +57,7 @@ struct DiscoverCellModel: ConfigureModel, Codable, Hashable {
     static func create(_ model: ShowListResult) -> Self {
        
         return .init(mediaType: .tv,
-                     id: model.id,
+                     idValue: model.id,
                      name: model.name,
                      voteAverage: model.voteAverage,
                      overview: model.overview,
@@ -68,8 +68,8 @@ struct DiscoverCellModel: ConfigureModel, Codable, Hashable {
     
     static func create(_ model: CombinedCastModel) -> Self {
         
-        return .init(mediaType: .tv,
-                     id: model.id,
+        return .init(mediaType: model.mediaType,
+                     idValue: model.id,
                      name: model.title,
                      voteAverage: model.voteAverage,
                      overview: model.overview,
@@ -77,6 +77,4 @@ struct DiscoverCellModel: ConfigureModel, Codable, Hashable {
                      posterImage: model.posterImage,
                      backgroundImage: model.backgroundImage)
     }
-    
-
 }

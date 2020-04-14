@@ -26,11 +26,11 @@ extension APIEndPoint {
         var path: String {
             switch self {
             case .getPeopleDetails(let model):
-                return "/person/\(String(describing: model.id))"
+                return "/person/\(String(describing: model.idValue))"
             case .getPeopleMostPopular:
                 return "/person/popular"
             case .getCombinedCredit(let model):
-                return "/person/\(String(describing: model.id))/combined_credits"
+                return "/person/\(String(describing: model.idValue))/combined_credits"
             }
         }
         

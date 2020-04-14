@@ -19,19 +19,19 @@ protocol ActorViewPresenter: Presenter {
     func getActorDetails(_ completion: ((ActorDetailsModel) -> Void)?)
     func getActorCredits(_ completion: (([DiscoverCellModel]) -> Void)?)
     func onBack()
-     func onMediaItem(with model: DiscoverCellModel)
+    func onMediaItem(with model: DiscoverCellModel)
     
 }
 
 class ActorViewPresenterImpl: ActorViewPresenter {
     
-  // MARK: - Properties
+    // MARK: - Properties
     
     let eventHandler: Handler<ActorViewEvent>?
     var showActivity: Handler<ActivityState>?
     let actorModel: ActorModel
     private let networking: NetworkManager
-  
+    
     // MARK: - Init and deinit
     
     init(networking: NetworkManager, event: Handler<ActorViewEvent>?, actorModel: ActorModel) {
@@ -43,7 +43,7 @@ class ActorViewPresenterImpl: ActorViewPresenter {
     // MARK: - Private methods
     
     func getActorDetails(_ completion: ((ActorDetailsModel) -> Void)?) {
-      
+        
         self.networking.getPersonDetails(with: self.actorModel) { [weak self] result in
             switch result {
             case .success(let model):
@@ -68,14 +68,11 @@ class ActorViewPresenterImpl: ActorViewPresenter {
         
     }
     
-    func getItemDetails(with model: DiscoverCellModel) {
-    }
-   
     func onBack() {
         self.eventHandler?(.back)
     }
     
     func onMediaItem(with model: DiscoverCellModel) {
-         self.eventHandler?(.onMediaItem(model))
+        self.eventHandler?(.onMediaItem(model))
     }
 }

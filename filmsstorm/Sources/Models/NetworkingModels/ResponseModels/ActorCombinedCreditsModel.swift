@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ActorCombinedCreditsModel: Codable, Hashable {
+struct ActorCombinedCreditsModel: Codable, Identifiable {
     let id: Int?
     let cast: [CombinedCastModel]?
     let crew: [CombinedCrewModel]?
@@ -22,7 +22,7 @@ struct CombinedCastModel: Codable, Hashable {
     let overview: String?
     let voteCount: Int?
     let video: Bool?
-    let mediaType: String?
+    let mediaType: MediaType?
     let posterImage: String?
     let backgroundImage: String?
     let popularity: Double?

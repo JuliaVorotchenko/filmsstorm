@@ -18,14 +18,14 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     enum Section: CaseIterable {
         case media
-        case similars
         case actors
+        case similars
     }
     
     enum MediaItemContainer: Hashable {
         case media(MediaItemModel?)
-        case similars(DiscoverCellModel)
         case actors(ActorModel)
+        case similars(DiscoverCellModel)
     }
     
     // MARK: - Properties

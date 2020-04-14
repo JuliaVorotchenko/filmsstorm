@@ -27,15 +27,15 @@ extension APIEndPoint {
         var path: String {
             switch self {
             case .getMovieCredits(let model):
-                return "/movie/\(String(describing: model.id))/credits"
+                return "/movie/\(String(describing: model.idValue))/credits"
             case .getMovieDetails(let model):
-                return "/movie/\(String(describing: model.id))"
+                return "/movie/\(String(describing: model.idValue))"
             case .getMovieImages(let movieID):
                 return "/movie/\(movieID)/images"
             case .getMovieVideos(let model):
-                return "/movie/\(String(model.id))/videos"
+                return "/movie/\(String(model.idValue))/videos"
             case .getMovieSimilars(let model):
-                return "/movie/\(String(describing: model.id))/similar"
+                return "/movie/\(String(describing: model.idValue))/similar"
             case .getMovieReviews(let movieID):
                 return "/movie/\(movieID)/reviews"
             case .rateMovie(let movieID, _):
@@ -99,7 +99,7 @@ extension APIEndPoint {
             .getMovieSimilars(let model),
             .getMovieVideos(let model):
                 return .requestParameters(bodyParameters: nil, urlParameters: [Headers.apiKey: Headers.apiKeyValue,
-                                                                               Headers.movieId: model.id])
+                                                                               Headers.movieId: model.idValue])
                 
             case .getUpcoming:
                 return .requestParameters(bodyParameters: nil, urlParameters:  [Headers.apiKey: Headers.apiKeyValue,

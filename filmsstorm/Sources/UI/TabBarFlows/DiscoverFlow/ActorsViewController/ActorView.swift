@@ -9,8 +9,6 @@
 import UIKit
 
 class ActorView: UIView {
-
     @IBOutlet weak var navigationView: CustomNavigationView!
     @IBOutlet weak var collectionView: UICollectionView!
-    
 }
