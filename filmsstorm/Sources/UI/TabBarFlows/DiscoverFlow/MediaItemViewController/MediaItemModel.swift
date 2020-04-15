@@ -54,7 +54,7 @@ struct MediaItemModel: MediaItem {
                      releaseDate: model.releaseDate,
                      posterImage: model.posterImage,
                      backgroundImage: model.backgroundImage ?? model.posterImage,
-                     mediaType: .movie,
+                     mediaType: mediaType,
                      genre: model.genres,
                      isLiked: isLiked,
                      isWatchListed: isWatchlisted)

@@ -86,9 +86,10 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             : UserShowsContainer.watchlistIDs.contains(model.id)
         
         return .create(model,
-                       mediaType: self.itemModel.mediaType  ?? .movie,
+                       mediaType: self.itemModel.mediaType!,
                        isLiked: isLiked,
                        isWatchlisted: isWatchlisted)
+        
     }
     
     //item cast
@@ -138,7 +139,6 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                 switch result {
                 case.success(let similarsModel):
                     guard let results = similarsModel.results else { return }
-                    print(#function, results)
                     completion?(results.map(DiscoverCellModel.create))
                 case .failure(let error):
                     self.eventHandler?(.error(.networkingError(error)))
@@ -154,6 +154,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         self.networking.addToFavourites(with: model) { [weak self] result in
             switch result {
             case .success:
+                print(#function, item)
                 isFavorite ? self?.addFavoriteStorage(item: item): self?.removeFavoriteStorage(item: item)
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
@@ -162,20 +163,24 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     }
     
     private func addFavoriteStorage(item: MediaItemModel) {
-        switch self.itemModel.mediaType ?? .movie {
+        switch self.itemModel.mediaType {
         case .movie:
             UserMoviesContainer.favoritesIDs.append(item.idValue)
         case .tv:
             UserShowsContainer.favoritesIDs.append(item.idValue)
+        case .none:
+            break
         }
     }
     
     private func removeFavoriteStorage(item: MediaItemModel) {
-        switch self.itemModel.mediaType ?? .movie {
+        switch self.itemModel.mediaType  {
         case .movie:
             UserMoviesContainer.favoritesIDs = UserMoviesContainer.favoritesIDs.filter { $0 != item.idValue }
         case .tv:
             UserShowsContainer.favoritesIDs = UserShowsContainer.favoritesIDs.filter { $0 != item.idValue }
+        case .none:
+            break
         }
     }
     
