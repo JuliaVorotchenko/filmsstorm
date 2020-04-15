@@ -72,17 +72,18 @@ enum CollectionLayoutFactory {
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = .init(top: 12, leading: 0, bottom: 16, trailing: 0)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         
         return section
     }
     
     static func listTypeSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(20))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(15))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(1))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        group.edgeSpacing = .init(leading: .fixed(14), top: .fixed(14), trailing: nil, bottom: nil)
        
         let section = NSCollectionLayoutSection(group: group)
         return section

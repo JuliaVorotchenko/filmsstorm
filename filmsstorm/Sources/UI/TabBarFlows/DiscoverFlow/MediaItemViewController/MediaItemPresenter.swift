@@ -194,20 +194,24 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     }
     
     private func addWatchlistStorage(item: MediaItemModel) {
-        switch self.itemModel.mediaType ?? .movie {
+        switch self.itemModel.mediaType {
         case .movie:
             UserMoviesContainer.watchlistIDs.append(item.idValue)
         case .tv:
             UserMoviesContainer.watchlistIDs.append(item.idValue)
+        case .none:
+            break
         }
     }
     
     private func removeWatchlistStorage(item: MediaItemModel) {
-        switch self.itemModel.mediaType ?? .movie {
+        switch self.itemModel.mediaType {
         case .movie:
             UserMoviesContainer.watchlistIDs = UserMoviesContainer.watchlistIDs.filter { $0 != item.idValue }
         case .tv:
             UserShowsContainer.watchlistIDs = UserShowsContainer.watchlistIDs.filter { $0 != item.idValue }
+        case .none:
+            break
         }
     }
     
