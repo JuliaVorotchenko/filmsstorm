@@ -14,6 +14,7 @@ class NetworkManager {
     private let router = Router<APIEndPoint>(networkService: NetworkService())
     
     // MARK: - Networking methods
+    // MARK: - Authorization requests
     
     func getToken(completion: @escaping (Result<RequestToken, NetworkError>) -> Void) {
         self.router.request(.auth(.createRequestToken), completion: completion)
@@ -38,6 +39,8 @@ class NetworkManager {
                             completion: completion)
     }
     
+    // MARK: - Popular media reequests
+    
     func getPopularMovies(completion: @escaping (Result<PopularMoviesModel, NetworkError>) -> Void) {
         self.router.request(.movie(.getMoviePopular), completion: completion)
     }
@@ -49,6 +52,8 @@ class NetworkManager {
     func getPopularShows(completion: @escaping (Result<PopularShowsModel, NetworkError>) -> Void) {
         self.router.request(.tv(.getTVShowPopular), completion: completion)
     }
+    
+    // MARK: - Lists update requests
     
     func addToFavourites(with model: AddFavouritesRequestModel,
                          completion: @escaping (Result<SuccessModel, NetworkError>) -> Void) {
@@ -62,6 +67,8 @@ class NetworkManager {
                             completion: completion)
     }
     
+    // MARK: - Favorites & Watchlists
+
     func getFavoriteMovies(completion: @escaping (Result<FavouritesWatchlistMovies, NetworkError>) -> Void) {
         self.router.request(.account(.getFavouriteMovies(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
     }
@@ -77,6 +84,8 @@ class NetworkManager {
     func getWatchListShows(completion: @escaping (Result<FavoritesWatchlistShows, NetworkError>) -> Void) {
         self.router.request(.account(.getShowsWatchList(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
     }
+    
+    // MARK: - Media details & similars
     
     func getMovieDetails(with model: Identifier,
                          completion: @escaping (Result<MovieDetailsModel, NetworkError>) -> Void) {
@@ -98,6 +107,8 @@ class NetworkManager {
         self.router.request(.tv(.getTVShowSimilar(model: model)), completion: completion)
     }
     
+    // MARK: - Media Videos
+    
     func getMovieVideos(with model: Identifier,
                         completion: @escaping(Result<ItemVideoModel, NetworkError>) -> Void) {
         self.router.request(.movie(.getMovieVideos(model: model)), completion: completion)
@@ -107,6 +118,8 @@ class NetworkManager {
                        completion: @escaping(Result<ItemVideoModel, NetworkError>) -> Void) {
         self.router.request(.tv(.getTVShowVideos(model: model)), completion: completion)
     }
+    
+    // MARK: - Media credits
     
     func getMovieCredits(with model: Identifier,
                          completion: @escaping(Result<MovieCreditsModel, NetworkError>) -> Void) {
@@ -118,6 +131,8 @@ class NetworkManager {
         self.router.request(.tv(.getTVShowCredits(model: model)), completion: completion)
     }
     
+    // MARK: - Actor requests
+
     func getPersonDetails(with model: Identifier,
                           completion: @escaping(Result<ActorDetailsModel, NetworkError>) -> Void) {
         self.router.request(.people(.getPeopleDetails(personID: model)), completion: completion)

@@ -182,6 +182,8 @@
 		CDB9CD3F23FE96B400F45778 /* CustomNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB9CD3E23FE96B400F45778 /* CustomNavigationView.xib */; };
 		CDB9CD4123FE96F100F45778 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB9CD4023FE96F100F45778 /* CustomNavigationView.swift */; };
 		CDC2F5362411972C00AB7B72 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC2F5352411972C00AB7B72 /* Presenter.swift */; };
+		CDD08B2E2447280F0046E0B5 /* ListTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD08B2C2447280F0046E0B5 /* ListTypeCell.swift */; };
+		CDD08B2F2447280F0046E0B5 /* ListTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD08B2D2447280F0046E0B5 /* ListTypeCell.xib */; };
 		CDD5914323FD84B000DBA664 /* DiscoverHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD5914223FD84B000DBA664 /* DiscoverHeaderView.xib */; };
 		CDD5914523FD84E500DBA664 /* DiscoverHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */; };
 		CDD5914823FDD3F400DBA664 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5914723FDD3F400DBA664 /* NibDesignable.swift */; };
@@ -403,6 +405,8 @@
 		CDB9CD3E23FE96B400F45778 /* CustomNavigationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNavigationView.xib; sourceTree = "<group>"; };
 		CDB9CD4023FE96F100F45778 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
 		CDC2F5352411972C00AB7B72 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		CDD08B2C2447280F0046E0B5 /* ListTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTypeCell.swift; sourceTree = "<group>"; };
+		CDD08B2D2447280F0046E0B5 /* ListTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTypeCell.xib; sourceTree = "<group>"; };
 		CDD5914223FD84B000DBA664 /* DiscoverHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverHeaderView.xib; sourceTree = "<group>"; };
 		CDD5914423FD84E500DBA664 /* DiscoverHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverHeaderView.swift; sourceTree = "<group>"; };
 		CDD5914723FDD3F400DBA664 /* NibDesignable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
@@ -1065,6 +1069,7 @@
 		CDB2A37824044E5D00D27A9B /* FavouritesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				CDD08B2B244727A70046E0B5 /* Private */,
 				CD2D91BD2405348E001A1445 /* FavouritesPresenter.swift */,
 				CD2D91B924053457001A1445 /* FavouritesView.swift */,
 				CD2D91BB2405347B001A1445 /* FavouritesViewController.swift */,
@@ -1141,6 +1146,15 @@
 		CDB9CD4223FE9DAB00F45778 /* Private */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		CDD08B2B244727A70046E0B5 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				CDD08B2C2447280F0046E0B5 /* ListTypeCell.swift */,
+				CDD08B2D2447280F0046E0B5 /* ListTypeCell.xib */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -1330,6 +1344,7 @@
 				CDD5914323FD84B000DBA664 /* DiscoverHeaderView.xib in Resources */,
 				CD0D2A822417E98700722181 /* ItemDescriptionViewCell.xib in Resources */,
 				CD2D91B824053442001A1445 /* FavouritesViewController.xib in Resources */,
+				CDD08B2F2447280F0046E0B5 /* ListTypeCell.xib in Resources */,
 				CD0EF98A23F5F7B1000A3CB4 /* Montserrat-Thin.ttf in Resources */,
 				CD0EF98D23F5F7B1000A3CB4 /* Montserrat-ExtraBold.ttf in Resources */,
 				CD6D46A92443A12F008AE56F /* ActorDescriptionCell.xib in Resources */,
@@ -1582,6 +1597,7 @@
 				CDB2A38A240450F900D27A9B /* MoviesPresenter.swift in Sources */,
 				CD45172424363D8D00AD81F0 /* VideoPlayerViewPresenter.swift in Sources */,
 				2E289CE323E8DFCA001917DB /* AccountEndPoint.swift in Sources */,
+				CDD08B2E2447280F0046E0B5 /* ListTypeCell.swift in Sources */,
 				2E289CD923E8DFCA001917DB /* ParameterEncoding.swift in Sources */,
 				CD4B3D522402ECBA00F3FCF6 /* ProfilePresenter.swift in Sources */,
 				CD46F68C2443787F0069E29B /* ActorViewController.swift in Sources */,

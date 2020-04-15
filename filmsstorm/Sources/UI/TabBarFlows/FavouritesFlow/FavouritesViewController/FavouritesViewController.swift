@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Controller, ActivityViewPresenter {
+class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
     
     // MARK: - Subtypes
     
@@ -18,7 +18,7 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     // MARK: - Private properties
     
     let loadingView = ActivityView()
-    let presenter: Service
+    let presenter: T
     
     // MARK: - Init and deinit
     
@@ -39,13 +39,32 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupNavigaionView()
     }
     
-    // MARK: - Private Methods
+    // MARK: -  Private methods to retrieve lists
     
-    private func setupNavigaionView() {
-        self.rootView?.navigationView?.backButton?.isHidden = true
-        self.rootView?.navigationView?.titleFill(with: "Favourites")
+    private func getMoviesWatchlist() {
+        
     }
+    
+    private func getShowsWatchlist() {
+        
+    }
+    
+    private func getFavoriteMovies() {
+        
+    }
+    
+    private func getFavoriteShows() {
+        
+    }
+    
+    // MARK: - Private Methods for CollectionView
+    
+    private func setCollectionView() {
+        let collection = self.rootView?.collectionView
+        collection?.register(MediaItemImageCell.self)
+        collection?.delegate = self
+    }
+    
 }
