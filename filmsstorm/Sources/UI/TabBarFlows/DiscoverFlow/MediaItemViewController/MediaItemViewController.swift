@@ -66,12 +66,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.getMovieSimilars()
         self.getItemCast()
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(false)
-        self.presenter.getLists()
-    }
-    
+
     // MARK: - Private methods
     
     private func getItemDescription() {

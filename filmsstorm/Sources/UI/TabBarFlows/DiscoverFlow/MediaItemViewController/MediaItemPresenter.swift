@@ -81,7 +81,8 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     private func createMediaItem(_ model: DetailsModel) -> MediaItemModel {
         let isLiked = self.itemModel.mediaType == .movie
             ? UserMoviesContainer.favoritesIDs.contains(model.id)
-            :UserShowsContainer.favoritesIDs.contains(model.id)
+            : UserShowsContainer.favoritesIDs.contains(model.id)
+        
         let isWatchlisted = self.itemModel.mediaType == .movie
             ? UserMoviesContainer.watchlistIDs.contains(model.id)
             : UserShowsContainer.watchlistIDs.contains(model.id)
@@ -241,7 +242,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     }
     
     private func getFavoriteShows() {
-        self.networking.getFavoriteMovies { [weak self] result in
+        self.networking.getFavoriteShows { [weak self] result in
             switch result {
             case .success(let model):
                 UserShowsContainer.favoritesIDs = model.results.map { $0.id }
