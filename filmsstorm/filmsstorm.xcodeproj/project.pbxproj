@@ -776,8 +776,8 @@
 				CD0D2A7F2417E93C00722181 /* MediaItemImageCell.swift */,
 				CD0D2A812417E98700722181 /* ItemDescriptionViewCell.xib */,
 				CD0D2A832417E9A200722181 /* ItemDescriptionViewCell.swift */,
-				CD328A76241E804400BF7224 /* SectionHeaderView.swift */,
 				CD7C8D372420DE95005F14BB /* SectionHeaderView.xib */,
+				CD328A76241E804400BF7224 /* SectionHeaderView.swift */,
 			);
 			path = Private;
 			sourceTree = "<group>";

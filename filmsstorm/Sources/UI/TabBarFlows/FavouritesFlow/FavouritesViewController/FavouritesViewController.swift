@@ -58,14 +58,36 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     }
     
     // MARK: - Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setCollectionView()
-        self.getMoviesWatchlist()
-        self.getShowsWatchlist()
-        self.getFavoriteMovies()
-        self.getFavoriteShows()
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        self.dataSourceCleanOut()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         self.updateListsLabels()
+        
+        defer {
+            self.getFavoriteShows()
+        }
+        
+        defer {
+            self.getFavoriteMovies()
+        }
+        
+        defer {
+            self.getMoviesWatchlist()
+        }
+        
+        do {
+            self.getShowsWatchlist()
+        }
     }
     
     // MARK: - Private methods to retrieve lists
@@ -116,9 +138,16 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
         snapshot?.appendItems(items, toSection: section)
         snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
     }
+    
+    private func dataSourceCleanOut() {
+        let items = [FavoritesContainer]()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, FavoritesContainer>()
+        snapshot.appendSections(Section.allCases)
+        snapshot.appendItems(items)
+        self.dataSource?.apply(snapshot, animatingDifferences: false)
+    }
 
     func createDataSource() -> UICollectionViewDiffableDataSource<Section, FavoritesContainer>? {
-        
         let dataSource: UICollectionViewDiffableDataSource<Section, FavoritesContainer>? =
             self.rootView?.collectionView
                 .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) {

@@ -9,14 +9,14 @@
 import UIKit
 
 class MediaItemImageCell: UICollectionViewCell {
-  
+    
     @IBOutlet var itemImage: LoadingImageView?
     
     override func prepareForReuse() {
         super.prepareForReuse()
         self.itemImage?.cancelLoading()
     }
-        
+    
     func similarsFill(model: DiscoverCellModel) {
         let path = model.posterImage
         self.itemImage?.loadImage(from: path, mainPath: .mainPath)

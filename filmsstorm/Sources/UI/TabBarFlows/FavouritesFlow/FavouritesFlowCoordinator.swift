@@ -119,6 +119,4 @@ class FavouritesFlowCoordinator: Coordinator {
               self.eventHandler?(.appError(errorMessage))
         }
     }
-
-
 }

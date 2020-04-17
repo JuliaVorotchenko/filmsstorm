@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ImageLoadingService {
-
+    
     func loadImage(from urlString: String?,
                    mainPath: Path,
                    completion: ((Result<UIImage, ImageError>) -> Void)?)
@@ -23,14 +23,14 @@ enum Path: String {
 }
 
 class ImageLoadingServiceImpl: ImageLoadingService {
-
+    
     // MARK: - Private properties
     
     private let cache: NSCache<NSURL, UIImage>
     private let networkService: NetworkServiceProtocol
     private let queue: DispatchQueue
     private var dataTask: URLSessionDataTask?
-
+    
     // MARK: - Initialization
     
     init(networkService: NetworkServiceProtocol = NetworkService(),
@@ -41,7 +41,7 @@ class ImageLoadingServiceImpl: ImageLoadingService {
     }
     
     // MARK: - Public methods
-
+    
     func loadImage(from urlString: String?,
                    mainPath: Path,
                    completion: ((Result<UIImage, ImageError>) -> Void)?) {
@@ -71,13 +71,15 @@ class ImageLoadingServiceImpl: ImageLoadingService {
             self.dataTask?.resume()
         }
     }
-
+    
     func cancelLoading() {
-        self.dataTask?.cancel()
+        DispatchQueue.global(qos: .background).sync {
+            self.dataTask?.cancel()
+        }
     }
     
     // MARK: - Private methods
-
+    
     private func createImage(from data: Data?) -> Result<UIImage, ImageError> {
         return data
             .flatMap(UIImage.init)
