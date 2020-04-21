@@ -10,14 +10,11 @@ import Foundation
 
 enum FavouritesEvent: EventProtocol {
     case onMedia(DiscoverCellModel)
-    case onList
     case error(AppError)
 }
 
 protocol FavouritesPresenter: Presenter {
-    var showActivity: Handler<ActivityState>? { get set }
     func onMedia(item: DiscoverCellModel)
-    func onList()
     
     func getMoviesWatchlist(_ completion: (([DiscoverCellModel]) -> Void)?)
     func getShowsWatchList(_ completion: (([DiscoverCellModel]) -> Void)?)
@@ -30,7 +27,6 @@ class FavouritesPresenterImpl: FavouritesPresenter {
     // MARK: - Private Properties
     
     let eventHandler: Handler<FavouritesEvent>?
-    var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
@@ -91,8 +87,5 @@ class FavouritesPresenterImpl: FavouritesPresenter {
     func onMedia(item: DiscoverCellModel) {
         self.eventHandler?(.onMedia(item))
     }
-    
-    func onList() {
-        
-    }
+
 }

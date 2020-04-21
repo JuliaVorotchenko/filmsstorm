@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
+class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Controller, UICollectionViewDelegate {
     
     // MARK: - Subtypes
     
@@ -44,7 +44,6 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     // MARK: - Init and deinit
     
     deinit {
-        self.hideActivity()
         F.Log(F.toString(Self.self))
     }
     

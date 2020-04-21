@@ -41,7 +41,7 @@ class FavouritesFlowCoordinator: Coordinator {
     }
     
     private func createFavouritesViewController() {
-        let presenter = FavouritesPresenterImpl(networking: self.networking, event: self.favouritesEvent(_:))
+        let presenter = FavouritesPresenterImpl(networking: self.networking, event: self.favouritesEvent)
         let controller = FavouritesViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -52,8 +52,6 @@ class FavouritesFlowCoordinator: Coordinator {
         switch event {
         case .onMedia(let model):
             self.createMediaItemViewController(from: model)
-        case .onList:
-            F.Log("some fav event")
         case .error(let error):
             self.eventHandler?(.appError(error))
         }
