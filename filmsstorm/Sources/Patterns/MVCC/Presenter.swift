@@ -9,16 +9,19 @@
 import Foundation
 
 /**
- 
- Presenter is responsible for app`s buisness logic realization
+Due to this realization of MVC + C pattern, every controller must have its own Presenter.
+This protocol defines base behaviour for all Controllers.
 
- - generate events for coordinator about user`s action;
- - EventSourse to provide events for coordinator;
- - retrieves data from model;
- - formates data for ViewController.
+Presenter's roles:
+- provide modified and prepeared data to display on Controller
+- generate events for coordinator about user`s action;
+- incapsulate all actions like requests to internet or modifications of model layer
 
- */
-
+Presenters CAN NOT:
+- import UIKit
+- save Controller or any other View as property
+- modify or change Controller's state directly
+*/
 protocol Presenter: AnyObject, EventSourse {
     
 }

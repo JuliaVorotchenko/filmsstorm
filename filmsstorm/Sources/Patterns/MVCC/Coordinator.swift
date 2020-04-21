@@ -9,16 +9,18 @@
 import UIKit
 
 /**
- MVC+C is the base pattern on the project. Main actors are:
+ MVCP+C is the base pattern on the project. Main actors are:
  - Model - Data container, persistance object;
  - View - Object to represent data on UI. You must inherite Cotroller type to use it as View.
  - Controller - Object, which acts as the intermediary between the application's view objects and its model objects.
+ - Presenter - Object to incapsulate logic from visualization.
  - Coordinator - Entity, which allows to manage all controllers and sub-coordinators.
  
  Coordinator`s roles:
  - Incapsulates dependencies;
  - Provides dependency injection role;
- - Init controllers;
+ - Init presenters;
+ - Init controllers with presenters;
  - Navigate controllers (show and hide instack, modally and in any other way);
  - Subscribes on controller`s events and react on events;
  - Show or hide sub-coordinators if needed.
