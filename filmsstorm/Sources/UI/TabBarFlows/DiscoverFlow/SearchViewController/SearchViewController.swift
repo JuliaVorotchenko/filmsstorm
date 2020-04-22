@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController<T: SearchPresenter>: UIViewController, Controller, ActivityViewPresenter {
+class SearchViewController<T: SearchPresenter>: UIViewController, Controller, ActivityViewPresenter, UISearchBarDelegate {
     
     // MARK: - Subtypes
     
@@ -25,6 +25,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     let presenter: Service
     private var sections = [MovieListResult]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, MovieListResult>?
+    let searchConroller = UISearchController(searchResultsController: nil)
     
     // MARK: - Init and deinit
     
@@ -47,14 +48,15 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
-        self.movieSearch(query: "Terminator")
+        self.rootView?.searchBar?.delegate = self
+     
     }
     
     // MARK: - Private Methods
     
     private func movieSearch(query: String) {
         self.presenter.moviesSearch(query) { [weak self] result in
-            print(result[0])
+            print(result.map { $0.originalTitle })
         }
     }
     
@@ -64,4 +66,11 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
         }
         self.rootView?.navigationView?.titleFill(with: "Search")
     }
+
+    // MARK: - SearcBarDelegate
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.movieSearch(query: searchText)
+    }
+    
 }
