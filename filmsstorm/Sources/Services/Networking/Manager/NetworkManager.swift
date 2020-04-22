@@ -132,4 +132,9 @@ class NetworkManager {
                      completion: @escaping(Result<MovieSearchModel, NetworkError>) -> Void) {
         self.router.request(.search(.movieSearch(query)), completion: completion)
     }
+    
+    func multiSearch(with query: String,
+                     completion: @escaping(Result<MultiSearchModel, NetworkError>) -> Void) {
+        self.router.request(.search(.multiSearch(query)), completion: completion)
+    }
 }

@@ -49,14 +49,20 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
         super.viewDidLoad()
         self.setupNavigationView()
         self.rootView?.searchBar?.delegate = self
-     
+        self.multiSearch(query: "Devs")
     }
     
     // MARK: - Private Methods
     
     private func movieSearch(query: String) {
-        self.presenter.moviesSearch(query) { [weak self] result in
+        self.presenter.moviesSearch(query) {  result in
             print(result.map { $0.originalTitle })
+        }
+    }
+    
+    private func multiSearch(query: String) {
+        self.presenter.multiSearch(query) { result in
+            print(result)
         }
     }
     
