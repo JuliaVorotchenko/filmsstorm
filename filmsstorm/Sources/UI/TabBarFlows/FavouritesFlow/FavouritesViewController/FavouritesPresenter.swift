@@ -10,11 +10,13 @@ import Foundation
 
 enum FavouritesEvent: EventProtocol {
     case onMedia(DiscoverCellModel)
+    case onSecton(Section)
     case error(AppError)
 }
 
 protocol FavouritesPresenter: Presenter {
     func onMedia(item: DiscoverCellModel)
+    func onHeader(_ section: Section)
     
     func getMoviesWatchlist(_ completion: (([DiscoverCellModel]) -> Void)?)
     func getShowsWatchList(_ completion: (([DiscoverCellModel]) -> Void)?)
@@ -88,4 +90,7 @@ class FavouritesPresenterImpl: FavouritesPresenter {
         self.eventHandler?(.onMedia(item))
     }
 
+    func onHeader(_ section: Section) {
+        self.eventHandler?(.onSecton(section))
+    }
 }

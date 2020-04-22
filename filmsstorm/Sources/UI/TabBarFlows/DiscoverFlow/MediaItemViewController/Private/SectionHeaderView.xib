@@ -24,12 +24,22 @@
                     <color key="textColor" name="sectionHeader"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOj-90-T2N">
+                    <rect key="frame" x="0.0" y="0.0" width="407" height="52"/>
+                    <connections>
+                        <action selector="onAction:" destination="MDD-6S-SfO" eventType="touchUpInside" id="Bij-7G-Zfs"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" name="background"/>
             <constraints>
                 <constraint firstItem="gRg-Nl-khn" firstAttribute="centerY" secondItem="MDD-6S-SfO" secondAttribute="centerY" id="39C-Sm-gyu"/>
+                <constraint firstAttribute="bottom" secondItem="QOj-90-T2N" secondAttribute="bottom" id="CLu-GA-kjY"/>
                 <constraint firstItem="gRg-Nl-khn" firstAttribute="centerX" secondItem="MDD-6S-SfO" secondAttribute="centerX" id="b4v-3o-SwA"/>
+                <constraint firstItem="QOj-90-T2N" firstAttribute="top" secondItem="MDD-6S-SfO" secondAttribute="top" id="n6c-BE-fuV"/>
                 <constraint firstItem="gRg-Nl-khn" firstAttribute="leading" secondItem="MDD-6S-SfO" secondAttribute="leading" constant="14" id="nhH-cY-Nzt"/>
+                <constraint firstItem="QOj-90-T2N" firstAttribute="leading" secondItem="MDD-6S-SfO" secondAttribute="leading" id="vxH-hY-w6X"/>
+                <constraint firstAttribute="trailing" secondItem="QOj-90-T2N" secondAttribute="trailing" id="zDZ-LC-HvB"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

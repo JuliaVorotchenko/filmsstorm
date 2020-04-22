@@ -8,6 +8,13 @@
 
 import UIKit
 
+enum Section: String, CaseIterable {
+    case moviesWatchlist
+    case showsWatchlist
+    case favouriteMovies
+    case favoriteShows
+}
+
 class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Controller, UICollectionViewDelegate {
     
     // MARK: - Subtypes
@@ -15,32 +22,17 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     typealias RootViewType = FavouritesView
     typealias Service = T
     
-    enum Section: CaseIterable {
-        case moviesWatchlistLabel
-        case moviesWatchlist
-        case showsWatchlistLabel
-        case showsWatchlist
-        case favoriteMoviesLabel
-        case favoriteMovies
-        case favoriteShowsLabel
-        case favoriteShows
-    }
-    
-    enum FavoritesContainer: Hashable {
-        case media(DiscoverCellModel)
-        case moviesWatchlistLabel
-        case showsWatchlistLabel
-        case favoriteMoviesLabel
-        case favoriteShowsLabel
-    }
-    
     // MARK: - Properties
-    
-    let loadingView = ActivityView()
-    let presenter: T
+
+    let presenter: Service
     
     private lazy var dataSource = self.createDataSource()
-    
+
+    private var moviesWatchList = [DiscoverCellModel]()
+    private var showsWatchlist = [DiscoverCellModel]()
+    private var favoriteMovies = [DiscoverCellModel]()
+    private var favoriteShows = [DiscoverCellModel]()
+
     // MARK: - Init and deinit
     
     deinit {
@@ -61,65 +53,44 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setCollectionView()
-       
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
-        self.dataSourceCleanOut()
+        super.viewWillAppear(animated)
+        self.getMoviesWatchlist()
+        self.getShowsWatchlist()
+        self.getFavoriteMovies()
+        self.getFavoriteShows()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        self.updateListsLabels()
-        
-        defer {
-            self.getFavoriteShows()
-        }
-        
-        defer {
-            self.getFavoriteMovies()
-        }
-        
-        defer {
-            self.getMoviesWatchlist()
-        }
-        
-        do {
-            self.getShowsWatchlist()
-        }
-    }
-    
+
     // MARK: - Private methods to retrieve lists
     
     private func getMoviesWatchlist() {
-        self.presenter.getMoviesWatchlist {  [weak self] model in
-            self?.update(for: .moviesWatchlist, with: model.map(FavoritesContainer.media))
+        self.presenter.getMoviesWatchlist {  [weak self] models in
+            self?.moviesWatchList = models
+            self?.update()
         }
     }
     
     private func getShowsWatchlist() {
-        self.presenter.getShowsWatchList {  [weak self] model in
-            self?.update(for: .showsWatchlist, with: model.map(FavoritesContainer.media))
+        self.presenter.getShowsWatchList {  [weak self] models in
+            self?.showsWatchlist = models
+            self?.update()
         }
     }
     
     private func getFavoriteMovies() {
-        self.presenter.getFavoriteMovies {  [weak self] model in
-            self?.update(for: .favoriteMovies, with: model.map(FavoritesContainer.media))
+        self.presenter.getFavoriteMovies {  [weak self] models in
+            self?.favoriteMovies = models
+            self?.update()
         }
     }
     
     private func getFavoriteShows() {
-        self.presenter.getFavoriteShows {  [weak self] model in
-            self?.update(for: .favoriteShows, with: model.map(FavoritesContainer.media))
+        self.presenter.getFavoriteShows {  [weak self] models in
+            self?.favoriteShows = models
+            self?.update()
         }
-    }
-    
-    private func updateListsLabels() {
-        self.update(for: .favoriteMoviesLabel, with: [FavoritesContainer.favoriteMoviesLabel])
-        self.update(for: .favoriteShowsLabel, with: [FavoritesContainer.favoriteShowsLabel])
-        self.update(for: .moviesWatchlistLabel, with: [FavoritesContainer.moviesWatchlistLabel])
-        self.update(for: .showsWatchlistLabel, with: [FavoritesContainer.showsWatchlistLabel])
     }
     
     // MARK: - Private Methods for CollectionView
@@ -127,106 +98,80 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     private func setCollectionView() {
         let collection = self.rootView?.collectionView
         collection?.register(MediaItemImageCell.self)
-        collection?.register(ListTypeCell.self)
+        collection?.registerHeader(SectionHeaderView.self)
         collection?.setCollectionViewLayout(self.createCompositionalLayout(), animated: false)
         collection?.delegate = self
     }
-    
-    private func update(for section: Section, with items: [FavoritesContainer]) {
-        var snapshot = self.dataSource?.snapshot()
-        snapshot?.appendItems(items, toSection: section)
-        snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
-    }
-    
-    private func dataSourceCleanOut() {
-        let items = [FavoritesContainer]()
-        var snapshot = NSDiffableDataSourceSnapshot<Section, FavoritesContainer>()
+
+    private func update() {
+        // I didn't like to add empty snapshot to clear dataSource.
+        self.dataSource?.apply(.empty(Section.allCases))
+        var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
         snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(items)
+        snapshot.appendItems(self.moviesWatchList, toSection: .moviesWatchlist)
+        snapshot.appendItems(self.showsWatchlist, toSection: .showsWatchlist)
+        snapshot.appendItems(self.favoriteMovies, toSection: .favouriteMovies)
+        snapshot.appendItems(self.favoriteShows, toSection: .favoriteShows)
         self.dataSource?.apply(snapshot, animatingDifferences: false)
     }
 
-    func createDataSource() -> UICollectionViewDiffableDataSource<Section, FavoritesContainer>? {
-        let dataSource: UICollectionViewDiffableDataSource<Section, FavoritesContainer>? =
-            self.rootView?.collectionView
-                .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) {
-                    [weak self] collectionView, indexPath, item -> UICollectionViewCell in
-                    
-                    switch item {
-                        
-                    case .media(let model):
-                        let cell: MediaItemImageCell = collectionView.dequeueReusableCell(MediaItemImageCell.self, for: indexPath)
-                        cell.similarsFill(model: model)
-                        return cell
-                        
-                    case .moviesWatchlistLabel:
-                        let cell: ListTypeCell = collectionView.dequeueReusableCell(ListTypeCell.self, for: indexPath)
-                        cell.fill(listType: "Movie List")
-                        return cell
-                        
-                    case .showsWatchlistLabel:
-                        let cell: ListTypeCell = collectionView.dequeueReusableCell(ListTypeCell.self, for: indexPath)
-                        cell.fill(listType: "TV List")
-                        return cell
-                        
-                    case .favoriteMoviesLabel:
-                        let cell: ListTypeCell = collectionView.dequeueReusableCell(ListTypeCell.self, for: indexPath)
-                        cell.fill(listType: "Favorite Movies")
-                        return cell
-                        
-                    case .favoriteShowsLabel:
-                        let cell: ListTypeCell = collectionView.dequeueReusableCell(ListTypeCell.self, for: indexPath)
-                        cell.fill(listType: "Favorite Shows")
-                        return cell
-                    }
-                    }
-                    
+    func createDataSource() -> UICollectionViewDiffableDataSource<Section, DiscoverCellModel>? {
+
+        let collection = self.rootView?.collectionView
+        let dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>? = collection.map {
+            UICollectionViewDiffableDataSource<Section, DiscoverCellModel>(collectionView: $0) { (collectionView, indexPath, item) -> UICollectionViewCell? in
+                let cell: MediaItemImageCell = collectionView.dequeueReusableCell(MediaItemImageCell.self, for: indexPath)
+                cell.similarsFill(model: item)
+                return cell
+            }
         }
-        var snapshot = NSDiffableDataSourceSnapshot<Section, FavoritesContainer>()
-        snapshot.appendSections(Section.allCases)
-        Section.allCases.forEach { snapshot.appendItems([], toSection: $0)}
-        
-        dataSource?.apply(snapshot, animatingDifferences: false)
+        dataSource?.supplementaryViewProvider = { [weak self] in self?.supplementaryViewProvider(collectionView: $0, kind: $1, indexPath: $2)
+        }
+        dataSource?.apply(.empty(Section.allCases), animatingDifferences: false)
         
         return dataSource
     }
+
+    private func supplementaryViewProvider(collectionView: UICollectionView,
+                                           kind: String,
+                                           indexPath: IndexPath) -> UICollectionReusableView? {
+
+        print(#function)
+        let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: SectionHeaderView.reuseIdentifier,
+            for: indexPath) as? SectionHeaderView
+
+        let sectionModel = Section.allCases[indexPath.section]
+        let result = SectionHeaderModel(section: sectionModel, action: { [weak self] in self?.presenter.onHeader($0) })
+
+        header?.fill(with: result)
+
+        return header
+    }
+
+    // MARK: - UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = self.dataSource?.itemIdentifier(for: indexPath)
-        model.map {
-            switch $0 {
-            case .media(let model):
-                self.presenter.onMedia(item: model)
-            case .favoriteMoviesLabel, .favoriteShowsLabel, .moviesWatchlistLabel, .showsWatchlistLabel:
-                print("on header")
-            }
-        }
+        model.map(self.presenter.onMedia)
     }
     
     // MARK: - Setup Layout
     
     func createCompositionalLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
-            let section = Section.allCases[sectionIndex]
-            switch section {
-            case .moviesWatchlistLabel:
-                return CollectionLayoutFactory.listTypeSection()
-            case .moviesWatchlist:
-                return CollectionLayoutFactory.noHeaderMediaImageSection()
-            case .showsWatchlistLabel:
-                return CollectionLayoutFactory.listTypeSection()
-            case .showsWatchlist:
-                return CollectionLayoutFactory.noHeaderMediaImageSection()
-            case .favoriteMoviesLabel:
-                return CollectionLayoutFactory.listTypeSection()
-            case .favoriteMovies:
-                return CollectionLayoutFactory.noHeaderMediaImageSection()
-            case .favoriteShowsLabel:
-                return CollectionLayoutFactory.listTypeSection()
-            case .favoriteShows:
-                return CollectionLayoutFactory.noHeaderMediaImageSection()
-            }
+        let layout = UICollectionViewCompositionalLayout { (_, _) -> NSCollectionLayoutSection? in
+             return CollectionLayoutFactory.mediaItemImagesSections()
         }
         return layout
+    }
+}
+
+extension NSDiffableDataSourceSnapshot {
+    static func empty(_ sections: [SectionIdentifierType]) -> Self {
+        var snapshot = NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>()
+        snapshot.appendSections(sections)
+        sections.forEach { snapshot.appendItems([], toSection: $0)}
+        return snapshot
     }
 }

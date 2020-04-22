@@ -52,6 +52,8 @@ class FavouritesFlowCoordinator: Coordinator {
         switch event {
         case .onMedia(let model):
             self.createMediaItemViewController(from: model)
+        case .onSecton(let section):
+            self.navigationController.showAlert(title: section.rawValue)
         case .error(let error):
             self.eventHandler?(.appError(error))
         }
