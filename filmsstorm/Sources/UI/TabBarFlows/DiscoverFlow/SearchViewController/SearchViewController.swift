@@ -47,17 +47,14 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
+        self.movieSearch(query: "Terminator")
     }
     
     // MARK: - Private Methods
-    private func onCardEvent(_ event: ItemDescriptionEvent) {
-        switch event {
-        case .watchlist:
-            F.Log("you liked movie")
-        case .favourites:
-            F.Log("you added moview to favourites")
-        case.play:
-            F.Log("videos")
+    
+    private func movieSearch(query: String) {
+        self.presenter.moviesSearch(query) { [weak self] result in
+            print(result[0])
         }
     }
     

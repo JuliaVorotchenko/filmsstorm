@@ -16,6 +16,7 @@ enum SearchEvent: EventProtocol {
 
 protocol SearchPresenter: Presenter {
     var showActivity: Handler<ActivityState>? { get set }
+    func moviesSearch(_ query: String, _ completion: (( [MovieListResult]) -> Void)?)
     func onMediaItem(item: ConfigureModel)
     func onBack()
 }
@@ -36,6 +37,17 @@ class SearchPresenterImpl: SearchPresenter {
     }
     
     // MARK: - Methods
+    
+    func moviesSearch(_ query: String, _ completion: (( [MovieListResult]) -> Void)?) {
+        self.networking.movieSearch(with: query) { [weak self] result in
+            switch result {
+            case .success(let model):
+                completion?(model.results)
+            case .failure(let error):
+               self?.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+    }
     
     func onMediaItem(item: ConfigureModel) {
         self.eventHandler?(.mediaItem(item))

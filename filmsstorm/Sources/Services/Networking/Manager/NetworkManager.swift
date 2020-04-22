@@ -127,4 +127,9 @@ class NetworkManager {
                          completion: @escaping(Result<ActorCombinedCreditsModel, NetworkError>) -> Void) {
         self.router.request(.people(.getCombinedCredit(personID: model)), completion: completion)
     }
+    
+    func movieSearch(with query: String,
+                     completion: @escaping(Result<MovieSearchModel, NetworkError>) -> Void) {
+        self.router.request(.search(.movieSearch(query)), completion: completion)
+    }
 }

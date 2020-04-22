@@ -24,6 +24,20 @@ struct SearchModel: Codable, Hashable {
     
 }
 
+struct MovieSearchModel: Codable, Hashable {
+    let page: Int
+    let results: [MovieListResult]
+    let totalResults: Int
+    let totalPages: Int
+    
+    enum CodingKeys: String, CodingKey {
+          case page
+          case results
+          case totalResults = "total_results"
+          case totalPages = "total_pages"
+      }
+}
+
 struct MovieListReslutWitchMediaType: Codable, Hashable {
     let posterImage: String?
     let adult: Bool?

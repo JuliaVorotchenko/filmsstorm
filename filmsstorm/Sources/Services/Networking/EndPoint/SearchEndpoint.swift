@@ -10,23 +10,36 @@ import Foundation
 
 extension APIEndPoint {
     enum SearchEndPoint: EndPointType {
-        case search
+        
+        case multiSearch(String)
+        case movieSearch(String)
+        case tvSearch(String)
+        
         var path: String {
             switch self {
-            case .search:
+            case .multiSearch:
                 return "/search/multi"
+            case .movieSearch:
+                return "/search/movie"
+            case .tvSearch:
+                return "/search/tv"
             }
         }
         var httpMethod: HTTPMethod {
             switch self {
-            case .search:
-                return .post
+            case .multiSearch,
+                 .movieSearch,
+                 .tvSearch:
+                return .get
             }
         }
         var task: HTTPTask {
             switch self {
-            case.search:
-                return .requestParameters(bodyParameters: nil, urlParameters: [Headers.apiKey: Headers.apiKeyValue])
+            case.multiSearch(let queryString),
+                .movieSearch(let queryString),
+                .tvSearch(let queryString):
+                return .requestParameters(bodyParameters: nil,
+                                          urlParameters: [Headers.apiKey: Headers.apiKeyValue, "query": queryString])
             }
         }
         var base: String {

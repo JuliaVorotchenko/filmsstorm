@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,21 +18,18 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtH-6W-Bn7" customClass="CustomNavigationView" customModule="filmsstorm" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="71"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="60" id="sGj-Hx-LO9"/>
-                    </constraints>
                 </view>
                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="WgV-AN-eSf">
-                    <rect key="frame" x="0.0" y="104" width="414" height="60"/>
+                    <rect key="frame" x="0.0" y="115" width="414" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="3EC-o4-Y4r"/>
+                        <constraint firstAttribute="height" constant="40" id="ev8-Bd-Lta"/>
                     </constraints>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" id="lBA-ht-n4M">
-                    <rect key="frame" x="0.0" y="164" width="414" height="732"/>
+                    <rect key="frame" x="0.0" y="155" width="414" height="741"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ehi-5f-yfR">
@@ -45,13 +42,15 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="WgV-AN-eSf" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="03a-Uc-wTz"/>
-                <constraint firstItem="lBA-ht-n4M" firstAttribute="top" secondItem="WgV-AN-eSf" secondAttribute="bottom" symbolic="YES" id="8GL-f9-U34"/>
+                <constraint firstItem="WgV-AN-eSf" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="1JB-Rm-JRY"/>
+                <constraint firstItem="WgV-AN-eSf" firstAttribute="top" secondItem="HtH-6W-Bn7" secondAttribute="bottom" id="52a-vZ-gXd"/>
                 <constraint firstItem="HtH-6W-Bn7" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="9y5-bl-6Qi"/>
                 <constraint firstItem="HtH-6W-Bn7" firstAttribute="top" secondItem="3Pc-Bd-cPz" secondAttribute="top" id="BBy-mS-jiS"/>
-                <constraint firstItem="WgV-AN-eSf" firstAttribute="trailing" secondItem="3Pc-Bd-cPz" secondAttribute="trailing" id="Mks-HP-kze"/>
-                <constraint firstItem="WgV-AN-eSf" firstAttribute="top" secondItem="HtH-6W-Bn7" secondAttribute="bottom" id="bbW-vc-N4b"/>
+                <constraint firstItem="HtH-6W-Bn7" firstAttribute="top" secondItem="3Pc-Bd-cPz" secondAttribute="top" id="L8i-mc-aBz"/>
+                <constraint firstItem="WgV-AN-eSf" firstAttribute="trailing" secondItem="3Pc-Bd-cPz" secondAttribute="trailing" id="cEu-Fe-SWl"/>
                 <constraint firstItem="3Pc-Bd-cPz" firstAttribute="trailing" secondItem="HtH-6W-Bn7" secondAttribute="trailing" id="k5S-wM-X4i"/>
+                <constraint firstItem="lBA-ht-n4M" firstAttribute="top" secondItem="WgV-AN-eSf" secondAttribute="bottom" id="uNT-ID-a6s"/>
+                <constraint firstItem="HtH-6W-Bn7" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="xIa-Wi-Urd"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="3Pc-Bd-cPz"/>
             <connections>
