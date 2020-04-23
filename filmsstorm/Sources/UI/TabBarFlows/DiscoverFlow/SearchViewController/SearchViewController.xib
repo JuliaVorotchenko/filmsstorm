@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,20 +19,35 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtH-6W-Bn7" customClass="CustomNavigationView" customModule="filmsstorm" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="44" width="414" height="71"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="60"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Qoc-B1-eOY"/>
+                    </constraints>
                 </view>
                 <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="WgV-AN-eSf">
-                    <rect key="frame" x="0.0" y="115" width="414" height="40"/>
+                    <rect key="frame" x="0.0" y="137" width="414" height="42"/>
+                    <color key="backgroundColor" name="background"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="ev8-Bd-Lta"/>
+                        <constraint firstAttribute="height" constant="42" id="sO5-PM-zMm"/>
                     </constraints>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fnt-gv-ZxY">
+                    <rect key="frame" x="0.0" y="104" width="414" height="34"/>
+                    <color key="backgroundColor" name="background"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="2ST-Py-Cmf"/>
+                    </constraints>
+                    <segments>
+                        <segment title="Movies"/>
+                        <segment title="TVShows"/>
+                    </segments>
+                </segmentedControl>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" id="lBA-ht-n4M">
-                    <rect key="frame" x="0.0" y="155" width="414" height="741"/>
+                    <rect key="frame" x="0.0" y="179" width="414" height="717"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" name="background"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ehi-5f-yfR">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -42,23 +58,29 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="WgV-AN-eSf" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="1JB-Rm-JRY"/>
-                <constraint firstItem="WgV-AN-eSf" firstAttribute="top" secondItem="HtH-6W-Bn7" secondAttribute="bottom" id="52a-vZ-gXd"/>
-                <constraint firstItem="HtH-6W-Bn7" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="9y5-bl-6Qi"/>
-                <constraint firstItem="HtH-6W-Bn7" firstAttribute="top" secondItem="3Pc-Bd-cPz" secondAttribute="top" id="BBy-mS-jiS"/>
-                <constraint firstItem="HtH-6W-Bn7" firstAttribute="top" secondItem="3Pc-Bd-cPz" secondAttribute="top" id="L8i-mc-aBz"/>
-                <constraint firstItem="WgV-AN-eSf" firstAttribute="trailing" secondItem="3Pc-Bd-cPz" secondAttribute="trailing" id="cEu-Fe-SWl"/>
-                <constraint firstItem="3Pc-Bd-cPz" firstAttribute="trailing" secondItem="HtH-6W-Bn7" secondAttribute="trailing" id="k5S-wM-X4i"/>
-                <constraint firstItem="lBA-ht-n4M" firstAttribute="top" secondItem="WgV-AN-eSf" secondAttribute="bottom" id="uNT-ID-a6s"/>
-                <constraint firstItem="HtH-6W-Bn7" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="xIa-Wi-Urd"/>
+                <constraint firstItem="fnt-gv-ZxY" firstAttribute="trailing" secondItem="3Pc-Bd-cPz" secondAttribute="trailing" id="2GT-sb-nsA"/>
+                <constraint firstItem="WgV-AN-eSf" firstAttribute="top" secondItem="fnt-gv-ZxY" secondAttribute="bottom" id="61n-30-PFj"/>
+                <constraint firstItem="HtH-6W-Bn7" firstAttribute="trailing" secondItem="3Pc-Bd-cPz" secondAttribute="trailing" id="GfO-LP-ZMx"/>
+                <constraint firstItem="WgV-AN-eSf" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="LLe-pv-zaS"/>
+                <constraint firstItem="WgV-AN-eSf" firstAttribute="trailing" secondItem="3Pc-Bd-cPz" secondAttribute="trailing" id="Llo-Gf-DQW"/>
+                <constraint firstItem="HtH-6W-Bn7" firstAttribute="top" secondItem="3Pc-Bd-cPz" secondAttribute="top" id="SCh-2e-078"/>
+                <constraint firstItem="fnt-gv-ZxY" firstAttribute="top" secondItem="HtH-6W-Bn7" secondAttribute="bottom" id="WOH-fO-tM3"/>
+                <constraint firstItem="fnt-gv-ZxY" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="XM1-za-WWJ"/>
+                <constraint firstItem="HtH-6W-Bn7" firstAttribute="leading" secondItem="3Pc-Bd-cPz" secondAttribute="leading" id="l5y-OH-AXH"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="3Pc-Bd-cPz"/>
             <connections>
                 <outlet property="collectionView" destination="lBA-ht-n4M" id="LL3-KY-K9Y"/>
                 <outlet property="navigationView" destination="HtH-6W-Bn7" id="vbH-3U-isF"/>
                 <outlet property="searchBar" destination="WgV-AN-eSf" id="Ius-iz-ald"/>
+                <outlet property="segmentedControl" destination="fnt-gv-ZxY" id="8lN-yl-Vwe"/>
             </connections>
             <point key="canvasLocation" x="-91.304347826086968" y="65.625"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="background">
+            <color red="0.9570000171661377" green="0.96899998188018799" blue="0.99199998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

@@ -9,16 +9,17 @@
 import Foundation
 
 enum SearchEvent: EventProtocol {
-    case mediaItem(ConfigureModel)
+    case mediaItem(DiscoverCellModel)
     case back
     case error(AppError)
 }
 
 protocol SearchPresenter: Presenter {
     var showActivity: Handler<ActivityState>? { get set }
-    func moviesSearch(_ query: String, _ completion: (( [MovieListResult]) -> Void)?)
-    func multiSearch(_ query: String, _ completion: (( [MultiSearchResult]) -> Void)?)
-    func onMediaItem(item: ConfigureModel)
+    func moviesSearch(_ query: String, _ completion: (([MovieListResult]) -> Void)?)
+    func multiSearch(_ query: String, _ completion: (([MultiSearchResult]) -> Void)?)
+    func showsSearch(_ query: String, _ completion: (([ShowListResult]) -> Void)?)
+    func onMediaItem(item: DiscoverCellModel)
     func onBack()
 }
 
@@ -39,7 +40,7 @@ class SearchPresenterImpl: SearchPresenter {
     
     // MARK: - Methods
     
-    func moviesSearch(_ query: String, _ completion: (( [MovieListResult]) -> Void)?) {
+    func moviesSearch(_ query: String, _ completion: (([MovieListResult]) -> Void)?) {
         self.networking.movieSearch(with: query) { [weak self] result in
             switch result {
             case .success(let model):
@@ -50,18 +51,30 @@ class SearchPresenterImpl: SearchPresenter {
         }
     }
     
-    func multiSearch(_ query: String, _ completion: (( [MultiSearchResult]) -> Void)?) {
-        self.networking.multiSearch(with: query) { [weak self] result in
+    func showsSearch(_ query: String, _ completion: (([ShowListResult]) -> Void)?) {
+        self.networking.showSearch(with: query) { [weak self] result in
             switch result {
             case .success(let model):
                 completion?(model.results)
+            case .failure(let error):
+               self?.eventHandler?(.error(.networkingError(error)))
+            }
+        }
+    }
+    
+    func multiSearch(_ query: String, _ completion: (([MultiSearchResult]) -> Void)?) {
+        self.networking.multiSearch(with: query) { [weak self] result in
+            switch result {
+            case .success(let model):
+                guard let results = model.results else { return }
+                completion?(results)
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
             }
         }
     }
     
-    func onMediaItem(item: ConfigureModel) {
+    func onMediaItem(item: DiscoverCellModel) {
         self.eventHandler?(.mediaItem(item))
     }
     

@@ -9,10 +9,10 @@
 import Foundation
 
 struct MultiSearchModel: Codable, Hashable {
-    let page: Int
-    let totalResults: Int
-    let totalPages: Int
-    let results: [MultiSearchResult]
+    let page: Int?
+    let totalResults: Int?
+    let totalPages: Int?
+    let results: [MultiSearchResult]?
     
     enum CodingKeys: String, CodingKey {
         case page = "page"
@@ -33,7 +33,7 @@ struct MultiSearchResult: Codable, Hashable {
        let firstAirDate: String?
        let backgroundImage: String?
        let originalLanguage: String?
-       let id: Int
+       let id: Int?
        let voteAverage: Int?
        let overview: String?
        let posterImage: String?
@@ -75,18 +75,18 @@ struct MultiSearchResult: Codable, Hashable {
 }
 
 struct KnownForResponse: Codable, Hashable {
-     let releaseDate: String
-     let voteCount: Int
-     let video: Bool
-     let mediaType: String
-     let id: Int
-     let voteAverage: Double
-     let title: String
-     let originalLanguage: String
-     let originalTitle: String
-     let genreIDS: [Int]
-     let adult: Bool
-     let overview: String
+     let releaseDate: String?
+     let voteCount: Int?
+     let video: Bool?
+     let mediaType: String?
+     let id: Int?
+     let voteAverage: Double?
+     let title: String?
+     let originalLanguage: String?
+     let originalTitle: String?
+     let genreIDS: [Int]?
+     let adult: Bool?
+     let overview: String?
      let posterPath: String?
      let backdropPath: String?
 
