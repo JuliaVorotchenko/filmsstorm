@@ -61,6 +61,7 @@ class VideoPlayerViewPresenterImpl: VideoPlayerViewPresenter {
                      self?.eventHandler?(.error(.networkingError(error)))
                  }
              }
+        case .person: break
          }
      }
     

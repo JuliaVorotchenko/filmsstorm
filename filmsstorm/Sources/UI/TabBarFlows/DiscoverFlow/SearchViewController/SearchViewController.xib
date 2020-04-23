@@ -54,7 +54,7 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="3Pc-Bd-cPz"/>
             <connections>
-                <outlet property="collectionView" destination="lBA-ht-n4M" id="fkW-Nk-NH2"/>
+                <outlet property="collectionView" destination="lBA-ht-n4M" id="LL3-KY-K9Y"/>
                 <outlet property="navigationView" destination="HtH-6W-Bn7" id="vbH-3U-isF"/>
                 <outlet property="searchBar" destination="WgV-AN-eSf" id="Ius-iz-ald"/>
             </connections>

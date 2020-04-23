@@ -53,7 +53,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     }
     
     // MARK: - Networking Methods
-   
+    
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?) {
         switch self.itemModel.mediaType ?? .movie {
         case .movie:
@@ -74,6 +74,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                     self?.eventHandler?(.error(.networkingError(error)))
                 }
             }
+        case .person: break
         }
     }
     
@@ -115,6 +116,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                     self?.eventHandler?(.error(.networkingError(error)))
                 }
             }
+        case .person: break
         }
     }
     
@@ -144,6 +146,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                     self.eventHandler?(.error(.networkingError(error)))
                 }
             }
+        case .person: break
         }
     }
     
@@ -167,6 +170,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             UserMoviesContainer.favoritesIDs.append(item.idValue)
         case .tv:
             UserShowsContainer.favoritesIDs.append(item.idValue)
+        case .person: break
         }
     }
     
@@ -176,6 +180,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             UserMoviesContainer.favoritesIDs = UserMoviesContainer.favoritesIDs.filter { $0 != item.idValue }
         case .tv:
             UserShowsContainer.favoritesIDs = UserShowsContainer.favoritesIDs.filter { $0 != item.idValue }
+        case .person: break
         }
     }
     
@@ -199,6 +204,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             UserMoviesContainer.watchlistIDs.append(item.idValue)
         case .tv:
             UserMoviesContainer.watchlistIDs.append(item.idValue)
+        case .person: break
         }
     }
     
@@ -208,6 +214,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             UserMoviesContainer.watchlistIDs = UserMoviesContainer.watchlistIDs.filter { $0 != item.idValue }
         case .tv:
             UserShowsContainer.watchlistIDs = UserShowsContainer.watchlistIDs.filter { $0 != item.idValue }
+        case .person: break
         }
     }
     

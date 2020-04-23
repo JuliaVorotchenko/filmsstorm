@@ -23,8 +23,8 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     
     let loadingView = ActivityView()
     let presenter: Service
-    private var sections = [MovieListResult]()
-    private var dataSource: UICollectionViewDiffableDataSource<Section, MovieListResult>?
+    private var items = [DiscoverCellModel]()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
     let searchConroller = UISearchController(searchResultsController: nil)
     
     // MARK: - Init and deinit
@@ -34,8 +34,8 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
         F.Log(F.toString(Self.self))
     }
     
-    required init(_ presentation: Service) {
-        self.presenter = presentation
+    required init(_ presenter: Service) {
+        self.presenter = presenter
         super.init(nibName: F.nibNamefor(Self.self), bundle: nil)
     }
     
@@ -54,15 +54,10 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     
     // MARK: - Private Methods
     
-    private func movieSearch(query: String) {
-        self.presenter.moviesSearch(query) {  result in
-            print(result.map { $0.originalTitle })
-        }
-    }
-    
     private func multiSearch(query: String) {
         self.presenter.multiSearch(query) { result in
-            print(result)
+            self.items = result.map(DiscoverCellModel.create)
+
         }
     }
     
@@ -76,7 +71,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     // MARK: - SearcBarDelegate
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.movieSearch(query: searchText)
+        
     }
     
 }

@@ -29,9 +29,10 @@ protocol ConfigureModel: MediaContainer, Identifier {
 enum MediaType: String, Codable {
     case movie
     case tv
+    case person
 }
 
-struct DiscoverCellModel: ConfigureModel, Codable, Identifiable, Hashable {
+struct DiscoverCellModel: ConfigureModel, Identifiable, Hashable {
     let id = UUID()
     let mediaType: MediaType?
     let idValue: Int
@@ -43,7 +44,7 @@ struct DiscoverCellModel: ConfigureModel, Codable, Identifiable, Hashable {
     let backgroundImage: String?
     
     static func create(_ model: MovieListResult) -> Self {
-    
+        
         return .init(mediaType: .movie,
                      idValue: model.id,
                      name: model.title,
@@ -55,7 +56,7 @@ struct DiscoverCellModel: ConfigureModel, Codable, Identifiable, Hashable {
     }
     
     static func create(_ model: ShowListResult) -> Self {
-       
+        
         return .init(mediaType: .tv,
                      idValue: model.id,
                      name: model.name,
@@ -72,6 +73,18 @@ struct DiscoverCellModel: ConfigureModel, Codable, Identifiable, Hashable {
                      idValue: model.id,
                      name: model.title,
                      voteAverage: model.voteAverage,
+                     overview: model.overview,
+                     releaseDate: model.releaseDate,
+                     posterImage: model.posterImage,
+                     backgroundImage: model.backgroundImage)
+    }
+    
+  static func create(_ model: MultiSearchResult) -> Self {
+      
+    return DiscoverCellModel(mediaType: .person,
+                             idValue: model.id,
+                     name: model.name,
+                     voteAverage: model.voteAverage.map(Double.init),
                      overview: model.overview,
                      releaseDate: model.releaseDate,
                      posterImage: model.posterImage,
