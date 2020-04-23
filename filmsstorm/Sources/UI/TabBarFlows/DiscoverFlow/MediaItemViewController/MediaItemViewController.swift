@@ -104,7 +104,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     // MARK: - Private Methods for CollectionView
     
     private func setCollectionView() {
-        let collection = self.rootView?.collecionView
+        let collection = self.rootView?.collectionView
         collection?.register(MediaItemImageCell.self)
         collection?.register(ItemDescriptionViewCell.self)
         collection?.registerHeader(SectionHeaderView.self)
@@ -121,7 +121,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     func createDataSource() -> UICollectionViewDiffableDataSource<Section, MediaItemContainer>? {
         
         let dataSource: UICollectionViewDiffableDataSource<Section, MediaItemContainer>? =
-            self.rootView?.collecionView
+            self.rootView?.collectionView
                 .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collectionView, indexPath, item -> UICollectionViewCell in
                     
                     switch item {

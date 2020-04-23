@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController<T: SearchPresenter>: UIViewController, Controller, ActivityViewPresenter, UISearchBarDelegate {
+class SearchViewController<T: SearchPresenter>: UIViewController, Controller, ActivityViewPresenter, UISearchBarDelegate, UICollectionViewDelegate {
     
     // MARK: - Subtypes
     
@@ -24,7 +24,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     let loadingView = ActivityView()
     let presenter: Service
     private var items = [DiscoverCellModel]()
-    private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
+    private lazy var dataSource = self.createDataSource()
     let searchConroller = UISearchController(searchResultsController: nil)
     
     // MARK: - Init and deinit
@@ -49,7 +49,8 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
         super.viewDidLoad()
         self.setupNavigationView()
         self.rootView?.searchBar?.delegate = self
-        self.multiSearch(query: "Devs")
+        self.setCollecionView()
+        self.multiSearch(query: "Term")
     }
     
     // MARK: - Private Methods
@@ -57,7 +58,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     private func multiSearch(query: String) {
         self.presenter.multiSearch(query) { result in
             self.items = result.map(DiscoverCellModel.create)
-
+            self.update(for: .main, with: self.items)
         }
     }
     
@@ -66,6 +67,41 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
             self?.presenter.onBack()
         }
         self.rootView?.navigationView?.titleFill(with: "Search")
+    }
+    
+    private func setCollecionView() {
+        let collection = self.rootView?.collectionView
+        let layout = CollectionLayoutFactory.standart()
+        collection?.register(DiscoverCollectionViewCell.self)
+        collection?.setCollectionViewLayout(layout, animated: false)
+        collection?.delegate = self
+    }
+    
+    // MARK: - Data Source
+    
+    private func update(for section: Section, with items: [DiscoverCellModel]) {
+        var snapshot = self.dataSource?.snapshot()
+        snapshot?.appendItems(items, toSection: .main)
+        snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
+    }
+    
+    func createDataSource() -> UICollectionViewDiffableDataSource<Section, DiscoverCellModel>? {
+        
+        let dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>? =
+            self.rootView?.collectionView
+                .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collectionView, indexPath, item -> UICollectionViewCell in
+                    
+                    let cell: DiscoverCollectionViewCell = collectionView.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
+                    cell.fill(with: item)
+                    return cell
+                    }
+        }
+        var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(self.items)
+        dataSource?.apply(snapshot, animatingDifferences: false)
+        
+        return dataSource
     }
 
     // MARK: - SearcBarDelegate
