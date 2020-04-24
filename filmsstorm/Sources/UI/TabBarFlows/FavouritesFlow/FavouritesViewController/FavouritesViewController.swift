@@ -135,17 +135,15 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     private func supplementaryViewProvider(collectionView: UICollectionView,
                                            kind: String,
                                            indexPath: IndexPath) -> UICollectionReusableView? {
-
-        print(#function)
         let header = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: SectionHeaderView.reuseIdentifier,
             for: indexPath) as? SectionHeaderView
 
-        let sectionModel = Section.allCases[indexPath.section]
-        let result = SectionHeaderModel(section: sectionModel, action: { [weak self] in self?.presenter.onHeader($0) })
+        let section = Section.allCases[indexPath.section]
+        let model = SectionHeaderModel(section: section, action: .init { [weak self] in self?.presenter.onHeader($0) })
 
-        header?.fill(with: result)
+        header?.fill(with: model)
 
         return header
     }
@@ -161,7 +159,7 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     
     func createCompositionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (_, _) -> NSCollectionLayoutSection? in
-             return CollectionLayoutFactory.mediaItemImagesSections()
+            return CollectionLayoutFactory.mediaItemImagesSections()
         }
         return layout
     }

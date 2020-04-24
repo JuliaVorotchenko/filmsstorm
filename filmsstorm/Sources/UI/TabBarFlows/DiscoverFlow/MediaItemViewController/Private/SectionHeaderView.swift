@@ -16,16 +16,10 @@ enum SectionHeaderEvent: CaseIterable {
 }
 
 struct SectionHeaderModel: Hashable {
-    let id = UUID()
+//    let id = UUID()
     // TODO: Remove Secton to SectionHeaderEvent
     let section: Section
-    let action: Handler<Section>?
-
-    func hash(into hasher: inout Hasher) { }
-
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        return true
-    }
+    let action: ActionModel<Section>
 }
 
 class SectionHeaderView: UICollectionReusableView {
@@ -38,6 +32,7 @@ class SectionHeaderView: UICollectionReusableView {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.label?.text = ""
+        self.model = nil
     }
     
     func fill(with text: String) {
@@ -50,7 +45,6 @@ class SectionHeaderView: UICollectionReusableView {
     }
 
     @IBAction func onAction(_ sender: UIButton) {
-        self.model.map { $0.action?($0.section) }
+        self.model.do { $0.action.action?($0.section) }
     }
-    
 }

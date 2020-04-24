@@ -10,7 +10,7 @@ import Foundation
 
 enum FavouritesEvent: EventProtocol {
     case onMedia(DiscoverCellModel)
-    case onSecton(Section)
+    case onSection(Section)
     case error(AppError)
 }
 
@@ -65,8 +65,8 @@ class FavouritesPresenterImpl: FavouritesPresenter {
     func getFavoriteMovies(_ completion: (([DiscoverCellModel]) -> Void)?) {
         self.networking.getFavoriteMovies { [weak self] result in
             switch result {
-            case .success(let favorites):
-                completion?(favorites.results.map(DiscoverCellModel.create))
+            case .success(let model):
+                completion?(model.results.map(DiscoverCellModel.create))
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
             }
@@ -76,8 +76,8 @@ class FavouritesPresenterImpl: FavouritesPresenter {
     func getFavoriteShows(_ completion: (([DiscoverCellModel]) -> Void)?) {
         self.networking.getFavoriteShows { [weak self] result in
             switch result {
-            case .success(let favorites):
-                completion?(favorites.results.map(DiscoverCellModel.create))
+            case .success(let model):
+                completion?(model.results.map(DiscoverCellModel.create))
             case .failure(let error):
                 self?.eventHandler?(.error(.networkingError(error)))
             }
@@ -91,6 +91,6 @@ class FavouritesPresenterImpl: FavouritesPresenter {
     }
 
     func onHeader(_ section: Section) {
-        self.eventHandler?(.onSecton(section))
+        self.eventHandler?(.onSection(section))
     }
 }

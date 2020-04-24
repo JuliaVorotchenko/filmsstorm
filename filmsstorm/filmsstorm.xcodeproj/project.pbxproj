@@ -48,6 +48,7 @@
 		2E289CEC23E8DFCA001917DB /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CD523E8DFCA001917DB /* HTTPMethod.swift */; };
 		2E289CED23E8DFCA001917DB /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CD623E8DFCA001917DB /* Router.swift */; };
 		2E289CEE23E8DFCA001917DB /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E289CD723E8DFCA001917DB /* EndPointType.swift */; };
+		2E3E059124505006000AF6C3 /* SearchResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E059024505006000AF6C3 /* SearchResponseModel.swift */; };
 		2E51662823AFD6C500EDF51E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51662723AFD6C500EDF51E /* AppDelegate.swift */; };
 		2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51662923AFD6C500EDF51E /* SceneDelegate.swift */; };
 		2E51662D23AFD6C500EDF51E /* filmsstorm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E51662B23AFD6C500EDF51E /* filmsstorm.xcdatamodeld */; };
@@ -258,6 +259,7 @@
 		2E289CD523E8DFCA001917DB /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		2E289CD623E8DFCA001917DB /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2E289CD723E8DFCA001917DB /* EndPointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
+		2E3E059024505006000AF6C3 /* SearchResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponseModel.swift; sourceTree = "<group>"; };
 		2E51662423AFD6C500EDF51E /* filmsstorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = filmsstorm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E51662723AFD6C500EDF51E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E51662923AFD6C500EDF51E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -850,6 +852,7 @@
 				CD4DB86B23EB677A00F53B28 /* DiscoverFlow */,
 				CDB2A37524044E2400D27A9B /* FavouritesFlow */,
 				CD4DB86C23EC5E4B00F53B28 /* ProfileFlow */,
+				2E3E059024505006000AF6C3 /* SearchResponseModel.swift */,
 			);
 			path = TabBarFlows;
 			sourceTree = "<group>";
@@ -1533,6 +1536,7 @@
 				CD0EF99223F6000D000A3CB4 /* UIColor+Extensions.swift in Sources */,
 				CDB2A388240450DD00D27A9B /* ItemsViewController.swift in Sources */,
 				2E289CE223E8DFCA001917DB /* AuthEndPoint.swift in Sources */,
+				2E3E059124505006000AF6C3 /* SearchResponseModel.swift in Sources */,
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
 				CD45172024363D3600AD81F0 /* VideoPlayerViewController.swift in Sources */,
 				CD6C24ED24296A04009E4B84 /* AnimatedView.swift in Sources */,
