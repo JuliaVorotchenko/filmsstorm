@@ -140,6 +140,6 @@ class NetworkManager {
     
     func showSearch(with query: String,
                     completion: @escaping(Result<ShowSearchModel, NetworkError>) -> Void) {
-        self.router.request(.search(.movieSearch(query)), completion: completion)
+        self.router.request(.search(.tvSearch(query)), completion: completion)
     }
 }

@@ -25,8 +25,6 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     let presenter: Service
     private var items = [DiscoverCellModel]()
     private lazy var dataSource = self.createDataSource()
-    let searchConroller = UISearchController(searchResultsController: nil)
-    var isSearch = Bool()
     
     // MARK: - Init and deinit
     
@@ -51,12 +49,10 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
         self.setupNavigationView()
         self.setupSearcBar()
         self.setCollecionView()
-        self.rootView?.segmentedControl.selectedSegmentIndex = 0
     }
     
     // MARK: - Private Methods
     
-   
     private func movieSearch(query: String) {
         self.presenter.moviesSearch(query) { result in
              self.items = result.map(DiscoverCellModel.create)
@@ -132,46 +128,37 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     // MARK: - SearcBarDelegate
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.isSearch = true
+       self.dataSourceCleanOut()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        self.isSearch = false
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         self.dataSourceCleanOut()
-        self.isSearch = false
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        self.isSearch = false
         guard let searchQuery = self.rootView?.searchBar?.text else { return }
         guard let segmentedControl = self.rootView?.segmentedControl else { return }
     
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            print("movie")
             self.movieSearch(query: searchQuery)
         case 1:
-            print("tv")
             self.showSearch(query: searchQuery)
         default:
             break
         }
-        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         if searchText.isEmpty {
-            self.isSearch = false
             self.dataSourceCleanOut()
         }
-        
     }
     
     // MARK: - CpllecttionView Delegate
