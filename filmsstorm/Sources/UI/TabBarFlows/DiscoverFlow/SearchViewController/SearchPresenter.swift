@@ -17,7 +17,6 @@ enum SearchEvent: EventProtocol {
 protocol SearchPresenter: Presenter {
     var showActivity: Handler<ActivityState>? { get set }
     func moviesSearch(_ query: String, _ completion: (([MovieListResult]) -> Void)?)
-    func multiSearch(_ query: String, _ completion: (([MultiSearchResult]) -> Void)?)
     func showsSearch(_ query: String, _ completion: (([ShowListResult]) -> Void)?)
     func onMediaItem(item: DiscoverCellModel)
     func onBack()
@@ -61,19 +60,7 @@ class SearchPresenterImpl: SearchPresenter {
             }
         }
     }
-    
-    func multiSearch(_ query: String, _ completion: (([MultiSearchResult]) -> Void)?) {
-        self.networking.multiSearch(with: query) { [weak self] result in
-            switch result {
-            case .success(let model):
-                guard let results = model.results else { return }
-                completion?(results)
-            case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
-            }
-        }
-    }
-    
+        
     func onMediaItem(item: DiscoverCellModel) {
         self.eventHandler?(.mediaItem(item))
     }
