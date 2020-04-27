@@ -43,7 +43,11 @@ class SearchPresenterImpl: SearchPresenter {
         self.networking.movieSearch(with: query) { [weak self] result in
             switch result {
             case .success(let model):
+                if model.results.isEmpty {
+                    self?.eventHandler?(.error(.emptySearchResult))
+                } else {
                 completion?(model.results)
+                }
             case .failure(let error):
                self?.eventHandler?(.error(.networkingError(error)))
             }
@@ -54,7 +58,11 @@ class SearchPresenterImpl: SearchPresenter {
         self.networking.showSearch(with: query) { [weak self] result in
             switch result {
             case .success(let model):
+                if model.results.isEmpty {
+                    self?.eventHandler?(.error(.emptySearchResult))
+                } else {
                 completion?(model.results)
+                }
             case .failure(let error):
                self?.eventHandler?(.error(.networkingError(error)))
             }

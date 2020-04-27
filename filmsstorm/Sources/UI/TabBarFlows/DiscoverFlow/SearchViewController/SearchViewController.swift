@@ -49,7 +49,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
-        self.setupSearcBar()
+        self.setupSearchBar()
         self.setCollecionView()
         self.setSegmentedControlObserver()
     }
@@ -77,7 +77,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
         self.rootView?.navigationView?.titleFill(with: "Search")
     }
     
-    private func setupSearcBar() {
+    private func setupSearchBar() {
         guard let searchBar = self.rootView?.searchBar else { return }
         searchBar.delegate = self
         searchBar.searchBarStyle = .minimal
@@ -92,11 +92,17 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     }
     
     private func setSegmentedControlObserver() {
-        self.segmentedControlObserver = self.rootView?.segmentedControl.observe(\UISegmentedControl.selectedSegmentIndex,
-                                                                             changeHandler: { [weak self] _, _ in
-                  self?.rootView?.searchBar?.text = ""
-                  self?.dataSourceExempt()
-               })
+        self.segmentedControlObserver = self.rootView?.segmentedControl.observe(\UISegmentedControl.selectedSegmentIndex, changeHandler: { [weak self] segmenedConrol, _ in
+            guard let searchBarText = self?.rootView?.searchBar?.text else { return }
+            
+            if !searchBarText.isEmpty && segmenedConrol.selectedSegmentIndex == 1 {
+                self?.clearDataSource()
+                self?.showSearch(query: searchBarText)
+            } else if !searchBarText.isEmpty && segmenedConrol.selectedSegmentIndex == 0 {
+                self?.clearDataSource()
+                self?.movieSearch(query: searchBarText)
+            }
+        })
     }
     
     // MARK: - Data Source
@@ -107,7 +113,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
         snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
     }
     
-    private func dataSourceExempt() {
+    private func clearDataSource() {
         self.items = [DiscoverCellModel]()
         var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
         snapshot.appendSections(Section.allCases)
@@ -138,24 +144,21 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     
     // MARK: - SearcBarDelegate
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.dataSourceExempt()
-    }
-    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.clearDataSource()
         searchBar.resignFirstResponder()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.clearDataSource()
         searchBar.resignFirstResponder()
-        self.dataSourceExempt()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         guard let searchQuery = self.rootView?.searchBar?.text else { return }
         guard let segmentedControl = self.rootView?.segmentedControl else { return }
-        
+
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             self.movieSearch(query: searchQuery)
@@ -164,12 +167,11 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
         default:
             break
         }
-        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            self.dataSourceExempt()
+            self.clearDataSource()
         }
     }
     
