@@ -25,12 +25,13 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     let presenter: Service
     private var items = [DiscoverCellModel]()
     private lazy var dataSource = self.createDataSource()
-    private var kvoContextSegmentedControl: Int = 0
+    private var segmentedControlObserver: NSKeyValueObservation?
     
     // MARK: - Init and deinit
     
     deinit {
         self.hideActivity()
+        self.segmentedControlObserver?.invalidate()
         F.Log(F.toString(Self.self))
     }
     
@@ -50,16 +51,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
         self.setupNavigationView()
         self.setupSearcBar()
         self.setCollecionView()
-        self.rootView?.segmentedControl.addObserver(self, forKeyPath: "selectedSegmentIndex",
-                                                    options: [], context: &self.kvoContextSegmentedControl)
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?,
-                               change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "selectedSegmentIndex" && context == &kvoContextSegmentedControl {
-            self.rootView?.searchBar?.text = ""
-            self.dataSourceCleanOut()
-        }
+        self.setSegmentedControlObserver()
     }
     
     // MARK: - Private Methods
@@ -99,6 +91,14 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
         collection?.delegate = self
     }
     
+    private func setSegmentedControlObserver() {
+        self.segmentedControlObserver = self.rootView?.segmentedControl.observe(\UISegmentedControl.selectedSegmentIndex,
+                                                                             changeHandler: { [weak self] _, _ in
+                  self?.rootView?.searchBar?.text = ""
+                  self?.dataSourceExempt()
+               })
+    }
+    
     // MARK: - Data Source
     
     private func update(for section: Section, with items: [DiscoverCellModel]) {
@@ -107,7 +107,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
         snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
     }
     
-    private func dataSourceCleanOut() {
+    private func dataSourceExempt() {
         self.items = [DiscoverCellModel]()
         var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
         snapshot.appendSections(Section.allCases)
@@ -139,7 +139,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     // MARK: - SearcBarDelegate
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.dataSourceCleanOut()
+        self.dataSourceExempt()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -148,7 +148,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        self.dataSourceCleanOut()
+        self.dataSourceExempt()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -169,7 +169,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            self.dataSourceCleanOut()
+            self.dataSourceExempt()
         }
     }
     

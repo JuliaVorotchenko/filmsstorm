@@ -14,4 +14,5 @@ class SearchView: UIView {
     @IBOutlet var searchBar: UISearchBar?
     @IBOutlet var collectionView: UICollectionView?
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
 }
