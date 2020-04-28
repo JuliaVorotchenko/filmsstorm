@@ -64,14 +64,10 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
         self.setCollectionView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(false)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
         self.updateListsLabels()
-        self.getFavoriteShows()
-        self.getFavoriteMovies()
         self.getMoviesWatchlist()
-        self.getShowsWatchlist()
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,18 +80,21 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     private func getMoviesWatchlist() {
         self.presenter.getMoviesWatchlist {  [weak self] model in
             self?.update(for: .moviesWatchlist, with: model.map(FavoritesContainer.media))
+            self?.getShowsWatchlist()
         }
     }
     
     private func getShowsWatchlist() {
         self.presenter.getShowsWatchList {  [weak self] model in
             self?.update(for: .showsWatchlist, with: model.map(FavoritesContainer.media))
+            self?.getFavoriteMovies()
         }
     }
     
     private func getFavoriteMovies() {
         self.presenter.getFavoriteMovies {  [weak self] model in
             self?.update(for: .favoriteMovies, with: model.map(FavoritesContainer.media))
+            self?.getFavoriteShows()
         }
     }
     
