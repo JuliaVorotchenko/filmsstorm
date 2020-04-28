@@ -29,7 +29,6 @@ protocol ConfigureModel: MediaContainer, Identifier {
 enum MediaType: String, Codable {
     case movie
     case tv
-    case person
 }
 
 struct DiscoverCellModel: ConfigureModel, Identifiable, Hashable {
@@ -79,15 +78,4 @@ struct DiscoverCellModel: ConfigureModel, Identifiable, Hashable {
                      backgroundImage: model.backgroundImage)
     }
     
-    static func create(_ model: MultiSearchResult) -> Self {
-        
-        return DiscoverCellModel(mediaType: model.mediaType,
-                                 idValue: model.id!,
-                                 name: model.name,
-                                 voteAverage: model.voteAverage.map(Double.init),
-                                 overview: model.overview,
-                                 releaseDate: model.releaseDate,
-                                 posterImage: model.posterImage,
-                                 backgroundImage: model.backgroundImage)
-    }
 }

@@ -30,6 +30,7 @@ protocol MediaItemPresenter: Presenter {
     func getItemDetails(_ completion: ((MediaItemModel) -> Void)?)
     func getItemSimilars(_ completion: (([DiscoverCellModel]) -> Void)?)
     func getItemCast(_ completion: (([ActorModel]) -> Void)?)
+    func getLists()
 }
 
 class MediaItemPresenterImpl: MediaItemPresenter {
@@ -74,22 +75,23 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                     self?.eventHandler?(.error(.networkingError(error)))
                 }
             }
-        case .person: break
         }
     }
     
     private func createMediaItem(_ model: DetailsModel) -> MediaItemModel {
         let isLiked = self.itemModel.mediaType == .movie
             ? UserMoviesContainer.favoritesIDs.contains(model.id)
-            :UserShowsContainer.favoritesIDs.contains(model.id)
+            : UserShowsContainer.favoritesIDs.contains(model.id)
+        
         let isWatchlisted = self.itemModel.mediaType == .movie
             ? UserMoviesContainer.watchlistIDs.contains(model.id)
             : UserShowsContainer.watchlistIDs.contains(model.id)
         
         return .create(model,
-                       mediaType: self.itemModel.mediaType  ?? .movie,
+                       mediaType: self.itemModel.mediaType ?? MediaType.movie,
                        isLiked: isLiked,
                        isWatchlisted: isWatchlisted)
+        
     }
     
     //item cast
@@ -116,7 +118,6 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                     self?.eventHandler?(.error(.networkingError(error)))
                 }
             }
-        case .person: break
         }
     }
     
@@ -140,13 +141,11 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                 switch result {
                 case.success(let similarsModel):
                     guard let results = similarsModel.results else { return }
-                    print(#function, results)
                     completion?(results.map(DiscoverCellModel.create))
                 case .failure(let error):
                     self.eventHandler?(.error(.networkingError(error)))
                 }
             }
-        case .person: break
         }
     }
     
@@ -165,22 +164,24 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     }
     
     private func addFavoriteStorage(item: MediaItemModel) {
-        switch self.itemModel.mediaType ?? .movie {
+        switch self.itemModel.mediaType {
         case .movie:
             UserMoviesContainer.favoritesIDs.append(item.idValue)
         case .tv:
             UserShowsContainer.favoritesIDs.append(item.idValue)
-        case .person: break
+        case .none:
+            break
         }
     }
     
     private func removeFavoriteStorage(item: MediaItemModel) {
-        switch self.itemModel.mediaType ?? .movie {
+        switch self.itemModel.mediaType {
         case .movie:
             UserMoviesContainer.favoritesIDs = UserMoviesContainer.favoritesIDs.filter { $0 != item.idValue }
         case .tv:
             UserShowsContainer.favoritesIDs = UserShowsContainer.favoritesIDs.filter { $0 != item.idValue }
-        case .person: break
+        case .none:
+            break
         }
     }
     
@@ -199,28 +200,30 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     }
     
     private func addWatchlistStorage(item: MediaItemModel) {
-        switch self.itemModel.mediaType ?? .movie {
+        switch self.itemModel.mediaType {
         case .movie:
             UserMoviesContainer.watchlistIDs.append(item.idValue)
         case .tv:
             UserMoviesContainer.watchlistIDs.append(item.idValue)
-        case .person: break
+        case .none:
+            break
         }
     }
     
     private func removeWatchlistStorage(item: MediaItemModel) {
-        switch self.itemModel.mediaType ?? .movie {
+        switch self.itemModel.mediaType {
         case .movie:
             UserMoviesContainer.watchlistIDs = UserMoviesContainer.watchlistIDs.filter { $0 != item.idValue }
         case .tv:
             UserShowsContainer.watchlistIDs = UserShowsContainer.watchlistIDs.filter { $0 != item.idValue }
-        case .person: break
+        case .none:
+            break
         }
     }
     
     // lists  network requests
     
-    private func getLists() {
+    func getLists() {
         self.getFavoriteMovies()
         self.getFavoriteShows()
         self.getMoviesWatchlist()
@@ -239,7 +242,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     }
     
     private func getFavoriteShows() {
-        self.networking.getFavoriteMovies { [weak self] result in
+        self.networking.getFavoriteShows { [weak self] result in
             switch result {
             case .success(let model):
                 UserShowsContainer.favoritesIDs = model.results.map { $0.id }

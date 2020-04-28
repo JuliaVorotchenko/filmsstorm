@@ -9,6 +9,5 @@
 import UIKit
 
 class FavouritesView: UIView {
-
-    @IBOutlet var navigationView: CustomNavigationView?
+    @IBOutlet weak var collectionView: UICollectionView!
 }
