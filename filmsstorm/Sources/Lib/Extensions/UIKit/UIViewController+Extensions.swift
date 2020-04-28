@@ -15,6 +15,8 @@ struct  TextConstants {
     static let cancel = "Cancel"
     static let serverError = "Server Error"
     static let appError = "App error."
+    static let searchErrorTitle = "Search error"
+    static let searchErrorMessage = "No results found"
 }
 
 // MARK: - Protocol extension

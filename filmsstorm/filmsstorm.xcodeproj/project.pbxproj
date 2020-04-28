@@ -160,6 +160,7 @@
 		CD7C8D382420DE95005F14BB /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7C8D372420DE95005F14BB /* SectionHeaderView.xib */; };
 		CD7C8D3A2420F3A9005F14BB /* MediaItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7C8D392420F3A9005F14BB /* MediaItemModel.swift */; };
 		CD7E748623D8F3450097F198 /* AppEventSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E748523D8F3450097F198 /* AppEventSource.swift */; };
+		CD7F2B1D244F701A0000A42C /* MultiSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7F2B1C244F701A0000A42C /* MultiSearchModel.swift */; };
 		CD81EEEA242A23E900334BD7 /* MovieCreditsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81EEE9242A23E900334BD7 /* MovieCreditsModel.swift */; };
 		CD81EEEC242A26FE00334BD7 /* ShowCreditsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81EEEB242A26FE00334BD7 /* ShowCreditsModel.swift */; };
 		CD81EEEE242A33B400334BD7 /* ActorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81EEED242A33B400334BD7 /* ActorModel.swift */; };
@@ -379,6 +380,7 @@
 		CD7C8D372420DE95005F14BB /* SectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
 		CD7C8D392420F3A9005F14BB /* MediaItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemModel.swift; sourceTree = "<group>"; };
 		CD7E748523D8F3450097F198 /* AppEventSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEventSource.swift; sourceTree = "<group>"; };
+		CD7F2B1C244F701A0000A42C /* MultiSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSearchModel.swift; sourceTree = "<group>"; };
 		CD81EEE9242A23E900334BD7 /* MovieCreditsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditsModel.swift; sourceTree = "<group>"; };
 		CD81EEEB242A26FE00334BD7 /* ShowCreditsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCreditsModel.swift; sourceTree = "<group>"; };
 		CD81EEED242A33B400334BD7 /* ActorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorModel.swift; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 				CD6D46AC2443B071008AE56F /* ActorCombinedCreditsModel.swift */,
 				CDFDCC2524424ECC00D89B3E /* SuccessModel.swift */,
 				CD6D46AA2443AD94008AE56F /* ActorDetailsModel.swift */,
+				CD7F2B1C244F701A0000A42C /* MultiSearchModel.swift */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -1512,6 +1515,7 @@
 				2E289CE923E8DFCA001917DB /* NetworkRouter.swift in Sources */,
 				CD6D46A72443A10C008AE56F /* ActorDescriptionCell.swift in Sources */,
 				CD0D2A9824193E2200722181 /* MovieVideosModel.swift in Sources */,
+				CD7F2B1D244F701A0000A42C /* MultiSearchModel.swift in Sources */,
 				CDB8792423B93C240099F946 /* LoginFlowCoordinator.swift in Sources */,
 				2E289CE623E8DFCA001917DB /* SearchEndpoint.swift in Sources */,
 				2E289CE423E8DFCA001917DB /* ReviewEndPoint.swift in Sources */,

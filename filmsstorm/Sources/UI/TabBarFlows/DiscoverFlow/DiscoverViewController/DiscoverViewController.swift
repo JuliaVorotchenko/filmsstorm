@@ -52,7 +52,6 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setCollectionView()
-        self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
         self.getPopularMovies()
         self.createDataSource()
         self.setupHeader()
@@ -68,6 +67,7 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     }
     
     private func setCollectionView() {
+        self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
         let layout = CollectionLayoutFactory.standart()
         self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
     }
@@ -91,7 +91,7 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
 
     // MARK: - set diffableDatasource
     
-    func createDataSource() {
+    private func createDataSource() {
         
         guard let collectionView = self.rootView?.collectionView else { return }
         

@@ -80,6 +80,9 @@ final class AppConfigurator {
         case .unowned(let error):
             self.window.rootViewController?.showAlert(title: TextConstants.appError,
                                                       message: error.debugDescription)
+        case .emptySearchResult:
+            self.window.rootViewController?.showAlert(title: TextConstants.searchErrorTitle,
+                                                      message: TextConstants.searchErrorMessage)
         }
     }
     

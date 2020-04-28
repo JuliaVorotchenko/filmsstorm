@@ -48,8 +48,20 @@ enum NetworkResponse: String, Error {
     case unableToDecode = "We couldn`t to decode response."
 }
 
+enum SearchError: Error, Descriptable {
+    case emptySearchResult
+    
+    var stringDescription: String {
+        switch self {
+        case .emptySearchResult:
+            return "No results found"
+        }
+    }
+}
+
 enum AppError: Error, Descriptable {
     case networkingError(NetworkError)
+    case emptySearchResult
     case unowned(Error?)
     
     var stringDescription: String {
@@ -58,6 +70,8 @@ enum AppError: Error, Descriptable {
             return error.stringDescription
         case .unowned(let error):
             return error.debugDescription
+        case .emptySearchResult:
+            return "No results found"
         }
     }
 }

@@ -116,9 +116,8 @@ class DiscoverFlowCoordinator: Coordinator {
     
     private func searchEvents(_ event: SearchEvent) {
         switch event {
-        case .mediaItem:
-            F.Log(#function)
-        //self.createMediaItemViewController()
+        case .mediaItem(let model):
+            self.createMediaItemViewController(from: model)
         case .back:
             self.navigationController.popViewController(animated: true)
         case .error(let errorMessage):
