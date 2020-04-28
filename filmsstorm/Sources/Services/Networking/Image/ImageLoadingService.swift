@@ -73,9 +73,7 @@ class ImageLoadingServiceImpl: ImageLoadingService {
     }
     
     func cancelLoading() {
-        DispatchQueue.global(qos: .background).sync {
-            self.dataTask?.cancel()
-        }
+        self.dataTask?.cancel()
     }
     
     // MARK: - Private methods

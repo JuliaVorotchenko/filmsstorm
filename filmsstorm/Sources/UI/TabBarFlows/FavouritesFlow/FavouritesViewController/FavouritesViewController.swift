@@ -62,32 +62,21 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setCollectionView()
-       
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
-        self.dataSourceCleanOut()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
         self.updateListsLabels()
-        
-        defer {
-            self.getFavoriteShows()
-        }
-        
-        defer {
-            self.getFavoriteMovies()
-        }
-        
-        defer {
-            self.getMoviesWatchlist()
-        }
-        
-        do {
-            self.getShowsWatchlist()
-        }
+        self.getFavoriteShows()
+        self.getFavoriteMovies()
+        self.getMoviesWatchlist()
+        self.getShowsWatchlist()
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(false)
+        self.clearDataSource()
     }
     
     // MARK: - Private methods to retrieve lists
@@ -115,14 +104,7 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
             self?.update(for: .favoriteShows, with: model.map(FavoritesContainer.media))
         }
     }
-    
-    private func updateListsLabels() {
-        self.update(for: .favoriteMoviesLabel, with: [FavoritesContainer.favoriteMoviesLabel])
-        self.update(for: .favoriteShowsLabel, with: [FavoritesContainer.favoriteShowsLabel])
-        self.update(for: .moviesWatchlistLabel, with: [FavoritesContainer.moviesWatchlistLabel])
-        self.update(for: .showsWatchlistLabel, with: [FavoritesContainer.showsWatchlistLabel])
-    }
-    
+        
     // MARK: - Private Methods for CollectionView
     
     private func setCollectionView() {
@@ -139,7 +121,14 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
         snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
     }
     
-    private func dataSourceCleanOut() {
+    private func updateListsLabels() {
+        self.update(for: .favoriteMoviesLabel, with: [FavoritesContainer.favoriteMoviesLabel])
+        self.update(for: .favoriteShowsLabel, with: [FavoritesContainer.favoriteShowsLabel])
+        self.update(for: .moviesWatchlistLabel, with: [FavoritesContainer.moviesWatchlistLabel])
+        self.update(for: .showsWatchlistLabel, with: [FavoritesContainer.showsWatchlistLabel])
+    }
+    
+    private func clearDataSource() {
         let items = [FavoritesContainer]()
         var snapshot = NSDiffableDataSourceSnapshot<Section, FavoritesContainer>()
         snapshot.appendSections(Section.allCases)
@@ -210,21 +199,9 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
             let section = Section.allCases[sectionIndex]
             switch section {
-            case .moviesWatchlistLabel:
+            case .moviesWatchlistLabel, .showsWatchlistLabel, .favoriteMoviesLabel, .favoriteShowsLabel:
                 return CollectionLayoutFactory.listTypeSection()
-            case .moviesWatchlist:
-                return CollectionLayoutFactory.noHeaderMediaImageSection()
-            case .showsWatchlistLabel:
-                return CollectionLayoutFactory.listTypeSection()
-            case .showsWatchlist:
-                return CollectionLayoutFactory.noHeaderMediaImageSection()
-            case .favoriteMoviesLabel:
-                return CollectionLayoutFactory.listTypeSection()
-            case .favoriteMovies:
-                return CollectionLayoutFactory.noHeaderMediaImageSection()
-            case .favoriteShowsLabel:
-                return CollectionLayoutFactory.listTypeSection()
-            case .favoriteShows:
+            case .moviesWatchlist, .showsWatchlist, .favoriteMovies, .favoriteShows:
                 return CollectionLayoutFactory.noHeaderMediaImageSection()
             }
         }
