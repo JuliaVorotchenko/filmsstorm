@@ -41,6 +41,7 @@ struct DiscoverCellModel: ConfigureModel, Identifiable, Hashable {
     let releaseDate: String?
     let posterImage: String?
     let backgroundImage: String?
+    let originalName: String?
     
     static func create(_ model: MovieListResult) -> Self {
         
@@ -51,7 +52,8 @@ struct DiscoverCellModel: ConfigureModel, Identifiable, Hashable {
                      overview: model.overview,
                      releaseDate: model.releaseDate,
                      posterImage: model.posterImage,
-                     backgroundImage: model.backDropPath)
+                     backgroundImage: model.backDropPath,
+                     originalName: model.originalTitle)
     }
     
     static func create(_ model: ShowListResult) -> Self {
@@ -63,7 +65,8 @@ struct DiscoverCellModel: ConfigureModel, Identifiable, Hashable {
                      overview: model.overview,
                      releaseDate: model.firstAirDate,
                      posterImage: model.posterImage,
-                     backgroundImage: model.backgroundImage)
+                     backgroundImage: model.backgroundImage,
+                     originalName: model.originalName)
     }
     
     static func create(_ model: CombinedCastModel) -> Self {
@@ -75,7 +78,8 @@ struct DiscoverCellModel: ConfigureModel, Identifiable, Hashable {
                      overview: model.overview,
                      releaseDate: model.releaseDate,
                      posterImage: model.posterImage,
-                     backgroundImage: model.backgroundImage)
+                     backgroundImage: model.backgroundImage,
+                     originalName: model.originalTitle)
     }
     
 }

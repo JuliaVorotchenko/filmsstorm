@@ -9,7 +9,6 @@
 import Foundation
 
 protocol MediaItem: ConfigureModel, Codable, Hashable {
-    
     var originalName: String { get }
     var genre: [Genre] { get }
 }

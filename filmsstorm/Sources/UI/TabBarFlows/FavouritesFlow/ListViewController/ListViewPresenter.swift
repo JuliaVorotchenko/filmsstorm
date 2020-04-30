@@ -37,8 +37,6 @@ class ListViewPresenterImpl: ListViewPresenter {
         self.items = items
     }
     
-    // MARK: - Network Requests
-    
     // MARK: - Action Methods
     
     func onMedia(item: DiscoverCellModel) {
