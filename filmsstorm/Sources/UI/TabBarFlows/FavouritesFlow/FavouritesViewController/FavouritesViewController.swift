@@ -28,10 +28,10 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     
     enum FavoritesContainer: Hashable {
         case media(DiscoverCellModel)
-        case moviesWatchlistLabel
-        case showsWatchlistLabel
-        case favoriteMoviesLabel
-        case favoriteShowsLabel
+        case moviesWatchlistLabel([DiscoverCellModel])
+        case showsWatchlistLabel([DiscoverCellModel])
+        case favoriteMoviesLabel([DiscoverCellModel])
+        case favoriteShowsLabel([DiscoverCellModel])
     }
     
     // MARK: - Properties
@@ -66,7 +66,6 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        self.updateListsLabels()
         self.getMoviesWatchlist()
     }
     
@@ -80,6 +79,7 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     private func getMoviesWatchlist() {
         self.presenter.getMoviesWatchlist {  [weak self] model in
             self?.update(for: .moviesWatchlist, with: model.map(FavoritesContainer.media))
+            self?.update(for: .moviesWatchlistLabel, with: [FavoritesContainer.moviesWatchlistLabel(model)])
             self?.getShowsWatchlist()
         }
     }
@@ -87,6 +87,7 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     private func getShowsWatchlist() {
         self.presenter.getShowsWatchList {  [weak self] model in
             self?.update(for: .showsWatchlist, with: model.map(FavoritesContainer.media))
+            self?.update(for: .showsWatchlistLabel, with: [FavoritesContainer.showsWatchlistLabel(model)])
             self?.getFavoriteMovies()
         }
     }
@@ -94,6 +95,7 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     private func getFavoriteMovies() {
         self.presenter.getFavoriteMovies {  [weak self] model in
             self?.update(for: .favoriteMovies, with: model.map(FavoritesContainer.media))
+            self?.update(for: .favoriteMoviesLabel, with: [FavoritesContainer.favoriteMoviesLabel(model)])
             self?.getFavoriteShows()
         }
     }
@@ -101,6 +103,7 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     private func getFavoriteShows() {
         self.presenter.getFavoriteShows {  [weak self] model in
             self?.update(for: .favoriteShows, with: model.map(FavoritesContainer.media))
+            self?.update(for: .favoriteShowsLabel, with: [FavoritesContainer.favoriteShowsLabel(model)])
         }
     }
         
@@ -118,13 +121,6 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
         var snapshot = self.dataSource?.snapshot()
         snapshot?.appendItems(items, toSection: section)
         snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
-    }
-    
-    private func updateListsLabels() {
-        self.update(for: .favoriteMoviesLabel, with: [FavoritesContainer.favoriteMoviesLabel])
-        self.update(for: .favoriteShowsLabel, with: [FavoritesContainer.favoriteShowsLabel])
-        self.update(for: .moviesWatchlistLabel, with: [FavoritesContainer.moviesWatchlistLabel])
-        self.update(for: .showsWatchlistLabel, with: [FavoritesContainer.showsWatchlistLabel])
     }
     
     private func clearDataSource() {
@@ -181,12 +177,16 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = self.dataSource?.itemIdentifier(for: indexPath)
+       
         model.map {
             switch $0 {
             case .media(let model):
                 self.presenter.onMedia(item: model)
-            case .favoriteMoviesLabel, .favoriteShowsLabel, .moviesWatchlistLabel, .showsWatchlistLabel:
-                self.presenter.onList()
+            case .favoriteMoviesLabel(let models),
+                 .favoriteShowsLabel(let models),
+                 .moviesWatchlistLabel(let models),
+                 .showsWatchlistLabel(let models):
+                self.presenter.onList(models: models)
             }
         }
     }

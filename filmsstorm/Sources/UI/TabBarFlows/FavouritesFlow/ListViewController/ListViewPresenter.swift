@@ -15,6 +15,8 @@ enum ListEvent: EventProtocol {
 }
 
 protocol ListViewPresenter: Presenter {
+    var items: [DiscoverCellModel] { get }
+    
     func onMedia(item: DiscoverCellModel)
     func back()
 }
@@ -25,12 +27,14 @@ class ListViewPresenterImpl: ListViewPresenter {
     
     let eventHandler: Handler<ListEvent>?
     private let networking: NetworkManager
+    let items: [DiscoverCellModel]
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: Handler<ListEvent>?) {
+    init(networking: NetworkManager, event: Handler<ListEvent>?, items: [DiscoverCellModel]) {
         self.networking = networking
         self.eventHandler = event
+        self.items = items
     }
     
     // MARK: - Network Requests

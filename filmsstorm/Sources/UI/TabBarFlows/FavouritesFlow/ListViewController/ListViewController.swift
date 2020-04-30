@@ -41,6 +41,7 @@ class ListViewController<T: ListViewPresenter>: UIViewController, Controller, Ac
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationViewSetup()
+        print(self.presenter.items)
     }
     
     // MARK: - Private methods

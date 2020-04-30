@@ -52,8 +52,8 @@ class FavouritesFlowCoordinator: Coordinator {
         switch event {
         case .onMedia(let model):
             self.createMediaItemViewController(from: model)
-        case .onList:
-            self.createListViewController()
+        case .onList(let model):
+            self.createListViewController(from: model)
         case .error(let error):
             self.eventHandler?(.appError(error))
         }
@@ -122,8 +122,8 @@ class FavouritesFlowCoordinator: Coordinator {
     
     // MARK: - List VC
     
-    private func createListViewController() {
-        let presenter = ListViewPresenterImpl(networking: self.networking, event: self.listEvent)
+    private func createListViewController(from model: [DiscoverCellModel]) {
+        let presenter = ListViewPresenterImpl(networking: self.networking, event: self.listEvent, items: model)
         let controller = ListViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
