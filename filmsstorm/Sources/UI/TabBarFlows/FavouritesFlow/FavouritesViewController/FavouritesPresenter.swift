@@ -93,6 +93,6 @@ class FavouritesPresenterImpl: FavouritesPresenter {
     }
     
     func onList() {
-        
+        self.eventHandler?(.onList)
     }
 }

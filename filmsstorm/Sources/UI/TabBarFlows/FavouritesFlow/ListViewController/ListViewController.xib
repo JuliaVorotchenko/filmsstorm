@@ -41,7 +41,7 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <connections>
-                <outlet property="navigationView" destination="TBl-5H-6Yo" id="alh-Ny-SKm"/>
+                <outlet property="navigationView" destination="TBl-5H-6Yo" id="8mY-jb-c9e"/>
                 <outlet property="tableView" destination="E9f-lj-Dj7" id="2kp-K9-PhM"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>

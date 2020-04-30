@@ -140,7 +140,6 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
             self.rootView?.collectionView
                 .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) {
                     [weak self] collectionView, indexPath, item -> UICollectionViewCell in
-                    
                     switch item {
                         
                     case .media(let model):
@@ -187,7 +186,7 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
             case .media(let model):
                 self.presenter.onMedia(item: model)
             case .favoriteMoviesLabel, .favoriteShowsLabel, .moviesWatchlistLabel, .showsWatchlistLabel:
-                print("on header")
+                self.presenter.onList()
             }
         }
     }

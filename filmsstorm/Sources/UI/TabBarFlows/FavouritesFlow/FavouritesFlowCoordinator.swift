@@ -53,7 +53,7 @@ class FavouritesFlowCoordinator: Coordinator {
         case .onMedia(let model):
             self.createMediaItemViewController(from: model)
         case .onList:
-            F.Log("some fav event")
+            self.createListViewController()
         case .error(let error):
             self.eventHandler?(.appError(error))
         }
@@ -117,6 +117,25 @@ class FavouritesFlowCoordinator: Coordinator {
             self.navigationController.popViewController(animated: true)
         case .error(let errorMessage):
               self.eventHandler?(.appError(errorMessage))
+        }
+    }
+    
+    // MARK: - List VC
+    
+    private func createListViewController() {
+        let presenter = ListViewPresenterImpl(networking: self.networking, event: self.listEvent)
+        let controller = ListViewController(presenter)
+        self.navigationController.pushViewController(controller, animated: true)
+    }
+    
+    private func listEvent(_ event: ListEvent) {
+        switch event {
+        case .onMedia(let model):
+            self.createMediaItemViewController(from: model)
+        case .back:
+            self.navigationController.popViewController(animated: true)
+        case .error(let errorMessage):
+             self.eventHandler?(.appError(errorMessage))
         }
     }
 }
