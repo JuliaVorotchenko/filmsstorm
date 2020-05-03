@@ -9,7 +9,7 @@
 import UIKit
 import AVKit
 
-class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
+class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controller, UICollectionViewDelegate {
     
     // MARK: - Subtypes
     
@@ -30,7 +30,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     // MARK: - Properties
     
-    let loadingView = ActivityView()
     let presenter: Service
         
     private lazy var dataSource = self.createDataSource()
@@ -38,7 +37,6 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     // MARK: - Init and deinit
     
     deinit {
-        self.hideActivity()
         F.Log(F.toString(Self.self))
     }
     

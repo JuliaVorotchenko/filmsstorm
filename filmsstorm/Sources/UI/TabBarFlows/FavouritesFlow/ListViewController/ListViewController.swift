@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListViewController<T: ListViewPresenter>: UIViewController, Controller, ActivityViewPresenter, UITableViewDelegate {
+class ListViewController<T: ListsPresenter>: UIViewController, Controller, UITableViewDelegate {
     
     // MARK: - Subtypes
     
@@ -21,15 +21,13 @@ class ListViewController<T: ListViewPresenter>: UIViewController, Controller, Ac
     
     // MARK: - Properties
     
-    let loadingView = ActivityView()
     let presenter: T
-    private var items = [DiscoverCellModel]()
-    private var dataSource: UITableViewDiffableDataSource<Section, DiscoverCellModel>?
+    private var items: [DiscoverCellModel] = []
+    private lazy var dataSource = self.createDataSource()
     
     // MARK: - Init and deinit
     
     deinit {
-        self.hideActivity()
         F.Log(F.toString(Self.self))
     }
     
@@ -48,50 +46,61 @@ class ListViewController<T: ListViewPresenter>: UIViewController, Controller, Ac
         super.viewDidLoad()
         self.navigationViewSetup()
         self.setTableView()
-        self.createDataSource()
     }
     
-    // MARK: - Private methods
-   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.retrieveModels()
+    }
     
+    // MARK: - View Setup
+   
     private func navigationViewSetup() {
         self.rootView?.navigationView?.actionHandler = { [weak self] in
             self?.presenter.back()
         }
+        self.rootView?.navigationView.titleFill(with: self.presenter.title)
     }
     
     private func setTableView() {
         self.rootView?.tableView.register(ListTableViewCell.self)
         self.rootView?.tableView.delegate = self
+        self.rootView?.tableView?.dataSource = self.dataSource
     }
+    
+    // MARK: - Rerieve models
+    
+    private func retrieveModels() {
+        self.presenter.getItems { [weak self] in
+            self?.items = $0
+            self?.update(section: Section.allCases, items: $0)
+        }
+    }
+    
     // MARK: - Private Methods for table view
     
-    private func createDataSource() {
-        guard let tableView = self.rootView?.tableView else { return }
-        
-        self.dataSource = UITableViewDiffableDataSource(tableView: tableView) { [weak self] tableView, indexPath, item -> UITableViewCell? in
-            let cell: ListTableViewCell =
-                tableView.dequeueReusableCell(ListTableViewCell.self, for: indexPath)
-            cell.fill(with: item)
-            return cell
+    private func createDataSource() -> UITableViewDiffableDataSource<Section, DiscoverCellModel>? {
+        return self.rootView.map {
+            UITableViewDiffableDataSource(tableView: $0.tableView) { (tableView, indexPath, item) -> UITableViewCell? in
+                let cell: ListTableViewCell =
+                    tableView.dequeueReusableCell(ListTableViewCell.self, for: indexPath)
+                cell.fill(with: item)
+                return cell
+            }
         }
-        let snapshot = self.createSnapShot()
-        self.dataSource?.apply(snapshot)
     }
     
-    func createSnapShot() -> NSDiffableDataSourceSnapshot<Section, DiscoverCellModel> {
+    private func update(section: [Section], items: [DiscoverCellModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(self.presenter.items)
-        
-        return snapshot
+        snapshot.appendSections(section)
+        snapshot.appendItems(items)
+        self.dataSource?.apply(snapshot)
     }
     
     // MARK: - TableView delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = self.presenter.items[indexPath.row]
+        let model = self.items[indexPath.row]
         self.presenter.onMedia(item: model)
     }
-    
 }

@@ -10,14 +10,24 @@ import Foundation
 
 enum FavouritesEvent: EventProtocol {
     case onMedia(DiscoverCellModel)
-    case onList([DiscoverCellModel])
+    case onHeaderEvent(FavoritesHeaderEvent)
     case error(AppError)
 }
 
+enum FavoritesHeaderEvent: EventProtocol {
+    case favoriteMovies
+    case favoriteShows
+    case moviesWatchList
+    case showsWatchlist
+}
+
 protocol FavouritesPresenter: Presenter {
-    var showActivity: Handler<ActivityState>? { get set }
+    
     func onMedia(item: DiscoverCellModel)
-    func onList(models: [DiscoverCellModel])
+    func onFavoriteMovies()
+    func onFavoriteSHows()
+    func onMoviesWatchList()
+    func onShowsWatchlist()
     
     func getMoviesWatchlist(_ completion: (([DiscoverCellModel]) -> Void)?)
     func getShowsWatchList(_ completion: (([DiscoverCellModel]) -> Void)?)
@@ -30,7 +40,6 @@ class FavouritesPresenterImpl: FavouritesPresenter {
     // MARK: - Private Properties
     
     let eventHandler: Handler<FavouritesEvent>?
-    var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
@@ -92,7 +101,19 @@ class FavouritesPresenterImpl: FavouritesPresenter {
         self.eventHandler?(.onMedia(item))
     }
     
-    func onList(models: [DiscoverCellModel]) {
-        self.eventHandler?(.onList(models))
+    func onFavoriteMovies() {
+        self.eventHandler?(.onHeaderEvent(.favoriteMovies))
+    }
+    
+    func onFavoriteSHows() {
+        self.eventHandler?(.onHeaderEvent(.favoriteShows))
+    }
+    
+    func onMoviesWatchList() {
+        self.eventHandler?(.onHeaderEvent(.moviesWatchList))
+    }
+    
+    func onShowsWatchlist() {
+        self.eventHandler?(.onHeaderEvent(.showsWatchlist))
     }
 }

@@ -22,7 +22,7 @@ extension Dictionary {
     
     @discardableResult
     func append(_ value: Dictionary.Value,
-                forKey key: Dictionary.Key) -> Dictionary<Dictionary.Key, Dictionary.Value> {
+                forKey key: Dictionary.Key) -> [Dictionary.Key: Dictionary.Value] {
         var tmp = self
         tmp.updateValue(value, forKey: key)
         return tmp

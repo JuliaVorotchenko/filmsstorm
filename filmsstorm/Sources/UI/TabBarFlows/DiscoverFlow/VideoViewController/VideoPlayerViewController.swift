@@ -9,7 +9,7 @@
 import UIKit
 import YoutubePlayer_in_WKWebView
 
-class VideoPlayerViewController<T: VideoPlayerViewPresenter >: UIViewController, Controller, ActivityViewPresenter {
+class VideoPlayerViewController<T: VideoPlayerViewPresenter >: UIViewController, Controller {
 
     // MARK: - Subtypes
     
@@ -18,13 +18,11 @@ class VideoPlayerViewController<T: VideoPlayerViewPresenter >: UIViewController,
     
     // MARK: - Private properties
     
-    let loadingView = ActivityView()
     let presenter: Service
 
     // MARK: - Init and deinit
      
      deinit {
-         self.hideActivity()
          F.Log(F.toString(Self.self))
      }
      

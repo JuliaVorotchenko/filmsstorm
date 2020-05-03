@@ -11,9 +11,13 @@ import UIKit
 struct Constants {
     static let movieTitle = "Movies"
     static let showsTitle = "TVShows"
+    static let favoriteMovies = "Favorite Movies"
+    static let favoriteShows = "Favorite TVShows"
+    static let moviesWachlist = "Movie List"
+    static let showsWatchlist = "TVShows List"
 }
 
-class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
+class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller, UICollectionViewDelegate {
     
     // MARK: - Subtypes
     
@@ -26,7 +30,6 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     
     // MARK: - Private properties
     
-    let loadingView = ActivityView()
     let presenter: T
     private var items = [DiscoverCellModel]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
@@ -34,7 +37,6 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     // MARK: - Init and deinit
     
     deinit {
-        self.hideActivity()
         F.Log(F.toString(Self.self))
     }
     

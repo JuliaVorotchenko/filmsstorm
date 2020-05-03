@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AboutViewController<T: AboutPresenter>: UIViewController, ActivityViewPresenter, Controller {
+class AboutViewController<T: AboutPresenter>: UIViewController, Controller {
     
     // MARK: - Subtypes
     
@@ -24,7 +24,6 @@ class AboutViewController<T: AboutPresenter>: UIViewController, ActivityViewPres
     
     // MARK: - Public Properties
     
-    let loadingView = ActivityView()
     let presenter: Service
     
     // MARK: - Init & deinit
@@ -39,7 +38,6 @@ class AboutViewController<T: AboutPresenter>: UIViewController, ActivityViewPres
     }
     
     deinit {
-        self.hideActivity()
         F.Log(F.toString(Self.self))
     }
     

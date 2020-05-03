@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller, ActivityViewPresenter {
-   
+class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller {
+    
     // MARK: - Subtypes
     
     typealias RootViewType = ProfileView
@@ -29,12 +29,11 @@ class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller, 
     
     // MARK: - Public Properties
     let presenter: T
-    let loadingView = ActivityView()
-
+    
     private var items: [Item] = []
     private lazy var dataSource = self.diffableDataSource()
     private var user: UserModel?
-   
+    
     // MARK: - Init & deinit
     
     required init(_ presentation: Service) {
@@ -54,7 +53,7 @@ class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   self.setupTableView()
+        self.setupTableView()
         self.presenter.getUserDetails { [weak self] in
             self?.user = $0
             self?.createItems()

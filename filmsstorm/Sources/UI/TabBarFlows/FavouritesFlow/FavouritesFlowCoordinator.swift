@@ -52,10 +52,23 @@ class FavouritesFlowCoordinator: Coordinator {
         switch event {
         case .onMedia(let model):
             self.createMediaItemViewController(from: model)
-        case .onList(let model):
-            self.createListViewController(from: model)
+        case .onHeaderEvent(let event):
+            self.favoritesHeaderEvents(event)
         case .error(let error):
             self.eventHandler?(.appError(error))
+        }
+    }
+    
+    private func favoritesHeaderEvents(_ event: FavoritesHeaderEvent) {
+        switch event {
+        case .favoriteMovies:
+            self.createFavoriteMoviesViewController()
+        case .favoriteShows:
+            self.createFavoriteShowsViewController()
+        case .moviesWatchList:
+            self.createMoviesWatchlistViewController()
+        case .showsWatchlist:
+            self.createShowsWatchlistViewController()
         }
     }
     
@@ -120,22 +133,79 @@ class FavouritesFlowCoordinator: Coordinator {
         }
     }
     
-    // MARK: - List VC
+    // MARK: - Favorite Movies VC
     
-    private func createListViewController(from model: [DiscoverCellModel]) {
-        let presenter = ListViewPresenterImpl(networking: self.networking, event: self.listEvent, items: model)
+    private func createFavoriteMoviesViewController() {
+        let presenter = FavoriteMoviesPresenterImpl(networking: self.networking, event: self.favoriteMoviesEvent)
         let controller = ListViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
     
-    private func listEvent(_ event: ListEvent) {
+    private func favoriteMoviesEvent(_ event: FavoriteMoviesEvent) {
         switch event {
-        case .onMedia(let model):
+        case .media(let model):
             self.createMediaItemViewController(from: model)
         case .back:
             self.navigationController.popViewController(animated: true)
         case .error(let errorMessage):
-             self.eventHandler?(.appError(errorMessage))
+            self.eventHandler?(.appError(errorMessage))
         }
     }
+    
+    // MARK: - Favorite Shows VC
+    
+    private func createFavoriteShowsViewController() {
+           let presenter = FavoriteShowsPresenterImpl(networking: self.networking, event: self.favoriteShowsEvent)
+           let controller = ListViewController(presenter)
+           self.navigationController.pushViewController(controller, animated: true)
+       }
+       
+       private func favoriteShowsEvent(_ event: FavoriteShowsEvent) {
+           switch event {
+           case .media(let model):
+               self.createMediaItemViewController(from: model)
+           case .back:
+               self.navigationController.popViewController(animated: true)
+           case .error(let errorMessage):
+               self.eventHandler?(.appError(errorMessage))
+           }
+       }
+    // MARK: - Movies Watchlist VC
+    
+    private func createMoviesWatchlistViewController() {
+        let presenter = MoviesWatchlistPresenterImpl(networking: self.networking, event: moviesWatchlistEvent)
+        let controller = ListViewController(presenter)
+        self.navigationController.pushViewController(controller, animated: true)
+    }
+    
+    private func moviesWatchlistEvent(_ event: MoviesWatchlistEvent) {
+        switch event {
+        case .media(let model):
+            self.createMediaItemViewController(from: model)
+        case .back:
+            self.navigationController.popViewController(animated: true)
+        case .error(let errorMessage):
+            self.eventHandler?(.appError(errorMessage))
+        }
+    }
+    
+    // MARK: - Shows Wachlist VC
+    
+    private func createShowsWatchlistViewController() {
+           let presenter = ShowsWatchlistPresenterImpl(networking: self.networking, event: showsWatchlistEvent)
+           let controller = ListViewController(presenter)
+           self.navigationController.pushViewController(controller, animated: true)
+       }
+       
+       private func showsWatchlistEvent(_ event: ShowsWatchlistEvent) {
+           switch event {
+           case .media(let model):
+               self.createMediaItemViewController(from: model)
+           case .back:
+               self.navigationController.popViewController(animated: true)
+           case .error(let errorMessage):
+               self.eventHandler?(.appError(errorMessage))
+           }
+       }
+
 }

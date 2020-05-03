@@ -11,5 +11,4 @@ import UIKit
 class ListView: UIView {
     @IBOutlet weak var navigationView: CustomNavigationView!
     @IBOutlet weak var tableView: UITableView!
-    
 }

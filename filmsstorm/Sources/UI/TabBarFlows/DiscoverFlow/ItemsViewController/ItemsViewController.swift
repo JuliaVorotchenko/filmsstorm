@@ -8,8 +8,7 @@
 
 import UIKit
 
-class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller, ActivityViewPresenter,
-UICollectionViewDelegate {
+class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller, UICollectionViewDelegate {
     
     // MARK: - Subtypes
     
@@ -22,15 +21,13 @@ UICollectionViewDelegate {
     
     // MARK: - Private properties
     
-    let loadingView = ActivityView()
-    let presenter: Service
-    private var sections = [DiscoverCellModel]()
+    let presenter: T
+    private var items = [DiscoverCellModel]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
     
     // MARK: - Init and deinit
     
     deinit {
-        self.hideActivity()
         F.Log(F.toString(Self.self))
     }
     
@@ -49,31 +46,31 @@ UICollectionViewDelegate {
         super.viewDidLoad()
         self.setupNavigationView()
         self.setCollectionView()
-        self.rootView?.collectionView?.register(DiscoverCollectionViewCell.self)
         self.getPopularMovies()
-        self.rootView?.collectionView?.delegate = self
     }
     
     // MARK: - Private Methods
     
     private func getPopularMovies() {
         self.presenter.getItems { [weak self] in
-            self?.sections = $0
+            self?.items = $0
             self?.createDataSource()
         }
     }
     
     private func setCollectionView() {
         let layout = CollectionLayoutFactory.standart()
-        self.rootView?.collectionView?.setCollectionViewLayout(layout, animated: true)
+        let collectionView = self.rootView?.collectionView
+        collectionView?.register(DiscoverCollectionViewCell.self)
+        collectionView?.delegate = self
+        collectionView?.setCollectionViewLayout(layout, animated: true)
     }
     
     private func setupNavigationView() {
         self.rootView?.navigationView?.actionHandler = { [weak self] in
             self?.presenter.onBack()
         }
-        let title = self.presenter.title
-        self.rootView?.navigationView?.titleFill(with: title)
+        self.rootView?.navigationView?.titleFill(with: self.presenter.title)
     }
         
     // MARK: - set diffableDatasource
@@ -95,14 +92,14 @@ UICollectionViewDelegate {
     func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, DiscoverCellModel> {
         var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(self.sections)
+        snapshot.appendItems(self.items)
         return snapshot
     }
     
     // MARK: - CollectionView Delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = self.sections[indexPath.row]
+        let model = self.items[indexPath.row]
         self.presenter.onMedia(item: model)
     }
 }

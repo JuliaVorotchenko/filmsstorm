@@ -34,11 +34,10 @@
                         <rect key="frame" x="16" y="30" width="128" height="190"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="128" id="4bn-hq-kt3"/>
-                            <constraint firstAttribute="height" constant="190" id="D2M-m7-7Dn"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFd-ru-ob9" userLabel="stack">
-                        <rect key="frame" x="156" y="30" width="283" height="116"/>
+                        <rect key="frame" x="156" y="30" width="283" height="80"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4XX-cR-phv" userLabel="namesStck">
                                 <rect key="frame" x="0.0" y="0.0" width="283" height="37.5"/>
@@ -57,30 +56,11 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="KBp-BG-bBh" userLabel="descriptStack">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="KBp-BG-bBh" userLabel="descriptStack">
                                 <rect key="frame" x="10" y="45.5" width="263" height="57"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="kqY-zj-a3G" userLabel="genre stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="124" height="13"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre:" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eb4-GE-7Ku" userLabel="genrelabel">
-                                                <rect key="frame" x="0.0" y="0.0" width="60" height="13"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="ABeeZee-Italic" family="ABeeZee" pointSize="16"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <size key="shadowOffset" width="0.0" height="0.0"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comedy" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P3J-bK-x58">
-                                                <rect key="frame" x="64" y="0.0" width="60" height="13"/>
-                                                <fontDescription key="fontDescription" name="ABeeZee-Italic" family="ABeeZee" pointSize="16"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="9Jl-d6-B09" userLabel="release stack">
-                                        <rect key="frame" x="0.0" y="16" width="103.5" height="19"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="103.5" height="19"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nve-C2-Rzp" userLabel="release">
                                                 <rect key="frame" x="0.0" y="0.0" width="61" height="19"/>
@@ -128,12 +108,12 @@
                             <constraint firstItem="KBp-BG-bBh" firstAttribute="top" secondItem="4XX-cR-phv" secondAttribute="bottom" constant="8" id="aWv-oi-RSu"/>
                             <constraint firstItem="4XX-cR-phv" firstAttribute="leading" secondItem="SFd-ru-ob9" secondAttribute="leading" id="doX-ms-pqr"/>
                             <constraint firstAttribute="trailing" secondItem="4XX-cR-phv" secondAttribute="trailing" id="fSf-Kb-fYV"/>
-                            <constraint firstAttribute="height" constant="116" id="h5c-g8-Xfx"/>
+                            <constraint firstAttribute="height" constant="80" id="h5c-g8-Xfx"/>
                             <constraint firstItem="KBp-BG-bBh" firstAttribute="leading" secondItem="SFd-ru-ob9" secondAttribute="leading" constant="10" id="xQ1-2U-a44"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqb-jV-O8B">
-                        <rect key="frame" x="156" y="154" width="283" height="66"/>
+                        <rect key="frame" x="156" y="118" width="283" height="102"/>
                         <fontDescription key="fontDescription" name="Abel-Regular" family="Abel" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -154,7 +134,6 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="backgroundImage" destination="wmD-7c-lNP" id="mfT-UU-SJb"/>
-                <outlet property="genre" destination="P3J-bK-x58" id="m0s-bf-tDR"/>
                 <outlet property="itemName" destination="MYr-ij-BWL" id="pGd-fE-JT4"/>
                 <outlet property="mediaImage" destination="TNg-IX-2q9" id="I3S-d9-NtV"/>
                 <outlet property="originalName" destination="dcm-Ux-P5M" id="5cs-mz-RGy"/>

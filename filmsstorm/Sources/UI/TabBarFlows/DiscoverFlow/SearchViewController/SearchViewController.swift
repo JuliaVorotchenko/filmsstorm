@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController<T: SearchPresenter>: UIViewController, Controller, ActivityViewPresenter, UISearchBarDelegate, UICollectionViewDelegate {
+class SearchViewController<T: SearchPresenter>: UIViewController, Controller, UISearchBarDelegate, UICollectionViewDelegate {
     
     // MARK: - Subtypes
     
@@ -21,7 +21,6 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     
     // MARK: - Private Properties
     
-    let loadingView = ActivityView()
     let presenter: Service
     private var items = [DiscoverCellModel]()
     private lazy var dataSource = self.createDataSource()
@@ -30,7 +29,6 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, Ac
     // MARK: - Init and deinit
     
     deinit {
-        self.hideActivity()
         self.segmentedControlObserver?.invalidate()
         F.Log(F.toString(Self.self))
     }

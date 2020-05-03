@@ -16,7 +16,6 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var mediaImage: LoadingImageView!
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var originalName: UILabel!
-    @IBOutlet weak var genre: UILabel!
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var overview: UILabel!
@@ -38,10 +37,9 @@ class ListTableViewCell: UITableViewCell {
 
     public func fill(with model: DiscoverCellModel?) {
         self.backgroundImage.loadImage(from: model?.backgroundImage)
-        self.mediaImage.loadImage(from:  model?.posterImage)
+        self.mediaImage.loadImage(from: model?.posterImage)
         self.itemName.text = model?.name
         self.originalName.text = model?.originalName
-        self.genre.text = ""
         self.releaseDate.text = model?.releaseDate
         self.rating.text = model?.voteAverage.map { "\($0)" }
         self.overview.text = model?.overview

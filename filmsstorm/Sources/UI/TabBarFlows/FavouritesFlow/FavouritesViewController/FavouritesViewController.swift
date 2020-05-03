@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Controller, ActivityViewPresenter, UICollectionViewDelegate {
+class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Controller, UICollectionViewDelegate {
     
     // MARK: - Subtypes
     
@@ -28,15 +28,14 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     
     enum FavoritesContainer: Hashable {
         case media(DiscoverCellModel)
-        case moviesWatchlistLabel([DiscoverCellModel])
-        case showsWatchlistLabel([DiscoverCellModel])
-        case favoriteMoviesLabel([DiscoverCellModel])
-        case favoriteShowsLabel([DiscoverCellModel])
+        case moviesWatchlistLabel
+        case showsWatchlistLabel
+        case favoriteMoviesLabel
+        case favoriteShowsLabel
     }
     
     // MARK: - Properties
     
-    let loadingView = ActivityView()
     let presenter: T
     
     private lazy var dataSource = self.createDataSource()
@@ -44,7 +43,6 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     // MARK: - Init and deinit
     
     deinit {
-        self.hideActivity()
         F.Log(F.toString(Self.self))
     }
     
@@ -65,12 +63,13 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
+        super.viewWillAppear(animated)
         self.getMoviesWatchlist()
+        self.updateListsLabels()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(false)
+        super.viewWillDisappear(animated)
         self.clearDataSource()
     }
     
@@ -79,7 +78,6 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     private func getMoviesWatchlist() {
         self.presenter.getMoviesWatchlist {  [weak self] model in
             self?.update(for: .moviesWatchlist, with: model.map(FavoritesContainer.media))
-            self?.update(for: .moviesWatchlistLabel, with: [FavoritesContainer.moviesWatchlistLabel(model)])
             self?.getShowsWatchlist()
         }
     }
@@ -87,7 +85,6 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     private func getShowsWatchlist() {
         self.presenter.getShowsWatchList {  [weak self] model in
             self?.update(for: .showsWatchlist, with: model.map(FavoritesContainer.media))
-            self?.update(for: .showsWatchlistLabel, with: [FavoritesContainer.showsWatchlistLabel(model)])
             self?.getFavoriteMovies()
         }
     }
@@ -95,7 +92,6 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     private func getFavoriteMovies() {
         self.presenter.getFavoriteMovies {  [weak self] model in
             self?.update(for: .favoriteMovies, with: model.map(FavoritesContainer.media))
-            self?.update(for: .favoriteMoviesLabel, with: [FavoritesContainer.favoriteMoviesLabel(model)])
             self?.getFavoriteShows()
         }
     }
@@ -103,10 +99,9 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     private func getFavoriteShows() {
         self.presenter.getFavoriteShows {  [weak self] model in
             self?.update(for: .favoriteShows, with: model.map(FavoritesContainer.media))
-            self?.update(for: .favoriteShowsLabel, with: [FavoritesContainer.favoriteShowsLabel(model)])
         }
     }
-        
+    
     // MARK: - Private Methods for CollectionView
     
     private func setCollectionView() {
@@ -123,6 +118,13 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
         snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
     }
     
+    private func updateListsLabels() {
+        self.update(for: .favoriteMoviesLabel, with: [FavoritesContainer.favoriteMoviesLabel])
+        self.update(for: .favoriteShowsLabel, with: [FavoritesContainer.favoriteShowsLabel])
+        self.update(for: .moviesWatchlistLabel, with: [FavoritesContainer.moviesWatchlistLabel])
+        self.update(for: .showsWatchlistLabel, with: [FavoritesContainer.showsWatchlistLabel])
+    }
+
     private func clearDataSource() {
         let items = [FavoritesContainer]()
         var snapshot = NSDiffableDataSourceSnapshot<Section, FavoritesContainer>()
@@ -177,16 +179,15 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = self.dataSource?.itemIdentifier(for: indexPath)
-       
+        let presenter = self.presenter
         model.map {
             switch $0 {
-            case .media(let model):
-                self.presenter.onMedia(item: model)
-            case .favoriteMoviesLabel(let models),
-                 .favoriteShowsLabel(let models),
-                 .moviesWatchlistLabel(let models),
-                 .showsWatchlistLabel(let models):
-                self.presenter.onList(models: models)
+            case .media(let model): presenter.onMedia(item: model)
+            case .favoriteMoviesLabel: presenter.onFavoriteMovies()
+            case .favoriteShowsLabel: presenter.onFavoriteSHows()
+            case .moviesWatchlistLabel: presenter.onMoviesWatchList()
+            case .showsWatchlistLabel: presenter.onShowsWatchlist()
+                
             }
         }
     }
