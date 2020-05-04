@@ -130,6 +130,7 @@
 		CD46F68D2443787F0069E29B /* ActorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD46F68B2443787F0069E29B /* ActorViewController.xib */; };
 		CD46F68F244378AE0069E29B /* ActorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46F68E244378AE0069E29B /* ActorView.swift */; };
 		CD46F691244378C80069E29B /* ActorsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46F690244378C80069E29B /* ActorsViewPresenter.swift */; };
+		CD48E11024600631003E12CE /* UITextField+SetIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD48E10F24600631003E12CE /* UITextField+SetIcon.swift */; };
 		CD4921CB243B490900511CB1 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4921CA243B490900511CB1 /* UserDefaultsStorage.swift */; };
 		CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD499B6223E4715D00BF0545 /* TabBarContainer.swift */; };
 		CD4AE3B6240E787C00ACC0E3 /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */; };
@@ -360,6 +361,7 @@
 		CD46F68B2443787F0069E29B /* ActorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActorViewController.xib; sourceTree = "<group>"; };
 		CD46F68E244378AE0069E29B /* ActorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorView.swift; sourceTree = "<group>"; };
 		CD46F690244378C80069E29B /* ActorsViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorsViewPresenter.swift; sourceTree = "<group>"; };
+		CD48E10F24600631003E12CE /* UITextField+SetIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+SetIcon.swift"; sourceTree = "<group>"; };
 		CD4921CA243B490900511CB1 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		CD499B6223E4715D00BF0545 /* TabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
 		CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
@@ -519,6 +521,7 @@
 				CD38EFED240EFD9300F93536 /* UIView+PerformAnimation.swift */,
 				CD38EFEF240EFDB000F93536 /* UIView+RoundedCorners.swift */,
 				CD38EFF1240EFDEB00F93536 /* UIView+Shadow.swift */,
+				CD48E10F24600631003E12CE /* UITextField+SetIcon.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1682,6 +1685,7 @@
 				CDBBECE5245C916F00B165B2 /* FavoriteShowsPresenter.swift in Sources */,
 				CD38AD9823F0A096005DC50B /* AboutView.swift in Sources */,
 				2E289CDF23E8DFCA001917DB /* PeopleEndPointt.swift in Sources */,
+				CD48E11024600631003E12CE /* UITextField+SetIcon.swift in Sources */,
 				2E289CB723E8DED4001917DB /* RequestToken.swift in Sources */,
 				CD38EFEC240EFD6F00F93536 /* UIView+Keyboard.swift in Sources */,
 				2E289CDB23E8DFCA001917DB /* JSONParameterEncoder.swift in Sources */,
