@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, Controller, ActivityViewPresenter {
     
@@ -18,6 +20,9 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     // MARK: - Properties
     
     let loadingView: ActivityView = .init()
+ 
+    private let loginViewModel = LoginViewModel()
+    private let disposeBag = DisposeBag()
     
     // MARK: - Private properties
     
@@ -40,14 +45,37 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
         fatalError("init(coder:) has not been implemented")
     }
     
+     // MARK: - VC lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.rootView?.usernameTextField?.becomeFirstResponder()
+
+        
+        self.rootView?.usernameTextField?.rx.text
+            .map { $0 ?? "" }
+            .bind(to: self.loginViewModel.usernameTextPublSubj)
+            .disposed(by: self.disposeBag)
+        
+        self.rootView?.passwordTextField?.rx.text
+            .map { $0 ?? "" }
+            .bind(to: self.loginViewModel.passwordTextPublSubj)
+            .disposed(by: self.disposeBag)
+        
+        self.loginViewModel.isValid().bind(to: (self.rootView?.loginButton?.rx.isEnabled)!).disposed(by: self.disposeBag)
+        self.loginViewModel.isValid().map { $0 ? 1 : 0.1}.bind(to: (self.rootView?.loginButton?.rx.alpha)!).disposed(by: disposeBag)
+        
+    }
+    
     // MARK: - IBAction
     
     @IBAction func buttonTapped(_ sender: Any) {
         guard let username = self.rootView?.usernameTextField?.text,
             let password = self.rootView?.passwordTextField?.text  else { return }
+        
         self.presenter.getToken(username: username, password: password)
     }
-    
+
     // MARK: - Private methods
     
     private func configureActivity(_ activity: ActivityState) {
@@ -64,3 +92,5 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     }
     
 }
+
+

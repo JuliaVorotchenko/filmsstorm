@@ -8,6 +8,8 @@ target 'filmsstorm' do
   pod 'SwiftLint'
   pod "YoutubePlayer-in-WKWebView", "~> 0.2.0"
   pod 'KeychainSwift', '~> 19.0'
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
 
   target 'filmsstormTests' do
     inherit! :search_paths

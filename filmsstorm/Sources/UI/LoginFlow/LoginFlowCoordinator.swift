@@ -18,6 +18,7 @@ class LoginFlowCoordinator: Coordinator {
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
+    
     deinit {
        F.Log(F.toString(Self.self))
     }

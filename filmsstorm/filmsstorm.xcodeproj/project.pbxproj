@@ -205,6 +205,8 @@
 		CDE0AF75240BA98F008D610F /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF74240BA98F008D610F /* SearchModel.swift */; };
 		CDE0AF77240D6BFB008D610F /* DiscoverCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF76240D6BFB008D610F /* DiscoverCellModel.swift */; };
 		CDE0AF7A240D7522008D610F /* CollectionLayoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0AF79240D7522008D610F /* CollectionLayoutFactory.swift */; };
+		CDEF8BE02460550D00EC58AC /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEF8BDF2460550D00EC58AC /* Validator.swift */; };
+		CDEF8BE2246095F200EC58AC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEF8BE1246095F200EC58AC /* LoginViewModel.swift */; };
 		CDFDCC2624424ECC00D89B3E /* SuccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDCC2524424ECC00D89B3E /* SuccessModel.swift */; };
 		EF69E43B310A0AD220DE1C48 /* Pods_filmsstormTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3AA44BFE965E894CADF19A /* Pods_filmsstormTests.framework */; };
 /* End PBXBuildFile section */
@@ -438,6 +440,8 @@
 		CDE0AF74240BA98F008D610F /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		CDE0AF76240D6BFB008D610F /* DiscoverCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCellModel.swift; sourceTree = "<group>"; };
 		CDE0AF79240D7522008D610F /* CollectionLayoutFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLayoutFactory.swift; sourceTree = "<group>"; };
+		CDEF8BDF2460550D00EC58AC /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		CDEF8BE1246095F200EC58AC /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CDFDCC2524424ECC00D89B3E /* SuccessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessModel.swift; sourceTree = "<group>"; };
 		EA79238A8EC29AB9C6DB940C /* Pods-filmsstormTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstormTests.release.xcconfig"; path = "Target Support Files/Pods-filmsstormTests/Pods-filmsstormTests.release.xcconfig"; sourceTree = "<group>"; };
 		F49330B6ECFAEA477A36F2CE /* Pods-filmsstorm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-filmsstorm.release.xcconfig"; path = "Target Support Files/Pods-filmsstorm/Pods-filmsstorm.release.xcconfig"; sourceTree = "<group>"; };
@@ -475,6 +479,8 @@
 			isa = PBXGroup;
 			children = (
 				CDB8792323B93C240099F946 /* LoginFlowCoordinator.swift */,
+				CDEF8BDF2460550D00EC58AC /* Validator.swift */,
+				CDEF8BE1246095F200EC58AC /* LoginViewModel.swift */,
 				CDB8791223B9001B0099F946 /* AuthorizationViewController */,
 			);
 			path = LoginFlow;
@@ -1607,6 +1613,7 @@
 				CDE0AF75240BA98F008D610F /* SearchModel.swift in Sources */,
 				CD0CDA7A23C3E797002EC487 /* Coordinator.swift in Sources */,
 				CD0D2A802417E93C00722181 /* MediaItemImageCell.swift in Sources */,
+				CDEF8BE02460550D00EC58AC /* Validator.swift in Sources */,
 				CDE0809B24110E2D00B9A53F /* FavoritesWatchlistShows.swift in Sources */,
 				CD8C9558245AC34800B2DAF1 /* ListViewController.swift in Sources */,
 				CD0D2A842417E9A200722181 /* ItemDescriptionViewCell.swift in Sources */,
@@ -1642,6 +1649,7 @@
 				CD0D2A922418074800722181 /* ShowDetailsModel.swift in Sources */,
 				CD81EEEC242A26FE00334BD7 /* ShowCreditsModel.swift in Sources */,
 				2E289CB323E8DED4001917DB /* SessionID.swift in Sources */,
+				CDEF8BE2246095F200EC58AC /* LoginViewModel.swift in Sources */,
 				CD4B3D562402ED3900F3FCF6 /* AboutPresenter.swift in Sources */,
 				CD38EFDC240EFA8400F93536 /* UIImage+CALayer.swift in Sources */,
 				CDD5914823FDD3F400DBA664 /* NibDesignable.swift in Sources */,
