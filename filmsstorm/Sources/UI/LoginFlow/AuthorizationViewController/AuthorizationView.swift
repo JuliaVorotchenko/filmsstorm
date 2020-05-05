@@ -21,8 +21,10 @@ class AuthorizationView: UIView {
     }
     
     private func setUI() {
-        self.usernameTextField?.setIcon(UIImage(named: "usernameIcon")!)
-        self.passwordTextField?.setIcon(UIImage(named: "passwordIcon")!)
+        guard let usernameIcon = UIImage(named: "usernameIcon") else { return }
+        guard let passwordIcon = UIImage(named: "passwordIcon") else { return }
+        self.usernameTextField?.setIcon(usernameIcon)
+        self.passwordTextField?.setIcon(passwordIcon)
         self.loginButton?.addShadow()
         self.signUpButon?.addShadow()
     }

@@ -78,3 +78,19 @@ final class UserShowsContainer {
         self.favoritesIDs = []
     }
 }
+
+final class ImageQualitySettingContainer {
+    
+     // MARK: - Subtypes
+    
+    private enum UserDefaultsKey: String {
+        case imageQualityIsHigh
+    }
+    
+    @UserDefaultsStorage(key: UserDefaultsKey.imageQualityIsHigh.rawValue, value: false)
+    static var imageQualityIsHigh: Bool
+    
+    static func unregister() {
+        self.imageQualityIsHigh = false
+    }
+}

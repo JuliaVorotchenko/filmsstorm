@@ -17,10 +17,21 @@ protocol ImageLoadingService {
 }
 
 enum Path: String {
-    case mainPath = "https://image.tmdb.org/t/p/w500"
+    static var qualityPath: String {
+        if ImageQualitySettingContainer.imageQualityIsHigh {
+            return "https://image.tmdb.org/t/p/w500"
+        } else {
+            return "https://image.tmdb.org/t/p/w185"
+        }
+    }
+
+    case highQualityPath = "https://image.tmdb.org/t/p/w500"
+    case middleQualityPath = "https://image.tmdb.org/t/p/w185"
     case gravatar = "https://www.gravatar.com/avatar/"
     case youtube = "https://www.youtube.com/embed/"
 }
+
+
 
 class ImageLoadingServiceImpl: ImageLoadingService {
     

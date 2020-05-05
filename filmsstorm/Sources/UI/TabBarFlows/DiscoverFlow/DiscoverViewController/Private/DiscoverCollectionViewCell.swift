@@ -32,7 +32,7 @@ class DiscoverCollectionViewCell: UICollectionViewCell {
     // MARK: - Public Methods
     
     public func fill(with model: DiscoverCellModel?) {
-        self.imageView?.loadImage(from: model?.posterImage)
+        self.imageView?.loadImage(from: model?.posterImage, mainPath: Path(rawValue: Path.qualityPath))
     }
     
     // MARK: - Private Methods

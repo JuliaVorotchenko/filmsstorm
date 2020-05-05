@@ -74,8 +74,8 @@ class ItemDescriptionViewCell: UICollectionViewCell {
         self.listIsTapped = detailsModel?.isWatchListed ?? false
         self.likeButton?.backgroundColor = detailsModel?.isLiked == true ? .green : .clear
         self.listButton?.backgroundColor = detailsModel?.isWatchListed == true ? .green : .clear
-        self.itemImage?.loadImage(from: detailsModel?.posterImage)
-        self.backgroundImage?.loadImage(from: detailsModel?.backgroundImage)
+        self.itemImage?.loadImage(from: detailsModel?.posterImage, mainPath: Path(rawValue: Path.qualityPath))
+        self.backgroundImage?.loadImage(from: detailsModel?.backgroundImage, mainPath: Path(rawValue: Path.qualityPath))
         self.itemName?.text = detailsModel?.name
         self.originalName?.text = detailsModel?.originalName
         self.genreLabel?.text = detailsModel?.genre.map { $0.name }.shuffled().prefix(2).joined(separator: ", ")

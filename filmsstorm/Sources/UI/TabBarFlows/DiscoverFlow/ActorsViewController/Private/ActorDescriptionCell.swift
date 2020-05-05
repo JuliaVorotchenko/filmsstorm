@@ -20,8 +20,8 @@ class ActorDescriptionCell: UICollectionViewCell {
     func fill(with model: ActorDetailsModel) {
         guard let birthday = model.birthday, let age = self.age(dateString: birthday)  else { return }
         
-        self.backgroundImage.loadImage(from: model.profilePath)
-        self.actorImage.loadImage(from: model.profilePath)
+        self.backgroundImage.loadImage(from: model.profilePath, mainPath: Path(rawValue: Path.qualityPath))
+        self.actorImage.loadImage(from: model.profilePath, mainPath: Path(rawValue: Path.qualityPath))
         self.actorNameLabel.text = model.name
         self.birthDate.text = self.formatDate(dateString: birthday)
         self.birthPlace.text = model.birthPlace
