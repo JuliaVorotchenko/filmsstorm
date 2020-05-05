@@ -20,7 +20,7 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     // MARK: - Properties
     
     let loadingView: ActivityView = .init()
- 
+    
     private let loginViewModel = LoginViewModel()
     private let disposeBag = DisposeBag()
     
@@ -45,26 +45,12 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
         fatalError("init(coder:) has not been implemented")
     }
     
-     // MARK: - VC lifecycle
+    // MARK: - VC lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rootView?.usernameTextField?.becomeFirstResponder()
-
-        
-        self.rootView?.usernameTextField?.rx.text
-            .map { $0 ?? "" }
-            .bind(to: self.loginViewModel.usernameTextPublSubj)
-            .disposed(by: self.disposeBag)
-        
-        self.rootView?.passwordTextField?.rx.text
-            .map { $0 ?? "" }
-            .bind(to: self.loginViewModel.passwordTextPublSubj)
-            .disposed(by: self.disposeBag)
-        
-        self.loginViewModel.isValid().bind(to: (self.rootView?.loginButton?.rx.isEnabled)!).disposed(by: self.disposeBag)
-        self.loginViewModel.isValid().map { $0 ? 1 : 0.1}.bind(to: (self.rootView?.loginButton?.rx.alpha)!).disposed(by: disposeBag)
-        
+        self.setBindings()
     }
     
     // MARK: - IBAction
@@ -75,8 +61,25 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
         
         self.presenter.getToken(username: username, password: password)
     }
-
+    
     // MARK: - Private methods
+    
+    private func setBindings() {
+        self.rootView?.usernameTextField?.rx.text
+            .map { $0 ?? "" }
+            .bind(to: self.loginViewModel.usernameTextPublSubj)
+            .disposed(by: self.disposeBag)
+        
+        self.rootView?.passwordTextField?.rx.text
+            .map { $0 ?? "" }
+            .bind(to: self.loginViewModel.passwordTextPublSubj)
+            .disposed(by: self.disposeBag)
+        
+        guard let alfa = self.rootView?.loginButton?.rx.alpha else { return }
+        guard let isEnabled = self.rootView?.loginButton?.rx.isEnabled else { return }
+        self.loginViewModel.isValid().bind(to: (isEnabled)).disposed(by: self.disposeBag)
+        self.loginViewModel.isValid().map { $0 ? 1 : 0.3}.bind(to: (alfa)).disposed(by: disposeBag)
+    }
     
     private func configureActivity(_ activity: ActivityState) {
         switch activity {
@@ -90,7 +93,4 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     private func setupActivity(with presenter: Service) {
         presenter.showActivity = { [weak self] in self?.configureActivity($0)}
     }
-    
 }
-
-
