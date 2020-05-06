@@ -17,11 +17,12 @@ protocol ImageLoadingService {
 }
 
 enum Path: String {
-    static var qualityPath: String {
+    
+    static var mainPath: String {
         if ImageQualitySettingContainer.imageQualityIsHigh {
-            return "https://image.tmdb.org/t/p/w500"
+            return self.highQualityPath.rawValue
         } else {
-            return "https://image.tmdb.org/t/p/w185"
+            return self.middleQualityPath.rawValue
         }
     }
 

@@ -36,8 +36,8 @@ class ListTableViewCell: UITableViewCell {
     // MARK: - Methods
 
     public func fill(with model: DiscoverCellModel?) {
-        self.backgroundImage.loadImage(from: model?.backgroundImage, mainPath: Path(rawValue: Path.qualityPath))
-        self.mediaImage.loadImage(from: model?.posterImage, mainPath: Path(rawValue: Path.qualityPath))
+        self.backgroundImage.loadImage(from: model?.backgroundImage, mainPath: Path(rawValue: Path.mainPath))
+        self.mediaImage.loadImage(from: model?.posterImage, mainPath: Path(rawValue: Path.mainPath))
         self.itemName.text = model?.name
         self.originalName.text = model?.originalName
         self.releaseDate.text = model?.releaseDate
