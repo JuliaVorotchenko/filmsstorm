@@ -32,8 +32,6 @@ enum Path: String {
     case youtube = "https://www.youtube.com/embed/"
 }
 
-
-
 class ImageLoadingServiceImpl: ImageLoadingService {
     
     // MARK: - Private properties
