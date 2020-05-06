@@ -9,7 +9,19 @@
 import UIKit
 
 class QualitySettingViewCell: UITableViewCell {
-    
     @IBOutlet weak var imageQualityLabel: UILabel?
     @IBOutlet weak var setQuality: UISwitch?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.setQuality?.addTarget(self, action: #selector(stateChanged), for: .valueChanged)
+    }
+    
+    @objc func stateChanged(switchState: UISwitch) {
+        if switchState.isOn {
+            ImageQualitySettingContainer.imageQualityIsHigh = true
+        } else {
+            ImageQualitySettingContainer.imageQualityIsHigh = false
+        }
+    }
 }

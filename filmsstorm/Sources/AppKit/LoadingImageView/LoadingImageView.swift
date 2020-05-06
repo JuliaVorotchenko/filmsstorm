@@ -11,13 +11,13 @@ import UIKit
 class LoadingImageView: UIImageView, ActivityViewPresenter {
     private let loadingService: ImageLoadingService = ImageLoadingServiceImpl()
     let loadingView = ActivityView()
-    
     deinit {
         self.cancelLoading()
     }
     
-    func loadImage(from urlString: String?, mainPath: Path = .mainPath) {
+    func loadImage(from urlString: String?, mainPath: Path?) {
         self.showActivity()
+        guard let mainPath = mainPath else { return }
         self.loadingService.loadImage(from: urlString, mainPath: mainPath) { [weak self] result in
             switch result {
             case .success(let image):

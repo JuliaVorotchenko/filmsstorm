@@ -19,11 +19,11 @@ class MediaItemImageCell: UICollectionViewCell {
     
     func similarsFill(model: DiscoverCellModel) {
         let path = model.posterImage
-        self.itemImage?.loadImage(from: path, mainPath: .mainPath)
+        self.itemImage?.loadImage(from: path, mainPath: Path(rawValue: Path.mainPath))
     }
     
     func actorsFill(model: ActorModel) {
         let path = model.actorImage
-        self.itemImage?.loadImage(from: path)
+        self.itemImage?.loadImage(from: path, mainPath: Path(rawValue: Path.mainPath))
     }
 }
