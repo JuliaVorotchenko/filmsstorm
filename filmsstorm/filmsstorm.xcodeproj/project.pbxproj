@@ -122,6 +122,10 @@
 		CD3DEA14241A7BCD0021AEA8 /* Abel-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD3DEA12241A7BCD0021AEA8 /* Abel-Regular.ttf */; };
 		CD3DEA19241A7BDE0021AEA8 /* ABeeZee-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD3DEA16241A7BDE0021AEA8 /* ABeeZee-Italic.ttf */; };
 		CD3DEA1B241A7BDE0021AEA8 /* ABeeZee-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD3DEA18241A7BDE0021AEA8 /* ABeeZee-Regular.ttf */; };
+		CD3E68C624646C9800B2C1EE /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E68C524646C9800B2C1EE /* RegistrationPresenter.swift */; };
+		CD3E68C924646CC400B2C1EE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E68C724646CC400B2C1EE /* RegistrationViewController.swift */; };
+		CD3E68CA24646CC400B2C1EE /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3E68C824646CC400B2C1EE /* RegistrationViewController.xib */; };
+		CD3E68CC24646CDB00B2C1EE /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3E68CB24646CDB00B2C1EE /* RegistrationView.swift */; };
 		CD45172024363D3600AD81F0 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45171E24363D3600AD81F0 /* VideoPlayerViewController.swift */; };
 		CD45172124363D3600AD81F0 /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD45171F24363D3600AD81F0 /* VideoPlayerViewController.xib */; };
 		CD45172424363D8D00AD81F0 /* VideoPlayerViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD45172324363D8D00AD81F0 /* VideoPlayerViewPresenter.swift */; };
@@ -353,6 +357,10 @@
 		CD3DEA12241A7BCD0021AEA8 /* Abel-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Abel-Regular.ttf"; sourceTree = "<group>"; };
 		CD3DEA16241A7BDE0021AEA8 /* ABeeZee-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ABeeZee-Italic.ttf"; sourceTree = "<group>"; };
 		CD3DEA18241A7BDE0021AEA8 /* ABeeZee-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ABeeZee-Regular.ttf"; sourceTree = "<group>"; };
+		CD3E68C524646C9800B2C1EE /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		CD3E68C724646CC400B2C1EE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		CD3E68C824646CC400B2C1EE /* RegistrationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
+		CD3E68CB24646CDB00B2C1EE /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		CD45171E24363D3600AD81F0 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		CD45171F24363D3600AD81F0 /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
 		CD45172324363D8D00AD81F0 /* VideoPlayerViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewPresenter.swift; sourceTree = "<group>"; };
@@ -474,6 +482,7 @@
 		2E289C8823E8C3C9001917DB /* LoginFlow */ = {
 			isa = PBXGroup;
 			children = (
+				CD3E68C424646C6400B2C1EE /* RegistrationViewConroller */,
 				CDB8792323B93C240099F946 /* LoginFlowCoordinator.swift */,
 				CDB8791223B9001B0099F946 /* AuthorizationViewController */,
 			);
@@ -902,6 +911,17 @@
 				CD3DEA18241A7BDE0021AEA8 /* ABeeZee-Regular.ttf */,
 			);
 			path = ABeeZee;
+			sourceTree = "<group>";
+		};
+		CD3E68C424646C6400B2C1EE /* RegistrationViewConroller */ = {
+			isa = PBXGroup;
+			children = (
+				CD3E68C524646C9800B2C1EE /* RegistrationPresenter.swift */,
+				CD3E68C724646CC400B2C1EE /* RegistrationViewController.swift */,
+				CD3E68C824646CC400B2C1EE /* RegistrationViewController.xib */,
+				CD3E68CB24646CDB00B2C1EE /* RegistrationView.swift */,
+			);
+			path = RegistrationViewConroller;
 			sourceTree = "<group>";
 		};
 		CD45171D24363D0800AD81F0 /* VideoViewController */ = {
@@ -1404,6 +1424,7 @@
 				CD0EF98D23F5F7B1000A3CB4 /* Montserrat-ExtraBold.ttf in Resources */,
 				CD6D46A92443A12F008AE56F /* ActorDescriptionCell.xib in Resources */,
 				CD0D2A7E2417E8F000722181 /* MediaItemImageCell.xib in Resources */,
+				CD3E68CA24646CC400B2C1EE /* RegistrationViewController.xib in Resources */,
 				CD8C9559245AC34800B2DAF1 /* ListViewController.xib in Resources */,
 				2E51663123AFD6CA00EDF51E /* Assets.xcassets in Resources */,
 			);
@@ -1552,6 +1573,7 @@
 			files = (
 				CD2D91BE2405348E001A1445 /* FavouritesPresenter.swift in Sources */,
 				2E289CEA23E8DFCA001917DB /* HTTPTask.swift in Sources */,
+				CD3E68C924646CC400B2C1EE /* RegistrationViewController.swift in Sources */,
 				CD0D2A902418073A00722181 /* MovieSimilarsModel.swift in Sources */,
 				2E289CB523E8DED4001917DB /* UserModel.swift in Sources */,
 				2E289CE523E8DFCA001917DB /* APIEndPoint.swift in Sources */,
@@ -1588,6 +1610,7 @@
 				2E289CE423E8DFCA001917DB /* ReviewEndPoint.swift in Sources */,
 				CD0EF99223F6000D000A3CB4 /* UIColor+Extensions.swift in Sources */,
 				CDB2A388240450DD00D27A9B /* ItemsViewController.swift in Sources */,
+				CD3E68CC24646CDB00B2C1EE /* RegistrationView.swift in Sources */,
 				2E289CE223E8DFCA001917DB /* AuthEndPoint.swift in Sources */,
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
 				CD45172024363D3600AD81F0 /* VideoPlayerViewController.swift in Sources */,
@@ -1674,6 +1697,7 @@
 				CDFDCC2624424ECC00D89B3E /* SuccessModel.swift in Sources */,
 				2E289C9223E8DE84001917DB /* DiscoverViewController.swift in Sources */,
 				CD2D91BC2405347B001A1445 /* FavouritesViewController.swift in Sources */,
+				CD3E68C624646C9800B2C1EE /* RegistrationPresenter.swift in Sources */,
 				CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */,
 				CD81EEEE242A33B400334BD7 /* ActorModel.swift in Sources */,
 				CDB2A3922404532600D27A9B /* ShowsPresenter.swift in Sources */,

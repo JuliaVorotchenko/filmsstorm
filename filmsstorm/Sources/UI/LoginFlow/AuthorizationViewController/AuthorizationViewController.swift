@@ -18,9 +18,6 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     // MARK: - Properties
     
     let loadingView: ActivityView = .init()
-    
-    // MARK: - Private properties
-    
     let presenter: Service
     
     // MARK: - Init and deinit
@@ -47,6 +44,9 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
             let password = self.rootView?.passwordTextField?.text  else { return }
         self.presenter.getToken(username: username, password: password)
     }
+    
+    @IBAction func signUpButtonTapped(_ sender: UIButton) {
+        self.presenter.onSignUp()    }
     
     // MARK: - Private methods
     

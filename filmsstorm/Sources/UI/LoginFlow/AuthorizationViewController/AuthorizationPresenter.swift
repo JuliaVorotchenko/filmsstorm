@@ -8,12 +8,14 @@
 
 enum AuthEvent: EventProtocol {
     case login
+    case signUp
     case error(AppError)
 }
 
 protocol AuthorizationPresenter: Presenter {
     var showActivity: ((ActivityState) -> Void)? { get set }
     func getToken(username: String, password: String)
+    func onSignUp()
 }
 
 class AuthorizationPresenterImpl: AuthorizationPresenter {
@@ -44,6 +46,10 @@ class AuthorizationPresenterImpl: AuthorizationPresenter {
                 self?.eventHandler?(.error(.networkingError(error)))
             }
         }
+    }
+    
+    func onSignUp() {
+        self.eventHandler?(.signUp)
     }
     
     // MARK: - Private methods
