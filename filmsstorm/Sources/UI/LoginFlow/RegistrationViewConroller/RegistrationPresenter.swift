@@ -15,7 +15,7 @@ enum RegistrationEvent: EventProtocol {
 
 protocol RegistrationPresenter: Presenter {
     var showActivity: Handler<ActivityState>? { get set }
-    
+    func onBack()
 }
 
 class RegistrationPresenterImpl: RegistrationPresenter {
@@ -34,4 +34,8 @@ class RegistrationPresenterImpl: RegistrationPresenter {
     }
     
     // MARK: - Public Methods
+    
+    func onBack() {
+        self.eventHandler?(.back)
+    }
 }

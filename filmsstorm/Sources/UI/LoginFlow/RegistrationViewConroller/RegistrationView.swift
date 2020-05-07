@@ -7,9 +7,11 @@
 //
 
 import UIKit
-import WebKit
 
 class RegistrationView: UIView {
-
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
 }
-
