@@ -8,14 +8,12 @@
 
 enum AuthEvent: EventProtocol {
     case login
-    case signUp
     case error(AppError)
 }
 
 protocol AuthorizationPresenter: Presenter {
-    var showActivity: ((ActivityState) -> Void)? { get set }
+    var showActivity: Handler<ActivityState>? { get set }
     func getToken(username: String, password: String)
-    func onSignUp()
 }
 
 class AuthorizationPresenterImpl: AuthorizationPresenter {
@@ -23,12 +21,12 @@ class AuthorizationPresenterImpl: AuthorizationPresenter {
     // MARK: - Private properties
     
     private let networking: NetworkManager
-    let eventHandler: ((AuthEvent) -> Void)?
-    var showActivity: ((ActivityState) -> Void)?
+    let eventHandler: Handler<AuthEvent>?
+    var showActivity: Handler<ActivityState>?
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: ((AuthEvent) -> Void)?) {
+    init(networking: NetworkManager, event: Handler<AuthEvent>?) {
         self.networking = networking
         self.eventHandler = event
     }
@@ -46,10 +44,6 @@ class AuthorizationPresenterImpl: AuthorizationPresenter {
                 self?.eventHandler?(.error(.networkingError(error)))
             }
         }
-    }
-    
-    func onSignUp() {
-        self.eventHandler?(.signUp)
     }
     
     // MARK: - Private methods

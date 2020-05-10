@@ -46,7 +46,16 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
     }
     
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
-        self.presenter.onSignUp()    }
+        self.openSignUpURL()
+        
+    }
+    
+    private func openSignUpURL() {
+        guard let url = NSURL(string: Constants.signUpURL) else {
+            return
+        }
+        UIApplication.shared.open(url as URL)
+    }
     
     // MARK: - Private methods
     

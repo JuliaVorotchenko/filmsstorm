@@ -49,30 +49,11 @@ class LoginFlowCoordinator: Coordinator {
             self.onLogin()
         case .error(let errorMessage):
             self.eventHandler?(.appError(errorMessage))
-        case .signUp:
-            self.createRegistrationViewController()
         }
     }
     
     private func onLogin() {
         self.navigationController.viewControllers.removeAll()
         self.eventHandler?(.mainFlow)
-    }
-    
-    // MARK: - Registration VC
-    
-    private func createRegistrationViewController() {
-        let presenter = RegistrationPresenterImpl(networking: self.networking, event: self.registrationEvent)
-        let controller = RegistrationViewController(presenter)
-        self.navigationController.pushViewController(controller, animated: true)
-    }
-    
-    private func registrationEvent(_ event: RegistrationEvent) {
-        switch event {
-        case .back:
-            self.createAuthController()
-        case .error(let errorMessage):
-             self.eventHandler?(.appError(errorMessage))
-        }
     }
 }
