@@ -15,6 +15,7 @@ struct Constants {
     static let favoriteShows = "Favorite TVShows"
     static let moviesWachlist = "Movie List"
     static let showsWatchlist = "TVShows List"
+    static let signUpURL = "https://www.themoviedb.org/account/signup"
 }
 
 class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller, UICollectionViewDelegate {
