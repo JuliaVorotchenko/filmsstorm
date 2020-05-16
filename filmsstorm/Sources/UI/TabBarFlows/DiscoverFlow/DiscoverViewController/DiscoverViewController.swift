@@ -32,8 +32,7 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     // MARK: - Private properties
     
     let presenter: T
-    private var items = [DiscoverCellModel]()
-    private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
+    let dataSourceProvider = DiscoverViewControllerDataSourceProvider()
     
     // MARK: - Init and deinit
     
@@ -56,20 +55,21 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
         super.viewDidLoad()
         self.setCollectionView()
         self.getPopularMovies()
-        self.createDataSource()
         self.setupHeader()
+        self.dataSourceProvider.createDataSource(rootView: self.rootView)
     }
     
     // MARK: - Private Methods
     
     private func getPopularMovies() {
         self.presenter.getPopularMovies { [weak self] value in
-            self?.items = value.map(DiscoverCellModel.create)
-            self?.createDataSource()
+            self?.dataSourceProvider.items = value.map(DiscoverCellModel.create)
+            self?.dataSourceProvider.createDataSource(rootView: self?.rootView)
         }
     }
     
     private func setCollectionView() {
+        self.rootView?.collectionView.delegate = self
         self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
         let layout = CollectionLayoutFactory.standart()
         self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
@@ -91,36 +91,9 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
             self.presenter.onMovies()
         }
     }
-
-    // MARK: - set diffableDatasource
-    
-    private func createDataSource() {
-        
-        guard let collectionView = self.rootView?.collectionView else { return }
-        
-        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collection, indexPath, item -> UICollectionViewCell? in
-            
-            let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
-            cell.fill(with: item)
-            return cell
-        }
-        let snapshot = self.createSnapshot()
-        self.dataSource?.apply(snapshot)
-        
-    }
-    
-    func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, DiscoverCellModel> {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(self.items)
-       
-        return snapshot
-    }
-    
-    // MARK: - CollectionView Delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = self.items[indexPath.row]
+        let model = self.dataSourceProvider.items[indexPath.row]
         self.presenter.onMedia(item: model)
     }
 }

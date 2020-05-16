@@ -96,59 +96,59 @@ class ActorViewController<T: ActorViewPresenter>: UIViewController, Controller, 
         snapshot?.appendItems(items, toSection: section)
         snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
     }
-    
+
        func createDataSource() -> UICollectionViewDiffableDataSource<Section, ActorContainer>? {
-        
+
         let dataSource: UICollectionViewDiffableDataSource<Section, ActorContainer>? =
             self.rootView?.collectionView
                 .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self]
                     collectionView, indexPath, item -> UICollectionViewCell in
-                    
+
                     switch item {
                     case .actor(let model):
                         let cell: ActorDescriptionCell = collectionView.dequeueReusableCell(ActorDescriptionCell.self,
                                                                                                for: indexPath)
                         cell.fill(with: model)
                         return cell
-                        
+
                     case .actorsMedia(let model):
                         let cell: MediaItemImageCell = collectionView.dequeueReusableCell(MediaItemImageCell.self,
                                                                                           for: indexPath)
                         cell.similarsFill(model: model)
                         return cell
-                        
+
                     }
                     }
-                    
+
         }
         var snapshot = NSDiffableDataSourceSnapshot<Section, ActorContainer>()
         snapshot.appendSections(Section.allCases)
         Section.allCases.forEach { snapshot.appendItems([], toSection: $0)}
-        
+
         dataSource?.supplementaryViewProvider = { [weak self] in self?.supplementaryViewProvider(collectionView: $0,
                                                                                                  kind: $1,
                                                                                                  indexPath: $2) }
         dataSource?.apply(snapshot, animatingDifferences: false)
-        
+
         return dataSource
     }
-    
+
    private func supplementaryViewProvider(collectionView: UICollectionView, kind: String,
                                            indexPath: IndexPath) -> UICollectionReusableView? {
         let header = collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
             withReuseIdentifier: SectionHeaderView.reuseIdentifier,
             for: indexPath) as? SectionHeaderView
-        
+
         switch Section.allCases[indexPath.section] {
         case .actor: break
         case .actorsMedia:
             header?.fill(with: "Actors Movies")
         }
-        
+
         return header
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = self.dataSource?.itemIdentifier(for: indexPath)
         model.map {

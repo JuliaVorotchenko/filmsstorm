@@ -9,6 +9,7 @@
 import UIKit
 
 enum CollectionLayoutFactory {
+   
     static func standart() -> UICollectionViewCompositionalLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.455),
                                               heightDimension: .fractionalHeight(1))
@@ -28,10 +29,12 @@ enum CollectionLayoutFactory {
     }
     
     static func mediaItemImagesSections() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(128), heightDimension: .absolute(190))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(128),
+                                              heightDimension: .absolute(190))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(100000), heightDimension: .estimated(190))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(100000),
+                                               heightDimension: .estimated(190))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = .fixed(17)
         group.edgeSpacing = .init(leading: .fixed(14), top: nil, trailing: nil, bottom: nil)
@@ -40,7 +43,8 @@ enum CollectionLayoutFactory {
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = .init(top: 12, leading: 0, bottom: 16, trailing: 0)
         
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(20))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                heightDimension: .estimated(20))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: F.toString(SectionHeaderView.self), alignment: .top)
@@ -51,10 +55,12 @@ enum CollectionLayoutFactory {
     }
     
     static func mediaItemDescriptionSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(320))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .estimated(320))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(1))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .estimated(1))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
         
         let section = NSCollectionLayoutSection(group: group)
@@ -62,10 +68,12 @@ enum CollectionLayoutFactory {
     }
     
     static func noHeaderMediaImageSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(128), heightDimension: .absolute(190))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(128),
+                                              heightDimension: .absolute(190))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(100000), heightDimension: .estimated(190))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(100000),
+                                               heightDimension: .estimated(190))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = .fixed(17)
         group.edgeSpacing = .init(leading: .fixed(14), top: nil, trailing: nil, bottom: nil)
@@ -78,10 +86,12 @@ enum CollectionLayoutFactory {
     }
     
     static func listTypeSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(15))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .absolute(15))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(1))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .estimated(1))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
         group.edgeSpacing = .init(leading: .fixed(14), top: .fixed(14), trailing: nil, bottom: nil)
        
