@@ -14,31 +14,14 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     
     typealias RootViewType = FavouritesView
     typealias Service = T
-    
-    enum Section: CaseIterable {
-        case moviesWatchlistLabel
-        case moviesWatchlist
-        case showsWatchlistLabel
-        case showsWatchlist
-        case favoriteMoviesLabel
-        case favoriteMovies
-        case favoriteShowsLabel
-        case favoriteShows
-    }
-    
-    enum FavoritesContainer: Hashable {
-        case media(DiscoverCellModel)
-        case moviesWatchlistLabel
-        case showsWatchlistLabel
-        case favoriteMoviesLabel
-        case favoriteShowsLabel
-    }
-    
+        
     // MARK: - Properties
     
     let presenter: T
     
-    private lazy var dataSource = self.createDataSource()
+    private lazy var dataSource = self.dataSourceProvider.createDataSource()
+    
+    let dataSourceProvider = FavoritesViewControllerDataSource()
     
     // MARK: - Init and deinit
     
@@ -60,45 +43,47 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setCollectionView()
+        guard let rootView = self.rootView else { return }
+        self.dataSourceProvider.rootView = rootView
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.getMoviesWatchlist()
-        self.updateListsLabels()
+        self.dataSourceProvider.updateListsLabels()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.clearDataSource()
+        self.dataSourceProvider.clearDataSource()
     }
     
     // MARK: - Private methods to retrieve lists
     
     private func getMoviesWatchlist() {
         self.presenter.getMoviesWatchlist {  [weak self] model in
-            self?.update(for: .moviesWatchlist, with: model.map(FavoritesContainer.media))
+            self?.dataSourceProvider.update(for: .moviesWatchlist, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
             self?.getShowsWatchlist()
         }
     }
     
     private func getShowsWatchlist() {
         self.presenter.getShowsWatchList {  [weak self] model in
-            self?.update(for: .showsWatchlist, with: model.map(FavoritesContainer.media))
+            self?.dataSourceProvider.update(for: .showsWatchlist, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
             self?.getFavoriteMovies()
         }
     }
     
     private func getFavoriteMovies() {
         self.presenter.getFavoriteMovies {  [weak self] model in
-            self?.update(for: .favoriteMovies, with: model.map(FavoritesContainer.media))
+            self?.dataSourceProvider.update(for: .favoriteMovies, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
             self?.getFavoriteShows()
         }
     }
     
     private func getFavoriteShows() {
         self.presenter.getFavoriteShows {  [weak self] model in
-            self?.update(for: .favoriteShows, with: model.map(FavoritesContainer.media))
+            self?.dataSourceProvider.update(for: .favoriteShows, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
         }
     }
     
@@ -112,73 +97,9 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
         collection?.delegate = self
     }
     
-    private func update(for section: Section, with items: [FavoritesContainer]) {
-        var snapshot = self.dataSource?.snapshot()
-        snapshot?.appendItems(items, toSection: section)
-        snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
-    }
-    
-    private func updateListsLabels() {
-        self.update(for: .favoriteMoviesLabel, with: [FavoritesContainer.favoriteMoviesLabel])
-        self.update(for: .favoriteShowsLabel, with: [FavoritesContainer.favoriteShowsLabel])
-        self.update(for: .moviesWatchlistLabel, with: [FavoritesContainer.moviesWatchlistLabel])
-        self.update(for: .showsWatchlistLabel, with: [FavoritesContainer.showsWatchlistLabel])
-    }
 
-    private func clearDataSource() {
-        let items = [FavoritesContainer]()
-        var snapshot = NSDiffableDataSourceSnapshot<Section, FavoritesContainer>()
-        snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(items)
-        self.dataSource?.apply(snapshot, animatingDifferences: false)
-    }
-
-    func createDataSource() -> UICollectionViewDiffableDataSource<Section, FavoritesContainer>? {
-        let dataSource: UICollectionViewDiffableDataSource<Section, FavoritesContainer>? =
-            self.rootView?.collectionView
-                .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) {
-                    [weak self] collectionView, indexPath, item -> UICollectionViewCell in
-                    switch item {
-                        
-                    case .media(let model):
-                        let cell: MediaItemImageCell = collectionView.dequeueReusableCell(MediaItemImageCell.self, for: indexPath)
-                        cell.similarsFill(model: model)
-                        return cell
-                        
-                    case .moviesWatchlistLabel:
-                        let cell: ListTypeCell = collectionView.dequeueReusableCell(ListTypeCell.self, for: indexPath)
-                        cell.fill(listType: "Movie List")
-                        return cell
-                        
-                    case .showsWatchlistLabel:
-                        let cell: ListTypeCell = collectionView.dequeueReusableCell(ListTypeCell.self, for: indexPath)
-                        cell.fill(listType: "TV List")
-                        return cell
-                        
-                    case .favoriteMoviesLabel:
-                        let cell: ListTypeCell = collectionView.dequeueReusableCell(ListTypeCell.self, for: indexPath)
-                        cell.fill(listType: "Favorite Movies")
-                        return cell
-                        
-                    case .favoriteShowsLabel:
-                        let cell: ListTypeCell = collectionView.dequeueReusableCell(ListTypeCell.self, for: indexPath)
-                        cell.fill(listType: "Favorite Shows")
-                        return cell
-                    }
-                    }
-                    
-        }
-        var snapshot = NSDiffableDataSourceSnapshot<Section, FavoritesContainer>()
-        snapshot.appendSections(Section.allCases)
-        Section.allCases.forEach { snapshot.appendItems([], toSection: $0)}
-        
-        dataSource?.apply(snapshot, animatingDifferences: false)
-        
-        return dataSource
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = self.dataSource?.itemIdentifier(for: indexPath)
+        let model = self.dataSourceProvider.dataSource?.itemIdentifier(for: indexPath)
         let presenter = self.presenter
         model.map {
             switch $0 {
@@ -196,7 +117,7 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     
     func createCompositionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
-            let section = Section.allCases[sectionIndex]
+            let section = FavoritesViewControllerDataSource.Section.allCases[sectionIndex]
             switch section {
             case .moviesWatchlistLabel, .showsWatchlistLabel, .favoriteMoviesLabel, .favoriteShowsLabel:
                 return CollectionLayoutFactory.listTypeSection()

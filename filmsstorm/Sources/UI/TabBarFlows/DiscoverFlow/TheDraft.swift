@@ -8,14 +8,14 @@
 
 import UIKit
 
-class DiscoverViewControllerDataSourceProvider: NSObject, UICollectionViewDelegate {
+class DiscoverViewControllerDataSourceProvider: NSObject {
     
-    enum Section: CaseIterable {
+    private enum Section: CaseIterable {
         case  main
     }
     
     var items = [DiscoverCellModel]()
-    var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
+    private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
     
     func createDataSource(rootView: DiscoverView?) {
         
@@ -32,7 +32,7 @@ class DiscoverViewControllerDataSourceProvider: NSObject, UICollectionViewDelega
         
     }
     
-    func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, DiscoverCellModel> {
+    private func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, DiscoverCellModel> {
         var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(self.items)
