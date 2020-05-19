@@ -85,7 +85,7 @@
 		CD0EF99223F6000D000A3CB4 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0EF99123F6000D000A3CB4 /* UIColor+Extensions.swift */; };
 		CD0EF99423F60B9B000A3CB4 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0EF99323F60B9B000A3CB4 /* Colors.xcassets */; };
 		CD0F668923F9DF46003DEE13 /* KeysManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0F668823F9DF46003DEE13 /* KeysManager.swift */; };
-		CD12C28A246EA58700295CA6 /* TheDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD12C289246EA58700295CA6 /* TheDraft.swift */; };
+		CD12C28A246EA58700295CA6 /* DiscoverViewControllerDataSourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD12C289246EA58700295CA6 /* DiscoverViewControllerDataSourceProvider.swift */; };
 		CD2D91B824053442001A1445 /* FavouritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2D91B724053442001A1445 /* FavouritesViewController.xib */; };
 		CD2D91BA24053457001A1445 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D91B924053457001A1445 /* FavouritesView.swift */; };
 		CD2D91BC2405347B001A1445 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D91BB2405347B001A1445 /* FavouritesViewController.swift */; };
@@ -136,6 +136,7 @@
 		CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD499B6223E4715D00BF0545 /* TabBarContainer.swift */; };
 		CD4AE3B6240E787C00ACC0E3 /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */; };
 		CD4B2C4D2472B6BE0025D14C /* FavoritesViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B2C4C2472B6BE0025D14C /* FavoritesViewControllerDataSource.swift */; };
+		CD4B2C4F24730B200025D14C /* ListViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B2C4E24730B200025D14C /* ListViewControllerDataSource.swift */; };
 		CD4B3D502402EC6500F3FCF6 /* DiscoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */; };
 		CD4B3D522402ECBA00F3FCF6 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D512402ECBA00F3FCF6 /* ProfilePresenter.swift */; };
 		CD4B3D542402ECF800F3FCF6 /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D532402ECF800F3FCF6 /* AuthorizationPresenter.swift */; };
@@ -318,7 +319,7 @@
 		CD0EF99123F6000D000A3CB4 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		CD0EF99323F60B9B000A3CB4 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		CD0F668823F9DF46003DEE13 /* KeysManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysManager.swift; sourceTree = "<group>"; };
-		CD12C289246EA58700295CA6 /* TheDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheDraft.swift; sourceTree = "<group>"; };
+		CD12C289246EA58700295CA6 /* DiscoverViewControllerDataSourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewControllerDataSourceProvider.swift; sourceTree = "<group>"; };
 		CD2D91B724053442001A1445 /* FavouritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouritesViewController.xib; sourceTree = "<group>"; };
 		CD2D91B924053457001A1445 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		CD2D91BB2405347B001A1445 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
@@ -369,6 +370,7 @@
 		CD499B6223E4715D00BF0545 /* TabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
 		CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
 		CD4B2C4C2472B6BE0025D14C /* FavoritesViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewControllerDataSource.swift; sourceTree = "<group>"; };
+		CD4B2C4E24730B200025D14C /* ListViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerDataSource.swift; sourceTree = "<group>"; };
 		CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresenter.swift; sourceTree = "<group>"; };
 		CD4B3D512402ECBA00F3FCF6 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		CD4B3D532402ECF800F3FCF6 /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
@@ -964,7 +966,6 @@
 		CD4DB86B23EB677A00F53B28 /* DiscoverFlow */ = {
 			isa = PBXGroup;
 			children = (
-				CD12C289246EA58700295CA6 /* TheDraft.swift */,
 				CD536EF623E36034000FEE79 /* DiscoverFlowCoordinator.swift */,
 				CD46F689244377E10069E29B /* ActorsViewController */,
 				CDB8791323B9002C0099F946 /* DiscoverViewController */,
@@ -1069,6 +1070,7 @@
 				CD8C9554245AC32E00B2DAF1 /* ListView.swift */,
 				CD8C9556245AC34800B2DAF1 /* ListViewController.swift */,
 				CD8C9557245AC34800B2DAF1 /* ListViewController.xib */,
+				CD4B2C4E24730B200025D14C /* ListViewControllerDataSource.swift */,
 			);
 			path = ListViewController;
 			sourceTree = "<group>";
@@ -1169,6 +1171,7 @@
 		CDB8791323B9002C0099F946 /* DiscoverViewController */ = {
 			isa = PBXGroup;
 			children = (
+				CD12C289246EA58700295CA6 /* DiscoverViewControllerDataSourceProvider.swift */,
 				2E289C8923E8DE83001917DB /* Private */,
 				CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */,
 				2E289C8C23E8DE83001917DB /* DiscoverView.swift */,
@@ -1600,6 +1603,7 @@
 				CD45172024363D3600AD81F0 /* VideoPlayerViewController.swift in Sources */,
 				CD6C24ED24296A04009E4B84 /* AnimatedView.swift in Sources */,
 				2E289C9E23E8DEBD001917DB /* UIViewController+Extensions.swift in Sources */,
+				CD4B2C4F24730B200025D14C /* ListViewControllerDataSource.swift in Sources */,
 				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
 				CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */,
 				2E289CB123E8DED4001917DB /* KeyChainContainer.swift in Sources */,
@@ -1628,7 +1632,7 @@
 				CDC2F5362411972C00AB7B72 /* Presenter.swift in Sources */,
 				CD38EFE6240EFC2200F93536 /* UIView+Border.swift in Sources */,
 				CDB2A386240450C300D27A9B /* MoviesView.swift in Sources */,
-				CD12C28A246EA58700295CA6 /* TheDraft.swift in Sources */,
+				CD12C28A246EA58700295CA6 /* DiscoverViewControllerDataSourceProvider.swift in Sources */,
 				2E289CA023E8DEBD001917DB /* Optional+Extension.swift in Sources */,
 				CD2D91C224056E96001A1445 /* PopularShowsModel.swift in Sources */,
 				2E51662D23AFD6C500EDF51E /* filmsstorm.xcdatamodeld in Sources */,

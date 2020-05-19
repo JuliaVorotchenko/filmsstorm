@@ -18,10 +18,7 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     // MARK: - Properties
     
     let presenter: T
-    
-    private lazy var dataSource = self.dataSourceProvider.createDataSource()
-    
-    let dataSourceProvider = FavoritesViewControllerDataSource()
+    private lazy var dataSource = self.rootView?.collectionView.map(FavoritesViewControllerDataSource.init)
     
     // MARK: - Init and deinit
     
@@ -43,47 +40,45 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setCollectionView()
-        guard let rootView = self.rootView else { return }
-        self.dataSourceProvider.rootView = rootView
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.getMoviesWatchlist()
-        self.dataSourceProvider.updateListsLabels()
+        self.dataSource?.updateListsLabels()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.dataSourceProvider.clearDataSource()
+        self.dataSource?.clearDataSource()
     }
     
     // MARK: - Private methods to retrieve lists
     
     private func getMoviesWatchlist() {
         self.presenter.getMoviesWatchlist {  [weak self] model in
-            self?.dataSourceProvider.update(for: .moviesWatchlist, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
+            self?.dataSource?.update(for: .moviesWatchlist, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
             self?.getShowsWatchlist()
         }
     }
     
     private func getShowsWatchlist() {
         self.presenter.getShowsWatchList {  [weak self] model in
-            self?.dataSourceProvider.update(for: .showsWatchlist, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
+            self?.dataSource?.update(for: .showsWatchlist, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
             self?.getFavoriteMovies()
         }
     }
     
     private func getFavoriteMovies() {
         self.presenter.getFavoriteMovies {  [weak self] model in
-            self?.dataSourceProvider.update(for: .favoriteMovies, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
+            self?.dataSource?.update(for: .favoriteMovies, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
             self?.getFavoriteShows()
         }
     }
     
     private func getFavoriteShows() {
         self.presenter.getFavoriteShows {  [weak self] model in
-            self?.dataSourceProvider.update(for: .favoriteShows, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
+            self?.dataSource?.update(for: .favoriteShows, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
         }
     }
     
@@ -99,7 +94,7 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = self.dataSourceProvider.dataSource?.itemIdentifier(for: indexPath)
+        let model = self.dataSource?.dataSource?.itemIdentifier(for: indexPath)
         let presenter = self.presenter
         model.map {
             switch $0 {

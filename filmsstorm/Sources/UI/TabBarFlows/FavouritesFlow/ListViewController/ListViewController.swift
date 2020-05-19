@@ -21,9 +21,10 @@ class ListViewController<T: ListsPresenter>: UIViewController, Controller, UITab
     
     // MARK: - Properties
     
+    let dataSourceProvider = ListViewControllerDataSource()
     let presenter: T
-    private var items: [DiscoverCellModel] = []
-    private lazy var dataSource = self.createDataSource()
+//    private var items: [DiscoverCellModel] = []
+    private lazy var dataSource = self.dataSourceProvider.createDataSource()
     
     // MARK: - Init and deinit
     
@@ -71,36 +72,36 @@ class ListViewController<T: ListsPresenter>: UIViewController, Controller, UITab
     // MARK: - Rerieve models
     
     private func retrieveModels() {
-        self.presenter.getItems { [weak self] in
-            self?.items = $0
-            self?.update(section: Section.allCases, items: $0)
+        self.presenter.getItems { [weak self] model in
+            self?.dataSourceProvider.items = model
+            self?.dataSourceProvider.update(section: [.main], items: model)
         }
     }
     
     // MARK: - Private Methods for table view
     
-    private func createDataSource() -> UITableViewDiffableDataSource<Section, DiscoverCellModel>? {
-        return self.rootView.map {
-            UITableViewDiffableDataSource(tableView: $0.tableView) { (tableView, indexPath, item) -> UITableViewCell? in
-                let cell: ListTableViewCell =
-                    tableView.dequeueReusableCell(ListTableViewCell.self, for: indexPath)
-                cell.fill(with: item)
-                return cell
-            }
-        }
-    }
+//    private func createDataSource() -> UITableViewDiffableDataSource<Section, DiscoverCellModel>? {
+//        return self.rootView.map {
+//            UITableViewDiffableDataSource(tableView: $0.tableView) { (tableView, indexPath, item) -> UITableViewCell? in
+//                let cell: ListTableViewCell =
+//                    tableView.dequeueReusableCell(ListTableViewCell.self, for: indexPath)
+//                cell.fill(with: item)
+//                return cell
+//            }
+//        }
+//    }
     
-    private func update(section: [Section], items: [DiscoverCellModel]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
-        snapshot.appendSections(section)
-        snapshot.appendItems(items)
-        self.dataSource?.apply(snapshot)
-    }
-    
+//    private func update(section: [Section], items: [DiscoverCellModel]) {
+//        var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
+//        snapshot.appendSections(section)
+//        snapshot.appendItems(items)
+//        self.dataSource?.apply(snapshot)
+//    }
+//
     // MARK: - TableView delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = self.items[indexPath.row]
+        let model = self.dataSourceProvider.items[indexPath.row]
         self.presenter.onMedia(item: model)
     }
 }

@@ -30,7 +30,12 @@ class FavoritesViewControllerDataSource {
     }
     
     lazy var dataSource = self.createDataSource()
-    var rootView: FavouritesView = .init()
+    private let collectionView: UICollectionView
+   
+    init(collectionView: UICollectionView) {
+        self.collectionView = collectionView
+    }
+    
     
     func update(for section: Section, with items: [FavoritesContainer]) {
         var snapshot = self.dataSource?.snapshot()
@@ -53,11 +58,10 @@ class FavoritesViewControllerDataSource {
            self.dataSource?.apply(snapshot, animatingDifferences: false)
        }
     
-    func createDataSource() -> UICollectionViewDiffableDataSource<Section, FavoritesContainer>? {
+    private func createDataSource() -> UICollectionViewDiffableDataSource<Section, FavoritesContainer>? {
         let dataSource: UICollectionViewDiffableDataSource<Section, FavoritesContainer>? =
-            self.rootView.collectionView
-                .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) {
-                    [weak self] collectionView, indexPath, item -> UICollectionViewCell in
+             UICollectionViewDiffableDataSource(collectionView: collectionView) {
+                    collectionView, indexPath, item -> UICollectionViewCell in
                     switch item {
                         
                     case .media(let model):
@@ -87,7 +91,7 @@ class FavoritesViewControllerDataSource {
                     }
                     }
                     
-        }
+        
         var snapshot = NSDiffableDataSourceSnapshot<Section, FavoritesContainer>()
         snapshot.appendSections(Section.allCases)
         Section.allCases.forEach { snapshot.appendItems([], toSection: $0)}

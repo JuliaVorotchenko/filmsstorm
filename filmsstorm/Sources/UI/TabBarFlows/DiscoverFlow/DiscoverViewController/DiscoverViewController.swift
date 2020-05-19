@@ -32,7 +32,7 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     // MARK: - Private properties
     
     let presenter: T
-    let dataSourceProvider = DiscoverViewControllerDataSourceProvider()
+    private let dataSourceProvider = DiscoverViewControllerDataSourceProvider()
     
     // MARK: - Init and deinit
     
