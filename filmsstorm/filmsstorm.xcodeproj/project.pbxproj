@@ -135,7 +135,7 @@
 		CD4921CB243B490900511CB1 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4921CA243B490900511CB1 /* UserDefaultsStorage.swift */; };
 		CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD499B6223E4715D00BF0545 /* TabBarContainer.swift */; };
 		CD4AE3B6240E787C00ACC0E3 /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */; };
-		CD4B2C4D2472B6BE0025D14C /* FavoritesViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B2C4C2472B6BE0025D14C /* FavoritesViewControllerDataSource.swift */; };
+		CD4B2C4D2472B6BE0025D14C /* FavoritesCollectionViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B2C4C2472B6BE0025D14C /* FavoritesCollectionViewProvider.swift */; };
 		CD4B2C4F24730B200025D14C /* ListViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B2C4E24730B200025D14C /* ListViewControllerDataSource.swift */; };
 		CD4B3D502402EC6500F3FCF6 /* DiscoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */; };
 		CD4B3D522402ECBA00F3FCF6 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D512402ECBA00F3FCF6 /* ProfilePresenter.swift */; };
@@ -369,7 +369,7 @@
 		CD4921CA243B490900511CB1 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		CD499B6223E4715D00BF0545 /* TabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
 		CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
-		CD4B2C4C2472B6BE0025D14C /* FavoritesViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewControllerDataSource.swift; sourceTree = "<group>"; };
+		CD4B2C4C2472B6BE0025D14C /* FavoritesCollectionViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewProvider.swift; sourceTree = "<group>"; };
 		CD4B2C4E24730B200025D14C /* ListViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerDataSource.swift; sourceTree = "<group>"; };
 		CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresenter.swift; sourceTree = "<group>"; };
 		CD4B3D512402ECBA00F3FCF6 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
@@ -1119,8 +1119,8 @@
 		CDB2A37824044E5D00D27A9B /* FavouritesViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CD4B2C4C2472B6BE0025D14C /* FavoritesViewControllerDataSource.swift */,
 				CDD08B2B244727A70046E0B5 /* Private */,
+				CD4B2C4C2472B6BE0025D14C /* FavoritesCollectionViewProvider.swift */,
 				CD2D91BD2405348E001A1445 /* FavouritesPresenter.swift */,
 				CD2D91B924053457001A1445 /* FavouritesView.swift */,
 				CD2D91BB2405347B001A1445 /* FavouritesViewController.swift */,
@@ -1598,7 +1598,7 @@
 				CD0EF99223F6000D000A3CB4 /* UIColor+Extensions.swift in Sources */,
 				CDB2A388240450DD00D27A9B /* ItemsViewController.swift in Sources */,
 				2E289CE223E8DFCA001917DB /* AuthEndPoint.swift in Sources */,
-				CD4B2C4D2472B6BE0025D14C /* FavoritesViewControllerDataSource.swift in Sources */,
+				CD4B2C4D2472B6BE0025D14C /* FavoritesCollectionViewProvider.swift in Sources */,
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
 				CD45172024363D3600AD81F0 /* VideoPlayerViewController.swift in Sources */,
 				CD6C24ED24296A04009E4B84 /* AnimatedView.swift in Sources */,

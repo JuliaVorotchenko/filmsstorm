@@ -8,17 +8,20 @@
 
 import UIKit
 
-class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Controller, UICollectionViewDelegate {
+final class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Controller {
     
     // MARK: - Subtypes
     
     typealias RootViewType = FavouritesView
     typealias Service = T
-        
+    typealias DataSource = FavoritesCollectionViewProvider
+    
     // MARK: - Properties
     
     let presenter: T
-    private lazy var dataSource = self.rootView?.collectionView.map(FavoritesViewControllerDataSource.init)
+    private lazy var dataSource = self.rootView?
+        .collectionView
+        .map { DataSource(collectionView: $0) { [weak self] in self?.bindAcions($0) }}
     
     // MARK: - Init and deinit
     
@@ -36,12 +39,7 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     }
     
     // MARK: - Life cycle
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.setCollectionView()
-    }
-    
+   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.getMoviesWatchlist()
@@ -57,69 +55,40 @@ class FavouritesViewController<T: FavouritesPresenter>: UIViewController, Contro
     
     private func getMoviesWatchlist() {
         self.presenter.getMoviesWatchlist {  [weak self] model in
-            self?.dataSource?.update(for: .moviesWatchlist, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
+            self?.dataSource?.update(for: .moviesWatchlist, with: model.map(FavoritesCollectionViewProvider.FavoritesContainer.media))
             self?.getShowsWatchlist()
         }
     }
     
     private func getShowsWatchlist() {
         self.presenter.getShowsWatchList {  [weak self] model in
-            self?.dataSource?.update(for: .showsWatchlist, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
+            self?.dataSource?.update(for: .showsWatchlist, with: model.map(FavoritesCollectionViewProvider.FavoritesContainer.media))
             self?.getFavoriteMovies()
         }
     }
     
     private func getFavoriteMovies() {
         self.presenter.getFavoriteMovies {  [weak self] model in
-            self?.dataSource?.update(for: .favoriteMovies, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
+            self?.dataSource?.update(for: .favoriteMovies, with: model.map(FavoritesCollectionViewProvider.FavoritesContainer.media))
             self?.getFavoriteShows()
         }
     }
     
     private func getFavoriteShows() {
         self.presenter.getFavoriteShows {  [weak self] model in
-            self?.dataSource?.update(for: .favoriteShows, with: model.map(FavoritesViewControllerDataSource.FavoritesContainer.media))
+            self?.dataSource?.update(for: .favoriteShows, with: model.map(FavoritesCollectionViewProvider.FavoritesContainer.media))
         }
     }
     
-    // MARK: - Private Methods for CollectionView
-    
-    private func setCollectionView() {
-        let collection = self.rootView?.collectionView
-        collection?.register(MediaItemImageCell.self)
-        collection?.register(ListTypeCell.self)
-        collection?.setCollectionViewLayout(self.createCompositionalLayout(), animated: false)
-        collection?.delegate = self
-    }
-    
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = self.dataSource?.dataSource?.itemIdentifier(for: indexPath)
-        let presenter = self.presenter
-        model.map {
-            switch $0 {
-            case .media(let model): presenter.onMedia(item: model)
-            case .favoriteMoviesLabel: presenter.onFavoriteMovies()
-            case .favoriteShowsLabel: presenter.onFavoriteSHows()
-            case .moviesWatchlistLabel: presenter.onMoviesWatchList()
-            case .showsWatchlistLabel: presenter.onShowsWatchlist()
-                
-            }
+    private func bindAcions(_ events: DataSource.FavoritesContainer) {
+        print(#function)
+        
+        switch events {
+        case .media(let model): self.presenter.onMedia(item: model)
+        case .favoriteMoviesLabel: self.presenter.onFavoriteMovies()
+        case .favoriteShowsLabel: self.presenter.onFavoriteShows()
+        case .moviesWatchlistLabel: self.presenter.onMoviesWatchList()
+        case .showsWatchlistLabel: self.presenter.onShowsWatchlist()
         }
-    }
-    
-    // MARK: - Setup Layout
-    
-    func createCompositionalLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
-            let section = FavoritesViewControllerDataSource.Section.allCases[sectionIndex]
-            switch section {
-            case .moviesWatchlistLabel, .showsWatchlistLabel, .favoriteMoviesLabel, .favoriteShowsLabel:
-                return CollectionLayoutFactory.listTypeSection()
-            case .moviesWatchlist, .showsWatchlist, .favoriteMovies, .favoriteShows:
-                return CollectionLayoutFactory.noHeaderMediaImageSection()
-            }
-        }
-        return layout
     }
 }
