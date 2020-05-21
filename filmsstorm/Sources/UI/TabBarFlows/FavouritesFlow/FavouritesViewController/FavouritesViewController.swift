@@ -21,7 +21,7 @@ final class FavouritesViewController<T: FavouritesPresenter>: UIViewController, 
     let presenter: T
     private lazy var dataSource = self.rootView?
         .collectionView
-        .map { DataSource(collectionView: $0) { [weak self] in self?.bindAcions($0) }}
+        .map { DataSource(collectionView: $0) { [weak self] in self?.bindActions($0) }}
     
     // MARK: - Init and deinit
     
@@ -80,7 +80,7 @@ final class FavouritesViewController<T: FavouritesPresenter>: UIViewController, 
         }
     }
     
-    private func bindAcions(_ events: DataSource.FavoritesContainer) {
+    private func bindActions(_ events: DataSource.FavoritesContainer) {
         switch events {
         case .media(let model): self.presenter.onMedia(item: model)
         case .favoriteMoviesLabel: self.presenter.onFavoriteMovies()
