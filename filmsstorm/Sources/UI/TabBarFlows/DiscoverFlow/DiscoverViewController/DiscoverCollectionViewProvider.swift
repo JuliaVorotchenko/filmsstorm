@@ -55,6 +55,14 @@ class DiscoverCollectionViewProvider: NSObject, UICollectionViewDelegate {
             return snapshot
     }
     
+    func clearDataSource() {
+           self.items = [DiscoverCellModel]()
+           var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
+           snapshot.appendSections(Section.allCases)
+           snapshot.appendItems(items)
+           self.dataSource?.apply(snapshot, animatingDifferences: false)
+       }
+    
     // MARK: - Setup Layout
     
     private func setCompositionalLayout() {
