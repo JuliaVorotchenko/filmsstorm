@@ -81,8 +81,6 @@ final class FavouritesViewController<T: FavouritesPresenter>: UIViewController, 
     }
     
     private func bindAcions(_ events: DataSource.FavoritesContainer) {
-        print(#function)
-        
         switch events {
         case .media(let model): self.presenter.onMedia(item: model)
         case .favoriteMoviesLabel: self.presenter.onFavoriteMovies()

@@ -18,21 +18,19 @@ struct Constants {
     static let signUpURL = "https://www.themoviedb.org/account/signup"
 }
 
-class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller, UICollectionViewDelegate {
+class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller {
     
     // MARK: - Subtypes
     
     typealias RootViewType = DiscoverView
     typealias Service = T
-    
-    enum Section: CaseIterable {
-        case  main
-    }
-    
+    typealias DataSource = DiscoverCollectionViewProvider
+   
     // MARK: - Private properties
     
     let presenter: T
-    private let dataSourceProvider = DiscoverViewControllerDataSourceProvider()
+    private lazy var dataSource = self.rootView?.collectionView
+        .map { DataSource(collectionView: $0) { [weak self] in self?.bindAction(model: $0) }}
     
     // MARK: - Init and deinit
     
@@ -53,26 +51,17 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setCollectionView()
         self.getPopularMovies()
         self.setupHeader()
-        self.dataSourceProvider.createDataSource(rootView: self.rootView)
     }
     
     // MARK: - Private Methods
     
     private func getPopularMovies() {
         self.presenter.getPopularMovies { [weak self] value in
-            self?.dataSourceProvider.items = value.map(DiscoverCellModel.create)
-            self?.dataSourceProvider.createDataSource(rootView: self?.rootView)
+            let items = value.map { DiscoverCellModel.create($0)}
+            self?.dataSource?.update(with: items)
         }
-    }
-    
-    private func setCollectionView() {
-        self.rootView?.collectionView.delegate = self
-        self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
-        let layout = CollectionLayoutFactory.standart()
-        self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
     }
     
     private func setupHeader() {
@@ -92,8 +81,7 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = self.dataSourceProvider.items[indexPath.row]
+    func bindAction(model: DiscoverCellModel) {
         self.presenter.onMedia(item: model)
     }
 }
