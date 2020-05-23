@@ -136,7 +136,7 @@
 		CD499B6323E4715D00BF0545 /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD499B6223E4715D00BF0545 /* TabBarContainer.swift */; };
 		CD4AE3B6240E787C00ACC0E3 /* LogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */; };
 		CD4B2C4D2472B6BE0025D14C /* FavoritesCollectionViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B2C4C2472B6BE0025D14C /* FavoritesCollectionViewProvider.swift */; };
-		CD4B2C4F24730B200025D14C /* ListViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B2C4E24730B200025D14C /* ListViewControllerDataSource.swift */; };
+		CD4B2C4F24730B200025D14C /* ListTableViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B2C4E24730B200025D14C /* ListTableViewProvider.swift */; };
 		CD4B3D502402EC6500F3FCF6 /* DiscoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */; };
 		CD4B3D522402ECBA00F3FCF6 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D512402ECBA00F3FCF6 /* ProfilePresenter.swift */; };
 		CD4B3D542402ECF800F3FCF6 /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4B3D532402ECF800F3FCF6 /* AuthorizationPresenter.swift */; };
@@ -373,7 +373,7 @@
 		CD499B6223E4715D00BF0545 /* TabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
 		CD4AE3B5240E787C00ACC0E3 /* LogoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutModel.swift; sourceTree = "<group>"; };
 		CD4B2C4C2472B6BE0025D14C /* FavoritesCollectionViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewProvider.swift; sourceTree = "<group>"; };
-		CD4B2C4E24730B200025D14C /* ListViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerDataSource.swift; sourceTree = "<group>"; };
+		CD4B2C4E24730B200025D14C /* ListTableViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewProvider.swift; sourceTree = "<group>"; };
 		CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresenter.swift; sourceTree = "<group>"; };
 		CD4B3D512402ECBA00F3FCF6 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		CD4B3D532402ECF800F3FCF6 /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
@@ -1078,7 +1078,7 @@
 				CD8C9554245AC32E00B2DAF1 /* ListView.swift */,
 				CD8C9556245AC34800B2DAF1 /* ListViewController.swift */,
 				CD8C9557245AC34800B2DAF1 /* ListViewController.xib */,
-				CD4B2C4E24730B200025D14C /* ListViewControllerDataSource.swift */,
+				CD4B2C4E24730B200025D14C /* ListTableViewProvider.swift */,
 			);
 			path = ListViewController;
 			sourceTree = "<group>";
@@ -1613,7 +1613,7 @@
 				CD45172024363D3600AD81F0 /* VideoPlayerViewController.swift in Sources */,
 				CD6C24ED24296A04009E4B84 /* AnimatedView.swift in Sources */,
 				2E289C9E23E8DEBD001917DB /* UIViewController+Extensions.swift in Sources */,
-				CD4B2C4F24730B200025D14C /* ListViewControllerDataSource.swift in Sources */,
+				CD4B2C4F24730B200025D14C /* ListTableViewProvider.swift in Sources */,
 				CDB8791723B900D80099F946 /* AuthorizationViewController.swift in Sources */,
 				CD38AD9523F09C91005DC50B /* AboutViewController.swift in Sources */,
 				2E289CB123E8DED4001917DB /* KeyChainContainer.swift in Sources */,
