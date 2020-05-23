@@ -15,11 +15,7 @@ class ListViewController<T: ListsPresenter>: UIViewController, Controller, UITab
     typealias Service = T
     typealias RootViewType = ListView
     typealias DataSource = ListTableViewProvider
-    
-    enum Section: CaseIterable {
-        case main
-    }
-    
+
     // MARK: - Properties
     
     let presenter: T
