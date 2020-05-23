@@ -15,25 +15,16 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     typealias RootViewType = MediaItemView
     typealias Service = T
-    
-    enum Section: CaseIterable {
-        case media
-        case actors
-        case similars
-    }
-    
-    enum MediaItemContainer: Hashable {
-        case media(MediaItemModel?)
-        case actors(ActorModel)
-        case similars(DiscoverCellModel)
-    }
+    typealias DataSource = MediaItemCollectionViewProvider
     
     // MARK: - Properties
     
     let presenter: Service
-        
-    private lazy var dataSource = self.createDataSource()
     
+    private lazy var dataSource = self.rootView?
+    .collectionView
+        .map { DataSource(collectionView: $0) { [weak self] in self?.bindActions($0)}}
+
     // MARK: - Init and deinit
     
     deinit {
@@ -59,29 +50,28 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
-        self.setCollectionView()
         self.getItemDescription()
         self.getMovieSimilars()
         self.getItemCast()
     }
-
+    
     // MARK: - Private methods
     
     private func getItemDescription() {
         self.presenter.getItemDetails { [weak self] model in
-            self?.update(for: .media, with: [.media(model)])
+            self?.dataSource?.update(for: .media, with: [.media(model)])
         }
     }
     
     private func getItemCast() {
         self.presenter.getItemCast { [weak self] models in
-            self?.update(for: .actors, with: models.map(MediaItemContainer.actors))
+            self?.dataSource?.update(for: .actors, with: models.map(DataSource.MediaItemContainer.actors))
         }
     }
     
     private func getMovieSimilars() {
         self.presenter.getItemSimilars { [weak self] in
-            self?.update(for: .similars, with: $0.map(MediaItemContainer.similars))
+            self?.dataSource?.update(for: .similars, with: $0.map(DataSource.MediaItemContainer.similars))
         }
     }
     
@@ -93,122 +83,36 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         self.rootView?.navigationView?.titleFill(with: item.name ?? "N/A")
     }
     
-    private func onItemDescriptionEvent(_ event: ItemDescriptionEvent) {
-        switch event {
-        case .watchlist(let model, let state):
-            model.map { self.presenter.updateWatchlist(for: $0, isWatchlisted: state) }
-        case .favourites(let model, let state):
-            model.map { self.presenter.updateFavorites(for: $0, isFavorite: state) }
-        case .play(let model):
-            model.map(self.presenter.onPlay)
-        }
-    }
-    
-    // MARK: - Private Methods for CollectionView
-    
-    private func setCollectionView() {
-        let collection = self.rootView?.collectionView
-        collection?.register(MediaItemImageCell.self)
-        collection?.register(ItemDescriptionViewCell.self)
-        collection?.registerHeader(SectionHeaderView.self)
-        collection?.setCollectionViewLayout(self.createCompositionalLayout(), animated: false)
-        collection?.delegate = self
-    }
-    
-    private func update(for section: Section, with items: [MediaItemContainer]) {
-        var snapshot = self.dataSource?.snapshot()
-        snapshot?.appendItems(items, toSection: section)
-        snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
-    }
-    
-    func createDataSource() -> UICollectionViewDiffableDataSource<Section, MediaItemContainer>? {
-        
-        let dataSource: UICollectionViewDiffableDataSource<Section, MediaItemContainer>? =
-            self.rootView?.collectionView
-                .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collectionView, indexPath, item -> UICollectionViewCell in
-                    
-                    switch item {
-                    case .media(let model):
-                        let cell: ItemDescriptionViewCell = collectionView.dequeueReusableCell(ItemDescriptionViewCell.self,
-                                                                                               for: indexPath)
-                        cell.fill(detailsModel: model, onAction: .init { self?.onItemDescriptionEvent($0) })
-                        return cell
-                        
-                    case .similars(let model):
-                        let cell: MediaItemImageCell = collectionView.dequeueReusableCell(MediaItemImageCell.self,
-                                                                                          for: indexPath)
-                        cell.similarsFill(model: model)
-                        return cell
-                        
-                    case .actors(let model):
-                        let cell: MediaItemImageCell = collectionView.dequeueReusableCell(MediaItemImageCell.self,
-                                                                                          for: indexPath)
-                        cell.actorsFill(model: model)
-                        return cell
-                    }
-                    }
-                    
-        }
-        var snapshot = NSDiffableDataSourceSnapshot<Section, MediaItemContainer>()
-        snapshot.appendSections(Section.allCases)
-        Section.allCases.forEach { snapshot.appendItems([], toSection: $0)}
-        
-        dataSource?.supplementaryViewProvider = { [weak self] in self?.supplementaryViewProvider(collectionView: $0,
-                                                                                                 kind: $1,
-                                                                                                 indexPath: $2) }
-        dataSource?.apply(snapshot, animatingDifferences: false)
-        
-        return dataSource
-    }
-    
-    private func supplementaryViewProvider(collectionView: UICollectionView,
-                                           kind: String,
-                                           indexPath: IndexPath) -> UICollectionReusableView? {
-        let header = collectionView.dequeueReusableSupplementaryView(
-            ofKind: kind,
-            withReuseIdentifier: SectionHeaderView.reuseIdentifier,
-            for: indexPath) as? SectionHeaderView
-        
-        switch Section.allCases[indexPath.section] {
-        case .actors:
-            header?.fill(with: "Actors")
-        case .similars:
-            header?.fill(with: "Similars")
-        case .media:
-            break
-        }
-        
-        return header
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = self.dataSource?.itemIdentifier(for: indexPath)
-        model.map {
-            switch $0 {
-            case .actors(let model):
-                self.presenter.onActor(actor: model)
-            case .media:
-                break
-            case .similars(let model):
-                self.presenter.onSimilarsItem(with: model)
+    private func onItemDescriptionEvent(_ event: DataSource.ItemDescriptionEvent) {
+            switch event {
+            case .watchlist(let model, let state):
+                model.map { self.presenter.updateWatchlist(for: $0, isWatchlisted: state) }
+            case .favourites(let model, let state):
+                model.map { self.presenter.updateFavorites(for: $0, isFavorite: state) }
+            case .play(let model):
+                model.map(self.presenter.onPlay)
             }
         }
-    }
     
-    // MARK: - Setup Layout
-    
-    func createCompositionalLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
-            let section = Section.allCases[sectionIndex]
-            switch section {
-            case .actors:
-                return CollectionLayoutFactory.mediaItemImagesSections()
-            case .media:
-                return CollectionLayoutFactory.mediaItemDescriptionSection()
-            case .similars:
-                return CollectionLayoutFactory.mediaItemImagesSections()
-            }
+    private func bindActions(_ events: DataSource.MediaItemContainer) {
+        
+        switch events {
+        case .actors(let model): self.presenter.onActor(actor: model)
+        case .media(let model): self.presenter.onPlay(item: model!)
+        case .similars(let model): self.presenter.onSimilarsItem(with: model)
+       
         }
-        return layout
+        
     }
+    
+//    private func bind(_ event: DataSource.ItemDescriptionEvent) {
+//        switch event {
+//               case .watchlist(let model, let state):
+//                   model.map { self.presenter.updateWatchlist(for: $0, isWatchlisted: state) }
+//               case .favourites(let model, let state):
+//                   model.map { self.presenter.updateFavorites(for: $0, isFavorite: state) }
+//               case .play(let model):
+//                   model.map(self.presenter.onPlay)
+//               }
+//    }
 }
