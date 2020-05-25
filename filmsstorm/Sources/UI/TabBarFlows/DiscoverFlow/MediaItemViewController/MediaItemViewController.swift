@@ -23,7 +23,8 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     private lazy var dataSource = self.rootView?
     .collectionView
-        .map { DataSource(collectionView: $0) { [weak self] in self?.bindActions($0)}}
+        .map { DataSource(collectionView: $0, events: { [weak self] event  in self?.bindActions(event) },
+                          itemDescrEvents: { [weak self] event in self?.onItemDescriptionEvent(event) })}
 
     // MARK: - Init and deinit
     
@@ -102,17 +103,5 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
         case .similars(let model): self.presenter.onSimilarsItem(with: model)
        
         }
-        
     }
-    
-//    private func bind(_ event: DataSource.ItemDescriptionEvent) {
-//        switch event {
-//               case .watchlist(let model, let state):
-//                   model.map { self.presenter.updateWatchlist(for: $0, isWatchlisted: state) }
-//               case .favourites(let model, let state):
-//                   model.map { self.presenter.updateFavorites(for: $0, isFavorite: state) }
-//               case .play(let model):
-//                   model.map(self.presenter.onPlay)
-//               }
-//    }
 }

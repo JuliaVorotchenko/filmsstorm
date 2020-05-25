@@ -33,10 +33,12 @@ class MediaItemCollectionViewProvider: NSObject, UICollectionViewDelegate {
     private var events: ((MediaItemContainer) -> Void)?
     var itemEvent: ((ItemDescriptionEvent) -> Void)?
     
-    init(collectionView: UICollectionView, events: ((MediaItemCollectionViewProvider.MediaItemContainer) -> Void)?) {
+    init(collectionView: UICollectionView,
+         events: ((MediaItemCollectionViewProvider.MediaItemContainer) -> Void)?,
+         itemDescrEvents: ((ItemDescriptionEvent) -> Void)?) {
         self.collectionView = collectionView
         self.events = events
-        
+        self.itemEvent = itemDescrEvents
         super.init()
         self.collectionView.register(MediaItemImageCell.self)
         self.collectionView.register(ItemDescriptionViewCell.self)
@@ -61,7 +63,8 @@ class MediaItemCollectionViewProvider: NSObject, UICollectionViewDelegate {
                 case .media(let model):
                     let cell: ItemDescriptionViewCell = collectionView.dequeueReusableCell(ItemDescriptionViewCell.self,
                                                                                            for: indexPath)
-                   // cell.fill(detailsModel: model, onAction: .init { self.onItemDescriptionEvent($0) })
+                    let actionModel = ActionModel(action: self.itemEvent)
+                    cell.fill(detailsModel: model, onAction: actionModel)
                     return cell
                     
                 case .similars(let model):
@@ -77,7 +80,6 @@ class MediaItemCollectionViewProvider: NSObject, UICollectionViewDelegate {
                     return cell
                 }
         }
-        
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, MediaItemContainer>()
         snapshot.appendSections(Section.allCases)

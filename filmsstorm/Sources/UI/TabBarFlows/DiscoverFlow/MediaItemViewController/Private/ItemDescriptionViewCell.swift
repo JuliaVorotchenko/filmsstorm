@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 struct ItemDescriptionEventModel {
     let action: ((MediaItemCollectionViewProvider.ItemDescriptionEvent) -> Void)
 }
