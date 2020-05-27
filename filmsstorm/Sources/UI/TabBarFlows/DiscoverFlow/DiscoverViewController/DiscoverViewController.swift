@@ -18,22 +18,19 @@ struct Constants {
     static let signUpURL = "https://www.themoviedb.org/account/signup"
 }
 
-class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller, UICollectionViewDelegate {
+class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller {
     
     // MARK: - Subtypes
     
     typealias RootViewType = DiscoverView
     typealias Service = T
-    
-    enum Section: CaseIterable {
-        case  main
-    }
-    
+    typealias DataSource = DiscoverCollectionViewProvider
+   
     // MARK: - Private properties
     
     let presenter: T
-    private var items = [DiscoverCellModel]()
-    private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
+    private lazy var dataSource = self.rootView?.collectionView
+        .map { DataSource(collectionView: $0) { [weak self] in self?.bindAction(model: $0) }}
     
     // MARK: - Init and deinit
     
@@ -54,9 +51,7 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setCollectionView()
         self.getPopularMovies()
-        self.createDataSource()
         self.setupHeader()
     }
     
@@ -64,15 +59,9 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     
     private func getPopularMovies() {
         self.presenter.getPopularMovies { [weak self] value in
-            self?.items = value.map(DiscoverCellModel.create)
-            self?.createDataSource()
+            let items = value.map { DiscoverCellModel.create($0)}
+            self?.dataSource?.update(with: items)
         }
-    }
-    
-    private func setCollectionView() {
-        self.rootView?.collectionView.register(DiscoverCollectionViewCell.self)
-        let layout = CollectionLayoutFactory.standart()
-        self.rootView?.collectionView.setCollectionViewLayout(layout, animated: true)
     }
     
     private func setupHeader() {
@@ -91,36 +80,8 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
             self.presenter.onMovies()
         }
     }
-
-    // MARK: - set diffableDatasource
     
-    private func createDataSource() {
-        
-        guard let collectionView = self.rootView?.collectionView else { return }
-        
-        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collection, indexPath, item -> UICollectionViewCell? in
-            
-            let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
-            cell.fill(with: item)
-            return cell
-        }
-        let snapshot = self.createSnapshot()
-        self.dataSource?.apply(snapshot)
-        
-    }
-    
-    func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, DiscoverCellModel> {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(self.items)
-       
-        return snapshot
-    }
-    
-    // MARK: - CollectionView Delegate
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = self.items[indexPath.row]
+    func bindAction(model: DiscoverCellModel) {
         self.presenter.onMedia(item: model)
     }
 }

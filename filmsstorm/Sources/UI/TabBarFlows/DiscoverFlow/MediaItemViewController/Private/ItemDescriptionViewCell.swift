@@ -8,14 +8,8 @@
 
 import UIKit
 
-enum ItemDescriptionEvent: Equatable {
-    case watchlist(MediaItemModel?, isWatchlisted: Bool)
-    case favourites(MediaItemModel?, isLiked: Bool)
-    case play(MediaItemModel?)
-}
-
 struct ItemDescriptionEventModel {
-    let action: ((ItemDescriptionEvent) -> Void)
+    let action: ((MediaItemCollectionViewProvider.ItemDescriptionEvent) -> Void)
 }
 
 struct ActionModel<Model: Equatable>: Hashable, Equatable {
@@ -49,7 +43,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     // MARK: - Private properties
     
     private var item: MediaItemModel?
-    private var actionHandler: Handler<ItemDescriptionEvent>?
+    private var actionHandler: Handler<MediaItemCollectionViewProvider.ItemDescriptionEvent>?
     private var likeIsTapped = false
     private var listIsTapped = false
     
@@ -67,7 +61,7 @@ class ItemDescriptionViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     
-    func fill(detailsModel: MediaItemModel?, onAction: ActionModel<ItemDescriptionEvent>?) {
+    func fill(detailsModel: MediaItemModel?, onAction: ActionModel<MediaItemCollectionViewProvider.ItemDescriptionEvent>?) {
         self.actionHandler = onAction?.action
         self.item = detailsModel
         self.likeIsTapped = detailsModel?.isLiked ?? false

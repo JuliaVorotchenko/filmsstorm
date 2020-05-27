@@ -8,22 +8,20 @@
 
 import UIKit
 
-class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller, UICollectionViewDelegate {
+class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller {
     
     // MARK: - Subtypes
     
     typealias RootViewType = MoviesView
     typealias Service = T
-    
-    enum Section: CaseIterable {
-        case  main
-    }
+    typealias DataSource = DiscoverCollectionViewProvider
     
     // MARK: - Private properties
     
     let presenter: T
-    private var items = [DiscoverCellModel]()
-    private var dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>?
+    
+    private lazy var dataSource = self.rootView?.collectionView
+        .map { DataSource(collectionView: $0) { [weak self] in self?.bindAction(model: $0) }}
     
     // MARK: - Init and deinit
     
@@ -45,7 +43,6 @@ class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
-        self.setCollectionView()
         self.getPopularMovies()
     }
     
@@ -53,17 +50,8 @@ class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller, UICo
     
     private func getPopularMovies() {
         self.presenter.getItems { [weak self] in
-            self?.items = $0
-            self?.createDataSource()
+            self?.dataSource?.update(with: $0)
         }
-    }
-    
-    private func setCollectionView() {
-        let layout = CollectionLayoutFactory.standart()
-        let collectionView = self.rootView?.collectionView
-        collectionView?.register(DiscoverCollectionViewCell.self)
-        collectionView?.delegate = self
-        collectionView?.setCollectionViewLayout(layout, animated: true)
     }
     
     private func setupNavigationView() {
@@ -72,34 +60,8 @@ class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller, UICo
         }
         self.rootView?.navigationView?.titleFill(with: self.presenter.title)
     }
-        
-    // MARK: - set diffableDatasource
     
-    func createDataSource() {
-        
-        guard let collectionView = self.rootView?.collectionView else { return }
-        
-        self.dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self] collection, indexPath, item -> UICollectionViewCell? in
-            
-            let cell: DiscoverCollectionViewCell = collection.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
-            cell.fill(with: item)
-            return cell
-        }
-        let snapshot = self.createSnapshot()
-        self.dataSource?.apply(snapshot)
-    }
-    
-    func createSnapshot() -> NSDiffableDataSourceSnapshot<Section, DiscoverCellModel> {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(self.items)
-        return snapshot
-    }
-    
-    // MARK: - CollectionView Delegate
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = self.items[indexPath.row]
+    func bindAction(model: DiscoverCellModel) {
         self.presenter.onMedia(item: model)
     }
 }

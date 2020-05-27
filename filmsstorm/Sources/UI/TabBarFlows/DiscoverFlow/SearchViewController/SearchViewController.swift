@@ -8,23 +8,23 @@
 
 import UIKit
 
-class SearchViewController<T: SearchPresenter>: UIViewController, Controller, UISearchBarDelegate, UICollectionViewDelegate {
+class SearchViewController<T: SearchPresenter>: UIViewController, Controller, UISearchBarDelegate {
     
     // MARK: - Subtypes
     
     typealias RootViewType = SearchView
     typealias Service = T
-    
-    enum Section: CaseIterable {
-        case  main
-    }
+    typealias DataSource = DiscoverCollectionViewProvider
     
     // MARK: - Private Properties
     
     let presenter: Service
     private var items = [DiscoverCellModel]()
-    private lazy var dataSource = self.createDataSource()
     private var segmentedControlObserver: NSKeyValueObservation?
+    private lazy var dataSource = self.rootView?.collectionView
+        .map { DataSource(collectionView: $0) { [weak self] in
+            self?.bindAction(model: $0)
+            }}
     
     // MARK: - Init and deinit
     
@@ -48,7 +48,6 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, UI
         super.viewDidLoad()
         self.setupNavigationView()
         self.setupSearchBar()
-        self.setCollecionView()
         self.setSegmentedControlObserver()
     }
     
@@ -57,14 +56,14 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, UI
     private func movieSearch(query: String) {
         self.presenter.moviesSearch(query) { result in
             self.items = result.map(DiscoverCellModel.create)
-            self.update(for: .main, with: self.items)
+            self.dataSource?.update(with: self.items)
         }
     }
     
     private func showSearch(query: String) {
         self.presenter.showsSearch(query) { result in
             self.items = result.map(DiscoverCellModel.create)
-            self.update(for: .main, with: self.items)
+            self.dataSource?.update(with: self.items)
         }
     }
     
@@ -81,74 +80,33 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, UI
         searchBar.searchBarStyle = .minimal
     }
     
-    private func setCollecionView() {
-        let collection = self.rootView?.collectionView
-        let layout = CollectionLayoutFactory.standart()
-        collection?.register(DiscoverCollectionViewCell.self)
-        collection?.setCollectionViewLayout(layout, animated: false)
-        collection?.delegate = self
-    }
-    
     private func setSegmentedControlObserver() {
         self.segmentedControlObserver = self.rootView?.segmentedControl.observe(\UISegmentedControl.selectedSegmentIndex, changeHandler: { [weak self] segmenedConrol, _ in
             guard let searchBarText = self?.rootView?.searchBar?.text else { return }
             
             if !searchBarText.isEmpty && segmenedConrol.selectedSegmentIndex == 1 {
-                self?.clearDataSource()
+                self?.dataSource?.clearDataSource()
                 self?.showSearch(query: searchBarText)
             } else if !searchBarText.isEmpty && segmenedConrol.selectedSegmentIndex == 0 {
-                self?.clearDataSource()
+                self?.dataSource?.clearDataSource()
                 self?.movieSearch(query: searchBarText)
             }
         })
     }
     
-    // MARK: - Data Source
-    
-    private func update(for section: Section, with items: [DiscoverCellModel]) {
-        var snapshot = self.dataSource?.snapshot()
-        snapshot?.appendItems(items, toSection: .main)
-        snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
-    }
-    
-    private func clearDataSource() {
-        self.items = [DiscoverCellModel]()
-        var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
-        snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(items)
-        self.dataSource?.apply(snapshot, animatingDifferences: false)
-    }
-    
-    func createDataSource() -> UICollectionViewDiffableDataSource<Section, DiscoverCellModel>? {
-        
-        let dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>? =
-            self.rootView?.collectionView
-                .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self]
-                    collectionView,
-                    indexPath, item -> UICollectionViewCell in
-                    
-                    let cell: DiscoverCollectionViewCell = collectionView.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
-                    cell.fill(with: item)
-                    return cell
-                    }
-        }
-        var snapshot = NSDiffableDataSourceSnapshot<Section, DiscoverCellModel>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(self.items)
-        dataSource?.apply(snapshot, animatingDifferences: false)
-        
-        return dataSource
+    func bindAction(model: DiscoverCellModel) {
+        self.presenter.onMediaItem(item: model)
     }
     
     // MARK: - SearcBarDelegate
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.clearDataSource()
+        self.dataSource?.clearDataSource()
         searchBar.resignFirstResponder()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.clearDataSource()
+        self.dataSource?.clearDataSource()
         searchBar.resignFirstResponder()
     }
     
@@ -156,7 +114,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, UI
         searchBar.resignFirstResponder()
         guard let searchQuery = self.rootView?.searchBar?.text else { return }
         guard let segmentedControl = self.rootView?.segmentedControl else { return }
-
+        
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             self.movieSearch(query: searchQuery)
@@ -169,14 +127,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, UI
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            self.clearDataSource()
+            self.dataSource?.clearDataSource()
         }
-    }
-    
-    // MARK: - CpllecttionView Delegate
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = self.items[indexPath.row]
-        self.presenter.onMediaItem(item: model)
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 
 extension UICollectionView {
     
-    func register(_ anyClass: AnyClass) {
+    func register(_ anyClass: Any) {
         let nib = UINib(nibName: F.toString(anyClass), bundle: nil)
         self.register(nib, forCellWithReuseIdentifier: F.toString(anyClass))
     }
@@ -22,7 +22,7 @@ extension UICollectionView {
         return cast
     }
     
-    func registerHeader(_ anyClass: AnyClass) {
+    func registerHeader(_ anyClass: Any) {
         let name = F.toString(anyClass)
         self.register(UINib(nibName: name, bundle: nil), forSupplementaryViewOfKind: name, withReuseIdentifier: name)
     }

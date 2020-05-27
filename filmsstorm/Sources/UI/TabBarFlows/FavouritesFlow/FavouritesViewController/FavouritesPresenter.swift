@@ -25,7 +25,7 @@ protocol FavouritesPresenter: Presenter {
     
     func onMedia(item: DiscoverCellModel)
     func onFavoriteMovies()
-    func onFavoriteSHows()
+    func onFavoriteShows()
     func onMoviesWatchList()
     func onShowsWatchlist()
     
@@ -105,7 +105,7 @@ class FavouritesPresenterImpl: FavouritesPresenter {
         self.eventHandler?(.onHeaderEvent(.favoriteMovies))
     }
     
-    func onFavoriteSHows() {
+    func onFavoriteShows() {
         self.eventHandler?(.onHeaderEvent(.favoriteShows))
     }
     

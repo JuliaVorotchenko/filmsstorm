@@ -19,7 +19,7 @@ enum F { // swiftlint:disable:this type_name
         return nibName ?? Self.toString(vcType)
     }
     
-    static func toString(_ anyClass: AnyClass) -> String {
+    static func toString(_ anyClass: Any) -> String {
         return .init(describing: anyClass)
     }
     

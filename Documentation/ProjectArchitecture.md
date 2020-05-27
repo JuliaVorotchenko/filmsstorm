@@ -5,8 +5,8 @@
  * **Model** - Data container, persistance object;
  * **View** - Object to represent data on UI. You must inherite Cotroller type to use it as View.
  * **Controller** - Object, which acts as the intermediary between the application's view objects and its model objects.
- * **Coordinator** - Entity, which allows to manage all controllers and sub-coordinators.
- * **Presenter** - Entity, that contains the buisness logic of the app.
+ * **Coordinator** - Object, which allows to manage all controllers and sub-coordinators.
+ * **Presenter** - Object, that contains the buisness logic of the app.
  
  ### Coordinator's roles:
  * Incapsulates dependencies;
@@ -79,3 +79,14 @@ All presenters have to be under Presener protocol:
     
 }
  ```
+ 
+ ## Collection/TableViewProvider
+  Collection/TableViewProvider is an object which contains logic for Collection/TableView logic
+    
+    ###Collection/TableViewProvider`s Roles
+
+* Supplies it`s ViewController with data source
+* Provides registration of cells
+* Stands for Collection/TableView delegate
+* Responsible for layout and supplementary view`s layout (if it is CollectionViewProvider)
+ 

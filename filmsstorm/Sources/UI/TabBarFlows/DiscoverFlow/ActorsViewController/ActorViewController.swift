@@ -14,6 +14,7 @@ class ActorViewController<T: ActorViewPresenter>: UIViewController, Controller, 
     
     typealias Service = T
     typealias RootViewType = ActorView
+    typealias DataSource = ActorsCollectionViewProvider
     
     enum Section: CaseIterable {
         case actor
@@ -29,7 +30,9 @@ class ActorViewController<T: ActorViewPresenter>: UIViewController, Controller, 
     var loadingView = ActivityView()
     let presenter: Service
     
-    private lazy var dataSource = self.createDataSource()
+    private lazy var dataSource = self.rootView?
+        .collectionView
+        .map { DataSource(collectionView: $0) { [weak self] in self?.bindActions($0) }}
     
     // MARK: - Init and deinit
     
@@ -52,7 +55,6 @@ class ActorViewController<T: ActorViewPresenter>: UIViewController, Controller, 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
-        self.setCollectionView()
         self.getActorDetails()
         self.getActorCredits()
     }
@@ -70,108 +72,22 @@ class ActorViewController<T: ActorViewPresenter>: UIViewController, Controller, 
     
     private func getActorDetails() {
         self.presenter.getActorDetails { [weak self] result in
-            self?.update(for: .actor, with: [.actor(result)])
+            self?.dataSource?.update(for: .actor, with: [.actor(result)])
         }
     }
     
     private func getActorCredits() {
         self.presenter.getActorCredits { [weak self] result in
-            self?.update(for: .actorsMedia, with: result.map(ActorContainer.actorsMedia))
+            result.forEach { model in
+                self?.dataSource?.update(for: .actorsMedia, with: [.actorsMedia(model)])
+            }
         }
     }
     
-    // MARK: - Private Methods for CollectionView
-    
-    private func setCollectionView() {
-        let collection = self.rootView?.collectionView
-        collection?.register(ActorDescriptionCell.self)
-        collection?.register(MediaItemImageCell.self)
-        collection?.registerHeader(SectionHeaderView.self)
-        collection?.setCollectionViewLayout(self.createCompositionalLayout(), animated: false)
-        collection?.delegate = self
-    }
-    
-    private func update(for section: Section, with items: [ActorContainer]) {
-        var snapshot = self.dataSource?.snapshot()
-        snapshot?.appendItems(items, toSection: section)
-        snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
-    }
-    
-       func createDataSource() -> UICollectionViewDiffableDataSource<Section, ActorContainer>? {
-        
-        let dataSource: UICollectionViewDiffableDataSource<Section, ActorContainer>? =
-            self.rootView?.collectionView
-                .map { collectionView in UICollectionViewDiffableDataSource(collectionView: collectionView) { [weak self]
-                    collectionView, indexPath, item -> UICollectionViewCell in
-                    
-                    switch item {
-                    case .actor(let model):
-                        let cell: ActorDescriptionCell = collectionView.dequeueReusableCell(ActorDescriptionCell.self,
-                                                                                               for: indexPath)
-                        cell.fill(with: model)
-                        return cell
-                        
-                    case .actorsMedia(let model):
-                        let cell: MediaItemImageCell = collectionView.dequeueReusableCell(MediaItemImageCell.self,
-                                                                                          for: indexPath)
-                        cell.similarsFill(model: model)
-                        return cell
-                        
-                    }
-                    }
-                    
-        }
-        var snapshot = NSDiffableDataSourceSnapshot<Section, ActorContainer>()
-        snapshot.appendSections(Section.allCases)
-        Section.allCases.forEach { snapshot.appendItems([], toSection: $0)}
-        
-        dataSource?.supplementaryViewProvider = { [weak self] in self?.supplementaryViewProvider(collectionView: $0,
-                                                                                                 kind: $1,
-                                                                                                 indexPath: $2) }
-        dataSource?.apply(snapshot, animatingDifferences: false)
-        
-        return dataSource
-    }
-    
-   private func supplementaryViewProvider(collectionView: UICollectionView, kind: String,
-                                           indexPath: IndexPath) -> UICollectionReusableView? {
-        let header = collectionView.dequeueReusableSupplementaryView(
-            ofKind: kind,
-            withReuseIdentifier: SectionHeaderView.reuseIdentifier,
-            for: indexPath) as? SectionHeaderView
-        
-        switch Section.allCases[indexPath.section] {
+    private func bindActions(_ event: DataSource.ActorContainer) {
+        switch event {
         case .actor: break
-        case .actorsMedia:
-            header?.fill(with: "Actors Movies")
+        case .actorsMedia(let model): self.presenter.onMediaItem(with: model)
         }
-        
-        return header
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = self.dataSource?.itemIdentifier(for: indexPath)
-        model.map {
-            switch $0 {
-            case .actor: break
-            case .actorsMedia(let model):
-                self.presenter.onMediaItem(with: model)
-            }
-        }
-    }
-    
-    // MARK: - Setup Layout
-    
-    func createCompositionalLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
-            let section = Section.allCases[sectionIndex]
-            switch section {
-            case .actor:
-                return CollectionLayoutFactory.mediaItemDescriptionSection()
-            case .actorsMedia:
-                return CollectionLayoutFactory.mediaItemImagesSections()
-            }
-        }
-        return layout
     }
 }

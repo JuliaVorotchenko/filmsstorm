@@ -13,26 +13,13 @@ class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller {
     // MARK: - Subtypes
     
     typealias RootViewType = ProfileView
-    
+    typealias DataSource = ProfileTableViewProvider
     typealias Service = T
-    
-    enum Section: CaseIterable {
-        case main
-    }
-    
-    enum Item: Hashable {
-        case profile(UserModel?)
-        case imageQuality
-        case about(ActionCellModel)
-        case logout(ActionCellModel)
-    }
     
     // MARK: - Public Properties
     let presenter: T
-    
-    private var items: [Item] = []
-    private lazy var dataSource = self.diffableDataSource()
-    private var user: UserModel?
+    private lazy var dataSource = self.rootView?.tableView
+        .map { DataSource(tableView: $0)}
     
     // MARK: - Init & deinit
     
@@ -53,16 +40,14 @@ class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupTableView()
-        self.presenter.getUserDetails { [weak self] in
-            self?.user = $0
-            self?.createItems()
-        }
+        self.getUserDetails()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.createItems()
+    private func getUserDetails() {
+        self.presenter.getUserDetails { [weak self] in
+            self?.dataSource?.user = $0
+            self?.createItems()
+        }
     }
     
     // MARK: - Private methods
@@ -72,48 +57,8 @@ class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller {
         let aboutImage = UIImage(named: "about")
         let aboutCellModel = ActionCellModel(name: "About us", image: aboutImage) { [weak self] in self?.presenter.onAbout() }
         let logoutCellModel = ActionCellModel(name: "Logout", image: logoutImage, action: { [weak self] in self?.presenter.onLogout() })
-        self.items = [.profile(self.user), .imageQuality, .about(aboutCellModel), .logout(logoutCellModel)]
-        self.update(sections: Section.allCases, items: self.items)
+        self.dataSource?.items = [.profile(self.dataSource?.user), .imageQuality, .about(aboutCellModel), .logout(logoutCellModel)]
+        guard let items = self.dataSource?.items else { return }
+        self.dataSource?.update(with: items)
     }
-    
-    private func update(sections: [Section], items: [Item]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot.appendSections(sections)
-        snapshot.appendItems(items)
-        self.dataSource?.apply(snapshot)
-        
-    }
-    
-    private func setupTableView() {
-        let tableView = self.rootView?.tableView
-        tableView?.register(AvatarViewCell.self)
-        tableView?.register(QualitySettingViewCell.self)
-        tableView?.register(ActionViewCell.self)
-        tableView?.dataSource = self.dataSource
-    }
-    
-    private func diffableDataSource() -> UITableViewDiffableDataSource<Section, Item>? {
-        return self.rootView.map {
-            UITableViewDiffableDataSource(tableView: $0.tableView) { (tableView, indexPath, items) -> UITableViewCell? in
-                switch items {
-                case .profile(let model):
-                    let cell: AvatarViewCell = tableView.dequeueReusableCell(AvatarViewCell.self, for: indexPath)
-                    cell.fill(model: model)
-                    return cell
-                case .imageQuality:
-                    let cell: QualitySettingViewCell = tableView.dequeueReusableCell(QualitySettingViewCell.self, for: indexPath)
-                    return cell
-                case .about(let model):
-                    let cell: ActionViewCell = tableView.dequeueReusableCell(ActionViewCell.self, for: indexPath)
-                    cell.fill(with: model)
-                    return cell
-                case .logout(let model):
-                    let cell: ActionViewCell = tableView.dequeueReusableCell(ActionViewCell.self, for: indexPath)
-                    cell.fill(with: model)
-                    return cell
-                }
-            }
-        }
-    }
-    
 }
