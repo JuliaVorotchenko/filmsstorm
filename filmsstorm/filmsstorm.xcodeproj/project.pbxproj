@@ -1180,8 +1180,8 @@
 		CDB8791323B9002C0099F946 /* DiscoverViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CD12C289246EA58700295CA6 /* DiscoverCollectionViewProvider.swift */,
 				2E289C8923E8DE83001917DB /* Private */,
+				CD12C289246EA58700295CA6 /* DiscoverCollectionViewProvider.swift */,
 				CD4B3D4F2402EC6500F3FCF6 /* DiscoverPresenter.swift */,
 				2E289C8C23E8DE83001917DB /* DiscoverView.swift */,
 				2E289C8D23E8DE84001917DB /* DiscoverViewController.swift */,

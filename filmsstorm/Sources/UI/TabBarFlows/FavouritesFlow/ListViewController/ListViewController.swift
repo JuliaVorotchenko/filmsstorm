@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListViewController<T: ListsPresenter>: UIViewController, Controller, UITableViewDelegate {
+class ListViewController<T: ListsPresenter>: UIViewController, Controller {
     
     // MARK: - Subtypes
     

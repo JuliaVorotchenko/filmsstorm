@@ -23,9 +23,7 @@ class DiscoverCollectionViewProvider: NSObject, UICollectionViewDelegate {
         self.collectionView = collectionView
         self.event = event
         super.init()
-        self.collectionView.register(DiscoverCollectionViewCell.self)
-        self.collectionView.delegate = self
-        self.setCompositionalLayout()
+        self.collectionViewSetup()
     }
     
     func update(with items: [DiscoverCellModel]) {
@@ -36,8 +34,8 @@ class DiscoverCollectionViewProvider: NSObject, UICollectionViewDelegate {
     
     private func createDataSource() -> UICollectionViewDiffableDataSource<Section, DiscoverCellModel>? {
         let dataSource: UICollectionViewDiffableDataSource<Section, DiscoverCellModel>? =
-            UICollectionViewDiffableDataSource(collectionView: collectionView) {
-                collectionView, indexPath, item -> UICollectionViewCell in
+            UICollectionViewDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, item
+                -> UICollectionViewCell in
                 let cell: DiscoverCollectionViewCell =
                     collectionView.dequeueReusableCell(DiscoverCollectionViewCell.self, for: indexPath)
                 cell.fill(with: item)
@@ -68,6 +66,14 @@ class DiscoverCollectionViewProvider: NSObject, UICollectionViewDelegate {
     private func setCompositionalLayout() {
         let layout = CollectionLayoutFactory.standart()
         self.collectionView.setCollectionViewLayout(layout, animated: false)
+    }
+    
+    // MARK: - CollectionView Setup
+    
+    private func collectionViewSetup() {
+        self.collectionView.register(DiscoverCollectionViewCell.self)
+        self.collectionView.delegate = self
+        self.setCompositionalLayout()
     }
     
     // MARK: - UICollectionViewDelegate

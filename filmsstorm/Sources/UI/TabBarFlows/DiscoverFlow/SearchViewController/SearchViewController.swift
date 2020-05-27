@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController<T: SearchPresenter>: UIViewController, Controller, UISearchBarDelegate, UICollectionViewDelegate {
+class SearchViewController<T: SearchPresenter>: UIViewController, Controller, UISearchBarDelegate {
     
     // MARK: - Subtypes
     
@@ -97,7 +97,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, UI
     func bindAction(model: DiscoverCellModel) {
         self.presenter.onMediaItem(item: model)
     }
-
+    
     // MARK: - SearcBarDelegate
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -114,7 +114,7 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, UI
         searchBar.resignFirstResponder()
         guard let searchQuery = self.rootView?.searchBar?.text else { return }
         guard let segmentedControl = self.rootView?.segmentedControl else { return }
-
+        
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             self.movieSearch(query: searchQuery)
@@ -130,5 +130,4 @@ class SearchViewController<T: SearchPresenter>: UIViewController, Controller, UI
             self.dataSource?.clearDataSource()
         }
     }
-
 }

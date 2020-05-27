@@ -29,10 +29,7 @@ class ProfileTableViewProvider: NSObject, UITableViewDelegate {
     init(tableView: UITableView) {
         self.tableView = tableView
         super.init()
-        self.tableView.register(AvatarViewCell.self)
-        self.tableView.register(QualitySettingViewCell.self)
-        self.tableView.register(ActionViewCell.self)
-        self.tableView.dataSource = self.dataSource
+        self.tableViewSetup()
     }
     
     func update(with items: [Item]) {
@@ -75,4 +72,12 @@ class ProfileTableViewProvider: NSObject, UITableViewDelegate {
         return snapshot
     }
     
+    // MARK: - TableView Setup
+    
+    private func tableViewSetup() {
+        self.tableView.register(AvatarViewCell.self)
+        self.tableView.register(QualitySettingViewCell.self)
+        self.tableView.register(ActionViewCell.self)
+        self.tableView.dataSource = self.dataSource
+    }
 }

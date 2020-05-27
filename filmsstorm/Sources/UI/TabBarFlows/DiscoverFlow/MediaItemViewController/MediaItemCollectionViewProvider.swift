@@ -27,24 +27,20 @@ class MediaItemCollectionViewProvider: NSObject, UICollectionViewDelegate {
         case favourites(MediaItemModel?, isLiked: Bool)
         case play(MediaItemModel?)
     }
-
+    
     private lazy var dataSource = self.createDataSource()
     private let collectionView: UICollectionView
     private var events: ((MediaItemContainer) -> Void)?
     var itemEvent: ((ItemDescriptionEvent) -> Void)?
     
     init(collectionView: UICollectionView,
-         events: ((MediaItemCollectionViewProvider.MediaItemContainer) -> Void)?,
+         events: ((MediaItemContainer) -> Void)?,
          itemDescrEvents: ((ItemDescriptionEvent) -> Void)?) {
         self.collectionView = collectionView
         self.events = events
         self.itemEvent = itemDescrEvents
         super.init()
-        self.collectionView.register(MediaItemImageCell.self)
-        self.collectionView.register(ItemDescriptionViewCell.self)
-        self.collectionView.registerHeader(SectionHeaderView.self)
-        self.collectionView.setCollectionViewLayout(self.createCompositionalLayout(), animated: false)
-        self.collectionView.delegate = self
+        self.collectionViewSetup()
     }
     
     func update(for section: Section, with items: [MediaItemContainer]) {
@@ -56,8 +52,8 @@ class MediaItemCollectionViewProvider: NSObject, UICollectionViewDelegate {
     func createDataSource() -> UICollectionViewDiffableDataSource<Section, MediaItemContainer>? {
         
         let dataSource: UICollectionViewDiffableDataSource<Section, MediaItemContainer>? =
-            UICollectionViewDiffableDataSource(collectionView: collectionView) {
-                collectionView, indexPath, item -> UICollectionViewCell in
+            UICollectionViewDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, item
+                -> UICollectionViewCell in
                 
                 switch item {
                 case .media(let model):
@@ -113,9 +109,19 @@ class MediaItemCollectionViewProvider: NSObject, UICollectionViewDelegate {
         return header
     }
     
+    // MARK: - CollectionViewSetup
+    
+    private func collectionViewSetup() {
+        self.collectionView.register(MediaItemImageCell.self)
+        self.collectionView.register(ItemDescriptionViewCell.self)
+        self.collectionView.registerHeader(SectionHeaderView.self)
+        self.collectionView.setCollectionViewLayout(self.createCompositionalLayout(), animated: false)
+        self.collectionView.delegate = self
+    }
+    
     // MARK: - Setup Layout
     
-    func createCompositionalLayout() -> UICollectionViewLayout {
+    private func createCompositionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
             let section = Section.allCases[sectionIndex]
             switch section {

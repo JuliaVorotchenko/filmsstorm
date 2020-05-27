@@ -22,10 +22,10 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     let presenter: Service
     
     private lazy var dataSource = self.rootView?
-    .collectionView
+        .collectionView
         .map { DataSource(collectionView: $0, events: { [weak self] event  in self?.bindActions(event) },
                           itemDescrEvents: { [weak self] event in self?.onItemDescriptionEvent(event) })}
-
+    
     // MARK: - Init and deinit
     
     deinit {
@@ -85,23 +85,21 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     }
     
     private func onItemDescriptionEvent(_ event: DataSource.ItemDescriptionEvent) {
-            switch event {
-            case .watchlist(let model, let state):
-                model.map { self.presenter.updateWatchlist(for: $0, isWatchlisted: state) }
-            case .favourites(let model, let state):
-                model.map { self.presenter.updateFavorites(for: $0, isFavorite: state) }
-            case .play(let model):
-                model.map(self.presenter.onPlay)
-            }
+        switch event {
+        case .watchlist(let model, let state):
+            model.map { self.presenter.updateWatchlist(for: $0, isWatchlisted: state) }
+        case .favourites(let model, let state):
+            model.map { self.presenter.updateFavorites(for: $0, isFavorite: state) }
+        case .play(let model):
+            model.map(self.presenter.onPlay)
         }
+    }
     
     private func bindActions(_ events: DataSource.MediaItemContainer) {
-        
         switch events {
         case .actors(let model): self.presenter.onActor(actor: model)
         case .media(let model): self.presenter.onPlay(item: model!)
         case .similars(let model): self.presenter.onSimilarsItem(with: model)
-       
         }
     }
 }

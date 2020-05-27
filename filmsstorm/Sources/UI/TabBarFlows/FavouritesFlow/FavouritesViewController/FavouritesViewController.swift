@@ -39,7 +39,7 @@ final class FavouritesViewController<T: FavouritesPresenter>: UIViewController, 
     }
     
     // MARK: - Life cycle
-   
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.getMoviesWatchlist()

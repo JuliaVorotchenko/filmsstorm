@@ -37,10 +37,7 @@ class FavoritesCollectionViewProvider: NSObject, UICollectionViewDelegate {
         self.collectionView = collectionView
         self.events = events
         super.init()
-        self.collectionView.register(ListTypeCell.self)
-        self.collectionView.register(MediaItemImageCell.self)
-        self.collectionView.delegate = self
-        self.collectionView.setCollectionViewLayout(self.createCompositionalLayout(), animated: false)
+        self.collectionViewSetup()
     }
     
     func update(for section: Section, with items: [FavoritesContainer]) {
@@ -62,8 +59,8 @@ class FavoritesCollectionViewProvider: NSObject, UICollectionViewDelegate {
     
     private func createDataSource() -> UICollectionViewDiffableDataSource<Section, FavoritesContainer>? {
         let dataSource: UICollectionViewDiffableDataSource<Section, FavoritesContainer>? =
-            UICollectionViewDiffableDataSource(collectionView: collectionView) {
-                collectionView, indexPath, item -> UICollectionViewCell in
+            UICollectionViewDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, item
+                -> UICollectionViewCell in
                 switch item {
                     
                 case .media(let model):
@@ -106,8 +103,17 @@ class FavoritesCollectionViewProvider: NSObject, UICollectionViewDelegate {
         return snapshot
     }
     
+    // MARK: - CollectionView Setup
+    
+    private func collectionViewSetup() {
+        self.collectionView.register(ListTypeCell.self)
+        self.collectionView.register(MediaItemImageCell.self)
+        self.collectionView.delegate = self
+        self.collectionView.setCollectionViewLayout(self.createCompositionalLayout(), animated: false)
+    }
+    
     // MARK: - Setup Layout
-
+    
     private func createCompositionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, _) -> NSCollectionLayoutSection? in
             let section = Section.allCases[sectionIndex]
@@ -122,7 +128,7 @@ class FavoritesCollectionViewProvider: NSObject, UICollectionViewDelegate {
     }
     
     // MARK: - UICollectionViewDelegate
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = self.dataSource?.itemIdentifier(for: indexPath)
         model.map { self.events?($0) }

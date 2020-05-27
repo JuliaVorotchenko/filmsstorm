@@ -23,15 +23,14 @@ class ListTableViewProvider: NSObject, UITableViewDelegate {
         self.tableView = tableView
         self.event = event
         super.init()
-        self.tableView.register(ListTableViewCell.self)
-        self.tableView.delegate = self
+        self.tableViewSetup()
     }
     
     func update(with items: [DiscoverCellModel]) {
-           var snapshot = self.dataSource?.snapshot()
-           snapshot?.appendItems(items, toSection: Section.main)
-           snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
-       }
+        var snapshot = self.dataSource?.snapshot()
+        snapshot?.appendItems(items, toSection: Section.main)
+        snapshot.map { self.dataSource?.apply($0, animatingDifferences: false)}
+    }
     
     private func createDataSource() -> UITableViewDiffableDataSource<Section, DiscoverCellModel>? {
         let dataSource: UITableViewDiffableDataSource<Section, DiscoverCellModel>? =
@@ -51,6 +50,11 @@ class ListTableViewProvider: NSObject, UITableViewDelegate {
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(self.items)
         return snapshot
+    }
+    
+    private func tableViewSetup() {
+        self.tableView.register(ListTableViewCell.self)
+        self.tableView.delegate = self
     }
     
     // MARK: - TableView delegate

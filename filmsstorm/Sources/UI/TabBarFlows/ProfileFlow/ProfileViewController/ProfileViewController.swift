@@ -42,7 +42,7 @@ class ProfileViewController<T: ProfilePresenter>: UIViewController, Controller {
         super.viewDidLoad()
         self.getUserDetails()
     }
-  
+    
     private func getUserDetails() {
         self.presenter.getUserDetails { [weak self] in
             self?.dataSource?.user = $0

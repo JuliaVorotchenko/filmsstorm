@@ -8,20 +8,20 @@
 
 import UIKit
 
-class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller, UICollectionViewDelegate {
+class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller {
     
     // MARK: - Subtypes
     
     typealias RootViewType = MoviesView
     typealias Service = T
     typealias DataSource = DiscoverCollectionViewProvider
-   
+    
     // MARK: - Private properties
     
     let presenter: T
-  
+    
     private lazy var dataSource = self.rootView?.collectionView
-    .map { DataSource(collectionView: $0) { [weak self] in self?.bindAction(model: $0) }}
+        .map { DataSource(collectionView: $0) { [weak self] in self?.bindAction(model: $0) }}
     
     // MARK: - Init and deinit
     
@@ -64,5 +64,4 @@ class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller, UICo
     func bindAction(model: DiscoverCellModel) {
         self.presenter.onMedia(item: model)
     }
-
 }
