@@ -38,6 +38,7 @@ Target folder
             Flow
                 FlowCoordinator.swift
                 ViewController
+                    Collection/TableViewProvider
                     Presenter
                     Private
                         Subview.swift
@@ -91,7 +92,9 @@ Target folder
 
 **Sources/UI/Flow/ViewController/Private** - entities specific for current view controller only;
 
-**Sources/UI/Flow/ViewController/Presenter** - entities specific for certain view controller buisness logic;
+**Sources/UI/Flow/ViewController/Presenter** - instances specific for certain view controller buisness logic;
+
+**Sources/UI/Flow/ViewController/Collection(Table)ViewProvider** - instances resposible for Collection/TableView logic;
 
 **Models/Entities** - contains models, each in a separate subfolder, grouped by purpose;
 
