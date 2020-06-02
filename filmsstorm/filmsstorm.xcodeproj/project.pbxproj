@@ -173,6 +173,7 @@
 		CD8C9559245AC34800B2DAF1 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD8C9557245AC34800B2DAF1 /* ListViewController.xib */; };
 		CD8C955D245AC49D00B2DAF1 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8C955B245AC49D00B2DAF1 /* ListTableViewCell.swift */; };
 		CD8C955E245AC49D00B2DAF1 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD8C955C245AC49D00B2DAF1 /* ListTableViewCell.xib */; };
+		CDAAEADE2486E5A8003E15FB /* Refresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAAEADD2486E5A8003E15FB /* Refresher.swift */; };
 		CDB2A37724044E5100D27A9B /* FavouritesFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A37624044E5100D27A9B /* FavouritesFlowCoordinator.swift */; };
 		CDB2A37C24044FFD00D27A9B /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB2A37B24044FFD00D27A9B /* SearchViewController.xib */; };
 		CDB2A37E2404501600D27A9B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A37D2404501600D27A9B /* SearchView.swift */; };
@@ -412,6 +413,7 @@
 		CD8C955B245AC49D00B2DAF1 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		CD8C955C245AC49D00B2DAF1 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		CDA9C2D624213FE300CAD5C3 /* Abel-Cyrillic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Abel-Cyrillic.ttf"; sourceTree = "<group>"; };
+		CDAAEADD2486E5A8003E15FB /* Refresher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refresher.swift; sourceTree = "<group>"; };
 		CDB2A37624044E5100D27A9B /* FavouritesFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesFlowCoordinator.swift; sourceTree = "<group>"; };
 		CDB2A37B24044FFD00D27A9B /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		CDB2A37D2404501600D27A9B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -1045,6 +1047,7 @@
 		CD7E748723D8F53E0097F198 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CDAAEADC2486E54B003E15FB /* Refresher */,
 				2E289CBB23E8DFCA001917DB /* Networking */,
 			);
 			path = Services;
@@ -1091,6 +1094,14 @@
 				CD8C955C245AC49D00B2DAF1 /* ListTableViewCell.xib */,
 			);
 			path = Private;
+			sourceTree = "<group>";
+		};
+		CDAAEADC2486E54B003E15FB /* Refresher */ = {
+			isa = PBXGroup;
+			children = (
+				CDAAEADD2486E5A8003E15FB /* Refresher.swift */,
+			);
+			path = Refresher;
 			sourceTree = "<group>";
 		};
 		CDB2A37324044DDE00D27A9B /* ItemsViewController */ = {
@@ -1639,6 +1650,7 @@
 				CD6C24EF24296A22009E4B84 /* AnimatedButton.swift in Sources */,
 				2E289CE723E8DFCA001917DB /* TVEndPoint.swift in Sources */,
 				2E289CDC23E8DFCA001917DB /* NetworkError.swift in Sources */,
+				CDAAEADE2486E5A8003E15FB /* Refresher.swift in Sources */,
 				CDF57C7F2479585600DE0379 /* ProfileTableViewProvider.swift in Sources */,
 				CDC2F5362411972C00AB7B72 /* Presenter.swift in Sources */,
 				CD38EFE6240EFC2200F93536 /* UIView+Border.swift in Sources */,

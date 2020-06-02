@@ -53,9 +53,15 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
         super.viewDidLoad()
         self.getPopularMovies()
         self.setupHeader()
+        self.rootView?.collectionView.refreshControl = Refresher(target: self, selector: #selector(self.refreshHandler(_:)))
     }
     
     // MARK: - Private Methods
+    
+    @objc func refreshHandler(_ sender: Refresher) {
+        self.getPopularMovies()
+        sender.endRefreshing()
+    }
     
     private func getPopularMovies() {
         self.presenter.getPopularMovies { [weak self] value in
