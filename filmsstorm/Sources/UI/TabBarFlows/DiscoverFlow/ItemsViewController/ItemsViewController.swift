@@ -44,6 +44,7 @@ class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller {
         super.viewDidLoad()
         self.setupNavigationView()
         self.getPopularMovies()
+        self.rootView?.collectionView?.refreshControl = Refresher(target: self, selector: #selector(self.refreshHandler(_:)))
     }
     
     // MARK: - Private Methods
@@ -52,6 +53,11 @@ class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller {
         self.presenter.getItems { [weak self] in
             self?.dataSource?.update(with: $0)
         }
+    }
+    
+    @objc private func refreshHandler(_ sender: Refresher) {
+        self.getPopularMovies()
+        sender.endRefreshing()
     }
     
     private func setupNavigationView() {
