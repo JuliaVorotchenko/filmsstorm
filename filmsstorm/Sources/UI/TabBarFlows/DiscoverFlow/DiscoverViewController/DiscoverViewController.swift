@@ -58,7 +58,7 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     
     // MARK: - Private Methods
     
-    @objc func refreshHandler(_ sender: Refresher) {
+    @objc private func refreshHandler(_ sender: Refresher) {
         self.getPopularMovies()
         sender.endRefreshing()
     }
