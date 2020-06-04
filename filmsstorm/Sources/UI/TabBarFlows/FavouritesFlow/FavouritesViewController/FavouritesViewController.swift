@@ -21,7 +21,7 @@ final class FavouritesViewController<T: FavouritesPresenter>: UIViewController, 
     let presenter: T
     private lazy var dataSource = self.rootView?
         .collectionView
-        .map { DataSource(collectionView: $0) { [weak self] in self?.bindActions($0) }}
+        .map { DataSource(collectionView: $0, refreshHandler: { [weak self] in self?.getMoviesWatchlist() }) { [weak self] in self?.bindActions($0) }}
     
     // MARK: - Init and deinit
     

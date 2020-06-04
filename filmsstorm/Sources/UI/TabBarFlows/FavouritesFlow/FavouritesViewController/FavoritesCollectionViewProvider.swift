@@ -30,12 +30,14 @@ class FavoritesCollectionViewProvider: NSObject, UICollectionViewDelegate {
     }
     
     lazy var dataSource = self.createDataSource()
+    private let refresher: Refresher
     private let collectionView: UICollectionView
     private var events: ((FavoritesContainer) -> Void)?
     
-    init(collectionView: UICollectionView, events: ((FavoritesContainer) -> Void)?) {
+    init(collectionView: UICollectionView, refreshHandler: (() -> Void)?, events: ((FavoritesContainer) -> Void)?) {
         self.collectionView = collectionView
         self.events = events
+        self.refresher = Refresher(scrollView: collectionView, refreshHandler: refreshHandler)
         super.init()
         self.collectionViewSetup()
     }
