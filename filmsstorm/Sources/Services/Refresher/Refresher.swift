@@ -8,30 +8,30 @@
 
 import UIKit
 
-class Refresher: UIRefreshControl {
+final class Refresher: NSObject {
     
-    private weak var target: AnyObject?
-    private var selector: Selector?
+    // MARK: - Properties
     
-    // MARK: - Init & Deinit
-
-    override init() {
+    private let refreshControl = UIRefreshControl()
+    private var refreshHandler: (() -> Void)?
+    
+    // MARK: - Init and deinit
+    
+    deinit {
+        F.Log(self)
+        self.refreshControl.endRefreshing()
+    }
+    
+    init(scrollView: UIScrollView, refreshHandler: (() -> Void)?) {
+        self.refreshHandler = refreshHandler
         super.init()
+        self.refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        scrollView.refreshControl = self.refreshControl
+        
     }
     
-    convenience init(target: AnyObject?, selector: Selector?) {
-        self.init()
-        self.target = target
-        self.selector = selector
-        self.addTarget()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func addTarget() {
-        guard let selector = self.selector else { return }
-        self.addTarget(self.target, action: selector, for: .valueChanged)
+    @objc private func refresh() {
+        self.refreshHandler?()
+        self.refreshControl.endRefreshing()
     }
 }

@@ -8,20 +8,22 @@
 
 import UIKit
 
-class DiscoverCollectionViewProvider: NSObject, UICollectionViewDelegate {
+final class DiscoverCollectionViewProvider: NSObject, UICollectionViewDelegate {
     
     enum Section: CaseIterable {
         case  main
     }
     
-    var items = [DiscoverCellModel]()
+    private let refresher: Refresher
+    private var items = [DiscoverCellModel]()
     lazy var dataSource = self.createDataSource()
     private let collectionView: UICollectionView
     private var event: ((DiscoverCellModel) -> Void)?
     
-    init(collectionView: UICollectionView, event: ((DiscoverCellModel) -> Void)?) {
+    init(collectionView: UICollectionView, refreshHandler: (() -> Void)? = nil, event: ((DiscoverCellModel) -> Void)?) {
         self.collectionView = collectionView
         self.event = event
+        self.refresher = Refresher(scrollView: collectionView, refreshHandler: refreshHandler)
         super.init()
         self.collectionViewSetup()
     }

@@ -21,7 +21,8 @@ class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller {
     let presenter: T
     
     private lazy var dataSource = self.rootView?.collectionView
-        .map { DataSource(collectionView: $0) { [weak self] in self?.bindAction(model: $0) }}
+        .map { DataSource(collectionView: $0,
+                          refreshHandler: { [weak self] in self?.getPopularMovies() }) { [weak self] in self?.bindAction(model: $0) }}
     
     // MARK: - Init and deinit
     
@@ -44,7 +45,6 @@ class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller {
         super.viewDidLoad()
         self.setupNavigationView()
         self.getPopularMovies()
-        self.rootView?.collectionView?.refreshControl = Refresher(target: self, selector: #selector(self.refreshHandler(_:)))
     }
     
     // MARK: - Private Methods
@@ -53,11 +53,6 @@ class ItemsViewController<T: ItemsPresenter>: UIViewController, Controller {
         self.presenter.getItems { [weak self] in
             self?.dataSource?.update(with: $0)
         }
-    }
-    
-    @objc private func refreshHandler(_ sender: Refresher) {
-        self.getPopularMovies()
-        sender.endRefreshing()
     }
     
     private func setupNavigationView() {

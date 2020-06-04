@@ -27,7 +27,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                 guard let `self` = self else { return }
                 self.queue.async {
                     switch result {
-                    case .success( let data, let response):
+                    case .success(let data, let response):
                         self.handleNetworkResponse(data, response: response, completion: completion)
                     case .failure( let error):
                         completion(.failure(error))

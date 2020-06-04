@@ -30,7 +30,8 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
     
     let presenter: T
     private lazy var dataSource = self.rootView?.collectionView
-        .map { DataSource(collectionView: $0) { [weak self] in self?.bindAction(model: $0) }}
+        .map { DataSource(collectionView: $0,
+                          refreshHandler: { [weak self] in self?.getPopularMovies() }){ [weak self] in self?.bindAction(model: $0) } }
     
     // MARK: - Init and deinit
     
@@ -53,16 +54,10 @@ class DiscoverViewController<T: DiscoverPresenter>: UIViewController, Controller
         super.viewDidLoad()
         self.getPopularMovies()
         self.setupHeader()
-        self.rootView?.collectionView.refreshControl = Refresher(target: self, selector: #selector(self.refreshHandler(_:)))
     }
     
     // MARK: - Private Methods
-    
-    @objc private func refreshHandler(_ sender: Refresher) {
-        self.getPopularMovies()
-        sender.endRefreshing()
-    }
-    
+
     private func getPopularMovies() {
         self.presenter.getPopularMovies { [weak self] value in
             let items = value.map { DiscoverCellModel.create($0)}
