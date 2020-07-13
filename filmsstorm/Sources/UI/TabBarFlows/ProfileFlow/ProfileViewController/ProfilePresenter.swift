@@ -33,11 +33,11 @@ class ProfilePresenterImpl: ProfilePresenter {
     
     var showActivity: ((ActivityState) -> Void)?
     private let networking: NetworkManager
-    let eventHandler: ((ProfileEvent) -> Void)?
+    let eventHandler: (ProfileEvent) -> Void
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: ((ProfileEvent) -> Void)?) {
+    init(networking: NetworkManager, event: @escaping (ProfileEvent) -> Void) {
         self.networking = networking
         self.eventHandler = event
     }
@@ -50,12 +50,12 @@ class ProfilePresenterImpl: ProfilePresenter {
             switch result {
             case .success:
                 KeyChainContainer.unregister()
-                self?.eventHandler?(.logout)
+                self?.eventHandler(.logout)
                 self?.showActivity?(.hide)
             case .failure(let error):
                 F.Log(error.stringDescription)
                 self?.showActivity?(.hide)
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -66,12 +66,12 @@ class ProfilePresenterImpl: ProfilePresenter {
             case .success(let model):
                 completion?(model)
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
     
     func onAbout() {
-        self.eventHandler?(.about)
+        self.eventHandler(.about)
     }
 }

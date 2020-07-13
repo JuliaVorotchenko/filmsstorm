@@ -13,7 +13,7 @@ class TabBarContainer: AppEventSource {
     // MARK: - Properties
     
     var childCoordinators = [Coordinator]()
-    let eventHandler: (AppEvent) -> Void?
+    let eventHandler: (AppEvent) -> Void
     private(set) var tabBarController = UITabBarController()
     private let networking: NetworkManager
     
