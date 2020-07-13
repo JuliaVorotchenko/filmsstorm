@@ -26,6 +26,7 @@ final class AppConfigurator {
     private let window: UIWindow
     private let networking = NetworkManager()
     private var tabBarContainer: TabBarContainer?
+    private var loginFlowCoordinator: LoginFlowCoordinator?
     
     // MARK: - Init
     
@@ -49,15 +50,17 @@ final class AppConfigurator {
     private func createLoginCoordinator() {
         self.tabBarContainer = nil
         let coordinator = LoginFlowCoordinator(networking: self.networking,
-                                               eventHandler: self.appEvent)
+                                               eventHandler: { [weak self] in self?.appEvent($0) })
         
         self.window.rootViewController = coordinator.navigationController
         coordinator.start()
+        self.loginFlowCoordinator = coordinator
     }
     
     private func createTabBarCoordinator() {
+        self.loginFlowCoordinator = nil
         let container = TabBarContainer(networking: self.networking,
-                                        eventHandler: self.appEvent)
+                                        eventHandler: { [weak self] in self?.appEvent($0) })
         self.tabBarContainer = container
         self.window.rootViewController = container.tabBarController
     }
@@ -89,7 +92,7 @@ final class AppConfigurator {
     private func networkError(_ error: NetworkError) {
         switch error {
         case .networkingResponse(let nError):
-            if case .authenticationError = nError {
+            if .authenticationError == nError {
                 self.appEvent(.authorizationFlow)
             }
             self.showAlert(with: error)

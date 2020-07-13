@@ -14,7 +14,7 @@ class DiscoverFlowCoordinator: Coordinator {
     // MARK: - Properties
     
     var childCoordinators = [Coordinator]()
-    let eventHandler: ((AppEvent) -> Void)?
+    let eventHandler: (AppEvent) -> Void
     let navigationController: UINavigationController
     private let networking: NetworkManager
     
@@ -26,7 +26,7 @@ class DiscoverFlowCoordinator: Coordinator {
     
     init(networking: NetworkManager,
          navigationController: UINavigationController,
-         eventHandler: ((AppEvent) -> Void)?) {
+         eventHandler: @escaping (AppEvent) -> Void) {
         self.networking = networking
         self.eventHandler = eventHandler
         self.navigationController = navigationController
@@ -41,7 +41,7 @@ class DiscoverFlowCoordinator: Coordinator {
     }
     
     private func createDiscoverViewController() {
-        let presenter = DiscoverPresenterImpl(networking: self.networking, event: self.discoverEvent)
+        let presenter = DiscoverPresenterImpl(networking: self.networking, event: { [weak self] in self?.discoverEvent($0) })
         let controller = DiscoverViewController(presenter)
         self.navigationController.viewControllers = [controller]
     }
@@ -49,7 +49,7 @@ class DiscoverFlowCoordinator: Coordinator {
     private func discoverEvent(_ event: DiscoverEvent) {
         switch event {
         case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
         case .onMediaItem(let model):
             self.createMediaItemViewController(from: model)
         case .onHeaderEvent(let event):
@@ -71,7 +71,7 @@ class DiscoverFlowCoordinator: Coordinator {
     // MARK: - Movies VC
     
     private func createMoviesViewController() {
-        let presenter = MoviesPresenterImpl(networking: self.networking, event: self.moviesEvent)
+        let presenter = MoviesPresenterImpl(networking: self.networking, event: { [weak self] in self?.moviesEvent($0) })
         let controller = ItemsViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -81,7 +81,7 @@ class DiscoverFlowCoordinator: Coordinator {
         case .movie(let model):
             self.createMediaItemViewController(from: model)
         case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
         case .back:
             self.createDiscoverViewController()
         }
@@ -90,7 +90,7 @@ class DiscoverFlowCoordinator: Coordinator {
     // MARK: - Shows VC
     
     private func createShowsViewController() {
-        let presenter = ShowPresenterImpl(networking: self.networking, event: self.showsEvent)
+        let presenter = ShowPresenterImpl(networking: self.networking, event: { [weak self] in self?.showsEvent($0) })
         let controller = ItemsViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -102,14 +102,14 @@ class DiscoverFlowCoordinator: Coordinator {
         case .back:
             self.createDiscoverViewController()
         case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
         }
     }
     
     // MARK: - Search VC
     
     private func createSearchViewController() {
-        let presenter = SearchPresenterImpl(networking: self.networking, event: self.searchEvents)
+        let presenter = SearchPresenterImpl(networking: self.networking, event: { [weak self] in self?.searchEvents($0) })
         let controller = SearchViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -121,7 +121,7 @@ class DiscoverFlowCoordinator: Coordinator {
         case .back:
             self.navigationController.popViewController(animated: true)
         case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
         }
     }
     
@@ -129,7 +129,7 @@ class DiscoverFlowCoordinator: Coordinator {
     
     private func createMediaItemViewController(from model: ConfigureModel) {
         let presenter = MediaItemPresenterImpl(networking: self.networking,
-                                               event: self.mediaItemEvent,
+                                               event: { [weak self] in self?.mediaItemEvent($0) },
                                                itemModel: model)
         let controller = MediaItemViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
@@ -140,7 +140,7 @@ class DiscoverFlowCoordinator: Coordinator {
         case .back:
             self.navigationController.popViewController(animated: true)
         case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
         case .onMediaItem(let model):
             self.createMediaItemViewController(from: model)
         case .onPlay(let model):
@@ -153,7 +153,7 @@ class DiscoverFlowCoordinator: Coordinator {
     // MARK: - Video Player VC
     
     private func createVideoPlayerViewController(from model: MediaItemModel) {
-        let presenter = VideoPlayerViewPresenterImpl(networking: self.networking, event: self.videoPlayerEvent, item: model)
+        let presenter = VideoPlayerViewPresenterImpl(networking: self.networking, event: { [weak self] in self?.videoPlayerEvent($0) }, item: model)
         let controller = VideoPlayerViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -163,14 +163,14 @@ class DiscoverFlowCoordinator: Coordinator {
         case .back:
             self.navigationController.popViewController(animated: true)
         case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
         }
     }
     
     // MARK: - Actor VC
     
     private func createActorViewController(from model: ActorModel) {
-        let presenter = ActorViewPresenterImpl(networking: self.networking, event: self.actorEvent, actorModel: model)
+        let presenter = ActorViewPresenterImpl(networking: self.networking, event: { [weak self] in self?.actorEvent($0) }, actorModel: model)
         let controller = ActorViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -182,7 +182,7 @@ class DiscoverFlowCoordinator: Coordinator {
         case .back:
             self.navigationController.popViewController(animated: true)
         case .error(let errorMessage):
-              self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
         }
     }
 

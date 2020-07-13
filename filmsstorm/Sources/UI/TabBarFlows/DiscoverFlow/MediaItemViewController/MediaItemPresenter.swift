@@ -37,7 +37,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     
     // MARK: - Properties
     
-    let eventHandler: Handler<MediaItemEvent>?
+    let eventHandler: Handler<MediaItemEvent>
     var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
     let itemModel: ConfigureModel
@@ -46,7 +46,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: Handler<MediaItemEvent>?, itemModel: ConfigureModel) {
+    init(networking: NetworkManager, event: @escaping Handler<MediaItemEvent>, itemModel: ConfigureModel) {
         self.networking = networking
         self.eventHandler = event
         self.itemModel = itemModel
@@ -63,7 +63,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                 case .success(let detailsModel):
                     self.map { completion?($0.createMediaItem(detailsModel))}
                 case .failure(let error):
-                    self?.eventHandler?(.error(.networkingError(error)))
+                    self?.eventHandler(.error(.networkingError(error)))
                 }
             }
         case .tv:
@@ -72,7 +72,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                 case .success(let detailsModel):
                     self.map { completion?($0.createMediaItem(detailsModel))}
                 case .failure(let error):
-                    self?.eventHandler?(.error(.networkingError(error)))
+                    self?.eventHandler(.error(.networkingError(error)))
                 }
             }
         }
@@ -104,7 +104,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                 case .success(let creditsModel):
                     creditsModel.cast.map { completion?($0.map(ActorModel.create)) }
                 case .failure(let error):
-                    self?.eventHandler?(.error(.networkingError(error)))
+                    self?.eventHandler(.error(.networkingError(error)))
                 }
             }
             
@@ -115,7 +115,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                     guard let movieCast = creditsModel.cast else { return }
                     completion?(movieCast.map(ActorModel.create))
                 case .failure(let error):
-                    self?.eventHandler?(.error(.networkingError(error)))
+                    self?.eventHandler(.error(.networkingError(error)))
                 }
             }
         }
@@ -133,7 +133,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                     
                     completion?(results.map(DiscoverCellModel.create))
                 case .failure(let error):
-                    self.eventHandler?(.error(.networkingError(error)))
+                    self.eventHandler(.error(.networkingError(error)))
                 }
             }
         case .tv:
@@ -143,7 +143,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                     guard let results = similarsModel.results else { return }
                     completion?(results.map(DiscoverCellModel.create))
                 case .failure(let error):
-                    self.eventHandler?(.error(.networkingError(error)))
+                    self.eventHandler(.error(.networkingError(error)))
                 }
             }
         }
@@ -158,7 +158,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             case .success:
                 isFavorite ? self?.addFavoriteStorage(item: item): self?.removeFavoriteStorage(item: item)
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -194,7 +194,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             case .success:
                 isWatchlisted ? self?.addWatchlistStorage(item: item): self?.removeWatchlistStorage(item: item)
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -236,7 +236,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             case .success(let model):
                 UserMoviesContainer.favoritesIDs = model.results.map { $0.id }
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -247,7 +247,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             case .success(let model):
                 UserShowsContainer.favoritesIDs = model.results.map { $0.id }
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -258,7 +258,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             case .success(let model):
                 UserMoviesContainer.watchlistIDs = model.results.map { $0.id }
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -269,7 +269,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
             case .success(let model):
                 UserShowsContainer.watchlistIDs = model.results.map { $0.id }
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -277,19 +277,19 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     // MARK: - Event Methods
     
     func onBack() {
-        self.eventHandler?(.back)
+        self.eventHandler(.back)
     }
     
     func onSimilarsItem(with model: DiscoverCellModel) {
-        self.eventHandler?(.onMediaItem(model))
+        self.eventHandler(.onMediaItem(model))
     }
     
     func onPlay(item: MediaItemModel) {
-        self.eventHandler?(.onPlay(item))
+        self.eventHandler(.onPlay(item))
     }
     
     func onActor(actor: ActorModel) {
-        self.eventHandler?(.onActor(actor))
+        self.eventHandler(.onActor(actor))
     }
     
 }

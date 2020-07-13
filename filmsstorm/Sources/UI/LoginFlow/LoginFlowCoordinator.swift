@@ -13,8 +13,8 @@ class LoginFlowCoordinator: Coordinator {
     // MARK: - Properties
 
     var childCoordinators = [Coordinator]()
-    let eventHandler: ((AppEvent) -> Void)?
-    let navigationController: UINavigationController = .init()
+    let eventHandler: (AppEvent) -> Void
+    let navigationController = UINavigationController()
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
@@ -23,7 +23,7 @@ class LoginFlowCoordinator: Coordinator {
     }
     
     init(networking: NetworkManager,
-         eventHandler: ((AppEvent) -> Void)?) {
+         eventHandler: @escaping (AppEvent) -> Void) {
         self.networking = networking
         self.eventHandler = eventHandler
         self.navigationController.navigationBar.isHidden = true
@@ -38,7 +38,7 @@ class LoginFlowCoordinator: Coordinator {
     // MARK: - Private methods
     
     private func createAuthController() {
-        let presentater = AuthorizationPresenterImpl(networking: self.networking, event: self.authEvent(_:))
+        let presentater = AuthorizationPresenterImpl(networking: self.networking, event: {[weak self] in self?.authEvent($0) })
         let controller = AuthorizationViewController(presentater)
         self.navigationController.viewControllers = [controller]
     }
@@ -48,12 +48,12 @@ class LoginFlowCoordinator: Coordinator {
         case .login:
             self.onLogin()
         case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
         }
     }
     
     private func onLogin() {
         self.navigationController.viewControllers.removeAll()
-        self.eventHandler?(.mainFlow)
+        self.eventHandler(.mainFlow)
     }
 }

@@ -21,15 +21,15 @@ class AboutPresenterImpl: AboutPresenter {
     // MARK: - Private properties
     
     var showActivity: ((ActivityState) -> Void)?
-    let eventHandler: ((AboutEvent) -> Void)?
+    let eventHandler: ((AboutEvent) -> Void)
     
     // MARK: - Init and deinit
-    init(event: ((AboutEvent) -> Void)?) {
+    init(event: @escaping (AboutEvent) -> Void) {
         self.eventHandler = event
     }
     
     // MARK: - Methods
     func onBackEvent() {
-        self.eventHandler?(.profile)
+        self.eventHandler(.profile)
     }
 }

@@ -13,23 +13,17 @@ class TabBarContainer: AppEventSource {
     // MARK: - Properties
     
     var childCoordinators = [Coordinator]()
-    let eventHandler: ((AppEvent) -> Void)?
+    let eventHandler: (AppEvent) -> Void
     private(set) var tabBarController = UITabBarController()
-    private let mainFlowNav = UINavigationController()
-    private let profileFlow = UINavigationController()
-    private let favouritesFlow = UINavigationController()
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
     deinit {
-        self.mainFlowNav.viewControllers.removeAll()
-        self.profileFlow.viewControllers.removeAll()
-        self.favouritesFlow.viewControllers.removeAll()
         F.Log(F.toString(Self.self))
     }
     
     init(networking: NetworkManager,
-         eventHandler: ((AppEvent) -> Void)?) {
+         eventHandler: @escaping (AppEvent) -> Void) {
         self.networking = networking
         self.eventHandler = eventHandler
         self.createTabBar()
@@ -48,23 +42,27 @@ class TabBarContainer: AppEventSource {
     }
     
     private func createDiscoverFlowCoordinator() {
-        let coordinator = DiscoverFlowCoordinator(networking: self.networking, navigationController: self.mainFlowNav,
-                                                  eventHandler: self.eventHandler)
+        let mainFlowNav = UINavigationController()
+        let coordinator = DiscoverFlowCoordinator(networking: self.networking,
+                                                  navigationController: mainFlowNav,
+                                                  eventHandler: { [weak self] in self?.eventHandler($0) })
         self.childCoordinators.append(coordinator)
         coordinator.start()
     }
     
     private func createProfileFlowCoordinator() {
-        let coordinator = ProfileFlowCoordinator(networking: self.networking, navigationController: self.profileFlow,
-                                                 eventHandler: self.eventHandler)
+        let profileFlow = UINavigationController()
+        let coordinator = ProfileFlowCoordinator(networking: self.networking, navigationController: profileFlow,
+                                                 eventHandler: { [weak self] in self?.eventHandler($0) })
         
         self.childCoordinators.append(coordinator)
         coordinator.start()
     }
     
     private func createFavouritesFlowCoordinator() {
-        let coordinator = FavouritesFlowCoordinator(networking: self.networking, navigationController: self.favouritesFlow,
-                                                    eventHandler: self.eventHandler)
+        let favoritesFlow = UINavigationController()
+        let coordinator = FavouritesFlowCoordinator(networking: self.networking, navigationController: favoritesFlow,
+                                                    eventHandler: { [weak self] in self?.eventHandler($0) })
         self.childCoordinators.append(coordinator)
         coordinator.start()
     }

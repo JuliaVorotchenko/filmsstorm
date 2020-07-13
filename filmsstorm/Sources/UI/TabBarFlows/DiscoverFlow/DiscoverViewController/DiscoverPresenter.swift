@@ -27,13 +27,13 @@ protocol DiscoverPresenter: Presenter {
 class DiscoverPresenterImpl: DiscoverPresenter {
   
     // MARK: - Private Properties
-    let eventHandler: Handler<DiscoverEvent>?
+    let eventHandler: Handler<DiscoverEvent>
     var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: Handler<DiscoverEvent>?) {
+    init(networking: NetworkManager, event: @escaping Handler<DiscoverEvent>) {
         self.networking = networking
         self.eventHandler = event
     }
@@ -46,7 +46,7 @@ class DiscoverPresenterImpl: DiscoverPresenter {
             case .success(let model):
                 completion?(model.results)
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -54,18 +54,18 @@ class DiscoverPresenterImpl: DiscoverPresenter {
     // MARK: - Activity Movies
     
     func onMovies() {
-        self.eventHandler?(.onHeaderEvent(.onMovies))
+        self.eventHandler(.onHeaderEvent(.onMovies))
     }
     
     func onShows() {
-        self.eventHandler?(.onHeaderEvent(.onShows))
+        self.eventHandler(.onHeaderEvent(.onShows))
     }
     
     func onSearch() {
-        self.eventHandler?(.onHeaderEvent(.onSearch))
+        self.eventHandler(.onHeaderEvent(.onSearch))
     }
     
     func onMedia(item: DiscoverCellModel) {
-         self.eventHandler?(.onMediaItem(item))
+        self.eventHandler(.onMediaItem(item))
     }
 }
