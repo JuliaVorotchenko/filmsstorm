@@ -26,14 +26,14 @@ class MoviesPresenterImpl: ItemsPresenter {
     
     // MARK: - Private Properties
     
-    let eventHandler: Handler<MoviesEvent>?
+    let eventHandler: Handler<MoviesEvent>
     var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
     let title = Constants.movieTitle
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: Handler<MoviesEvent>?) {
+    init(networking: NetworkManager, event: @escaping Handler<MoviesEvent>) {
         self.networking = networking
         self.eventHandler = event
     }
@@ -46,16 +46,16 @@ class MoviesPresenterImpl: ItemsPresenter {
             case .success(let model):
                 completion?(model.results.map(DiscoverCellModel.create))
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
     
     func onMedia(item: DiscoverCellModel) {
-        self.eventHandler?(.movie(item))
+        self.eventHandler(.movie(item))
     }
     
     func onBack() {
-        self.eventHandler?(.back)
+        self.eventHandler(.back)
     }
 }

@@ -27,14 +27,14 @@ class ActorViewPresenterImpl: ActorViewPresenter {
     
     // MARK: - Properties
     
-    let eventHandler: Handler<ActorViewEvent>?
+    let eventHandler: Handler<ActorViewEvent>
     var showActivity: Handler<ActivityState>?
     let actorModel: ActorModel
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: Handler<ActorViewEvent>?, actorModel: ActorModel) {
+    init(networking: NetworkManager, event: @escaping Handler<ActorViewEvent>, actorModel: ActorModel) {
         self.networking = networking
         self.eventHandler = event
         self.actorModel = actorModel
@@ -49,7 +49,7 @@ class ActorViewPresenterImpl: ActorViewPresenter {
             case .success(let model):
                 completion?(model)
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -62,17 +62,17 @@ class ActorViewPresenterImpl: ActorViewPresenter {
                 guard let results = model.cast else { return }
                 completion?(results.map(DiscoverCellModel.create))
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
         
     }
     
     func onBack() {
-        self.eventHandler?(.back)
+        self.eventHandler(.back)
     }
     
     func onMediaItem(with model: DiscoverCellModel) {
-        self.eventHandler?(.onMediaItem(model))
+        self.eventHandler(.onMediaItem(model))
     }
 }

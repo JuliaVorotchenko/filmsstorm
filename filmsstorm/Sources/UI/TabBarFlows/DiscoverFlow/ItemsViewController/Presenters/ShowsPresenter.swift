@@ -18,14 +18,14 @@ class ShowPresenterImpl: ItemsPresenter {
     
     // MARK: - Private Properties
     
-    let eventHandler: Handler<ShowsEvent>?
+    let eventHandler: Handler<ShowsEvent>
     var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
     let title = Constants.showsTitle
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: ((ShowsEvent) -> Void)?) {
+    init(networking: NetworkManager, event: @escaping (ShowsEvent) -> Void) {
         self.networking = networking
         self.eventHandler = event
     }
@@ -39,16 +39,16 @@ class ShowPresenterImpl: ItemsPresenter {
                 completion?(model.results.map(DiscoverCellModel.create))
                 
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
     
     func onMedia(item: DiscoverCellModel) {
-        self.eventHandler?(.mediaItem(item))
+        self.eventHandler(.mediaItem(item))
     }
     
     func onBack() {
-        self.eventHandler?(.back)
+        self.eventHandler(.back)
     }
 }

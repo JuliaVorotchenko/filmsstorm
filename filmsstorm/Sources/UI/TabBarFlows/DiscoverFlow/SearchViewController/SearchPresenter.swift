@@ -26,13 +26,13 @@ class SearchPresenterImpl: SearchPresenter {
     
     // MARK: - Private Properties
     
-    let eventHandler: Handler<SearchEvent>?
+    let eventHandler: Handler<SearchEvent>
     var showActivity: Handler<ActivityState>?
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: ((SearchEvent) -> Void)?) {
+    init(networking: NetworkManager, event: @escaping (SearchEvent) -> Void) {
         self.networking = networking
         self.eventHandler = event
     }
@@ -44,12 +44,12 @@ class SearchPresenterImpl: SearchPresenter {
             switch result {
             case .success(let model):
                 if model.results.isEmpty {
-                    self?.eventHandler?(.error(.emptySearchResult))
+                    self?.eventHandler(.error(.emptySearchResult))
                 } else {
                 completion?(model.results)
                 }
             case .failure(let error):
-               self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -59,21 +59,21 @@ class SearchPresenterImpl: SearchPresenter {
             switch result {
             case .success(let model):
                 if model.results.isEmpty {
-                    self?.eventHandler?(.error(.emptySearchResult))
+                    self?.eventHandler(.error(.emptySearchResult))
                 } else {
                 completion?(model.results)
                 }
             case .failure(let error):
-               self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
         
     func onMediaItem(item: DiscoverCellModel) {
-        self.eventHandler?(.mediaItem(item))
+        self.eventHandler(.mediaItem(item))
     }
     
     func onBack() {
-        self.eventHandler?(.back)
+        self.eventHandler(.back)
     }
 }

@@ -26,14 +26,14 @@ class VideoPlayerViewPresenterImpl: VideoPlayerViewPresenter {
    
     // MARK: - Private Properties
     
-    let eventHandler: Handler<VideoEvent>?
+    let eventHandler: Handler<VideoEvent>
     var showActivity: Handler<ActivityState>?
     let itemModel: MediaItemModel
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: ((VideoEvent) -> Void)?, item: MediaItemModel) {
+    init(networking: NetworkManager, event: @escaping (VideoEvent) -> Void, item: MediaItemModel) {
           self.networking = networking
           self.eventHandler = event
         self.itemModel = item
@@ -49,7 +49,7 @@ class VideoPlayerViewPresenterImpl: VideoPlayerViewPresenter {
                  case.success(let model):
                      completion(model.results)
                  case .failure(let error):
-                     self?.eventHandler?(.error(.networkingError(error)))
+                    self?.eventHandler(.error(.networkingError(error)))
                  }
              }
          case .tv:
@@ -58,7 +58,7 @@ class VideoPlayerViewPresenterImpl: VideoPlayerViewPresenter {
                  case.success(let model):
                       completion(model.results)
                  case .failure(let error):
-                     self?.eventHandler?(.error(.networkingError(error)))
+                    self?.eventHandler(.error(.networkingError(error)))
                  }
              }
          }
@@ -67,7 +67,7 @@ class VideoPlayerViewPresenterImpl: VideoPlayerViewPresenter {
     // MARK: - Methods
     
     func onBack() {
-        self.eventHandler?(.back)
+        self.eventHandler(.back)
     }
     
 }
