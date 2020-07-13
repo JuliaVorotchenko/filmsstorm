@@ -39,12 +39,12 @@ class FavouritesPresenterImpl: FavouritesPresenter {
     
     // MARK: - Private Properties
     
-    let eventHandler: Handler<FavouritesEvent>?
+    let eventHandler: Handler<FavouritesEvent>
     private let networking: NetworkManager
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: Handler<FavouritesEvent>?) {
+    init(networking: NetworkManager, event: @escaping Handler<FavouritesEvent>) {
         self.networking = networking
         self.eventHandler = event
     }
@@ -57,7 +57,7 @@ class FavouritesPresenterImpl: FavouritesPresenter {
             case .success(let watchlist):
                 completion?(watchlist.results.map(DiscoverCellModel.create))
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -68,7 +68,7 @@ class FavouritesPresenterImpl: FavouritesPresenter {
             case .success(let watchlist):
                 completion?(watchlist.results.map(DiscoverCellModel.create))
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -79,7 +79,7 @@ class FavouritesPresenterImpl: FavouritesPresenter {
             case .success(let favorites):
                 completion?(favorites.results.map(DiscoverCellModel.create))
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -90,7 +90,7 @@ class FavouritesPresenterImpl: FavouritesPresenter {
             case .success(let favorites):
                 completion?(favorites.results.map(DiscoverCellModel.create))
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -98,22 +98,22 @@ class FavouritesPresenterImpl: FavouritesPresenter {
     // MARK: - Action Methods
     
     func onMedia(item: DiscoverCellModel) {
-        self.eventHandler?(.onMedia(item))
+        self.eventHandler(.onMedia(item))
     }
     
     func onFavoriteMovies() {
-        self.eventHandler?(.onHeaderEvent(.favoriteMovies))
+        self.eventHandler(.onHeaderEvent(.favoriteMovies))
     }
     
     func onFavoriteShows() {
-        self.eventHandler?(.onHeaderEvent(.favoriteShows))
+        self.eventHandler(.onHeaderEvent(.favoriteShows))
     }
     
     func onMoviesWatchList() {
-        self.eventHandler?(.onHeaderEvent(.moviesWatchList))
+        self.eventHandler(.onHeaderEvent(.moviesWatchList))
     }
     
     func onShowsWatchlist() {
-        self.eventHandler?(.onHeaderEvent(.showsWatchlist))
+        self.eventHandler(.onHeaderEvent(.showsWatchlist))
     }
 }

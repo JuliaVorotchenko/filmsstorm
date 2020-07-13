@@ -18,13 +18,13 @@ class FavoriteShowsPresenterImpl: ListsPresenter {
    
     // MARK: - Private Properties
     
-    let eventHandler: Handler<FavoriteShowsEvent>?
+    let eventHandler: Handler<FavoriteShowsEvent>
     private let networking: NetworkManager
     var title = Constants.favoriteShows
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: Handler<FavoriteShowsEvent>?) {
+    init(networking: NetworkManager, event: @escaping Handler<FavoriteShowsEvent>) {
         self.networking = networking
         self.eventHandler = event
     }
@@ -37,7 +37,7 @@ class FavoriteShowsPresenterImpl: ListsPresenter {
             case .success(let favorites):
                 completion?(favorites.results.map(DiscoverCellModel.create))
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -45,10 +45,10 @@ class FavoriteShowsPresenterImpl: ListsPresenter {
     // MARK: - Action Methods
     
     func onMedia(item: DiscoverCellModel) {
-        self.eventHandler?(.media(item))
+        self.eventHandler(.media(item))
     }
     
     func back() {
-        self.eventHandler?(.back)
+        self.eventHandler(.back)
     }
 }

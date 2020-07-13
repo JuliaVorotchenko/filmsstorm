@@ -18,13 +18,13 @@ class MoviesWatchlistPresenterImpl: ListsPresenter {
     
     // MARK: - Private Properties
     
-    let eventHandler: Handler<MoviesWatchlistEvent>?
+    let eventHandler: Handler<MoviesWatchlistEvent>
     private let networking: NetworkManager
     var title = Constants.moviesWachlist
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: Handler<MoviesWatchlistEvent>?) {
+    init(networking: NetworkManager, event: @escaping Handler<MoviesWatchlistEvent>) {
         self.networking = networking
         self.eventHandler = event
     }
@@ -37,7 +37,7 @@ class MoviesWatchlistPresenterImpl: ListsPresenter {
             case .success(let watchlist):
                 completion?(watchlist.results.map(DiscoverCellModel.create))
             case .failure(let error):
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -45,10 +45,10 @@ class MoviesWatchlistPresenterImpl: ListsPresenter {
     // MARK: - Action Methods
     
     func onMedia(item: DiscoverCellModel) {
-        self.eventHandler?(.media(item))
+        self.eventHandler(.media(item))
     }
     
     func back() {
-        self.eventHandler?(.back)
+        self.eventHandler(.back)
     }
 }
