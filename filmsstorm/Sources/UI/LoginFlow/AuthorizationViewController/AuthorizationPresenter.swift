@@ -6,6 +6,11 @@
 //  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
 
+struct User {
+    let id: Int
+    let name: String
+}
+
 enum AuthEvent: EventProtocol {
     case login
     case error(AppError)
@@ -16,17 +21,17 @@ protocol AuthorizationPresenter: Presenter {
     func getToken(username: String, password: String)
 }
 
-class AuthorizationPresenterImpl: AuthorizationPresenter {
+final class AuthorizationPresenterImpl: AuthorizationPresenter {
     
     // MARK: - Private properties
     
     private let networking: NetworkManager
-    let eventHandler: Handler<AuthEvent>?
+    let eventHandler: Handler<AuthEvent>
     var showActivity: Handler<ActivityState>?
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: Handler<AuthEvent>?) {
+    init(networking: NetworkManager, event: @escaping Handler<AuthEvent>) {
         self.networking = networking
         self.eventHandler = event
     }
@@ -41,7 +46,7 @@ class AuthorizationPresenterImpl: AuthorizationPresenter {
                 self?.validateToken(token: token.requestToken, username: username, password: password)
             case .failure(let error):
                 self?.showActivity?(.hide)
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -56,7 +61,7 @@ class AuthorizationPresenterImpl: AuthorizationPresenter {
                 self?.createSession(validToken: token.requestToken)
             case .failure(let error):
                 self?.showActivity?(.hide)
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
@@ -68,10 +73,10 @@ class AuthorizationPresenterImpl: AuthorizationPresenter {
             case .success(let sessionID):
                 self?.showActivity?(.hide)
                 KeyChainContainer.sessionID = sessionID.sessionID
-                self?.eventHandler?(.login)
+                self?.eventHandler(.login)
             case .failure(let error):
                 self?.showActivity?(.hide)
-                self?.eventHandler?(.error(.networkingError(error)))
+                self?.eventHandler(.error(.networkingError(error)))
             }
         }
     }
