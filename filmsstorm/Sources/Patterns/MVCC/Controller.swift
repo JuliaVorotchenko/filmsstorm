@@ -31,7 +31,7 @@ protocol Controller: RootViewGettable {
 /// You must use this protocol to handle Controller's events in Coordinator (or use delegation as simple alternative).
 protocol EventSourse {
     associatedtype Event: EventProtocol
-    var eventHandler: ((Event) -> Void)? { get }
+    var eventHandler: (Event) -> Void { get }
 }
 
 /// We need this protocol to subscribe events 

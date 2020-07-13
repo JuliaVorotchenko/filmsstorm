@@ -8,5 +8,5 @@
 
 /// Interfase to handle app events (AppEvent)
 protocol AppEventSource {
-    var eventHandler: ((AppEvent) -> Void)? { get }
+    var eventHandler: (AppEvent) -> Void { get }
 }

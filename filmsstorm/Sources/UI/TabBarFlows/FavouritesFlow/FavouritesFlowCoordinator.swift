@@ -14,7 +14,7 @@ class FavouritesFlowCoordinator: Coordinator {
     // MARK: - Properties
     
     var childCoordinators = [Coordinator]()
-    let eventHandler: Handler<AppEvent>?
+    let eventHandler: Handler<AppEvent>
     let navigationController: UINavigationController
     private let networking: NetworkManager
     
@@ -26,7 +26,7 @@ class FavouritesFlowCoordinator: Coordinator {
     
     init(networking: NetworkManager,
          navigationController: UINavigationController,
-         eventHandler: Handler<AppEvent>?) {
+         eventHandler: @escaping Handler<AppEvent>) {
         self.networking = networking
         self.eventHandler = eventHandler
         self.navigationController = navigationController
@@ -41,7 +41,7 @@ class FavouritesFlowCoordinator: Coordinator {
     }
     
     private func createFavouritesViewController() {
-        let presenter = FavouritesPresenterImpl(networking: self.networking, event: self.favouritesEvent(_:))
+        let presenter = FavouritesPresenterImpl(networking: self.networking, event: { [weak self] in self?.favouritesEvent($0) })
         let controller = FavouritesViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -55,7 +55,7 @@ class FavouritesFlowCoordinator: Coordinator {
         case .onHeaderEvent(let event):
             self.favoritesHeaderEvents(event)
         case .error(let error):
-            self.eventHandler?(.appError(error))
+            self.eventHandler(.appError(error))
         }
     }
     
@@ -76,7 +76,7 @@ class FavouritesFlowCoordinator: Coordinator {
        
        private func createMediaItemViewController(from model: ConfigureModel) {
            let presenter = MediaItemPresenterImpl(networking: self.networking,
-                                                  event: self.mediaItemEvent,
+                                                  event: { [weak self] in self?.mediaItemEvent($0) },
                                                   itemModel: model)
            let controller = MediaItemViewController(presenter)
            self.navigationController.pushViewController(controller, animated: true)
@@ -87,7 +87,7 @@ class FavouritesFlowCoordinator: Coordinator {
            case .back:
                self.navigationController.popViewController(animated: true)
            case .error(let errorMessage):
-               self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
            case .onMediaItem(let model):
                self.createMediaItemViewController(from: model)
            case .onPlay(let model):
@@ -100,7 +100,7 @@ class FavouritesFlowCoordinator: Coordinator {
     // MARK: - Video Player VC
     
     private func createVideoPlayerViewController(from model: MediaItemModel) {
-        let presenter = VideoPlayerViewPresenterImpl(networking: self.networking, event: self.videoPlayerEvent, item: model)
+        let presenter = VideoPlayerViewPresenterImpl(networking: self.networking, event: { [weak self] in self?.videoPlayerEvent($0) }, item: model)
         let controller = VideoPlayerViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -110,14 +110,14 @@ class FavouritesFlowCoordinator: Coordinator {
         case .back:
             self.navigationController.popViewController(animated: true)
         case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
         }
     }
     
     // MARK: - Actor VC
     
     private func createActorViewController(from model: ActorModel) {
-        let presenter = ActorViewPresenterImpl(networking: self.networking, event: self.actorEvent, actorModel: model)
+        let presenter = ActorViewPresenterImpl(networking: self.networking, event: { [weak self] in self?.actorEvent($0) }, actorModel: model)
         let controller = ActorViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -129,14 +129,14 @@ class FavouritesFlowCoordinator: Coordinator {
         case .back:
             self.navigationController.popViewController(animated: true)
         case .error(let errorMessage):
-              self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
         }
     }
     
     // MARK: - Favorite Movies VC
     
     private func createFavoriteMoviesViewController() {
-        let presenter = FavoriteMoviesPresenterImpl(networking: self.networking, event: self.favoriteMoviesEvent)
+        let presenter = FavoriteMoviesPresenterImpl(networking: self.networking, event: { [weak self] in self?.favoriteMoviesEvent($0) })
         let controller = ListViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -148,14 +148,14 @@ class FavouritesFlowCoordinator: Coordinator {
         case .back:
             self.navigationController.popViewController(animated: true)
         case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
         }
     }
     
     // MARK: - Favorite Shows VC
     
     private func createFavoriteShowsViewController() {
-           let presenter = FavoriteShowsPresenterImpl(networking: self.networking, event: self.favoriteShowsEvent)
+           let presenter = FavoriteShowsPresenterImpl(networking: self.networking, event: { [weak self] in self?.favoriteShowsEvent($0) })
            let controller = ListViewController(presenter)
            self.navigationController.pushViewController(controller, animated: true)
        }
@@ -167,13 +167,13 @@ class FavouritesFlowCoordinator: Coordinator {
            case .back:
                self.navigationController.popViewController(animated: true)
            case .error(let errorMessage):
-               self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
            }
        }
     // MARK: - Movies Watchlist VC
     
     private func createMoviesWatchlistViewController() {
-        let presenter = MoviesWatchlistPresenterImpl(networking: self.networking, event: moviesWatchlistEvent)
+        let presenter = MoviesWatchlistPresenterImpl(networking: self.networking, event: { [weak self] in self?.moviesWatchlistEvent($0) })
         let controller = ListViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -185,14 +185,14 @@ class FavouritesFlowCoordinator: Coordinator {
         case .back:
             self.navigationController.popViewController(animated: true)
         case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
         }
     }
     
     // MARK: - Shows Wachlist VC
     
     private func createShowsWatchlistViewController() {
-           let presenter = ShowsWatchlistPresenterImpl(networking: self.networking, event: showsWatchlistEvent)
+           let presenter = ShowsWatchlistPresenterImpl(networking: self.networking, event: { [weak self] in self?.showsWatchlistEvent($0) })
            let controller = ListViewController(presenter)
            self.navigationController.pushViewController(controller, animated: true)
        }
@@ -204,7 +204,7 @@ class FavouritesFlowCoordinator: Coordinator {
            case .back:
                self.navigationController.popViewController(animated: true)
            case .error(let errorMessage):
-               self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
            }
        }
 

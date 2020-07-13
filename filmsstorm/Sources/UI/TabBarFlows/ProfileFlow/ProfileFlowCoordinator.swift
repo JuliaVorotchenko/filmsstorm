@@ -14,7 +14,7 @@ class ProfileFlowCoordinator: Coordinator {
     // MARK: - Properties
     
     var childCoordinators = [Coordinator]()
-    let eventHandler: ((AppEvent) -> Void)?
+    let eventHandler: (AppEvent) -> Void
     let navigationController: UINavigationController
     private let networking: NetworkManager
     
@@ -26,7 +26,7 @@ class ProfileFlowCoordinator: Coordinator {
     
     init(networking: NetworkManager,
          navigationController: UINavigationController,
-         eventHandler: ((AppEvent) -> Void)?) {
+         eventHandler: @escaping (AppEvent) -> Void) {
         self.networking = networking
         self.eventHandler = eventHandler
         self.navigationController = navigationController
@@ -41,13 +41,13 @@ class ProfileFlowCoordinator: Coordinator {
     }
     
     private func createProfileViewController() {
-        let presenter = ProfilePresenterImpl(networking: self.networking, event: self.profileEvent(_:))
+        let presenter = ProfilePresenterImpl(networking: self.networking, event: { [weak self] in self?.profileEvent($0) })
         let controller = ProfileViewController(presenter)
         self.navigationController.viewControllers = [controller]
     }
     
     private func createAboutViewController() {
-        let presenter = AboutPresenterImpl(event: aboutEvent(_:))
+        let presenter = AboutPresenterImpl(event: { [weak self] in self?.aboutEvent($0) })
         let controller = AboutViewController(presenter)
         self.navigationController.pushViewController(controller, animated: true)
     }
@@ -55,9 +55,9 @@ class ProfileFlowCoordinator: Coordinator {
     private func profileEvent(_ event: ProfileEvent) {
         switch event {
         case .logout:
-            self.eventHandler?(.authorizationFlow)
+            self.eventHandler(.authorizationFlow)
         case .error(let errorMessage):
-            self.eventHandler?(.appError(errorMessage))
+            self.eventHandler(.appError(errorMessage))
         case .about:
             self.createAboutViewController()
         }
