@@ -151,6 +151,14 @@
 		CD4DB87323EC5F3D00F53B28 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */; };
 		CD4DB87423EC5F3D00F53B28 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */; };
 		CD4DB87623EC5F6700F53B28 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4DB87523EC5F6700F53B28 /* ProfileView.swift */; };
+		CD4FB0AA24C20780000BEB65 /* PopularMovieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FB0A924C20780000BEB65 /* PopularMovieEntity.swift */; };
+		CD4FB0AC24C207A3000BEB65 /* FavoriteMovieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FB0AB24C207A3000BEB65 /* FavoriteMovieEntity.swift */; };
+		CD4FB0AE24C2082B000BEB65 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FB0AD24C2082B000BEB65 /* UserEntity.swift */; };
+		CD4FB0B024C2085C000BEB65 /* WatchlistedMovieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FB0AF24C2085C000BEB65 /* WatchlistedMovieEntity.swift */; };
+		CD4FB0B224C20881000BEB65 /* WatchlistedShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FB0B124C20881000BEB65 /* WatchlistedShowEntity.swift */; };
+		CD4FB0B424C208AB000BEB65 /* FavoriteShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FB0B324C208AB000BEB65 /* FavoriteShowEntity.swift */; };
+		CD4FB0B624C20959000BEB65 /* PopularShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FB0B524C20959000BEB65 /* PopularShowEntity.swift */; };
+		CD4FB0B824C2097D000BEB65 /* UpcomingMovieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4FB0B724C2097D000BEB65 /* UpcomingMovieEntity.swift */; };
 		CD51B26323F47DF100E3C924 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51B26223F47DF100E3C924 /* UITableView+Extensions.swift */; };
 		CD536EF723E36034000FEE79 /* DiscoverFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD536EF623E36034000FEE79 /* DiscoverFlowCoordinator.swift */; };
 		CD53CDB823D631C000E16E2E /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD53CDB723D631C000E16E2E /* ActivityView.swift */; };
@@ -389,6 +397,14 @@
 		CD4DB87123EC5F3D00F53B28 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CD4DB87223EC5F3D00F53B28 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		CD4DB87523EC5F6700F53B28 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		CD4FB0A924C20780000BEB65 /* PopularMovieEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovieEntity.swift; sourceTree = "<group>"; };
+		CD4FB0AB24C207A3000BEB65 /* FavoriteMovieEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMovieEntity.swift; sourceTree = "<group>"; };
+		CD4FB0AD24C2082B000BEB65 /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
+		CD4FB0AF24C2085C000BEB65 /* WatchlistedMovieEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistedMovieEntity.swift; sourceTree = "<group>"; };
+		CD4FB0B124C20881000BEB65 /* WatchlistedShowEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistedShowEntity.swift; sourceTree = "<group>"; };
+		CD4FB0B324C208AB000BEB65 /* FavoriteShowEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteShowEntity.swift; sourceTree = "<group>"; };
+		CD4FB0B524C20959000BEB65 /* PopularShowEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularShowEntity.swift; sourceTree = "<group>"; };
+		CD4FB0B724C2097D000BEB65 /* UpcomingMovieEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMovieEntity.swift; sourceTree = "<group>"; };
 		CD51B26223F47DF100E3C924 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		CD536EF623E36034000FEE79 /* DiscoverFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverFlowCoordinator.swift; sourceTree = "<group>"; };
 		CD53CDB723D631C000E16E2E /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
@@ -1010,6 +1026,21 @@
 			path = ProfileViewController;
 			sourceTree = "<group>";
 		};
+		CD4FB0A824C20768000BEB65 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				CD4FB0A924C20780000BEB65 /* PopularMovieEntity.swift */,
+				CD4FB0AB24C207A3000BEB65 /* FavoriteMovieEntity.swift */,
+				CD4FB0AD24C2082B000BEB65 /* UserEntity.swift */,
+				CD4FB0AF24C2085C000BEB65 /* WatchlistedMovieEntity.swift */,
+				CD4FB0B124C20881000BEB65 /* WatchlistedShowEntity.swift */,
+				CD4FB0B324C208AB000BEB65 /* FavoriteShowEntity.swift */,
+				CD4FB0B524C20959000BEB65 /* PopularShowEntity.swift */,
+				CD4FB0B724C2097D000BEB65 /* UpcomingMovieEntity.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		CD53CDB623D6319900E16E2E /* ActivityView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1162,6 +1193,7 @@
 		CDB8790F23B8FFA10099F946 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CD4FB0A824C20768000BEB65 /* Entities */,
 				2E289CA523E8DED4001917DB /* NetworkingModels */,
 				2E289CA223E8DED4001917DB /* Persistence */,
 			);
@@ -1602,6 +1634,7 @@
 				2E289CDE23E8DFCA001917DB /* NetworkManager.swift in Sources */,
 				CD51B26323F47DF100E3C924 /* UITableView+Extensions.swift in Sources */,
 				CDF57C772476B27400DE0379 /* ActorsCollectionViewProvider.swift in Sources */,
+				CD4FB0B824C2097D000BEB65 /* UpcomingMovieEntity.swift in Sources */,
 				CD4C704223F2CCEF0057FE82 /* QualitySettingViewCell.swift in Sources */,
 				CD6D46AD2443B071008AE56F /* ActorCombinedCreditsModel.swift in Sources */,
 				2E51662A23AFD6C500EDF51E /* SceneDelegate.swift in Sources */,
@@ -1616,8 +1649,11 @@
 				CDB8792423B93C240099F946 /* LoginFlowCoordinator.swift in Sources */,
 				2E289CE623E8DFCA001917DB /* SearchEndpoint.swift in Sources */,
 				2E289CE423E8DFCA001917DB /* ReviewEndPoint.swift in Sources */,
+				CD4FB0AA24C20780000BEB65 /* PopularMovieEntity.swift in Sources */,
 				CD0EF99223F6000D000A3CB4 /* UIColor+Extensions.swift in Sources */,
 				CDB2A388240450DD00D27A9B /* ItemsViewController.swift in Sources */,
+				CD4FB0B424C208AB000BEB65 /* FavoriteShowEntity.swift in Sources */,
+				CD4FB0B024C2085C000BEB65 /* WatchlistedMovieEntity.swift in Sources */,
 				2E289CE223E8DFCA001917DB /* AuthEndPoint.swift in Sources */,
 				CD4B2C4D2472B6BE0025D14C /* FavoritesCollectionViewProvider.swift in Sources */,
 				CDB8792223B909040099F946 /* AppConfigurator.swift in Sources */,
@@ -1681,6 +1717,8 @@
 				CD38EFDC240EFA8400F93536 /* UIImage+CALayer.swift in Sources */,
 				CDD5914823FDD3F400DBA664 /* NibDesignable.swift in Sources */,
 				CD38EFDE240EFAB000F93536 /*  UIImage+Crop.swift in Sources */,
+				CD4FB0AE24C2082B000BEB65 /* UserEntity.swift in Sources */,
+				CD4FB0AC24C207A3000BEB65 /* FavoriteMovieEntity.swift in Sources */,
 				CDF57C792476C6A600DE0379 /* MediaItemCollectionViewProvider.swift in Sources */,
 				2E289CEC23E8DFCA001917DB /* HTTPMethod.swift in Sources */,
 				2E289CEE23E8DFCA001917DB /* EndPointType.swift in Sources */,
@@ -1691,7 +1729,9 @@
 				2E289C9F23E8DEBD001917DB /* UICollectionView+Extensions.swift in Sources */,
 				CDBBECE3245C916200B165B2 /* FavoriteMoviesPresenter.swift in Sources */,
 				CDB2A3822404505900D27A9B /* SearchPresenter.swift in Sources */,
+				CD4FB0B224C20881000BEB65 /* WatchlistedShowEntity.swift in Sources */,
 				CDE0AF7A240D7522008D610F /* CollectionLayoutFactory.swift in Sources */,
+				CD4FB0B624C20959000BEB65 /* PopularShowEntity.swift in Sources */,
 				CDB2A38A240450F900D27A9B /* MoviesPresenter.swift in Sources */,
 				CD45172424363D8D00AD81F0 /* VideoPlayerViewPresenter.swift in Sources */,
 				2E289CE323E8DFCA001917DB /* AccountEndPoint.swift in Sources */,
