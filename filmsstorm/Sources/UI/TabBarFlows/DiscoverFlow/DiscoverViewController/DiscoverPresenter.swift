@@ -29,11 +29,11 @@ class DiscoverPresenterImpl: DiscoverPresenter {
     // MARK: - Private Properties
     let eventHandler: Handler<DiscoverEvent>
     var showActivity: Handler<ActivityState>?
-    private let networking: NetworkManager
+    private let networking: DiscoverNetworkManager
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: @escaping Handler<DiscoverEvent>) {
+    init(networking: DiscoverNetworkManager, event: @escaping Handler<DiscoverEvent>) {
         self.networking = networking
         self.eventHandler = event
     }

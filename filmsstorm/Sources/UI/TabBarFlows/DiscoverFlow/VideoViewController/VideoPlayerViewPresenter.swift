@@ -29,11 +29,11 @@ class VideoPlayerViewPresenterImpl: VideoPlayerViewPresenter {
     let eventHandler: Handler<VideoEvent>
     var showActivity: Handler<ActivityState>?
     let itemModel: MediaItemModel
-    private let networking: NetworkManager
+    private let networking: VideoPlayerNetworkManager
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: @escaping (VideoEvent) -> Void, item: MediaItemModel) {
+    init(networking: VideoPlayerNetworkManager, event: @escaping (VideoEvent) -> Void, item: MediaItemModel) {
           self.networking = networking
           self.eventHandler = event
         self.itemModel = item

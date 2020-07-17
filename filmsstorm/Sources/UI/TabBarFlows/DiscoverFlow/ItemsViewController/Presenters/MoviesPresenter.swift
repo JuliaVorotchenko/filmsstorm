@@ -28,12 +28,12 @@ class MoviesPresenterImpl: ItemsPresenter {
     
     let eventHandler: Handler<MoviesEvent>
     var showActivity: Handler<ActivityState>?
-    private let networking: NetworkManager
+    private let networking: ItemsNeworkManager
     let title = Constants.movieTitle
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: @escaping Handler<MoviesEvent>) {
+    init(networking: ItemsNeworkManager, event: @escaping Handler<MoviesEvent>) {
         self.networking = networking
         self.eventHandler = event
     }

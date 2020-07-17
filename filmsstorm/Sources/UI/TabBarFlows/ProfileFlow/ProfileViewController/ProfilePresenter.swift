@@ -32,12 +32,12 @@ class ProfilePresenterImpl: ProfilePresenter {
     // MARK: - Private properties
     
     var showActivity: ((ActivityState) -> Void)?
-    private let networking: NetworkManager
+    private let networking: ProfileNetworkManager
     let eventHandler: (ProfileEvent) -> Void
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: @escaping (ProfileEvent) -> Void) {
+    init(networking: ProfileNetworkManager, event: @escaping (ProfileEvent) -> Void) {
         self.networking = networking
         self.eventHandler = event
     }

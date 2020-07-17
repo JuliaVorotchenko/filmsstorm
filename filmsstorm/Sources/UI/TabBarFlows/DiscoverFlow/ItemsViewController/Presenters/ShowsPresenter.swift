@@ -20,12 +20,12 @@ class ShowPresenterImpl: ItemsPresenter {
     
     let eventHandler: Handler<ShowsEvent>
     var showActivity: Handler<ActivityState>?
-    private let networking: NetworkManager
+    private let networking: ItemsNeworkManager
     let title = Constants.showsTitle
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: @escaping (ShowsEvent) -> Void) {
+    init(networking: ItemsNeworkManager, event: @escaping (ShowsEvent) -> Void) {
         self.networking = networking
         self.eventHandler = event
     }

@@ -8,7 +8,92 @@
 
 import Foundation
 
-class NetworkManager {
+protocol NetworkManagerDelegate: AuthorizationNetworkManager, ActorNetworkManager, MediaItemNetworkManager,
+                                 DiscoverNetworkManager, ItemsNeworkManager, VideoPlayerNetworkManager, SearchNetworkManager,
+                                 FavoritesNetworkManager, ProfileNetworkManager, MediaItemNetworkProocol {}
+
+protocol MediaItemNetworkProocol: MediaItemNetworkManager, FavoritesNetworkManager {}
+
+protocol AuthorizationNetworkManager {
+    
+    func getToken(completion: @escaping (Result<RequestToken, NetworkError>) -> Void)
+    func validateToken(with model: AuthRequestModel,
+                       completion: @escaping (Result<RequestToken, NetworkError>) -> Void)
+    func createSession(with model: SessionRequestBody,
+                       completion: @escaping (Result<SessionID, NetworkError>) -> Void)
+}
+
+protocol ActorNetworkManager {
+   
+    func getPersonDetails(with model: Identifier,
+                          completion: @escaping(Result<ActorDetailsModel, NetworkError>) -> Void)
+    func getPersonCredit(with model: Identifier,
+                         completion: @escaping(Result<ActorCombinedCreditsModel, NetworkError>) -> Void)
+}
+
+protocol MediaItemNetworkManager {
+    
+    func getMovieDetails(with model: Identifier,
+                         completion: @escaping (Result<MovieDetailsModel, NetworkError>) -> Void)
+    func getShowDetails(with model: Identifier,
+                        completion: @escaping(Result<ShowDetailsModel, NetworkError>) -> Void)
+    func getMovieSimilars(with model: Identifier,
+                          completion: @escaping(Result<MovieSimilarsModel, NetworkError>) -> Void)
+    func getShowSimilars(with model: Identifier,
+                         completion: @escaping(Result<ShowSimilarsModel, NetworkError>) -> Void)
+    func getMovieCredits(with model: Identifier,
+                         completion: @escaping(Result<MovieCreditsModel, NetworkError>) -> Void)
+    func getShowCredits(with model: Identifier,
+                        completion: @escaping(Result<ShowCreditsModel, NetworkError>) -> Void)
+    func addToFavourites(with model: AddFavouritesRequestModel,
+                         completion: @escaping (Result<SuccessModel, NetworkError>) -> Void)
+    func addToWatchlist(with model: AddWatchListRequestModel,
+                        completion: @escaping (Result<SuccessModel, NetworkError>) -> Void)
+}
+
+protocol DiscoverNetworkManager {
+    
+    func getUpcomingMovies(completion: @escaping (Result<UpcomingMoviesModel, NetworkError>) -> Void)
+}
+
+protocol ItemsNeworkManager {
+    
+    func getPopularMovies(completion: @escaping (Result<PopularMoviesModel, NetworkError>) -> Void)
+    func getPopularShows(completion: @escaping (Result<PopularShowsModel, NetworkError>) -> Void)
+}
+
+protocol VideoPlayerNetworkManager {
+    
+    func getMovieVideos(with model: Identifier,
+                        completion: @escaping(Result<ItemVideoModel, NetworkError>) -> Void)
+    func getShowVideos(with model: Identifier,
+                       completion: @escaping(Result<ItemVideoModel, NetworkError>) -> Void)
+}
+
+protocol SearchNetworkManager {
+    
+    func movieSearch(with query: String,
+                     completion: @escaping(Result<MovieSearchModel, NetworkError>) -> Void)
+    func showSearch(with query: String,
+                    completion: @escaping(Result<ShowSearchModel, NetworkError>) -> Void)
+}
+
+protocol FavoritesNetworkManager {
+    
+    func getFavoriteMovies(completion: @escaping (Result<FavouritesWatchlistMovies, NetworkError>) -> Void)
+    func getFavoriteShows(completion: @escaping (Result<FavoritesWatchlistShows, NetworkError>) -> Void)
+    func getWathchListMovies(completion: @escaping (Result<FavouritesWatchlistMovies, NetworkError>) -> Void)
+    func getWatchListShows(completion: @escaping (Result<FavoritesWatchlistShows, NetworkError>) -> Void)
+}
+
+protocol ProfileNetworkManager {
+    
+    func logout(completion: @escaping (Result<LogoutModel, NetworkError>) -> Void)
+    func getUserDetails(completion: @escaping (Result<UserModel, NetworkError>) -> Void)
+}
+
+class NetworkManager: NetworkManagerDelegate {
+    
     // MARK: - Properties
     
     private let router = Router<APIEndPoint>(networkService: NetworkService())
@@ -68,7 +153,7 @@ class NetworkManager {
     }
     
     // MARK: - Favorites & Watchlists
-
+    
     func getFavoriteMovies(completion: @escaping (Result<FavouritesWatchlistMovies, NetworkError>) -> Void) {
         self.router.request(.account(.getFavouriteMovies(sessionID: KeyChainContainer.sessionID ?? "")), completion: completion)
     }
@@ -132,7 +217,7 @@ class NetworkManager {
     }
     
     // MARK: - Actor requests
-
+    
     func getPersonDetails(with model: Identifier,
                           completion: @escaping(Result<ActorDetailsModel, NetworkError>) -> Void) {
         self.router.request(.people(.getPeopleDetails(personID: model)), completion: completion)
@@ -143,11 +228,13 @@ class NetworkManager {
         self.router.request(.people(.getCombinedCredit(personID: model)), completion: completion)
     }
     
+    // MARK: - Search Requests
+    
     func movieSearch(with query: String,
                      completion: @escaping(Result<MovieSearchModel, NetworkError>) -> Void) {
         self.router.request(.search(.movieSearch(query)), completion: completion)
     }
-
+    
     func showSearch(with query: String,
                     completion: @escaping(Result<ShowSearchModel, NetworkError>) -> Void) {
         self.router.request(.search(.tvSearch(query)), completion: completion)

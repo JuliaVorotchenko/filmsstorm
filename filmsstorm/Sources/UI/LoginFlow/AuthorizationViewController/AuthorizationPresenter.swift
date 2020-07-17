@@ -25,13 +25,13 @@ final class AuthorizationPresenterImpl: AuthorizationPresenter {
     
     // MARK: - Private properties
     
-    private let networking: NetworkManager
+    private let networking: AuthorizationNetworkManager
     let eventHandler: Handler<AuthEvent>
     var showActivity: Handler<ActivityState>?
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: @escaping Handler<AuthEvent>) {
+    init(networking: AuthorizationNetworkManager, event: @escaping Handler<AuthEvent>) {
         self.networking = networking
         self.eventHandler = event
     }

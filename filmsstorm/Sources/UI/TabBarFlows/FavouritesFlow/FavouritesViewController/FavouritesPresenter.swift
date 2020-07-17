@@ -40,11 +40,11 @@ class FavouritesPresenterImpl: FavouritesPresenter {
     // MARK: - Private Properties
     
     let eventHandler: Handler<FavouritesEvent>
-    private let networking: NetworkManager
+    private let networking: FavoritesNetworkManager
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: @escaping Handler<FavouritesEvent>) {
+    init(networking: FavoritesNetworkManager, event: @escaping Handler<FavouritesEvent>) {
         self.networking = networking
         self.eventHandler = event
     }
