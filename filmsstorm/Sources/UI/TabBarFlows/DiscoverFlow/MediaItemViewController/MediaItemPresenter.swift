@@ -39,14 +39,14 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     
     let eventHandler: Handler<MediaItemEvent>
     var showActivity: Handler<ActivityState>?
-    private let networking: NetworkManager
+    private let networking: MediaItemNetworkProocol
     let itemModel: ConfigureModel
     
     private var mediaModel: MediaItemModel?
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: @escaping Handler<MediaItemEvent>, itemModel: ConfigureModel) {
+    init(networking: MediaItemNetworkProocol, event: @escaping Handler<MediaItemEvent>, itemModel: ConfigureModel) {
         self.networking = networking
         self.eventHandler = event
         self.itemModel = itemModel

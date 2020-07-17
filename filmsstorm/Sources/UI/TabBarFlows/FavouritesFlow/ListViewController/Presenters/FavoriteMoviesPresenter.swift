@@ -26,12 +26,12 @@ class FavoriteMoviesPresenterImpl: ListsPresenter {
     // MARK: - Private Properties
     
     let eventHandler: Handler<FavoriteMoviesEvent>
-    private let networking: NetworkManager
+    private let networking: FavoritesNetworkManager
     var title = Constants.favoriteMovies
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: @escaping Handler<FavoriteMoviesEvent>) {
+    init(networking: FavoritesNetworkManager, event: @escaping Handler<FavoriteMoviesEvent>) {
         self.networking = networking
         self.eventHandler = event
     }

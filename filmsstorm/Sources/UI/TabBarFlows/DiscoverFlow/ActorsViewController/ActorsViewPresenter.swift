@@ -30,11 +30,11 @@ class ActorViewPresenterImpl: ActorViewPresenter {
     let eventHandler: Handler<ActorViewEvent>
     var showActivity: Handler<ActivityState>?
     let actorModel: ActorModel
-    private let networking: NetworkManager
+    private let networking: ActorNetworkManager
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: @escaping Handler<ActorViewEvent>, actorModel: ActorModel) {
+    init(networking: ActorNetworkManager, event: @escaping Handler<ActorViewEvent>, actorModel: ActorModel) {
         self.networking = networking
         self.eventHandler = event
         self.actorModel = actorModel

@@ -28,11 +28,11 @@ class SearchPresenterImpl: SearchPresenter {
     
     let eventHandler: Handler<SearchEvent>
     var showActivity: Handler<ActivityState>?
-    private let networking: NetworkManager
+    private let networking: SearchNetworkManager
     
     // MARK: - Init and deinit
     
-    init(networking: NetworkManager, event: @escaping (SearchEvent) -> Void) {
+    init(networking: SearchNetworkManager, event: @escaping (SearchEvent) -> Void) {
         self.networking = networking
         self.eventHandler = event
     }

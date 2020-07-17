@@ -10,7 +10,9 @@ import Foundation
 
 protocol NetworkManagerDelegate: AuthorizationNetworkManager, ActorNetworkManager, MediaItemNetworkManager,
                                  DiscoverNetworkManager, ItemsNeworkManager, VideoPlayerNetworkManager, SearchNetworkManager,
-                                 FavoritesNetworkManager, ProfileNetworkManager {}
+                                 FavoritesNetworkManager, ProfileNetworkManager, MediaItemNetworkProocol {}
+
+protocol MediaItemNetworkProocol: MediaItemNetworkManager, FavoritesNetworkManager {}
 
 protocol AuthorizationNetworkManager {
     
