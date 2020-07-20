@@ -1,89 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="FavoriteMovieEntity" representedClassName="FavoriteMovieEntity" syncable="YES" codeGenerationType="category">
-        <attribute name="genres" optional="YES" attributeType="String"/>
+        <attribute name="backgroundImage" optional="YES" attributeType="Binary"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="originalName" optional="YES" attributeType="String"/>
+        <attribute name="overview" optional="YES" attributeType="String"/>
+        <attribute name="posterImage" optional="YES" attributeType="Binary"/>
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="releaseDate" optional="YES" attributeType="String"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="favoriteMovies" inverseEntity="UserEntity"/>
     </entity>
     <entity name="FavoriteShowEntity" representedClassName="FavoriteShowEntity" syncable="YES" codeGenerationType="category">
-        <attribute name="genres" optional="YES" attributeType="String"/>
+        <attribute name="backgroundImage" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="originalName" optional="YES" attributeType="String"/>
+        <attribute name="overview" optional="YES" attributeType="String"/>
+        <attribute name="posterImage" optional="YES" attributeType="Binary"/>
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="releaseDate" optional="YES" attributeType="String"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="favoriteShows" inverseEntity="UserEntity"/>
     </entity>
     <entity name="PopularMovieEntity" representedClassName="PopularMovieEntity" syncable="YES" codeGenerationType="category">
-        <attribute name="backgroundImage" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="mediaType" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="originalName" optional="YES" attributeType="String"/>
-        <attribute name="overView" optional="YES" attributeType="String"/>
         <attribute name="posterImage" optional="YES" attributeType="Binary"/>
-        <attribute name="releaseDate" optional="YES" attributeType="String"/>
-        <attribute name="voteAverage" optional="YES" attributeType="String"/>
     </entity>
     <entity name="PopularShowEntity" representedClassName="PopularShowEntity" syncable="YES" codeGenerationType="category">
-        <attribute name="backgroundImage" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="mediaType" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="originalName" optional="YES" attributeType="Binary"/>
-        <attribute name="overview" optional="YES" attributeType="String"/>
-        <attribute name="posterImage" optional="YES" attributeType="String"/>
-        <attribute name="releaseDate" optional="YES" attributeType="String"/>
-        <attribute name="voteAverage" optional="YES" attributeType="String"/>
+        <attribute name="posterImage" optional="YES" attributeType="Binary"/>
     </entity>
     <entity name="UpcomingMovieEntity" representedClassName="UpcomingMovieEntity" syncable="YES" codeGenerationType="category">
-        <attribute name="backgroundImage" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="mediaType" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="originalName" optional="YES" attributeType="String"/>
-        <attribute name="overview" optional="YES" attributeType="String"/>
         <attribute name="posterImage" optional="YES" attributeType="Binary"/>
-        <attribute name="releaseDate" optional="YES" attributeType="String"/>
-        <attribute name="voteAverage" optional="YES" attributeType="String"/>
     </entity>
     <entity name="UserEntity" representedClassName="UserEntity" syncable="YES" codeGenerationType="category">
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="username" optional="YES" attributeType="String"/>
         <relationship name="favoriteMovies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FavoriteMovieEntity" inverseName="user" inverseEntity="FavoriteMovieEntity"/>
         <relationship name="favoriteShows" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FavoriteShowEntity" inverseName="user" inverseEntity="FavoriteShowEntity"/>
         <relationship name="moviesWatchlist" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WatchlistedMovieEntity" inverseName="user" inverseEntity="WatchlistedMovieEntity"/>
         <relationship name="newRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WatchlistedShowEntity" inverseName="user" inverseEntity="WatchlistedShowEntity"/>
     </entity>
     <entity name="WatchlistedMovieEntity" representedClassName="WatchlistedMovieEntity" syncable="YES" codeGenerationType="category">
-        <attribute name="genres" optional="YES" attributeType="String"/>
+        <attribute name="backgroundImage" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="originalName" optional="YES" attributeType="String"/>
+        <attribute name="overview" optional="YES" attributeType="String"/>
+        <attribute name="posterImage" optional="YES" attributeType="Binary"/>
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="releaseDate" optional="YES" attributeType="String"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="moviesWatchlist" inverseEntity="UserEntity"/>
     </entity>
     <entity name="WatchlistedShowEntity" representedClassName="WatchlistedShowEntity" syncable="YES" codeGenerationType="category">
-        <attribute name="genres" optional="YES" attributeType="String"/>
+        <attribute name="backgroundImage" optional="YES" attributeType="Binary"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="originalName" optional="YES" attributeType="String"/>
+        <attribute name="overview" optional="YES" attributeType="String"/>
+        <attribute name="posterImage" optional="YES" attributeType="Binary"/>
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="releaseDate" optional="YES" attributeType="String"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="newRelationship" inverseEntity="UserEntity"/>
     </entity>
     <elements>
-        <element name="FavoriteMovieEntity" positionX="-516.58203125" positionY="-198.0078125" width="128" height="148"/>
-        <element name="FavoriteShowEntity" positionX="-512.41015625" positionY="-40.44921875" width="128" height="148"/>
-        <element name="WatchlistedMovieEntity" positionX="-518.38671875" positionY="123.17578125" width="128" height="148"/>
-        <element name="WatchlistedShowEntity" positionX="-508.23046875" positionY="281.9921875" width="128" height="148"/>
-        <element name="UserEntity" positionX="-757.2109375" positionY="79.86328125" width="128" height="118"/>
-        <element name="PopularMovieEntity" positionX="-963.4609375" positionY="57.18359375" width="128" height="178"/>
-        <element name="PopularShowEntity" positionX="-975.30859375" positionY="-70.125" width="128" height="178"/>
-        <element name="UpcomingMovieEntity" positionX="-738" positionY="126" width="128" height="178"/>
+        <element name="FavoriteMovieEntity" positionX="-516.58203125" positionY="-198.0078125" width="128" height="178"/>
+        <element name="FavoriteShowEntity" positionX="-512.41015625" positionY="-40.44921875" width="128" height="178"/>
+        <element name="PopularMovieEntity" positionX="-1027.671875" positionY="57.125" width="128" height="103"/>
+        <element name="PopularShowEntity" positionX="-1062.890625" positionY="-186.10546875" width="128" height="103"/>
+        <element name="UpcomingMovieEntity" positionX="-1025.1796875" positionY="-70.83203125" width="128" height="103"/>
+        <element name="UserEntity" positionX="-757.2109375" positionY="79.86328125" width="128" height="133"/>
+        <element name="WatchlistedMovieEntity" positionX="-518.38671875" positionY="123.17578125" width="128" height="178"/>
+        <element name="WatchlistedShowEntity" positionX="-508.23046875" positionY="281.9921875" width="128" height="178"/>
     </elements>
 </model>
