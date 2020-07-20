@@ -6,11 +6,6 @@
 //  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
 
-struct User {
-    let id: Int
-    let name: String
-}
-
 enum AuthEvent: EventProtocol {
     case login
     case error(AppError)

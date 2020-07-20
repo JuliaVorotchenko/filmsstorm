@@ -41,8 +41,8 @@
         <attribute name="posterImage" optional="YES" attributeType="Binary"/>
     </entity>
     <entity name="UserEntity" representedClassName="UserEntity" syncable="YES" codeGenerationType="category">
-        <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="username" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="username" attributeType="String"/>
         <relationship name="favoriteMovies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FavoriteMovieEntity" inverseName="user" inverseEntity="FavoriteMovieEntity"/>
         <relationship name="favoriteShows" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FavoriteShowEntity" inverseName="user" inverseEntity="FavoriteShowEntity"/>
         <relationship name="moviesWatchlist" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WatchlistedMovieEntity" inverseName="user" inverseEntity="WatchlistedMovieEntity"/>
