@@ -184,6 +184,7 @@
 		CDA8884424C61F4000FB973D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8884324C61F4000FB973D /* User.swift */; };
 		CDA8884624C6210C00FB973D /* FavoriteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8884524C6210C00FB973D /* FavoriteItem.swift */; };
 		CDA8884824C6234400FB973D /* PopularMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8884724C6234400FB973D /* PopularMovie.swift */; };
+		CDA8884B24C6254B00FB973D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8884A24C6254B00FB973D /* CoreDataManager.swift */; };
 		CDAAEADE2486E5A8003E15FB /* Refresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAAEADD2486E5A8003E15FB /* Refresher.swift */; };
 		CDB2A37724044E5100D27A9B /* FavouritesFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB2A37624044E5100D27A9B /* FavouritesFlowCoordinator.swift */; };
 		CDB2A37C24044FFD00D27A9B /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB2A37B24044FFD00D27A9B /* SearchViewController.xib */; };
@@ -434,6 +435,7 @@
 		CDA8884324C61F4000FB973D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CDA8884524C6210C00FB973D /* FavoriteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteItem.swift; sourceTree = "<group>"; };
 		CDA8884724C6234400FB973D /* PopularMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovie.swift; sourceTree = "<group>"; };
+		CDA8884A24C6254B00FB973D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		CDA9C2D624213FE300CAD5C3 /* Abel-Cyrillic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Abel-Cyrillic.ttf"; sourceTree = "<group>"; };
 		CDAAEADD2486E5A8003E15FB /* Refresher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refresher.swift; sourceTree = "<group>"; };
 		CDB2A37624044E5100D27A9B /* FavouritesFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -1084,6 +1086,7 @@
 		CD7E748723D8F53E0097F198 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CDA8884924C6250700FB973D /* CoreDataManager */,
 				CDAAEADC2486E54B003E15FB /* Refresher */,
 				2E289CBB23E8DFCA001917DB /* Networking */,
 			);
@@ -1141,6 +1144,14 @@
 				CDA8884724C6234400FB973D /* PopularMovie.swift */,
 			);
 			path = DataBaseModels;
+			sourceTree = "<group>";
+		};
+		CDA8884924C6250700FB973D /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				CDA8884A24C6254B00FB973D /* CoreDataManager.swift */,
+			);
+			path = CoreDataManager;
 			sourceTree = "<group>";
 		};
 		CDAAEADC2486E54B003E15FB /* Refresher */ = {
@@ -1713,6 +1724,7 @@
 				2E289CA023E8DEBD001917DB /* Optional+Extension.swift in Sources */,
 				CD2D91C224056E96001A1445 /* PopularShowsModel.swift in Sources */,
 				2E51662D23AFD6C500EDF51E /* filmsstorm.xcdatamodeld in Sources */,
+				CDA8884B24C6254B00FB973D /* CoreDataManager.swift in Sources */,
 				2E289CDA23E8DFCA001917DB /* URLParameterEncoder.swift in Sources */,
 				CD81EEEA242A23E900334BD7 /* MovieCreditsModel.swift in Sources */,
 				CDB2A37E2404501600D27A9B /* SearchView.swift in Sources */,
