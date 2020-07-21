@@ -36,8 +36,7 @@ class CoreDataManager {
             }
         }
     }
-    
-    
+
     // MARK: - Favorite Movies
     
     func getFavoriteMovies(_ completionHandler: @escaping ([FavoriteItem?]) -> Void) {
@@ -49,14 +48,13 @@ class CoreDataManager {
         }
     }
     
-    func saveFavoriteMovies(movies: [FavoriteItem], completionHandler: @escaping () -> Void) {
+    func saveFavoriteMovies(movies: [MovieListResult]) {
         let viewContext = persistentContainer.viewContext
         viewContext.perform {
             for movie in movies {
                 _ = try? FavoriteMovieEntity.findOrCreate(movie, context: viewContext)
             }
             try? viewContext.save()
-            completionHandler()
         }
     }
     
@@ -75,7 +73,7 @@ class CoreDataManager {
         let viewContext = persistentContainer.viewContext
         viewContext.perform {
             for show in shows {
-                _ = try? FavoriteMovieEntity.findOrCreate(show, context: viewContext)
+                _ = try? FavoriteShowEntity.findOrCreate(show, context: viewContext)
             }
             try? viewContext.save()
             completionHandler()
@@ -97,7 +95,7 @@ class CoreDataManager {
         let viewContext = persistentContainer.viewContext
         viewContext.perform {
             for movie in movies {
-                _ = try? FavoriteMovieEntity.findOrCreate(movie, context: viewContext)
+                _ = try? WatchlistedMovieEntity.findOrCreate(movie, context: viewContext)
             }
             try? viewContext.save()
             completionHandler()
@@ -119,7 +117,7 @@ class CoreDataManager {
         let viewContext = persistentContainer.viewContext
         viewContext.perform {
             for show in shows {
-                _ = try? FavoriteMovieEntity.findOrCreate(show, context: viewContext)
+                _ = try? WatchlistedShowEntity.findOrCreate(show, context: viewContext)
             }
             try? viewContext.save()
             completionHandler()

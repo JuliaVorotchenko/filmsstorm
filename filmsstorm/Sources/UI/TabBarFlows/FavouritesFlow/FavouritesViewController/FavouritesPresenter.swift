@@ -56,14 +56,13 @@ class FavouritesPresenterImpl: FavouritesPresenter {
         self.networking.getWathchListMovies { [weak self] result in
             switch result {
             case .success(let watchlist):
-                self?.coreDataManager.saveFavoriteMovies(movies: <#T##[FavoriteItem]#>, completionHandler: <#T##() -> Void#>)
+                self?.coreDataManager.saveFavoriteMovies(movies: watchlist.results)
                 completion?(watchlist.results.map(DiscoverCellModel.create))
             case .failure(let error):
                 self?.eventHandler(.error(.networkingError(error)))
             }
         }
-        
-    
+
     }
     
     func getShowsWatchList(_ completion: (([DiscoverCellModel]) -> Void)?) {

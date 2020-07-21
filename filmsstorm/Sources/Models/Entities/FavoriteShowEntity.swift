@@ -16,14 +16,14 @@ class FavoriteShowEntity: NSManagedObject {
             return movieEntity
         } else {
             let movieEntity = FavoriteShowEntity(context: context)
-            movieEntity.id = Int16(item.id)
+            movieEntity.id = Int32(item.id)
             movieEntity.name = item.name
             movieEntity.originalName = item.originalName
             movieEntity.overview = item.overview
             movieEntity.rating = item.rating
             movieEntity.releaseDate = item.releaseDate
-            movieEntity.posterImage = item.posterImage?.pngData()
-            movieEntity.backgroundImage = item.backgroundImage?.pngData()
+            movieEntity.posterImage = item.posterImage
+            movieEntity.backgroundImage = item.backgroundImage
             return movieEntity
         }
     }
