@@ -82,4 +82,16 @@ struct DiscoverCellModel: ConfigureModel, Identifiable, Hashable {
                      originalName: model.originalTitle)
     }
     
+    static func create(_ model: FavoriteItem, mediaType: MediaType) -> Self {
+        return .init(mediaType: mediaType,
+                     idValue: model.id,
+                     name: model.name,
+                     voteAverage: model.rating,
+                     overview: model.overview,
+                     releaseDate: model.releaseDate,
+                     posterImage: model.posterImage,
+                     backgroundImage: model.backgroundImage,
+                     originalName: model.originalName)
+    }
+    
 }

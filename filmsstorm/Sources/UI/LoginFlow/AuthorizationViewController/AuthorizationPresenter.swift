@@ -5,6 +5,8 @@
 //  Created by Юлия Воротченко on 23.02.2020.
 //  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
+import Foundation
+import CoreData
 
 enum AuthEvent: EventProtocol {
     case login
@@ -23,6 +25,7 @@ final class AuthorizationPresenterImpl: AuthorizationPresenter {
     private let networking: AuthorizationNetworkManager
     let eventHandler: Handler<AuthEvent>
     var showActivity: Handler<ActivityState>?
+    let coreDataManager = CoreDataManager.shared
     
     // MARK: - Init and deinit
     
@@ -68,10 +71,22 @@ final class AuthorizationPresenterImpl: AuthorizationPresenter {
             case .success(let sessionID):
                 self?.showActivity?(.hide)
                 KeyChainContainer.sessionID = sessionID.sessionID
+                self?.getFavoriteMovies()
                 self?.eventHandler(.login)
             case .failure(let error):
                 self?.showActivity?(.hide)
                 self?.eventHandler(.error(.networkingError(error)))
+            }
+        }
+    }
+    
+    private func getFavoriteMovies() {
+        self.networking.getFavoriteMovies { result in
+            switch result {
+            case .success(let model):
+                self.coreDataManager.saveFavoriteMovies(movies: model.results)
+            case .failure(let error):
+                self.eventHandler(.error(.networkingError(error)))
             }
         }
     }

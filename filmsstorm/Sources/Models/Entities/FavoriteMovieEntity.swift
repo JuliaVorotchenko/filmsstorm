@@ -53,7 +53,18 @@ class FavoriteMovieEntity: NSManagedObject {
         } catch {
             throw error
         }
-        
         return nil
+    }
+    
+    class func delete(context: NSManagedObjectContext) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FavoriteMovieEntity")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+           print(error)
+        }
     }
 }

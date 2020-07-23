@@ -56,7 +56,6 @@ class FavouritesPresenterImpl: FavouritesPresenter {
         self.networking.getWathchListMovies { [weak self] result in
             switch result {
             case .success(let watchlist):
-                self?.coreDataManager.saveFavoriteMovies(movies: watchlist.results)
                 completion?(watchlist.results.map(DiscoverCellModel.create))
             case .failure(let error):
                 self?.eventHandler(.error(.networkingError(error)))
@@ -77,13 +76,8 @@ class FavouritesPresenterImpl: FavouritesPresenter {
     }
     
     func getFavoriteMovies(_ completion: (([DiscoverCellModel]) -> Void)?) {
-        self.networking.getFavoriteMovies { [weak self] result in
-            switch result {
-            case .success(let favorites):
-                completion?(favorites.results.map(DiscoverCellModel.create))
-            case .failure(let error):
-                self?.eventHandler(.error(.networkingError(error)))
-            }
+        self.coreDataManager.getFavoriteMovies { movies in
+            completion?(movies.map { DiscoverCellModel.create($0!, mediaType: .movie) })
         }
     }
     

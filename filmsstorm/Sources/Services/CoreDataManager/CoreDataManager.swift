@@ -58,6 +58,11 @@ class CoreDataManager {
         }
     }
     
+    func delete() {
+        let viewContext = persistentContainer.viewContext
+        FavoriteMovieEntity.delete(context: viewContext)
+    }
+    
     // MARK: - Favorite Shows
     
     func getFavoriteShows(_ completionHandler: @escaping ([FavoriteItem?]) -> Void) {

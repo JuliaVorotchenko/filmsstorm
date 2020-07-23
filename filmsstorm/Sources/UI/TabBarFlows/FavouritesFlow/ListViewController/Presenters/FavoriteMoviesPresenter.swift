@@ -28,6 +28,7 @@ class FavoriteMoviesPresenterImpl: ListsPresenter {
     let eventHandler: Handler<FavoriteMoviesEvent>
     private let networking: FavoritesNetworkManager
     var title = Constants.favoriteMovies
+    let coreDataManager = CoreDataManager.shared
     
     // MARK: - Init and deinit
     
@@ -39,13 +40,8 @@ class FavoriteMoviesPresenterImpl: ListsPresenter {
      // MARK: - Networking dependency methods
     
     func getItems(_ completion: (([DiscoverCellModel]) -> Void)?) {
-        self.networking.getFavoriteMovies { [weak self] result in
-            switch result {
-            case .success(let favorites):
-                completion?(favorites.results.map(DiscoverCellModel.create))
-            case .failure(let error):
-                self?.eventHandler(.error(.networkingError(error)))
-            }
+        self.coreDataManager.getFavoriteMovies { movies in
+            completion?(movies.map { DiscoverCellModel.create($0!, mediaType: .movie) })
         }
     }
     

@@ -21,6 +21,11 @@ protocol AuthorizationNetworkManager {
                        completion: @escaping (Result<RequestToken, NetworkError>) -> Void)
     func createSession(with model: SessionRequestBody,
                        completion: @escaping (Result<SessionID, NetworkError>) -> Void)
+    func getFavoriteMovies(completion: @escaping (Result<FavouritesWatchlistMovies, NetworkError>) -> Void)
+    func getFavoriteShows(completion: @escaping (Result<FavoritesWatchlistShows, NetworkError>) -> Void)
+    func getWathchListMovies(completion: @escaping (Result<FavouritesWatchlistMovies, NetworkError>) -> Void)
+    func getWatchListShows(completion: @escaping (Result<FavoritesWatchlistShows, NetworkError>) -> Void)
+    
 }
 
 protocol ActorNetworkManager {
