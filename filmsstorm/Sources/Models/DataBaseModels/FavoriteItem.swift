@@ -59,7 +59,7 @@ class FavoriteItem {
         guard let posterData = entity.posterImage, let backgroundData = entity.backgroundImage else { return nil }
         
         self.id = Int(entity.id)
-        self.posterImage = backgroundData
+        self.posterImage = posterData
         self.backgroundImage = backgroundData
         self.name = entity.name ?? ""
         self.originalName = entity.originalName ?? ""
@@ -72,7 +72,7 @@ class FavoriteItem {
         guard let posterData = entity.posterImage, let backgroundData = entity.backgroundImage else { return nil }
         
         self.id = Int(entity.id)
-        self.posterImage = backgroundData
+        self.posterImage = posterData
         self.backgroundImage = backgroundData
         self.name = entity.name ?? ""
         self.originalName = entity.originalName ?? ""
@@ -80,5 +80,4 @@ class FavoriteItem {
         self.rating = entity.rating
         self.overview = entity.overview ?? ""
     }
-    
 }

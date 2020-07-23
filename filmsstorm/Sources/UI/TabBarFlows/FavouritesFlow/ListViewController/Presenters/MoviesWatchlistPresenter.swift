@@ -21,6 +21,7 @@ class MoviesWatchlistPresenterImpl: ListsPresenter {
     let eventHandler: Handler<MoviesWatchlistEvent>
     private let networking: FavoritesNetworkManager
     var title = Constants.moviesWachlist
+    private let coreDataManager = CoreDataManager.shared
     
     // MARK: - Init and deinit
     
@@ -32,13 +33,8 @@ class MoviesWatchlistPresenterImpl: ListsPresenter {
      // MARK: - Networking dependency methods
     
     func getItems(_ completion: (([DiscoverCellModel]) -> Void)?) {
-        self.networking.getWathchListMovies { [weak self] result in
-            switch result {
-            case .success(let watchlist):
-                completion?(watchlist.results.map(DiscoverCellModel.create))
-            case .failure(let error):
-                self?.eventHandler(.error(.networkingError(error)))
-            }
+        self.coreDataManager.getMoviesWatchlist { movies in
+            completion?(movies.map { DiscoverCellModel.create($0!, mediaType: .movie) })
         }
     }
     

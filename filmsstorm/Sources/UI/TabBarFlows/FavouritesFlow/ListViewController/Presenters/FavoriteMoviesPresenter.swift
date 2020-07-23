@@ -28,7 +28,7 @@ class FavoriteMoviesPresenterImpl: ListsPresenter {
     let eventHandler: Handler<FavoriteMoviesEvent>
     private let networking: FavoritesNetworkManager
     var title = Constants.favoriteMovies
-    let coreDataManager = CoreDataManager.shared
+    private let coreDataManager = CoreDataManager.shared
     
     // MARK: - Init and deinit
     
