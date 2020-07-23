@@ -37,6 +37,13 @@ class AuthorizationViewController<T: AuthorizationPresenter>: UIViewController, 
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Life cycle
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.presenter.saveFavoriteLists()
+    }
+    
     // MARK: - IBAction
     
     @IBAction func buttonTapped(_ sender: Any) {

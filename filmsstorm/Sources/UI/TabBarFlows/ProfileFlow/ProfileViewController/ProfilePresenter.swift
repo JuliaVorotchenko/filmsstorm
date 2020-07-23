@@ -6,6 +6,8 @@
 //  Copyright © 2020 Alexander Andriushchenko. All rights reserved.
 //
 
+import Foundation
+
 enum ProfileEvent: EventProtocol {
     case logout
     case about
@@ -34,6 +36,7 @@ class ProfilePresenterImpl: ProfilePresenter {
     var showActivity: ((ActivityState) -> Void)?
     private let networking: ProfileNetworkManager
     let eventHandler: (ProfileEvent) -> Void
+    private let coreDataManager = CoreDataManager.shared
     
     // MARK: - Init and deinit
     
@@ -49,6 +52,7 @@ class ProfilePresenterImpl: ProfilePresenter {
         self.networking.logout { [weak self] result in
             switch result {
             case .success:
+               // self?.coreDataManager.delete()
                 KeyChainContainer.unregister()
                 self?.eventHandler(.logout)
                 self?.showActivity?(.hide)

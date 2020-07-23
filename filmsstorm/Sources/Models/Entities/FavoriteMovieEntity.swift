@@ -14,7 +14,6 @@ class FavoriteMovieEntity: NSManagedObject {
     class func findOrCreate(_ item: MovieListResult, context: NSManagedObjectContext) throws -> FavoriteMovieEntity {
         
         if let movieEntity = try? FavoriteMovieEntity.find(id: item.id, context: context) {
-            print(movieEntity.id)
             return movieEntity
         } else {
             let movieEntity = FavoriteMovieEntity(context: context)
@@ -26,7 +25,6 @@ class FavoriteMovieEntity: NSManagedObject {
             movieEntity.releaseDate = item.releaseDate
             movieEntity.posterImage = item.posterImage
             movieEntity.backgroundImage = item.backDropPath
-            print(movieEntity.id)
             return movieEntity
         }
     }

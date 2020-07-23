@@ -10,20 +10,20 @@ import Foundation
 import CoreData
 
 class WatchlistedMovieEntity: NSManagedObject {
-  class func findOrCreate(_ item: FavoriteItem, context: NSManagedObjectContext) throws -> WatchlistedMovieEntity {
+  class func findOrCreate(_ item: MovieListResult, context: NSManagedObjectContext) throws -> WatchlistedMovieEntity {
         
         if let movieEntity = try? WatchlistedMovieEntity.find(id: item.id, context: context) {
             return movieEntity
         } else {
             let movieEntity = WatchlistedMovieEntity(context: context)
             movieEntity.id = Int32(item.id)
-            movieEntity.name = item.name
-            movieEntity.originalName = item.originalName
+            movieEntity.name = item.title
+            movieEntity.originalName = item.originalTitle
             movieEntity.overview = item.overview
-            movieEntity.rating = item.rating
+            movieEntity.rating = item.voteAverage ?? 5.5
             movieEntity.releaseDate = item.releaseDate
             movieEntity.posterImage = item.posterImage
-            movieEntity.backgroundImage = item.backgroundImage
+            movieEntity.backgroundImage = item.backDropPath
             return movieEntity
         }
     }
@@ -44,7 +44,7 @@ class WatchlistedMovieEntity: NSManagedObject {
         do {
             let fetchResult = try context.fetch(request)
             
-            if fetchResult.isEmpty {
+            if !fetchResult.isEmpty {
                 assert(fetchResult.count == 1, "Duplicate has been found in DB")
                 return fetchResult[0]
             }
@@ -53,5 +53,17 @@ class WatchlistedMovieEntity: NSManagedObject {
         }
         
         return nil
+    }
+    
+    class func delete(context: NSManagedObjectContext) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FavoriteMovieEntity")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+           print(error)
+        }
     }
 }

@@ -10,21 +10,21 @@ import Foundation
 import CoreData
 
 class FavoriteShowEntity: NSManagedObject {
-    class func findOrCreate(_ item: FavoriteItem, context: NSManagedObjectContext) throws -> FavoriteShowEntity {
+    class func findOrCreate(_ item: ShowListResult, context: NSManagedObjectContext) throws -> FavoriteShowEntity {
         
-        if let movieEntity = try? FavoriteShowEntity.find(id: item.id, context: context) {
-            return movieEntity
+        if let showEntity = try? FavoriteShowEntity.find(id: item.id, context: context) {
+            return showEntity
         } else {
-            let movieEntity = FavoriteShowEntity(context: context)
-            movieEntity.id = Int32(item.id)
-            movieEntity.name = item.name
-            movieEntity.originalName = item.originalName
-            movieEntity.overview = item.overview
-            movieEntity.rating = item.rating
-            movieEntity.releaseDate = item.releaseDate
-            movieEntity.posterImage = item.posterImage
-            movieEntity.backgroundImage = item.backgroundImage
-            return movieEntity
+            let showEntity = FavoriteShowEntity(context: context)
+            showEntity.id = Int32(item.id)
+            showEntity.name = item.name
+            showEntity.originalName = item.originalName
+            showEntity.overview = item.overview
+            showEntity.rating = item.voteAverage ?? 5.5
+            showEntity.releaseDate = item.firstAirDate
+            showEntity.posterImage = item.posterImage
+            showEntity.backgroundImage = item.backgroundImage
+            return showEntity
         }
     }
     
@@ -44,7 +44,7 @@ class FavoriteShowEntity: NSManagedObject {
         do {
             let fetchResult = try context.fetch(request)
             
-            if fetchResult.isEmpty {
+            if !fetchResult.isEmpty {
                 assert(fetchResult.count == 1, "Duplicate has been found in DB")
                 return fetchResult[0]
             }
@@ -53,5 +53,17 @@ class FavoriteShowEntity: NSManagedObject {
         }
         
         return nil
+    }
+    
+    class func delete(context: NSManagedObjectContext) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FavoriteMovieEntity")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch let error as NSError {
+           print(error)
+        }
     }
 }
