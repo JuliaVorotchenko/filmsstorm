@@ -43,6 +43,9 @@ final class FavouritesViewController<T: FavouritesPresenter>: UIViewController, 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.getMoviesWatchlist()
+        self.getShowsWatchlist()
+        self.getFavoriteMovies()
+        self.getFavoriteShows()
         self.dataSource?.updateListsLabels()
     }
     
@@ -56,21 +59,18 @@ final class FavouritesViewController<T: FavouritesPresenter>: UIViewController, 
     private func getMoviesWatchlist() {
         self.presenter.getMoviesWatchlist {  [weak self] model in
             self?.dataSource?.update(for: .moviesWatchlist, with: model.map(FavoritesCollectionViewProvider.FavoritesContainer.media))
-            self?.getShowsWatchlist()
         }
     }
     
     private func getShowsWatchlist() {
         self.presenter.getShowsWatchList {  [weak self] model in
             self?.dataSource?.update(for: .showsWatchlist, with: model.map(FavoritesCollectionViewProvider.FavoritesContainer.media))
-            self?.getFavoriteMovies()
         }
     }
     
     private func getFavoriteMovies() {
         self.presenter.getFavoriteMovies {  [weak self] model in
             self?.dataSource?.update(for: .favoriteMovies, with: model.map(FavoritesCollectionViewProvider.FavoritesContainer.media))
-            self?.getFavoriteShows()
         }
     }
     
