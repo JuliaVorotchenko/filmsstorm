@@ -45,7 +45,7 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     override func loadView() {
         super.loadView()
-        self.presenter.getLists()
+        //self.presenter.getLists()
     }
     
     override func viewDidLoad() {

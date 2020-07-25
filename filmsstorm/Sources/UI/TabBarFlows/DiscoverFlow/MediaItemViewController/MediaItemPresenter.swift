@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 enum MediaItemEvent: EventProtocol {
     case back
@@ -41,6 +42,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     var showActivity: Handler<ActivityState>?
     private let networking: MediaItemNetworkProocol
     let itemModel: ConfigureModel
+    private let coreDataManager = CoreDataManager.shared
     
     private var mediaModel: MediaItemModel?
     
@@ -92,6 +94,20 @@ class MediaItemPresenterImpl: MediaItemPresenter {
                        isLiked: isLiked,
                        isWatchlisted: isWatchlisted)
         
+    }
+    
+  //new method +++++++++++++++++++++++++++
+    private func createIt(_ model: DetailsModel) -> MediaItemModel {
+        let isLiked = self.itemModel.mediaType == .movie
+            ? self.coreDataManager.getFavMov()?.map { $0.id }.contains(model.id)
+            : self.coreDataManager.getFavShows()?.map { $0.id }.contains(model.id)
+        
+        let isWatchlisted = self.itemModel.mediaType == .movie
+            ? self.coreDataManager.getmovWatchlist()?.map { $0.id }.contains(model.id)
+            : self.coreDataManager.getShowWatchl()?.map { $0.id }.contains(model.id)
+      
+        return .create(model, mediaType: self.itemModel.mediaType ?? MediaType.movie,
+                       isLiked: isLiked!, isWatchlisted: isWatchlisted!)
     }
     
     //item cast
@@ -163,12 +179,14 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         }
     }
     
+    //refactor
+    
     private func addFavoriteStorage(item: MediaItemModel) {
         switch self.itemModel.mediaType {
         case .movie:
-            UserMoviesContainer.favoritesIDs.append(item.idValue)
+            self.coreDataManager.addFavMovie(item: item)
         case .tv:
-            UserShowsContainer.favoritesIDs.append(item.idValue)
+            self.coreDataManager.addFavShow(item: item)
         case .none:
             break
         }
@@ -177,9 +195,9 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     private func removeFavoriteStorage(item: MediaItemModel) {
         switch self.itemModel.mediaType {
         case .movie:
-            UserMoviesContainer.favoritesIDs = UserMoviesContainer.favoritesIDs.filter { $0 != item.idValue }
+            self.coreDataManager.deleteMovieFromFavorites(id: item.idValue)
         case .tv:
-            UserShowsContainer.favoritesIDs = UserShowsContainer.favoritesIDs.filter { $0 != item.idValue }
+            self.coreDataManager.deleteShowFfromFavorite(id: item.idValue)
         case .none:
             break
         }
@@ -199,12 +217,14 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         }
     }
     
+    //refactor
+    
     private func addWatchlistStorage(item: MediaItemModel) {
         switch self.itemModel.mediaType {
         case .movie:
-            UserMoviesContainer.watchlistIDs.append(item.idValue)
+            self.coreDataManager.addWatchlMovie(item: item)
         case .tv:
-            UserMoviesContainer.watchlistIDs.append(item.idValue)
+            self.coreDataManager.addWatchlShow(item: item)
         case .none:
             break
         }
@@ -213,9 +233,9 @@ class MediaItemPresenterImpl: MediaItemPresenter {
     private func removeWatchlistStorage(item: MediaItemModel) {
         switch self.itemModel.mediaType {
         case .movie:
-            UserMoviesContainer.watchlistIDs = UserMoviesContainer.watchlistIDs.filter { $0 != item.idValue }
+             self.coreDataManager.deleteMovieFromWatchlist(id: item.idValue)
         case .tv:
-            UserShowsContainer.watchlistIDs = UserShowsContainer.watchlistIDs.filter { $0 != item.idValue }
+            self.coreDataManager.deleteShowFromWatchlist(id: item.idValue)
         case .none:
             break
         }

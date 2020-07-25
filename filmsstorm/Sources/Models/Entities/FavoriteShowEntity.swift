@@ -28,6 +28,32 @@ class FavoriteShowEntity: NSManagedObject {
         }
     }
     
+    class func deleteItem(_ id: Int, context: NSManagedObjectContext) {
+        if let showEntity = try? FavoriteShowEntity.find(id: id, context: context) {
+            do {
+                context.delete(showEntity)
+                try context.save()
+            } catch let error as NSError {
+                print(error)
+            }
+        } else {
+            print("no such item")
+        }
+    }
+    
+    class func addItem(_ item: FavoriteItem, context: NSManagedObjectContext) {
+        if let showEntity = try? FavoriteShowEntity.find(id: Int(item.id), context: context) {
+            do {
+                context.insert(showEntity)
+                try context.save()
+            } catch let error as NSError {
+                print(error)
+            }
+        } else {
+            print("no such item")
+        }
+    }
+    
     class func all(_ context: NSManagedObjectContext) throws -> [FavoriteShowEntity] {
         let request: NSFetchRequest<FavoriteShowEntity> = FavoriteShowEntity.fetchRequest()
         do {
@@ -58,12 +84,12 @@ class FavoriteShowEntity: NSManagedObject {
     class func delete(context: NSManagedObjectContext) {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FavoriteMovieEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-
+        
         do {
             try context.execute(deleteRequest)
             try context.save()
         } catch let error as NSError {
-           print(error)
+            print(error)
         }
     }
 }

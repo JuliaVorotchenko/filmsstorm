@@ -69,15 +69,33 @@ class FavoriteItem {
     }
     
     init?(entity: WatchlistedShowEntity) {
-        guard let posterData = entity.posterImage, let backgroundData = entity.backgroundImage else { return nil }
+        guard let poster = entity.posterImage, let background = entity.backgroundImage else { return nil }
         
         self.id = Int(entity.id)
-        self.posterImage = posterData
-        self.backgroundImage = backgroundData
+        self.posterImage = poster
+        self.backgroundImage = background
         self.name = entity.name ?? ""
         self.originalName = entity.originalName ?? ""
         self.releaseDate = entity.releaseDate ?? ""
         self.rating = entity.rating
         self.overview = entity.overview ?? ""
+    }
+    
+    init?(mediaItemModel: MediaItemModel) {
+        guard let posterImage = mediaItemModel.posterImage,
+            let backgroundImage = mediaItemModel.backgroundImage,
+            let name = mediaItemModel.name,
+            let releaseDate = mediaItemModel.releaseDate,
+            let rating = mediaItemModel.voteAverage,
+            let overview = mediaItemModel.overview else { return nil }
+        
+        self.id = mediaItemModel.idValue
+        self.posterImage = posterImage
+        self.backgroundImage = backgroundImage
+        self.name = name
+        self.originalName = mediaItemModel.originalName
+        self.releaseDate = releaseDate
+        self.rating = rating
+        self.overview = overview
     }
 }

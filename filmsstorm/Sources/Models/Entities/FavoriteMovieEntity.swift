@@ -29,6 +29,32 @@ class FavoriteMovieEntity: NSManagedObject {
         }
     }
     
+    class func deleteItem(_ id: Int, context: NSManagedObjectContext) {
+        if let movieEntity = try? FavoriteMovieEntity.find(id: id, context: context) {
+            do {
+                context.delete(movieEntity)
+                try context.save()
+            } catch let error as NSError {
+                print(error)
+            }
+        } else {
+            print("no such item")
+        }
+    }
+    
+    class func addItem(_ item: FavoriteItem, context: NSManagedObjectContext) {
+        if let movieEntity = try? FavoriteMovieEntity.find(id: Int(item.id), context: context) {
+            do {
+                context.insert(movieEntity)
+                try context.save()
+            } catch let error as NSError {
+                print(error)
+            }
+        } else {
+            print("no such item")
+        }
+    }
+    
     class func all(_ context: NSManagedObjectContext) throws -> [FavoriteMovieEntity] {
         let request: NSFetchRequest<FavoriteMovieEntity> = FavoriteMovieEntity.fetchRequest()
         do {
@@ -57,12 +83,12 @@ class FavoriteMovieEntity: NSManagedObject {
     class func delete(context: NSManagedObjectContext) {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FavoriteMovieEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-
+        
         do {
             try context.execute(deleteRequest)
             try context.save()
         } catch let error as NSError {
-           print(error)
+            print(error)
         }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class WatchlistedMovieEntity: NSManagedObject {
-  class func findOrCreate(_ item: MovieListResult, context: NSManagedObjectContext) throws -> WatchlistedMovieEntity {
+    class func findOrCreate(_ item: MovieListResult, context: NSManagedObjectContext) throws -> WatchlistedMovieEntity {
         
         if let movieEntity = try? WatchlistedMovieEntity.find(id: item.id, context: context) {
             return movieEntity
@@ -25,6 +25,32 @@ class WatchlistedMovieEntity: NSManagedObject {
             movieEntity.posterImage = item.posterImage
             movieEntity.backgroundImage = item.backDropPath
             return movieEntity
+        }
+    }
+    
+    class func deleteItem(_ id: Int, context: NSManagedObjectContext) {
+        if let movieEntity = try? WatchlistedMovieEntity.find(id: id, context: context) {
+            do {
+                context.delete(movieEntity)
+                try context.save()
+            } catch let error as NSError {
+                print(error)
+            }
+        } else {
+            print("no such item")
+        }
+    }
+    
+    class func addItem(_ item: FavoriteItem, context: NSManagedObjectContext) {
+        if let movieEntity = try? WatchlistedMovieEntity.find(id: Int(item.id), context: context) {
+            do {
+                context.insert(movieEntity)
+                try context.save()
+            } catch let error as NSError {
+                print(error)
+            }
+        } else {
+            print("no such item")
         }
     }
     
@@ -58,12 +84,12 @@ class WatchlistedMovieEntity: NSManagedObject {
     class func delete(context: NSManagedObjectContext) {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FavoriteMovieEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-
+        
         do {
             try context.execute(deleteRequest)
             try context.save()
         } catch let error as NSError {
-           print(error)
+            print(error)
         }
     }
 }

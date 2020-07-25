@@ -12,20 +12,46 @@ import CoreData
 class WatchlistedShowEntity: NSManagedObject {
     class func findOrCreate(_ item: ShowListResult, context: NSManagedObjectContext) throws -> WatchlistedShowEntity {
         
-         if let showEntity = try? WatchlistedShowEntity.find(id: item.id, context: context) {
-                   return showEntity
-               } else {
-                   let showEntity = WatchlistedShowEntity(context: context)
-                   showEntity.id = Int32(item.id)
-                   showEntity.name = item.name
-                   showEntity.originalName = item.originalName
-                   showEntity.overview = item.overview
-                   showEntity.rating = item.voteAverage ?? 5.5
-                   showEntity.releaseDate = item.firstAirDate
-                   showEntity.posterImage = item.posterImage
-                   showEntity.backgroundImage = item.backgroundImage
-                   return showEntity
-               }
+        if let showEntity = try? WatchlistedShowEntity.find(id: item.id, context: context) {
+            return showEntity
+        } else {
+            let showEntity = WatchlistedShowEntity(context: context)
+            showEntity.id = Int32(item.id)
+            showEntity.name = item.name
+            showEntity.originalName = item.originalName
+            showEntity.overview = item.overview
+            showEntity.rating = item.voteAverage ?? 5.5
+            showEntity.releaseDate = item.firstAirDate
+            showEntity.posterImage = item.posterImage
+            showEntity.backgroundImage = item.backgroundImage
+            return showEntity
+        }
+    }
+    
+    class func deleteItem(_ id: Int, context: NSManagedObjectContext) {
+        if let showEntity = try? WatchlistedShowEntity.find(id: id, context: context) {
+            do {
+                context.delete(showEntity)
+                try context.save()
+            } catch let error as NSError {
+                print(error)
+            }
+        } else {
+            print("no such item")
+        }
+    }
+    
+    class func addItem(_ item: FavoriteItem, context: NSManagedObjectContext) {
+        if let showEntity = try? FavoriteShowEntity.find(id: Int(item.id), context: context) {
+            do {
+                context.insert(showEntity)
+                try context.save()
+            } catch let error as NSError {
+                print(error)
+            }
+        } else {
+            print("no such item")
+        }
     }
     
     class func all(_ context: NSManagedObjectContext) throws -> [WatchlistedShowEntity] {
@@ -58,12 +84,12 @@ class WatchlistedShowEntity: NSManagedObject {
     class func delete(context: NSManagedObjectContext) {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FavoriteMovieEntity")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-
+        
         do {
             try context.execute(deleteRequest)
             try context.save()
         } catch let error as NSError {
-           print(error)
+            print(error)
         }
     }
 }
