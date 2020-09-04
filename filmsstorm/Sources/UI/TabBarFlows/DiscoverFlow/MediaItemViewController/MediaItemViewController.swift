@@ -43,17 +43,17 @@ class MediaItemViewController<T: MediaItemPresenter>: UIViewController, Controll
     
     // MARK: - Life cycle
     
-    override func loadView() {
-        super.loadView()
-        //self.presenter.getLists()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationView()
         self.getItemDescription()
         self.getMovieSimilars()
         self.getItemCast()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.presenter.getLists()
     }
     
     // MARK: - Private methods

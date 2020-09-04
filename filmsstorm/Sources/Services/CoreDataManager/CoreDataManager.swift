@@ -76,7 +76,6 @@ class CoreDataManager {
         }
     }
     
-    
     func delete() {
         let viewContext = persistentContainer.viewContext
         FavoriteMovieEntity.delete(context: viewContext)
@@ -131,7 +130,6 @@ class CoreDataManager {
         FavoriteShowEntity.deleteItem(id, context: viewContext)
     }
     
-    
     // MARK: - Movies Watchlist
     
     func getMoviesWatchlist(_ completionHandler: @escaping ([FavoriteItem?]) -> Void) {
@@ -176,8 +174,6 @@ class CoreDataManager {
         WatchlistedMovieEntity.deleteItem(id, context: viewContext)
     }
     
-    
-    
     // MARK: - Shows WatchList
     
     func getShowsWatchlist(_ completionHandler: @escaping ([FavoriteItem?]) -> Void) {
@@ -221,7 +217,6 @@ class CoreDataManager {
         let viewContext = persistentContainer.viewContext
         WatchlistedShowEntity.deleteItem(id, context: viewContext)
     }
-    
     
     // MARK: - Upcomong Movies
     

@@ -80,24 +80,23 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         }
     }
     
-    private func createMediaItem(_ model: DetailsModel) -> MediaItemModel {
-        let isLiked = self.itemModel.mediaType == .movie
-            ? UserMoviesContainer.favoritesIDs.contains(model.id)
-            : UserShowsContainer.favoritesIDs.contains(model.id)
-        
-        let isWatchlisted = self.itemModel.mediaType == .movie
-            ? UserMoviesContainer.watchlistIDs.contains(model.id)
-            : UserShowsContainer.watchlistIDs.contains(model.id)
-        
-        return .create(model,
-                       mediaType: self.itemModel.mediaType ?? MediaType.movie,
-                       isLiked: isLiked,
-                       isWatchlisted: isWatchlisted)
-        
-    }
+//    private func createMediaItem(_ model: DetailsModel) -> MediaItemModel {
+//        let isLiked = self.itemModel.mediaType == .movie
+//            ? UserMoviesContainer.favoritesIDs.contains(model.id)
+//            : UserShowsContainer.favoritesIDs.contains(model.id)
+//
+//        let isWatchlisted = self.itemModel.mediaType == .movie
+//            ? UserMoviesContainer.watchlistIDs.contains(model.id)
+//            : UserShowsContainer.watchlistIDs.contains(model.id)
+//
+//        return .create(model,
+//                       mediaType: self.itemModel.mediaType ?? MediaType.movie,
+//                       isLiked: isLiked,
+//                       isWatchlisted: isWatchlisted)
+//
+//    }
     
-  //new method +++++++++++++++++++++++++++
-    private func createIt(_ model: DetailsModel) -> MediaItemModel {
+    private func createMediaItem(_ model: DetailsModel) -> MediaItemModel {
         let isLiked = self.itemModel.mediaType == .movie
             ? self.coreDataManager.getFavMov()?.map { $0.id }.contains(model.id)
             : self.coreDataManager.getFavShows()?.map { $0.id }.contains(model.id)
@@ -254,7 +253,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         self.networking.getFavoriteMovies { [weak self] result in
             switch result {
             case .success(let model):
-                UserMoviesContainer.favoritesIDs = model.results.map { $0.id }
+                self?.coreDataManager.saveFavoriteMovies(movies: model.results)
             case .failure(let error):
                 self?.eventHandler(.error(.networkingError(error)))
             }
@@ -265,7 +264,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         self.networking.getFavoriteShows { [weak self] result in
             switch result {
             case .success(let model):
-                UserShowsContainer.favoritesIDs = model.results.map { $0.id }
+                self?.coreDataManager.saveFavoriteShows(shows: model.results)
             case .failure(let error):
                 self?.eventHandler(.error(.networkingError(error)))
             }
@@ -276,7 +275,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         self.networking.getWathchListMovies { [weak self] result in
             switch result {
             case .success(let model):
-                UserMoviesContainer.watchlistIDs = model.results.map { $0.id }
+                self?.coreDataManager.saveWatchlistedMovies(movies: model.results)
             case .failure(let error):
                 self?.eventHandler(.error(.networkingError(error)))
             }
@@ -287,7 +286,7 @@ class MediaItemPresenterImpl: MediaItemPresenter {
         self.networking.getWatchListShows { [weak self] result in
             switch result {
             case .success(let model):
-                UserShowsContainer.watchlistIDs = model.results.map { $0.id }
+                self?.coreDataManager.saveWatchlistedShows(shows: model.results)
             case .failure(let error):
                 self?.eventHandler(.error(.networkingError(error)))
             }
