@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>912881929575-lld8njqr4l4e0de8arr5g3rvm16p8muq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.912881929575-lld8njqr4l4e0de8arr5g3rvm16p8muq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDBC9Oey0smxjh9kCYcmn4OvOkhOQefYek</string>
+	<key>GCM_SENDER_ID</key>
+	<string>912881929575</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.vorotchenko.filmsstorm</string>
+	<key>PROJECT_ID</key>
+	<string>filmsstorm-98eb4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>filmsstorm-98eb4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:912881929575:ios:4d9510a6bd56b035bb33c2</string>
+	<key>DATABASE_URL</key>
+	<string>https://filmsstorm-98eb4.firebaseio.com</string>
+</dict>
+</plist>

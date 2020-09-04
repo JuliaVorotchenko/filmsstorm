@@ -153,3 +153,5 @@ fabric.properties
 #Fastfile
 installer/
 fastlane/README.md
+
+FilmsstormList.plist
